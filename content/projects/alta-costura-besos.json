@@ -1,0 +1,49 @@
+{
+  "slug": "alta-costura-besos",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+  "tags": ["regeneracio", "espai-public", "infraestructura-verda", "estructura-urbana"],
+  "coordinates": { "lat": 41.4289, "lng": 2.2209 },
+  "ca": {
+    "title": "Alta costura / Besòs central",
+    "municipality": "Barcelona / Sant Adrià de Besòs",
+    "year": "2024",
+    "status": "En curs",
+    "tipus": "Estudi estratègic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "es": {
+    "title": "Alta costura / Besòs central",
+    "municipality": "Barcelona / Sant Adrià de Besòs",
+    "year": "2024",
+    "status": "En curso",
+    "tipus": "Estudio estratégico",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "en": {
+    "title": "Alta costura / Besòs central",
+    "municipality": "Barcelona / Sant Adrià de Besòs",
+    "year": "2024",
+    "status": "Ongoing",
+    "tipus": "Strategic study",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}

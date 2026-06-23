@@ -1,0 +1,49 @@
+{
+  "slug": "pineda-diba-espai-public",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"],
+  "tags": ["espai-public", "regeneracio", "participacio-ciutadana"],
+  "coordinates": { "lat": 41.7612, "lng": 2.6834 },
+  "ca": {
+    "title": "Pineda de Mar — PD Espai Públic",
+    "municipality": "Pineda de Mar",
+    "year": "2025",
+    "status": "En curs",
+    "tipus": "Pla Director d'Espai Públic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "es": {
+    "title": "Pineda de Mar — PD Espai Públic",
+    "municipality": "Pineda de Mar",
+    "year": "2025",
+    "status": "En curso",
+    "tipus": "Plan Director de Espacio Público",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "en": {
+    "title": "Pineda de Mar — Public Space Masterplan",
+    "municipality": "Pineda de Mar",
+    "year": "2025",
+    "status": "Ongoing",
+    "tipus": "Public Space Masterplan",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}

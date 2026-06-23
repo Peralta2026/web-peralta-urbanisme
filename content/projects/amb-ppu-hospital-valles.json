@@ -1,0 +1,49 @@
+{
+  "slug": "amb-ppu-hospital-valles",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  "tags": ["infraestructura-verda", "espai-public", "estructura-urbana"],
+  "coordinates": { "lat": 41.5936, "lng": 2.2947 },
+  "ca": {
+    "title": "AMB PPU Hospital del Vallès",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2025",
+    "status": "En curs",
+    "tipus": "Pla Parcial Urbanístic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  "es": {
+    "title": "AMB PPU Hospital del Vallès",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2025",
+    "status": "En curso",
+    "tipus": "Plan Parcial Urbanístico",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  "en": {
+    "title": "AMB PPU Hospital del Vallès",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2025",
+    "status": "Ongoing",
+    "tipus": "Partial Urban Plan",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "calaf-model-revisio",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+  "tags": ["estructura-urbana", "espai-public", "divulgacio"],
+  "coordinates": { "lat": 41.7315, "lng": 1.5139 },
+  "ca": {
+    "title": "Calaf — Model i revisió PAUS",
+    "municipality": "Calaf",
+    "year": "2024",
+    "status": "Finalitzat",
+    "tipus": "Model urbà i revisió PAUS",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "es": {
+    "title": "Calaf — Model i revisió PAUS",
+    "municipality": "Calaf",
+    "year": "2024",
+    "status": "Finalizado",
+    "tipus": "Modelo urbano y revisión PAUS",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "en": {
+    "title": "Calaf — Urban Model & PAUS Review",
+    "municipality": "Calaf",
+    "year": "2024",
+    "status": "Completed",
+    "tipus": "Urban model and PAUS review",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}

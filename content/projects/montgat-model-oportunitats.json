@@ -1,0 +1,49 @@
+{
+  "slug": "montgat-model-oportunitats",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+  "tags": ["infraestructura-verda", "espai-public", "estructura-urbana"],
+  "coordinates": { "lat": 41.4768, "lng": 2.2677 },
+  "ca": {
+    "title": "Montgat — Model i oportunitats",
+    "municipality": "Montgat",
+    "year": "2024",
+    "status": "Finalitzat",
+    "tipus": "Estudi estratègic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "es": {
+    "title": "Montgat — Model i oportunitats",
+    "municipality": "Montgat",
+    "year": "2024",
+    "status": "Finalizado",
+    "tipus": "Estudio estratégico",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "en": {
+    "title": "Montgat — Model & Opportunities",
+    "municipality": "Montgat",
+    "year": "2024",
+    "status": "Completed",
+    "tipus": "Strategic study",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}

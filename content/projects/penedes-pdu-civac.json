@@ -1,0 +1,49 @@
+{
+  "slug": "penedes-pdu-civac",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
+  "tags": ["activitat-economica", "integracio-infraestructures", "estructura-urbana"],
+  "coordinates": { "lat": 41.3364, "lng": 1.6972 },
+  "ca": {
+    "title": "Penedès — PDU CIVAC",
+    "municipality": "Vilafranca del Penedès",
+    "year": "2025",
+    "status": "En curs",
+    "tipus": "Pla Director Urbanístic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "es": {
+    "title": "Penedès — PDU CIVAC",
+    "municipality": "Vilafranca del Penedès",
+    "year": "2025",
+    "status": "En curso",
+    "tipus": "Plan Director Urbanístico",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "en": {
+    "title": "Penedès — PDU CIVAC",
+    "municipality": "Vilafranca del Penedès",
+    "year": "2025",
+    "status": "Ongoing",
+    "tipus": "Urban Masterplan",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "XXX",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "descriptionLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+}
