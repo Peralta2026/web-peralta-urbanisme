@@ -42,7 +42,7 @@ export default function Nav({ locale }: { locale: string }) {
         className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black"
         style={{ fontFamily: "var(--font-sans)" }}
       >
-        <div className="flex items-center h-14 px-6 gap-6">
+        <div className="flex items-center h-[72px] px-6 gap-6">
 
           {/* Logo */}
           <Link
@@ -53,9 +53,9 @@ export default function Nav({ locale }: { locale: string }) {
             <Image
               src="/logo.jpg"
               alt="Peralta Urbanisme"
-              width={240}
-              height={60}
-              style={{ height: "40px", width: "auto" }}
+              width={360}
+              height={90}
+              style={{ height: "60px", width: "auto" }}
               priority
             />
           </Link>

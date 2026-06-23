@@ -19,16 +19,22 @@ function MetaItem({
 }) {
   if (value === null || value === undefined) return null;
   return (
-    <div className="mb-5">
+    <div style={{ marginBottom: "20px" }}>
       <p
-        className="text-xs uppercase tracking-wider text-gray-500 mb-1"
-        style={{ fontFamily: "var(--font-mono)" }}
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "10px",
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          color: "#888",
+          marginBottom: "4px",
+        }}
       >
         {label}
       </p>
-      <p className="text-sm text-black leading-snug">
+      <p style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>
         {value}
-        {unit && <span className="ml-1">{unit}</span>}
+        {unit && <span style={{ marginLeft: "4px" }}>{unit}</span>}
       </p>
     </div>
   );
@@ -51,148 +57,221 @@ export default function ProjectDiptych({ project, locale }: Props) {
     [images.length]
   );
 
-  return (
-    <article
-      className="border-b border-black"
-      style={{ fontFamily: "var(--font-sans)" }}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2">
+  // Title font size: large on desktop, smaller on mobile
+  const titleStyle: React.CSSProperties = {
+    fontFamily: "var(--font-sans)",
+    fontWeight: 700,
+    lineHeight: 1.05,
+    color: "#000",
+    fontSize: "clamp(1.6rem, 3.2vw, 3rem)",
+  };
 
-        {/* LEFT — Image */}
+  return (
+    <article>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "16px",
+        }}
+        className="grid-cols-diptych"
+      >
+        {/* ── LEFT — Caixa imatge ── */}
         <div
-          className="relative border-b md:border-b-0 md:border-r border-black"
-          style={{ minHeight: "clamp(300px, 45vw, 580px)" }}
+          style={{
+            border: "1px solid #000",
+            padding: "12px",          /* marge interior: imatge com a làmina */
+            height: "70vh",
+            minHeight: "320px",
+            boxSizing: "border-box",
+          }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`/projects/${slug}/${images[current]}`}
-            alt={`${data.title} — ${current + 1}`}
+          {/* Inner frame — the image sits inside here */}
+          <div
             style={{
-              position: "absolute",
-              inset: 0,
+              position: "relative",
               width: "100%",
               height: "100%",
-              objectFit: "cover",
-              display: "block",
+              overflow: "hidden",
             }}
-          />
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/projects/${slug}/${images[current]}`}
+              alt={`${data.title} — ${current + 1}`}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
 
-          {/* Click zones — invisible, for prev/next */}
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={prev}
-                aria-label="Imatge anterior"
-                style={{
-                  position: "absolute",
-                  inset: "0 50% 0 0",
-                  background: "transparent",
-                  border: "none",
-                  cursor: "w-resize",
-                  zIndex: 1,
-                }}
-              />
-              <button
-                onClick={next}
-                aria-label="Imatge següent"
-                style={{
-                  position: "absolute",
-                  inset: "0 0 0 50%",
-                  background: "transparent",
-                  border: "none",
-                  cursor: "e-resize",
-                  zIndex: 1,
-                }}
-              />
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: "12px",
-                  right: "12px",
-                  fontSize: "11px",
-                  color: "#fff",
-                  backgroundColor: "rgba(0,0,0,0.45)",
-                  padding: "2px 8px",
-                  fontFamily: "var(--font-mono)",
-                  zIndex: 2,
-                }}
-              >
-                {current + 1} / {images.length}
-              </span>
-            </>
-          )}
+            {/* Click zones (invisibles) per navegar entre imatges */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  aria-label="Imatge anterior"
+                  style={{
+                    position: "absolute",
+                    top: 0, bottom: 0, left: 0, right: "50%",
+                    background: "transparent",
+                    border: "none",
+                    cursor: "w-resize",
+                    zIndex: 1,
+                  }}
+                />
+                <button
+                  onClick={next}
+                  aria-label="Imatge següent"
+                  style={{
+                    position: "absolute",
+                    top: 0, bottom: 0, left: "50%", right: 0,
+                    background: "transparent",
+                    border: "none",
+                    cursor: "e-resize",
+                    zIndex: 1,
+                  }}
+                />
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "10px",
+                    right: "10px",
+                    fontSize: "10px",
+                    fontFamily: "var(--font-mono)",
+                    color: "#fff",
+                    backgroundColor: "rgba(0,0,0,0.4)",
+                    padding: "2px 7px",
+                    zIndex: 2,
+                  }}
+                >
+                  {current + 1} / {images.length}
+                </span>
+              </>
+            )}
+          </div>
         </div>
 
-        {/* RIGHT — Content */}
-        <div className="flex flex-col px-10 pt-10 pb-12">
-
-          {/* Title block — molt gran, com a la referència */}
-          <div className="mb-16">
-            <h2
-              className="font-bold leading-tight text-black"
-              style={{ fontSize: "clamp(1.75rem, 3vw, 2.75rem)", lineHeight: 1.1 }}
-            >
-              {data.title}
-            </h2>
-            <p
-              className="font-bold text-black mt-1"
-              style={{ fontSize: "clamp(1.75rem, 3vw, 2.75rem)", lineHeight: 1.1 }}
-            >
+        {/* ── RIGHT — Caixa text ── */}
+        <div
+          style={{
+            border: "1px solid #000",
+            height: "70vh",
+            minHeight: "320px",
+            overflowY: "auto",
+            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            padding: "40px",
+            fontFamily: "var(--font-sans)",
+          }}
+        >
+          {/* Títol + municipi/any al capdamunt */}
+          <div>
+            <h2 style={titleStyle}>{data.title}</h2>
+            <p style={{ ...titleStyle, marginTop: "4px" }}>
               {data.municipality} — {data.year}
             </p>
           </div>
 
-          {/* Descripció curta */}
-          <p className="text-base leading-relaxed text-black">
-            {data.descriptionShort}
-          </p>
+          {/* Espai blanc al mig (franja de respir) — desapareix quan s'expandeix */}
+          {!expanded && <div style={{ flex: 1 }} />}
 
-          {/* Botó llegir més */}
+          {/* Descripció curta */}
           {!expanded && (
-            <button
-              onClick={() => setExpanded(true)}
-              className="mt-10 text-xs uppercase tracking-widest text-black underline cursor-pointer border-none bg-transparent p-0 text-left"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Llegir més
-            </button>
+            <div>
+              <p
+                style={{
+                  fontSize: "15px",
+                  lineHeight: 1.65,
+                  color: "#000",
+                  maxWidth: "560px",
+                }}
+              >
+                {data.descriptionShort}
+              </p>
+
+              <button
+                onClick={() => setExpanded(true)}
+                style={{
+                  marginTop: "28px",
+                  fontSize: "10px",
+                  fontFamily: "var(--font-mono)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  textDecoration: "underline",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                  color: "#000",
+                }}
+              >
+                Llegir més
+              </button>
+            </div>
           )}
 
-          {/* Contingut expandit: text llarg + metadades en 2 columnes */}
+          {/* Contingut expandit */}
           {expanded && (
-            <div className="mt-10 grid grid-cols-5 gap-10">
+            <div
+              style={{
+                marginTop: "40px",
+                display: "grid",
+                gridTemplateColumns: "3fr 2fr",
+                gap: "40px",
+                flex: 1,
+              }}
+            >
               {/* Descripció llarga */}
-              <div className="col-span-3">
-                <p className="text-base leading-relaxed text-black whitespace-pre-line">
+              <div>
+                <p
+                  style={{
+                    fontSize: "15px",
+                    lineHeight: 1.65,
+                    color: "#000",
+                    whiteSpace: "pre-line",
+                  }}
+                >
                   {data.descriptionLong}
                 </p>
                 <button
                   onClick={() => setExpanded(false)}
-                  className="mt-8 text-xs uppercase tracking-widest text-gray-400 underline cursor-pointer border-none bg-transparent p-0 text-left hover:text-black"
-                  style={{ fontFamily: "var(--font-mono)" }}
+                  style={{
+                    marginTop: "28px",
+                    fontSize: "10px",
+                    fontFamily: "var(--font-mono)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    textDecoration: "underline",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: 0,
+                    color: "#888",
+                  }}
                 >
                   Llegir menys
                 </button>
               </div>
 
-              {/* Columna de metadades */}
-              <div className="col-span-2">
+              {/* Columna metadades */}
+              <div>
                 <MetaItem label="Municipi" value={data.municipality} />
                 <MetaItem label="Any" value={data.year} />
                 <MetaItem label="Estat" value={data.status} />
                 <MetaItem label="Tipologia" value={data.tipus} />
-                {data.premi && (
-                  <MetaItem label="Premi" value={data.premi} />
-                )}
+                {data.premi && <MetaItem label="Premi" value={data.premi} />}
                 {data.ambitM2 && (
                   <MetaItem
                     label="Àmbit"
                     value={data.ambitM2.toLocaleString()}
                     unit="m²"
                   />
-                )}
-                {data.programa && data.programa !== "XXX" && (
-                  <MetaItem label="Programa" value={data.programa} />
                 )}
                 {data.sostreM2 && (
                   <MetaItem
