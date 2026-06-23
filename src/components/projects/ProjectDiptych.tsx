@@ -68,14 +68,7 @@ export default function ProjectDiptych({ project, locale }: Props) {
 
   return (
     <article>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "16px",
-        }}
-        className="grid-cols-diptych"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* ── LEFT — Caixa imatge ── */}
         <div
           style={{
