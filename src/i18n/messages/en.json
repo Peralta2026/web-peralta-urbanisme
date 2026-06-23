@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "projectes": "Projects",
+    "equip": "Team",
+    "intervencions": "Interventions",
+    "contacte": "Contact"
+  },
+  "filters": {
+    "all": "All",
+    "residencial": "Residential",
+    "transformacio": "Transformation",
+    "extensio": "Extension",
+    "regeneracio": "Regeneration",
+    "activitat-economica": "Economic activity",
+    "infraestructura-verda": "Green infrastructure",
+    "integracio-infraestructures": "Infrastructure integration",
+    "estructura-urbana": "Urban structure",
+    "divulgacio": "Outreach",
+    "espai-public": "Public space",
+    "participacio-ciutadana": "Civic participation",
+    "encaixos-singulars": "Singular insertions"
+  },
+  "project": {
+    "municipality": "Municipality",
+    "year": "Year",
+    "status": "Status",
+    "type": "Type",
+    "prize": "Prize",
+    "scope": "Scope",
+    "program": "Program",
+    "built": "Built area",
+    "dwellings": "Dwellings",
+    "readMore": "Read more",
+    "readLess": "Read less",
+    "squareMeters": "m²",
+    "viewProject": "View project",
+    "back": "Back"
+  },
+  "team": {
+    "title": "Team",
+    "readMore": "Read more",
+    "readLess": "Read less"
+  },
+  "interventions": {
+    "title": "Strategic interventions"
+  },
+  "contact": {
+    "title": "Contact"
+  },
+  "meta": {
+    "title": "Peralta Urbanisme",
+    "description": "Urban planning and territorial planning practice"
+  }
+}

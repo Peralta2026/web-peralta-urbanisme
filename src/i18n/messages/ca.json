@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "projectes": "Projectes",
+    "equip": "Equip",
+    "intervencions": "Intervencions",
+    "contacte": "Contacte"
+  },
+  "filters": {
+    "all": "Tots",
+    "residencial": "Residencial",
+    "transformacio": "Transformació",
+    "extensio": "Extensió",
+    "regeneracio": "Regeneració",
+    "activitat-economica": "Activitat econòmica",
+    "infraestructura-verda": "Infraestructura verda",
+    "integracio-infraestructures": "Integració d'infraestructures",
+    "estructura-urbana": "Estructura urbana",
+    "divulgacio": "Divulgació",
+    "espai-public": "Espai públic",
+    "participacio-ciutadana": "Participació ciutadana",
+    "encaixos-singulars": "Encaixos singulars"
+  },
+  "project": {
+    "municipality": "Municipi",
+    "year": "Any",
+    "status": "Estat",
+    "type": "Tipus",
+    "prize": "Premi",
+    "scope": "Àmbit",
+    "program": "Programa",
+    "built": "Sostre",
+    "dwellings": "Habitatges",
+    "readMore": "Llegir més",
+    "readLess": "Llegir menys",
+    "squareMeters": "m²",
+    "viewProject": "Veure projecte",
+    "back": "Tornar"
+  },
+  "team": {
+    "title": "Equip",
+    "readMore": "Llegir més",
+    "readLess": "Llegir menys"
+  },
+  "interventions": {
+    "title": "Intervencions estratègiques"
+  },
+  "contact": {
+    "title": "Contacte"
+  },
+  "meta": {
+    "title": "Peralta Urbanisme",
+    "description": "Despatx d'urbanisme i planificació territorial"
+  }
+}

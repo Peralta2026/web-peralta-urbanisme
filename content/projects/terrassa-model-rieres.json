@@ -1,0 +1,49 @@
+{
+  "slug": "terrassa-model-rieres",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg"],
+  "tags": ["infraestructura-verda", "espai-public", "estructura-urbana", "regeneracio"],
+  "coordinates": { "lat": 41.5616, "lng": 2.0079 },
+  "ca": {
+    "title": "Model Rieres — Terrassa",
+    "municipality": "Terrassa",
+    "year": "2023",
+    "status": "Finalitzat",
+    "tipus": "Estudi estratègic",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Infraestructura verda i espai públic",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Estudi del sistema de rieres de Terrassa com a infraestructura verda urbana. El Model Rieres proposa una visió integral per a la recuperació ecològica i paisatgística dels cursos fluvials que travessen la ciutat.",
+    "descriptionLong": "Estudi del sistema de rieres de Terrassa com a infraestructura verda urbana. El Model Rieres proposa una visió integral per a la recuperació ecològica i paisatgística dels cursos fluvials que travessen la ciutat.\n\nEl treball identifica tres aproximacions complementàries —transversalitat, parcs territorials i assajos de secció— per abordar la complexitat de cada tram de manera específica i contextualitzada.\n\n[Descripció completa pendent de redactar]"
+  },
+  "es": {
+    "title": "Model Rieres — Terrassa",
+    "municipality": "Terrassa",
+    "year": "2023",
+    "status": "Finalizado",
+    "tipus": "Estudio estratégico",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Infraestructura verde y espacio público",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Estudio del sistema de rieras de Terrassa como infraestructura verde urbana. El Model Rieres propone una visión integral para la recuperación ecológica y paisajística de los cursos fluviales que atraviesan la ciudad.",
+    "descriptionLong": "Estudio del sistema de rieras de Terrassa como infraestructura verde urbana.\n\n[Descripción completa pendiente de redactar]"
+  },
+  "en": {
+    "title": "Model Rieres — Terrassa",
+    "municipality": "Terrassa",
+    "year": "2023",
+    "status": "Completed",
+    "tipus": "Strategic study",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Green infrastructure and public space",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "A strategic study of Terrassa's riparian system as urban green infrastructure, proposing an integrated vision for the ecological and landscape recovery of the waterways running through the city.",
+    "descriptionLong": "A strategic study of Terrassa's riparian system as urban green infrastructure, proposing an integrated vision for the ecological and landscape recovery of the waterways running through the city.\n\n[Full description pending]"
+  }
+}

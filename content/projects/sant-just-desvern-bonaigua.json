@@ -1,0 +1,49 @@
+{
+  "slug": "sant-just-desvern-bonaigua",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "01.jpg", "02.jpg", "03.jpg"],
+  "tags": ["residencial", "extensio"],
+  "coordinates": { "lat": 41.3764, "lng": 2.0506 },
+  "ca": {
+    "title": "Sector Bonaigua — Sant Just Desvern",
+    "municipality": "Sant Just Desvern",
+    "year": "2024",
+    "status": "En curs",
+    "tipus": "Modificació puntual del PGM",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Ús residencial",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Modificació puntual del Pla General Metropolità per al Sector Bonaigua a Sant Just Desvern. El projecte defineix l'ordenació d'un nou sector residencial integrat al paisatge de la serra de Collserola.",
+    "descriptionLong": "Modificació puntual del Pla General Metropolità per al Sector Bonaigua a Sant Just Desvern. El projecte defineix l'ordenació d'un nou sector residencial integrat al paisatge de la serra de Collserola.\n\n[Descripció completa pendent de redactar]"
+  },
+  "es": {
+    "title": "Sector Bonaigua — Sant Just Desvern",
+    "municipality": "Sant Just Desvern",
+    "year": "2024",
+    "status": "En curso",
+    "tipus": "Modificación puntual del PGM",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Uso residencial",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Modificación puntual del Plan General Metropolitano para el Sector Bonaigua en Sant Just Desvern. El proyecto define la ordenación de un nuevo sector residencial integrado en el paisaje de la sierra de Collserola.",
+    "descriptionLong": "Modificación puntual del Plan General Metropolitano para el Sector Bonaigua en Sant Just Desvern.\n\n[Descripción completa pendiente de redactar]"
+  },
+  "en": {
+    "title": "Bonaigua Sector — Sant Just Desvern",
+    "municipality": "Sant Just Desvern",
+    "year": "2024",
+    "status": "Ongoing",
+    "tipus": "Partial PGM amendment",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Residential",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Partial amendment to the Metropolitan General Plan for the Bonaigua Sector in Sant Just Desvern, defining the layout of a new residential area integrated with the Collserola ridge landscape.",
+    "descriptionLong": "Partial amendment to the Metropolitan General Plan for the Bonaigua Sector in Sant Just Desvern.\n\n[Full description pending]"
+  }
+}

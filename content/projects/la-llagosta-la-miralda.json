@@ -1,0 +1,49 @@
+{
+  "slug": "la-llagosta-la-miralda",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "01.jpg", "02.jpg", "03.jpg"],
+  "tags": ["residencial", "estructura-urbana", "extensio"],
+  "coordinates": { "lat": 41.4958, "lng": 2.1844 },
+  "ca": {
+    "title": "La Miralda — La Llagosta",
+    "municipality": "La Llagosta",
+    "year": "2024",
+    "status": "En curs",
+    "tipus": "Modificació puntual del PGOU",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Ús residencial i espai públic",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Intervenció urbanística al sector La Miralda de La Llagosta. El projecte proposa una reorganització de l'estructura urbana per integrar noves peces residencials amb la trama existent.",
+    "descriptionLong": "Intervenció urbanística al sector La Miralda de La Llagosta. El projecte proposa una reorganització de l'estructura urbana per integrar noves peces residencials amb la trama existent.\n\n[Descripció completa pendent de redactar]"
+  },
+  "es": {
+    "title": "La Miralda — La Llagosta",
+    "municipality": "La Llagosta",
+    "year": "2024",
+    "status": "En curso",
+    "tipus": "Modificación puntual del PGOU",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Uso residencial y espacio público",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Intervención urbanística en el sector La Miralda de La Llagosta. El proyecto propone una reorganización de la estructura urbana para integrar nuevas piezas residenciales con la trama existente.",
+    "descriptionLong": "Intervención urbanística en el sector La Miralda de La Llagosta. El proyecto propone una reorganización de la estructura urbana para integrar nuevas piezas residenciales con la trama existente.\n\n[Descripción completa pendiente de redactar]"
+  },
+  "en": {
+    "title": "La Miralda — La Llagosta",
+    "municipality": "La Llagosta",
+    "year": "2024",
+    "status": "Ongoing",
+    "tipus": "Partial PGOU amendment",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Residential and public space",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Urban planning intervention in the La Miralda district of La Llagosta, proposing a restructuring of the urban fabric to integrate new residential plots within the existing grid.",
+    "descriptionLong": "Urban planning intervention in the La Miralda district of La Llagosta, proposing a restructuring of the urban fabric to integrate new residential plots within the existing grid.\n\n[Full description pending]"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "rubi-projectes-estrategics",
+  "coverImage": "cover.jpg",
+  "images": ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg"],
+  "tags": ["infraestructura-verda", "espai-public", "transformacio", "estructura-urbana"],
+  "coordinates": { "lat": 41.4934, "lng": 2.0328 },
+  "ca": {
+    "title": "Projectes Estratègics — Rubí",
+    "municipality": "Rubí",
+    "year": "2023",
+    "status": "Finalitzat",
+    "tipus": "Projectes estratègics",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Regeneració de rieres i espai públic urbà",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Conjunt de projectes estratègics per a la transformació de l'espai públic a Rubí. El treball se centra en les rieres com a eixos vertebradors de la mobilitat verda i l'espai de relació.",
+    "descriptionLong": "Conjunt de projectes estratègics per a la transformació de l'espai públic a Rubí. El treball se centra en les rieres com a eixos vertebradors de la mobilitat verda i l'espai de relació.\n\nL'estudi proposa intervencions concretes sobre l'Avinguda de l'Estatut, les rieres urbanes i la zona de baixes emissions, amb l'objectiu de millorar la qualitat de vida dels veïns i la connectivitat ecològica del municipi.\n\n[Descripció completa pendent de redactar]"
+  },
+  "es": {
+    "title": "Proyectos Estratégicos — Rubí",
+    "municipality": "Rubí",
+    "year": "2023",
+    "status": "Finalizado",
+    "tipus": "Proyectos estratégicos",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Regeneración de rieras y espacio público urbano",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "Conjunto de proyectos estratégicos para la transformación del espacio público en Rubí. El trabajo se centra en las rieras como ejes vertebradores de la movilidad verde y el espacio de relación.",
+    "descriptionLong": "Conjunto de proyectos estratégicos para la transformación del espacio público en Rubí. El trabajo se centra en las rieras como ejes vertebradores de la movilidad verde y el espacio de relación.\n\n[Descripción completa pendiente de redactar]"
+  },
+  "en": {
+    "title": "Strategic Projects — Rubí",
+    "municipality": "Rubí",
+    "year": "2023",
+    "status": "Completed",
+    "tipus": "Strategic projects",
+    "premi": null,
+    "ambitM2": null,
+    "programa": "Riparian corridors and public space regeneration",
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "A set of strategic projects for the transformation of public space in Rubí, focusing on the town's riparian corridors as structuring axes for green mobility and civic life.",
+    "descriptionLong": "A set of strategic projects for the transformation of public space in Rubí, focusing on the town's riparian corridors as structuring axes for green mobility and civic life.\n\n[Full description pending]"
+  }
+}

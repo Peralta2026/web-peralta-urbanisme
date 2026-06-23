@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "projectes": "Proyectos",
+    "equip": "Equipo",
+    "intervencions": "Intervenciones",
+    "contacte": "Contacto"
+  },
+  "filters": {
+    "all": "Todos",
+    "residencial": "Residencial",
+    "transformacio": "Transformación",
+    "extensio": "Extensión",
+    "regeneracio": "Regeneración",
+    "activitat-economica": "Actividad económica",
+    "infraestructura-verda": "Infraestructura verde",
+    "integracio-infraestructures": "Integración de infraestructuras",
+    "estructura-urbana": "Estructura urbana",
+    "divulgacio": "Divulgación",
+    "espai-public": "Espacio público",
+    "participacio-ciutadana": "Participación ciudadana",
+    "encaixos-singulars": "Encajes singulares"
+  },
+  "project": {
+    "municipality": "Municipio",
+    "year": "Año",
+    "status": "Estado",
+    "type": "Tipo",
+    "prize": "Premio",
+    "scope": "Ámbito",
+    "program": "Programa",
+    "built": "Techo",
+    "dwellings": "Viviendas",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "squareMeters": "m²",
+    "viewProject": "Ver proyecto",
+    "back": "Volver"
+  },
+  "team": {
+    "title": "Equipo",
+    "readMore": "Leer más",
+    "readLess": "Leer menos"
+  },
+  "interventions": {
+    "title": "Intervenciones estratégicas"
+  },
+  "contact": {
+    "title": "Contacto"
+  },
+  "meta": {
+    "title": "Peralta Urbanisme",
+    "description": "Despacho de urbanismo y planificación territorial"
+  }
+}
