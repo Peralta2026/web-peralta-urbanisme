@@ -2,70 +2,27 @@ import { getAllTeamMembers } from "@/lib/team";
 import type { Locale, TeamMember } from "@/lib/types";
 import PersonCard from "@/components/team/PersonCard";
 
-// ─── Posicions de la constel·lació (desktop) ───────────────────────────────
-//
-// Retícula invisible de 12 columnes sobre un contenidor de 1440px.
-// Cada persona té: photoSide, paddingTop (desplaçament vertical dins el grup),
-// i colStart/colSpan per posicionar-la a la retícula.
-//
-// GRUP 1 — Jordi + Mar (Partners)
-//   Jordi: cols 1–6, foto esquerra + text dret, alineat a dalt
-//   Mar:   cols 7–12, text esquerre + foto dreta, desplaçat 110px avall
-//
-// GRUP 2 — Marc + Julia
-//   Marc:  cols 1–7, foto esquerra + text dret, alineat a dalt
-//   Julia: cols 6–12, text esquerre + foto dreta, desplaçat 70px avall
-//
-// GRUP 3 — Delfina (sola)
-//   Delfina: cols 3–9, foto esquerra + text dret, centrada-esquerra
-
+// ─── Posicions de la constel·lació ───────────────────────────────────────────
+// Retícula invisible de 12 columnes.
+// paddingTop = desplaçament vertical dins el grup (efecte escalonament).
 const CONSTELLATION: Record<
   string,
-  {
-    photoSide: "left" | "right";
-    paddingTop: string;
-    gridColumn: string;
-  }
+  { photoSide: "left" | "right"; paddingTop: string; gridColumn: string }
 > = {
-  "jordi-peralta": {
-    photoSide: "left",
-    paddingTop: "0px",
-    gridColumn: "1 / 7",
-  },
-  "mar-castarlenas": {
-    photoSide: "right",
-    paddingTop: "110px",
-    gridColumn: "7 / 13",
-  },
-  "marc-vizcarra": {
-    photoSide: "left",
-    paddingTop: "0px",
-    gridColumn: "1 / 8",
-  },
-  "julia-renones": {
-    photoSide: "right",
-    paddingTop: "70px",
-    gridColumn: "6 / 13",
-  },
-  "delfina-capiglioni": {
-    photoSide: "left",
-    paddingTop: "0px",
-    gridColumn: "3 / 10",
-  },
+  "jordi-peralta":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 7"  },
+  "mar-castarlenas":    { photoSide: "right", paddingTop: "80px", gridColumn: "7 / 13" },
+  "marc-vizcarra":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 8"  },
+  "julia-renones":      { photoSide: "right", paddingTop: "50px", gridColumn: "6 / 13" },
+  "delfina-capiglioni": { photoSide: "left",  paddingTop: "0px",  gridColumn: "3 / 10" },
 };
 
-// Grups de persones per files de la constel·lació
 const GROUPS: string[][] = [
   ["jordi-peralta", "mar-castarlenas"],
   ["marc-vizcarra", "julia-renones"],
   ["delfina-capiglioni"],
 ];
 
-const GROUP_MARGIN: Record<number, string> = {
-  0: "120px",
-  1: "180px",
-  2: "160px",
-};
+const GROUP_MARGIN = ["80px", "100px", "80px"];
 
 export default async function PersonesPage({
   params,
@@ -123,43 +80,23 @@ export default async function PersonesPage({
         </div>
       </header>
 
-      {/* ── Constel·lació — MÒBIL: pila simple ── */}
+      {/* ── Constel·lació ── */}
       <section
-        className="md:hidden"
-        style={{
-          padding: "64px 24px 120px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "72px",
-        }}
-      >
-        {members.map((member) => (
-          <PersonCard
-            key={member.slug}
-            member={member}
-            locale={locale as Locale}
-            photoSide="left"
-          />
-        ))}
-      </section>
-
-      {/* ── Constel·lació — DESKTOP: posicions individuals ── */}
-      <section
-        className="hidden md:block"
         style={{
           paddingLeft: "64px",
           paddingRight: "64px",
-          paddingBottom: "200px",
+          paddingBottom: "160px",
         }}
       >
         {GROUPS.map((group, groupIndex) => (
+          /*
+           * Mòbil:    block → els fills s'apilen verticalment (gridColumn ignorat)
+           * Desktop:  grid de 12 columnes → gridColumn posiciona cada persona
+           */
           <div
             key={groupIndex}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(12, 1fr)",
-              marginTop: GROUP_MARGIN[groupIndex] ?? "160px",
-            }}
+            className="block md:grid md:grid-cols-12"
+            style={{ marginTop: GROUP_MARGIN[groupIndex] ?? "80px" }}
           >
             {group.map((slug) => {
               const member = bySlug[slug];
@@ -171,6 +108,7 @@ export default async function PersonesPage({
                 <div
                   key={slug}
                   data-person={slug}
+                  className="mt-16 md:mt-0"
                   style={{
                     gridColumn: cfg.gridColumn,
                     paddingTop: cfg.paddingTop,
