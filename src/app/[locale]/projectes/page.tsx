@@ -16,10 +16,10 @@ export default async function ProjectesPage({
       {/* ── Intro ── */}
       <div
         style={{
-          maxWidth: "1440px",
+          maxWidth: "1380px",
           margin: "0 auto",
-          padding: "56px 40px 36px",
-          borderBottom: "1px solid #1a1a1a",
+          padding: "56px 32px 36px",
+          borderBottom: "1px solid #7e7e7e",
         }}
       >
         <p
@@ -50,12 +50,12 @@ export default async function ProjectesPage({
       {/* ── Llista de projectes ── */}
       <div
         style={{
-          maxWidth: "1440px",
+          maxWidth: "1380px",
           margin: "0 auto",
-          padding: "40px 40px 96px",
+          padding: "36px 32px 88px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
           {projects.map((project) => (
             <ProjectCard
               key={project.slug}
