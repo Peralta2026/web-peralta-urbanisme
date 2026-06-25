@@ -56,13 +56,15 @@ const UI: Record<Locale, {
   prev: string;
   next: string;
   allProjects: string;
+  topics: string;
   facts: Record<string, string>;
 }> = {
   ca: {
     back: "← Tornar als projectes",
-    prev: "← Projecte anterior",
-    next: "Projecte següent →",
-    allProjects: "Tornar a projectes",
+    prev: "← Anterior",
+    next: "Següent →",
+    allProjects: "Tots els projectes",
+    topics: "Temes",
     facts: {
       tipus: "Tipus", municipi: "Municipi", any: "Any", estat: "Estat",
       programa: "Programa", ambit: "Àmbit", sostre: "Sostre", habitatges: "Habitatges", premi: "Premi",
@@ -70,9 +72,10 @@ const UI: Record<Locale, {
   },
   es: {
     back: "← Volver a proyectos",
-    prev: "← Proyecto anterior",
-    next: "Proyecto siguiente →",
-    allProjects: "Volver a proyectos",
+    prev: "← Anterior",
+    next: "Siguiente →",
+    allProjects: "Todos los proyectos",
+    topics: "Temas",
     facts: {
       tipus: "Tipo", municipi: "Municipio", any: "Año", estat: "Estado",
       programa: "Programa", ambit: "Ámbito", sostre: "Techo", habitatges: "Viviendas", premi: "Premio",
@@ -80,17 +83,16 @@ const UI: Record<Locale, {
   },
   en: {
     back: "← Back to projects",
-    prev: "← Previous project",
-    next: "Next project →",
-    allProjects: "Back to projects",
+    prev: "← Previous",
+    next: "Next →",
+    allProjects: "All projects",
+    topics: "Topics",
     facts: {
       tipus: "Type", municipi: "Municipality", any: "Year", estat: "Status",
       programa: "Programme", ambit: "Scope", sostre: "Built", habitatges: "Dwellings", premi: "Prize",
     },
   },
 };
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function projectHref(slug: string, locale: Locale) {
   return locale === "ca" ? `/projectes/${slug}` : `/${locale}/projectes/${slug}`;
@@ -100,16 +102,12 @@ function backHref(locale: Locale) {
   return locale === "ca" ? "/projectes" : `/${locale}/projectes`;
 }
 
-// ─── Static params ────────────────────────────────────────────────────────────
-
 export async function generateStaticParams() {
   const projects = getAllProjects();
   return projects.flatMap((p) =>
     (["ca", "es", "en"] as const).map((locale) => ({ slug: p.slug, locale }))
   );
 }
-
-// ─── Pàgina ───────────────────────────────────────────────────────────────────
 
 export default async function ProjectPage({
   params,
@@ -127,24 +125,23 @@ export default async function ProjectPage({
   const total = allProjects.length;
   const prevProject = projectIndex > 0 ? allProjects[projectIndex - 1] : null;
   const nextProject = projectIndex < total - 1 ? allProjects[projectIndex + 1] : null;
-  const indexLabel = `${String(projectIndex + 1).padStart(2, "0")}/${String(total).padStart(2, "0")}`;
 
   const data = project[loc];
   const ui = UI[loc];
   const tagLabels = TAG_LABELS[loc];
   const f = ui.facts;
 
-  // Dades tècniques — mostra només les que tenen valor
+  // Dades tècniques (nomes camps amb valor)
   const facts: { label: string; value: string }[] = [
-    data.tipus       && { label: f.tipus,     value: data.tipus },
-    data.municipality && { label: f.municipi,  value: data.municipality },
-    data.year        && { label: f.any,       value: data.year },
-    data.status      && { label: f.estat,     value: data.status },
-    data.programa    && { label: f.programa,  value: data.programa },
-    data.ambitM2     && { label: f.ambit,     value: `${data.ambitM2.toLocaleString("ca")} m²` },
-    data.sostreM2    && { label: f.sostre,    value: `${data.sostreM2.toLocaleString("ca")} m²` },
-    data.habitatges  && { label: f.habitatges,value: String(data.habitatges) },
-    data.premi       && { label: f.premi,     value: data.premi! },
+    data.tipus       && { label: f.tipus,      value: data.tipus },
+    data.municipality && { label: f.municipi,   value: data.municipality },
+    data.year        && { label: f.any,        value: data.year },
+    data.status      && { label: f.estat,      value: data.status },
+    data.programa    && { label: f.programa,   value: data.programa },
+    data.ambitM2     && { label: f.ambit,      value: `${data.ambitM2.toLocaleString("ca")} m²` },
+    data.sostreM2    && { label: f.sostre,     value: `${data.sostreM2.toLocaleString("ca")} m²` },
+    data.habitatges  && { label: f.habitatges, value: String(data.habitatges) },
+    data.premi       && { label: f.premi,      value: data.premi! },
   ].filter(Boolean) as { label: string; value: string }[];
 
   // Paràgrafs del text llarg
@@ -153,187 +150,85 @@ export default async function ProjectPage({
     .map((p) => p.trim())
     .filter(Boolean);
 
+  // ── Estils reutilitzables ──
+  const sans = "var(--font-sans)";
+  const borderLine = "1px solid #e0e0e0";
+
   return (
-    /*
-     * Fons gris lleuger + lámina blanca central
-     * El nav és fix i blanc (88px), per això paddingTop: "88px"
-     */
-    <div
-      style={{
-        background: "#e8e7e1",
-        minHeight: "100vh",
-        paddingTop: "88px",
-        paddingLeft: "20px",
-        paddingRight: "20px",
-        paddingBottom: "96px",
-      }}
-    >
-      {/* ── Lámina blanca ── */}
+    <div style={{ background: "#fff", minHeight: "100vh", paddingTop: "88px" }}>
       <div
         style={{
-          maxWidth: "1480px",
-          margin: "20px auto 0",
-          background: "#fff",
-          padding: "32px 36px 72px",
+          maxWidth: "1440px",
+          margin: "0 auto",
+          padding: "0 48px 96px",
         }}
       >
 
         {/* ════════════════════════════════════════════════════════════════════
-            HERO EDITORIAL — retícula de 12 columnes
+            BANDA CAPÇALERA — tornada esquerra · dades tècniques dreta
             ════════════════════════════════════════════════════════════════════ */}
         <div
-          className="block md:grid"
           style={{
-            gridTemplateColumns: "repeat(12, 1fr)",
-            columnGap: "28px",
-            rowGap: "48px",
-            borderTop: "1px solid #9a9a9a",
-            paddingTop: "32px",
-            marginBottom: "36px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            padding: "24px 0 22px",
+            borderBottom: borderLine,
+            marginBottom: "56px",
+            gap: "32px",
           }}
         >
-          {/* ── Columna esquerra: índex + tornada + tags ── */}
-          <div
+          {/* Tornada */}
+          <Link
+            href={backHref(loc)}
             style={{
-              gridColumn: "1 / 3",
-              gridRow: "1 / 3",
-              display: "flex",
-              flexDirection: "column",
+              fontFamily: sans,
+              fontSize: "13px",
+              fontWeight: 600,
+              textDecoration: "none",
+              color: "#111",
+              borderBottom: "1px solid currentColor",
+              paddingBottom: "2px",
+              flexShrink: 0,
             }}
-            className="mb-12 md:mb-0"
           >
-            {/* Número de projecte */}
-            <div
-              style={{
-                fontSize: "clamp(44px, 4.5vw, 76px)",
-                lineHeight: 1,
-                fontWeight: 300,
-                letterSpacing: "-0.06em",
-                color: "#c9c9c9",
-                fontFamily: "var(--font-sans)",
-                marginBottom: "28px",
-              }}
-            >
-              {indexLabel}
-            </div>
+            {ui.back}
+          </Link>
 
-            {/* Tornada */}
-            <Link
-              href={backHref(loc)}
-              style={{
-                display: "inline-block",
-                fontSize: "13px",
-                fontWeight: 600,
-                textDecoration: "none",
-                borderBottom: "1px solid currentColor",
-                paddingBottom: "2px",
-                color: "#111",
-                fontFamily: "var(--font-sans)",
-              }}
-            >
-              {ui.back}
-            </Link>
-
-            {/* Tags — al fons de la columna */}
-            <div style={{ marginTop: "auto", paddingTop: "56px" }}>
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    display: "block",
-                    fontSize: "12px",
-                    lineHeight: 1.5,
-                    color: "#888",
-                    marginBottom: "6px",
-                    fontFamily: "var(--font-sans)",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  {tagLabels[tag]}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Zona central: kicker + títol ── */}
-          <div
-            style={{
-              gridColumn: "4 / 9",
-              gridRow: "1 / 2",
-              alignSelf: "start",
-            }}
-            className="mb-10 md:mb-0"
-          >
-            {/* Kicker/metadata */}
-            <p
-              style={{
-                fontSize: "12px",
-                lineHeight: 1.2,
-                fontWeight: 650,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#777",
-                marginBottom: "20px",
-                fontFamily: "var(--font-sans)",
-              }}
-            >
-              {[data.tipus, data.municipality, data.year].filter(Boolean).join(" · ")}
-            </p>
-
-            {/* Títol */}
-            <h1
-              style={{
-                fontSize: "clamp(44px, 5.2vw, 82px)",
-                lineHeight: 0.92,
-                fontWeight: 800,
-                letterSpacing: "-0.07em",
-                color: "#000",
-                margin: 0,
-                fontFamily: "var(--font-sans)",
-              }}
-            >
-              {data.title}
-            </h1>
-          </div>
-
-          {/* ── Zona dreta: dades tècniques ── */}
+          {/* Dades tècniques com a columnes etiquetades */}
           <dl
             style={{
-              gridColumn: "9 / 13",
-              gridRow: "1 / 2",
-              alignSelf: "start",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              columnGap: "24px",
-              rowGap: "22px",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "6px 40px",
               margin: 0,
+              justifyContent: "flex-end",
             }}
-            className="mb-10 md:mb-0"
           >
             {facts.map(({ label, value }) => (
-              <div key={label}>
+              <div key={label} style={{ minWidth: "80px" }}>
                 <dt
                   style={{
-                    fontSize: "11px",
-                    lineHeight: 1.2,
-                    fontWeight: 650,
+                    fontFamily: sans,
+                    fontSize: "10px",
+                    fontWeight: 600,
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    color: "#8a8a8a",
-                    marginBottom: "5px",
-                    fontFamily: "var(--font-sans)",
+                    color: "#aaa",
+                    marginBottom: "3px",
+                    lineHeight: 1.2,
                   }}
                 >
                   {label}
                 </dt>
                 <dd
                   style={{
-                    margin: 0,
-                    fontSize: "15px",
-                    lineHeight: 1.3,
+                    fontFamily: sans,
+                    fontSize: "13px",
                     fontWeight: 400,
                     color: "#111",
-                    fontFamily: "var(--font-sans)",
+                    margin: 0,
+                    lineHeight: 1.3,
                   }}
                 >
                   {value}
@@ -341,29 +236,49 @@ export default async function ProjectPage({
               </div>
             ))}
           </dl>
+        </div>
 
-          {/* ── Zona inferior central: text introductori ── */}
-          <div
+        {/* ════════════════════════════════════════════════════════════════════
+            TÍTOL + DESCRIPCIÓ — 2 columnes iguals
+            ════════════════════════════════════════════════════════════════════ */}
+        <div
+          className="block md:grid"
+          style={{
+            gridTemplateColumns: "1fr 1fr",
+            columnGap: "64px",
+            marginBottom: "56px",
+            alignItems: "start",
+          }}
+        >
+          {/* Títol — esquerra, gran, pes 800 */}
+          <h1
             style={{
-              gridColumn: "4 / 10",
-              gridRow: "2 / 3",
-              alignSelf: "start",
+              fontFamily: sans,
+              fontSize: "clamp(32px, 3.6vw, 58px)",
+              lineHeight: 0.93,
+              fontWeight: 800,
+              letterSpacing: "-0.05em",
+              color: "#000",
+              margin: "0 0 32px 0",
             }}
           >
-            <p
-              style={{
-                fontSize: "18px",
-                lineHeight: 1.45,
-                letterSpacing: "-0.015em",
-                color: "#111",
-                margin: 0,
-                fontFamily: "var(--font-sans)",
-                maxWidth: "640px",
-              }}
-            >
-              {data.descriptionShort}
-            </p>
-          </div>
+            {data.title}
+          </h1>
+
+          {/* Descripció curta — dreta, text de lectura */}
+          <p
+            style={{
+              fontFamily: sans,
+              fontSize: "17px",
+              lineHeight: 1.54,
+              letterSpacing: "-0.01em",
+              color: "#333",
+              margin: "0 0 32px 0",
+              paddingTop: "6px",
+            }}
+          >
+            {data.descriptionShort}
+          </p>
         </div>
 
         {/* ════════════════════════════════════════════════════════════════════
@@ -376,43 +291,44 @@ export default async function ProjectPage({
         />
 
         {/* ════════════════════════════════════════════════════════════════════
-            COS LLARG — tags esquerra + text central
+            COS LLARG — tags esquerra · text central
             ════════════════════════════════════════════════════════════════════ */}
         <div
           className="block lg:grid"
           style={{
-            gridTemplateColumns: "220px minmax(0, 720px) 1fr",
-            columnGap: "72px",
-            borderTop: "1px solid #9a9a9a",
-            paddingTop: "44px",
-            marginBottom: "96px",
+            gridTemplateColumns: "180px minmax(0, 700px)",
+            columnGap: "64px",
+            borderTop: borderLine,
+            paddingTop: "48px",
+            marginBottom: "80px",
           }}
         >
-          {/* Columna tags */}
-          <div className="mb-12 lg:mb-0">
+          {/* Tags */}
+          <div className="mb-10 lg:mb-0">
             <p
               style={{
-                fontSize: "11px",
-                fontWeight: 650,
+                fontFamily: sans,
+                fontSize: "10px",
+                fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#8a8a8a",
-                marginBottom: "16px",
-                fontFamily: "var(--font-sans)",
+                color: "#aaa",
+                marginBottom: "14px",
+                lineHeight: 1.2,
               }}
             >
-              {loc === "ca" ? "Temes" : loc === "es" ? "Temas" : "Topics"}
+              {ui.topics}
             </p>
             {project.tags.map((tag) => (
               <span
                 key={tag}
                 style={{
                   display: "block",
+                  fontFamily: sans,
                   fontSize: "13px",
-                  lineHeight: 1.5,
-                  color: "#777",
-                  marginBottom: "7px",
-                  fontFamily: "var(--font-sans)",
+                  lineHeight: 1.6,
+                  color: "#666",
+                  marginBottom: "4px",
                 }}
               >
                 {tagLabels[tag]}
@@ -420,18 +336,18 @@ export default async function ProjectPage({
             ))}
           </div>
 
-          {/* Columna text llarg */}
+          {/* Text llarg */}
           <div>
             {paragraphs.map((para, i) => (
               <p
                 key={i}
                 style={{
-                  fontSize: "18px",
-                  lineHeight: 1.58,
-                  letterSpacing: "-0.015em",
+                  fontFamily: sans,
+                  fontSize: "17px",
+                  lineHeight: 1.62,
+                  letterSpacing: "-0.012em",
                   color: "#111",
-                  margin: "0 0 24px 0",
-                  fontFamily: "var(--font-sans)",
+                  margin: "0 0 22px 0",
                 }}
               >
                 {para}
@@ -445,13 +361,12 @@ export default async function ProjectPage({
             ════════════════════════════════════════════════════════════════════ */}
         <div
           style={{
-            borderTop: "1px solid #9a9a9a",
-            paddingTop: "28px",
+            borderTop: borderLine,
+            paddingTop: "24px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "baseline",
             gap: "24px",
-            fontFamily: "var(--font-sans)",
           }}
         >
           <div style={{ flex: 1 }}>
@@ -459,7 +374,8 @@ export default async function ProjectPage({
               <Link
                 href={projectHref(prevProject.slug, loc)}
                 style={{
-                  fontSize: "14px",
+                  fontFamily: sans,
+                  fontSize: "13px",
                   fontWeight: 600,
                   textDecoration: "none",
                   color: "#111",
@@ -475,11 +391,13 @@ export default async function ProjectPage({
           <Link
             href={backHref(loc)}
             style={{
-              fontSize: "13px",
+              fontFamily: sans,
+              fontSize: "12px",
               fontWeight: 500,
               textDecoration: "none",
-              color: "#777",
-              textAlign: "center",
+              color: "#aaa",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
             }}
           >
             {ui.allProjects}
@@ -490,7 +408,8 @@ export default async function ProjectPage({
               <Link
                 href={projectHref(nextProject.slug, loc)}
                 style={{
-                  fontSize: "14px",
+                  fontFamily: sans,
+                  fontSize: "13px",
                   fontWeight: 600,
                   textDecoration: "none",
                   color: "#111",

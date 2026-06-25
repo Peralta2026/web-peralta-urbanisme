@@ -21,7 +21,7 @@ export default function ProjectGallery({ slug, images, title }: Props) {
         style={{
           width: "100%",
           height: "clamp(420px, 62vh, 720px)",
-          border: "1px solid #9a9a9a",
+          border: "1px solid #e0e0e0",
           overflow: "hidden",
           background: "#fff",
           display: "flex",
