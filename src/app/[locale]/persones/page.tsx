@@ -12,7 +12,7 @@ const CONSTELLATION: Record<
   "jordi-peralta":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 7"  },
   "mar-castarlenas":    { photoSide: "right", paddingTop: "80px", gridColumn: "7 / 13" },
   "marc-vizcarra":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 8"  },
-  "julia-renones":      { photoSide: "right", paddingTop: "50px", gridColumn: "6 / 13" },
+  "julia-renones":      { photoSide: "right", paddingTop: "0px",  gridColumn: "6 / 13" },
   "delfina-capiglioni": { photoSide: "left",  paddingTop: "0px",  gridColumn: "3 / 10" },
 };
 
@@ -22,7 +22,7 @@ const GROUPS: string[][] = [
   ["delfina-capiglioni"],
 ];
 
-const GROUP_MARGIN = ["80px", "100px", "80px"];
+const GROUP_MARGIN = ["80px", "100px", "20px"];
 
 export default async function PersonesPage({
   params,
