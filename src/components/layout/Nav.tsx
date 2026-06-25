@@ -39,11 +39,13 @@ export default function Nav({ locale }: { locale: string }) {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black"
-        style={{ fontFamily: "var(--font-sans)" }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#1a1a1a]"
+        style={{ fontFamily: "var(--font-sans)", height: "88px" }}
       >
-        <div className="flex items-center h-[72px] px-6 gap-6">
-
+        <div
+          className="flex items-center h-full"
+          style={{ paddingLeft: "32px", paddingRight: "32px" }}
+        >
           {/* Logo */}
           <Link
             href={localizeHref("/", locale)}
@@ -55,24 +57,30 @@ export default function Nav({ locale }: { locale: string }) {
               alt="Peralta Urbanisme"
               width={360}
               height={90}
-              style={{ height: "60px", width: "auto" }}
+              style={{ width: "165px", height: "auto", marginTop: "4px", objectFit: "contain" }}
               priority
             />
           </Link>
 
           {/* Desktop nav links — centrats */}
-          <div className="hidden lg:flex items-center gap-7 flex-1 justify-center">
+          <div
+            className="hidden lg:flex items-center flex-1 justify-center"
+            style={{ gap: "34px" }}
+          >
             {NAV_LINKS.map(({ label, href }) => {
               const isActive = cleanPath === href || cleanPath.startsWith(href + "/");
               return (
                 <Link
                   key={href}
                   href={localizeHref(href, locale)}
-                  className={`text-xs uppercase tracking-widest no-underline whitespace-nowrap transition-none ${
-                    isActive
-                      ? "text-black font-semibold"
-                      : "text-gray-500 hover:text-black"
-                  }`}
+                  className="no-underline whitespace-nowrap transition-none"
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: isActive ? 700 : 650,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: isActive ? "#000" : "#777",
+                  }}
                 >
                   {label}
                 </Link>
@@ -85,22 +93,24 @@ export default function Nav({ locale }: { locale: string }) {
             {/* Language — desktop */}
             <div
               className="hidden lg:flex items-center gap-2"
-              style={{ fontFamily: "var(--font-mono)" }}
+              style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em" }}
             >
               {LOCALES.map((loc, i) => (
                 <span key={loc} className="flex items-center gap-2">
                   <button
                     onClick={() => switchLocale(loc)}
-                    className={`text-xs uppercase cursor-pointer border-none bg-transparent p-0 ${
-                      currentLocale === loc
-                        ? "text-black font-semibold"
-                        : "text-gray-400 hover:text-black"
-                    }`}
+                    className="uppercase cursor-pointer border-none bg-transparent p-0"
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "0.08em",
+                      fontWeight: currentLocale === loc ? 700 : 400,
+                      color: currentLocale === loc ? "#000" : "#aaa",
+                    }}
                   >
                     {loc}
                   </button>
                   {i < LOCALES.length - 1 && (
-                    <span className="text-gray-300 text-xs">/</span>
+                    <span style={{ color: "#ddd", fontSize: "11px" }}>/</span>
                   )}
                 </span>
               ))}
@@ -129,8 +139,8 @@ export default function Nav({ locale }: { locale: string }) {
       {/* Mobile overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-white pt-14 flex flex-col lg:hidden"
-          style={{ fontFamily: "var(--font-sans)" }}
+          className="fixed inset-0 z-40 bg-white flex flex-col lg:hidden"
+          style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}
         >
           <div className="flex flex-col justify-between flex-1 px-8 py-12">
             <nav className="flex flex-col gap-6">
@@ -139,7 +149,8 @@ export default function Nav({ locale }: { locale: string }) {
                   key={href}
                   href={localizeHref(href, locale)}
                   onClick={() => setMenuOpen(false)}
-                  className="text-2xl no-underline text-black hover:text-gray-400"
+                  className="text-2xl no-underline text-black"
+                  style={{ fontWeight: 650 }}
                 >
                   {label}
                 </Link>
@@ -148,22 +159,23 @@ export default function Nav({ locale }: { locale: string }) {
 
             <div
               className="flex items-center gap-4 mt-16"
-              style={{ fontFamily: "var(--font-mono)" }}
+              style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em" }}
             >
               {LOCALES.map((loc, i) => (
                 <span key={loc} className="flex items-center gap-4">
                   <button
                     onClick={() => switchLocale(loc)}
-                    className={`text-xs uppercase cursor-pointer border-none bg-transparent p-0 ${
-                      currentLocale === loc
-                        ? "text-black font-semibold"
-                        : "text-gray-400 hover:text-black"
-                    }`}
+                    className="uppercase cursor-pointer border-none bg-transparent p-0"
+                    style={{
+                      fontSize: "11px",
+                      color: currentLocale === loc ? "#000" : "#aaa",
+                      fontWeight: currentLocale === loc ? 700 : 400,
+                    }}
                   >
                     {loc}
                   </button>
                   {i < LOCALES.length - 1 && (
-                    <span className="text-gray-300 text-xs">/</span>
+                    <span style={{ color: "#ddd" }}>/</span>
                   )}
                 </span>
               ))}

@@ -17,7 +17,7 @@ export default async function PersonesPage({
   }
 
   return (
-    <div style={{ paddingTop: "72px" }}>
+    <div style={{ paddingTop: "88px" }}>
       {/* ── Capçalera ── */}
       <header
         style={{

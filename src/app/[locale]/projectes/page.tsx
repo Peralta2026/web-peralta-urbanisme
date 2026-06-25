@@ -1,6 +1,6 @@
 import { getAllProjects } from "@/lib/projects";
 import { type Locale } from "@/lib/types";
-import ProjectDiptych from "@/components/projects/ProjectDiptych";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 export default async function ProjectesPage({
   params,
@@ -11,30 +11,59 @@ export default async function ProjectesPage({
   const projects = getAllProjects();
 
   return (
-    /* pt-[72px] = nav height. px-16 = 64px lateral margin. gap-6 between projects */
-    <div
-      style={{
-        paddingTop: "72px",
-      }}
-    >
+    <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
+
+      {/* ── Intro ── */}
       <div
         style={{
-          paddingLeft: "64px",
-          paddingRight: "64px",
-          paddingTop: "40px",
-          paddingBottom: "64px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
+          maxWidth: "1440px",
+          margin: "0 auto",
+          padding: "56px 40px 36px",
+          borderBottom: "1px solid #1a1a1a",
         }}
       >
-        {projects.map((project) => (
-          <ProjectDiptych
-            key={project.slug}
-            project={project}
-            locale={locale as Locale}
-          />
-        ))}
+        <p
+          style={{
+            fontSize: "18px",
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+            marginBottom: "18px",
+            color: "#000",
+          }}
+        >
+          Projectes
+        </p>
+        <p
+          style={{
+            maxWidth: "620px",
+            fontSize: "22px",
+            lineHeight: 1.25,
+            fontWeight: 400,
+            color: "#000",
+          }}
+        >
+          Una selecció de treballs de planejament, estratègia urbana i
+          transformació territorial.
+        </p>
+      </div>
+
+      {/* ── Llista de projectes ── */}
+      <div
+        style={{
+          maxWidth: "1440px",
+          margin: "0 auto",
+          padding: "40px 40px 96px",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              locale={locale as Locale}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
