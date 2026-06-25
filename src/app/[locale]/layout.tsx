@@ -4,7 +4,7 @@ import { routing } from "@/i18n/routing";
 import { getMessages, getTranslations } from "next-intl/server";
 import Nav from "@/components/layout/Nav";
 import type { Metadata } from "next";
-import "mapbox-gl/dist/mapbox-gl.css";
+import "leaflet/dist/leaflet.css";
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
