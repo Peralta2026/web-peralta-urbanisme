@@ -1,0 +1,23 @@
+{
+  "slug": "marc-vizcarra",
+  "photo": "marc-vizcarra.jpg",
+  "order": 3,
+  "ca": {
+    "name": "Marc Vizcarra",
+    "role": "Arquitecte Urbanista · Partner",
+    "bioShort": "Arquitecte especialitzat en urbanisme i membre de Peralta Urbanisme SLP.",
+    "bioLong": "Arquitecte superior per l'ETSAB el 2020, especialitzat en urbanisme i membre de l'empresa PERALTA URBANISME SLP. Al llarg dels seus anys de formació, ha compaginat la seva carrera estudiantil amb l'experiència professional en els sectors de l'urbanisme a l'administració i la docència en l'àmbit universitari.\n\nEls últims anys ha tingut un paper vital en els projectes urbans i territorials en els que ha col·laborat dins del Servei de Polítiques Urbanístiques de l'Àrea Metropolitana formant equip amb en Jordi Peralta. La seva actitud proactiva i vigorosa li han permès fer un salt endavant en la seva formació urbanística, destacant-se per la seva autonomia i capacitat per obrir noves línies de treball.\n\nTambé ha fet recerca urbanística en contextos internacionals: participació en nous models d'infraestructura per la futura mobilitat aèria (Talaria Aero), debats sobre premisses ambientals de sequera amb l'ajuntament de Los Angeles, i formació sobre el concepte de Responsive Cities a la ETH Zürich i ETH Singapore."
+  },
+  "es": {
+    "name": "Marc Vizcarra",
+    "role": "Arquitecto Urbanista · Partner",
+    "bioShort": "Arquitecto especializado en urbanismo y miembro de Peralta Urbanisme SLP.",
+    "bioLong": "Arquitecto superior por la ETSAB en 2020, especializado en urbanismo y miembro de PERALTA URBANISME SLP. Ha compaginado su carrera con la experiencia profesional en urbanismo público y docencia universitaria.\n\nHa tenido un papel vital en los proyectos urbanos y territoriales del Servicio de Políticas Urbanísticas del Área Metropolitana, formando equipo con Jordi Peralta. También ha realizado investigación urbanística en contextos internacionales: movilidad aérea futura (Talaria Aero), sequía en Los Ángeles, y Responsive Cities en la ETH Zürich y ETH Singapore."
+  },
+  "en": {
+    "name": "Marc Vizcarra",
+    "role": "Urban Architect · Partner",
+    "bioShort": "Urban architect specialising in urban planning and member of Peralta Urbanisme SLP.",
+    "bioLong": "Urban architect graduated from ETSAB in 2020, specialising in urban planning and member of PERALTA URBANISME SLP. He has combined his academic training with professional experience in public urban planning and university teaching.\n\nHe has played a key role in urban and territorial projects at the Metropolitan Area of Barcelona's Urban Policy Service, working alongside Jordi Peralta. He has also conducted urban research in international contexts: future air mobility infrastructure (Talaria Aero), drought challenges in Los Angeles, and Responsive Cities research at ETH Zürich and ETH Singapore."
+  }
+}

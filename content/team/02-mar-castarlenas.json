@@ -1,0 +1,23 @@
+{
+  "slug": "mar-castarlenas",
+  "photo": "mar-castarlenas.jpg",
+  "order": 2,
+  "ca": {
+    "name": "Mar Castarlenas",
+    "role": "Arquitecta Urbanista",
+    "bioShort": "Arquitecta urbanista interessada en la dimensió afectiva i emocional de l'espai.",
+    "bioLong": "Arquitecta urbanista graduada per l'ETSAB (2020) i l'ETSAV (2021) de la UPC. Interessada en la projecció i estudi de l'espai des de la component afectiva-emocional en l'acció humana d'habitar-lo, buscant treballar i posar en valor la sensibilitat, l'estètica i els fenòmens que participen intrínsecament del lloc.\n\nAl llarg de la seva trajectòria ha estat compromesa amb diversos projectes de construcció social i sostenible, i ha col·laborat tant en estudis i entitats públiques d'arquitectura i urbanisme, com en el projecte de recerca acadèmica 'Barcelona Ciutat Fràgil'.\n\nDestacan l'experiència de mobilitat internacional a la Pontificia Universidad Católica de Valparaíso (Xile) i la participació en el Workshop internacional 'Marghera City of Making' de la Biennale di Architettura di Venezia."
+  },
+  "es": {
+    "name": "Mar Castarlenas",
+    "role": "Arquitecta Urbanista",
+    "bioShort": "Arquitecta urbanista interesada en la dimensión afectiva y emocional del espacio.",
+    "bioLong": "Arquitecta urbanista graduada por la ETSAB (2020) y la ETSAV (2021) de la UPC. Interesada en la proyección y estudio del espacio desde la componente afectiva-emocional en la acción humana de habitarlo.\n\nA lo largo de su trayectoria ha colaborado en estudios y entidades públicas de arquitectura y urbanismo, así como en el proyecto de investigación académica 'Barcelona Ciutat Fràgil'. Destaca su experiencia de movilidad internacional en la Pontificia Universidad Católica de Valparaíso (Chile)."
+  },
+  "en": {
+    "name": "Mar Castarlenas",
+    "role": "Urban Architect",
+    "bioShort": "Urban architect interested in the affective and emotional dimension of space.",
+    "bioLong": "Urban architect graduated from ETSAB (2020) and ETSAV (2021) at UPC. Interested in the study and design of space from the affective-emotional dimension of human inhabitation.\n\nThroughout her career she has collaborated in public architecture and urban planning institutions, as well as in the academic research project 'Barcelona Ciutat Fràgil'. Notable international experience at the Pontificia Universidad Católica de Valparaíso (Chile) and the Biennale di Architettura di Venezia workshop."
+  }
+}

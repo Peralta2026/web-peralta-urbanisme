@@ -1,0 +1,23 @@
+{
+  "slug": "julia-renones",
+  "photo": "julia-renones.jpg",
+  "order": 4,
+  "ca": {
+    "name": "Julia Reñones",
+    "role": "Arquitecta Urbanista",
+    "bioShort": "Arquitecta urbanista a Peralta Urbanisme.",
+    "bioLong": "Arquitecta urbanista a Peralta Urbanisme SLP."
+  },
+  "es": {
+    "name": "Julia Reñones",
+    "role": "Arquitecta Urbanista",
+    "bioShort": "Arquitecta urbanista en Peralta Urbanisme.",
+    "bioLong": "Arquitecta urbanista en Peralta Urbanisme SLP."
+  },
+  "en": {
+    "name": "Julia Reñones",
+    "role": "Urban Architect",
+    "bioShort": "Urban architect at Peralta Urbanisme.",
+    "bioLong": "Urban architect at Peralta Urbanisme SLP."
+  }
+}
