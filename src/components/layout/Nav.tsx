@@ -21,6 +21,68 @@ function localizeHref(href: string, locale: string): string {
   return `/${locale}${href}`;
 }
 
+// ── Components helpers (fora del Nav per evitar re-muntatge a cada render) ──
+
+function LangSelector({
+  currentLocale,
+  onSwitch,
+  small,
+}: {
+  currentLocale: string;
+  onSwitch: (loc: string) => void;
+  small?: boolean;
+}) {
+  return (
+    <div
+      style={{
+        display:       "flex",
+        alignItems:    "center",
+        gap:           small ? "6px" : "8px",
+        fontFamily:    "var(--font-mono)",
+        fontSize:      small ? "10px" : "11px",
+        letterSpacing: "0.08em",
+      }}
+    >
+      {LOCALES.map((loc, i) => (
+        <span key={loc} style={{ display: "flex", alignItems: "center", gap: small ? "6px" : "8px" }}>
+          <button
+            onClick={() => onSwitch(loc)}
+            style={{
+              fontSize:      small ? "10px" : "11px",
+              letterSpacing: "0.08em",
+              fontWeight:    currentLocale === loc ? 700 : 400,
+              color:         currentLocale === loc ? "#000" : "#aaa",
+              background:    "none",
+              border:        "none",
+              padding:       0,
+              cursor:        "pointer",
+              textTransform: "uppercase",
+            }}
+          >
+            {loc}
+          </button>
+          {i < LOCALES.length - 1 && (
+            <span style={{ color: "#ddd", fontSize: small ? "10px" : "11px" }}>/</span>
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  if (open) {
+    return <span style={{ fontSize: "20px", lineHeight: 1, userSelect: "none" }}>×</span>;
+  }
+  return (
+    <span style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+      <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
+      <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
+      <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
+    </span>
+  );
+}
+
 export default function Nav({ locale }: { locale: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const currentLocale = useLocale();
@@ -28,6 +90,7 @@ export default function Nav({ locale }: { locale: string }) {
   const router = useRouter();
 
   const cleanPath = pathname.replace(/^\/(es|en)/, "") || "/";
+  const isHome = cleanPath === "/";
 
   function switchLocale(newLocale: string) {
     let newPath = pathname;
@@ -39,14 +102,18 @@ export default function Nav({ locale }: { locale: string }) {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#1a1a1a]"
-        style={{ fontFamily: "var(--font-sans)", height: "88px" }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white"
+        style={{
+          fontFamily:   "var(--font-sans)",
+          height:       "88px",
+          borderBottom: isHome ? "none" : "1px solid #1a1a1a",
+        }}
       >
         <div
           className="flex items-center h-full"
           style={{ paddingLeft: "32px", paddingRight: "32px" }}
         >
-          {/* Logo */}
+          {/* Logo — més gran a la home */}
           <Link
             href={localizeHref("/", locale)}
             className="flex-shrink-0"
@@ -57,89 +124,89 @@ export default function Nav({ locale }: { locale: string }) {
               alt="Peralta Urbanisme"
               width={360}
               height={90}
-              style={{ width: "165px", height: "auto", marginTop: "4px", objectFit: "contain" }}
+              style={{
+                width:      isHome ? "220px" : "165px",
+                height:     "auto",
+                marginTop:  "4px",
+                objectFit:  "contain",
+                transition: "width 0.3s ease",
+              }}
               priority
             />
           </Link>
 
-          {/* Desktop nav links — centrats */}
-          <div
-            className="hidden lg:flex items-center flex-1 justify-center"
-            style={{ gap: "34px" }}
-          >
-            {NAV_LINKS.map(({ label, href }) => {
-              const isActive = cleanPath === href || cleanPath.startsWith(href + "/");
-              return (
-                <Link
-                  key={href}
-                  href={localizeHref(href, locale)}
-                  className="no-underline whitespace-nowrap transition-none"
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: isActive ? 700 : 650,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: isActive ? "#000" : "#777",
-                  }}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Right: language + hamburger */}
-          <div className="flex items-center gap-5 ml-auto">
-            {/* Language — desktop */}
+          {/* Desktop nav links — ocults a la home */}
+          {!isHome && (
             <div
-              className="hidden lg:flex items-center gap-2"
-              style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em" }}
+              className="hidden lg:flex items-center flex-1 justify-center"
+              style={{ gap: "34px" }}
             >
-              {LOCALES.map((loc, i) => (
-                <span key={loc} className="flex items-center gap-2">
-                  <button
-                    onClick={() => switchLocale(loc)}
-                    className="uppercase cursor-pointer border-none bg-transparent p-0"
+              {NAV_LINKS.map(({ label, href }) => {
+                const isActive = cleanPath === href || cleanPath.startsWith(href + "/");
+                return (
+                  <Link
+                    key={href}
+                    href={localizeHref(href, locale)}
+                    className="no-underline whitespace-nowrap"
                     style={{
-                      fontSize: "11px",
+                      fontSize:      "12px",
+                      fontWeight:    isActive ? 700 : 650,
                       letterSpacing: "0.08em",
-                      fontWeight: currentLocale === loc ? 700 : 400,
-                      color: currentLocale === loc ? "#000" : "#aaa",
+                      textTransform: "uppercase",
+                      color:         isActive ? "#000" : "#777",
                     }}
                   >
-                    {loc}
-                  </button>
-                  {i < LOCALES.length - 1 && (
-                    <span style={{ color: "#ddd", fontSize: "11px" }}>/</span>
-                  )}
-                </span>
-              ))}
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
+          )}
 
-            {/* Hamburger — mobile */}
+          {/* Right side */}
+          <div
+            className={isHome ? "" : "flex items-center gap-5"}
+            style={{ marginLeft: "auto", display: "flex", alignItems: isHome ? "flex-end" : "center",
+                     flexDirection: isHome ? "column" : "row", gap: isHome ? "5px" : "20px" }}
+          >
+            {/* Idiomes — a la dreta en pàgines normals (desktop), sota el burger a la home */}
+            {!isHome && (
+              <div className="hidden lg:flex">
+                <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} />
+              </div>
+            )}
+
+            {/* Burger — sempre visible a la home, només mòbil a la resta */}
             <button
               onClick={() => setMenuOpen((o) => !o)}
               aria-label={menuOpen ? "Tancar menú" : "Obrir menú"}
-              className="lg:hidden flex flex-col justify-center gap-1.5 w-6 h-6 cursor-pointer border-none bg-transparent p-0"
+              className={isHome ? "" : "lg:hidden"}
+              style={{
+                display:    "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width:      24,
+                height:     24,
+                cursor:     "pointer",
+                border:     "none",
+                background: "none",
+                padding:    0,
+              }}
             >
-              {menuOpen ? (
-                <span className="text-xl leading-none select-none">×</span>
-              ) : (
-                <>
-                  <span className="block w-5 h-px bg-black" />
-                  <span className="block w-5 h-px bg-black" />
-                  <span className="block w-5 h-px bg-black" />
-                </>
-              )}
+              <HamburgerIcon open={menuOpen} />
             </button>
+
+            {/* Idiomes sota el burger — només a la home */}
+            {isHome && <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} small />}
           </div>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
+      {/* Overlay menú — mòbil sempre; a la home també a desktop */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-white flex flex-col lg:hidden"
+          className={`fixed inset-0 z-40 bg-white flex flex-col ${isHome ? "" : "lg:hidden"}`}
           style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}
         >
           <div className="flex flex-col justify-between flex-1 px-8 py-12">
