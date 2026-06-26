@@ -24,6 +24,15 @@ function projectHref(slug: string, locale: string): string {
   return locale === "ca" ? `/projectes/${slug}` : `/${locale}/projectes/${slug}`;
 }
 
+// Zoom ≤ 9  → quadradet sòlid petit (punt)
+// Zoom 10-12 → quadrat discontinu mitjà
+// Zoom ≥ 13 → quadrat discontinu gran
+function zoomClass(zoom: number): string {
+  if (zoom <= 9) return "z-out";
+  if (zoom <= 12) return "z-mid";
+  return "z-in";
+}
+
 export default function MapContainer({ markers, locale }: Props) {
   const [selected, setSelected] = useState<MarkerData | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -33,14 +42,6 @@ export default function MapContainer({ markers, locale }: Props) {
     if (!mapRef.current || mapInstance.current) return;
 
     import("leaflet").then((L) => {
-      // Afegim el CSS de Leaflet si no està ja carregat
-      if (!document.querySelector('link[href*="leaflet"]')) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-        document.head.appendChild(link);
-      }
-
       const map = L.map(mapRef.current!, {
         center: [41.72, 1.5],
         zoom: 8,
@@ -50,7 +51,6 @@ export default function MapContainer({ markers, locale }: Props) {
 
       mapInstance.current = map;
 
-      // Capa base: CartoDB Positron — gris net, tipografia neta, ideal per urbanisme
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
@@ -61,26 +61,39 @@ export default function MapContainer({ markers, locale }: Props) {
         }
       ).addTo(map);
 
-      // Zoom control: cantonada inferior dreta
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      // Marcadors
+      // Funció que actualitza totes les marques segons el zoom actual
+      function updateMarkerZoom() {
+        const cls = zoomClass(map.getZoom());
+        map.getContainer()
+          .querySelectorAll<HTMLElement>(".peralta-sq-wrap")
+          .forEach((el) => {
+            el.dataset.z = cls;
+          });
+      }
+
+      // Afegir marcadors
       markers.forEach((m) => {
+        // Contenidor fix 28×28 centrat — l'anchor no canvia mai
         const icon = L.divIcon({
           className: "",
-          html: `<div class="peralta-pin"></div>`,
-          iconSize: [12, 22],
-          iconAnchor: [6, 22],
+          html: `<div class="peralta-sq-wrap" data-z="${zoomClass(8)}">
+                   <div class="peralta-sq"></div>
+                 </div>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
         });
 
         const marker = L.marker([m.lat, m.lng], { icon });
         marker.addTo(map);
-        marker.on("click", () => {
+        marker.on("click", (e) => {
+          L.DomEvent.stopPropagation(e);
           setSelected((prev) => (prev?.slug === m.slug ? null : m));
         });
       });
 
-      // Clicar el mapa fora d'un marcador tanca el panel
+      map.on("zoomend", updateMarkerZoom);
       map.on("click", () => setSelected(null));
     });
 
@@ -94,10 +107,9 @@ export default function MapContainer({ markers, locale }: Props) {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Mapa */}
       <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
 
-      {/* Panel lateral — apareix en clicar un marcador */}
+      {/* Panel lateral */}
       {selected && (
         <aside
           style={{
@@ -114,7 +126,6 @@ export default function MapContainer({ markers, locale }: Props) {
             overflowY: "auto",
           }}
         >
-          {/* Botó tancar */}
           <button
             onClick={() => setSelected(null)}
             aria-label="Tancar"
@@ -136,7 +147,6 @@ export default function MapContainer({ markers, locale }: Props) {
             ×
           </button>
 
-          {/* Imatge de portada */}
           <div
             style={{
               position: "relative",
@@ -155,62 +165,20 @@ export default function MapContainer({ markers, locale }: Props) {
             />
           </div>
 
-          {/* Metadades */}
           <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: 1 }}>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: "#888",
-                marginBottom: "10px",
-              }}
-            >
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.1em", color: "#888", marginBottom: "10px" }}>
               {selected.municipality}
             </p>
-
-            <h2
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "13px",
-                fontWeight: 600,
-                lineHeight: 1.35,
-                marginBottom: "10px",
-                color: "#000",
-              }}
-            >
+            <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, lineHeight: 1.35, marginBottom: "10px", color: "#000" }}>
               {selected.title}
             </h2>
-
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                color: "#888",
-              }}
-            >
-              {selected.year}
-              {selected.status ? ` — ${selected.status}` : ""}
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#888" }}>
+              {selected.year}{selected.status ? ` — ${selected.status}` : ""}
             </p>
-
-            <div
-              style={{
-                marginTop: "auto",
-                paddingTop: "24px",
-                borderTop: "1px solid #000",
-              }}
-            >
+            <div style={{ marginTop: "auto", paddingTop: "24px", borderTop: "1px solid #000" }}>
               <Link
                 href={projectHref(selected.slug, locale)}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: "#000",
-                  textDecoration: "none",
-                }}
+                style={{ fontFamily: "var(--font-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#000", textDecoration: "none" }}
               >
                 Veure projecte →
               </Link>
@@ -219,30 +187,53 @@ export default function MapContainer({ markers, locale }: Props) {
         </aside>
       )}
 
-      {/* Estils dels marcadors i sobreescriptura Leaflet */}
       <style>{`
-        .peralta-pin {
-          width: 10px;
-          height: 10px;
-          background: #000;
-          border-radius: 50%;
-          position: relative;
-          transition: transform 0.15s ease;
+        /* ── Contenidor fix 28×28 — mai es mou ── */
+        .peralta-sq-wrap {
+          width: 28px;
+          height: 28px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           cursor: pointer;
         }
-        .peralta-pin::after {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1.5px;
-          height: 10px;
+
+        /* ── Quadrat interior: canvia de mida i estil ── */
+        .peralta-sq {
+          background: transparent;
+          border: 2px dashed #000;
+          transition: width 0.25s ease, height 0.25s ease,
+                      border-style 0.25s ease, border-width 0.25s ease;
+        }
+
+        /* Zoom molt allunyat: punt sòlid petit */
+        .peralta-sq-wrap[data-z="z-out"] .peralta-sq {
+          width:  5px;
+          height: 5px;
           background: #000;
+          border: none;
         }
-        .leaflet-marker-icon:hover .peralta-pin {
-          transform: scale(1.25);
+
+        /* Zoom mig: quadrat discontinu mitjà */
+        .peralta-sq-wrap[data-z="z-mid"] .peralta-sq {
+          width:  12px;
+          height: 12px;
+          border: 1.5px dashed #000;
         }
+
+        /* Zoom aproper: quadrat discontinu gran */
+        .peralta-sq-wrap[data-z="z-in"] .peralta-sq {
+          width:  22px;
+          height: 22px;
+          border: 2px dashed #000;
+        }
+
+        /* Hover */
+        .peralta-sq-wrap:hover .peralta-sq {
+          opacity: 0.6;
+        }
+
+        /* ── Controls Leaflet ── */
         .leaflet-control-attribution {
           font-family: 'IBM Plex Mono', monospace !important;
           font-size: 9px !important;
