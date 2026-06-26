@@ -63,12 +63,21 @@ function ImageCycler({ slug, images }: { slug: string; images: string[] }) {
     [slug, images]
   );
 
+  const imgStyle: React.CSSProperties = {
+    position: "absolute", width: "94%", height: "94%",
+    top: "3%", left: "3%",
+    objectFit: "contain", display: "block",
+    transition: "opacity 0.45s ease", userSelect: "none",
+  };
+
   const btn: React.CSSProperties = {
     position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: 10,
-    width: 28, height: 28, background: "rgba(255,255,255,0.92)",
-    border: "1px solid rgba(0,0,0,0.12)", cursor: "pointer",
-    fontFamily: "var(--font-sans)", fontSize: 13, padding: 0,
-    display: "flex", alignItems: "center", justifyContent: "center",
+    width: 28, height: 28,
+    background: "rgba(255,255,255,0.80)",
+    border: "1px solid rgba(0,0,0,0.16)",
+    cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: 12,
+    padding: 0, display: "flex", alignItems: "center", justifyContent: "center",
+    opacity: 0.55, transition: "opacity 0.18s",
   };
 
   return (
@@ -78,25 +87,31 @@ function ImageCycler({ slug, images }: { slug: string; images: string[] }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img ref={aRef} src={`/projects/${slug}/${images[0]}`} alt="" draggable={false}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain",
-                 display: "block", opacity: 1, zIndex: 2, transition: "opacity 0.45s ease", userSelect: "none" }}
+        style={{ ...imgStyle, opacity: 1, zIndex: 2 }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img ref={bRef} src={`/projects/${slug}/${images[0]}`} alt="" draggable={false}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain",
-                 display: "block", opacity: 0, zIndex: 1, transition: "opacity 0.45s ease", userSelect: "none" }}
+        style={{ ...imgStyle, opacity: 0, zIndex: 1 }}
       />
       {N > 1 && (
         <>
-          <button onClick={(e) => { e.stopPropagation(); go((idxRef.current - 1 + N) % N); }}
-            style={{ ...btn, left: 10 }}>←</button>
-          <button onClick={(e) => { e.stopPropagation(); go((idxRef.current + 1) % N); }}
-            style={{ ...btn, right: 10 }}>→</button>
+          <button
+            onClick={(e) => { e.stopPropagation(); go((idxRef.current - 1 + N) % N); }}
+            style={{ ...btn, left: 12 }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.55"; }}
+          >←</button>
+          <button
+            onClick={(e) => { e.stopPropagation(); go((idxRef.current + 1) % N); }}
+            style={{ ...btn, right: 12 }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.55"; }}
+          >→</button>
           <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)",
                         zIndex: 10, display: "flex", gap: 5 }}>
             {images.map((_, i) => (
               <span key={i} style={{ width: 4, height: 4, borderRadius: "50%",
-                                     background: i === idx ? "#111" : "rgba(0,0,0,0.22)" }} />
+                                     background: i === idx ? "#555" : "rgba(0,0,0,0.20)" }} />
             ))}
           </div>
         </>
@@ -134,9 +149,9 @@ function CardContent({
   ].filter(Boolean) as [string, string][];
 
   const ui = {
-    llegirMes: locale === "en" ? "Read more" : locale === "es" ? "Leer más" : "Llegir més",
-    menys:     locale === "en" ? "Less"      : locale === "es" ? "Menos"    : "Menys",
-    veure:     locale === "en" ? "See project →" : locale === "es" ? "Ver proyecto →" : "Veure projecte →",
+    llegirMes: locale === "en" ? "+ Read full text" : locale === "es" ? "+ Leer texto completo" : "+ Llegir text complet",
+    menys:     locale === "en" ? "Tancar"           : locale === "es" ? "Cerrar"                : "Tancar",
+    veure:     locale === "en" ? "Open project →"   : locale === "es" ? "Abrir proyecto →"     : "Obrir projecte →",
   };
 
   return (
@@ -144,8 +159,8 @@ function CardContent({
       className="grid grid-rows-[52%_48%] md:grid-rows-none md:grid-cols-[56%_44%]"
       style={{ width: "100%", height: "100%", background: "#fff", overflow: "hidden" }}
     >
-      {/* ── COLUMNA IMATGE: fons blanc, objectFit contain ── */}
-      <div style={{ background: "#fff", padding: "24px", position: "relative", overflow: "hidden" }}>
+      {/* ── COLUMNA IMATGE ── */}
+      <div style={{ background: "#fff", padding: "24px 32px", position: "relative", overflow: "hidden" }}>
         {isActive ? (
           <ImageCycler slug={project.slug} images={images} />
         ) : (
@@ -153,39 +168,40 @@ function CardContent({
           <img
             src={`/projects/${project.slug}/${images[0]}`}
             alt={data.title}
-            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+            style={{ position: "absolute", width: "94%", height: "94%", top: "3%", left: "3%",
+                     objectFit: "contain", display: "block" }}
           />
         )}
       </div>
 
       {/* ── COLUMNA TEXT ── */}
-      {/* border-t mòbil (separador horitzontal), border-l desktop (separador vertical) */}
       <div
-        className="flex flex-col overflow-hidden border-t border-black/[.06] md:border-t-0 md:border-l md:border-l-black/[.06]"
-        style={{ padding: "clamp(18px, 2.4vw, 36px)" }}
+        className="flex flex-col overflow-hidden border-t border-black/[.07] md:border-t-0 md:border-l md:border-l-black/[.07]"
+        style={{ padding: "clamp(20px, 2.6vw, 40px)" }}
       >
         {/* Metadata */}
-        <p style={{ fontFamily: sans, fontSize: 10, fontWeight: 500,
-                    letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "#999", margin: "0 0 11px", lineHeight: 1.4 }}>
+        <p style={{ fontFamily: sans, fontSize: "11px", fontWeight: 650,
+                    letterSpacing: "0.08em", textTransform: "uppercase",
+                    color: "#7a7a7a", margin: "0 0 14px", lineHeight: 1.4 }}>
           {[data.tipus, data.municipality, data.year].filter(Boolean).join(" · ")}
         </p>
 
         {/* Títol */}
-        <h2 style={{ fontFamily: sans, fontSize: "clamp(19px, 2vw, 30px)", fontWeight: 800,
-                     lineHeight: 1.04, letterSpacing: "-0.04em", color: "#000", margin: "0 0 14px" }}>
+        <h2 style={{ fontFamily: sans, fontSize: "clamp(32px, 2.8vw, 44px)", fontWeight: 800,
+                     lineHeight: 0.96, letterSpacing: "-0.055em", color: "#000", margin: "0 0 16px" }}>
           {data.title}
         </h2>
 
         {/* Text (curt o expandit) */}
-        <div style={{ flex: 1, overflowY: expanded ? "auto" : "hidden", marginBottom: 10 }}>
+        <div style={{ flex: 1, overflowY: expanded ? "auto" : "hidden", marginBottom: 12 }}>
           {!expanded ? (
-            <p style={{ fontFamily: sans, fontSize: 13.5, lineHeight: 1.60, color: "#444", margin: 0 }}>
+            <p style={{ fontFamily: sans, fontSize: "15px", lineHeight: 1.45, color: "#333",
+                        margin: 0, maxWidth: "520px" }}>
               {data.descriptionShort}
             </p>
           ) : (
             paragraphs.map((para, i) => (
-              <p key={i} style={{ fontFamily: sans, fontSize: 13, lineHeight: 1.64,
+              <p key={i} style={{ fontFamily: sans, fontSize: "14px", lineHeight: 1.55,
                                   letterSpacing: "-0.005em", color: "#333", margin: "0 0 12px" }}>
                 {para}
               </p>
@@ -195,30 +211,35 @@ function CardContent({
 
         {/* Dades tècniques */}
         {!expanded && facts.length > 0 && (
-          <dl style={{ display: "flex", flexWrap: "wrap", gap: "4px 18px", margin: "0 0 14px",
-                       borderTop: "1px solid rgba(0,0,0,0.07)", paddingTop: 10 }}>
+          <dl style={{ display: "flex", flexWrap: "wrap", gap: "5px 20px", margin: "0 0 16px",
+                       borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: 12 }}>
             {facts.map(([label, value]) => (
               <div key={label}>
-                <dt style={{ fontFamily: sans, fontSize: 9, fontWeight: 600,
-                              letterSpacing: "0.10em", textTransform: "uppercase",
-                              color: "#c8c8c8", lineHeight: 1.2, marginBottom: 1 }}>{label}</dt>
-                <dd style={{ fontFamily: sans, fontSize: 11.5, color: "#555", margin: 0, lineHeight: 1.3 }}>{value}</dd>
+                <dt style={{ fontFamily: sans, fontSize: "10px", fontWeight: 600,
+                              letterSpacing: "0.08em", textTransform: "uppercase",
+                              color: "#aaa", lineHeight: 1.2, marginBottom: 2 }}>{label}</dt>
+                <dd style={{ fontFamily: sans, fontSize: "13px", color: "#555", margin: 0, lineHeight: 1.35 }}>{value}</dd>
               </div>
             ))}
           </dl>
         )}
 
         {/* Accions */}
-        <div style={{ display: "flex", gap: 20, alignItems: "center", marginTop: "auto", flexShrink: 0 }}>
+        <div style={{ display: "flex", gap: 24, alignItems: "center", marginTop: "auto", flexShrink: 0 }}>
           <button onClick={() => setExpanded((e) => !e)}
-            style={{ fontFamily: sans, fontSize: 12, fontWeight: 600, letterSpacing: "0.02em",
+            style={{ fontFamily: sans, fontSize: "12px", fontWeight: 600, letterSpacing: "0.02em",
                      color: "#111", background: "none", border: "none", borderBottom: "1px solid #111",
                      padding: "0 0 2px", cursor: "pointer" }}>
             {expanded ? ui.menys : ui.llegirMes}
           </button>
-          <Link href={href(project.slug, locale)}
-            style={{ fontFamily: sans, fontSize: 12, fontWeight: 500,
-                     letterSpacing: "0.02em", color: "#bbb", textDecoration: "none" }}>
+          <Link
+            href={href(project.slug, locale)}
+            style={{ fontFamily: sans, fontSize: "12px", fontWeight: 500,
+                     letterSpacing: "0.02em", color: "#999", textDecoration: "none",
+                     transition: "color 0.18s" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#000"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#999"; }}
+          >
             {ui.veure}
           </Link>
         </div>
@@ -236,11 +257,12 @@ function cardTransform(state: CardState): React.CSSProperties {
     position:   "absolute",
     left:       "50%",
     top:        "50%",
-    width:      "min(88vw, 1320px)",
-    height:     "clamp(440px, 62vh, 620px)",
+    width:      "min(84vw, 1380px)",
+    height:     "clamp(500px, 62vh, 610px)",
     transition: `transform ${TR}, opacity ${TR}`,
     willChange: "transform, opacity",
-    border:     "1px solid rgba(0,0,0,0.14)",
+    border:     "1px solid rgba(0,0,0,0.18)",
+    boxShadow:  "0 18px 60px rgba(0,0,0,0.025)",
     background: "#fff",
     overflow:   "hidden",
   };
@@ -421,15 +443,15 @@ export default function HomeProjects({
               href={h}
               style={{
                 fontFamily:     sans,
-                fontSize:       "11px",
-                fontWeight:     450,
-                letterSpacing:  "0.04em",
-                color:          "#c0c0c0",
+                fontSize:       "13px",
+                fontWeight:     500,
+                letterSpacing:  "0.01em",
+                color:          "#7a7a7a",
                 textDecoration: "none",
                 transition:     "color 0.18s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#111"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#c0c0c0"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#000"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#7a7a7a"; }}
             >
               {label}
             </Link>
@@ -451,7 +473,7 @@ export default function HomeProjects({
             pointerEvents: "none",
           }}
         >
-          <div style={{ display: "flex", gap: "5px" }}>
+          <div style={{ display: "flex", gap: "6px" }}>
             {projects.map((_, i) => (
               <span
                 key={i}
@@ -459,13 +481,14 @@ export default function HomeProjects({
                   width:        "4px",
                   height:       "4px",
                   borderRadius: "50%",
-                  background:   i === activeIdx ? "#111" : "rgba(0,0,0,0.18)",
-                  transition:   "background 0.3s",
+                  background:   "#111",
+                  opacity:      i === activeIdx ? 1 : 0.22,
+                  transition:   "opacity 0.3s",
                 }}
               />
             ))}
           </div>
-          <span style={{ fontFamily: mono, fontSize: "10px", letterSpacing: "0.08em", color: "#ccc" }}>
+          <span style={{ fontFamily: mono, fontSize: "11px", letterSpacing: "0.08em", color: "#777" }}>
             {String(activeIdx + 1).padStart(2, "0")} / {String(N).padStart(2, "0")}
           </span>
         </div>
@@ -481,8 +504,8 @@ export default function HomeProjects({
               pointerEvents: "none",
             }}
           >
-            <span style={{ fontFamily: sans, fontSize: "10px", letterSpacing: "0.08em",
-                           textTransform: "uppercase", color: "#ccc" }}>
+            <span style={{ fontFamily: sans, fontSize: "11px", letterSpacing: "0.08em",
+                           textTransform: "uppercase", color: "#9a9a9a" }}>
               scroll ↓
             </span>
           </div>
