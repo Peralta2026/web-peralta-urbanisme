@@ -94,27 +94,13 @@ function ImageCycler({ slug, images }: { slug: string; images: string[] }) {
         style={{ ...imgStyle, opacity: 0, zIndex: 1 }}
       />
       {N > 1 && (
-        <>
-          <button
-            onClick={(e) => { e.stopPropagation(); go((idxRef.current - 1 + N) % N); }}
-            style={{ ...btn, left: 12 }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.55"; }}
-          >←</button>
-          <button
-            onClick={(e) => { e.stopPropagation(); go((idxRef.current + 1) % N); }}
-            style={{ ...btn, right: 12 }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.55"; }}
-          >→</button>
-          <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)",
-                        zIndex: 10, display: "flex", gap: 5 }}>
-            {images.map((_, i) => (
-              <span key={i} style={{ width: 4, height: 4, borderRadius: "50%",
-                                     background: i === idx ? "#555" : "rgba(0,0,0,0.20)" }} />
-            ))}
-          </div>
-        </>
+        <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)",
+                      zIndex: 10, display: "flex", gap: 5 }}>
+          {images.map((_, i) => (
+            <span key={i} style={{ width: 4, height: 4, borderRadius: "50%",
+                                   background: i === idx ? "#555" : "rgba(0,0,0,0.20)" }} />
+          ))}
+        </div>
       )}
     </div>
   );
@@ -320,7 +306,6 @@ export default function HomeProjects({
   const lastChange = useRef(0);
   const N = projects.length;
   const sans = "var(--font-sans)";
-  const mono = "var(--font-mono)";
 
   // Canviar carta (amb cooldown per evitar salts múltiples)
   const goTo = useCallback(
@@ -488,9 +473,6 @@ export default function HomeProjects({
               />
             ))}
           </div>
-          <span style={{ fontFamily: mono, fontSize: "11px", letterSpacing: "0.08em", color: "#777" }}>
-            {String(activeIdx + 1).padStart(2, "0")} / {String(N).padStart(2, "0")}
-          </span>
         </div>
 
         {/* ── Hint scroll (primera carta) ── */}
