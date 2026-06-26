@@ -41,6 +41,21 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className="min-h-screen flex flex-col">
+        {/*
+          Guard: capa blanca estàtica que impedeix qualsevol flash de contingut.
+          Existeix des del primer píxel (HTML del servidor), z-index 9998.
+          IntroWrapper l'esborra: ràpid si ja s'ha vist, o quan acaba la intro.
+        */}
+        <div
+          id="pu-guard"
+          style={{
+            position:      "fixed",
+            inset:         0,
+            zIndex:        9998,
+            background:    "#ffffff",
+            pointerEvents: "none",
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <IntroWrapper>
             <Nav locale={locale} />

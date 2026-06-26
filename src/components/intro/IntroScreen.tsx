@@ -4,44 +4,47 @@ import { useEffect, useRef, useState, useCallback } from "react";
 
 // ─── Timing (ms) ─────────────────────────────────────────────────────────────
 const T = {
-  P1_END:   900,
-  P2_START: 900,
-  P2_END:   2200,
-  P3_END:   2700,
-  P4_END:   3700,
-  VID_FADE: 4200,  // canvas totalment desaparegut, vídeo visible
-  SWEEP:    6300,
+  P1_END:   750,   // partícules aparegudes
+  P2_START: 750,   // comença convergència cap al logo
+  P2_END:   2100,  // logo format
+  P3_END:   2700,  // pausa logo quiet
+  P4_END:   3700,  // malla formada
+  VID_END:  4300,  // vídeo visible
+  SWEEP:    6400,  // barrida cap amunt
 };
 
 // ─── Easing ───────────────────────────────────────────────────────────────────
-function easeOut(t: number)  { return 1 - (1 - t) ** 3; }
-function easeInOut(t: number) {
-  return t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
+// easeOutExpo: molt ràpid a l'inici, s'atura suaument → arquitectònic, precís
+function easeOutExpo(t: number) {
+  return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+}
+function easeInOutCubic(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 function lerp(a: number, b: number, t: number) { return a + (b - a) * t; }
-function clamp(v: number) { return Math.max(0, Math.min(1, v)); }
-function prog(t: number, start: number, end: number) {
-  return clamp((t - start) / (end - start));
+function clamp01(v: number) { return Math.max(0, Math.min(1, v)); }
+function prog(t: number, s: number, e: number) {
+  return clamp01((t - s) / (e - s));
 }
 
 interface Particle {
-  x: number; y: number;
-  sx: number; sy: number;
-  lx: number; ly: number;
-  gx: number; gy: number;
-  delay: number;
-  r: number;
+  sx: number; sy: number; // posició inicial (scatter)
+  lx: number; ly: number; // posició logo
+  gx: number; gy: number; // posició malla
+  delay: number;          // retard d'aparició (0–0.60)
+  size:  number;          // costat del quadrat (2–4 px)
+  aMax:  number;          // alpha màxim en scatter (0.25–0.75)
 }
 
 export default function IntroScreen({ onDone }: { onDone: () => void }) {
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const videoRef     = useRef<HTMLVideoElement>(null);
-  const logoImgRef   = useRef<HTMLImageElement | null>(null);
-  const rafRef       = useRef<number>(0);
-  const doneRef      = useRef(false);
+  const canvasRef   = useRef<HTMLCanvasElement>(null);
+  const videoRef    = useRef<HTMLVideoElement>(null);
+  const logoElemRef = useRef<HTMLImageElement>(null);
+  const rafRef      = useRef<number>(0);
+  const doneRef     = useRef(false);
 
-  const [videoOpacity, setVideoOpacity] = useState(0);
-  const [sweeping,     setSweeping]     = useState(false);
+  const [sweeping,    setSweeping]    = useState(false);
+  const [vidVisible,  setVidVisible]  = useState(false);
 
   const sweep = useCallback(() => {
     if (doneRef.current) return;
@@ -56,57 +59,75 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // ── prefers-reduced-motion: logo estàtic breu i surt ─────────────────
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const logo = logoElemRef.current;
+      if (logo) { logo.style.opacity = "0.95"; }
       sessionStorage.setItem("pu-intro", "1");
-      setTimeout(onDone, 400);
+      setTimeout(onDone, 1100);
       return;
     }
 
     const W = window.innerWidth;
     const H = window.innerHeight;
-    canvas.width  = W;
-    canvas.height = H;
+
+    // ── Canvas DPR: nitidesa perfecta en pantalles retina ─────────────────
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width       = W * DPR;
+    canvas.height      = H * DPR;
+    canvas.style.width  = `${W}px`;
+    canvas.style.height = `${H}px`;
     const ctx = canvas.getContext("2d")!;
+    ctx.scale(DPR, DPR);
 
-    // ── Geometria ─────────────────────────────────────────────────────────
-    const logoW = Math.min(320, W * 0.38);
-    const logoH = logoW * (90 / 360);
+    // ── Geometria del logo ─────────────────────────────────────────────────
+    // Mida: fins a 400px (proper a natiu 360px per màxima nitidesa)
+    const logoW = Math.min(400, Math.max(260, W * 0.44));
+    const logoH = logoW * (90 / 360); // el JPG és 360×90
     const logoX = (W - logoW) / 2;
-    const logoY = H / 2 - logoH / 2 - 10;
+    const logoY = H / 2 - logoH / 2 - 12;
 
+    // Sincronitzar element HTML <img> amb coordenades JS
+    const logoEl = logoElemRef.current;
+    if (logoEl) {
+      logoEl.style.left   = `${logoX}px`;
+      logoEl.style.top    = `${logoY}px`;
+      logoEl.style.width  = `${logoW}px`;
+      logoEl.style.height = `${logoH}px`;
+    }
+
+    // ── Geometria del frame (malla / vídeo) ───────────────────────────────
     const frameW = Math.min(740, W * 0.68);
     const frameH = frameW * 0.5625;
     const frameX = (W - frameW) / 2;
     const frameY = (H - frameH) / 2;
 
-    const scW = W * 0.46;
-    const scH = H * 0.36;
+    // ── Zona de scatter inicial (concentrada al centre, no aleatòria total) ─
+    const scW = W * 0.32;
+    const scH = H * 0.26;
     const scX = (W - scW) / 2;
     const scY = (H - scH) / 2;
 
-    // ── FIX 1: Carregar logo i guardar referència per dibuixar-lo al canvas ─
-    const loadLogo = (): Promise<{ x: number; y: number }[]> =>
+    // ── Mostreig de píxels foscos del logo ────────────────────────────────
+    const sampleLogoPts = (): Promise<{ x: number; y: number }[]> =>
       new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
-          logoImgRef.current = img; // <-- imatge guardada per dibuixar-la
-
-          // Mostreig de píxels foscos (umbral ampliat a 120 per agafar anti-aliasing)
-          const tmp = document.createElement("canvas");
+          const tmp  = document.createElement("canvas");
           tmp.width  = img.naturalWidth;
           tmp.height = img.naturalHeight;
           const tCtx = tmp.getContext("2d")!;
           tCtx.drawImage(img, 0, 0);
           const d = tCtx.getImageData(0, 0, tmp.width, tmp.height).data;
           const pts: { x: number; y: number }[] = [];
-          const step = 4;
+          const step = 3; // pas de 3px → mostreig dens
           for (let py = 0; py < img.naturalHeight; py += step) {
             for (let px = 0; px < img.naturalWidth; px += step) {
-              const i = (py * img.naturalWidth + px) * 4;
-              // Píxel fosc: tots tres canals < 120
-              if (d[i] < 120 && d[i + 1] < 120 && d[i + 2] < 120) {
+              const idx = (py * img.naturalWidth + px) * 4;
+              // Píxel fosc (text negre + anti-aliasing gris)
+              if (d[idx] < 130 && d[idx + 1] < 130 && d[idx + 2] < 130) {
                 pts.push({
-                  x: logoX + (px / img.naturalWidth) * logoW,
+                  x: logoX + (px / img.naturalWidth)  * logoW,
                   y: logoY + (py / img.naturalHeight) * logoH,
                 });
               }
@@ -115,83 +136,87 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
           resolve(pts);
         };
         img.onerror = () => {
+          // Fallback: distribuir partícules en files (imita text)
           const pts: { x: number; y: number }[] = [];
-          for (let i = 0; i < 160; i++) {
-            pts.push({ x: logoX + Math.random() * logoW, y: logoY + Math.random() * logoH });
-          }
+          [0.25, 0.5, 0.75].forEach((rowFrac) => {
+            const y = logoY + rowFrac * logoH;
+            for (let j = 0; j < 60; j++) {
+              pts.push({ x: logoX + (j / 59) * logoW, y });
+            }
+          });
           resolve(pts);
         };
         img.src = "/logo.jpg";
       });
 
-    // ── FIX 3: Posicions de malla (bordes + interior) ─────────────────────
-    // Línies verticals i horitzontals que cobreixen TOT el frame
-    const buildGridPositions = (N: number): { x: number; y: number }[] => {
-      const positions: { x: number; y: number }[] = [];
-      const jit = () => (Math.random() - 0.5) * 1.2;
+    // ── Posicions de malla (malla completa, bordes + interior) ────────────
+    const buildGridPts = (N: number): { x: number; y: number }[] => {
+      const result: { x: number; y: number }[] = [];
+      const jit    = () => (Math.random() - 0.5) * 1.4;
+      const vCols  = [0, 1 / 3, 2 / 3, 1];
+      const hRows  = [0, 1 / 3, 2 / 3, 1];
+      const nLines = vCols.length + hRows.length;
+      const ppl    = Math.ceil(N / nLines);
 
-      // 4 línies verticals: 0%, 33%, 67%, 100% de l'amplada
-      const vCols = [0, 1 / 3, 2 / 3, 1];
-      // 4 línies horitzontals: 0%, 33%, 67%, 100% de l'alçada
-      const hRows = [0, 1 / 3, 2 / 3, 1];
-
-      const nTotal = vCols.length + hRows.length; // 8 línies
-      const ptsPerLine = Math.ceil(N / nTotal);
-
-      // Punts al llarg de cada línia vertical (de dalt a baix)
       for (const col of vCols) {
-        for (let k = 0; k < ptsPerLine; k++) {
-          positions.push({
+        for (let k = 0; k < ppl; k++) {
+          result.push({
             x: frameX + col * frameW + jit(),
-            y: frameY + (k / (ptsPerLine - 1)) * frameH + jit(),
+            y: frameY + (k / Math.max(ppl - 1, 1)) * frameH + jit(),
           });
         }
       }
-      // Punts al llarg de cada línia horitzontal (d'esquerra a dreta)
       for (const row of hRows) {
-        for (let k = 0; k < ptsPerLine; k++) {
-          positions.push({
-            x: frameX + (k / (ptsPerLine - 1)) * frameW + jit(),
+        for (let k = 0; k < ppl; k++) {
+          result.push({
+            x: frameX + (k / Math.max(ppl - 1, 1)) * frameW + jit(),
             y: frameY + row * frameH + jit(),
           });
         }
       }
 
-      // Barreja aleatòria i retorna N posicions
-      for (let i = positions.length - 1; i > 0; i--) {
+      for (let i = result.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [positions[i], positions[j]] = [positions[j], positions[i]];
+        [result[i], result[j]] = [result[j], result[i]];
       }
-      return positions.slice(0, N);
+      return result.slice(0, N);
     };
 
+    // ── Construir partícules ───────────────────────────────────────────────
     const buildParticles = (logoPts: { x: number; y: number }[]): Particle[] => {
-      const MAX  = 220;
+      const MAX  = 250;
       const step = Math.max(1, Math.floor(logoPts.length / MAX));
-      const logo = logoPts.filter((_, i) => i % step === 0).slice(0, MAX);
-      const N    = logo.length || MAX;
+      const lpts = logoPts.filter((_, i) => i % step === 0).slice(0, MAX);
+      const N    = lpts.length || MAX;
 
-      const gridPts = buildGridPositions(N);
+      const gridPts = buildGridPts(N);
 
-      return logo.map((lp, i) => ({
-        x: 0, y: 0,
-        sx: scX + Math.random() * scW,
-        sy: scY + Math.random() * scH,
+      // Scatter inicial: quadrícula laxa (no caos pur)
+      const cols = Math.ceil(Math.sqrt(N * 1.4));
+      const rows = Math.ceil(N / cols);
+
+      return lpts.map((lp, i) => ({
         lx: lp.x,
         ly: lp.y,
         gx: gridPts[i]?.x ?? frameX + Math.random() * frameW,
         gy: gridPts[i]?.y ?? frameY + Math.random() * frameH,
-        delay: Math.random() * 0.70,
-        // FIX 2: Punts més fins (0.6–1.3 px de radi)
-        r:    0.6 + Math.random() * 0.7,
+        // Scatter: posicions de quadrícula + jitter suau
+        sx: scX + ((i % cols) / Math.max(cols - 1, 1)) * scW
+          + (Math.random() - 0.5) * (scW / cols) * 2.2,
+        sy: scY + (Math.floor(i / cols) / Math.max(rows - 1, 1)) * scH
+          + (Math.random() - 0.5) * (scH / rows) * 2.2,
+        delay: Math.random() * 0.60,      // aparició escalonada
+        size:  2 + Math.random() * 2,     // 2–4 px (quadrats)
+        aMax:  0.28 + Math.random() * 0.45,
       }));
     };
 
-    // ── Bucle de dibuix ──────────────────────────────────────────────────
+    // ── Bucle RAF ─────────────────────────────────────────────────────────
     let particles: Particle[] = [];
-    let videoStarted  = false;
-    let sweepStarted  = false;
-    let t0            = 0;
+    let t0           = 0;
+    let videoStarted = false;
+    let sweepStarted = false;
+    let prevLogoPhase = "";
 
     const draw = (now: number) => {
       if (doneRef.current) return;
@@ -204,87 +229,95 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, W, H);
 
-      // ── FIX 1: Dibuix del logo real al canvas (fases 2 i 3) ─────────────
-      // L'opacitat del logo augmenta mentre els punts convergeixen,
-      // i disminueix mentre es formen la retícula
-      let logoAlpha = 0;
-      if (t >= T.P2_START && t < T.P2_END) {
-        logoAlpha = easeOut(prog(t, T.P2_START, T.P2_END)) * 0.90;
-      } else if (t >= T.P2_END && t < T.P3_END) {
-        logoAlpha = 0.90;
-      } else if (t >= T.P3_END && t < T.P4_END) {
-        logoAlpha = (1 - easeInOut(prog(t, T.P3_END, T.P4_END))) * 0.90;
+      // ── Opacitat del logo HTML (canviem fase → canviem transition) ───────
+      const logoPhase =
+        t < T.P2_START ? "hidden"  :
+        t < T.P2_END   ? "fadein"  :
+        t < T.P3_END   ? "visible" :
+        t < T.P4_END   ? "fadeout" : "gone";
+
+      if (logoPhase !== prevLogoPhase) {
+        prevLogoPhase = logoPhase;
+        const el = logoElemRef.current;
+        if (el) {
+          if (logoPhase === "fadein") {
+            el.style.transition = "opacity 1.25s ease";
+            el.style.opacity    = "0.97";
+          } else if (logoPhase === "visible") {
+            el.style.transition = "none";
+            el.style.opacity    = "0.97";
+          } else if (logoPhase === "fadeout") {
+            el.style.transition = "opacity 0.80s ease";
+            el.style.opacity    = "0";
+          } else {
+            el.style.transition = "none";
+            el.style.opacity    = "0";
+          }
+        }
       }
 
-      if (logoAlpha > 0.01 && logoImgRef.current) {
-        ctx.globalAlpha = logoAlpha;
-        ctx.drawImage(logoImgRef.current, logoX, logoY, logoW, logoH);
-        ctx.globalAlpha = 1;
-      }
-
-      // ── Dibuix de partícules ──────────────────────────────────────────
+      // ── Dibuix de partícules (microquadrats negres) ───────────────────
+      ctx.fillStyle = "#111";
       for (const p of particles) {
-        let x = p.sx, y = p.sy, alpha = 0;
+        let x: number, y: number, alpha: number;
 
         if (t < T.P1_END) {
-          const a = prog(t / T.P1_END, p.delay, 0.95);
-          alpha   = easeOut(a) * 0.80;
+          // Fase 1: apareixent al lloc del scatter, escalonat
+          const a = prog(t, p.delay * T.P1_END, T.P1_END * 0.97);
+          alpha   = easeOutExpo(a) * p.aMax;
           x = p.sx; y = p.sy;
 
         } else if (t < T.P2_END) {
-          const e = easeInOut(prog(t, T.P2_START, T.P2_END));
+          // Fase 2: moviment cap al logo — easeOutExpo (ràpid→suau aterratge)
+          const e = easeOutExpo(prog(t, T.P2_START, T.P2_END));
           x     = lerp(p.sx, p.lx, e);
           y     = lerp(p.sy, p.ly, e);
-          alpha = 0.70;
+          // Alpha baixa suaument: el logo img pren protagonisme
+          alpha = lerp(p.aMax, 0.18, prog(t, T.P2_START, T.P2_END));
 
         } else if (t < T.P3_END) {
-          x = p.lx; y = p.ly;
-          // Punts s'esvaeixen lleugerament quan el logo és visible
-          alpha = 0.35;
+          // Fase 3: quiets al logo, molt subtils (logo img és l'element visible)
+          x     = p.lx; y = p.ly;
+          alpha = 0.15;
 
         } else if (t < T.P4_END) {
-          const e = easeInOut(prog(t, T.P3_END, T.P4_END));
+          // Fase 4: moviment cap a la malla
+          const e = easeOutExpo(prog(t, T.P3_END, T.P4_END));
           x     = lerp(p.lx, p.gx, e);
           y     = lerp(p.ly, p.gy, e);
-          alpha = 0.85;
+          alpha = lerp(0.15, 0.78, prog(t, T.P3_END, T.P4_END));
 
         } else {
-          x     = p.gx;
-          y     = p.gy;
-          // Desapareix a mesura que apareix el vídeo
-          alpha = clamp(1 - prog(t, T.P4_END, T.VID_FADE)) * 0.70;
+          // Fase 5: desaparèixer mentre apareix el vídeo
+          x     = p.gx; y = p.gy;
+          alpha = clamp01(1 - prog(t, T.P4_END, T.VID_END)) * 0.60;
         }
 
         if (alpha < 0.01) continue;
         ctx.globalAlpha = alpha;
-        ctx.fillStyle   = "#111";
-        ctx.beginPath();
-        ctx.arc(x, y, p.r, 0, Math.PI * 2);
-        ctx.fill();
+        const s = p.size;
+        // Arrodonit a px sencer per contorns més nets
+        ctx.fillRect(Math.round(x - s / 2), Math.round(y - s / 2), Math.round(s), Math.round(s));
       }
 
-      // ── Línies de retícula al canvas (fase 4, s'esvaeixen abans del vídeo) ─
-      if (t > T.P3_END && t < T.VID_FADE) {
-        const buildP  = clamp(prog(t, T.P3_END, T.P4_END));
-        const fadeOut = t > T.P4_END ? clamp(1 - prog(t, T.P4_END, T.VID_FADE)) : 1;
-        const a       = easeOut(buildP) * 0.12 * fadeOut;
-
-        if (a > 0.005) {
+      // ── Línies de malla (canvas, fase 4 → s'esvaeixen) ───────────────
+      if (t > T.P3_END && t < T.VID_END) {
+        const build   = easeOutExpo(prog(t, T.P3_END, T.P4_END));
+        const fadeOut = t > T.P4_END ? clamp01(1 - prog(t, T.P4_END, T.VID_END)) : 1;
+        const a       = build * 0.09 * fadeOut;
+        if (a > 0.003) {
           ctx.globalAlpha = a;
-          ctx.strokeStyle = "#111";
-          ctx.lineWidth   = 0.6;
-
-          // Línies verticals (bordes + 2 interiors)
-          for (const col of [0, 1/3, 2/3, 1]) {
+          ctx.strokeStyle = "#000";
+          ctx.lineWidth   = 0.7;
+          for (const col of [0, 1 / 3, 2 / 3, 1]) {
             ctx.beginPath();
             ctx.moveTo(frameX + col * frameW, frameY);
             ctx.lineTo(frameX + col * frameW, frameY + frameH);
             ctx.stroke();
           }
-          // Línies horitzontals (bordes + 2 interiors)
-          for (const row of [0, 1/3, 2/3, 1]) {
+          for (const row of [0, 1 / 3, 2 / 3, 1]) {
             ctx.beginPath();
-            ctx.moveTo(frameX,          frameY + row * frameH);
+            ctx.moveTo(frameX,           frameY + row * frameH);
             ctx.lineTo(frameX + frameW, frameY + row * frameH);
             ctx.stroke();
           }
@@ -293,28 +326,28 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
 
       ctx.globalAlpha = 1;
 
-      // ── Trigger vídeo ─────────────────────────────────────────────────
+      // ── Trigger: vídeo ────────────────────────────────────────────────
       if (t >= T.P4_END && !videoStarted) {
         videoStarted = true;
-        setVideoOpacity(1);
+        setVidVisible(true);
         videoRef.current?.play().catch(() => {});
       }
 
-      // ── Trigger barrida ───────────────────────────────────────────────
+      // ── Trigger: barrida final ────────────────────────────────────────
       if (t >= T.SWEEP && !sweepStarted) {
         sweepStarted = true;
         sweep();
       }
     };
 
-    // ── Iniciar ───────────────────────────────────────────────────────────
-    loadLogo().then((pts) => {
+    // Iniciar
+    sampleLogoPts().then((pts) => {
       particles      = buildParticles(pts);
       t0             = performance.now();
       rafRef.current = requestAnimationFrame(draw);
     });
 
-    // ── Skip ─────────────────────────────────────────────────────────────
+    // Skip (click / tecla / scroll / touch) — bloquejat primer 600ms
     const onSkip = (e: Event) => {
       if (t0 && performance.now() - t0 < 600) return;
       if (e.type === "keydown") {
@@ -344,31 +377,54 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
         position:   "fixed",
         inset:      0,
         zIndex:     9999,
-        background: "#fff",
+        background: "#ffffff",
         overflow:   "hidden",
         transform:  sweeping ? "translateY(-100%)" : "translateY(0)",
-        transition: sweeping ? "transform 0.90s cubic-bezier(0.76, 0, 0.18, 1)" : "none",
+        transition: sweeping
+          ? "transform 0.88s cubic-bezier(0.76, 0, 0.18, 1)"
+          : "none",
         willChange: "transform",
       }}
     >
+      {/* Canvas: partícules + malla */}
       <canvas
         ref={canvasRef}
         style={{ position: "absolute", inset: 0, display: "block" }}
       />
 
-      {/* FIX 4: background blanc + contain per evitar marges negres */}
+      {/*
+        Logo HTML: sempre al DOM, opacitat 0 → controlada des del RAF.
+        Es mostra com a element HTML (no drawImage) per màxima nitidesa.
+        Posició i mida s'assignen via JS per sincronitzar amb les partícules.
+      */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        ref={logoElemRef}
+        src="/logo.jpg"
+        alt="Peralta Urbanisme"
+        draggable={false}
+        style={{
+          position:      "absolute",
+          display:       "block",
+          opacity:       0,
+          pointerEvents: "none",
+          userSelect:    "none",
+        }}
+      />
+
+      {/* Vídeo: apareix quan la malla és formada */}
       <div
         style={{
-          position:    "absolute",
-          left:        "50%",
-          top:         "50%",
-          transform:   "translate(-50%, -50%)",
-          width:       "min(740px, 68vw)",
-          aspectRatio: "16 / 9",
-          background:  "#fff",
-          overflow:    "hidden",
-          opacity:     videoOpacity,
-          transition:  "opacity 0.55s ease",
+          position:      "absolute",
+          left:          "50%",
+          top:           "50%",
+          transform:     "translate(-50%, -50%)",
+          width:         "min(740px, 68vw)",
+          aspectRatio:   "16 / 9",
+          background:    "#ffffff",
+          overflow:      "hidden",
+          opacity:       vidVisible ? 1 : 0,
+          transition:    vidVisible ? "opacity 0.60s ease" : "none",
           pointerEvents: "none",
         }}
       >
@@ -379,9 +435,9 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
           style={{
             width:      "100%",
             height:     "100%",
-            objectFit:  "contain",   // FIX 4: contain per no tallar ni afegir barres negres
+            objectFit:  "contain",
             display:    "block",
-            background: "#fff",
+            background: "#ffffff",
           }}
         >
           <source src="/intro.mp4" type="video/mp4" />
