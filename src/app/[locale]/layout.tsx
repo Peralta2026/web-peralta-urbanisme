@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages, getTranslations } from "next-intl/server";
 import Nav from "@/components/layout/Nav";
+import IntroWrapper from "@/components/intro/IntroWrapper";
 import type { Metadata } from "next";
 import "leaflet/dist/leaflet.css";
 
@@ -41,8 +42,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
-          <Nav locale={locale} />
-          <main className="flex-1">{children}</main>
+          <IntroWrapper>
+            <Nav locale={locale} />
+            <main className="flex-1">{children}</main>
+          </IntroWrapper>
         </NextIntlClientProvider>
       </body>
     </html>
