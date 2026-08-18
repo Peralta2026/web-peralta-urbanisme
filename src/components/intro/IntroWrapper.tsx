@@ -14,9 +14,9 @@ const LAYERS = [
   "/intro/9.png",
 ];
 
-const STAGGER_MS   = 150;
-const HOLD_MS      = 520;
-const CURTAIN_MS   = 980;
+const STAGGER_MS   = 80;
+const HOLD_MS      = 380;
+const CURTAIN_MS   = 1350;
 const CURTAIN_EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
@@ -37,7 +37,6 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
     const timers: ReturnType<typeof setTimeout>[] = [];
 
-    // Apareixen les lletres una per una — només opacitat, sense moviment
     LAYERS.forEach((_, i) => {
       timers.push(
         setTimeout(() => setVisible((v) => [...v, i]), i * STAGGER_MS)
@@ -46,10 +45,8 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
     const curtainAt = LAYERS.length * STAGGER_MS + HOLD_MS;
 
-    // Inicia la cortina
     timers.push(setTimeout(() => setCurtainUp(true), curtainAt));
 
-    // Quan la cortina ha pujat: treu el guard i el overlay
     timers.push(
       setTimeout(() => {
         document.body.style.overflow = "";
@@ -83,15 +80,14 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
               : "none",
           }}
         >
-          {/* El logo s'encongeix i puja amb la cortina */}
           <div
             style={{
               position:        "relative",
-              width:           "clamp(200px, 36vw, 460px)",
+              width:           "clamp(110px, 18vw, 240px)",
               aspectRatio:     "3 / 1",
               transformOrigin: "center center",
               transform:       curtainUp
-                ? "scale(0.82) translateY(-32px)"
+                ? "scale(0.93) translateY(-16px)"
                 : "scale(1) translateY(0)",
               transition:      curtainUp
                 ? `transform ${Math.round(CURTAIN_MS * 0.68)}ms ${CURTAIN_EASE}`
@@ -111,7 +107,7 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
                   height:     "100%",
                   objectFit:  "contain",
                   opacity:    visible.includes(i) ? 1 : 0,
-                  transition: "opacity 320ms ease",
+                  transition: "opacity 180ms ease",
                 }}
               />
             ))}
