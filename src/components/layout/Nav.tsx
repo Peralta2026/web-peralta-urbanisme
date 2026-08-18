@@ -99,6 +99,8 @@ export default function Nav({ locale }: { locale: string }) {
     setMenuOpen(false);
   }
 
+  if (isHome) return null;
+
   return (
     <>
       <nav

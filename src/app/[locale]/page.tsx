@@ -5,6 +5,6 @@ export default async function HomePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  void params;
-  return <HomeScene />;
+  const { locale } = await params;
+  return <HomeScene locale={locale} />;
 }
