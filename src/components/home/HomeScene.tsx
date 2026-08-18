@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Project } from "@/lib/types";
-import ProjectViewer from "./ProjectViewer";
+import ProjectViewer, { type ProjectViewerHandle } from "./ProjectViewer";
 
 /* ─── Nav ────────────────────────────────────────────────────────────────── */
 
@@ -64,6 +64,8 @@ export default function HomeScene({ locale, projects }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
+  const viewerRef = useRef<ProjectViewerHandle>(null);
+
   /* scroll refs */
   const heroRef     = useRef<HTMLDivElement>(null);
   const hintRef     = useRef<HTMLDivElement>(null);
@@ -94,8 +96,9 @@ export default function HomeScene({ locale, projects }: Props) {
 
       if (sY.current < TOTAL_RANGE - 5) {
         vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
+      } else {
+        viewerRef.current?.addDelta(raw);
       }
-      /* Phase 3: project navigation arrives in next etapa */
     };
 
     let t0 = 0;
@@ -106,6 +109,8 @@ export default function HomeScene({ locale, projects }: Props) {
       t0 = e.touches[0].clientY;
       if (sY.current < TOTAL_RANGE - 5) {
         vY.current = Math.max(0, Math.min(vY.current + delta, TOTAL_RANGE));
+      } else {
+        viewerRef.current?.addDelta(delta);
       }
     };
 
@@ -372,7 +377,7 @@ export default function HomeScene({ locale, projects }: Props) {
         </button>
 
         {/* Project Viewer */}
-        <ProjectViewer projects={projects} locale={locale} />
+        <ProjectViewer ref={viewerRef} projects={projects} locale={locale} />
       </div>
 
       {/* ── Menu overlay ──────────────────────────────────────────────── */}
