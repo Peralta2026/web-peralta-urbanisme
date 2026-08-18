@@ -38,6 +38,7 @@ const SPEED_R   = 38;
 const HERO_RANGE  = 1100;
 const RISE_RANGE  = 700;
 const TOTAL_RANGE = HERO_RANGE + RISE_RANGE;
+const HERO_START  = 0.88;
 const HERO_MIN    = 0.44;
 const LERP_K      = 0.08;
 const CURVE_H     = 80;
@@ -135,7 +136,7 @@ export default function HomeScene({ locale, projects }: Props) {
 
       /* Phase 1 — hero shrink */
       const p1    = Math.min(1, sy / HERO_RANGE);
-      const scale = 1 - easeInOutSine(p1) * (1 - HERO_MIN);
+      const scale = HERO_START - easeInOutSine(p1) * (HERO_START - HERO_MIN);
       if (heroRef.current) heroRef.current.style.transform = `scale(${scale.toFixed(4)})`;
       if (hintRef.current) hintRef.current.style.opacity  = Math.max(0, 1 - p1 * 3).toFixed(3);
 
@@ -182,7 +183,7 @@ export default function HomeScene({ locale, projects }: Props) {
       `}</style>
 
       {/* ── SCENE ─────────────────────────────────────────────────────── */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 1, overflow: "hidden" }}>
+      <div style={{ position: "fixed", inset: 0, zIndex: 100, overflow: "hidden" }}>
 
         {/* MOSAIC — 2 columnes verticals autònomes */}
         <div style={{
@@ -326,7 +327,7 @@ export default function HomeScene({ locale, projects }: Props) {
       <div ref={projectsRef} style={{
         position:   "fixed",
         inset:      0,
-        zIndex:     50,
+        zIndex:     150,
         background: "#ffffff",
         transform:  "translateY(100vh)",
         willChange: "transform",
