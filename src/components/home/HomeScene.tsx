@@ -66,7 +66,7 @@ export default function HomeScene() {
 
   const vY    = useRef(0); // target virtual scroll
   const sY    = useRef(0); // smoothed virtual scroll
-  const rafId = useRef<number>();
+  const rafId = useRef(0);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
