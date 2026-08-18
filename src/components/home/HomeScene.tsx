@@ -188,6 +188,18 @@ export default function HomeScene({ locale, projects }: Props) {
           0%,100% { transform: translateY(0); }
           55%      { transform: translateY(6px); }
         }
+        @media (max-width: 767px) {
+          .pu-hero-panel {
+            top:    calc((100vh - 100vw) / 2) !important;
+            left:   0 !important;
+            right:  0 !important;
+            bottom: auto !important;
+            height: 100vw !important;
+          }
+          .pu-logo-img {
+            width: 80vw !important;
+          }
+        }
       `}</style>
 
       {/* ── SCENE ─────────────────────────────────────────────────────── */}
@@ -197,7 +209,7 @@ export default function HomeScene({ locale, projects }: Props) {
         <div style={{
           position:   "absolute",
           inset:      0,
-          background: "#242320",
+          background: PANEL_BG,
           display:    "flex",
           gap:        `${STRIP_GAP}px`,
         }}>
@@ -232,7 +244,7 @@ export default function HomeScene({ locale, projects }: Props) {
         </div>
 
         {/* HERO — composició editorial dins el panell blanc */}
-        <div ref={heroRef} style={{
+        <div ref={heroRef} className="pu-hero-panel" style={{
           position:        "absolute",
           inset:           0,
           zIndex:          10,
@@ -257,6 +269,7 @@ export default function HomeScene({ locale, projects }: Props) {
               <img
                 src="/logo-nuevo.png"
                 alt="Peralta Urbanisme"
+                className="pu-logo-img"
                 style={{ width: "clamp(300px, 42vw, 580px)", height: "auto", display: "block" }}
               />
             </Link>
