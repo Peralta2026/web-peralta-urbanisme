@@ -1,0 +1,56 @@
+{
+    "slug":  "incasol-suport-1",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
+           },
+    "es":  {
+               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
+           },
+    "en":  {
+               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
+               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
+           }
+}

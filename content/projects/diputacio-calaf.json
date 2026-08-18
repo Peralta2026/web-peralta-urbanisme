@@ -1,0 +1,56 @@
+{
+    "slug":  "diputacio-calaf",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "municipality":  "Calaf",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
+           },
+    "es":  {
+               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "municipality":  "Calaf",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
+           },
+    "en":  {
+               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "municipality":  "Calaf",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
+               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
+           }
+}

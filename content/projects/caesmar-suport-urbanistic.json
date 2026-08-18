@@ -1,0 +1,56 @@
+{
+    "slug": "caesmar-suport-urbanistic",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "descriptionLong":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà"
+           },
+    "es":  {
+               "title":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "descriptionLong":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà"
+           },
+    "en":  {
+               "title":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà",
+               "descriptionLong":  "Suport tècnic d\u0027assessorament urbanístic i elaboració i consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar de Castelldefels i Gavà"
+           }
+}

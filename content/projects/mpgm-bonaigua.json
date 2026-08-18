@@ -1,0 +1,56 @@
+{
+    "slug":  "mpgm-bonaigua",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
+           },
+    "es":  {
+               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
+           },
+    "en":  {
+               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
+               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
+           }
+}

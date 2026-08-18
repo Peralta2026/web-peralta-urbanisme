@@ -1,0 +1,56 @@
+{
+    "slug":  "el-prat-br-pla-d-infraestructura-verda",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "descriptionLong":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat"
+           },
+    "es":  {
+               "title":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "descriptionLong":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat"
+           },
+    "en":  {
+               "title":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat",
+               "descriptionLong":  "Consultoria i redacció de l\u0027estudi del Pla d\u0027Infraestructura Verda del Prat de Llobregat"
+           }
+}

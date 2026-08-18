@@ -1,0 +1,56 @@
+{
+    "slug":  "molins-de-rei-mpgm-nou-equipament",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "municipality":  "Molins de Rei",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
+           },
+    "es":  {
+               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "municipality":  "Molins de Rei",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
+           },
+    "en":  {
+               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "municipality":  "Molins de Rei",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
+           }
+}

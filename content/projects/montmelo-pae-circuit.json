@@ -1,0 +1,56 @@
+{
+    "slug": "montmelo-pae-circuit",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "municipality":  "Montmeló",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
+           },
+    "es":  {
+               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "municipality":  "Montmeló",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
+           },
+    "en":  {
+               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "municipality":  "Montmeló",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
+               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
+           }
+}

@@ -1,0 +1,56 @@
+{
+    "slug":  "la-miralda-pendent",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "municipality":  "La Llagosta",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
+           },
+    "es":  {
+               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "municipality":  "La Llagosta",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
+           },
+    "en":  {
+               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "municipality":  "La Llagosta",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
+               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
+           }
+}

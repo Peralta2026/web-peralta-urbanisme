@@ -1,0 +1,56 @@
+{
+    "slug":  "can-carreres-st-boi",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat"
+           },
+    "es":  {
+               "title":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat"
+           },
+    "en":  {
+               "title":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità per a la millora de l\u0027àmbit de Can Carreres Vell de Sant Boi de Llobregat"
+           }
+}

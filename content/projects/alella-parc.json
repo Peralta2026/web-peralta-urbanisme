@@ -1,0 +1,56 @@
+{
+    "slug":  "alella-parc",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "municipality":  "Alella",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
+           },
+    "es":  {
+               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "municipality":  "Alella",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
+           },
+    "en":  {
+               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "municipality":  "Alella",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
+               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
+           }
+}

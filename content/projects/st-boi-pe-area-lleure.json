@@ -1,0 +1,56 @@
+{
+    "slug":  "st-boi-pe-area-lleure",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
+           },
+    "es":  {
+               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
+           },
+    "en":  {
+               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
+               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
+           }
+}

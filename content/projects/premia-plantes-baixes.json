@@ -1,0 +1,56 @@
+{
+    "slug": "premia-plantes-baixes",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "descriptionLong":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar"
+           },
+    "es":  {
+               "title":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "descriptionLong":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar"
+           },
+    "en":  {
+               "title":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar",
+               "descriptionLong":  "Estudis previs per la redacció de la modificació de POUM per regular l\u0027habitatge a plantes baixes a Premià de Mar"
+           }
+}

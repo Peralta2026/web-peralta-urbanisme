@@ -1,0 +1,56 @@
+{
+    "slug": "barbera-estudi-placa-ajuntament",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "municipality":  "Barberà del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
+           },
+    "es":  {
+               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "municipality":  "Barberà del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
+           },
+    "en":  {
+               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "municipality":  "Barberà del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
+               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
+           }
+}

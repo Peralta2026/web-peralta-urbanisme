@@ -1,0 +1,56 @@
+{
+    "slug":  "sant-cugat-andana",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès"
+           },
+    "es":  {
+               "title":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès"
+           },
+    "en":  {
+               "title":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2022",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès",
+               "descriptionLong":  "Modificació Puntual del Pla General Metropolità a l\u0027àmbit de les finques del carrer Andana 1-3 de Sant Cugat del Vallès"
+           }
+}

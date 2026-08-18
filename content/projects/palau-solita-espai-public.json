@@ -1,0 +1,56 @@
+{
+    "slug": "palau-solita-espai-public",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "municipality":  "Palau-Solità i Plegamans",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "descriptionLong":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans"
+           },
+    "es":  {
+               "title":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "municipality":  "Palau-Solità i Plegamans",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "descriptionLong":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans"
+           },
+    "en":  {
+               "title":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "municipality":  "Palau-Solità i Plegamans",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans",
+               "descriptionLong":  "Pla Director de l\u0027Espai Públic de Palau-Solità i Plegamans"
+           }
+}

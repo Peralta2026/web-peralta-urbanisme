@@ -1,0 +1,56 @@
+{
+    "slug":  "gava-casc-antic",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "descriptionLong":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà"
+           },
+    "es":  {
+               "title":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "descriptionLong":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà"
+           },
+    "en":  {
+               "title":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà",
+               "descriptionLong":  "Modificació de Pla General Metropolità a l\u0027entorn dels equipaments del centre de Gavà"
+           }
+}

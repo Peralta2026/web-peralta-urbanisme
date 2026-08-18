@@ -1,0 +1,56 @@
+{
+    "slug": "cornella-mpgm-densitat",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "municipality":  "Cornellà de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat"
+           },
+    "es":  {
+               "title":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "municipality":  "Cornellà de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat"
+           },
+    "en":  {
+               "title":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "municipality":  "Cornellà de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità d\u0027ajust de la regulació de la densitat d\u0027habitatges i dels usos admesos en plantes baixes al municipi de Cornellà de Llobregat"
+           }
+}

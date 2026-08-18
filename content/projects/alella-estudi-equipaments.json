@@ -1,0 +1,56 @@
+{
+    "slug":  "alella-estudi-equipaments",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "municipality":  "Alella",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "descriptionLong":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures"
+           },
+    "es":  {
+               "title":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "municipality":  "Alella",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "descriptionLong":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures"
+           },
+    "en":  {
+               "title":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "municipality":  "Alella",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures",
+               "descriptionLong":  "Servei de conceptualització i disseny de dos projectes d\u0027activació i rehabilitació de dos equipaments municipals catalogats: la Vinícola i la Fàbrica de Pintures"
+           }
+}

@@ -1,0 +1,56 @@
+{
+    "slug":  "sant-just-desvern-mpgm-densitat",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "descriptionLong":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern"
+           },
+    "es":  {
+               "title":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "descriptionLong":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern"
+           },
+    "en":  {
+               "title":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern",
+               "descriptionLong":  "Estudis previs i redacció de la MPGM de regulació del nombre màxim d\u0027habitatges per parcel·la i dels usos admesos en plantes baixes de carrers comercials a Sant Just Desvern"
+           }
+}

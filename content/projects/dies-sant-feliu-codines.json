@@ -1,0 +1,56 @@
+{
+    "slug":  "dies-sant-feliu-codines",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "municipality":  "Sant Feliu de Codines",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
+           },
+    "es":  {
+               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "municipality":  "Sant Feliu de Codines",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
+           },
+    "en":  {
+               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "municipality":  "Sant Feliu de Codines",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
+               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
+           }
+}

@@ -1,0 +1,56 @@
+{
+    "slug":  "calaf-nucli-antic",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "descriptionLong":  "Estudi urbanístic per a la millora del nucli antic de Calaf"
+           },
+    "es":  {
+               "title":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "descriptionLong":  "Estudi urbanístic per a la millora del nucli antic de Calaf"
+           },
+    "en":  {
+               "title":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic per a la millora del nucli antic de Calaf",
+               "descriptionLong":  "Estudi urbanístic per a la millora del nucli antic de Calaf"
+           }
+}

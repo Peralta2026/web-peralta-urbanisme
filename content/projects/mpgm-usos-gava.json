@@ -1,0 +1,56 @@
+{
+    "slug":  "mpgm-usos-gava",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "municipality":  "Gavà",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà"
+           },
+    "es":  {
+               "title":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "municipality":  "Gavà",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà"
+           },
+    "en":  {
+               "title":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "municipality":  "Gavà",
+               "year":  "2023",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà",
+               "descriptionLong":  "Modificació Puntual de Pla General Metropolità referent a l\u0027estructura viària i a la regulació dels usos en planta baixa del nucli urbà"
+           }
+}

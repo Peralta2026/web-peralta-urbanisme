@@ -1,0 +1,56 @@
+{
+    "slug":  "22-focus",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
+           },
+    "es":  {
+               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
+           },
+    "en":  {
+               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
+               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
+           }
+}

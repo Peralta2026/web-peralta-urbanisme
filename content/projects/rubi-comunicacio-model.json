@@ -1,0 +1,56 @@
+{
+    "slug": "rubi-comunicacio-model",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "descriptionLong":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana"
+           },
+    "es":  {
+               "title":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "descriptionLong":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana"
+           },
+    "en":  {
+               "title":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana",
+               "descriptionLong":  "Creació de documentació gràfica per a l\u0027impuls de diferents àmbits estratègics de la ciutat de Rubí i el reforçament de la seva estructura urbana"
+           }
+}

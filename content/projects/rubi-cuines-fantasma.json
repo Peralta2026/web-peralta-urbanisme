@@ -1,0 +1,56 @@
+{
+    "slug":  "rubi-cuines-fantasma",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
+           },
+    "es":  {
+               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
+           },
+    "en":  {
+               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
+               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
+           }
+}

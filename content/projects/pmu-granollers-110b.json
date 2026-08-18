@@ -1,0 +1,56 @@
+{
+    "slug":  "pmu-granollers-110b",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "municipality":  "Granollers",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
+           },
+    "es":  {
+               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "municipality":  "Granollers",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
+           },
+    "en":  {
+               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "municipality":  "Granollers",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
+               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
+           }
+}

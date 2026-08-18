@@ -1,0 +1,56 @@
+{
+    "slug":  "castelldefels-mpgm-la-pava",
+    "coverImage":  "cover.jpg",
+    "images":  [
+                   "cover.jpg"
+               ],
+    "tags":  [
+
+             ],
+    "coordinates":  {
+                        "lat":  0,
+                        "lng":  0
+                    },
+    "ca":  {
+               "title":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "municipality":  "Castelldefels",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "descriptionLong":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels"
+           },
+    "es":  {
+               "title":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "municipality":  "Castelldefels",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "descriptionLong":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels"
+           },
+    "en":  {
+               "title":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "municipality":  "Castelldefels",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  "—",
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels",
+               "descriptionLong":  "Avanç de la Modificació de Pla General Metropolità de l\u0027àmbit de la Pava del municipi de Castelldefels"
+           }
+}
