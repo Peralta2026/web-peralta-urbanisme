@@ -1,0 +1,42 @@
+/* ─── Peralta Urbanisme — Design Tokens ─────────────────────────────────── */
+
+:root {
+  /* ── Colors ─────────────────────────────────────────────────────── */
+  --color-bg:          #ffffff;
+  --color-fg:          #111111;
+  --color-border:      #1a1a1a;
+  --color-border-soft: #f0f0f0;
+  --color-gray-mid:    #aaaaaa;
+  --color-gray-light:  #f5f5f5;
+  --color-muted:       #777777;
+  --color-faint:       #cccccc;
+
+  /* ── Typography ─────────────────────────────────────────────────── */
+  --font-sans:  "Instrument Sans", sans-serif;
+  --font-mono:  "IBM Plex Mono", monospace;
+
+  --size-hero:  clamp(40px, 5vw, 72px);
+  --size-title: clamp(28px, 2.8vw, 42px);
+  --size-body:  15px;
+  --size-meta:  11px;
+  --size-label: 10px;
+  --size-nav:   12px;
+
+  /* ── Spacing ────────────────────────────────────────────────────── */
+  --margin-page:    48px;
+  --margin-mobile:  20px;
+  --header-height:  88px;
+
+  /* ── Animation ──────────────────────────────────────────────────── */
+  --ease-smooth:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:       180ms;
+  --dur-mid:        350ms;
+  --dur-slow:       700ms;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --margin-page: var(--margin-mobile);
+  }
+}
