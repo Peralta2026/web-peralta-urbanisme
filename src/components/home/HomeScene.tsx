@@ -41,7 +41,6 @@ const TOTAL_RANGE = HERO_RANGE + RISE_RANGE;
 const HERO_START  = 1.0;
 const HERO_MIN    = 0.44;
 const LERP_K      = 0.08;
-const CURVE_H     = 80;
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
@@ -70,7 +69,6 @@ export default function HomeScene({ locale, projects }: Props) {
   const heroRef     = useRef<HTMLDivElement>(null);
   const hintRef     = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
-  const barrigaRef  = useRef<SVGPathElement>(null);
   const vY          = useRef(0);
   const sY          = useRef(0);
   const rafId       = useRef(0);
@@ -146,15 +144,11 @@ export default function HomeScene({ locale, projects }: Props) {
       if (hintRef.current) hintRef.current.style.opacity  = Math.max(0, 1 - p1 * 3).toFixed(3);
 
       /* Phase 2 — projects panel rise */
-      if (projectsRef.current && barrigaRef.current) {
+      if (projectsRef.current) {
         if (sy > HERO_RANGE) {
-          const p2    = Math.min(1, (sy - HERO_RANGE) / RISE_RANGE);
-          const ep2   = easeOutQuart(p2);
-          const depth = (1 - ep2) * CURVE_H;
+          const p2  = Math.min(1, (sy - HERO_RANGE) / RISE_RANGE);
+          const ep2 = easeOutQuart(p2);
           projectsRef.current.style.transform = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
-          barrigaRef.current.setAttribute("d",
-            `M 0 0 L 100 0 L 100 ${CURVE_H} Q 50 ${(CURVE_H - depth).toFixed(1)} 0 ${CURVE_H} Z`
-          );
         } else {
           projectsRef.current.style.transform = "translateY(100vh)";
         }
@@ -341,26 +335,11 @@ export default function HomeScene({ locale, projects }: Props) {
         position:   "fixed",
         inset:      0,
         zIndex:     150,
-        background: "#ffffff",
+        background: "#f0f0f0",
         transform:  "translateY(100vh)",
         willChange: "transform",
-        overflow:   "visible",
+        overflow:   "hidden",
       }}>
-        {/* Barriga SVG */}
-        <svg aria-hidden style={{
-          position: "absolute",
-          top:      -CURVE_H,
-          left:     0, right: 0,
-          width:    "100%",
-          height:   CURVE_H,
-          display:  "block",
-          overflow: "visible",
-        }} viewBox={`0 0 100 ${CURVE_H}`} preserveAspectRatio="none">
-          <path ref={barrigaRef}
-            d={`M 0 0 L 100 0 L 100 ${CURVE_H} L 0 ${CURVE_H} Z`}
-            fill="#ffffff" />
-        </svg>
-
         {/* Hamburger flotant */}
         <button
           onClick={() => setMenuOpen(o => !o)}
