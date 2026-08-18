@@ -38,7 +38,7 @@ const SPEED_R   = 38;
 const HERO_RANGE  = 1100;
 const RISE_RANGE  = 700;
 const TOTAL_RANGE = HERO_RANGE + RISE_RANGE;
-const HERO_START  = 0.88;
+const HERO_START  = 1.0;
 const HERO_MIN    = 0.44;
 const LERP_K      = 0.08;
 const CURVE_H     = 80;
@@ -194,7 +194,7 @@ export default function HomeScene({ locale, projects }: Props) {
         <div style={{
           position:   "absolute",
           inset:      0,
-          background: "#0a0a0a",
+          background: "#242320",
           display:    "flex",
           gap:        `${STRIP_GAP}px`,
         }}>
@@ -237,68 +237,76 @@ export default function HomeScene({ locale, projects }: Props) {
           transformOrigin: "center center",
           willChange:      "transform",
         }}>
-          {/* Logo — gran, esquerra superior, protagonista */}
-          <Link
-            href={localizeHref("/", locale)}
-            style={{ position: "absolute", top: "clamp(36px, 6vh, 56px)", left: "clamp(36px, 5vw, 56px)", textDecoration: "none" }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo-nuevo.png"
-              alt="Peralta Urbanisme"
-              style={{ width: "clamp(260px, 34vw, 500px)", height: "auto", display: "block" }}
-            />
-          </Link>
-
-          {/* Menú — dreta superior, alineat amb el logo */}
-          <button
-            onClick={() => setMenuOpen(o => !o)}
-            aria-label="Menú"
-            style={{
-              position:      "absolute",
-              top:           "clamp(36px, 6vh, 56px)",
-              right:         "clamp(36px, 5vw, 56px)",
-              background:    "none",
-              border:        "none",
-              cursor:        "pointer",
-              padding:       0,
-              display:       "flex",
-              flexDirection: "column",
-              gap:           "5px",
-            }}
-          >
-            <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-            <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-            <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-          </button>
-
-          {/* Idiomes — sota el menú, dreta */}
+          {/* Hero centre — logo gran + controls */}
           <div style={{
-            position:      "absolute",
-            top:           "calc(clamp(36px, 6vh, 56px) + 44px)",
-            right:         "clamp(36px, 5vw, 56px)",
-            display:       "flex",
-            alignItems:    "center",
-            gap:           "6px",
-            fontFamily:    "var(--font-mono)",
-            fontSize:      "10px",
+            position:       "absolute",
+            top:            "50%",
+            left:           "50%",
+            transform:      "translate(-50%, -50%)",
+            display:        "flex",
+            flexDirection:  "column",
+            alignItems:     "center",
+            gap:            "clamp(28px, 4.5vh, 52px)",
           }}>
-            {LOCALES.map((loc, i) => (
-              <span key={loc} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <button onClick={() => switchLocale(loc)} style={{
-                  fontSize:      "10px",
-                  letterSpacing: "0.10em",
-                  fontWeight:    locale === loc ? 700 : 400,
-                  color:         locale === loc ? "#000" : "#ccc",
+            {/* Logo centrat i gran */}
+            <Link href={localizeHref("/", locale)} style={{ textDecoration: "none", display: "block" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-nuevo.png"
+                alt="Peralta Urbanisme"
+                style={{ width: "clamp(300px, 42vw, 580px)", height: "auto", display: "block" }}
+              />
+            </Link>
+
+            {/* Controls — menú + idiomes */}
+            <div style={{
+              display:     "flex",
+              alignItems:  "center",
+              gap:         "24px",
+              fontFamily:  "var(--font-mono)",
+            }}>
+              {/* Hamburger */}
+              <button
+                onClick={() => setMenuOpen(o => !o)}
+                aria-label="Menú"
+                style={{
                   background:    "none",
                   border:        "none",
                   cursor:        "pointer",
                   padding:       0,
-                  textTransform: "uppercase",
-                }}>{loc}</button>
-                {i < LOCALES.length - 1 && <span style={{ color: "#e8e8e8" }}>/</span>}
-              </span>
-            ))}
+                  display:       "flex",
+                  flexDirection: "column",
+                  gap:           "6px",
+                }}
+              >
+                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
+                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
+                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
+              </button>
+
+              {/* Divisor */}
+              <span style={{ display: "block", width: "1px", height: "16px", background: "#ddd" }} />
+
+              {/* Idiomes */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                {LOCALES.map((loc, i) => (
+                  <span key={loc} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <button onClick={() => switchLocale(loc)} style={{
+                      fontSize:      "12px",
+                      letterSpacing: "0.10em",
+                      fontWeight:    locale === loc ? 700 : 400,
+                      color:         locale === loc ? "#000" : "#bbb",
+                      background:    "none",
+                      border:        "none",
+                      cursor:        "pointer",
+                      padding:       0,
+                      textTransform: "uppercase",
+                    }}>{loc}</button>
+                    {i < LOCALES.length - 1 && <span style={{ color: "#e0e0e0", fontSize: "12px" }}>/</span>}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Scroll hint */}
