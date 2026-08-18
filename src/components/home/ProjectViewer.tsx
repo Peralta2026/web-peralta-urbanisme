@@ -140,7 +140,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
           position:   "absolute",
           inset:      0,
           display:    "flex",
-          background: "transparent",
+          background: "#f7f6f3",
           fontFamily: "var(--font-sans)",
         }}>
 
