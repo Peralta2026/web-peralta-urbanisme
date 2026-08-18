@@ -41,7 +41,7 @@ const TOTAL_RANGE = HERO_RANGE + RISE_RANGE;
 const HERO_START  = 1.0;
 const HERO_MIN    = 0.44;
 const LERP_K      = 0.08;
-const CURVE_H     = 80;
+const CURVE_H     = 32;
 const PANEL_BG    = "#f7f6f3";
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
