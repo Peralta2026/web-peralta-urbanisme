@@ -1,50 +1,116 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 
-// ssr: false — el canvas necessita window/document (no existeix al servidor)
-const IntroScreen = dynamic(() => import("./IntroScreen"), { ssr: false });
+const LAYERS = [
+  "/intro/1.png",
+  "/intro/2.png",
+  "/intro/3.png",
+  "/intro/4.png",
+  "/intro/5.png",
+  "/intro/6.png",
+  "/intro/7.png",
+  "/intro/8.png",
+  "/intro/9.png",
+];
+
+const STAGGER_MS    = 100;
+const HOLD_MS       = 220;
+const CURTAIN_MS    = 720;
+const CURTAIN_EASE  = "cubic-bezier(0.76, 0, 0.24, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
-  // Comença en true: assumim que cal mostrar la intro.
-  // El guard div del layout (z-9998) impedeix veure el contingut mentre JS carrega.
-  // useEffect decideix: si ja s'ha vist, treu el guard ràpid; si no, deixa muntar IntroScreen.
-  const [show, setShow] = useState(true);
-
-  // Bloqueig de scroll mentre la intro és activa
-  useEffect(() => {
-    document.body.style.overflow = show ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [show]);
+  const [visible,    setVisible]    = useState<number[]>([]);
+  const [curtainUp,  setCurtainUp]  = useState(false);
+  const [done,       setDone]       = useState(false);
 
   useEffect(() => {
     const guard = document.getElementById("pu-guard");
 
     if (sessionStorage.getItem("pu-intro") === "1") {
-      // Ja s'ha vist: treu el guard amb un fade ràpid i salta la intro
-      setShow(false);
-      if (guard) {
-        guard.style.transition = "opacity 0.18s ease";
-        guard.style.opacity    = "0";
-        setTimeout(() => guard.remove(), 220);
-      }
+      guard?.remove();
+      setDone(true);
+      return;
     }
-    // Si no s'ha vist: no fem res.
-    // IntroScreen es muntarà a z-9999, per sobre del guard (z-9998).
-    // El guard s'esborrarà quan cridi handleDone.
-  }, []);
 
-  const handleDone = () => {
-    document.getElementById("pu-guard")?.remove();
-    setShow(false);
-  };
+    document.body.style.overflow = "hidden";
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    LAYERS.forEach((_, i) => {
+      timers.push(
+        setTimeout(() => setVisible((v) => [...v, i]), i * STAGGER_MS)
+      );
+    });
+
+    const curtainAt = LAYERS.length * STAGGER_MS + HOLD_MS;
+
+    timers.push(setTimeout(() => setCurtainUp(true), curtainAt));
+
+    timers.push(
+      setTimeout(() => {
+        document.body.style.overflow = "";
+        guard?.remove();
+        sessionStorage.setItem("pu-intro", "1");
+        setDone(true);
+      }, curtainAt + CURTAIN_MS + 80)
+    );
+
+    return () => {
+      timers.forEach(clearTimeout);
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <>
-      {show && <IntroScreen onDone={handleDone} />}
+      {!done && (
+        <div
+          style={{
+            position:   "fixed",
+            inset:      0,
+            zIndex:     9999,
+            background: "#000000",
+            display:    "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transform:  curtainUp ? "translateY(-100%)" : "translateY(0)",
+            transition: curtainUp
+              ? `transform ${CURTAIN_MS}ms ${CURTAIN_EASE}`
+              : "none",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width:    "clamp(260px, 52vw, 660px)",
+              aspectRatio: "3 / 1",
+            }}
+          >
+            {LAYERS.map((src, i) => {
+              const isVisible = visible.includes(i);
+              return (
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  aria-hidden
+                  style={{
+                    position:  "absolute",
+                    inset:     0,
+                    width:     "100%",
+                    height:    "100%",
+                    objectFit: "contain",
+                    opacity:   isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(7px)",
+                    transition: "opacity 200ms ease, transform 200ms ease",
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
       {children}
     </>
   );

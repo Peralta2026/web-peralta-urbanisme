@@ -120,7 +120,7 @@ export default function Nav({ locale }: { locale: string }) {
             onClick={() => setMenuOpen(false)}
           >
             <Image
-              src="/logo.jpg"
+              src="/logo-nuevo.png"
               alt="Peralta Urbanisme"
               width={360}
               height={90}
