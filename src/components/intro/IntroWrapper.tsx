@@ -14,10 +14,10 @@ const LAYERS = [
   "/intro/9.png",
 ];
 
-const STAGGER_MS    = 100;
-const HOLD_MS       = 220;
-const CURTAIN_MS    = 720;
-const CURTAIN_EASE  = "cubic-bezier(0.76, 0, 0.24, 1)";
+const STAGGER_MS    = 150;
+const HOLD_MS       = 500;
+const CURTAIN_MS    = 980;
+const CURTAIN_EASE  = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
   const [visible,    setVisible]    = useState<number[]>([]);
@@ -83,7 +83,7 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
           <div
             style={{
               position: "relative",
-              width:    "clamp(260px, 52vw, 660px)",
+              width:    "clamp(200px, 36vw, 460px)",
               aspectRatio: "3 / 1",
             }}
           >
@@ -103,7 +103,7 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
                     objectFit: "contain",
                     opacity:   isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(7px)",
-                    transition: "opacity 200ms ease, transform 200ms ease",
+                    transition: "opacity 260ms ease, transform 300ms ease",
                   }}
                 />
               );
