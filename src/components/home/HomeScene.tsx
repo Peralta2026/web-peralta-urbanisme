@@ -9,11 +9,13 @@ import ProjectViewer, { type ProjectViewerHandle } from "./ProjectViewer";
 /* ─── Nav ────────────────────────────────────────────────────────────────── */
 
 const NAV_LINKS = [
-  { label: "Projectes",        href: "/projectes"     },
-  { label: "Directori visual", href: "/directori"     },
-  { label: "Persones",         href: "/persones"      },
-  { label: "Intervencions",    href: "/intervencions" },
-  { label: "Contacte",         href: "/contacte"      },
+  { label: "Arxiu de projectes", href: "/projectes"      },
+  { label: "Persones",           href: "/persones"        },
+  { label: "Principis",          href: "/principis"       },
+  { label: "Premis",             href: "/premis"          },
+  { label: "Col·laboradors",     href: "/collaboradors"   },
+  { label: "Mapa",               href: "/mapa"            },
+  { label: "Contacte",           href: "/contacte"        },
 ] as const;
 
 const LOCALES = ["ca", "es", "en"] as const;

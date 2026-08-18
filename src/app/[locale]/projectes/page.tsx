@@ -1,6 +1,5 @@
 import { getAllProjects } from "@/lib/projects";
-import { type Locale } from "@/lib/types";
-import ProjectCard from "@/components/projects/ProjectCard";
+import ArchiveList from "@/components/projects/ArchiveList";
 
 export default async function ProjectesPage({
   params,
@@ -13,58 +12,22 @@ export default async function ProjectesPage({
   return (
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Intro ── */}
-      <div
-        style={{
-          maxWidth: "1380px",
-          margin: "0 auto",
-          padding: "56px 32px 36px",
-          borderBottom: "1px solid #7e7e7e",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "18px",
-            fontWeight: 700,
-            letterSpacing: "-0.02em",
-            marginBottom: "18px",
-            color: "#000",
-          }}
-        >
-          Projectes
-        </p>
-        <p
-          style={{
-            maxWidth: "620px",
-            fontSize: "22px",
-            lineHeight: 1.25,
-            fontWeight: 400,
-            color: "#000",
-          }}
-        >
-          Una selecció de treballs de planejament, estratègia urbana i
-          transformació territorial.
+      {/* ── Capçalera ── */}
+      <div style={{ maxWidth: "1380px", margin: "0 auto", padding: "48px 32px 36px", borderBottom: "1px solid #1a1a1a", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "32px" }}>
+        <div>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>
+            Arxiu
+          </p>
+          <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: 0 }}>
+            {projects.length} Projectes
+          </h1>
+        </div>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", lineHeight: 1.5, color: "#666", maxWidth: "480px", margin: 0 }}>
+          Treballs de planejament, estratègia urbana i transformació territorial.
         </p>
       </div>
 
-      {/* ── Llista de projectes ── */}
-      <div
-        style={{
-          maxWidth: "1380px",
-          margin: "0 auto",
-          padding: "36px 32px 88px",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              locale={locale as Locale}
-            />
-          ))}
-        </div>
-      </div>
+      <ArchiveList projects={projects} locale={locale} />
     </div>
   );
 }
