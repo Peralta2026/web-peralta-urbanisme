@@ -1,6 +1,6 @@
 import { getAllProjects } from "@/lib/projects";
 import { type Locale } from "@/lib/types";
-import HomeProjects from "@/components/home/HomeProjects";
+import HomeScene from "@/components/home/HomeScene";
 
 export default async function HomePage({
   params,
@@ -8,7 +8,8 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const projects = getAllProjects();
+  void locale;
+  void getAllProjects; // available for Phase 3 (project explorer)
 
-  return <HomeProjects projects={projects} locale={locale as Locale} />;
+  return <HomeScene />;
 }
