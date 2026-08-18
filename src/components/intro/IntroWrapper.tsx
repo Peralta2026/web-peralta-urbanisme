@@ -14,15 +14,15 @@ const LAYERS = [
   "/intro/9.png",
 ];
 
-const STAGGER_MS    = 150;
-const HOLD_MS       = 500;
-const CURTAIN_MS    = 980;
-const CURTAIN_EASE  = "cubic-bezier(0.65, 0, 0.35, 1)";
+const STAGGER_MS   = 150;
+const HOLD_MS      = 520;
+const CURTAIN_MS   = 980;
+const CURTAIN_EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
-  const [visible,    setVisible]    = useState<number[]>([]);
-  const [curtainUp,  setCurtainUp]  = useState(false);
-  const [done,       setDone]       = useState(false);
+  const [visible,   setVisible]   = useState<number[]>([]);
+  const [curtainUp, setCurtainUp] = useState(false);
+  const [done,      setDone]      = useState(false);
 
   useEffect(() => {
     const guard = document.getElementById("pu-guard");
@@ -37,6 +37,7 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
     const timers: ReturnType<typeof setTimeout>[] = [];
 
+    // Apareixen les lletres una per una — només opacitat, sense moviment
     LAYERS.forEach((_, i) => {
       timers.push(
         setTimeout(() => setVisible((v) => [...v, i]), i * STAGGER_MS)
@@ -45,15 +46,17 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
     const curtainAt = LAYERS.length * STAGGER_MS + HOLD_MS;
 
+    // Inicia la cortina
     timers.push(setTimeout(() => setCurtainUp(true), curtainAt));
 
+    // Quan la cortina ha pujat: treu el guard i el overlay
     timers.push(
       setTimeout(() => {
         document.body.style.overflow = "";
         guard?.remove();
         sessionStorage.setItem("pu-intro", "1");
         setDone(true);
-      }, curtainAt + CURTAIN_MS + 80)
+      }, curtainAt + CURTAIN_MS + 60)
     );
 
     return () => {
@@ -67,47 +70,51 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
       {!done && (
         <div
           style={{
-            position:   "fixed",
-            inset:      0,
-            zIndex:     9999,
-            background: "#000000",
-            display:    "flex",
-            alignItems: "center",
+            position:       "fixed",
+            inset:          0,
+            zIndex:         9999,
+            background:     "#000000",
+            display:        "flex",
+            alignItems:     "center",
             justifyContent: "center",
-            transform:  curtainUp ? "translateY(-100%)" : "translateY(0)",
-            transition: curtainUp
+            transform:      curtainUp ? "translateY(-100%)" : "translateY(0)",
+            transition:     curtainUp
               ? `transform ${CURTAIN_MS}ms ${CURTAIN_EASE}`
               : "none",
           }}
         >
+          {/* El logo s'encongeix i puja amb la cortina */}
           <div
             style={{
-              position: "relative",
-              width:    "clamp(200px, 36vw, 460px)",
-              aspectRatio: "3 / 1",
+              position:        "relative",
+              width:           "clamp(200px, 36vw, 460px)",
+              aspectRatio:     "3 / 1",
+              transformOrigin: "center center",
+              transform:       curtainUp
+                ? "scale(0.82) translateY(-32px)"
+                : "scale(1) translateY(0)",
+              transition:      curtainUp
+                ? `transform ${Math.round(CURTAIN_MS * 0.68)}ms ${CURTAIN_EASE}`
+                : "none",
             }}
           >
-            {LAYERS.map((src, i) => {
-              const isVisible = visible.includes(i);
-              return (
-                <img
-                  key={src}
-                  src={src}
-                  alt=""
-                  aria-hidden
-                  style={{
-                    position:  "absolute",
-                    inset:     0,
-                    width:     "100%",
-                    height:    "100%",
-                    objectFit: "contain",
-                    opacity:   isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(7px)",
-                    transition: "opacity 260ms ease, transform 300ms ease",
-                  }}
-                />
-              );
-            })}
+            {LAYERS.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                aria-hidden
+                style={{
+                  position:   "absolute",
+                  inset:      0,
+                  width:      "100%",
+                  height:     "100%",
+                  objectFit:  "contain",
+                  opacity:    visible.includes(i) ? 1 : 0,
+                  transition: "opacity 320ms ease",
+                }}
+              />
+            ))}
           </div>
         </div>
       )}

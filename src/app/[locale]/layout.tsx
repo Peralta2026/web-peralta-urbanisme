@@ -52,7 +52,7 @@ export default async function LocaleLayout({
             position:      "fixed",
             inset:         0,
             zIndex:        9998,
-            background:    "#000000",
+            background:    "#ffffff",
             pointerEvents: "none",
           }}
         />
