@@ -6,29 +6,10 @@ import Link from "next/link";
 import type { Project } from "@/lib/types";
 import ProjectViewer, { type ProjectViewerHandle } from "./ProjectViewer";
 
-/* ─── Nav ────────────────────────────────────────────────────────────────── */
-
-const NAV_LINKS = [
-  { label: "Arxiu de projectes", href: "/projectes"      },
-  { label: "Persones",           href: "/persones"        },
-  { label: "Principis",          href: "/principis"       },
-  { label: "Premis",             href: "/premis"          },
-  { label: "Col·laboradors",     href: "/collaboradors"   },
-  { label: "Mapa",               href: "/mapa"            },
-  { label: "Contacte",           href: "/contacte"        },
-] as const;
-
-const LOCALES = ["ca", "es", "en"] as const;
-
-function localizeHref(href: string, locale: string) {
-  return locale === "ca" ? href : `/${locale}${href}`;
-}
-
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
 
 const LEFT_SRCS  = ["/grid/01.jpg", "/grid/03.jpg", "/grid/05.jpg", "/grid/07.jpg", "/grid/09.jpg"];
 const RIGHT_SRCS = ["/grid/02.jpg", "/grid/04.jpg", "/grid/06.jpg", "/grid/08.jpg", "/grid/10.jpg"];
-
 const COL_GAP   = 14;
 const STRIP_GAP = 14;
 const IMG_H_VH  = 0.42;
@@ -37,23 +18,103 @@ const SPEED_R   = 38;
 
 /* ─── Scroll constants ───────────────────────────────────────────────────── */
 
-const HERO_RANGE  = 1100;
-const RISE_RANGE  = 700;
-const TOTAL_RANGE = HERO_RANGE + RISE_RANGE;
-const HERO_START  = 1.0;
-const HERO_MIN    = 0.44;
-const LERP_K      = 0.08;
-const CURVE_H     = 32;
-const PANEL_BG    = "#f7f6f3";
+const HERO_SHRINK_END = 480;          // hero finishes shrinking at 480px scroll
+const SETTLE_START    = 240;          // content starts transitioning at 240px
+const SETTLE_END      = 500;          // content fully settled at 500px
+const RISE_START      = 500;          // projects panel starts rising at 500px
+const RISE_RANGE      = 700;          // projects fully up at 1200px
+const TOTAL_RANGE     = RISE_START + RISE_RANGE;
+const HERO_MIN        = 0.80;         // hero shrinks to 80% of viewport
+const LERP_K          = 0.08;
+const CURVE_H         = 32;
+const PANEL_BG        = "#f7f6f3";
+
+const LOCALES = ["ca", "es", "en"] as const;
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
 function easeInOutSine(t: number) {
   return -(Math.cos(Math.PI * Math.min(t, 1)) - 1) / 2;
 }
-
 function easeOutQuart(t: number) {
   return 1 - Math.pow(1 - Math.min(t, 1), 4);
+}
+
+/* ─── i18n content ───────────────────────────────────────────────────────── */
+
+const HERO_CONTENT = {
+  ca: {
+    line1: "El potencial d'un lloc no sempre és evident.",
+    line2: "Saber veure'l és el principi del projecte.",
+    line3: "Una mirada sensible. Un llapis audaç.",
+    line4: "Urbanisme estratègic per transformar la complexitat en oportunitats de ciutat.",
+    links: [
+      { label: "Mapa ↗",      href: "/mapa",      sub: "On treballem" },
+      { label: "Persones ↗",  href: "/persones",  sub: "Qui mira"     },
+      { label: "Principis ↗", href: "/principis", sub: "Com pensem"   },
+    ],
+  },
+  es: {
+    line1: "El potencial de un lugar no siempre es evidente.",
+    line2: "Saberlo ver es el principio del proyecto.",
+    line3: "Una mirada sensible. Un lápiz audaz.",
+    line4: "Urbanismo estratégico para transformar la complejidad en oportunidades de ciudad.",
+    links: [
+      { label: "Mapa ↗",       href: "/mapa",      sub: "Dónde trabajamos" },
+      { label: "Personas ↗",   href: "/persones",  sub: "Quién mira"       },
+      { label: "Principios ↗", href: "/principis", sub: "Cómo pensamos"    },
+    ],
+  },
+  en: {
+    line1: "The potential of a place is not always evident.",
+    line2: "Knowing how to see it is the beginning of the project.",
+    line3: "A sensitive gaze. A bold pencil.",
+    line4: "Strategic urbanism to transform complexity into city opportunities.",
+    links: [
+      { label: "Map ↗",        href: "/mapa",      sub: "Where we work" },
+      { label: "People ↗",     href: "/persones",  sub: "Who looks"     },
+      { label: "Principles ↗", href: "/principis", sub: "How we think"  },
+    ],
+  },
+} as const;
+
+/* ─── Helper components (outside HomeScene to avoid remount) ─────────────── */
+
+function LangSelectorHero({ locale }: { locale: string }) {
+  const router = useRouter();
+  function switchLocale(newLocale: string) {
+    router.push(newLocale === "ca" ? "/" : `/${newLocale}/`);
+  }
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.10em" }}>
+      {LOCALES.map((loc, i) => (
+        <span key={loc} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <button onClick={() => switchLocale(loc)} style={{ fontSize: "11px", letterSpacing: "0.10em", fontWeight: locale === loc ? 700 : 400, color: locale === loc ? "#000" : "#bbb", background: "none", border: "none", cursor: "pointer", padding: 0, textTransform: "uppercase" }}>
+            {loc}
+          </button>
+          {i < LOCALES.length - 1 && <span style={{ color: "#ddd" }}>/</span>}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string; href: string; locale: string }) {
+  const [hovered, setHovered] = useState(false);
+  const dest = locale === "ca" ? href : `/${locale}${href}`;
+  return (
+    <Link href={dest} style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column" }}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", fontWeight: 600, whiteSpace: "nowrap" }}>
+        {label}
+      </span>
+      <span style={{ display: "block", height: "17px", marginTop: "5px", overflow: "hidden" }}>
+        <span style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: "12px", color: "#999", letterSpacing: "0.01em", transition: "transform 220ms ease, opacity 220ms ease", transform: hovered ? "translateY(0)" : "translateY(7px)", opacity: hovered ? 1 : 0 }}>
+          {sub}
+        </span>
+      </span>
+    </Link>
+  );
 }
 
 /* ─── HomeScene ──────────────────────────────────────────────────────────── */
@@ -64,39 +125,39 @@ interface Props {
 }
 
 export default function HomeScene({ locale, projects }: Props) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const router = useRouter();
+  const content = HERO_CONTENT[(locale as keyof typeof HERO_CONTENT)] ?? HERO_CONTENT.ca;
 
   const viewerRef = useRef<ProjectViewerHandle>(null);
 
-  /* scroll refs */
-  const heroRef     = useRef<HTMLDivElement>(null);
-  const hintRef     = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const barrigaRef  = useRef<SVGPathElement>(null);
-  const vY          = useRef(0);
-  const sY          = useRef(0);
-  const rafId       = useRef(0);
+  /* DOM refs for RAF animation */
+  const heroRef         = useRef<HTMLDivElement>(null);
+  const initialLayerRef = useRef<HTMLDivElement>(null);
+  const settledLayerRef = useRef<HTMLDivElement>(null);
+  const hintRef         = useRef<HTMLDivElement>(null);
+  const projectsRef     = useRef<HTMLDivElement>(null);
+  const barrigaRef      = useRef<SVGPathElement>(null);
+  const leftColRef      = useRef<HTMLDivElement>(null);
+  const rightColRef     = useRef<HTMLDivElement>(null);
 
-  /* mosaic refs */
-  const leftColRef  = useRef<HTMLDivElement>(null);
-  const rightColRef = useRef<HTMLDivElement>(null);
-  const leftOffset  = useRef(0);
-  const rightOffset = useRef(0);
-  const lastTime    = useRef(0);
-  const loopH       = useRef(0);
+  /* scroll state (no React state — RAF only) */
+  const vY       = useRef(0);
+  const sY       = useRef(0);
+  const rafId    = useRef(0);
+  const lastTime = useRef(0);
+  const loopH    = useRef(0);
+  const leftOff  = useRef(0);
+  const rightOff = useRef(0);
 
   useEffect(() => {
     const imgH = window.innerHeight * IMG_H_VH;
-    loopH.current       = LEFT_SRCS.length * (imgH + COL_GAP);
-    rightOffset.current = loopH.current * 0.4;
+    loopH.current   = LEFT_SRCS.length * (imgH + COL_GAP);
+    rightOff.current = loopH.current * 0.4;
 
     document.body.style.overflow = "hidden";
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
       const raw = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
-
       if (sY.current < TOTAL_RANGE - 5) {
         vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
       } else {
@@ -120,7 +181,6 @@ export default function HomeScene({ locale, projects }: Props) {
     document.addEventListener("wheel",      onWheel,      { passive: false });
     document.addEventListener("touchstart", onTouchStart, { passive: true  });
     document.addEventListener("touchmove",  onTouchMove,  { passive: false });
-
     lastTime.current = performance.now();
 
     const tick = () => {
@@ -128,31 +188,35 @@ export default function HomeScene({ locale, projects }: Props) {
       const dt  = Math.min((now - lastTime.current) / 1000, 0.1);
       lastTime.current = now;
 
-      /* mosaic */
+      /* mosaic scroll */
       if (loopH.current > 0) {
-        leftOffset.current  = (leftOffset.current  + SPEED_L * dt) % loopH.current;
-        rightOffset.current = (rightOffset.current + SPEED_R * dt) % loopH.current;
-        if (leftColRef.current)
-          leftColRef.current.style.transform  = `translateY(-${leftOffset.current.toFixed(1)}px)`;
-        if (rightColRef.current)
-          rightColRef.current.style.transform = `translateY(-${rightOffset.current.toFixed(1)}px)`;
+        leftOff.current  = (leftOff.current  + SPEED_L * dt) % loopH.current;
+        rightOff.current = (rightOff.current + SPEED_R * dt) % loopH.current;
+        if (leftColRef.current)  leftColRef.current.style.transform  = `translateY(-${leftOff.current.toFixed(1)}px)`;
+        if (rightColRef.current) rightColRef.current.style.transform = `translateY(-${rightOff.current.toFixed(1)}px)`;
       }
 
-      /* scroll lerp */
+      /* lerp scroll */
       sY.current += (vY.current - sY.current) * LERP_K;
       const sy = sY.current;
 
-      /* Phase 1 — hero shrink */
-      const p1    = Math.min(1, sy / HERO_RANGE);
-      const scale = HERO_START - easeInOutSine(p1) * (HERO_START - HERO_MIN);
+      /* Phase 1 — hero shrinks (0 → HERO_SHRINK_END) */
+      const p1    = Math.min(1, sy / HERO_SHRINK_END);
+      const scale = HERO_MIN + (1 - HERO_MIN) * (1 - easeInOutSine(p1));
       if (heroRef.current) heroRef.current.style.transform = `scale(${scale.toFixed(4)})`;
-      if (hintRef.current) hintRef.current.style.opacity  = Math.max(0, 1 - p1 * 3).toFixed(3);
 
-      /* Phase 2 — projects panel rise */
+      /* Phase 1b — content crossfade (SETTLE_START → SETTLE_END) */
+      const settleRaw = (sy - SETTLE_START) / (SETTLE_END - SETTLE_START);
+      const settleP   = easeInOutSine(Math.max(0, Math.min(1, settleRaw)));
+      if (initialLayerRef.current) initialLayerRef.current.style.opacity = (1 - settleP).toFixed(3);
+      if (settledLayerRef.current) settledLayerRef.current.style.opacity = settleP.toFixed(3);
+      if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
+
+      /* Phase 2 — projects panel rises (RISE_START → TOTAL_RANGE) */
       if (projectsRef.current) {
-        if (sy > HERO_RANGE) {
-          const p2    = Math.min(1, (sy - HERO_RANGE) / RISE_RANGE);
-          const ep2   = easeOutQuart(p2);
+        if (sy > RISE_START) {
+          const p2  = Math.min(1, (sy - RISE_START) / RISE_RANGE);
+          const ep2 = easeOutQuart(p2);
           const depth = (1 - ep2) * CURVE_H;
           projectsRef.current.style.transform = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
           if (barrigaRef.current) {
@@ -173,15 +237,12 @@ export default function HomeScene({ locale, projects }: Props) {
       document.removeEventListener("wheel",      onWheel);
       document.removeEventListener("touchstart", onTouchStart);
       document.removeEventListener("touchmove",  onTouchMove);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
+      cancelAnimationFrame(rafId.current);
       document.body.style.overflow = "";
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function switchLocale(newLocale: string) {
-    router.push(newLocale === "ca" ? "/" : `/${newLocale}/`);
-    setMenuOpen(false);
-  }
+  const localizeHref = (href: string) => locale === "ca" ? href : `/${locale}${href}`;
 
   return (
     <>
@@ -190,141 +251,93 @@ export default function HomeScene({ locale, projects }: Props) {
           0%,100% { transform: translateY(0); }
           55%      { transform: translateY(6px); }
         }
-        @media (max-width: 767px) {
-          .pu-hero-panel {
-            top:    calc((100vh - 100vw) / 2) !important;
-            left:   0 !important;
-            right:  0 !important;
-            bottom: auto !important;
-            height: 100vw !important;
-          }
-          .pu-logo-img {
-            width: 80vw !important;
-          }
-        }
       `}</style>
 
       {/* ── SCENE ─────────────────────────────────────────────────────── */}
       <div style={{ position: "fixed", inset: 0, zIndex: 100, overflow: "hidden" }}>
 
-        {/* MOSAIC — 2 columnes verticals autònomes */}
-        <div style={{
-          position:   "absolute",
-          inset:      0,
-          background: "#ffffff",
-          display:    "flex",
-          gap:        `${STRIP_GAP}px`,
-        }}>
+        {/* MOSAIC */}
+        <div style={{ position: "absolute", inset: 0, background: "#ffffff", display: "flex", gap: `${STRIP_GAP}px` }}>
           <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-            <div ref={leftColRef} style={{
-              position: "absolute", top: 0, left: 0, right: 0,
-              display: "flex", flexDirection: "column", gap: `${COL_GAP}px`,
-            }}>
+            <div ref={leftColRef} style={{ position: "absolute", top: 0, left: 0, right: 0, display: "flex", flexDirection: "column", gap: `${COL_GAP}px` }}>
               {[...LEFT_SRCS, ...LEFT_SRCS].map((src, i) => (
                 <div key={i} style={{ height: `${(IMG_H_VH * 100).toFixed(0)}vh`, flexShrink: 0, overflow: "hidden" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" aria-hidden loading="eager"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <img src={src} alt="" aria-hidden loading="eager" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 </div>
               ))}
             </div>
           </div>
           <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-            <div ref={rightColRef} style={{
-              position: "absolute", top: 0, left: 0, right: 0,
-              display: "flex", flexDirection: "column", gap: `${COL_GAP}px`,
-            }}>
+            <div ref={rightColRef} style={{ position: "absolute", top: 0, left: 0, right: 0, display: "flex", flexDirection: "column", gap: `${COL_GAP}px` }}>
               {[...RIGHT_SRCS, ...RIGHT_SRCS].map((src, i) => (
                 <div key={i} style={{ height: `${(IMG_H_VH * 100).toFixed(0)}vh`, flexShrink: 0, overflow: "hidden" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" aria-hidden loading="eager"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <img src={src} alt="" aria-hidden loading="eager" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* HERO — composició editorial dins el panell blanc */}
-        <div ref={heroRef} className="pu-hero-panel" style={{
-          position:        "absolute",
-          inset:           0,
-          zIndex:          10,
-          background:      "#ffffff",
-          transformOrigin: "center center",
-          willChange:      "transform",
-        }}>
-          <div style={{
-            position:       "absolute",
-            top:            "50%",
-            left:           "50%",
-            transform:      "translate(-50%, -50%)",
-            display:        "flex",
-            flexDirection:  "column",
-            alignItems:     "center",
-            gap:            "clamp(28px, 4.5vh, 52px)",
-          }}>
-            <Link href={localizeHref("/", locale)} style={{ textDecoration: "none", display: "block" }}>
+        {/* HERO */}
+        <div ref={heroRef} style={{ position: "absolute", inset: 0, zIndex: 10, background: "#ffffff", transformOrigin: "center center", willChange: "transform" }}>
+
+          {/* Language selector — always top-right */}
+          <div style={{ position: "absolute", top: "28px", right: "36px", zIndex: 20 }}>
+            <LangSelectorHero locale={locale} />
+          </div>
+
+          {/* Layer 1 — initial: centered logo */}
+          <div ref={initialLayerRef} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <Link href={localizeHref("/")} style={{ textDecoration: "none", display: "block" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo-nuevo.png"
-                alt="Peralta Urbanisme"
-                className="pu-logo-img"
-                style={{ width: "clamp(300px, 42vw, 580px)", height: "auto", display: "block" }}
-              />
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(280px, 40vw, 540px)", height: "auto", display: "block" }} />
+            </Link>
+          </div>
+
+          {/* Layer 2 — settled: logo top + editorial text + nav links */}
+          <div ref={settledLayerRef} style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "clamp(28px, 4vh, 48px) clamp(36px, 5vw, 64px)" }}>
+
+            {/* Logo top-left */}
+            <Link href={localizeHref("/")} style={{ textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px, 22vw, 260px)", height: "auto", display: "block" }} />
             </Link>
 
-            <div style={{
-              display:     "flex",
-              alignItems:  "center",
-              gap:         "24px",
-              fontFamily:  "var(--font-mono)",
-            }}>
-              <button
-                onClick={() => setMenuOpen(o => !o)}
-                aria-label="Menú"
-                style={{
-                  background: "none", border: "none", cursor: "pointer", padding: 0,
-                  display: "flex", flexDirection: "column", gap: "6px",
-                }}
-              >
-                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
-                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
-                <span style={{ display: "block", width: "26px", height: "1px", background: "#111" }} />
-              </button>
+            {/* Editorial text — centered vertically in remaining space */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "min(700px, 80%)" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px, 2.2vw, 30px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, color: "#000", margin: "0 0 0.2em" }}>
+                {content.line1}
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px, 2.2vw, 30px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, color: "#000", margin: "0 0 1.6em" }}>
+                {content.line2}
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px, 1.6vw, 20px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#111", margin: "0 0 1em" }}>
+                {content.line3}
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.2vw, 16px)", fontWeight: 400, lineHeight: 1.55, color: "#666", margin: 0 }}>
+                {content.line4}
+              </p>
+            </div>
 
-              <span style={{ display: "block", width: "1px", height: "16px", background: "#ddd" }} />
-
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                {LOCALES.map((loc, i) => (
-                  <span key={loc} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <button onClick={() => switchLocale(loc)} style={{
-                      fontSize: "12px", letterSpacing: "0.10em",
-                      fontWeight: locale === loc ? 700 : 400,
-                      color: locale === loc ? "#000" : "#bbb",
-                      background: "none", border: "none", cursor: "pointer", padding: 0,
-                      textTransform: "uppercase",
-                    }}>{loc}</button>
-                    {i < LOCALES.length - 1 && <span style={{ color: "#e0e0e0", fontSize: "12px" }}>/</span>}
-                  </span>
-                ))}
-              </div>
+            {/* Nav links — bottom */}
+            <div style={{ display: "flex", gap: "clamp(28px, 4vw, 56px)", alignItems: "flex-start", paddingBottom: "8px" }}>
+              {content.links.map(link => (
+                <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
+              ))}
             </div>
           </div>
 
-          <div ref={hintRef} style={{
-            position: "absolute", bottom: "40px", left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "10px",
-            userSelect: "none", pointerEvents: "none", fontFamily: "var(--font-mono)",
-          }}>
-            <span style={{ fontSize: "9px", letterSpacing: "0.22em", color: "#c8c8c8", textTransform: "uppercase" }}>
+          {/* Scroll hint */}
+          <div ref={hintRef} style={{ position: "absolute", bottom: "40px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", userSelect: "none", pointerEvents: "none", fontFamily: "var(--font-mono)" }}>
+            <span style={{ fontSize: "9px", letterSpacing: "0.22em", color: "rgba(0,0,0,0.35)", textTransform: "uppercase" }}>
               Scroll Down
             </span>
             <span style={{ display: "flex", flexDirection: "column", alignItems: "center", animation: "pu-hint-drop 2.4s ease-in-out infinite" }}>
-              <span style={{ display: "block", width: "1px", height: "32px", background: "#dedede" }} />
+              <span style={{ display: "block", width: "1px", height: "32px", background: "rgba(0,0,0,0.22)" }} />
               <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style={{ display: "block" }}>
-                <path d="M0.5 0.5L4 4.5L7.5 0.5" stroke="#dedede" strokeWidth="1" strokeLinecap="round" />
+                <path d="M0.5 0.5L4 4.5L7.5 0.5" stroke="rgba(0,0,0,0.22)" strokeWidth="1.2" strokeLinecap="round" />
               </svg>
             </span>
           </div>
@@ -332,97 +345,16 @@ export default function HomeScene({ locale, projects }: Props) {
       </div>
 
       {/* ── PROJECTS PANEL ────────────────────────────────────────────── */}
-      <div ref={projectsRef} style={{
-        position:   "fixed",
-        inset:      0,
-        zIndex:     150,
-        background: PANEL_BG,
-        transform:  "translateY(100vh)",
-        willChange: "transform",
-        overflow:   "visible",
-      }}>
-        {/* Barriga SVG */}
-        <svg aria-hidden style={{
-          position: "absolute",
-          top:      -CURVE_H,
-          left: 0, right: 0,
-          width:    "100%",
-          height:   CURVE_H,
-          display:  "block",
-          overflow: "visible",
-        }} viewBox={`0 0 100 ${CURVE_H}`} preserveAspectRatio="none">
-          <path ref={barrigaRef}
-            d={`M 0 0 L 100 0 L 100 ${CURVE_H} L 0 ${CURVE_H} Z`}
-            fill={PANEL_BG} />
-        </svg>
+      <div ref={projectsRef} style={{ position: "fixed", inset: 0, zIndex: 150, background: PANEL_BG, transform: "translateY(100vh)", willChange: "transform", overflow: "visible" }}>
 
-        {/* Hamburger flotant */}
-        <button
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Menú"
-          style={{
-            position: "absolute", top: "28px", right: "36px", zIndex: 10,
-            background: "none", border: "none", cursor: "pointer", padding: 0,
-            display: "flex", flexDirection: "column", gap: "5px",
-          }}
-        >
-          <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-          <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-          <span style={{ display: "block", width: "22px", height: "1px", background: "#111" }} />
-        </button>
+        {/* Barriga SVG */}
+        <svg aria-hidden style={{ position: "absolute", top: -CURVE_H, left: 0, right: 0, width: "100%", height: CURVE_H, display: "block", overflow: "visible" }}
+          viewBox={`0 0 100 ${CURVE_H}`} preserveAspectRatio="none">
+          <path ref={barrigaRef} d={`M 0 0 L 100 0 L 100 ${CURVE_H} L 0 ${CURVE_H} Z`} fill={PANEL_BG} />
+        </svg>
 
         <ProjectViewer ref={viewerRef} projects={projects} locale={locale} />
       </div>
-
-      {/* ── Menu overlay ──────────────────────────────────────────────── */}
-      {menuOpen && (
-        <div style={{
-          position: "fixed", inset: 0, zIndex: 200,
-          background: "#ffffff", display: "flex", flexDirection: "column",
-          fontFamily: "var(--font-sans)",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", height: "88px", padding: "0 32px", flexShrink: 0 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "196px", height: "auto" }} />
-            <button onClick={() => setMenuOpen(false)} style={{
-              marginLeft: "auto", background: "none", border: "none",
-              cursor: "pointer", fontSize: "26px", lineHeight: 1, padding: "4px", color: "#000",
-            }} aria-label="Tancar menú">×</button>
-          </div>
-          <div style={{ height: "1px", background: "#1a1a1a", flexShrink: 0 }} />
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "48px 32px" }}>
-            <nav style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              {NAV_LINKS.map(({ label, href }) => (
-                <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
-                  style={{
-                    fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 600,
-                    color: "#000", textDecoration: "none",
-                    letterSpacing: "-0.01em", lineHeight: 1.25, padding: "8px 0",
-                  }}>
-                  {label}
-                </Link>
-              ))}
-            </nav>
-            <div style={{
-              marginTop: "auto", display: "flex", gap: "12px", alignItems: "center",
-              fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.10em",
-            }}>
-              {LOCALES.map((loc, i) => (
-                <span key={loc} style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                  <button onClick={() => switchLocale(loc)} style={{
-                    fontSize: "11px", letterSpacing: "0.10em",
-                    fontWeight: locale === loc ? 700 : 400,
-                    color: locale === loc ? "#000" : "#aaa",
-                    background: "none", border: "none", cursor: "pointer", padding: 0,
-                    textTransform: "uppercase",
-                  }}>{loc}</button>
-                  {i < LOCALES.length - 1 && <span style={{ color: "#e0e0e0" }}>/</span>}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
