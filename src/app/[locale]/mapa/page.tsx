@@ -1,6 +1,8 @@
 import { getAllProjects } from "@/lib/projects";
 import MapView from "@/components/map/MapView";
 
+export const dynamic = "force-static";
+
 export default async function MapaPage({
   params,
 }: {

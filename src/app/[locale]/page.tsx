@@ -1,6 +1,8 @@
 import HomeScene from "@/components/home/HomeScene";
 import { getAllProjects } from "@/lib/projects";
 
+export const dynamic = "force-static";
+
 export default async function HomePage({
   params,
 }: {

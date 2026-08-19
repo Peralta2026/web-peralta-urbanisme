@@ -2,6 +2,8 @@ import { getAllTeamMembers } from "@/lib/team";
 import type { Locale, TeamMember } from "@/lib/types";
 import PersonCard from "@/components/team/PersonCard";
 
+export const dynamic = "force-static";
+
 // ─── Posicions de la constel·lació ───────────────────────────────────────────
 // Retícula invisible de 12 columnes.
 // paddingTop = desplaçament vertical dins el grup (efecte escalonament).

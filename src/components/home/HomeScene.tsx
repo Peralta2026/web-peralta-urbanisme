@@ -24,7 +24,7 @@ const SETTLE_END      = 500;          // content fully settled at 500px
 const RISE_START      = 500;          // projects panel starts rising at 500px
 const RISE_RANGE      = 700;          // projects fully up at 1200px
 const TOTAL_RANGE     = RISE_START + RISE_RANGE;
-const HERO_MIN        = 0.80;         // hero shrinks to 80% of viewport
+const HERO_MIN        = 0.88;         // hero shrinks to 88% of viewport (subtle)
 const LERP_K          = 0.08;
 const CURVE_H         = 32;
 const PANEL_BG        = "#f7f6f3";
@@ -305,27 +305,33 @@ export default function HomeScene({ locale, projects }: Props) {
               <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px, 22vw, 260px)", height: "auto", display: "block" }} />
             </Link>
 
-            {/* Editorial text — centered vertically in remaining space */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "min(700px, 80%)" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px, 2.2vw, 30px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, color: "#000", margin: "0 0 0.2em" }}>
-                {content.line1}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px, 2.2vw, 30px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, color: "#000", margin: "0 0 1.6em" }}>
-                {content.line2}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px, 1.6vw, 20px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#111", margin: "0 0 1em" }}>
-                {content.line3}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.2vw, 16px)", fontWeight: 400, lineHeight: 1.55, color: "#666", margin: 0 }}>
-                {content.line4}
-              </p>
-            </div>
+            {/* Spacer — empuja el bloque text+links hacia abajo */}
+            <div style={{ flex: 1 }} />
 
-            {/* Nav links — bottom */}
-            <div style={{ display: "flex", gap: "clamp(28px, 4vw, 56px)", alignItems: "flex-start", paddingBottom: "8px" }}>
-              {content.links.map(link => (
-                <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
-              ))}
+            {/* Texto editorial + botones — agrupados, botones pegados al texto */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(22px, 3vh, 36px)", maxWidth: "min(760px, 85%)", paddingBottom: "clamp(12px, 2vh, 24px)" }}>
+              {/* Texto */}
+              <div>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px, 2.6vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.18, color: "#000", margin: "0 0 0.18em" }}>
+                  {content.line1}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px, 2.6vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.18, color: "#000", margin: "0 0 1.5em" }}>
+                  {content.line2}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(16px, 1.8vw, 23px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#111", margin: "0 0 0.8em" }}>
+                  {content.line3}
+                </p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.3vw, 17px)", fontWeight: 400, lineHeight: 1.6, color: "#666", margin: 0 }}>
+                  {content.line4}
+                </p>
+              </div>
+
+              {/* Nav links — sin cajas, bajo el texto */}
+              <div style={{ display: "flex", gap: "clamp(24px, 3.5vw, 52px)", alignItems: "flex-start" }}>
+                {content.links.map(link => (
+                  <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
+                ))}
+              </div>
             </div>
           </div>
 

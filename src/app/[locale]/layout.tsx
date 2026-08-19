@@ -5,8 +5,6 @@ import { getMessages, getTranslations } from "next-intl/server";
 import Nav from "@/components/layout/Nav";
 import IntroWrapper from "@/components/intro/IntroWrapper";
 import type { Metadata } from "next";
-import "leaflet/dist/leaflet.css";
-
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

@@ -1,6 +1,8 @@
 import { getAllProjects } from "@/lib/projects";
 import ArchiveList from "@/components/projects/ArchiveList";
 
+export const dynamic = "force-static";
+
 export default async function ProjectesPage({
   params,
 }: {
