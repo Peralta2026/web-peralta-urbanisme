@@ -21,8 +21,8 @@ const SPEED_R   = 38;
 const HERO_SHRINK_END = 480;          // hero finishes shrinking at 480px scroll
 const SETTLE_START    = 240;          // content starts transitioning at 240px
 const SETTLE_END      = 500;          // content fully settled at 500px
-const RISE_START      = 500;          // projects panel starts rising at 500px
-const RISE_RANGE      = 700;          // projects fully up at 1200px
+const RISE_START      = 720;          // pause ~220px after settle, then panel rises
+const RISE_RANGE      = 700;          // projects fully up after another 700px
 const TOTAL_RANGE     = RISE_START + RISE_RANGE;
 const HERO_MIN        = 0.88;         // hero shrinks to 88% of viewport (subtle)
 const LERP_K          = 0.08;
@@ -135,7 +135,6 @@ export default function HomeScene({ locale, projects }: Props) {
   const settledLayerRef = useRef<HTMLDivElement>(null);
   const hintRef         = useRef<HTMLDivElement>(null);
   const projectsRef     = useRef<HTMLDivElement>(null);
-  const barrigaRef      = useRef<SVGPathElement>(null);
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
 
@@ -217,15 +216,12 @@ export default function HomeScene({ locale, projects }: Props) {
         if (sy > RISE_START) {
           const p2  = Math.min(1, (sy - RISE_START) / RISE_RANGE);
           const ep2 = easeOutQuart(p2);
-          const depth = (1 - ep2) * CURVE_H;
+          const curveV = (CURVE_H * (1 - ep2)).toFixed(1);
           projectsRef.current.style.transform = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
-          if (barrigaRef.current) {
-            barrigaRef.current.setAttribute("d",
-              `M 0 0 L 100 0 L 100 ${CURVE_H} Q 50 ${(CURVE_H - depth).toFixed(1)} 0 ${CURVE_H} Z`
-            );
-          }
+          projectsRef.current.style.borderRadius = `50% 50% 0 0 / ${curveV}px ${curveV}px 0 0`;
         } else {
           projectsRef.current.style.transform = "translateY(100vh)";
+          projectsRef.current.style.borderRadius = `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`;
         }
       }
 
@@ -312,16 +308,16 @@ export default function HomeScene({ locale, projects }: Props) {
             <div style={{ display: "flex", flexDirection: "column", gap: "clamp(22px, 3vh, 36px)", maxWidth: "min(760px, 85%)", paddingBottom: "clamp(12px, 2vh, 24px)" }}>
               {/* Texto */}
               <div>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px, 2.6vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.18, color: "#000", margin: "0 0 0.18em" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(24px, 3vw, 42px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#000", margin: "0 0 0.15em" }}>
                   {content.line1}
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px, 2.6vw, 36px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.18, color: "#000", margin: "0 0 1.5em" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(24px, 3vw, 42px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#000", margin: "0 0 1.4em" }}>
                   {content.line2}
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(16px, 1.8vw, 23px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#111", margin: "0 0 0.8em" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px, 2vw, 26px)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#111", margin: "0 0 0.7em" }}>
                   {content.line3}
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.3vw, 17px)", fontWeight: 400, lineHeight: 1.6, color: "#666", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(14px, 1.4vw, 18px)", fontWeight: 400, lineHeight: 1.6, color: "#666", margin: 0 }}>
                   {content.line4}
                 </p>
               </div>
@@ -351,14 +347,7 @@ export default function HomeScene({ locale, projects }: Props) {
       </div>
 
       {/* ── PROJECTS PANEL ────────────────────────────────────────────── */}
-      <div ref={projectsRef} style={{ position: "fixed", inset: 0, zIndex: 150, background: PANEL_BG, transform: "translateY(100vh)", willChange: "transform", overflow: "visible" }}>
-
-        {/* Barriga SVG */}
-        <svg aria-hidden style={{ position: "absolute", top: -CURVE_H, left: 0, right: 0, width: "100%", height: CURVE_H, display: "block", overflow: "visible" }}
-          viewBox={`0 0 100 ${CURVE_H}`} preserveAspectRatio="none">
-          <path ref={barrigaRef} d={`M 0 0 L 100 0 L 100 ${CURVE_H} L 0 ${CURVE_H} Z`} fill={PANEL_BG} />
-        </svg>
-
+      <div ref={projectsRef} style={{ position: "fixed", inset: 0, zIndex: 150, background: PANEL_BG, transform: "translateY(100vh)", willChange: "transform, border-radius", borderRadius: `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`, overflow: "hidden" }}>
         <ProjectViewer ref={viewerRef} projects={projects} locale={locale} />
       </div>
     </>
