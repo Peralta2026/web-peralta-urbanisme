@@ -15,54 +15,54 @@ const UI: Record<Locale, { filtres: string; tipus: string; abast: string; any: s
   en: { filtres: "Filters", tipus: "Type",  abast: "Scope",   any: "Year", all: "All", empty: "No projects match the selected filters.", open: "+", clear: "Clear filters" },
 };
 
-function FilterDropdown({ categoryLabel, allLabel, options, value, onChange }: {
+function FilterDropdown({ categoryLabel, allLabel, options, value, onChange, bordered }: {
   categoryLabel: string;
   allLabel:      string;
   options:       string[];
   value:         string;
   onChange:      (v: string) => void;
+  bordered?:     boolean;
 }) {
   const [open, setOpen] = useState(false);
   const isActive = !!value;
 
   return (
-    <div style={{ position: "relative", minWidth: "clamp(120px, 18vw, 220px)", flex: 1 }}>
+    <div style={{ position: "relative", flex: 1, ...(bordered ? { borderLeft: "1px solid rgba(0,0,0,0.12)", paddingLeft: "clamp(20px, 3vw, 40px)" } : {}) }}>
 
       {/* Category label */}
-      <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,0,0,0.8)", fontWeight: 700, margin: "0 0 10px" }}>
+      <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.75)", fontWeight: 700, margin: "0 0 16px" }}>
         {categoryLabel}
       </p>
 
-      {/* Separator */}
-      <div style={{ height: "1px", background: isActive ? "#000" : "rgba(0,0,0,0.15)", marginBottom: "10px", transition: "background 200ms" }} />
-
-      {/* Value button */}
+      {/* Value button — the main interactive element */}
       <button
         onClick={() => setOpen(o => !o)}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: 0, width: "100%", textAlign: "left", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "clamp(13px, 1.3vw, 15px)", letterSpacing: "-0.01em", color: isActive ? "#000" : "#aaa", fontWeight: isActive ? 600 : 400 }}
+        style={{ background: "none", border: "none", cursor: "pointer", padding: 0, width: "100%", textAlign: "left", display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "12px" }}
       >
-        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px, 2.4vw, 32px)", letterSpacing: "-0.02em", lineHeight: 1.1, color: isActive ? "#000" : "#ccc", fontWeight: isActive ? 600 : 300, transition: "color 200ms" }}>
           {value || allLabel}
         </span>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", opacity: isActive ? 0.6 : 0.35, flexShrink: 0, transition: "transform 180ms", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: isActive ? "#000" : "#bbb", flexShrink: 0, transition: "transform 200ms, color 200ms", transform: open ? "rotate(180deg)" : "rotate(0deg)", paddingBottom: "4px" }}>
+          ▾
+        </span>
       </button>
 
       {open && (
         <>
           <div style={{ position: "fixed", inset: 0, zIndex: 10 }} onClick={() => setOpen(false)} />
-          <div style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, background: "#fff", border: "1px solid #e0e0e0", minWidth: "200px", zIndex: 20, boxShadow: "0 12px 32px rgba(0,0,0,0.09)" }}>
+          <div style={{ position: "absolute", top: "calc(100% + 16px)", left: 0, background: "#fff", border: "1px solid #e0e0e0", minWidth: "clamp(180px, 24vw, 280px)", zIndex: 20, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}>
             <button
               onClick={() => { onChange(""); setOpen(false); }}
-              style={{ display: "block", width: "100%", textAlign: "left", padding: "12px 20px", fontFamily: "var(--font-sans)", fontSize: "13px", color: !value ? "#000" : "#aaa", background: "none", border: "none", cursor: "pointer", fontWeight: !value ? 600 : 400, letterSpacing: "-0.01em" }}
+              style={{ display: "block", width: "100%", textAlign: "left", padding: "14px 24px", fontFamily: "var(--font-sans)", fontSize: "14px", color: !value ? "#000" : "#bbb", background: "none", border: "none", cursor: "pointer", fontWeight: !value ? 600 : 400, letterSpacing: "-0.01em" }}
             >
               {allLabel}
             </button>
-            <div style={{ height: "1px", background: "#f0f0f0", margin: "0 20px" }} />
+            <div style={{ height: "1px", background: "#f0f0f0" }} />
             {options.map(opt => (
               <button
                 key={opt}
                 onClick={() => { onChange(opt); setOpen(false); }}
-                style={{ display: "block", width: "100%", textAlign: "left", padding: "12px 20px", fontFamily: "var(--font-sans)", fontSize: "13px", color: value === opt ? "#000" : "#555", background: value === opt ? "#f7f6f3" : "none", border: "none", cursor: "pointer", fontWeight: value === opt ? 600 : 400, letterSpacing: "-0.01em" }}
+                style={{ display: "block", width: "100%", textAlign: "left", padding: "14px 24px", fontFamily: "var(--font-sans)", fontSize: "14px", color: value === opt ? "#000" : "#555", background: value === opt ? "#f7f6f3" : "none", border: "none", cursor: "pointer", fontWeight: value === opt ? 600 : 400, letterSpacing: "-0.01em" }}
               >
                 {opt}
               </button>
@@ -118,27 +118,27 @@ export default function ArchiveList({ projects, locale }: Props) {
   return (
     <>
       {/* ── Filtres ── */}
-      <div style={{ borderBottom: "1px solid #1a1a1a", padding: "clamp(24px, 3.5vh, 40px) clamp(24px, 4vw, 48px) clamp(20px, 3vh, 36px)" }}>
+      <div style={{ borderBottom: "1px solid #1a1a1a", padding: "clamp(40px, 6vh, 72px) clamp(32px, 5vw, 64px) clamp(36px, 5vh, 64px)" }}>
         <div style={{ maxWidth: "1380px", margin: "0 auto" }}>
 
-          {/* Header row */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "clamp(20px, 3vh, 32px)" }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#000", fontWeight: 700 }}>
+          {/* Título principal */}
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "clamp(36px, 5vh, 60px)" }}>
+            <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000", margin: 0 }}>
               {ui.filtres}
-            </span>
+            </h2>
             <button
               onClick={clearAll}
-              style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: hasFilters ? "#888" : "transparent", textDecoration: "underline", transition: "color 200ms", pointerEvents: hasFilters ? "auto" : "none" }}
+              style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: hasFilters ? "#666" : "transparent", textDecoration: "underline", transition: "color 200ms", pointerEvents: hasFilters ? "auto" : "none", paddingBottom: "6px" }}
             >
               {ui.clear}
             </button>
           </div>
 
-          {/* Filter columns */}
-          <div style={{ display: "flex", gap: "clamp(24px, 5vw, 80px)", alignItems: "flex-start" }}>
+          {/* Tres columnes de filtres — ocupen tot l'ample */}
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
             <FilterDropdown categoryLabel={ui.tipus} allLabel={ui.all} options={optionsTipus} value={filterTipus} onChange={setFilterTipus} />
-            <FilterDropdown categoryLabel={ui.abast} allLabel={ui.all} options={optionsAbast} value={filterAbast} onChange={setFilterAbast} />
-            <FilterDropdown categoryLabel={ui.any}   allLabel={ui.all} options={optionsAny}   value={filterAny}   onChange={setFilterAny}   />
+            <FilterDropdown categoryLabel={ui.abast} allLabel={ui.all} options={optionsAbast} value={filterAbast} onChange={setFilterAbast} bordered />
+            <FilterDropdown categoryLabel={ui.any}   allLabel={ui.all} options={optionsAny}   value={filterAny}   onChange={setFilterAny}   bordered />
           </div>
         </div>
       </div>
