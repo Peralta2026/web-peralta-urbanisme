@@ -348,42 +348,73 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
       const dp = dispPos.current;
 
       /*
-       * DECK MODEL — all cards live at the SAME screen position, stacked.
+       * ROLODEX ARC MODEL
        *
-       * STACK_OFFSET: the small vertical gap between depth levels.
-       *   Cards below the active one are shifted DOWN by this amount,
-       *   so their top edges peek out from beneath the card above them.
+       * Outgoing card (delta: 0 → -1):
+       *   t = -delta (0 → 1)
+       *   ty = -sin(t·π)·PEAK_H + t·STACK_REST
+       *   The card arcs UP (large negative ty at t=0.5) then descends to the
+       *   stack resting position (ty = STACK_REST at t=1). The arc is the
+       *   design spectacle — it uses real vertical screen space.
        *
-       * Transitions: when active card (delta=0) moves to delta=-1,
-       *   ty goes from 0 → STACK_OFFSET (card sinks into the deck).
-       *   The incoming card goes from ty=STACK_OFFSET → 0 (rises to top).
-       *   Total travel: ONE STACK_OFFSET (24px) — very compact, no list scrolling.
+       * Incoming + stack below (delta ≥ 0):
+       *   ty = min(delta, 2)·STACK_REST — subtle stagger, not a list.
        *
-       * z-index: card closest to delta=0 is highest. At the midpoint (absD equal),
-       *   DOM order breaks the tie: the incoming card (higher index) renders on top.
+       * Past cards (delta ≤ -1):
+       *   Same ty as their absolute-distance counterpart but lower z,
+       *   so they sit hidden behind the incoming stack.
        *
-       * Past cards (delta<0) and upcoming cards (delta>0) are at THE SAME ty
-       *   for equal |delta|. Past cards are hidden behind incoming cards via z.
+       * Stage has overflow:visible + zIndex:1; logo/filter bars are zIndex:30,
+       * so the arcing card naturally disappears behind them at the top.
        */
-      const STACK_OFFSET = 24; // px per depth level
+      const STACK_REST = 10;  // px — subtle peek for waiting cards
+      const PEAK_H     = 185; // px above center at the top of the arc
 
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
         const delta = i - dp;
         const absD  = Math.abs(delta);
 
-        if (absD > 3.5) { el.style.visibility = "hidden"; el.style.pointerEvents = "none"; return; }
+        if (absD > 2.5) { el.style.visibility = "hidden"; el.style.pointerEvents = "none"; return; }
 
         el.style.visibility = "visible";
-        el.style.opacity    = "1"; /* physical movement only — no fading */
+        el.style.opacity    = "1";
 
-        const depth  = Math.min(absD, 3);
-        const ty     = depth * STACK_OFFSET;     /* ALL depths shift down the same way */
-        const sc     = Math.max(0.90, 1 - depth * 0.022);
-        const bright = Math.max(0.76, 1 - depth * 0.08);
-        const z      = Math.round(1000 - absD * 100); /* DOM order breaks ties at midpoint */
+        let ty: number, sc: number, bright: number, rx: number, z: number;
 
-        el.style.transform     = `translate(-50%, calc(-50% + ${ty.toFixed(1)}px)) scale(${sc.toFixed(4)})`;
+        if (delta < 0 && delta > -1.5) {
+          // OUTGOING ARC — card lifts over the top then descends behind the pile
+          const t   = Math.min(1, -delta);
+          const arc = Math.sin(t * Math.PI); // peaks at t=0.5
+          ty     = -arc * PEAK_H + t * STACK_REST;
+          rx     = -arc * 12;                             // slight backward tilt at peak
+          sc     = Math.max(0.88, 1 - arc * 0.05 - t * 0.018);
+          bright = Math.max(0.80, 1 - t * 0.10);
+          z      = Math.round(1000 + delta * 180);        // falls from 1000→820 as it arcs out
+        } else if (delta <= -1.5) {
+          // PAST CARD — settled in the back of the stack, hidden behind upcoming cards
+          const depth = Math.min(-delta, 2);
+          ty     = depth * STACK_REST;
+          rx     = 0;
+          sc     = Math.max(0.88, 1 - depth * 0.018);
+          bright = Math.max(0.82, 1 - depth * 0.08);
+          z      = Math.round(800 - (-delta) * 80);
+        } else {
+          // INCOMING + STACK BELOW — upcoming cards peek subtly below the active card
+          const depth = Math.min(delta, 2);
+          ty     = depth * STACK_REST;
+          rx     = Math.min(delta, 1.5) * 3;             // very gentle forward lean in the stack
+          sc     = Math.max(0.90, 1 - depth * 0.018);
+          bright = Math.max(0.84, 1 - depth * 0.07);
+          z      = Math.round(1000 - delta * 100);
+        }
+
+        el.style.transform = [
+          `translate(-50%, calc(-50% + ${ty.toFixed(2)}px))`,
+          `perspective(1400px)`,
+          `rotateX(${rx.toFixed(2)}deg)`,
+          `scale(${sc.toFixed(4)})`,
+        ].join(" ");
         el.style.filter        = `brightness(${bright.toFixed(3)})`;
         el.style.zIndex        = String(Math.max(0, z));
         el.style.pointerEvents = absD < 0.4 ? "auto" : "none";
@@ -538,19 +569,21 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
 
         <div style={{ position: "absolute", inset: 0, fontFamily: "var(--font-sans)", display: "flex", flexDirection: "column", background: PANEL_BG }}>
 
-          {/* Logo bar */}
-          <div ref={logoRef} style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", padding: "0 clamp(32px,5vw,64px)", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG }}>
+          {/* Logo bar — z:30 so arcing cards disappear behind it */}
+          <div ref={logoRef} style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", padding: "0 clamp(32px,5vw,64px)", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG, position: "relative", zIndex: 30 }}>
             <Link href={localizeHref("/", locale)} style={{ textDecoration: "none", display: "inline-block" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px,20vw,210px)", height: "auto", display: "block" }} />
             </Link>
           </div>
 
-          {/* Filter bar */}
-          <FilterBarPV filters={filters} activeDim={activeDim} onToggleDim={handleToggleDim} onSelectOption={handleSelectOption} onClearDim={handleClearDim} projects={projects} />
+          {/* Filter bar — z:30 so arcing cards hide behind it */}
+          <div style={{ position: "relative", zIndex: 30 }}>
+            <FilterBarPV filters={filters} activeDim={activeDim} onToggleDim={handleToggleDim} onSelectOption={handleSelectOption} onClearDim={handleClearDim} projects={projects} />
+          </div>
 
-          {/* Card stage */}
-          <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+          {/* Card stage — z:1 creates stacking context below logo/filter; overflow:visible lets cards arc upward */}
+          <div style={{ flex: 1, position: "relative", zIndex: 1, overflow: "visible" }}>
 
             {filteredProjects.length === 0 ? (
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -574,11 +607,11 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
                       height:   "min(calc(100% - 88px), 440px)",
                       transformOrigin: "center center",
                       willChange: "transform, filter",
-                      visibility:    i > 3 ? "hidden" : "visible",
+                      visibility:    i > 2 ? "hidden" : "visible",
                       opacity:       "1",
-                      /* SSR initial state: tight deck stack (24px offset per level) */
-                      transform:  `translate(-50%, calc(-50% + ${Math.min(i, 3) * 24}px)) scale(${Math.max(0.90, 1 - Math.min(i, 3) * 0.022).toFixed(4)})`,
-                      filter:     `brightness(${Math.max(0.76, 1 - Math.min(i, 3) * 0.08).toFixed(3)})`,
+                      /* SSR initial state: subtle deck (STACK_REST=10px) */
+                      transform:  `translate(-50%, calc(-50% + ${Math.min(i, 2) * 10}px)) scale(${Math.max(0.90, 1 - Math.min(i, 2) * 0.018).toFixed(4)})`,
+                      filter:     `brightness(${Math.max(0.84, 1 - Math.min(i, 2) * 0.07).toFixed(3)})`,
                       zIndex:     String(1000 - i * 100),
                       pointerEvents: i === 0 ? "auto" : "none",
                     }}
