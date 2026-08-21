@@ -1,69 +1,69 @@
 {
-  "slug":  "st-cugat-sorli",
-  "coverImage":  "àrees terciari i industria neta i av metropolitanes.JPG",
-  "images":  [
-         "àrees terciari i industria neta i av metropolitanes.JPG",
-         "centres locals.JPG",
-         "cobertes del sòl.JPG",
-         "cobertura equipaments.JPG",
-         "cobertura espais lliures.JPG",
-         "estructura hidrogràfica.JPG",
-         "infraestructura verda.JPG",
-         "inventari patrimonial.JPG",
-         "patrimoni cultural.JPG",
-         "pdum àmbits transformació interès metropolità.JPG",
-         "pdum estructura urbana i social.JPG",
-         "servituds carreteres i ferroviaries.JPG",
-         "teixits.JPG",
-         "xarxa viària existent.JPG"
-       ],
-  "tags":  [
+    "slug":  "st-cugat-sorli",
+    "coverImage":  "àrees terciari i industria neta i av metropolitanes.JPG",
+    "images":  [
+                   "àrees terciari i industria neta i av metropolitanes.JPG",
+                   "centres locals.JPG",
+                   "cobertes del sòl.JPG",
+                   "cobertura equipaments.JPG",
+                   "cobertura espais lliures.JPG",
+                   "estructura hidrogràfica.JPG",
+                   "infraestructura verda.JPG",
+                   "inventari patrimonial.JPG",
+                   "patrimoni cultural.JPG",
+                   "pdum àmbits transformació interès metropolità.JPG",
+                   "pdum estructura urbana i social.JPG",
+                   "servituds carreteres i ferroviaries.JPG",
+                   "teixits.JPG",
+                   "xarxa viària existent.JPG"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Sant Cugat Sorli",
-       "municipality":  "Sant Cugat del Vallès",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  3170,
-       "programa":  null,
-       "sostreM2":  5212,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
-       "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
-     },
-  "es":  {
-       "title":  "Sant Cugat Sorli",
-       "municipality":  "Sant Cugat del Vallès",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  3170,
-       "programa":  null,
-       "sostreM2":  5212,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
-       "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
-     },
-  "en":  {
-       "title":  "Sant Cugat Sorli",
-       "municipality":  "Sant Cugat del Vallès",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  3170,
-       "programa":  null,
-       "sostreM2":  5212,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
-       "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.47763847406426,
+                        "lng":  2.0671920846100282
+                    },
+    "ca":  {
+               "title":  "Sant Cugat Sorli",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  3170,
+               "programa":  null,
+               "sostreM2":  5212,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
+               "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
+           },
+    "es":  {
+               "title":  "Sant Cugat Sorli",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  3170,
+               "programa":  null,
+               "sostreM2":  5212,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
+               "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
+           },
+    "en":  {
+               "title":  "Sant Cugat Sorli",
+               "municipality":  "Sant Cugat del Vallès",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  3170,
+               "programa":  null,
+               "sostreM2":  5212,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla Parcial d\u0027Ordenació del sector del Turó de Can Mates-Ctra. de Vallvidrera, a Sant Cugat del Vallès, per revisar la regulació dels usos de les zones terciàries amb claus 20/MV-4 i 20/MV-4*. La proposta amplia el ventall d\u0027usos preferents —incorporant l\u0027ús residencial col·lectiu (residències d\u0027estudiants), cultural, sanitari, esportiu i recreatiu— per reactivar uns sòls que romanen buits davant l\u0027estancament del mercat d\u0027oficines, fomentant la mixtura d\u0027usos.",
+               "descriptionLong":  "Sant Cugat del Vallès compta amb un parc d\u0027oficines de més de 450.000 m² construïts, fonamentalment situat a l\u0027entorn de l\u0027autopista AP-7/B-30. La gran reserva de sòl qualificada amb destinació a usos terciaris que van preveure els plans parcials d\u0027ordenació dels sectors de nou creixement de la ciutat a principis dels anys 2000 es troba buida i sense edificar des de fa temps, a manca de demanda. L\u0027estancament del mercat d\u0027oficines, consolidat després de la pandèmia pel Covid-19 amb l\u0027expansió del teletreball i les estratègies empresarials de compactació, ha configurat un model més híbrid que requereix noves respostes urbanístiques.\n\nLa modificació puntual actua sobre les zones terciàries en volums d\u0027ordenació aïllada (claus 20/MV-4 i 20/MV-4*) del Pla Parcial del sector del Turó de Can Mates-Ctra. de Vallvidrera, situades al límit nord del sector, al costat de la carretera de Rubí. Històricament, aquest eix s\u0027havia desenvolupat amb usos terciaris i industrials, però en els darrers temps ha evolucionat cap a un model molt més mixt, amb nous sectors d\u0027habitatge i dotacions esportives. El Pla Director Urbanístic Metropolità identifica precisament la carretera de Rubí com una de les avingudes metropolitanes de caràcter estratègic.\n\nLa proposta revisa el caràcter dominant exclusiu de les oficines i incorpora com a usos preferents determinats usos fins ara admesos només com a compatibles: cultural, sanitari, esportiu, recreatiu i residencial col·lectiu —aquest últim limitat a residències d\u0027estudiants i amb un sostre màxim del 60%, en coherència amb la vocació de Sant Cugat com a ciutat universitària amb una extensa oferta formativa. La modificació no incrementa l\u0027edificabilitat ni modifica cap altre paràmetre urbanístic.\n\nL\u0027interès general del pla rau en la voluntat de conformar un teixit urbà que doni resposta a les demandes actuals de la ciutadania, emmarcat en una estratègia d\u0027optimització i racionalització de l\u0027ús del sòl que permeti la reactivació de l\u0027activitat econòmica, fomentant la mixtura d\u0027usos i la vitalitat d\u0027aquest sector de la ciutat. L\u0027alternativa de mantenir el planejament vigent comporta el risc que aquestes porcions de sòl restin buides d\u0027activitat, perjudicant el dinamisme i la cohesió urbana."
+           }
 }

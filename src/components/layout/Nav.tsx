@@ -1,37 +1,50 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const LOCALES = ["ca", "es", "en"] as const;
 
-function localizeHref(href: string, locale: string): string {
-  return `/${locale}${href}`;
+const MENU = {
+  ca: [
+    { label: "Projectes", href: "/projectes" },
+    { label: "Directori visual", href: "/directori" },
+    { label: "Directori territorial", href: "/mapa" },
+    { label: "Mètode", href: "/principis" },
+    { label: "Persones", href: "/equip" },
+    { label: "Contacte", href: "/contacte" },
+  ],
+  es: [
+    { label: "Proyectos", href: "/projectes" },
+    { label: "Directorio visual", href: "/directori" },
+    { label: "Directorio territorial", href: "/mapa" },
+    { label: "Método", href: "/principis" },
+    { label: "Personas", href: "/equip" },
+    { label: "Contacto", href: "/contacte" },
+  ],
+  en: [
+    { label: "Projects", href: "/projectes" },
+    { label: "Visual directory", href: "/directori" },
+    { label: "Territorial directory", href: "/mapa" },
+    { label: "Method", href: "/principis" },
+    { label: "People", href: "/equip" },
+    { label: "Contact", href: "/contacte" },
+  ],
+};
+
+function localizeHref(href: string, locale: string) {
+  return `/${locale}${href === "/" ? "" : href}`;
 }
 
-const ESTUDIO_LINKS = [
-  { label: "Persones",       href: "/persones"       },
-  { label: "Principis",      href: "/principis"      },
-  { label: "Premis",         href: "/premis"         },
-  { label: "Col·laboradors", href: "/collaboradors"  },
-];
-
-const MAIN_LINKS = [
-  { label: "Mapa",     href: "/mapa"     },
-  { label: "Contacte", href: "/contacte" },
-];
-
-function LangSelector({ currentLocale, onSwitch }: { currentLocale: string; onSwitch: (l: string) => void }) {
+function LanguageSelector({ locale, onSwitch }: { locale: string; onSwitch: (locale: string) => void }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "6px", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em" }}>
-      {LOCALES.map((loc, i) => (
-        <span key={loc} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <button onClick={() => onSwitch(loc)} style={{ fontSize: "11px", letterSpacing: "0.08em", fontWeight: currentLocale === loc ? 700 : 400, color: currentLocale === loc ? "#000" : "#aaa", background: "none", border: "none", padding: 0, cursor: "pointer", textTransform: "uppercase" }}>
-            {loc}
-          </button>
-          {i < LOCALES.length - 1 && <span style={{ color: "#ddd" }}>/</span>}
+    <div className="pu-language-selector" aria-label="Language">
+      {LOCALES.map((item, index) => (
+        <span key={item}>
+          <button type="button" className={locale === item ? "is-active" : ""} onClick={() => onSwitch(item)}>{item}</button>
+          {index < LOCALES.length - 1 && <i>/</i>}
         </span>
       ))}
     </div>
@@ -39,205 +52,122 @@ function LangSelector({ currentLocale, onSwitch }: { currentLocale: string; onSw
 }
 
 export default function Nav({ locale }: { locale: string }) {
-  const [menuOpen,   setMenuOpen]   = useState(false);
-  const [studioOpen, setStudioOpen] = useState(false);
-  const studioTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const currentLocale = locale;
-  const pathname      = usePathname();
-  const router        = useRouter();
-
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
   const cleanPath = pathname.replace(/^\/(ca|es|en)/, "") || "/";
-  const isHome    = cleanPath === "/";
-  const isArchive = cleanPath.startsWith("/projectes");
+  const isHome = cleanPath === "/";
+  const links = MENU[locale as keyof typeof MENU] ?? MENU.ca;
 
-  function switchLocale(newLocale: string) {
-    const newPath = pathname.replace(/^\/(ca|es|en)/, "") || "/";
-    router.push(`/${newLocale}${newPath}`);
-    setMenuOpen(false);
-  }
+  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
-  function onStudioEnter() { clearTimeout(studioTimer.current); setStudioOpen(true); }
-  function onStudioLeave() { studioTimer.current = setTimeout(() => setStudioOpen(false), 150); }
-
-  const isActive = (href: string) => cleanPath === href || cleanPath.startsWith(href + "/");
-  const studioActive = ESTUDIO_LINKS.some(l => isActive(l.href));
-
-  /* On home page: only a floating hamburger button, no bar */
-  if (isHome) {
-    return (
-      <>
-        <button
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Menú"
-          style={{
-            position: "fixed", top: "24px", right: "32px", zIndex: 60,
-            background: "none", border: "none", cursor: "pointer",
-            display: "flex", flexDirection: "column", alignItems: "center",
-            justifyContent: "center", width: "28px", height: "28px",
-          }}
-        >
-          {menuOpen
-            ? <span style={{ fontSize: "24px", lineHeight: 1, color: "#000", userSelect: "none" }}>×</span>
-            : <span style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
-                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
-                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
-              </span>
-          }
-        </button>
-
-        {menuOpen && (
-          <div style={{ position: "fixed", inset: 0, zIndex: 55, background: "#fff", fontFamily: "var(--font-sans)", overflowY: "auto" }}>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "32px", minHeight: "100vh" }}>
-              <nav style={{ display: "flex", flexDirection: "column", paddingTop: "60px" }}>
-                <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb", fontFamily: "var(--font-mono)", marginBottom: "12px" }}>Estudi</span>
-                {ESTUDIO_LINKS.map(({ label, href }) => (
-                  <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
-                    style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
-                    {label}
-                  </Link>
-                ))}
-                <div style={{ height: "20px" }} />
-                {MAIN_LINKS.map(({ label, href }) => (
-                  <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
-                    style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
-                    {label}
-                  </Link>
-                ))}
-                <div style={{ height: "24px" }} />
-                <div style={{ display: "flex", gap: "20px", alignItems: "center", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
-                  <Link href={localizeHref("/projectes", locale)} onClick={() => setMenuOpen(false)}
-                    style={{ color: "#999", textDecoration: "none" }}>Arxiu de projectes</Link>
-                </div>
-              </nav>
-              <div style={{ marginTop: "40px" }}>
-                <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} />
-              </div>
-            </div>
-          </div>
-        )}
-      </>
-    );
-  }
+  const switchLocale = (nextLocale: string) => {
+    router.push(localizeHref(cleanPath, nextLocale));
+    setOpen(false);
+  };
 
   return (
     <>
-      <style>{`
-        .pu-nav-a { text-decoration: none; white-space: nowrap; }
-        .pu-nav-a:hover { color: #000 !important; }
-        .pu-studio-item { display: block; padding: 10px 16px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #000; text-decoration: none; }
-        .pu-studio-item:hover { background: #f7f6f3; }
-        @media (min-width: 1024px) { .pu-hide-lg { display: none !important; } }
-        @media (max-width: 1023px) { .pu-show-lg { display: none !important; } }
-      `}</style>
-
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "#fff", borderBottom: "1px solid #1a1a1a", height: "88px", fontFamily: "var(--font-sans)" }}>
-        <div style={{ display: "flex", alignItems: "center", height: "100%", padding: "0 32px" }}>
-
-          {/* Logo */}
-          <Link href={localizeHref("/", locale)} onClick={() => setMenuOpen(false)} style={{ flexShrink: 0 }}>
-            <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={360} height={90}
-              style={{ width: "clamp(160px, 20vw, 210px)", height: "auto", objectFit: "contain" }} priority />
+      {!isHome && (
+        <header className="pu-site-header">
+          <Link href={localizeHref("/", locale)} className="pu-header-logo" aria-label="Peralta Urbanisme — Home">
+            <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={360} height={90} priority />
           </Link>
-
-          {/* Desktop center nav */}
-          <div className="pu-show-lg" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "32px" }}>
-
-            {/* Estudio dropdown */}
-            <div style={{ position: "relative" }} onMouseEnter={onStudioEnter} onMouseLeave={onStudioLeave}>
-              <button className="pu-nav-a" style={{ fontSize: "12px", fontWeight: studioActive ? 700 : 600, letterSpacing: "0.08em", textTransform: "uppercase", color: studioActive ? "#000" : "#777", background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: "4px" }}>
-                Estudi <span style={{ fontSize: "8px", opacity: 0.6, marginTop: "1px" }}>▾</span>
-              </button>
-              {studioOpen && (
-                <div style={{ position: "absolute", top: "calc(100% + 18px)", left: "50%", transform: "translateX(-50%)", background: "#fff", border: "1px solid #e8e8e8", minWidth: "190px", zIndex: 100, boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
-                  {ESTUDIO_LINKS.map(({ label, href }) => (
-                    <Link key={href} href={localizeHref(href, locale)} onClick={() => setStudioOpen(false)}
-                      className="pu-studio-item" style={{ fontWeight: isActive(href) ? 700 : 400 }}>
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {MAIN_LINKS.map(({ label, href }) => (
-              <Link key={href} href={localizeHref(href, locale)} className="pu-nav-a"
-                style={{ fontSize: "12px", fontWeight: isActive(href) ? 700 : 600, letterSpacing: "0.08em", textTransform: "uppercase", color: isActive(href) ? "#000" : "#777" }}>
-                {label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginLeft: "auto" }}>
-
-            {/* Visual | Arxiu switcher — desktop */}
-            <div className="pu-show-lg" style={{ display: "flex", alignItems: "center", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em", borderLeft: "1px solid #e8e8e8", paddingLeft: "20px" }}>
-              <Link href={localizeHref("/", locale)}
-                style={{ padding: "2px 8px", fontWeight: !isArchive ? 700 : 400, color: !isArchive ? "#000" : "#aaa", textDecoration: "none", borderRight: "1px solid #ddd" }}>
-                Visual
-              </Link>
-              <Link href={localizeHref("/projectes", locale)}
-                style={{ padding: "2px 8px", fontWeight: isArchive ? 700 : 400, color: isArchive ? "#000" : "#aaa", textDecoration: "none" }}>
-                Arxiu
-              </Link>
-            </div>
-
-            {/* Language — desktop */}
-            <div className="pu-show-lg">
-              <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} />
-            </div>
-
-            {/* Hamburger */}
-            <button onClick={() => setMenuOpen(o => !o)} aria-label="Menú"
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "24px", height: "24px" }}>
-              {menuOpen
-                ? <span style={{ fontSize: "22px", lineHeight: 1, userSelect: "none" }}>×</span>
-                : <span style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-                    <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
-                    <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
-                    <span style={{ display: "block", width: "20px", height: "1px", background: "#000" }} />
-                  </span>
-              }
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile overlay */}
-      {menuOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 40, background: "#fff", paddingTop: "88px", fontFamily: "var(--font-sans)", overflowY: "auto" }}>
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "32px", minHeight: "calc(100vh - 88px)" }}>
-            <nav style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb", fontFamily: "var(--font-mono)", marginBottom: "12px" }}>Estudi</span>
-              {ESTUDIO_LINKS.map(({ label, href }) => (
-                <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
-                  style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
-                  {label}
-                </Link>
-              ))}
-              <div style={{ height: "20px" }} />
-              {MAIN_LINKS.map(({ label, href }) => (
-                <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
-                  style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
-                  {label}
-                </Link>
-              ))}
-              <div style={{ height: "24px" }} />
-              <div style={{ display: "flex", gap: "20px", alignItems: "center", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
-                <Link href={localizeHref("/", locale)} onClick={() => setMenuOpen(false)}
-                  style={{ color: "#999", textDecoration: "none" }}>Visual</Link>
-                <span style={{ color: "#ddd" }}>·</span>
-                <Link href={localizeHref("/projectes", locale)} onClick={() => setMenuOpen(false)}
-                  style={{ color: "#999", textDecoration: "none" }}>Arxiu</Link>
-              </div>
-            </nav>
-            <div style={{ marginTop: "40px" }}>
-              <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} />
-            </div>
-          </div>
-        </div>
+          <LanguageSelector locale={locale} onSwitch={switchLocale} />
+        </header>
       )}
+
+      <button
+        type="button"
+        className={`pu-profile-trigger ${open ? "is-open" : ""} ${isHome ? "is-home" : ""}`}
+        onClick={() => setOpen((current) => !current)}
+        aria-label={open ? "Tancar menú" : "Obrir menú"}
+        aria-expanded={open}
+        aria-controls="pu-main-menu"
+      >
+        <span />
+      </button>
+
+      {open && <button type="button" className="pu-menu-backdrop" onClick={() => setOpen(false)} aria-label="Tancar menú" />}
+
+      <aside id="pu-main-menu" className={`pu-menu-panel ${open ? "is-open" : ""}`} aria-hidden={!open}>
+        <div className="pu-menu-top">
+          <Link href={localizeHref("/", locale)} onClick={() => setOpen(false)}>
+            <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={360} height={90} />
+          </Link>
+          <span>Menu</span>
+        </div>
+
+        <nav className="pu-menu-links" aria-label="Main navigation">
+          {links.map((link, index) => {
+            const active = cleanPath === link.href || cleanPath.startsWith(`${link.href}/`);
+            return (
+              <Link key={link.href} href={localizeHref(link.href, locale)} className={active ? "is-active" : ""} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+                <small>{String(index + 1).padStart(2, "0")}</small>
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="pu-menu-bottom">
+          <LanguageSelector locale={locale} onSwitch={switchLocale} />
+          <span>Peralta Urbanisme</span>
+        </div>
+      </aside>
+
+      <style>{`
+        .pu-site-header { position: fixed; inset: 0 0 auto; z-index: 200; height: var(--header-height); padding: 0 var(--margin-page); display: flex; align-items: center; justify-content: space-between; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+        .pu-header-logo { display: block; width: clamp(184px, 22vw, 240px); transform: translateX(-14%); }
+        .pu-header-logo img, .pu-menu-top img { display: block; width: 100%; height: auto; }
+        .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-mono); font-size: var(--size-meta); letter-spacing: .08em; text-transform: uppercase; }
+        .pu-language-selector span { display: flex; align-items: center; gap: 6px; }
+        .pu-language-selector button { border: 0; padding: 0; background: none; color: var(--color-gray-mid); font: inherit; text-transform: inherit; cursor: pointer; }
+        .pu-language-selector button.is-active { color: var(--color-fg); font-weight: 700; }
+        .pu-language-selector i { color: var(--color-faint); font-style: normal; }
+        .pu-profile-trigger { position: fixed; top: 34px; right: var(--margin-page); z-index: 360; width: 22px; height: 22px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+        .pu-profile-trigger.is-home { top: 27px; }
+        .pu-profile-trigger span { display: block; width: 18px; height: 18px; margin: 2px; border: 1px solid var(--color-fg); border-radius: 50%; background: var(--color-fg); transition: transform var(--dur-mid) var(--ease-smooth), background var(--dur-fast); }
+        .pu-profile-trigger:hover span { transform: scale(.82); }
+        .pu-profile-trigger.is-open span { background: var(--color-bg); transform: scale(.72); }
+        .pu-menu-backdrop { position: fixed; inset: 0; z-index: 320; border: 0; background: rgba(0,0,0,.16); cursor: default; }
+        .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 40vw; min-width: 430px; padding: 28px var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); border-right: 1px solid var(--color-border); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
+        .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
+        .pu-menu-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 26px; border-bottom: 1px solid var(--color-border); }
+        .pu-menu-top a { width: clamp(150px, 15vw, 205px); }
+        .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; }
+        .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
+        .pu-menu-links a { display: grid; grid-template-columns: 32px 1fr; align-items: baseline; gap: 12px; padding: 8px 0; color: var(--color-fg); text-decoration: none; }
+        .pu-menu-links small { color: var(--color-gray-mid); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; }
+        .pu-menu-links span { position: relative; width: fit-content; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
+        .pu-menu-links span::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform var(--dur-mid) var(--ease-smooth); }
+        .pu-menu-links a:hover span::after, .pu-menu-links a.is-active span::after { transform: scaleX(1); transform-origin: left; }
+        .pu-menu-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--color-border); }
+        .pu-menu-bottom .pu-language-selector { margin: 0; }
+        @media (max-width: 768px) {
+          .pu-site-header { padding: 0 var(--margin-mobile); }
+          .pu-site-header > .pu-language-selector { display: none; }
+          .pu-profile-trigger { right: var(--margin-mobile); }
+          .pu-menu-panel { width: 100vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }
+          .pu-menu-links span { font-size: clamp(30px, 10vw, 46px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pu-menu-panel, .pu-profile-trigger span, .pu-menu-links span::after { transition-duration: 0ms; }
+        }
+      `}</style>
     </>
   );
 }

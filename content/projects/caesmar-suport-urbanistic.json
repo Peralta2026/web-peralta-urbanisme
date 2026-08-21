@@ -1,65 +1,65 @@
 {
-  "slug":  "caesmar-suport-urbanistic",
-  "coverImage":  "imatges_power_page-0001.jpg",
-  "images":  [
-         "imatges_power_page-0001.jpg",
-         "imatges_power_page-0002.jpg",
-         "imatges_power_page-0003.jpg",
-         "imatges_power_page-0004.jpg",
-         "imatges_power_page-0005.jpg",
-         "imatges_power_page-0006.jpg",
-         "imatges_power_page-0007.jpg",
-         "imatges_power_page-0008.jpg",
-         "imatges_power_page-0009.jpg",
-         "imatges_power_page-0010.jpg"
-       ],
-  "tags":  [
+    "slug":  "caesmar-suport-urbanistic",
+    "coverImage":  "imatges_power_page-0001.jpg",
+    "images":  [
+                   "imatges_power_page-0001.jpg",
+                   "imatges_power_page-0002.jpg",
+                   "imatges_power_page-0003.jpg",
+                   "imatges_power_page-0004.jpg",
+                   "imatges_power_page-0005.jpg",
+                   "imatges_power_page-0006.jpg",
+                   "imatges_power_page-0007.jpg",
+                   "imatges_power_page-0008.jpg",
+                   "imatges_power_page-0009.jpg",
+                   "imatges_power_page-0010.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Caesmar Suport Urbanístic",
-       "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
-       "year":  "2025",
-       "status":  "Sector",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  17000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
-       "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
-     },
-  "es":  {
-       "title":  "Caesmar Suport Urbanístic",
-       "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
-       "year":  "2025",
-       "status":  "Sector",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  17000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
-       "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
-     },
-  "en":  {
-       "title":  "Caesmar Suport Urbanístic",
-       "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
-       "year":  "2025",
-       "status":  "Sector",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  17000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
-       "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.271385613202966,
+                        "lng":  1.9983890217116866
+                    },
+    "ca":  {
+               "title":  "Caesmar Suport Urbanístic",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  17000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
+               "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
+           },
+    "es":  {
+               "title":  "Caesmar Suport Urbanístic",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  17000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
+               "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
+           },
+    "en":  {
+               "title":  "Caesmar Suport Urbanístic",
+               "municipality":  "Castelldefels / Gavà (a cavall de dos municipis)",
+               "year":  "2025",
+               "status":  "Sector",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  17000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de consolidació de la cartografia cadastral georeferenciada de la propietat del Càmping Estrella de Mar, situat a cavall dels termes municipals de Castelldefels i Gavà. El treball analitza les discrepàncies entre els límits parcel·laris cadastrals i la realitat topogràfica de l\u0027àmbit (~17.000 m²) i proposa un ajust dels límits parcel·laris per adequar la cartografia cadastral a la situació fàctica del càmping, a partir de sis propostes de modificació puntual.",
+               "descriptionLong":  "El Càmping Estrella de Mar és un equipament de turisme i lleure situat a cavall dels termes municipals de Castelldefels i Gavà. La seva propietat, d\u0027una extensió aproximada de 17.000 m², compta amb una estructura parcel·lària cadastral complexa, resultat de la superposició de límits municipals, parcel·les en subarrendament i modificacions puntuals derivades de projectes anteriors, entre els quals el Projecte de Normalització Legal del 2009.\n\nL\u0027encàrrec de Peralta Urbanisme per al Càmping Estrella de Mar —identificat com a suport tècnic d\u0027assessorament urbanístic— consisteix en l\u0027elaboració i la consolidació de la cartografia cadastral georeferenciada de la propietat, i en l\u0027estudi i l\u0027ajust dels límits parcel·laris. L\u0027objectiu és identificar les discrepàncies entre la realitat topogràfica i el registre cadastral vigent, i proposar les correccions necessàries per adequar la cartografia a la situació fàctica del terreny.\n\nEl treball s\u0027organitza en dues fases. La primera, d\u0027anàlisi, comprèn la representació de l\u0027estructura de la propietat a partir de les dades cadastrals: les parcel·les íntegres del càmping, les parcel·les en subarrendament, aquelles que presenten errors per canvi del límit de terme municipal i les que han estat modificades per projectes puntuals anteriors. A continuació, es fa la comparativa entre els límits reals obtinguts per aixecament topogràfic i els límits parcel·laris del cadastre, distingint els trams en què el límit real queda dins de la parcel·la cadastral i aquells en què cau fora.\n\nLa segona fase, de proposta, presenta sis propostes de modificació puntual dels límits parcel·laris (fulls F.1 a F.6, escala 1:500), que ajusten el cadastre a la realitat física del càmping i resolen les inconsistències detectades. La documentació gràfica —elaborada a escales 1:2.000 i 1:500 sobre ortofoto— permet visualitzar amb precisió l\u0027abast de les discrepàncies i la solució proposada per a cada tram."
+           }
 }

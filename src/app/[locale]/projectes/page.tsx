@@ -10,6 +10,7 @@ export default async function ProjectesPage({
 }) {
   const { locale } = await params;
   const projects = getAllProjects();
+  const title = locale === "es" ? "Proyectos" : locale === "en" ? "Projects" : "Projectes";
 
   return (
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
@@ -21,7 +22,7 @@ export default async function ProjectesPage({
             Arxiu
           </p>
           <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: 0 }}>
-            {projects.length} Projectes
+            {title}
           </h1>
         </div>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "15px", lineHeight: 1.5, color: "#666", maxWidth: "480px", margin: 0 }}>

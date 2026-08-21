@@ -1,67 +1,67 @@
 {
-  "slug":  "calaf-nucli-antic",
-  "coverImage":  "1.jpg",
-  "images":  [
-         "1.jpg",
-         "14.jpg",
-         "15.jpg",
-         "16.jpg",
-         "17.jpg",
-         "2.jpg",
-         "3.jpg",
-         "4.jpg",
-         "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram 2.jpg",
-         "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram estat actual.jpg",
-         "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram full color.jpg",
-         "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram.jpg"
-       ],
-  "tags":  [
+    "slug":  "calaf-nucli-antic",
+    "coverImage":  "1.jpg",
+    "images":  [
+                   "1.jpg",
+                   "14.jpg",
+                   "15.jpg",
+                   "16.jpg",
+                   "17.jpg",
+                   "2.jpg",
+                   "3.jpg",
+                   "4.jpg",
+                   "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram 2.jpg",
+                   "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram estat actual.jpg",
+                   "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram full color.jpg",
+                   "ANELLA VERDA CALAF - 2024-03-12 v1 BN instagram.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Calaf Nucli Antic",
-       "municipality":  "Calaf",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
-       "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
-     },
-  "es":  {
-       "title":  "Calaf Nucli Antic",
-       "municipality":  "Calaf",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
-       "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
-     },
-  "en":  {
-       "title":  "Calaf Nucli Antic",
-       "municipality":  "Calaf",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
-       "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.73257796812215,
+                        "lng":  1.5144811070239792
+                    },
+    "ca":  {
+               "title":  "Calaf Nucli Antic",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
+               "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
+           },
+    "es":  {
+               "title":  "Calaf Nucli Antic",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
+               "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
+           },
+    "en":  {
+               "title":  "Calaf Nucli Antic",
+               "municipality":  "Calaf",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Estudi de diagnosi i estratègies (DI_ES) per als sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027execució en el sòl urbà no consolidat de Calaf. Els nou àmbits, que sumen 6,5 hectàrees i 64.685 m²st residencials previstos al POUM de 2006, es revisen per millorar-ne la viabilitat econòmica en el context actual. El treball, encarregat per la Diputació de Barcelona, proposa alternatives d\u0027ordenació articulades des de tres aproximacions: teixits, mobilitat i verd urbà.",
+               "descriptionLong":  "Calaf, capital de la subcomarca de l\u0027Alta Segarra, s\u0027assenta sobre un altiplà calcari a 700 metres d\u0027altitud, al bell mig de la Catalunya central. Amb 3.597 habitants (2021) i 9,22 km² de superfície, és el nucli vertebrador d\u0027un sistema de petits assentaments rurals que orbiten al seu voltant.\n\nEl planejament urbanístic municipal vigent (POUM, 2006) va preveure sis polígons d\u0027actuació urbanística (PA1 a PA6) i tres plans de millora urbana (PMU1 a PMU3) en sòl urbà no consolidat, que en el seu conjunt sumen 6,5 hectàrees i una edificabilitat de 64.685 m²st residencials. Vint anys després de la seva delimitació, cap d\u0027aquests àmbits ha estat executat ni consolidat.\n\nL\u0027Ajuntament de Calaf, amb el suport de la Diputació de Barcelona, encarregà l\u0027estudi DI_ES (Diagnosi i Estratègies) com a instrument previ a la presa de decisió sobre quin camí ha de seguir cadascun d\u0027aquests polígons. L\u0027objectiu no és garantir l\u0027execució immediata —inviable en el context econòmic actual—, sinó millorar les condicions de viabilitat dels àmbits amb potencial i proposar la desafectació dels que s\u0027han tornat obsolets des del punt de vista del desenvolupament urbanístic sostenible.\n\nL\u0027estudi aborda l\u0027anàlisi des d\u0027una triple perspectiva temàtica: els teixits (relació morfològica entre la trama urbana i el patró agrícola periurbà), la mobilitat (estructura dels espais públics i de la xarxa vianant) i el verd urbà (articulació entre els espais lliures interns i el paisatge agrari). Cadascuna es treballa a tres escales simultànies —macroterritorial, urbana i de l\u0027àmbit concret— per garantir una visió inter-escalar coherent i transversal.\n\nL\u0027anàlisi econòmica i financera posa de manifest un mercat immobiliari aturat, on no és viable la promoció plurifamiliar als preus de mercat actuals a Calaf (752 €/m²st), i on l\u0027única producció immobiliària es redueix a habitatge unifamiliar \"a demanda\". Paral·lelament, es detecten 280 habitatges buits i un procés de regressió progressiva del casc antic, que perd vitalitat en favor del model de casa amb jardí.\n\nEl treball, redactat en dues fases —anàlisi i diagnosi, i estratègies i propostes—, conclou amb alternatives concretes per a cada polígon, orientades tant a modificacions puntuals del POUM com a una eventual revisió general del planejament. La proposta incorpora el model de la \"ferradura verda\" com a instrument per articular els polígons perimetrals amb el paisatge de l\u0027altiplà i reforçar la identitat territorial del municipi."
+           }
 }

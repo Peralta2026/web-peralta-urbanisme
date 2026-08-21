@@ -1,70 +1,70 @@
 {
-  "slug":  "can-carreres-st-boi",
-  "coverImage":  "1 (2).jpg",
-  "images":  [
-         "1 (2).jpg",
-         "1 (3).jpg",
-         "1.jpg",
-         "2 (2).jpg",
-         "2 (3).jpg",
-         "2.jpg",
-         "3 (2).jpg",
-         "3 (3).jpg",
-         "3.jpg",
-         "4 (2).jpg",
-         "4.jpg",
-         "5 (2).jpg",
-         "5.jpg",
-         "6.jpg",
-         "axonometria final v2.jpg"
-       ],
-  "tags":  [
+    "slug":  "can-carreres-st-boi",
+    "coverImage":  "1 (2).jpg",
+    "images":  [
+                   "1 (2).jpg",
+                   "1 (3).jpg",
+                   "1.jpg",
+                   "2 (2).jpg",
+                   "2 (3).jpg",
+                   "2.jpg",
+                   "3 (2).jpg",
+                   "3 (3).jpg",
+                   "3.jpg",
+                   "4 (2).jpg",
+                   "4.jpg",
+                   "5 (2).jpg",
+                   "5.jpg",
+                   "6.jpg",
+                   "axonometria final v2.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Can Carreres Sant Boi",
-       "municipality":  "Sant Boi de Llobregat",
-       "year":  "2023",
-       "status":  "Sector",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  262176,
-       "programa":  null,
-       "sostreM2":  18352,
-       "habitatges":  124,
-       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
-       "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
-     },
-  "es":  {
-       "title":  "Can Carreres Sant Boi",
-       "municipality":  "Sant Boi de Llobregat",
-       "year":  "2023",
-       "status":  "Sector",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  262176,
-       "programa":  null,
-       "sostreM2":  18352,
-       "habitatges":  124,
-       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
-       "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
-     },
-  "en":  {
-       "title":  "Can Carreres Sant Boi",
-       "municipality":  "Sant Boi de Llobregat",
-       "year":  "2023",
-       "status":  "Sector",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  262176,
-       "programa":  null,
-       "sostreM2":  18352,
-       "habitatges":  124,
-       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
-       "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.34830883897354,
+                        "lng":  2.0210579554394315
+                    },
+    "ca":  {
+               "title":  "Can Carreres Sant Boi",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  262176,
+               "programa":  null,
+               "sostreM2":  18352,
+               "habitatges":  124,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
+               "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
+           },
+    "es":  {
+               "title":  "Can Carreres Sant Boi",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  262176,
+               "programa":  null,
+               "sostreM2":  18352,
+               "habitatges":  124,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
+               "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
+           },
+    "en":  {
+               "title":  "Can Carreres Sant Boi",
+               "municipality":  "Sant Boi de Llobregat",
+               "year":  "2023",
+               "status":  "Sector",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  262176,
+               "programa":  null,
+               "sostreM2":  18352,
+               "habitatges":  124,
+               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per al sector de Can Carreres, Sant Boi de Llobregat, a la falda de la muntanya de Sant Ramon. La proposta ordena el sòl urbanitzable del sector de Can Carreres Vell (255.565 m²s) i reconeix el nucli antic rural preexistent, per un total de 124 habitatges i 18.094 m²st. El model prioritza el verd com a element ordenador, la mobilitat activa i la integració paisatgística entre el nou teixit urbà i el medi agroforestal.",
+               "descriptionLong":  "Can Carreres és un nucli rural vernacular que sobreviu al límit nord de Sant Boi de Llobregat, suspès entre l\u0027espai agroforestal de la muntanya de Sant Ramon i el teixit residencial dels barris de Pedres Blanques i Marianao. Durant dècades, el planejament metropolità vigent havia qualificat el sòl del seu entorn immediat com a urbanitzable delimitat sense que s\u0027hagués produït cap transformació, creant una situació d\u0027indefinició que qüestionava tant la identitat rural del nucli com la seva relació amb la ciutat.\n\nLa Modificació Puntual del Pla General Metropolità (MPGM) de Can Carreres proposa l\u0027ordenació definitiva del sector de Can Carreres Vell —255.565 m²s de sòl urbanitzable delimitat— integrant-lo amb el reconeixement del nucli antic com a sòl urbà (6.611 m²s). El sostre total és de 18.094 m²st: 16.000 m²st per al sector nou i 2.094 m²st per al nucli antic. El conjunt preveu 124 habitatges —86 plurifamiliars i 26 unifamiliars en filera nous, més 12 del nucli antic reconeguts— i 461 m²st de locals en planta baixa per reforçar la vida de proximitat.\n\nEl model urbanístic s\u0027estructura en tres pilars. El primer és el verd com a element ordenador: espais lliures que embolcallen el nou teixit com membranes, separant-lo del nucli antic per preservar el seu caràcter rural i vernacular; un nou parc de vora al front sud, amb vistes cap al paisatge natural; franges d\u0027equipaments de serveis ambientals de baixa intensitat que gestionen la transició al sistema forestal i la protecció contra incendis; i els jardins privats integrats com a part del paisatge.\n\nEl segon pilar és la mobilitat racional: el camí vell històric de Can Carreres —preservat com a eix estructurant de la nova trama— i la prolongació de l\u0027Avinguda de Can Carreres vers la muntanya de Sant Ramon s\u0027estableixen com a eixos prioritaris de mobilitat activa, amb la vialitat rodada reduïda a la mínima expressió necessària per a l\u0027accessibilitat de les finques.\n\nEl tercer pilar és la diversitat tipològica integrada amb el paisatge: alçades molt reduïdes, retranquejaments en façana i una combinació de tipologies plurifamiliars i unifamiliars en filera que minimitzen l\u0027impacte visual sobre la cubeta de la vall i reforcen el diàleg amb l\u0027ermita de Sant Ramon.\n\nLa MPGM s\u0027emmarca en l\u0027evolució del model territorial de Sant Boi basat en l\u0027estructura d\u0027espais lliures de l\u0027AMB (2016), afegint-hi l\u0027eix verd de Can Carreres com a nou element que vincula el delta del Llobregat amb les serres de Sant Ramon."
+           }
 }

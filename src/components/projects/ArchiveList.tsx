@@ -65,6 +65,7 @@ interface UiStrings {
   escala: string;
   clear:  string;
   empty:  string;
+  view:   string;
   col:    { project: string; municipality: string; year: string; tipus: string };
   count:  (n: number) => string;
 }
@@ -77,6 +78,7 @@ const UI: Record<Locale, UiStrings> = {
     escala: "Escala",
     clear:  "Esborrar",
     empty:  "Cap projecte coincideix amb els filtres seleccionats.",
+    view:   "Veure projecte →",
     col:    { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
     count:  (n) => `${n} projecte${n !== 1 ? "s" : ""}`,
   },
@@ -87,6 +89,7 @@ const UI: Record<Locale, UiStrings> = {
     escala: "Escala",
     clear:  "Borrar",
     empty:  "Ningún proyecto coincide con los filtros seleccionados.",
+    view:   "Ver proyecto →",
     col:    { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
     count:  (n) => `${n} proyecto${n !== 1 ? "s" : ""}`,
   },
@@ -97,6 +100,7 @@ const UI: Record<Locale, UiStrings> = {
     escala: "Scale",
     clear:  "Clear",
     empty:  "No projects match the selected filters.",
+    view:   "View project →",
     col:    { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
     count:  (n) => `${n} project${n !== 1 ? "s" : ""}`,
   },
@@ -109,6 +113,34 @@ interface Props {
   locale:   string;
 }
 
+function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; locale: Locale; viewLabel: string }) {
+  const data = project[locale];
+  const image = project.images[0] || project.coverImage;
+
+  return (
+    <div className="pu-archive-card">
+      <div className="pu-archive-card-image">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/projects/${project.slug}/${image}`} alt={data.title} loading="lazy" />
+      </div>
+      <div className="pu-archive-card-divider" />
+      <div className="pu-archive-card-copy">
+        <h3>{data.title}</h3>
+        {project.tags.length > 0 && (
+          <p className="pu-archive-card-tags">
+            {project.tags.map((tag) => TAG_LABELS[locale][tag]).join(" · ")}
+          </p>
+        )}
+        <p className="pu-archive-card-facts">
+          {[data.municipality, data.year, data.status, data.tipus].filter(Boolean).join(" · ")}
+        </p>
+        <p className="pu-archive-card-description">{data.descriptionShort}</p>
+        <Link href={localizeHref(`/projectes/${project.slug}`, locale)}>{viewLabel}</Link>
+      </div>
+    </div>
+  );
+}
+
 export default function ArchiveList({ projects, locale }: Props) {
   const loc = locale as Locale;
   const ui  = UI[loc];
@@ -117,12 +149,10 @@ export default function ArchiveList({ projects, locale }: Props) {
   const [filterTema,   setFilterTema]   = useState<string>("");
   const [filterTipus,  setFilterTipus]  = useState<string>("");
   const [filterEscala, setFilterEscala] = useState<string>("");
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
   /* Options derived from actual data */
-  const temaOptions  = useMemo(() =>
-    ALL_TAGS.filter(t => projects.some(p => p.tags.includes(t))),
-    [projects]
-  );
+  const temaOptions = ALL_TAGS;
   const tipusOptions = useMemo(() =>
     [...new Set(projects.map(p => p[loc].tipus).filter(Boolean))].sort(),
     [projects, loc]
@@ -188,7 +218,7 @@ export default function ArchiveList({ projects, locale }: Props) {
   return (
     <>
       {/* ── FILTRA PER ──────────────────────────────────────────────── */}
-      <div style={{ borderBottom: "1px solid #1a1a1a" }}>
+      <div className="pu-filter-box" style={{ borderTop: "1px solid #1a1a1a", borderBottom: "1px solid #1a1a1a", background: "#f7f7f5" }}>
 
         {/* Main bar */}
         <div style={{
@@ -196,15 +226,15 @@ export default function ArchiveList({ projects, locale }: Props) {
           display: "flex",
           alignItems: "center",
           gap: "clamp(20px, 3.5vw, 48px)",
-          minHeight: "60px",
+          minHeight: "76px",
           flexWrap: "wrap",
         }}>
 
           {/* "Filtra per:" label */}
           <span style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "10px",
-            letterSpacing: "0.18em",
+            fontSize: "11px",
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "rgba(0,0,0,0.35)",
             whiteSpace: "nowrap",
@@ -228,12 +258,11 @@ export default function ArchiveList({ projects, locale }: Props) {
                   borderBottom: isOpen ? "1.5px solid #000" : "1.5px solid transparent",
                   cursor: "pointer",
                   padding: "4px 0 2px",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  letterSpacing: "0.01em",
                   color: (isOpen || hasVal) ? "#000" : "rgba(0,0,0,0.45)",
-                  fontWeight: (isOpen || hasVal) ? 700 : 400,
+                  fontWeight: (isOpen || hasVal) ? 650 : 500,
                   transition: "color 160ms, border-color 160ms",
                   display: "flex",
                   alignItems: "center",
@@ -283,7 +312,7 @@ export default function ArchiveList({ projects, locale }: Props) {
         {activeDim && (
           <div style={{
             borderTop: "1px solid rgba(0,0,0,0.07)",
-            padding: "clamp(16px, 2.5vh, 24px) clamp(32px, 5vw, 64px)",
+            padding: "clamp(22px, 3vh, 32px) clamp(32px, 5vw, 64px) clamp(28px, 4vh, 44px)",
             display: "flex",
             gap: "clamp(8px, 1.5vw, 16px)",
             flexWrap: "wrap",
@@ -301,10 +330,10 @@ export default function ArchiveList({ projects, locale }: Props) {
                       cursor: "pointer",
                       padding: 0,
                       fontFamily: "var(--font-sans)",
-                      fontSize: "clamp(14px, 1.6vw, 18px)",
+                      fontSize: "clamp(16px, 1.7vw, 20px)",
                       letterSpacing: "-0.01em",
                       color: isSelected ? "#000" : "#999",
-                      fontWeight: isSelected ? 700 : 400,
+                      fontWeight: isSelected ? 650 : 450,
                       textDecoration: isSelected ? "underline" : "none",
                       textUnderlineOffset: "3px",
                       transition: "color 150ms, font-weight 150ms",
@@ -342,33 +371,50 @@ export default function ArchiveList({ projects, locale }: Props) {
 
             {filtered.map(project => {
               const d = project[loc];
+              const isExpanded = expandedSlug === project.slug;
               return (
-                <div
-                  key={project.slug}
-                  className="pu-archive-row"
-                  style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "16px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center", cursor: "pointer", transition: "background 120ms" }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "#f7f6f3")}
-                  onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
-                >
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500, color: "#000", letterSpacing: "-0.01em" }}>
-                    {d.title}
-                  </span>
-                  <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#666", letterSpacing: "0.02em" }}>
-                    {d.municipality}
-                  </span>
-                  <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#666" }}>
-                    {d.year}
-                  </span>
-                  <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#888", letterSpacing: "0.02em" }}>
-                    {d.tipus}
-                  </span>
-                  <Link
-                    href={localizeHref(`/projectes/${project.slug}`, locale)}
-                    style={{ fontFamily: "var(--font-mono)", fontSize: "16px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
-                    aria-label={`Obrir ${d.title}`}
+                <div key={project.slug}>
+                  <div
+                    className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isExpanded}
+                    style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center", cursor: "pointer", transition: "background 160ms" }}
+                    onClick={() => setExpandedSlug(current => current === project.slug ? null : project.slug)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setExpandedSlug(current => current === project.slug ? null : project.slug);
+                      }
+                    }}
                   >
-                    +
-                  </Link>
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: isExpanded ? 650 : 500, color: "#000", letterSpacing: "-0.01em" }}>
+                      {d.title}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                      {d.municipality}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                      {d.year}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#777" }}>
+                      {d.tipus}
+                    </span>
+                    <Link
+                      href={localizeHref(`/projectes/${project.slug}`, locale)}
+                      onClick={(event) => event.stopPropagation()}
+                      style={{ fontFamily: "var(--font-mono)", fontSize: "17px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
+                      aria-label={`Obrir ${d.title}`}
+                    >
+                      +
+                    </Link>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="pu-archive-expand">
+                      <ArchiveProjectCard project={project} locale={loc} viewLabel={ui.view} />
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -381,10 +427,107 @@ export default function ArchiveList({ projects, locale }: Props) {
       </div>
 
       <style>{`
+        .pu-archive-row:hover,
+        .pu-archive-row.is-expanded { background: #f7f7f5; }
+        .pu-archive-row:focus-visible { outline: 1px solid #111; outline-offset: -1px; }
+        .pu-archive-expand {
+          padding: 14px 0 24px;
+          border-bottom: 1px solid #111;
+          animation: pu-archive-open 420ms var(--ease-smooth) both;
+          transform-origin: top;
+        }
+        .pu-archive-card {
+          display: flex;
+          width: 100%;
+          height: clamp(400px, 48vw, 560px);
+          overflow: hidden;
+          border: 1px solid rgba(0,0,0,.12);
+          border-radius: 16px;
+          background: #fff;
+          box-shadow: 0 12px 40px rgba(0,0,0,.08);
+        }
+        .pu-archive-card-image {
+          flex: 0 0 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          padding: clamp(18px, 2.5vw, 32px);
+        }
+        .pu-archive-card-image img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+        .pu-archive-card-divider { width: 1px; flex-shrink: 0; background: rgba(0,0,0,.09); }
+        .pu-archive-card-copy {
+          flex: 1;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          padding: clamp(24px, 3vw, 42px);
+        }
+        .pu-archive-card-copy h3 {
+          margin: 0 0 14px;
+          color: #000;
+          font-family: var(--font-sans);
+          font-size: clamp(24px, 2.5vw, 38px);
+          font-weight: 700;
+          letter-spacing: -.035em;
+          line-height: 1.02;
+        }
+        .pu-archive-card-tags,
+        .pu-archive-card-facts {
+          margin: 0 0 8px;
+          overflow: hidden;
+          color: #777;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: .1em;
+          line-height: 1.45;
+          text-overflow: ellipsis;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+        .pu-archive-card-tags { color: #333; }
+        .pu-archive-card-description {
+          max-width: 620px;
+          margin: 18px 0 0;
+          overflow: hidden;
+          color: #555;
+          font-family: var(--font-sans);
+          font-size: clamp(13px, 1.15vw, 16px);
+          line-height: 1.65;
+        }
+        .pu-archive-card-copy > a {
+          align-self: flex-start;
+          margin-top: auto;
+          padding-bottom: 3px;
+          border-bottom: 1px solid #000;
+          color: #000;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: .12em;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+        @keyframes pu-archive-open {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         @media (max-width: 640px) {
           .pu-archive-row    { grid-template-columns: 1fr 32px !important; }
           .pu-archive-header { display: none !important; }
           .pu-archive-hide-sm { display: none !important; }
+          .pu-filter-box > div:first-child { padding-inline: 20px !important; }
+          .pu-archive-card { height: auto; min-height: 0; flex-direction: column; border-radius: 11px; }
+          .pu-archive-card-image { flex: none; width: 100%; height: 280px; }
+          .pu-archive-card-divider { width: 100%; height: 1px; }
+          .pu-archive-card-copy { min-height: 330px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pu-archive-expand { animation: none; }
         }
       `}</style>
     </>

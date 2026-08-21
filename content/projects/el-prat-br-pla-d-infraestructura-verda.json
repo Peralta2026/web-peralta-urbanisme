@@ -1,65 +1,65 @@
 {
-  "slug":  "el-prat-br-pla-d-infraestructura-verda",
-  "coverImage":  "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
-  "images":  [
-         "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p083.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p086.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p087.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p106.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p111.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p121.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p134.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p146.jpg",
-         "IV el prat de llobregat_documentació gràfica signat_p147.jpg"
-       ],
-  "tags":  [
+    "slug":  "el-prat-br-pla-d-infraestructura-verda",
+    "coverImage":  "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
+    "images":  [
+                   "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p083.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p086.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p087.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p106.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p111.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p121.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p134.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p146.jpg",
+                   "IV el prat de llobregat_documentació gràfica signat_p147.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
-       "municipality":  "El Prat de Llobregat",
-       "year":  "2025",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
-       "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
-     },
-  "es":  {
-       "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
-       "municipality":  "El Prat de Llobregat",
-       "year":  "2025",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
-       "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
-     },
-  "en":  {
-       "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
-       "municipality":  "El Prat de Llobregat",
-       "year":  "2025",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
-       "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.32202518420527,
+                        "lng":  2.0946996125261435
+                    },
+    "ca":  {
+               "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
+               "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
+           },
+    "es":  {
+               "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
+               "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
+           },
+    "en":  {
+               "title":  "El Prat BR Pla d\u0027Infraestructura Verda",
+               "municipality":  "El Prat de Llobregat",
+               "year":  "2025",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Pla d\u0027Infraestructura Verda del Prat de Llobregat, elaborat conjuntament amb l\u0027Àrea Metropolitana de Barcelona, Barcelona Regional i l\u0027Ajuntament. El document proposa estructurar els espais lliures del municipi —fins ara fragmentats— en un sistema urbà coherent articulat per tres paisatges identitaris (fluvial, agrari i infraestructural) i un nou sistema de travessers cívics est-oest que redefineix la relació de la ciutat amb el riu Llobregat i el delta.",
+               "descriptionLong":  "El Prat de Llobregat és l\u0027únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l\u0027aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d\u0027un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l\u0027aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d\u0027Infraestructura Verda parteix d\u0027una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d\u0027espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d\u0027organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l\u0027agrari i l\u0027infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l\u0027aigua i l\u0027índex 3/30/300 de proximitat del verd. L\u0027aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta."
+           }
 }

@@ -1,58 +1,58 @@
 {
-  "slug":  "gava-casc-antic",
-  "coverImage":  "1.jpg",
-  "images":  [
-         "1.jpg",
-         "2.jpg",
-         "3.jpg"
-       ],
-  "tags":  [
+    "slug":  "gava-casc-antic",
+    "coverImage":  "1.jpg",
+    "images":  [
+                   "1.jpg",
+                   "2.jpg",
+                   "3.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Gavà Casc Antic",
-       "municipality":  "Gavà",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  62764,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
-       "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
-     },
-  "es":  {
-       "title":  "Gavà Casc Antic",
-       "municipality":  "Gavà",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  62764,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
-       "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
-     },
-  "en":  {
-       "title":  "Gavà Casc Antic",
-       "municipality":  "Gavà",
-       "year":  "2024",
-       "status":  "Barri",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  62764,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
-       "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.30633611357442,
+                        "lng":  2.006040615296051
+                    },
+    "ca":  {
+               "title":  "Gavà Casc Antic",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  62764,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
+               "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
+           },
+    "es":  {
+               "title":  "Gavà Casc Antic",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  62764,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
+               "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
+           },
+    "en":  {
+               "title":  "Gavà Casc Antic",
+               "municipality":  "Gavà",
+               "year":  "2024",
+               "status":  "Barri",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  62764,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per a la reordenació de l\u0027entorn dels equipaments del centre de Gavà. Sobre un àmbit de 62.764 m² al casc històric, el pla intervé de manera focalitzada i estratègica en punts clau per estendre la vitalitat de la Rambla cap a espais de segona línia, reforçant travessers urbans amb noves ordenacions volumètriques que aporten activitat en planta baixa, habitatge en plantes pis, noves zones verdes i la protecció del patrimoni.",
+               "descriptionLong":  "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l\u0027estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d\u0027ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l\u0027entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d\u0027acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l\u0027estret teixit d\u0027eixample a llevant de la rambla.\n\nLa proposta s\u0027estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l\u0027espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d\u0027actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d\u0027equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d\u0027entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d\u0027activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l\u0027Ajuntament—, i una sisena unitat que localitza un edifici d\u0027allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d\u0027edificació d\u0027habitatges tradicionals anteriors al PGM, dos d\u0027ells catalogats patrimonialment, establint la qualificació de l\u0027entorn i un sostre màxim igual a l\u0027existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL\u0027ordenació detallada s\u0027introdueix amb la qualificació de zona d\u0027ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l\u0027execució posterior. L\u0027espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d\u0027activitat comercial que doti de vigilància informal els nous entorns urbans."
+           }
 }

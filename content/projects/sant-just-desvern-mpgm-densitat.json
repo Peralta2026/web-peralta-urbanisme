@@ -1,54 +1,54 @@
 {
-  "slug":  "sant-just-desvern-mpgm-densitat",
-  "coverImage":  "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
-  "images":  "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
-  "tags":  [
+    "slug":  "sant-just-desvern-mpgm-densitat",
+    "coverImage":  "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
+    "images":  "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Sant Just Desvern MPGM Densitat",
-       "municipality":  "Sant Just Desvern",
-       "year":  "2024",
-       "status":  "Municipi",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  950000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
-       "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
-     },
-  "es":  {
-       "title":  "Sant Just Desvern MPGM Densitat",
-       "municipality":  "Sant Just Desvern",
-       "year":  "2024",
-       "status":  "Municipi",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  950000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
-       "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
-     },
-  "en":  {
-       "title":  "Sant Just Desvern MPGM Densitat",
-       "municipality":  "Sant Just Desvern",
-       "year":  "2024",
-       "status":  "Municipi",
-       "tipus":  "Planejament general",
-       "premi":  null,
-       "ambitM2":  950000,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
-       "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.38269652822659,
+                        "lng":  2.0741607821294963
+                    },
+    "ca":  {
+               "title":  "Sant Just Desvern MPGM Densitat",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  950000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
+               "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
+           },
+    "es":  {
+               "title":  "Sant Just Desvern MPGM Densitat",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  950000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
+               "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
+           },
+    "en":  {
+               "title":  "Sant Just Desvern MPGM Densitat",
+               "municipality":  "Sant Just Desvern",
+               "year":  "2024",
+               "status":  "Municipi",
+               "tipus":  "Planejament general",
+               "premi":  null,
+               "ambitM2":  950000,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Modificació puntual del Pla General Metropolità per regular la densitat residencial i els usos en planta baixa a Sant Just Desvern, en les zones de nucli antic, densificació urbana, ordenació específica i edificació aïllada. La proposta permet un increment moderat del nombre d\u0027habitatges reduint el mòdul mínim de 100 a 80 m², admet la subdivisió d\u0027unifamiliars en bifamiliars i defineix una estructura d\u0027eixos comercials a protegir, tot promovent la creació d\u0027habitatge assequible.",
+               "descriptionLong":  "Sant Just Desvern és un municipi amb un patró urbà singular en el context metropolità: un nucli històric, un eixample configurat per un teixit de ciutat jardí i àrees de baixa densitat a les faldes de Collserola, amb les formes urbanes més intenses concentrades a l\u0027entorn de la Carretera Reial. Gairebé cinquanta anys després de l\u0027aprovació del Pla General Metropolità, la realitat social i habitacional ha canviat substancialment, i les determinacions vigents sobre densitat residencial no s\u0027ajusten als nous models de llar ni a les necessitats actuals d\u0027habitatge.\n\nLa modificació puntual, promoguda per l\u0027Ajuntament, actua sobre un àmbit de 87 hectàrees que comprèn sis claus urbanístiques —nucli antic (12), densificació urbana (13b), ordenació específica (18), edificació aïllada plurifamiliar (20a/9) i unifamiliar (20a/9u i 20a/10)— i s\u0027articula entorn de tres estratègies complementàries.\n\nLa primera estratègia suprimeix l\u0027índex de densitat referit als habitatges per hectàrea, considerat inadequat per al sòl urbà consolidat, i el substitueix per una densitat vinculada al sostre màxim per parcel·la. El mòdul mínim de superfície per habitatge es redueix de 100 m² a 80 m² —i a 70 m² per a habitatges de protecció—, sense incrementar el parc construït ni alterar la morfologia edificatòria identitària del municipi. En les tipologies d\u0027edificació aïllada, es permet la subdivisió dels habitatges unifamiliars en bifamiliars, o en trifamiliars sempre que un d\u0027ells sigui de protecció, facilitant l\u0027arrelament familiar i la creació d\u0027habitatge assequible en sòl urbà consolidat.\n\nLa segona estratègia defineix una estructura urbana comercial que identifica els carrers on el comerç està consolidat i en reforça la connexió amb els principals espais públics i equipaments. La Carretera Reial s\u0027estableix com a eix comercial principal, i es dibuixa una creu doble comercial que connecta el carrer de la Creu, el carrer Bonavista i la Rambla de Sant Just. Les parcel·les amb front als eixos comercials queden regulades per protegir el front comercial com a ús principal de la planta baixa.\n\nLa tercera estratègia admet la implantació de nous habitatges protegits en planta baixa, activant locals buits i augmentant l\u0027oferta d\u0027habitatge assequible, amb règim de protecció obligatori quan es derivi d\u0027un canvi d\u0027ús."
+           }
 }

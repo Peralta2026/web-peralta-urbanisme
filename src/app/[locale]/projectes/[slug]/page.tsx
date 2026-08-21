@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 import { type Locale, type TagSlug } from "@/lib/types";
 import Link from "next/link";
-import ProjectGallery from "@/components/projects/ProjectGallery";
+import ProjectEditorialGallery from "@/components/projects/ProjectEditorialGallery";
+import { getProjectImages } from "@/lib/project-images";
 
 // ─── Etiquetes per idioma ─────────────────────────────────────────────────────
 
@@ -127,6 +128,7 @@ export default async function ProjectPage({
   const nextProject = projectIndex < total - 1 ? allProjects[projectIndex + 1] : null;
 
   const data = project[loc];
+  const galleryImages = await getProjectImages(project.slug, project.images);
   const ui = UI[loc];
   const tagLabels = TAG_LABELS[loc];
   const f = ui.facts;
@@ -157,17 +159,20 @@ export default async function ProjectPage({
   return (
     <div style={{ background: "#fff", minHeight: "100vh", paddingTop: "88px" }}>
       <div
+        className="project-detail-shell"
         style={{
           maxWidth: "1440px",
           margin: "0 auto",
           padding: "0 48px 96px",
         }}
       >
+        <div className="project-detail-content">
 
         {/* ════════════════════════════════════════════════════════════════════
             BANDA CAPÇALERA — tornada esquerra · dades tècniques dreta
             ════════════════════════════════════════════════════════════════════ */}
         <div
+          className="project-detail-header"
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -195,14 +200,46 @@ export default async function ProjectPage({
             {ui.back}
           </Link>
 
-          {/* Dades tècniques com a columnes etiquetades */}
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════════
+            TÍTOL + DESCRIPCIÓ — 2 columnes iguals
+            ════════════════════════════════════════════════════════════════════ */}
+        <div
+          className="project-detail-intro"
+          style={{
+            gridTemplateColumns: "1fr 1fr",
+            columnGap: "64px",
+            marginBottom: "56px",
+            alignItems: "start",
+          }}
+        >
+          {/* Títol — esquerra, gran, pes 800 */}
+          <h1
+            style={{
+              fontFamily: sans,
+              fontSize: "clamp(32px, 3.6vw, 58px)",
+              lineHeight: 0.93,
+              fontWeight: 800,
+              letterSpacing: "-0.05em",
+              color: "#000",
+              margin: "0 0 32px 0",
+            }}
+          >
+            {data.title}
+          </h1>
+
+          {/* Dades tècniques — immediatament sota el títol */}
           <dl
+            className="project-detail-facts"
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: "6px 40px",
-              margin: 0,
-              justifyContent: "flex-end",
+              gap: "10px 32px",
+              margin: "0 0 32px",
+              paddingBottom: "32px",
+              borderBottom: borderLine,
+              justifyContent: "flex-start",
             }}
           >
             {facts.map(({ label, value }) => (
@@ -236,34 +273,6 @@ export default async function ProjectPage({
               </div>
             ))}
           </dl>
-        </div>
-
-        {/* ════════════════════════════════════════════════════════════════════
-            TÍTOL + DESCRIPCIÓ — 2 columnes iguals
-            ════════════════════════════════════════════════════════════════════ */}
-        <div
-          className="block md:grid"
-          style={{
-            gridTemplateColumns: "1fr 1fr",
-            columnGap: "64px",
-            marginBottom: "56px",
-            alignItems: "start",
-          }}
-        >
-          {/* Títol — esquerra, gran, pes 800 */}
-          <h1
-            style={{
-              fontFamily: sans,
-              fontSize: "clamp(32px, 3.6vw, 58px)",
-              lineHeight: 0.93,
-              fontWeight: 800,
-              letterSpacing: "-0.05em",
-              color: "#000",
-              margin: "0 0 32px 0",
-            }}
-          >
-            {data.title}
-          </h1>
 
           {/* Descripció curta — dreta, text de lectura */}
           <p
@@ -282,19 +291,10 @@ export default async function ProjectPage({
         </div>
 
         {/* ════════════════════════════════════════════════════════════════════
-            GALERIA D'IMATGES
-            ════════════════════════════════════════════════════════════════════ */}
-        <ProjectGallery
-          slug={project.slug}
-          images={project.images}
-          title={data.title}
-        />
-
-        {/* ════════════════════════════════════════════════════════════════════
             COS LLARG — tags esquerra · text central
             ════════════════════════════════════════════════════════════════════ */}
         <div
-          className="block lg:grid"
+          className="project-detail-copy"
           style={{
             gridTemplateColumns: "180px minmax(0, 700px)",
             columnGap: "64px",
@@ -355,11 +355,22 @@ export default async function ProjectPage({
             ))}
           </div>
         </div>
+        </div>
+
+        {/* Galeria editorial — columna independent */}
+        <div className="project-detail-gallery">
+          <ProjectEditorialGallery
+            slug={project.slug}
+            images={galleryImages}
+            title={data.title}
+          />
+        </div>
 
         {/* ════════════════════════════════════════════════════════════════════
             NAVEGACIÓ INFERIOR
             ════════════════════════════════════════════════════════════════════ */}
         <div
+          className="project-detail-navigation"
           style={{
             borderTop: borderLine,
             paddingTop: "24px",
@@ -422,6 +433,73 @@ export default async function ProjectPage({
             )}
           </div>
         </div>
+
+        <style>{`
+          @media (min-width: 1024px) {
+            .project-detail-shell {
+              display: grid;
+              grid-template-columns: minmax(280px, .72fr) minmax(0, 1.55fr);
+              grid-template-rows: auto auto;
+              column-gap: clamp(48px, 5vw, 88px);
+              align-items: start;
+            }
+            .project-detail-content {
+              grid-column: 1;
+              grid-row: 1;
+              display: flex;
+              flex-direction: column;
+            }
+            .project-detail-header {
+              display: contents !important;
+            }
+            .project-detail-header > a {
+              order: 1;
+              align-self: flex-start;
+              margin: 24px 0 56px;
+            }
+            .project-detail-intro {
+              order: 2;
+              display: block !important;
+              margin-bottom: 28px !important;
+            }
+            .project-detail-intro h1 {
+              font-size: clamp(38px, 3.5vw, 62px) !important;
+              line-height: .95 !important;
+            }
+            .project-detail-gallery {
+              grid-column: 2;
+              grid-row: 1;
+            }
+            .project-detail-copy {
+              order: 4;
+              display: block !important;
+              margin-bottom: 64px !important;
+            }
+            .project-detail-copy > div:first-child:not(:has(span)) {
+              display: none;
+            }
+            .project-detail-copy > div:first-child {
+              margin-bottom: 36px;
+            }
+            .project-detail-copy p {
+              font-size: 15px !important;
+              line-height: 1.58 !important;
+            }
+            .project-detail-navigation {
+              grid-column: 1 / -1;
+              grid-row: 2;
+              margin-top: 24px;
+            }
+          }
+          @media (max-width: 1023px) {
+            .project-detail-intro { display: block !important; }
+            .project-detail-copy { display: block !important; }
+          }
+          @media (max-width: 720px) {
+            .project-detail-shell { padding: 0 16px 64px !important; }
+            .project-detail-header { margin-bottom: 36px !important; }
+          }
+        `}</style>
 
       </div>
     </div>

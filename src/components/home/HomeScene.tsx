@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Project } from "@/lib/types";
+import type { Project, TagSlug } from "@/lib/types";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */
 
@@ -34,13 +34,33 @@ const CARDS_PER_STEP = 440;      // virtual px per card advance
 const N_CARDS      = FEATURED_SLUGS.length;
 const TOTAL_RANGE  = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 480+2200=2680
 
-// Damping multiplier when scrolling UP inside the cards section.
-// Small upward flicks (< ~150px delta) won't easily cross SETTLE_END.
-const CARDS_UP_DAMP = 0.22;
-
 const LERP_K = 0.08;
 
 const LOCALES = ["ca", "es", "en"] as const;
+
+const TAG_LABELS: Record<string, Record<TagSlug, string>> = {
+  ca: {
+    residencial: "Residencial", transformacio: "Transformació", extensio: "Extensió",
+    regeneracio: "Regeneració", "activitat-economica": "Activitat econòmica",
+    "infraestructura-verda": "Infraestructura verda", "integracio-infraestructures": "Integració d'infraestructures",
+    "estructura-urbana": "Estructura urbana", divulgacio: "Divulgació", "espai-public": "Espai públic",
+    "participacio-ciutadana": "Participació ciutadana", "encaixos-singulars": "Encaixos singulars",
+  },
+  es: {
+    residencial: "Residencial", transformacio: "Transformación", extensio: "Extensión",
+    regeneracio: "Regeneración", "activitat-economica": "Actividad económica",
+    "infraestructura-verda": "Infraestructura verde", "integracio-infraestructures": "Integración de infraestructuras",
+    "estructura-urbana": "Estructura urbana", divulgacio: "Divulgación", "espai-public": "Espacio público",
+    "participacio-ciutadana": "Participación ciudadana", "encaixos-singulars": "Encajes singulares",
+  },
+  en: {
+    residencial: "Residential", transformacio: "Transformation", extensio: "Extension",
+    regeneracio: "Regeneration", "activitat-economica": "Economic activity",
+    "infraestructura-verda": "Green infrastructure", "integracio-infraestructures": "Infrastructure integration",
+    "estructura-urbana": "Urban structure", divulgacio: "Outreach", "espai-public": "Public space",
+    "participacio-ciutadana": "Civic participation", "encaixos-singulars": "Singular insertions",
+  },
+};
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
@@ -56,7 +76,7 @@ const CONTENT = {
     line4: "Urbanisme estratègic per transformar la complexitat en oportunitats de ciutat.",
     links: [
       { label: "Mapa ↗",      href: "/mapa",      sub: "On treballem" },
-      { label: "Persones ↗",  href: "/persones",  sub: "Qui mira"     },
+      { label: "Persones ↗",  href: "/equip",     sub: "Qui mira"     },
       { label: "Principis ↗", href: "/principis", sub: "Com pensem"   },
     ],
     destacats: "Projectes destacats",
@@ -69,7 +89,7 @@ const CONTENT = {
     line4: "Urbanismo estratégico para transformar la complejidad en oportunidades de ciudad.",
     links: [
       { label: "Mapa ↗",       href: "/mapa",      sub: "Dónde trabajamos" },
-      { label: "Personas ↗",   href: "/persones",  sub: "Quién mira"       },
+      { label: "Personas ↗",   href: "/equip",     sub: "Quién mira"       },
       { label: "Principios ↗", href: "/principis", sub: "Cómo pensamos"    },
     ],
     destacats: "Proyectos destacados",
@@ -82,7 +102,7 @@ const CONTENT = {
     line4: "Strategic urbanism to transform complexity into city opportunities.",
     links: [
       { label: "Map ↗",        href: "/mapa",      sub: "Where we work" },
-      { label: "People ↗",     href: "/persones",  sub: "Who looks"     },
+      { label: "People ↗",     href: "/equip",     sub: "Who looks"     },
       { label: "Principles ↗", href: "/principis", sub: "How we think"  },
     ],
     destacats: "Featured projects",
@@ -94,7 +114,7 @@ const CONTENT = {
 
 function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   const STACK_REST = 8;
-  const PEAK_H     = 155;
+  const PEAK_H     = 110;
   refs.forEach((el, i) => {
     if (!el) return;
     const delta = i - dp;
@@ -175,6 +195,7 @@ function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string;
 function FeaturedCard({ project, locale }: { project: Project; locale: string }) {
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
+  const tagLabels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
   return (
     <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
       <div style={{ flex: "0 0 50%", padding: "20px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
@@ -184,12 +205,17 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,32px)", overflow: "hidden" }}>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb", margin: "0 0 14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-          {[d.municipality, d.year, d.tipus].filter(Boolean).join(" · ")}
-        </p>
         <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px,1.7vw,26px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 12px" }}>
           {d.title}
         </h3>
+        {project.tags.length > 0 && (
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#666", margin: "0 0 7px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {project.tags.map((tag) => tagLabels[tag]).join(" · ")}
+          </p>
+        )}
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", margin: "0 0 16px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {[d.municipality, d.year, d.status, d.tipus].filter(Boolean).join(" · ")}
+        </p>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,13.5px)", lineHeight: 1.7, color: "#555", margin: 0, flex: 1, overflow: "hidden" }}>
           {d.descriptionShort}
         </p>
@@ -216,6 +242,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const initialLayerRef = useRef<HTMLDivElement>(null);
   const settledLayerRef = useRef<HTMLDivElement>(null);
   const hintRef         = useRef<HTMLDivElement>(null);
+  const mosaicRef       = useRef<HTMLDivElement>(null);
   const cardsPanelRef   = useRef<HTMLDivElement>(null);
   const cardRefs        = useRef<(HTMLDivElement | null)[]>([]);
   const exploreRef      = useRef<HTMLDivElement>(null);
@@ -231,43 +258,20 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const loopH    = useRef(0);
   const leftOff  = useRef(0);
   const rightOff = useRef(0);
+  const pageY    = useRef(0);
 
   useEffect(() => {
     const imgH = window.innerHeight * IMG_H_VH;
     loopH.current    = LEFT_SRCS.length * (imgH + COL_GAP);
     rightOff.current = loopH.current * 0.4;
 
-    document.body.style.overflow = "hidden";
-
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const raw = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
-
-      // Upward scroll while firmly inside the cards section:
-      // apply heavy damping so small flicks don't accidentally return to hero.
-      // The user must make a deliberate large upward swipe to go back.
-      const inCards = vY.current > SETTLE_END + 30;
-      const goingUp = raw < 0;
-      const mult    = (inCards && goingUp) ? CARDS_UP_DAMP : 0.72;
-
-      vY.current = Math.max(0, Math.min(vY.current + raw * mult, TOTAL_RANGE));
+    const onScroll = () => {
+      pageY.current = window.scrollY;
+      vY.current = Math.max(0, Math.min(window.scrollY, TOTAL_RANGE));
     };
 
-    let t0 = 0;
-    const onTouchStart = (e: TouchEvent) => { t0 = e.touches[0].clientY; };
-    const onTouchMove  = (e: TouchEvent) => {
-      e.preventDefault();
-      const delta = t0 - e.touches[0].clientY; // positive = scroll forward
-      t0 = e.touches[0].clientY;
-      const inCards = vY.current > SETTLE_END + 30;
-      const goingUp = delta < 0;
-      const mult    = (inCards && goingUp) ? CARDS_UP_DAMP : 1.0;
-      vY.current = Math.max(0, Math.min(vY.current + delta * mult, TOTAL_RANGE));
-    };
-
-    document.addEventListener("wheel",      onWheel,      { passive: false });
-    document.addEventListener("touchstart", onTouchStart, { passive: true  });
-    document.addEventListener("touchmove",  onTouchMove,  { passive: false });
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     lastTime.current = performance.now();
 
     const tick = () => {
@@ -328,16 +332,22 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         }
       }
 
+      /* Native page exit: reveal the shared footer after the final card. */
+      const exitY = Math.max(0, pageY.current - TOTAL_RANGE);
+      if (exitY > 0) {
+        if (cardsPanelRef.current) cardsPanelRef.current.style.transform = `translateY(-${exitY.toFixed(1)}px)`;
+        if (mosaicRef.current) mosaicRef.current.style.transform = `translateY(-${exitY.toFixed(1)}px)`;
+      } else if (mosaicRef.current) {
+        mosaicRef.current.style.transform = "translateY(0)";
+      }
+
       rafId.current = requestAnimationFrame(tick);
     };
     rafId.current = requestAnimationFrame(tick);
 
     return () => {
-      document.removeEventListener("wheel",      onWheel);
-      document.removeEventListener("touchstart", onTouchStart);
-      document.removeEventListener("touchmove",  onTouchMove);
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId.current);
-      document.body.style.overflow = "";
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -351,7 +361,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       `}</style>
 
       {/* ── MOSAIC z=5 ──────────────────────────────────────────────────────── */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 5, background: "#fff", display: "flex", gap: `${STRIP_GAP}px` }}>
+      <div ref={mosaicRef} style={{ position: "fixed", inset: 0, zIndex: 5, background: "#fff", display: "flex", gap: `${STRIP_GAP}px`, willChange: "transform" }}>
         <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
           <div ref={leftColRef} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", gap: `${COL_GAP}px` }}>
             {[...LEFT_SRCS, ...LEFT_SRCS].map((src, i) => (
@@ -375,11 +385,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       </div>
 
       {/* ── FIXED LOGO z=100 — persists across all sections ─────────────────── */}
-      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "20px", zIndex: 100, opacity: 0, pointerEvents: "auto" }}>
+      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto", transform: "translateX(-14%)" }}>
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ width: "clamp(150px,18vw,220px)", height: "auto", display: "block" }} />
+            style={{ width: "clamp(184px,22vw,240px)", height: "auto", display: "block" }} />
         </Link>
       </div>
 
@@ -396,11 +406,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         }}
       >
         {/* ── Header: big editorial title + counter ── */}
-        <div style={{ flexShrink: 0, padding: "68px 20px 0" }}>
+        <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(34px, 4vh, 52px)", position: "relative", zIndex: 2000, background: "#fff" }}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "12px", marginBottom: "10px" }}>
             <h2 style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(34px,5.2vw,72px)",
+              fontSize: "clamp(28px,3.6vw,52px)",
               fontWeight: 700,
               letterSpacing: "-0.04em",
               lineHeight: 1,
@@ -434,9 +444,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               ref={el => { cardRefs.current[i] = el; }}
               style={{
                 position: "absolute",
-                top: "50%", left: "50%",
+                top: "calc(50% + clamp(36px, 6vh, 64px))", left: "50%",
                 width: "min(calc(100% - 40px), 1040px)",
-                height: "min(calc(100% - 12px), 560px)",
+                height: "min(calc(100% - 96px), 560px)",
                 transformOrigin: "center center",
                 willChange: "transform, filter",
                 visibility: i <= 2 ? "visible" : "hidden",
@@ -539,6 +549,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </span>
         </div>
       </div>
+
+      {/* Real scroll space: after the animation, normal page flow reveals the footer. */}
+      <div aria-hidden="true" style={{ height: `calc(100vh + ${TOTAL_RANGE}px)`, pointerEvents: "none" }} />
     </>
   );
 }

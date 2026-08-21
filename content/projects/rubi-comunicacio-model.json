@@ -1,65 +1,65 @@
 {
-  "slug":  "rubi-comunicacio-model",
-  "coverImage":  "1.0_VISTA GENERAL v2_LOW.jpg",
-  "images":  [
-         "1.0_VISTA GENERAL v2_LOW.jpg",
-         "1.0_VISTA GENERAL_ VERTICAL.jpg",
-         "1.1.0_VISTA GENERAL_ VERTICAL I HORITZONTAL.jpg",
-         "1.1.1_VISTA GENERAL.jpg",
-         "3_Riera de rubi_Vapor nou_proposta .jpg",
-         "4_Riera de rubi_AJUNTAMENT_proposta.jpg",
-         "5_Riera de rubi_Estació la Llana_proposta_vista peu .jpg",
-         "7_Av. estatut_Bombonera_ vista proposta _ Vista Carrer .jpg",
-         "ESTRUCTURA URBANA RUBI copia 2.jpg",
-         "ESTRUCTURA URBANA RUBI copia.jpg"
-       ],
-  "tags":  [
+    "slug":  "rubi-comunicacio-model",
+    "coverImage":  "1.0_VISTA GENERAL v2_LOW.jpg",
+    "images":  [
+                   "1.0_VISTA GENERAL v2_LOW.jpg",
+                   "1.0_VISTA GENERAL_ VERTICAL.jpg",
+                   "1.1.0_VISTA GENERAL_ VERTICAL I HORITZONTAL.jpg",
+                   "1.1.1_VISTA GENERAL.jpg",
+                   "3_Riera de rubi_Vapor nou_proposta .jpg",
+                   "4_Riera de rubi_AJUNTAMENT_proposta.jpg",
+                   "5_Riera de rubi_Estació la Llana_proposta_vista peu .jpg",
+                   "7_Av. estatut_Bombonera_ vista proposta _ Vista Carrer .jpg",
+                   "ESTRUCTURA URBANA RUBI copia 2.jpg",
+                   "ESTRUCTURA URBANA RUBI copia.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Rubí Comunicació",
-       "municipality":  "Rubí",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Altres",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
-       "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
-     },
-  "es":  {
-       "title":  "Rubí Comunicació",
-       "municipality":  "Rubí",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Altres",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
-       "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
-     },
-  "en":  {
-       "title":  "Rubí Comunicació",
-       "municipality":  "Rubí",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Altres",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
-       "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.497109729512616,
+                        "lng":  2.034977717857918
+                    },
+    "ca":  {
+               "title":  "Rubí Comunicació",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
+               "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
+           },
+    "es":  {
+               "title":  "Rubí Comunicació",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
+               "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
+           },
+    "en":  {
+               "title":  "Rubí Comunicació",
+               "municipality":  "Rubí",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Altres",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de comunicació del model urbà de Rubí (desembre 2022) que presenta la proposta de transformació dels principals eixos cívics de la ciutat: la Riera de Rubí i l\u0027Avinguda de l\u0027Estatut. L\u0027instrument articula 10 intervencions específiques de millora de l\u0027espai públic —incloent el Balcó Riera, el Vapor Nou, la nova Estació de la Llana i quatre trams de l\u0027Avinguda— en el marc d\u0027una Zona de Baixes Emissions i un entorn pacificat.",
+               "descriptionLong":  "El document \"Riera de Rubí - Avinguda de l\u0027Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l\u0027espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d\u0027una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s\u0027identifiquen quatre àmbits d\u0027actuació: el Balcó Riera, en l\u0027entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s\u0027encadenen al llarg del corredor fluvial.\n\nL\u0027Avinguda de l\u0027Estatut s\u0027aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s\u0027emmarquen en la definició d\u0027una Zona de Baixes Emissions que actua com a paraigua del model. S\u0027hi afegeix la proposta per a l\u0027Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s\u0027integren en un model coherent de transformació dels espais públics de Rubí."
+           }
 }

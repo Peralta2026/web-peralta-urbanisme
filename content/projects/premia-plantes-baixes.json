@@ -1,68 +1,68 @@
 {
-  "slug":  "premia-plantes-baixes",
-  "coverImage":  "1.jpg",
-  "images":  [
-         "1.jpg",
-         "2.jpg",
-         "3.jpg",
-         "4.jpg",
-         "5.jpg",
-         "6.jpg",
-         "7.jpg",
-         "Premià de mar - 2022 - 01.jpg",
-         "Premià de mar - 2022 - 02.jpg",
-         "Premià de mar - 2022 - 03.jpg",
-         "Premià de mar - 2022 - 04.jpg",
-         "Premià de mar - 2022 - 05.jpg",
-         "Premià de mar - 2022 - 06.jpg"
-       ],
-  "tags":  [
+    "slug":  "premia-plantes-baixes",
+    "coverImage":  "1.jpg",
+    "images":  [
+                   "1.jpg",
+                   "2.jpg",
+                   "3.jpg",
+                   "4.jpg",
+                   "5.jpg",
+                   "6.jpg",
+                   "7.jpg",
+                   "Premià de mar - 2022 - 01.jpg",
+                   "Premià de mar - 2022 - 02.jpg",
+                   "Premià de mar - 2022 - 03.jpg",
+                   "Premià de mar - 2022 - 04.jpg",
+                   "Premià de mar - 2022 - 05.jpg",
+                   "Premià de mar - 2022 - 06.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "Premià Plantes Baixes",
-       "municipality":  "Premià de Mar",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
-       "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
-     },
-  "es":  {
-       "title":  "Premià Plantes Baixes",
-       "municipality":  "Premià de Mar",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
-       "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
-     },
-  "en":  {
-       "title":  "Premià Plantes Baixes",
-       "municipality":  "Premià de Mar",
-       "year":  "2022",
-       "status":  "Municipi",
-       "tipus":  "Estudi",
-       "premi":  null,
-       "ambitM2":  null,
-       "programa":  null,
-       "sostreM2":  null,
-       "habitatges":  null,
-       "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
-       "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.49466095619401,
+                        "lng":  2.3590349948048313
+                    },
+    "ca":  {
+               "title":  "Premià Plantes Baixes",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
+               "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
+           },
+    "es":  {
+               "title":  "Premià Plantes Baixes",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
+               "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
+           },
+    "en":  {
+               "title":  "Premià Plantes Baixes",
+               "municipality":  "Premià de Mar",
+               "year":  "2022",
+               "status":  "Municipi",
+               "tipus":  "Estudi",
+               "premi":  null,
+               "ambitM2":  null,
+               "programa":  null,
+               "sostreM2":  null,
+               "habitatges":  null,
+               "descriptionShort":  "Document de síntesi dels estudis previs per a la modificació del POUM de Premià de Mar per regular l\u0027habitatge en planta baixa a les zones de clau 11a, 11b, 12a i 12b. L\u0027estudi analitza els eixos urbans, la capacitat dels teixits i les particularitats del municipi, i proposa quatre alternatives d\u0027actuació —des d\u0027un model d\u0027espina fins a la no aplicació— per equilibrar la creació d\u0027habitatge assequible i la protecció del comerç de proximitat.",
+               "descriptionLong":  "El \"Document de síntesi\" recull els resultats dels estudis previs encarregats per l\u0027Ajuntament de Premià de Mar a la Diputació de Barcelona per preparar una eventual modificació puntual del POUM que reguli l\u0027admissió d\u0027habitatge en planta baixa en les zones de clau 11a, 11b, 12a i 12b, on la normativa actual no permet aquest ús de manera generalitzada.\n\nL\u0027estudi parteix del context d\u0027un municipi d\u0027uns 28.000 habitants amb el sòl pràcticament esgotat i unes necessitats d\u0027habitatge creixents: el Pla Local d\u0027Habitatge estima entre 747 (escenari baix) i 1.145 (escenari alt) noves llars necessàries per al 2027. El municipi presenta uns estàndards urbanístics globals baixos —6 m² de zona verda i 6 m² d\u0027equipament per persona—, especialment crítics a l\u0027àmbit central i al barri de Santa Maria. L\u0027activitat comercial, concentrada als eixos de la Gran Via de Lluís Companys, Mossèn Jacint Verdaguer, Joan Prim i Enric Granados, pateix una alta rotació i signes incipients de desertització.\n\nLa diagnosi de la Fase 1 s\u0027estructura en tres aproximacions complementàries: l\u0027anàlisi dels eixos urbans i la seva capacitat estructurant, la saturació i estàndards dels teixits de barri, i les particularitats puntuals que condicionen la proposta. Els eixos verticals (sentit mar-muntanya) presenten un 30% de locals actius i un 18% de buits; els horitzontals, un 18% d\u0027actius i un 18% de buits, amb un caràcter més residencial.\n\nLa Fase 2 proposa quatre alternatives d\u0027actuació:\n- Alternativa 1 (Model Espina): mínima protecció comercial, estructura vertebral sobre tres carrers principals i transversals; màxima generació potencial d\u0027habitatges.\n- Alternativa 2 (Model Premià Central): opció intermèdia que crea una àrea de protecció central (\"Premià Central\") i genera 387 habitatges potencials en planta baixa, amb un 50% de sòl protegit per al comerç.\n- Alternativa 3 (Model Expansiu): la més conservadora, amb un 68% de sòl protegit i 238 habitatges potencials en localitzacions perifèriques.\n- Alternativa 4: manteniment de la situació actual, sense modificar el POUM.\n\nL\u0027estudi conclou proposant una eina oberta —una matriu d\u0027intervenció— per facilitar la presa de decisions, i defensa la necessitat d\u0027equilibrar la creació d\u0027habitatge assequible amb la protecció de la vitalitat comercial del municipi."
+           }
 }

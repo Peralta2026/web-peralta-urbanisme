@@ -1,66 +1,66 @@
 {
-  "slug":  "amb-ppu-hospital-valles",
-  "coverImage":  "00_ imatge aèria HOSPITAL VALLES copia.jpg",
-  "images":  [
-         "00_ imatge aèria HOSPITAL VALLES copia.jpg",
-         "IMATGE PANORAMICA  plaça.jpg",
-         "post1.1.jpg",
-         "post1.2.jpg",
-         "post2.1.jpg",
-         "post2.2.jpg",
-         "post3.1.jpg",
-         "post3.2.jpg",
-         "TERRITORIAL FINAL.jpg",
-         "vista interior moll, jardi privat comunitari i cerdanola.jpg",
-         "vista plaça aeria  2 copia.jpg"
-       ],
-  "tags":  [
+    "slug":  "amb-ppu-hospital-valles",
+    "coverImage":  "00_ imatge aèria HOSPITAL VALLES copia.jpg",
+    "images":  [
+                   "00_ imatge aèria HOSPITAL VALLES copia.jpg",
+                   "IMATGE PANORAMICA  plaça.jpg",
+                   "post1.1.jpg",
+                   "post1.2.jpg",
+                   "post2.1.jpg",
+                   "post2.2.jpg",
+                   "post3.1.jpg",
+                   "post3.2.jpg",
+                   "TERRITORIAL FINAL.jpg",
+                   "vista interior moll, jardi privat comunitari i cerdanola.jpg",
+                   "vista plaça aeria  2 copia.jpg"
+               ],
+    "tags":  [
 
-      ],
-  "coordinates":  {
-            "lat":  0,
-            "lng":  0
-          },
-  "ca":  {
-       "title":  "AMB PPU Hospital del Vallès",
-       "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  108184,
-       "programa":  null,
-       "sostreM2":  70500,
-       "habitatges":  703,
-       "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
-       "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
-     },
-  "es":  {
-       "title":  "AMB PPU Hospital del Vallès",
-       "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  108184,
-       "programa":  null,
-       "sostreM2":  70500,
-       "habitatges":  703,
-       "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
-       "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
-     },
-  "en":  {
-       "title":  "AMB PPU Hospital del Vallès",
-       "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
-       "year":  "2024",
-       "status":  "Sector",
-       "tipus":  "Planejament derivat",
-       "premi":  null,
-       "ambitM2":  108184,
-       "programa":  null,
-       "sostreM2":  70500,
-       "habitatges":  703,
-       "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
-       "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
-     }
+             ],
+    "coordinates":  {
+                        "lat":  41.489999121322015,
+                        "lng":  2.1540662686413756
+                    },
+    "ca":  {
+               "title":  "AMB PPU Hospital del Vallès",
+               "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  108184,
+               "programa":  null,
+               "sostreM2":  70500,
+               "habitatges":  703,
+               "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
+               "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
+           },
+    "es":  {
+               "title":  "AMB PPU Hospital del Vallès",
+               "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  108184,
+               "programa":  null,
+               "sostreM2":  70500,
+               "habitatges":  703,
+               "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
+               "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
+           },
+    "en":  {
+               "title":  "AMB PPU Hospital del Vallès",
+               "municipality":  "Àmbit metropolità (Hospital del Vallès — probablement Cerdanyola/Sabadell)",
+               "year":  "2024",
+               "status":  "Sector",
+               "tipus":  "Planejament derivat",
+               "premi":  null,
+               "ambitM2":  108184,
+               "programa":  null,
+               "sostreM2":  70500,
+               "habitatges":  703,
+               "descriptionShort":  "Pla Parcial Urbanístic del sector \"Hospital del Vallès\", promogut per l\u0027Àrea Metropolitana de Barcelona en els termes municipals de Montcada i Reixac, Ripollet i Cerdanyola del Vallès. Ordena 108.184 m² de terrenys entre la N-150, el Riu Sec, la línia R4 de Rodalies i la C-58, per acollir el nou hospital, 752 habitatges —la meitat de protecció oficial— i la transformació de la N-150 en una avinguda metropolitana de 31 metres.",
+               "descriptionLong":  "El Pla Parcial Urbanístic del sector \"Hospital del Vallès\" és un instrument de planejament derivat promogut per l\u0027Àrea Metropolitana de Barcelona i presentat per a l\u0027aprovació provisional el maig de 2026. L\u0027àmbit, d\u0027una superfície total de 108.184 m², abasta terrenys de marcat caràcter suburbà situats a ambdós costats de la carretera N-150, entre el marge dret del Riu Sec, les vies del tren (línia R4 de Rodalies), la riera de Sant Cugat i l\u0027autovia C-58, repartits entre els municipis de Montcada i Reixac (60.278 m²), Cerdanyola del Vallès (23.255 m²) i Ripollet (24.651 m²).\n\nEl PPU proposa ubicar el nou hospital a la banda nord de l\u0027avinguda metropolitana i concentrar els usos residencials a la banda sud. El sostre edificable màxim és de 70.500 m²st: 56.400 m²st d\u0027ús residencial —dividit a parts iguals entre habitatge lliure (28.200 m²st) i habitatge de protecció oficial (28.200 m²st)— i 14.100 m²st d\u0027altres usos, entre els quals una residència d\u0027estudiants (9.498 m²st), comerç de gran dimensió (2.244 m²st) i comerç de petita dimensió (2.357 m²st). El pla preveu un màxim de 752 habitatges (349 de renda lliure i 403 de protecció oficial) i reserva 19.235 m² per a l\u0027equipament hospitalari, amb una previsió de 539 a 570 llits per a l\u0027horitzó 2038.\n\nL\u0027ordenació proposada incrementa significativament la proporció de sistemes respecte la situació vigent: del 60% al 75% del sòl total. El sistema viari creix fins als 28.274 m², els espais lliures arriben als 25.695 m² i els equipaments comunitaris als 24.285 m².\n\nLa peça vertebradora de tota l\u0027ordenació és la transformació de l\u0027antiga carretera N-150 en una avinguda metropolitana de 31 metres d\u0027amplada, amb un carril de circulació i un carril bus per sentit, una mitjana vegetada i un bulevard verd de 12 metres que prioritza la mobilitat de vianants i bicicletes. Aquesta transformació és l\u0027instrument clau per integrar el sector als teixits urbans dels tres municipis i garantir l\u0027accessibilitat al nou hospital en modes de transport sostenibles.\n\nEl Pla incorpora un Estudi d\u0027Avaluació de la Mobilitat Generada que estima 22.426 viatges diaris generats pel sector. Per als usos no hospitalaris, el repartiment modal objectiu preveu el 46,8% en modes actius i transport públic. El PPU ha estat redactat conjuntament per OUA (Jordi Artigas Masdeu, director) i Peralta Urbanisme SLP (Jordi Peralta), amb la col·laboració dels serveis tècnics dels tres ajuntaments."
+           }
 }

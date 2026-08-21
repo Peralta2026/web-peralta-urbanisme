@@ -13,7 +13,7 @@ export default async function DirectoriPage({
   const projects = getAllProjects();
 
   return (
-    <div className="pt-14">
+    <div style={{ paddingTop: "var(--header-height)" }}>
       <div className="px-6 py-8 border-b border-black">
         <h1
           className="text-xs uppercase tracking-widest text-gray-400"
