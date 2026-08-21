@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import MapContainer from "@/components/map/MapContainer";
 import type { Project } from "@/lib/types";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */
@@ -28,34 +27,26 @@ const SPEED_R    = 38;
 
 /* ─── Scroll constants ───────────────────────────────────────────────────── */
 
-// Phase 0: hero crossfade (0 → 500)
-const SETTLE_START    = 240;
-const SETTLE_END      = 500;
-const HERO_SHRINK_END = 480;
+const SETTLE_START    = 240;   // hero content crossfade starts
+const SETTLE_END      = 500;   // hero fully settled (logo TL + text + links)
+const HERO_SHRINK_END = 480;   // hero scale animation ends
 const HERO_MIN        = 0.88;
 
-// Phase 0→1 transition: hero fades out (SETTLE_END → HERO_FADE_END)
-const HERO_FADE_END   = 900;
+const OPEN_RANGE      = 400;   // hero slides UP, cards rise from BELOW (500→900)
+const CARDS_PER_STEP  = 420;   // virtual px per card advance
+const N_CARDS         = FEATURED_SLUGS.length;
 
-// Phase 1: cards cycling (SETTLE_END → RISE_START)
-const CARDS_PER_STEP  = 420;          // virtual px per card
-const N_CARDS         = FEATURED_SLUGS.length;   // 5
-const RISE_START      = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 2600
+// After all cards, allow inner scroll for footer
+const CARDS_END   = SETTLE_END + N_CARDS * CARDS_PER_STEP;  // 500+2100 = 2600
+const TOTAL_RANGE = CARDS_END;
 
-// Phase 2: map panel rises (RISE_START → TOTAL_RANGE)
-const RISE_RANGE  = 700;
-const TOTAL_RANGE = RISE_START + RISE_RANGE;                   // 3300
-
-const LERP_K  = 0.08;
-const CURVE_H = 32;
-const PANEL_BG = "#f2f1ee";
+const LERP_K = 0.08;
 
 const LOCALES = ["ca", "es", "en"] as const;
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
 function easeInOutSine(t: number) { return -(Math.cos(Math.PI * Math.min(t, 1)) - 1) / 2; }
-function easeOutQuart(t: number)  { return 1 - Math.pow(1 - Math.min(t, 1), 4); }
 
 /* ─── i18n ───────────────────────────────────────────────────────────────── */
 
@@ -72,11 +63,6 @@ const CONTENT = {
     ],
     destacats: "Projectes destacats",
     explorar:  "Explorar tots els projectes →",
-    comTreballem: "Com treballem la complexitat",
-    pilarsLabel: "Pilars urbanístics",
-    pilars: ["Estratègia", "Disseny", "Comunicació"],
-    manersLabel: "Maneres de col·laborar",
-    maners: ["Assessorament", "Intervencions", "Desenvolupament"],
     footerLinks: [
       { label: "Persones",          href: "/persones"  },
       { label: "Principis",         href: "/principis" },
@@ -97,11 +83,6 @@ const CONTENT = {
     ],
     destacats: "Proyectos destacados",
     explorar:  "Explorar todos los proyectos →",
-    comTreballem: "Cómo trabajamos la complejidad",
-    pilarsLabel: "Pilares urbanísticos",
-    pilars: ["Estrategia", "Diseño", "Comunicación"],
-    manersLabel: "Formas de colaborar",
-    maners: ["Asesoramiento", "Intervenciones", "Desarrollo"],
     footerLinks: [
       { label: "Personas",           href: "/persones"  },
       { label: "Principios",         href: "/principis" },
@@ -122,11 +103,6 @@ const CONTENT = {
     ],
     destacats: "Featured projects",
     explorar:  "Explore all projects →",
-    comTreballem: "How we work with complexity",
-    pilarsLabel: "Urbanistic pillars",
-    pilars: ["Strategy", "Design", "Communication"],
-    manersLabel: "Ways of collaborating",
-    maners: ["Consulting", "Interventions", "Development"],
     footerLinks: [
       { label: "People",           href: "/persones"  },
       { label: "Principles",       href: "/principis" },
@@ -150,26 +126,26 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
     el.style.visibility = "visible";
     let ty: number, sc: number, bright: number, rx: number, z: number;
     if (delta < 0 && delta > -1.5) {
-      const t = Math.min(1, -delta);
+      const t   = Math.min(1, -delta);
       const arc = Math.sin(t * Math.PI);
-      ty = -arc * PEAK_H + t * STACK_REST;
-      rx = -arc * 12;
-      sc = Math.max(0.88, 1 - arc * 0.05 - t * 0.018);
+      ty     = -arc * PEAK_H + t * STACK_REST;
+      rx     = -arc * 12;
+      sc     = Math.max(0.88, 1 - arc * 0.05 - t * 0.018);
       bright = Math.max(0.80, 1 - t * 0.10);
-      z = Math.round(1000 + delta * 180);
+      z      = Math.round(1000 + delta * 180);
     } else if (delta <= -1.5) {
       const depth = Math.min(-delta, 2);
       ty = depth * STACK_REST; rx = 0;
       sc = Math.max(0.88, 1 - depth * 0.018);
       bright = Math.max(0.82, 1 - depth * 0.08);
-      z = Math.round(800 - (-delta) * 80);
+      z  = Math.round(800 - (-delta) * 80);
     } else {
       const depth = Math.min(delta, 2);
-      ty = depth * STACK_REST;
-      rx = Math.min(delta, 1.5) * 3;
-      sc = Math.max(0.90, 1 - depth * 0.018);
+      ty     = depth * STACK_REST;
+      rx     = Math.min(delta, 1.5) * 3;
+      sc     = Math.max(0.90, 1 - depth * 0.018);
       bright = Math.max(0.84, 1 - depth * 0.07);
-      z = Math.round(1000 - delta * 100);
+      z      = Math.round(1000 - delta * 100);
     }
     el.style.transform = [
       `translate(-50%, calc(-50% + ${ty.toFixed(2)}px))`,
@@ -257,44 +233,30 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     .map(s => projects.find(p => p.slug === s))
     .filter((p): p is Project => !!p);
 
-  const mapMarkers = projects
-    .filter(p => p.coordinates && p.coordinates.lat !== 0 && p.coordinates.lng !== 0)
-    .map(p => {
-      const d = p[locale as "ca" | "es" | "en"];
-      return { slug: p.slug, lat: p.coordinates.lat, lng: p.coordinates.lng, title: d.title, municipality: d.municipality, year: d.year, coverImage: p.coverImage };
-    });
-
   /* ── DOM refs ── */
   const heroRef         = useRef<HTMLDivElement>(null);
   const initialLayerRef = useRef<HTMLDivElement>(null);
   const settledLayerRef = useRef<HTMLDivElement>(null);
   const hintRef         = useRef<HTMLDivElement>(null);
 
-  /* Cards panel refs */
   const cardsPanelRef = useRef<HTMLDivElement>(null);
   const cardRefs      = useRef<(HTMLDivElement | null)[]>([]);
   const exploreRef    = useRef<HTMLDivElement>(null);
   const counterRef    = useRef<HTMLSpanElement>(null);
+  const innerRef      = useRef<HTMLDivElement>(null);
 
-  /* Map panel refs */
-  const mapPanelRef  = useRef<HTMLDivElement>(null);
-  const mapLogoRef   = useRef<HTMLDivElement>(null);
-  const innerRef     = useRef<HTMLDivElement>(null);
-  const mapDivRef    = useRef<HTMLDivElement>(null);  // for scroll detection
-
-  /* Mosaic refs */
+  /* Mosaic */
   const leftColRef  = useRef<HTMLDivElement>(null);
   const rightColRef = useRef<HTMLDivElement>(null);
 
   /* RAF scroll state */
-  const vY              = useRef(0);
-  const sY              = useRef(0);
-  const rafId           = useRef(0);
-  const lastTime        = useRef(0);
-  const loopH           = useRef(0);
-  const leftOff         = useRef(0);
-  const rightOff        = useRef(0);
-  const mapEventFired   = useRef(false);
+  const vY       = useRef(0);
+  const sY       = useRef(0);
+  const rafId    = useRef(0);
+  const lastTime = useRef(0);
+  const loopH    = useRef(0);
+  const leftOff  = useRef(0);
+  const rightOff = useRef(0);
 
   useEffect(() => {
     const imgH = window.innerHeight * IMG_H_VH;
@@ -304,23 +266,16 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     document.body.style.overflow = "hidden";
 
     const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
       const raw = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
-
-      if (vY.current >= TOTAL_RANGE - 5) {
-        /* Phase 3: inside map panel.
-           If over the map, let Leaflet handle zoom (no preventDefault). */
-        const isOverMap = mapDivRef.current?.contains(e.target as HTMLElement);
-        if (isOverMap) return;
-
-        e.preventDefault();
+      if (vY.current < TOTAL_RANGE - 5) {
+        vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
+      } else {
+        /* After all cards: scroll the footer strip */
         if (innerRef.current) innerRef.current.scrollTop += raw * 0.7;
-        /* Allow scrolling back up only when inner is at top */
         if (raw < 0 && innerRef.current && innerRef.current.scrollTop <= 0) {
           vY.current = Math.max(0, vY.current + raw * 0.5);
         }
-      } else {
-        e.preventDefault();
-        vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
       }
     };
 
@@ -365,20 +320,35 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       /* ── Phase 0: hero shrink + content crossfade ── */
       const p1    = Math.min(1, sy / HERO_SHRINK_END);
       const scale = HERO_MIN + (1 - HERO_MIN) * (1 - easeInOutSine(p1));
-      if (heroRef.current) heroRef.current.style.transform = `scale(${scale.toFixed(4)})`;
-
       const settleRaw = (sy - SETTLE_START) / (SETTLE_END - SETTLE_START);
       const settleP   = easeInOutSine(Math.max(0, Math.min(1, settleRaw)));
       if (initialLayerRef.current) initialLayerRef.current.style.opacity = (1 - settleP).toFixed(3);
       if (settledLayerRef.current) settledLayerRef.current.style.opacity = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
 
-      /* ── Hero fades OUT revealing cards panel below ── */
-      if (sy >= SETTLE_END) {
-        const heroFadeP = Math.min(1, (sy - SETTLE_END) / (HERO_FADE_END - SETTLE_END));
-        if (heroRef.current) heroRef.current.style.opacity = (1 - easeInOutSine(heroFadeP)).toFixed(3);
+      /* ── Hero position ── */
+      if (sy < SETTLE_END) {
+        /* Phase 0: only scale */
+        if (heroRef.current) {
+          heroRef.current.style.transform = `scale(${scale.toFixed(4)})`;
+          heroRef.current.style.pointerEvents = "auto";
+        }
+        /* Cards panel stays hidden below */
+        if (cardsPanelRef.current) cardsPanelRef.current.style.transform = "translateY(100vh)";
       } else {
-        if (heroRef.current) heroRef.current.style.opacity = "1";
+        /* Phase 1+: hero slides UP, cards rise from BELOW */
+        const openP  = Math.min(1, (sy - SETTLE_END) / OPEN_RANGE);
+        const easedP = easeInOutSine(openP);
+        const heroTY = -easedP * 100;
+        const cardsTY = (1 - easedP) * 100;
+
+        if (heroRef.current) {
+          heroRef.current.style.transform     = `translateY(${heroTY.toFixed(2)}vh)`;
+          heroRef.current.style.pointerEvents = openP >= 1 ? "none" : "auto";
+        }
+        if (cardsPanelRef.current) {
+          cardsPanelRef.current.style.transform = `translateY(${cardsTY.toFixed(2)}vh)`;
+        }
       }
 
       /* ── Phase 1: cards cycling ── */
@@ -391,31 +361,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           const show = cardPos > N_CARDS - 1.3;
           exploreRef.current.style.opacity       = show ? "1" : "0";
           exploreRef.current.style.pointerEvents = show ? "auto" : "none";
-        }
-      }
-
-      /* ── Phase 2: map panel rises ── */
-      if (mapPanelRef.current) {
-        if (sy > RISE_START) {
-          const p2  = Math.min(1, (sy - RISE_START) / RISE_RANGE);
-          const ep2 = easeOutQuart(p2);
-          mapPanelRef.current.style.transform    = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
-          mapPanelRef.current.style.borderRadius = `50% 50% 0 0 / ${(CURVE_H * (1 - ep2)).toFixed(1)}px ${(CURVE_H * (1 - ep2)).toFixed(1)}px 0 0`;
-          /* Fire once when map panel is nearly fully risen */
-          if (ep2 > 0.92 && !mapEventFired.current) {
-            mapEventFired.current = true;
-            window.dispatchEvent(new CustomEvent("peralta-map-visible"));
-          }
-
-          const logoO = ep2 > 0.82 ? Math.min(1, (ep2 - 0.82) / 0.18) : 0;
-          if (mapLogoRef.current) {
-            mapLogoRef.current.style.opacity       = String(logoO);
-            mapLogoRef.current.style.pointerEvents = logoO > 0.5 ? "auto" : "none";
-          }
-        } else {
-          mapPanelRef.current.style.transform    = "translateY(100vh)";
-          mapPanelRef.current.style.borderRadius = `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`;
-          if (mapLogoRef.current) { mapLogoRef.current.style.opacity = "0"; mapLogoRef.current.style.pointerEvents = "none"; }
         }
       }
 
@@ -439,7 +384,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           0%,100% { transform: translateY(0); }
           55%      { transform: translateY(6px); }
         }
-        .pu-inner::-webkit-scrollbar { display: none; }
+        .pu-footer-inner::-webkit-scrollbar { display: none; }
       `}</style>
 
       {/* ── MOSAIC ──────────────────────────────────────────────────────────── */}
@@ -466,11 +411,19 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* ── CARDS PANEL (z=8, always behind hero) ────────────────────────── */}
-      <div ref={cardsPanelRef} style={{ position: "fixed", inset: 0, zIndex: 8, background: "#fff", display: "flex", flexDirection: "column", padding: "20px" }}>
-
-        {/* Logo */}
-        <div style={{ flexShrink: 0, paddingBottom: "16px" }}>
+      {/* ── CARDS PANEL (z=8) — rises from below ─────────────────────────── */}
+      <div
+        ref={cardsPanelRef}
+        style={{
+          position: "fixed", inset: 0, zIndex: 8,
+          background: "#fff",
+          transform: "translateY(100vh)",
+          willChange: "transform",
+          display: "flex", flexDirection: "column",
+        }}
+      >
+        {/* Top bar */}
+        <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 20px 0" }}>
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(130px,16vw,190px)", height: "auto" }} />
@@ -478,7 +431,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
 
         {/* Section header */}
-        <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "12px", borderBottom: "1px solid rgba(0,0,0,0.08)", marginBottom: "0" }}>
+        <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px 12px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)" }}>
             {content.destacats}
           </span>
@@ -487,7 +440,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </span>
         </div>
 
-        {/* Card stage — overflow:visible so arc can go above header */}
+        {/* Card stage */}
         <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
           {featured.map((proj, i) => (
             <div
@@ -495,7 +448,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               ref={el => { cardRefs.current[i] = el; }}
               style={{
                 position: "absolute", top: "50%", left: "50%",
-                width: "min(100%, 900px)",
+                width: "min(calc(100% - 40px), 900px)",
                 height: "min(calc(100% - 8px), 440px)",
                 transformOrigin: "center center",
                 willChange: "transform, filter",
@@ -512,23 +465,56 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
 
         {/* Explore button */}
-        <div ref={exploreRef} style={{ flexShrink: 0, paddingTop: "14px", paddingBottom: "4px", opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none", textAlign: "right" }}>
+        <div ref={exploreRef} style={{ flexShrink: 0, padding: "14px 20px", opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none", textAlign: "right", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
           <Link href={`/${locale}/projectes`}
             style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px" }}>
             {content.explorar}
           </Link>
         </div>
+
+        {/* Footer strip (scrollable after cards end) */}
+        <div ref={innerRef} className="pu-footer-inner" style={{ flexShrink: 0, maxHeight: "0px", overflow: "hidden", scrollbarWidth: "none" }}>
+          <footer style={{ background: "#0a0a0a", padding: "52px 20px 40px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "32px", marginBottom: "40px" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(120px,14vw,170px)", height: "auto", filter: "invert(1)", opacity: 0.9 }} />
+              <div style={{ display: "flex", gap: "clamp(16px,2.5vw,40px)", flexWrap: "wrap" }}>
+                {content.footerLinks.map(({ label, href }) => (
+                  <Link key={href} href={`/${locale}${href}`}
+                    style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "block" }}>
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.20)", textTransform: "uppercase" }}>
+                © {new Date().getFullYear()} Peralta Urbanisme
+              </span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.20)", textTransform: "uppercase" }}>
+                Barcelona
+              </span>
+            </div>
+          </footer>
+        </div>
       </div>
 
-      {/* ── HERO (z=10, fades out to reveal cards) ───────────────────────── */}
-      <div ref={heroRef} style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", transformOrigin: "center center", willChange: "transform, opacity" }}>
-
+      {/* ── HERO (z=10) ──────────────────────────────────────────────────────── */}
+      <div
+        ref={heroRef}
+        style={{
+          position: "fixed", inset: 0, zIndex: 10,
+          background: "#fff",
+          transformOrigin: "center center",
+          willChange: "transform",
+        }}
+      >
         {/* Lang selector */}
         <div style={{ position: "absolute", top: "28px", right: "20px", zIndex: 20 }}>
           <LangSelectorHero locale={locale} />
         </div>
 
-        {/* INITIAL LAYER */}
+        {/* INITIAL LAYER — centered logo */}
         <div ref={initialLayerRef} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -536,10 +522,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </Link>
         </div>
 
-        {/* SETTLED LAYER: logo top-left + text + links only */}
+        {/* SETTLED LAYER — logo TL + text + links */}
         <div ref={settledLayerRef} style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px", justifyContent: "flex-end" }}>
 
-          {/* Logo */}
           <div style={{ position: "absolute", top: "20px", left: "20px" }}>
             <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -547,7 +532,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             </Link>
           </div>
 
-          {/* Text + links — bottom-left */}
           <div style={{ maxWidth: "min(680px, 80%)", paddingBottom: "clamp(12px,2vh,28px)" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.6vw,38px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.12, color: "#000", margin: "0 0 0.12em" }}>
               {content.line1}
@@ -578,105 +562,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               <path d="M0.5 0.5L4 4.5L7.5 0.5" stroke="rgba(0,0,0,0.22)" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
           </span>
-        </div>
-      </div>
-
-      {/* ── MAP PANEL ────────────────────────────────────────────────────────── */}
-      <div
-        ref={mapPanelRef}
-        style={{
-          position: "fixed", inset: 0, zIndex: 150,
-          background: PANEL_BG,
-          transform: "translateY(100vh)",
-          willChange: "transform, border-radius",
-          borderRadius: `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`,
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Logo bar */}
-        <div ref={mapLogoRef} style={{ flexShrink: 0, height: "60px", display: "flex", alignItems: "center", padding: "0 20px", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG, zIndex: 30 }}>
-          <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(120px,14vw,170px)", height: "auto" }} />
-          </Link>
-        </div>
-
-        {/* Scrollable content */}
-        <div ref={innerRef} className="pu-inner" style={{ flex: 1, overflowY: "auto", scrollbarWidth: "none" }}>
-
-          {/* Map — full width, no side margins so Leaflet gets correct size */}
-          <div ref={mapDivRef} style={{ height: "62vh", width: "100%", position: "relative", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-            <MapContainer markers={mapMarkers} locale={locale} />
-          </div>
-
-          {/* Com treballem */}
-          <section style={{ padding: "72px 20px 80px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-            <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(26px,3.8vw,52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 56px", maxWidth: "720px" }}>
-              {content.comTreballem}
-            </h2>
-
-            <div style={{ marginBottom: "48px" }}>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", margin: "0 0 20px" }}>
-                {content.pilarsLabel}
-              </p>
-              <div style={{ display: "flex" }}>
-                {content.pilars.map((item, i) => (
-                  <div key={item} style={{ flex: 1, padding: "24px 20px", border: "1px solid rgba(0,0,0,0.10)", background: "#fff", marginLeft: i > 0 ? "-1px" : 0 }}>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc", display: "block", marginBottom: "10px" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(16px,1.8vw,26px)", fontWeight: 700, letterSpacing: "-0.02em", color: "#000", display: "block" }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", margin: "0 0 20px" }}>
-                {content.manersLabel}
-              </p>
-              <div style={{ display: "flex" }}>
-                {content.maners.map((item, i) => (
-                  <div key={item} style={{ flex: 1, padding: "24px 20px", border: "1px solid rgba(0,0,0,0.10)", background: "#fff", marginLeft: i > 0 ? "-1px" : 0 }}>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc", display: "block", marginBottom: "10px" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(16px,1.8vw,26px)", fontWeight: 700, letterSpacing: "-0.02em", color: "#000", display: "block" }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Footer */}
-          <footer style={{ background: "#0a0a0a", padding: "72px 20px 52px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "40px", marginBottom: "56px" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(120px,14vw,170px)", height: "auto", filter: "invert(1)", opacity: 0.9 }} />
-              <div style={{ display: "flex", gap: "clamp(20px,3.5vw,52px)", flexWrap: "wrap" }}>
-                {content.footerLinks.map(({ label, href }) => (
-                  <Link key={href} href={`/${locale}${href}`}
-                    style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "block" }}>
-                    {label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.20)", textTransform: "uppercase" }}>
-                © {new Date().getFullYear()} Peralta Urbanisme
-              </span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.20)", textTransform: "uppercase" }}>
-                Barcelona
-              </span>
-            </div>
-          </footer>
         </div>
       </div>
     </>
