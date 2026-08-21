@@ -350,23 +350,28 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
         if (!el) return;
         const delta = i - dp;
         const absD  = Math.abs(delta);
-        if (absD > 3) { el.style.opacity = "0"; el.style.visibility = "hidden"; el.style.pointerEvents = "none"; return; }
-        el.style.visibility = "visible";
-        let ty: number, sc: number, op: number, z: number;
-        if (delta >= 0) {
-          ty = Math.min(delta, 2.5) * 26;
-          sc = Math.max(0.88, 1 - Math.min(delta, 2.5) * 0.030);
-          op = Math.max(0, 1 - delta * 0.55);
-          z  = Math.max(0, 100 - Math.round(delta * 10));
-        } else {
-          ty = Math.max(-100, delta * 70);
-          sc = Math.max(0.88, 1 - absD * 0.030);
-          op = Math.max(0, 1 - absD * 2.5);
-          z  = Math.max(0, 100 + Math.round(delta * 10));
+
+        /* cards more than 2.5 steps away: hide completely, no fade */
+        if (absD > 2.5) {
+          el.style.visibility    = "hidden";
+          el.style.pointerEvents = "none";
+          return;
         }
+        el.style.visibility = "visible";
+        el.style.opacity    = "1"; /* never fade — use brightness for depth */
+
+        /* depth is |delta| capped at 2 for visual calculations */
+        const depth  = Math.min(absD, 2);
+        const sc     = Math.max(0.88, 1 - depth * 0.044);   /* scale down behind cards */
+        const ty     = depth * 10;                           /* slight downward offset per layer */
+        const bright = Math.max(0.72, 1 - depth * 0.12);    /* darken behind cards, no transparency */
+
+        /* z-index: active card always on top; equal z uses DOM order (later = higher) */
+        const z = Math.round(1000 - absD * 100);
+
         el.style.transform     = `translate(-50%, calc(-50% + ${ty.toFixed(1)}px)) scale(${sc.toFixed(4)})`;
-        el.style.opacity       = op.toFixed(3);
-        el.style.zIndex        = String(z);
+        el.style.filter        = `brightness(${bright.toFixed(3)})`;
+        el.style.zIndex        = String(Math.max(0, z));
         el.style.pointerEvents = absD < 0.4 ? "auto" : "none";
       });
     }, []);
@@ -552,10 +557,12 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
                       width:    "min(calc(100% - 48px), 1160px)",
                       height:   "min(calc(100% - 32px), 520px)",
                       transformOrigin: "center center",
-                      willChange: "transform, opacity",
-                      transform: `translate(-50%, calc(-50% + ${i * 26}px)) scale(${Math.max(0.88, 1 - i * 0.030).toFixed(4)})`,
-                      opacity:   String(i === 0 ? 1 : i === 1 ? 0.45 : 0),
-                      zIndex:    String(100 - i * 10),
+                      willChange: "transform, filter",
+                      visibility: i > 2 ? "hidden" : "visible",
+                      opacity:    "1",
+                      transform:  `translate(-50%, calc(-50% + ${Math.min(i, 2) * 10}px)) scale(${Math.max(0.88, 1 - Math.min(i, 2) * 0.044).toFixed(4)})`,
+                      filter:     `brightness(${Math.max(0.72, 1 - Math.min(i, 2) * 0.12).toFixed(3)})`,
+                      zIndex:     String(1000 - i * 100),
                       pointerEvents: i === 0 ? "auto" : "none",
                     }}
                   >
