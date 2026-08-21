@@ -28,18 +28,27 @@ const SPEED_R    = 38;
 
 /* ─── Scroll constants ───────────────────────────────────────────────────── */
 
-const HERO_SHRINK_END = 480;
+// Phase 0: hero crossfade (0 → 500)
 const SETTLE_START    = 240;
 const SETTLE_END      = 500;
+const HERO_SHRINK_END = 480;
 const HERO_MIN        = 0.88;
-const CARDS_PER_STEP  = 620;
-const N_CARDS         = FEATURED_SLUGS.length;
-const RISE_START      = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 3600
-const RISE_RANGE      = 700;
-const TOTAL_RANGE     = RISE_START + RISE_RANGE;               // 4300
-const LERP_K          = 0.08;
-const CURVE_H         = 32;
-const PANEL_BG        = "#f2f1ee";
+
+// Phase 0→1 transition: hero fades out (SETTLE_END → HERO_FADE_END)
+const HERO_FADE_END   = 900;
+
+// Phase 1: cards cycling (SETTLE_END → RISE_START)
+const CARDS_PER_STEP  = 420;          // virtual px per card
+const N_CARDS         = FEATURED_SLUGS.length;   // 5
+const RISE_START      = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 2600
+
+// Phase 2: map panel rises (RISE_START → TOTAL_RANGE)
+const RISE_RANGE  = 700;
+const TOTAL_RANGE = RISE_START + RISE_RANGE;                   // 3300
+
+const LERP_K  = 0.08;
+const CURVE_H = 32;
+const PANEL_BG = "#f2f1ee";
 
 const LOCALES = ["ca", "es", "en"] as const;
 
@@ -174,7 +183,7 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
-/* ─── Sub-components (outside HomeScene to avoid remount) ────────────────── */
+/* ─── Sub-components ─────────────────────────────────────────────────────── */
 
 function LangSelectorHero({ locale }: { locale: string }) {
   const router = useRouter();
@@ -214,16 +223,13 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   return (
-    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "20px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
-      {/* Image */}
-      <div style={{ flex: "0 0 50%", padding: "20px", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "18px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
+      <div style={{ flex: "0 0 50%", padding: "20px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
           style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block", userSelect: "none" }} />
       </div>
-      {/* Divider */}
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
-      {/* Text */}
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,30px)", overflow: "hidden" }}>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb", margin: "0 0 14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {[d.municipality, d.year, d.tipus].filter(Boolean).join(" · ")}
@@ -258,28 +264,37 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       return { slug: p.slug, lat: p.coordinates.lat, lng: p.coordinates.lng, title: d.title, municipality: d.municipality, year: d.year, coverImage: p.coverImage };
     });
 
-  /* DOM refs */
+  /* ── DOM refs ── */
   const heroRef         = useRef<HTMLDivElement>(null);
   const initialLayerRef = useRef<HTMLDivElement>(null);
   const settledLayerRef = useRef<HTMLDivElement>(null);
   const hintRef         = useRef<HTMLDivElement>(null);
-  const cardRefs        = useRef<(HTMLDivElement | null)[]>([]);
-  const exploreRef      = useRef<HTMLDivElement>(null);
-  const counterRef      = useRef<HTMLSpanElement>(null);
-  const mapPanelRef     = useRef<HTMLDivElement>(null);
-  const mapLogoRef      = useRef<HTMLDivElement>(null);
-  const innerRef        = useRef<HTMLDivElement>(null);
-  const leftColRef      = useRef<HTMLDivElement>(null);
-  const rightColRef     = useRef<HTMLDivElement>(null);
+
+  /* Cards panel refs */
+  const cardsPanelRef = useRef<HTMLDivElement>(null);
+  const cardRefs      = useRef<(HTMLDivElement | null)[]>([]);
+  const exploreRef    = useRef<HTMLDivElement>(null);
+  const counterRef    = useRef<HTMLSpanElement>(null);
+
+  /* Map panel refs */
+  const mapPanelRef  = useRef<HTMLDivElement>(null);
+  const mapLogoRef   = useRef<HTMLDivElement>(null);
+  const innerRef     = useRef<HTMLDivElement>(null);
+  const mapDivRef    = useRef<HTMLDivElement>(null);  // for scroll detection
+
+  /* Mosaic refs */
+  const leftColRef  = useRef<HTMLDivElement>(null);
+  const rightColRef = useRef<HTMLDivElement>(null);
 
   /* RAF scroll state */
-  const vY       = useRef(0);
-  const sY       = useRef(0);
-  const rafId    = useRef(0);
-  const lastTime = useRef(0);
-  const loopH    = useRef(0);
-  const leftOff  = useRef(0);
-  const rightOff = useRef(0);
+  const vY              = useRef(0);
+  const sY              = useRef(0);
+  const rafId           = useRef(0);
+  const lastTime        = useRef(0);
+  const loopH           = useRef(0);
+  const leftOff         = useRef(0);
+  const rightOff        = useRef(0);
+  const mapEventFired   = useRef(false);
 
   useEffect(() => {
     const imgH = window.innerHeight * IMG_H_VH;
@@ -289,15 +304,23 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     document.body.style.overflow = "hidden";
 
     const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
       const raw = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
-      if (vY.current < TOTAL_RANGE - 5) {
-        vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
-      } else {
+
+      if (vY.current >= TOTAL_RANGE - 5) {
+        /* Phase 3: inside map panel.
+           If over the map, let Leaflet handle zoom (no preventDefault). */
+        const isOverMap = mapDivRef.current?.contains(e.target as HTMLElement);
+        if (isOverMap) return;
+
+        e.preventDefault();
         if (innerRef.current) innerRef.current.scrollTop += raw * 0.7;
+        /* Allow scrolling back up only when inner is at top */
         if (raw < 0 && innerRef.current && innerRef.current.scrollTop <= 0) {
           vY.current = Math.max(0, vY.current + raw * 0.5);
         }
+      } else {
+        e.preventDefault();
+        vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
       }
     };
 
@@ -327,7 +350,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       const dt  = Math.min((now - lastTime.current) / 1000, 0.1);
       lastTime.current = now;
 
-      /* Mosaic scroll */
+      /* Mosaic */
       if (loopH.current > 0) {
         leftOff.current  = (leftOff.current  + SPEED_L * dt) % loopH.current;
         rightOff.current = (rightOff.current + SPEED_R * dt) % loopH.current;
@@ -339,7 +362,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       sY.current += (vY.current - sY.current) * LERP_K;
       const sy = sY.current;
 
-      /* Phase 0 — hero shrink + crossfade */
+      /* ── Phase 0: hero shrink + content crossfade ── */
       const p1    = Math.min(1, sy / HERO_SHRINK_END);
       const scale = HERO_MIN + (1 - HERO_MIN) * (1 - easeInOutSine(p1));
       if (heroRef.current) heroRef.current.style.transform = `scale(${scale.toFixed(4)})`;
@@ -350,26 +373,40 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       if (settledLayerRef.current) settledLayerRef.current.style.opacity = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
 
-      /* Phase 1 — cards cycling */
+      /* ── Hero fades OUT revealing cards panel below ── */
+      if (sy >= SETTLE_END) {
+        const heroFadeP = Math.min(1, (sy - SETTLE_END) / (HERO_FADE_END - SETTLE_END));
+        if (heroRef.current) heroRef.current.style.opacity = (1 - easeInOutSine(heroFadeP)).toFixed(3);
+      } else {
+        if (heroRef.current) heroRef.current.style.opacity = "1";
+      }
+
+      /* ── Phase 1: cards cycling ── */
       if (sy >= SETTLE_END) {
         const cardPos = Math.max(0, Math.min(N_CARDS - 1, (sy - SETTLE_END) / CARDS_PER_STEP));
         applyCardTransforms(cardRefs.current, cardPos);
         const cardIdx = Math.round(cardPos);
         if (counterRef.current) counterRef.current.textContent = `${String(cardIdx + 1).padStart(2, "0")} / ${String(N_CARDS).padStart(2, "0")}`;
         if (exploreRef.current) {
-          const show = cardPos > N_CARDS - 1.5;
+          const show = cardPos > N_CARDS - 1.3;
           exploreRef.current.style.opacity       = show ? "1" : "0";
           exploreRef.current.style.pointerEvents = show ? "auto" : "none";
         }
       }
 
-      /* Phase 2 — map panel rises */
+      /* ── Phase 2: map panel rises ── */
       if (mapPanelRef.current) {
         if (sy > RISE_START) {
           const p2  = Math.min(1, (sy - RISE_START) / RISE_RANGE);
           const ep2 = easeOutQuart(p2);
-          mapPanelRef.current.style.transform     = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
-          mapPanelRef.current.style.borderRadius  = `50% 50% 0 0 / ${(CURVE_H * (1 - ep2)).toFixed(1)}px ${(CURVE_H * (1 - ep2)).toFixed(1)}px 0 0`;
+          mapPanelRef.current.style.transform    = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
+          mapPanelRef.current.style.borderRadius = `50% 50% 0 0 / ${(CURVE_H * (1 - ep2)).toFixed(1)}px ${(CURVE_H * (1 - ep2)).toFixed(1)}px 0 0`;
+          /* Fire once when map panel is nearly fully risen */
+          if (ep2 > 0.92 && !mapEventFired.current) {
+            mapEventFired.current = true;
+            window.dispatchEvent(new CustomEvent("peralta-map-visible"));
+          }
+
           const logoO = ep2 > 0.82 ? Math.min(1, (ep2 - 0.82) / 0.18) : 0;
           if (mapLogoRef.current) {
             mapLogoRef.current.style.opacity       = String(logoO);
@@ -429,15 +466,69 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* ── HERO ────────────────────────────────────────────────────────────── */}
-      <div ref={heroRef} style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", transformOrigin: "center center", willChange: "transform" }}>
+      {/* ── CARDS PANEL (z=8, always behind hero) ────────────────────────── */}
+      <div ref={cardsPanelRef} style={{ position: "fixed", inset: 0, zIndex: 8, background: "#fff", display: "flex", flexDirection: "column", padding: "20px" }}>
 
-        {/* Lang selector top-right */}
+        {/* Logo */}
+        <div style={{ flexShrink: 0, paddingBottom: "16px" }}>
+          <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(130px,16vw,190px)", height: "auto" }} />
+          </Link>
+        </div>
+
+        {/* Section header */}
+        <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "12px", borderBottom: "1px solid rgba(0,0,0,0.08)", marginBottom: "0" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)" }}>
+            {content.destacats}
+          </span>
+          <span ref={counterRef} style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", color: "#ccc" }}>
+            01 / {String(N_CARDS).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Card stage — overflow:visible so arc can go above header */}
+        <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
+          {featured.map((proj, i) => (
+            <div
+              key={proj.slug}
+              ref={el => { cardRefs.current[i] = el; }}
+              style={{
+                position: "absolute", top: "50%", left: "50%",
+                width: "min(100%, 900px)",
+                height: "min(calc(100% - 8px), 440px)",
+                transformOrigin: "center center",
+                willChange: "transform, filter",
+                visibility: i <= 2 ? "visible" : "hidden",
+                transform: `translate(-50%, calc(-50% + ${Math.min(i, 2) * 8}px)) scale(${Math.max(0.90, 1 - Math.min(i, 2) * 0.018).toFixed(4)})`,
+                filter: `brightness(${Math.max(0.84, 1 - Math.min(i, 2) * 0.07).toFixed(3)})`,
+                zIndex: String(1000 - i * 100),
+                pointerEvents: i === 0 ? "auto" : "none",
+              }}
+            >
+              <FeaturedCard project={proj} locale={locale} />
+            </div>
+          ))}
+        </div>
+
+        {/* Explore button */}
+        <div ref={exploreRef} style={{ flexShrink: 0, paddingTop: "14px", paddingBottom: "4px", opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none", textAlign: "right" }}>
+          <Link href={`/${locale}/projectes`}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px" }}>
+            {content.explorar}
+          </Link>
+        </div>
+      </div>
+
+      {/* ── HERO (z=10, fades out to reveal cards) ───────────────────────── */}
+      <div ref={heroRef} style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", transformOrigin: "center center", willChange: "transform, opacity" }}>
+
+        {/* Lang selector */}
         <div style={{ position: "absolute", top: "28px", right: "20px", zIndex: 20 }}>
           <LangSelectorHero locale={locale} />
         </div>
 
-        {/* INITIAL LAYER: logo centered */}
+        {/* INITIAL LAYER */}
         <div ref={initialLayerRef} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -445,85 +536,35 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </Link>
         </div>
 
-        {/* SETTLED LAYER: full two-column layout */}
-        <div ref={settledLayerRef} style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px" }}>
+        {/* SETTLED LAYER: logo top-left + text + links only */}
+        <div ref={settledLayerRef} style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px", justifyContent: "flex-end" }}>
 
-          {/* Logo top-left */}
-          <div style={{ flexShrink: 0, paddingBottom: "clamp(16px,2vh,28px)" }}>
+          {/* Logo */}
+          <div style={{ position: "absolute", top: "20px", left: "20px" }}>
             <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(140px,18vw,200px)", height: "auto" }} />
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(130px,16vw,190px)", height: "auto" }} />
             </Link>
           </div>
 
-          {/* Two-column content */}
-          <div style={{ flex: 1, display: "flex", gap: "clamp(24px,4vw,60px)", alignItems: "stretch", minHeight: 0, overflow: "visible" }}>
-
-            {/* LEFT: editorial text + nav links */}
-            <div style={{ flex: "0 0 clamp(240px,36%,440px)", display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingBottom: "clamp(16px,2vh,32px)" }}>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px,2.2vw,32px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#000", margin: "0 0 0.12em" }}>
-                {content.line1}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px,2.2vw,32px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.15, color: "#000", margin: "0 0 1.1em" }}>
-                {content.line2}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.4vw,19px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 0.55em" }}>
-                {content.line3}
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(11px,1vw,14px)", fontWeight: 400, lineHeight: 1.6, color: "#777", margin: "0 0 clamp(20px,2.5vh,32px)" }}>
-                {content.line4}
-              </p>
-              <div style={{ display: "flex", gap: "clamp(16px,2.5vw,36px)", alignItems: "flex-start", flexWrap: "wrap" }}>
-                {content.links.map(link => (
-                  <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
-                ))}
-              </div>
-            </div>
-
-            {/* RIGHT: cards */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0, overflow: "visible" }}>
-
-              {/* Section header */}
-              <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "12px", borderBottom: "1px solid rgba(0,0,0,0.08)", marginBottom: "0" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)" }}>
-                  {content.destacats}
-                </span>
-                <span ref={counterRef} style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", color: "#ccc" }}>
-                  01 / {String(N_CARDS).padStart(2, "0")}
-                </span>
-              </div>
-
-              {/* Card stage — overflow:visible so arc can go above header */}
-              <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
-                {featured.map((proj, i) => (
-                  <div
-                    key={proj.slug}
-                    ref={el => { cardRefs.current[i] = el; }}
-                    style={{
-                      position: "absolute", top: "50%", left: "50%",
-                      width: "min(100%, 700px)",
-                      height: "min(calc(100% - 8px), 380px)",
-                      transformOrigin: "center center",
-                      willChange: "transform, filter",
-                      visibility: i <= 2 ? "visible" : "hidden",
-                      transform: `translate(-50%, calc(-50% + ${Math.min(i, 2) * 8}px)) scale(${Math.max(0.90, 1 - Math.min(i, 2) * 0.018).toFixed(4)})`,
-                      filter: `brightness(${Math.max(0.84, 1 - Math.min(i, 2) * 0.07).toFixed(3)})`,
-                      zIndex: String(1000 - i * 100),
-                      pointerEvents: i === 0 ? "auto" : "none",
-                    }}
-                  >
-                    <FeaturedCard project={proj} locale={locale} />
-                  </div>
-                ))}
-              </div>
-
-              {/* Explore button */}
-              <div ref={exploreRef} style={{ flexShrink: 0, paddingTop: "14px", opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none", textAlign: "right" }}>
-                <Link href={`/${locale}/projectes`}
-                  style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px" }}>
-                  {content.explorar}
-                </Link>
-              </div>
+          {/* Text + links — bottom-left */}
+          <div style={{ maxWidth: "min(680px, 80%)", paddingBottom: "clamp(12px,2vh,28px)" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.6vw,38px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.12, color: "#000", margin: "0 0 0.12em" }}>
+              {content.line1}
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.6vw,38px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.12, color: "#000", margin: "0 0 1em" }}>
+              {content.line2}
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(14px,1.6vw,22px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 0.55em" }}>
+              {content.line3}
+            </p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1.1vw,15px)", fontWeight: 400, lineHeight: 1.6, color: "#777", margin: "0 0 clamp(20px,3vh,36px)" }}>
+              {content.line4}
+            </p>
+            <div style={{ display: "flex", gap: "clamp(20px,3vw,44px)", alignItems: "flex-start", flexWrap: "wrap" }}>
+              {content.links.map(link => (
+                <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
+              ))}
             </div>
           </div>
         </div>
@@ -555,18 +596,18 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         }}
       >
         {/* Logo bar */}
-        <div ref={mapLogoRef} style={{ flexShrink: 0, height: "64px", display: "flex", alignItems: "center", padding: "0 20px", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG, zIndex: 30 }}>
+        <div ref={mapLogoRef} style={{ flexShrink: 0, height: "60px", display: "flex", alignItems: "center", padding: "0 20px", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG, zIndex: 30 }}>
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(130px,16vw,180px)", height: "auto" }} />
+            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(120px,14vw,170px)", height: "auto" }} />
           </Link>
         </div>
 
         {/* Scrollable content */}
         <div ref={innerRef} className="pu-inner" style={{ flex: 1, overflowY: "auto", scrollbarWidth: "none" }}>
 
-          {/* Map */}
-          <div style={{ height: "60vh", position: "relative", margin: "0 20px", borderBottom: "1px solid rgba(0,0,0,0.10)" }}>
+          {/* Map — full width, no side margins so Leaflet gets correct size */}
+          <div ref={mapDivRef} style={{ height: "62vh", width: "100%", position: "relative", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
             <MapContainer markers={mapMarkers} locale={locale} />
           </div>
 
@@ -576,7 +617,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               {content.comTreballem}
             </h2>
 
-            {/* Pilars */}
             <div style={{ marginBottom: "48px" }}>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", margin: "0 0 20px" }}>
                 {content.pilarsLabel}
@@ -595,7 +635,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               </div>
             </div>
 
-            {/* Maneres */}
             <div>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", margin: "0 0 20px" }}>
                 {content.manersLabel}
@@ -618,11 +657,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           {/* Footer */}
           <footer style={{ background: "#0a0a0a", padding: "72px 20px 52px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "40px", marginBottom: "56px" }}>
-              {/* Logo */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(130px,16vw,180px)", height: "auto", filter: "invert(1)", opacity: 0.9 }} />
-              {/* Nav links */}
-              <div style={{ display: "flex", gap: "clamp(24px,4vw,60px)", flexWrap: "wrap" }}>
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(120px,14vw,170px)", height: "auto", filter: "invert(1)", opacity: 0.9 }} />
+              <div style={{ display: "flex", gap: "clamp(20px,3.5vw,52px)", flexWrap: "wrap" }}>
                 {content.footerLinks.map(({ label, href }) => (
                   <Link key={href} href={`/${locale}${href}`}
                     style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", textDecoration: "none", display: "block" }}>

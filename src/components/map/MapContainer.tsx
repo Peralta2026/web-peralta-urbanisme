@@ -41,13 +41,26 @@ export default function MapContainer({ markers, locale }: Props) {
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
+    // Store listener ref so cleanup can remove it if map fires before component unmounts
+    let visibleListener: (() => void) | null = null;
+
     import("leaflet").then((L) => {
       const map = L.map(mapRef.current!, {
-        center: [41.72, 1.5],
+        center: [41.75, 1.85],
         zoom: 8,
         zoomControl: false,
         attributionControl: true,
+        scrollWheelZoom: false,
       });
+
+      // Refit when the home panel slides into view
+      visibleListener = () => {
+        requestAnimationFrame(() => {
+          map.invalidateSize({ animate: false });
+          map.setView([41.75, 1.85], 8, { animate: false });
+        });
+      };
+      window.addEventListener("peralta-map-visible", visibleListener, { once: true });
 
       mapInstance.current = map;
 
@@ -98,6 +111,7 @@ export default function MapContainer({ markers, locale }: Props) {
     });
 
     return () => {
+      if (visibleListener) window.removeEventListener("peralta-map-visible", visibleListener);
       if (mapInstance.current) {
         (mapInstance.current as { remove: () => void }).remove();
         mapInstance.current = null;
