@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,7 +42,7 @@ export default function Nav({ locale }: { locale: string }) {
   const [menuOpen,   setMenuOpen]   = useState(false);
   const [studioOpen, setStudioOpen] = useState(false);
   const studioTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const currentLocale = useLocale();
+  const currentLocale = locale;
   const pathname      = usePathname();
   const router        = useRouter();
 
