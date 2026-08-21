@@ -27,17 +27,16 @@ const SPEED_R   = 38;
 
 /* ─── Scroll constants ───────────────────────────────────────────────────── */
 
-// Phase 0: hero content crossfade (0 → SETTLE_END)
 const SETTLE_START = 180;
-const SETTLE_END   = 460;
+const SETTLE_END   = 480;        // hero content fully settled
+const OPEN_RANGE   = 380;        // hero slides UP, cards rise (480→860)
+const CARDS_PER_STEP = 440;      // virtual px per card advance
+const N_CARDS      = FEATURED_SLUGS.length;
+const TOTAL_RANGE  = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 480+2200=2680
 
-// Phase 1: hero slides UP, cards rise from BELOW (SETTLE_END → SETTLE_END + OPEN_RANGE)
-const OPEN_RANGE = 360;
-
-// Phase 1 cards: cycle through all featured projects
-const CARDS_PER_STEP = 420;
-const N_CARDS        = FEATURED_SLUGS.length;         // 5
-const TOTAL_RANGE    = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 460 + 2100 = 2560
+// Damping multiplier when scrolling UP inside the cards section.
+// Small upward flicks (< ~150px delta) won't easily cross SETTLE_END.
+const CARDS_UP_DAMP = 0.22;
 
 const LERP_K = 0.08;
 
@@ -95,7 +94,7 @@ const CONTENT = {
 
 function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   const STACK_REST = 8;
-  const PEAK_H     = 150;
+  const PEAK_H     = 155;
   refs.forEach((el, i) => {
     if (!el) return;
     const delta = i - dp;
@@ -177,25 +176,25 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   return (
-    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "18px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
+    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
       <div style={{ flex: "0 0 50%", padding: "20px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
           style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block", userSelect: "none" }} />
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
-      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,40px) clamp(20px,2.5vw,36px)", overflow: "hidden" }}>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb", margin: "0 0 16px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,32px)", overflow: "hidden" }}>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb", margin: "0 0 14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {[d.municipality, d.year, d.tipus].filter(Boolean).join(" · ")}
         </p>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px,1.8vw,28px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 14px" }}>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px,1.7vw,26px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 12px" }}>
           {d.title}
         </h3>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,14px)", lineHeight: 1.7, color: "#555", margin: 0, flex: 1, overflow: "hidden" }}>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,13.5px)", lineHeight: 1.7, color: "#555", margin: 0, flex: 1, overflow: "hidden" }}>
           {d.descriptionShort}
         </p>
         <Link href={`/${locale}/projectes/${project.slug}`}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "24px", flexShrink: 0 }}>
+          style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "20px", flexShrink: 0 }}>
           Veure projecte →
         </Link>
       </div>
@@ -211,8 +210,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     .map(s => projects.find(p => p.slug === s))
     .filter((p): p is Project => !!p);
 
-  /* ── DOM refs ── */
-  const fixedLogoRef    = useRef<HTMLDivElement>(null);  // single persistent logo
+  /* ── refs ── */
+  const fixedLogoRef    = useRef<HTMLDivElement>(null);
   const heroRef         = useRef<HTMLDivElement>(null);
   const initialLayerRef = useRef<HTMLDivElement>(null);
   const settledLayerRef = useRef<HTMLDivElement>(null);
@@ -224,7 +223,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
 
-  /* RAF scroll state */
+  /* RAF state */
   const vY       = useRef(0);
   const sY       = useRef(0);
   const rafId    = useRef(0);
@@ -244,28 +243,26 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       e.preventDefault();
       const raw = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY;
 
-      // Scrolling UP while in the cards section → jump back to hero instantly
-      if (raw < 0 && vY.current > SETTLE_END) {
-        vY.current = 0;
-        sY.current = 0;
-        return;
-      }
+      // Upward scroll while firmly inside the cards section:
+      // apply heavy damping so small flicks don't accidentally return to hero.
+      // The user must make a deliberate large upward swipe to go back.
+      const inCards = vY.current > SETTLE_END + 30;
+      const goingUp = raw < 0;
+      const mult    = (inCards && goingUp) ? CARDS_UP_DAMP : 0.72;
 
-      vY.current = Math.max(0, Math.min(vY.current + raw * 0.7, TOTAL_RANGE));
+      vY.current = Math.max(0, Math.min(vY.current + raw * mult, TOTAL_RANGE));
     };
 
     let t0 = 0;
     const onTouchStart = (e: TouchEvent) => { t0 = e.touches[0].clientY; };
     const onTouchMove  = (e: TouchEvent) => {
       e.preventDefault();
-      const delta = t0 - e.touches[0].clientY;
+      const delta = t0 - e.touches[0].clientY; // positive = scroll forward
       t0 = e.touches[0].clientY;
-      if (delta < 0 && vY.current > SETTLE_END) {
-        vY.current = 0;
-        sY.current = 0;
-        return;
-      }
-      vY.current = Math.max(0, Math.min(vY.current + delta, TOTAL_RANGE));
+      const inCards = vY.current > SETTLE_END + 30;
+      const goingUp = delta < 0;
+      const mult    = (inCards && goingUp) ? CARDS_UP_DAMP : 1.0;
+      vY.current = Math.max(0, Math.min(vY.current + delta * mult, TOTAL_RANGE));
     };
 
     document.addEventListener("wheel",      onWheel,      { passive: false });
@@ -290,17 +287,16 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       sY.current += (vY.current - sY.current) * LERP_K;
       const sy = sY.current;
 
-      /* ── Phase 0: content crossfade (no scale, hero is always full-screen) ── */
+      /* ── Phase 0: hero content crossfade ── */
       const settleRaw = (sy - SETTLE_START) / (SETTLE_END - SETTLE_START);
       const settleP   = easeInOutSine(Math.max(0, Math.min(1, settleRaw)));
 
       if (initialLayerRef.current) initialLayerRef.current.style.opacity = (1 - settleP).toFixed(3);
       if (settledLayerRef.current) settledLayerRef.current.style.opacity = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
-      // Fixed logo fades in as the big centered logo fades out
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
 
-      /* ── Phase 1: hero slides UP, cards panel rises from BELOW ── */
+      /* ── Phase 1: hero slides UP, cards rise from BELOW ── */
       if (sy < SETTLE_END) {
         if (heroRef.current)       heroRef.current.style.transform       = "translateY(0)";
         if (cardsPanelRef.current) cardsPanelRef.current.style.transform = "translateY(100vh)";
@@ -378,12 +374,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* ── FIXED LOGO z=100 — persists through all scroll phases ───────────── */}
-      {/* Fades in as the large centered hero logo fades out (settleP) */}
-      <div
-        ref={fixedLogoRef}
-        style={{ position: "fixed", top: "20px", left: "20px", zIndex: 100, opacity: 0, pointerEvents: "auto" }}
-      >
+      {/* ── FIXED LOGO z=100 — persists across all sections ─────────────────── */}
+      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "20px", zIndex: 100, opacity: 0, pointerEvents: "auto" }}>
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
@@ -391,7 +383,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </Link>
       </div>
 
-      {/* ── CARDS PANEL z=8 — rises from below ───────────────────────────────── */}
+      {/* ── CARDS PANEL z=8 ───────────────────────────────────────────────────── */}
       <div
         ref={cardsPanelRef}
         style={{
@@ -399,31 +391,52 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           background: "#fff",
           transform: "translateY(100vh)",
           willChange: "transform",
-          display: "flex", flexDirection: "column",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        {/* Section header — top bar */}
-        <div style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "86px 20px 14px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)" }}>
-            {content.destacats}
-          </span>
-          <span ref={counterRef} style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", color: "#ccc" }}>
-            01 / {String(N_CARDS).padStart(2, "0")}
-          </span>
+        {/* ── Header: big editorial title + counter ── */}
+        <div style={{ flexShrink: 0, padding: "68px 20px 0" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "12px", marginBottom: "10px" }}>
+            <h2 style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(34px,5.2vw,72px)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+              color: "#000",
+              margin: 0,
+            }}>
+              {content.destacats}
+            </h2>
+            <span
+              ref={counterRef}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                color: "#ccc",
+                flexShrink: 0,
+                paddingBottom: "6px",
+              }}
+            >
+              01 / {String(N_CARDS).padStart(2, "0")}
+            </span>
+          </div>
+          <div style={{ height: "1px", background: "rgba(0,0,0,0.08)" }} />
         </div>
 
-        {/* Card stage — overflow:visible so arc animation can go above the header */}
+        {/* ── Card stage — flex-1, cards centered ── */}
         <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
-
-          {/* Cards stack */}
           {featured.map((proj, i) => (
             <div
               key={proj.slug}
               ref={el => { cardRefs.current[i] = el; }}
               style={{
-                position: "absolute", top: "50%", left: "50%",
-                width: "min(calc(100% - 40px), 1020px)",
-                height: "min(calc(100% - 20px), 520px)",
+                position: "absolute",
+                top: "50%", left: "50%",
+                width: "min(calc(100% - 40px), 1040px)",
+                height: "min(calc(100% - 12px), 560px)",
                 transformOrigin: "center center",
                 willChange: "transform, filter",
                 visibility: i <= 2 ? "visible" : "hidden",
@@ -436,21 +449,13 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               <FeaturedCard project={proj} locale={locale} />
             </div>
           ))}
+        </div>
 
-          {/* Explore button — appears after last card, pill style */}
+        {/* ── Explore button row — always reserves space at bottom ── */}
+        <div style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div
             ref={exploreRef}
-            style={{
-              position: "absolute",
-              bottom: "clamp(16px, 3vh, 32px)",
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: 1100,
-              opacity: 0,
-              transition: "opacity 400ms ease",
-              pointerEvents: "none",
-              whiteSpace: "nowrap",
-            }}
+            style={{ opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none" }}
           >
             <Link
               href={`/${locale}/projectes`}
@@ -462,7 +467,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
                 fontSize: "15px",
                 fontWeight: 500,
                 letterSpacing: "0.01em",
-                padding: "16px 32px",
+                padding: "15px 34px",
                 borderRadius: "100px",
                 textDecoration: "none",
                 boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
@@ -474,7 +479,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* ── HERO z=10 — full-screen white panel, no scale ────────────────────── */}
+      {/* ── HERO z=10 — full-screen white, no scale ───────────────────────────── */}
       <div
         ref={heroRef}
         style={{
@@ -483,8 +488,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           willChange: "transform",
         }}
       >
-        {/* Lang selector — stays in hero, goes up with it */}
-        <div style={{ position: "absolute", top: "28px", right: "70px", zIndex: 20 }}>
+        {/* Lang selector — slightly left of the hamburger (nav z=60) */}
+        <div style={{ position: "absolute", top: "28px", right: "76px", zIndex: 20 }}>
           <LangSelector locale={locale} />
         </div>
 
@@ -497,17 +502,12 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </Link>
         </div>
 
-        {/* SETTLED LAYER — editorial text + nav links, no logo (logo is fixed) */}
+        {/* SETTLED LAYER — text + links (no logo; logo is in fixedLogoRef) */}
         <div
           ref={settledLayerRef}
-          style={{
-            position: "absolute", inset: 0, opacity: 0,
-            display: "flex", flexDirection: "column",
-            padding: "20px",
-            justifyContent: "flex-end",
-          }}
+          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px", justifyContent: "flex-end" }}
         >
-          <div style={{ maxWidth: "min(760px, 85%)", paddingBottom: "clamp(16px,2.5vh,36px)" }}>
+          <div style={{ maxWidth: "min(780px,85%)", paddingBottom: "clamp(16px,2.5vh,36px)" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(24px,2.8vw,42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>
               {content.line1}
             </p>
