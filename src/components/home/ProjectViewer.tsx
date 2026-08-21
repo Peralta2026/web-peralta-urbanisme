@@ -316,11 +316,9 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
 
     const N = filteredProjects.length;
 
-    const logoRef   = useRef<HTMLDivElement>(null);
-    const cardRefs  = useRef<(HTMLDivElement | null)[]>([]);
-    const stageRef  = useRef<HTMLDivElement>(null);
-    const stageHRef = useRef(500); // measured each frame
-    const rafId     = useRef(0);
+    const logoRef  = useRef<HTMLDivElement>(null);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const rafId    = useRef(0);
     const projVel   = useRef(0);
     const rawPos    = useRef(0);
     const dispPos   = useRef(0);
@@ -347,53 +345,45 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
     }, [filters]);
 
     const applyTransforms = useCallback(() => {
-      const dp   = dispPos.current;
-      const H    = stageHRef.current;
-      /* each card occupies one full stage-height worth of vertical travel */
-      const SLOT = H * 0.94;
+      const dp = dispPos.current;
+
+      /*
+       * DECK MODEL — all cards live at the SAME screen position, stacked.
+       *
+       * STACK_OFFSET: the small vertical gap between depth levels.
+       *   Cards below the active one are shifted DOWN by this amount,
+       *   so their top edges peek out from beneath the card above them.
+       *
+       * Transitions: when active card (delta=0) moves to delta=-1,
+       *   ty goes from 0 → STACK_OFFSET (card sinks into the deck).
+       *   The incoming card goes from ty=STACK_OFFSET → 0 (rises to top).
+       *   Total travel: ONE STACK_OFFSET (24px) — very compact, no list scrolling.
+       *
+       * z-index: card closest to delta=0 is highest. At the midpoint (absD equal),
+       *   DOM order breaks the tie: the incoming card (higher index) renders on top.
+       *
+       * Past cards (delta<0) and upcoming cards (delta>0) are at THE SAME ty
+       *   for equal |delta|. Past cards are hidden behind incoming cards via z.
+       */
+      const STACK_OFFSET = 24; // px per depth level
 
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
         const delta = i - dp;
         const absD  = Math.abs(delta);
 
-        /* only render cards within ±2 positions */
-        if (absD > 2.5) {
-          el.style.visibility    = "hidden";
-          el.style.pointerEvents = "none";
-          return;
-        }
+        if (absD > 3.5) { el.style.visibility = "hidden"; el.style.pointerEvents = "none"; return; }
+
         el.style.visibility = "visible";
-        el.style.opacity    = "1"; /* NEVER fade — this is a physical movement */
+        el.style.opacity    = "1"; /* physical movement only — no fading */
 
-        /*
-         * ty: linear vertical travel — one SLOT per card position.
-         *   delta < 0 → card above (slid out to top)
-         *   delta > 0 → card below (coming from bottom)
-         *
-         * rx (rotateX): gives the Rolodex rotational quality.
-         *   Outgoing card (delta < 0): top leans away from viewer (-degrees)
-         *   Incoming card (delta > 0): bottom leans away, top toward viewer (+degrees)
-         *   Active (delta ≈ 0): upright
-         *
-         * sc: very subtle scale for depth cue only.
-         * bright: only slightly darker behind; no transparency.
-         */
-        const ty     = delta * SLOT;
-        const depth  = Math.min(absD, 2);
-        const rx     = delta >= 0
-          ? Math.min(delta,   2) *  9   /* below: forward tilt, straightens as it rises */
-          : Math.max(delta, -2) *  6;   /* above: backward tilt as it exits */
-        const sc     = Math.max(0.92, 1 - depth * 0.016);
-        const bright = Math.max(0.80, 1 - depth * 0.095);
-        const z      = Math.round(1000 - absD * 100); /* closest to active = highest z; ties broken by DOM order */
+        const depth  = Math.min(absD, 3);
+        const ty     = depth * STACK_OFFSET;     /* ALL depths shift down the same way */
+        const sc     = Math.max(0.90, 1 - depth * 0.022);
+        const bright = Math.max(0.76, 1 - depth * 0.08);
+        const z      = Math.round(1000 - absD * 100); /* DOM order breaks ties at midpoint */
 
-        el.style.transform = [
-          `translate(-50%, calc(-50% + ${ty.toFixed(2)}px))`,
-          `perspective(1400px)`,
-          `rotateX(${rx.toFixed(2)}deg)`,
-          `scale(${sc.toFixed(4)})`,
-        ].join(" ");
+        el.style.transform     = `translate(-50%, calc(-50% + ${ty.toFixed(1)}px)) scale(${sc.toFixed(4)})`;
         el.style.filter        = `brightness(${bright.toFixed(3)})`;
         el.style.zIndex        = String(Math.max(0, z));
         el.style.pointerEvents = absD < 0.4 ? "auto" : "none";
@@ -403,12 +393,6 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
     useEffect(() => {
       let prev = 0;
       const tick = () => {
-        /* measure stage height each frame so SLOT tracks window resizes */
-        if (stageRef.current) {
-          const h = stageRef.current.clientHeight;
-          if (h > 0) stageHRef.current = h;
-        }
-
         const nCurr   = N;
         const settled = performance.now() - lastInput.current > SETTLE_MS;
         if (settled) {
@@ -460,6 +444,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
             border-radius: 22px;
             border: 1px solid rgba(0,0,0,0.10);
             overflow: hidden;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.06);
           }
           .pu-card-img-zone {
             flex: 0 0 52%; position: relative;
@@ -565,7 +550,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
           <FilterBarPV filters={filters} activeDim={activeDim} onToggleDim={handleToggleDim} onSelectOption={handleSelectOption} onClearDim={handleClearDim} projects={projects} />
 
           {/* Card stage */}
-          <div ref={stageRef} style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+          <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
 
             {filteredProjects.length === 0 ? (
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -584,21 +569,17 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
                     ref={el => { cardRefs.current[i] = el; }}
                     style={{
                       position: "absolute", top: "50%", left: "50%",
+                      /* card is shorter than stage so the next card's top edge peeks below */
                       width:    "min(calc(100% - 48px), 1160px)",
-                      height:   "min(calc(100% - 32px), 520px)",
+                      height:   "min(calc(100% - 88px), 440px)",
                       transformOrigin: "center center",
                       willChange: "transform, filter",
-                      visibility:    i > 2 ? "hidden" : "visible",
+                      visibility:    i > 3 ? "hidden" : "visible",
                       opacity:       "1",
-                      /* SSR initial state: Rolodex stack (SLOT≈470px for 500px stage) */
-                      transform:     [
-                        `translate(-50%, calc(-50% + ${i * 470}px))`,
-                        `perspective(1400px)`,
-                        `rotateX(${Math.min(i, 2) * 9}deg)`,
-                        `scale(${Math.max(0.92, 1 - Math.min(i, 2) * 0.016).toFixed(4)})`,
-                      ].join(" "),
-                      filter:        `brightness(${Math.max(0.80, 1 - Math.min(i, 2) * 0.095).toFixed(3)})`,
-                      zIndex:        String(1000 - i * 100),
+                      /* SSR initial state: tight deck stack (24px offset per level) */
+                      transform:  `translate(-50%, calc(-50% + ${Math.min(i, 3) * 24}px)) scale(${Math.max(0.90, 1 - Math.min(i, 3) * 0.022).toFixed(4)})`,
+                      filter:     `brightness(${Math.max(0.76, 1 - Math.min(i, 3) * 0.08).toFixed(3)})`,
+                      zIndex:     String(1000 - i * 100),
                       pointerEvents: i === 0 ? "auto" : "none",
                     }}
                   >
