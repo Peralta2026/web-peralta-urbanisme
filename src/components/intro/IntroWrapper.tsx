@@ -20,15 +20,15 @@ const CURTAIN_MS   = 1350;
 const CURTAIN_EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
+  const [mounted,   setMounted]   = useState(false);
   const [visible,   setVisible]   = useState<number[]>([]);
   const [curtainUp, setCurtainUp] = useState(false);
   const [done,      setDone]      = useState(false);
 
   useEffect(() => {
-    const guard = document.getElementById("pu-guard");
+    setMounted(true);
 
     if (sessionStorage.getItem("pu-intro") === "1") {
-      guard?.remove();
       setDone(true);
       return;
     }
@@ -50,7 +50,6 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
     timers.push(
       setTimeout(() => {
         document.body.style.overflow = "";
-        guard?.remove();
         sessionStorage.setItem("pu-intro", "1");
         setDone(true);
       }, curtainAt + CURTAIN_MS + 60)
@@ -64,7 +63,7 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
   return (
     <>
-      {!done && (
+      {mounted && !done && (
         <div
           style={{
             position:       "fixed",

@@ -47,23 +47,11 @@ export default async function LocaleLayout({
   ).default as Record<string, unknown>;
 
   return (
-    <>
-      <div
-        id="pu-guard"
-        style={{
-          position:      "fixed",
-          inset:         0,
-          zIndex:        9998,
-          background:    "#ffffff",
-          pointerEvents: "none",
-        }}
-      />
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <IntroWrapper>
-          <Nav locale={locale} />
-          <main className="flex-1">{children}</main>
-        </IntroWrapper>
-      </NextIntlClientProvider>
-    </>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <IntroWrapper>
+        <Nav locale={locale} />
+        <main className="flex-1">{children}</main>
+      </IntroWrapper>
+    </NextIntlClientProvider>
   );
 }
