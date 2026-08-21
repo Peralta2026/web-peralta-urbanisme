@@ -1,8 +1,6 @@
-import { redirect } from "next/navigation";
-
-// The root path is handled by next-intl middleware which rewrites to /[locale].
-// This fallback redirect ensures the default locale home is served if middleware
-// is bypassed (e.g., direct static export).
+// This file should never render — src/proxy.ts (middleware) intercepts all
+// root requests and rewrites them to /[locale]. It exists only to satisfy
+// Next.js App Router's file-system routing requirement.
 export default function RootPage() {
-  redirect("/");
+  return null;
 }
