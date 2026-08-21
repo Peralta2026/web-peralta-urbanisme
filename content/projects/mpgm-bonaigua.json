@@ -1,56 +1,64 @@
 {
-    "slug":  "mpgm-bonaigua",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "mpgm-bonaigua",
+  "coverImage":  "1.jpg",
+  "images":  [
+         "1.jpg",
+         "10 (1).jpg",
+         "10 (3).jpg",
+         "10 (5).jpg",
+         "2.jpg",
+         "3.jpg",
+         "4.jpg",
+         "5.jpg",
+         "A2e15000 lectura del territori vJP def.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "municipality":  "Sant Just Desvern",
-               "year":  "2022",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
-           },
-    "es":  {
-               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "municipality":  "Sant Just Desvern",
-               "year":  "2022",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
-           },
-    "en":  {
-               "title":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "municipality":  "Sant Just Desvern",
-               "year":  "2022",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just",
-               "descriptionLong":  "Modificació del Pla General Metropolità en l\u0027àmbit de la riera de Sant Just"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "MPGM Bonaigua",
+       "municipality":  "Sant Just Desvern",
+       "year":  "2022",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  120871,
+       "programa":  null,
+       "sostreM2":  21541,
+       "habitatges":  166,
+       "descriptionShort":  "Modificació del Pla General Metropolità que proposa la renaturalització de la riera de Sant Just i la creació d\u0027un nou parc fluvial en l\u0027àmbit de la Bonaigua, a Sant Just Desvern. L\u0027MPGM unifica tres sectors de planejament pendents de desenvolupament —La Bòbila, Les Escales i Carrer Riera— i incorpora un segon subàmbit al Parc de Torreblanca, on proposa nous habitatges de protecció oficial. Promou la connectivitat ecològica, la mobilitat activa i la cohesió social.",
+       "descriptionLong":  "La Modificació del Pla General Metropolità del Sector de la Bonaigua en l\u0027àmbit de la Riera de Sant Just és un instrument de planejament urbanístic promogut per l\u0027Ajuntament de Sant Just Desvern i redactat per Peralta Urbanisme SLP en col·laboració amb Barcelona Regional, que es presenta per a aprovació inicial el desembre del 2023.\n\nL\u0027àmbit, d\u0027una superfície total de 12,3 hectàrees distribuïdes en dues peces, se situa a la falda oriental de la Serra de Collserola, entre els municipis de Sant Just Desvern, Sant Joan Despí i Sant Feliu de Llobregat. La peça principal, de la Bonaigua, integra tres unitats d\u0027actuació vigents pendents de desenvolupament —La Bòbila/Can Padrosa, Les Escales i Carrer Riera— al voltant de la riera de Sant Just. La peça secundària, d\u00271.755 m², s\u0027ubica al perímetre del Parc de Torreblanca, sobre un sòl demanial fins ara destinat a aparcament provisional.\n\nLa conveniència s\u0027ancla en dos instruments supramunicipals: el PEPNAT, que reconeix l\u0027àmbit com a espai funcional del Parc Natural de Collserola; i el PDUM, que identifica la riera com a eix verd metropolità entre el riu Llobregat i Collserola. L\u0027ordenació vigent, que requeria costoses infraestructures —desdoblament soterrat de la riera, trasllat de línies elèctriques, nova vialitat sobre la topografia—, justifica la necessitat del nou planejament.\n\nEl model s\u0027articula en tres idees força: renaturalitzar la riera i recuperar la seva funció ecològica com a corredor de Collserola; reteixir la trama urbana transversalment per cohesionar ambdues bandes de la riera; i capgirar l\u0027orientació dels nous fronts edificats cap al futur parc fluvial. L\u0027àmbit compta amb elements de gran valor ambiental i patrimonial: el curs de la riera, la masia de Can Padrosa i el seu molí fariner (BCIL de 1306), la Font de la Bonaigua, els camins carreters històrics i la biodiversitat de la conca.\n\nLa proposta redueix el sostre edificable de 23.265 a 21.541 m²st, mantenint un màxim de 166 habitatges redistribuïts entre ambdues bandes de la riera i incorporant per primera vegada 3.522 m²st d\u0027habitatge de protecció oficial (16,8% del total). A Torreblanca, la proposta crea una nova plaça amb un edifici d\u0027habitatge de protecció oficial de PB+5 i local comercial en planta baixa, que actua com a porta d\u0027accés al parc i punt de cohesió social. La MPGM incrementa en 2.535 m²s la superfície d\u0027espais lliures urbans i amplia la xarxa de vies cíviques per afavorir la mobilitat activa i el lleure."
+     },
+  "es":  {
+       "title":  "MPGM Bonaigua",
+       "municipality":  "Sant Just Desvern",
+       "year":  "2022",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  120871,
+       "programa":  null,
+       "sostreM2":  21541,
+       "habitatges":  166,
+       "descriptionShort":  "Modificació del Pla General Metropolità que proposa la renaturalització de la riera de Sant Just i la creació d\u0027un nou parc fluvial en l\u0027àmbit de la Bonaigua, a Sant Just Desvern. L\u0027MPGM unifica tres sectors de planejament pendents de desenvolupament —La Bòbila, Les Escales i Carrer Riera— i incorpora un segon subàmbit al Parc de Torreblanca, on proposa nous habitatges de protecció oficial. Promou la connectivitat ecològica, la mobilitat activa i la cohesió social.",
+       "descriptionLong":  "La Modificació del Pla General Metropolità del Sector de la Bonaigua en l\u0027àmbit de la Riera de Sant Just és un instrument de planejament urbanístic promogut per l\u0027Ajuntament de Sant Just Desvern i redactat per Peralta Urbanisme SLP en col·laboració amb Barcelona Regional, que es presenta per a aprovació inicial el desembre del 2023.\n\nL\u0027àmbit, d\u0027una superfície total de 12,3 hectàrees distribuïdes en dues peces, se situa a la falda oriental de la Serra de Collserola, entre els municipis de Sant Just Desvern, Sant Joan Despí i Sant Feliu de Llobregat. La peça principal, de la Bonaigua, integra tres unitats d\u0027actuació vigents pendents de desenvolupament —La Bòbila/Can Padrosa, Les Escales i Carrer Riera— al voltant de la riera de Sant Just. La peça secundària, d\u00271.755 m², s\u0027ubica al perímetre del Parc de Torreblanca, sobre un sòl demanial fins ara destinat a aparcament provisional.\n\nLa conveniència s\u0027ancla en dos instruments supramunicipals: el PEPNAT, que reconeix l\u0027àmbit com a espai funcional del Parc Natural de Collserola; i el PDUM, que identifica la riera com a eix verd metropolità entre el riu Llobregat i Collserola. L\u0027ordenació vigent, que requeria costoses infraestructures —desdoblament soterrat de la riera, trasllat de línies elèctriques, nova vialitat sobre la topografia—, justifica la necessitat del nou planejament.\n\nEl model s\u0027articula en tres idees força: renaturalitzar la riera i recuperar la seva funció ecològica com a corredor de Collserola; reteixir la trama urbana transversalment per cohesionar ambdues bandes de la riera; i capgirar l\u0027orientació dels nous fronts edificats cap al futur parc fluvial. L\u0027àmbit compta amb elements de gran valor ambiental i patrimonial: el curs de la riera, la masia de Can Padrosa i el seu molí fariner (BCIL de 1306), la Font de la Bonaigua, els camins carreters històrics i la biodiversitat de la conca.\n\nLa proposta redueix el sostre edificable de 23.265 a 21.541 m²st, mantenint un màxim de 166 habitatges redistribuïts entre ambdues bandes de la riera i incorporant per primera vegada 3.522 m²st d\u0027habitatge de protecció oficial (16,8% del total). A Torreblanca, la proposta crea una nova plaça amb un edifici d\u0027habitatge de protecció oficial de PB+5 i local comercial en planta baixa, que actua com a porta d\u0027accés al parc i punt de cohesió social. La MPGM incrementa en 2.535 m²s la superfície d\u0027espais lliures urbans i amplia la xarxa de vies cíviques per afavorir la mobilitat activa i el lleure."
+     },
+  "en":  {
+       "title":  "MPGM Bonaigua",
+       "municipality":  "Sant Just Desvern",
+       "year":  "2022",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  "Seleccionat 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  120871,
+       "programa":  null,
+       "sostreM2":  21541,
+       "habitatges":  166,
+       "descriptionShort":  "Modificació del Pla General Metropolità que proposa la renaturalització de la riera de Sant Just i la creació d\u0027un nou parc fluvial en l\u0027àmbit de la Bonaigua, a Sant Just Desvern. L\u0027MPGM unifica tres sectors de planejament pendents de desenvolupament —La Bòbila, Les Escales i Carrer Riera— i incorpora un segon subàmbit al Parc de Torreblanca, on proposa nous habitatges de protecció oficial. Promou la connectivitat ecològica, la mobilitat activa i la cohesió social.",
+       "descriptionLong":  "La Modificació del Pla General Metropolità del Sector de la Bonaigua en l\u0027àmbit de la Riera de Sant Just és un instrument de planejament urbanístic promogut per l\u0027Ajuntament de Sant Just Desvern i redactat per Peralta Urbanisme SLP en col·laboració amb Barcelona Regional, que es presenta per a aprovació inicial el desembre del 2023.\n\nL\u0027àmbit, d\u0027una superfície total de 12,3 hectàrees distribuïdes en dues peces, se situa a la falda oriental de la Serra de Collserola, entre els municipis de Sant Just Desvern, Sant Joan Despí i Sant Feliu de Llobregat. La peça principal, de la Bonaigua, integra tres unitats d\u0027actuació vigents pendents de desenvolupament —La Bòbila/Can Padrosa, Les Escales i Carrer Riera— al voltant de la riera de Sant Just. La peça secundària, d\u00271.755 m², s\u0027ubica al perímetre del Parc de Torreblanca, sobre un sòl demanial fins ara destinat a aparcament provisional.\n\nLa conveniència s\u0027ancla en dos instruments supramunicipals: el PEPNAT, que reconeix l\u0027àmbit com a espai funcional del Parc Natural de Collserola; i el PDUM, que identifica la riera com a eix verd metropolità entre el riu Llobregat i Collserola. L\u0027ordenació vigent, que requeria costoses infraestructures —desdoblament soterrat de la riera, trasllat de línies elèctriques, nova vialitat sobre la topografia—, justifica la necessitat del nou planejament.\n\nEl model s\u0027articula en tres idees força: renaturalitzar la riera i recuperar la seva funció ecològica com a corredor de Collserola; reteixir la trama urbana transversalment per cohesionar ambdues bandes de la riera; i capgirar l\u0027orientació dels nous fronts edificats cap al futur parc fluvial. L\u0027àmbit compta amb elements de gran valor ambiental i patrimonial: el curs de la riera, la masia de Can Padrosa i el seu molí fariner (BCIL de 1306), la Font de la Bonaigua, els camins carreters històrics i la biodiversitat de la conca.\n\nLa proposta redueix el sostre edificable de 23.265 a 21.541 m²st, mantenint un màxim de 166 habitatges redistribuïts entre ambdues bandes de la riera i incorporant per primera vegada 3.522 m²st d\u0027habitatge de protecció oficial (16,8% del total). A Torreblanca, la proposta crea una nova plaça amb un edifici d\u0027habitatge de protecció oficial de PB+5 i local comercial en planta baixa, que actua com a porta d\u0027accés al parc i punt de cohesió social. La MPGM incrementa en 2.535 m²s la superfície d\u0027espais lliures urbans i amplia la xarxa de vies cíviques per afavorir la mobilitat activa i el lleure."
+     }
 }

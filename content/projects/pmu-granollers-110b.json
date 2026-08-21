@@ -1,56 +1,73 @@
 {
-    "slug":  "pmu-granollers-110b",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "pmu-granollers-110b",
+  "coverImage":  "1.2.jpg",
+  "images":  [
+         "1.2.jpg",
+         "1.4.jpg",
+         "1.jpg",
+         "11.2.jpg",
+         "11.jpg",
+         "12.2.jpg",
+         "12.jpg",
+         "13.jpg",
+         "15.2.jpg",
+         "17.jpg",
+         "2 (2).jpg",
+         "2.jpg",
+         "3 copia.jpg",
+         "3.jpg",
+         "4 (2).jpg",
+         "4.jpg",
+         "7.jpg",
+         "8.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "municipality":  "Granollers",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
-           },
-    "es":  {
-               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "municipality":  "Granollers",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
-           },
-    "en":  {
-               "title":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "municipality":  "Granollers",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari",
-               "descriptionLong":  "Pla de Millora Urbana Sector 110b – Granollers. Nou front urbà a l\u0027Avinguda Esteve Terrades i cobriment ferroviari"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "PMU Granollers 110b",
+       "municipality":  "Granollers",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  29253,
+       "programa":  null,
+       "sostreM2":  25088,
+       "habitatges":  313,
+       "descriptionShort":  "Pla de Millora Urbana del sector 110b de Granollers per a la creació d\u0027un nou front urbà a l\u0027avinguda Esteve Terrades i el cobriment parcial de la infraestructura ferroviària. El pla, fruit d\u0027un conveni entre l\u0027Ajuntament i ADIF, ordena un àmbit discontinu de 29.253 m² que permet completar el teixit urbà a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre, cobrir 356 metres de vies i generar nous habitatges lliures i protegits.",
+       "descriptionLong":  "Granollers és un municipi amb una configuració territorial que limita les seves possibilitats d\u0027expansió urbana: la posició de la ciutat al fons de la vall del Congost, entre les dues serres disposades paral·lelament en direcció nord-sud, ha contingut en gran mesura el creixement. En aquest context, el POUM aposta per reestructurar la ciutat des del sòl urbà, amb sectors interns com el 110b que permeten fer créixer la ciutat cap endins, sobre espais ja antropitzats.\n\nEl Pla de Millora Urbana ordena un àmbit discontinu de 29.253 m², articulat en dos subàmbits vinculats a l\u0027eix ferroviari de la R2/R8 al seu pas pel nucli urbà. El subàmbit sud, de 20.092 m², se situa a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre i proposa completar la façana oest del carrer Esteve Terrades —fins ara inacabada per la presència de l\u0027espai tècnic ferroviari— amb un nou front edificat que aporti habitatge lliure i protegit, comerç i serveis al barri de Tres Torres. El subàmbit nord, de 9.161 m², correspon al tram de cobriment de les vies entre els carrers Agustí Vinyamata i Josep Umbert, on la construcció d\u0027un fals túnel de 356 metres de longitud permetrà recosir la fractura urbana i establir una nova connectivitat transversal a través del Parc Torras Villà.\n\nL\u0027ordenació es fonamenta en el Conveni de col·laboració subscrit entre l\u0027Ajuntament i ADIF, que compromet ambdues parts a impulsar conjuntament el desenvolupament del sector. ADIF assumeix la redacció i execució del projecte de cobriment i la reordenació de l\u0027estació, incloent el trasllat de la terminal de mercaderies a La Llagosta; l\u0027Ajuntament impulsa el PMU i la urbanització del sector, recuperant la despesa a través de l\u0027obtenció d\u0027aprofitament. El sistema d\u0027actuació és l\u0027expropiació i la totalitat dels terrenys són de titularitat d\u0027ADIF.\n\nEl pla preveu un sostre residencial de 25.088 m², amb una densitat que esgota el màxim admès pel POUM: 85 m²st per habitatge lliure i 70 m²st per habitatge protegit. L\u0027ordenació genera una nova cremallera verda longitudinal que col·labora en la cohesió dels teixits de l\u0027entorn, obrint una nova referència per al passeig, l\u0027esport i la natura al conjunt de la ciutat."
+     },
+  "es":  {
+       "title":  "PMU Granollers 110b",
+       "municipality":  "Granollers",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  29253,
+       "programa":  null,
+       "sostreM2":  25088,
+       "habitatges":  313,
+       "descriptionShort":  "Pla de Millora Urbana del sector 110b de Granollers per a la creació d\u0027un nou front urbà a l\u0027avinguda Esteve Terrades i el cobriment parcial de la infraestructura ferroviària. El pla, fruit d\u0027un conveni entre l\u0027Ajuntament i ADIF, ordena un àmbit discontinu de 29.253 m² que permet completar el teixit urbà a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre, cobrir 356 metres de vies i generar nous habitatges lliures i protegits.",
+       "descriptionLong":  "Granollers és un municipi amb una configuració territorial que limita les seves possibilitats d\u0027expansió urbana: la posició de la ciutat al fons de la vall del Congost, entre les dues serres disposades paral·lelament en direcció nord-sud, ha contingut en gran mesura el creixement. En aquest context, el POUM aposta per reestructurar la ciutat des del sòl urbà, amb sectors interns com el 110b que permeten fer créixer la ciutat cap endins, sobre espais ja antropitzats.\n\nEl Pla de Millora Urbana ordena un àmbit discontinu de 29.253 m², articulat en dos subàmbits vinculats a l\u0027eix ferroviari de la R2/R8 al seu pas pel nucli urbà. El subàmbit sud, de 20.092 m², se situa a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre i proposa completar la façana oest del carrer Esteve Terrades —fins ara inacabada per la presència de l\u0027espai tècnic ferroviari— amb un nou front edificat que aporti habitatge lliure i protegit, comerç i serveis al barri de Tres Torres. El subàmbit nord, de 9.161 m², correspon al tram de cobriment de les vies entre els carrers Agustí Vinyamata i Josep Umbert, on la construcció d\u0027un fals túnel de 356 metres de longitud permetrà recosir la fractura urbana i establir una nova connectivitat transversal a través del Parc Torras Villà.\n\nL\u0027ordenació es fonamenta en el Conveni de col·laboració subscrit entre l\u0027Ajuntament i ADIF, que compromet ambdues parts a impulsar conjuntament el desenvolupament del sector. ADIF assumeix la redacció i execució del projecte de cobriment i la reordenació de l\u0027estació, incloent el trasllat de la terminal de mercaderies a La Llagosta; l\u0027Ajuntament impulsa el PMU i la urbanització del sector, recuperant la despesa a través de l\u0027obtenció d\u0027aprofitament. El sistema d\u0027actuació és l\u0027expropiació i la totalitat dels terrenys són de titularitat d\u0027ADIF.\n\nEl pla preveu un sostre residencial de 25.088 m², amb una densitat que esgota el màxim admès pel POUM: 85 m²st per habitatge lliure i 70 m²st per habitatge protegit. L\u0027ordenació genera una nova cremallera verda longitudinal que col·labora en la cohesió dels teixits de l\u0027entorn, obrint una nova referència per al passeig, l\u0027esport i la natura al conjunt de la ciutat."
+     },
+  "en":  {
+       "title":  "PMU Granollers 110b",
+       "municipality":  "Granollers",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  29253,
+       "programa":  null,
+       "sostreM2":  25088,
+       "habitatges":  313,
+       "descriptionShort":  "Pla de Millora Urbana del sector 110b de Granollers per a la creació d\u0027un nou front urbà a l\u0027avinguda Esteve Terrades i el cobriment parcial de la infraestructura ferroviària. El pla, fruit d\u0027un conveni entre l\u0027Ajuntament i ADIF, ordena un àmbit discontinu de 29.253 m² que permet completar el teixit urbà a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre, cobrir 356 metres de vies i generar nous habitatges lliures i protegits.",
+       "descriptionLong":  "Granollers és un municipi amb una configuració territorial que limita les seves possibilitats d\u0027expansió urbana: la posició de la ciutat al fons de la vall del Congost, entre les dues serres disposades paral·lelament en direcció nord-sud, ha contingut en gran mesura el creixement. En aquest context, el POUM aposta per reestructurar la ciutat des del sòl urbà, amb sectors interns com el 110b que permeten fer créixer la ciutat cap endins, sobre espais ja antropitzats.\n\nEl Pla de Millora Urbana ordena un àmbit discontinu de 29.253 m², articulat en dos subàmbits vinculats a l\u0027eix ferroviari de la R2/R8 al seu pas pel nucli urbà. El subàmbit sud, de 20.092 m², se situa a l\u0027entorn de l\u0027estació de Rodalies Granollers-Centre i proposa completar la façana oest del carrer Esteve Terrades —fins ara inacabada per la presència de l\u0027espai tècnic ferroviari— amb un nou front edificat que aporti habitatge lliure i protegit, comerç i serveis al barri de Tres Torres. El subàmbit nord, de 9.161 m², correspon al tram de cobriment de les vies entre els carrers Agustí Vinyamata i Josep Umbert, on la construcció d\u0027un fals túnel de 356 metres de longitud permetrà recosir la fractura urbana i establir una nova connectivitat transversal a través del Parc Torras Villà.\n\nL\u0027ordenació es fonamenta en el Conveni de col·laboració subscrit entre l\u0027Ajuntament i ADIF, que compromet ambdues parts a impulsar conjuntament el desenvolupament del sector. ADIF assumeix la redacció i execució del projecte de cobriment i la reordenació de l\u0027estació, incloent el trasllat de la terminal de mercaderies a La Llagosta; l\u0027Ajuntament impulsa el PMU i la urbanització del sector, recuperant la despesa a través de l\u0027obtenció d\u0027aprofitament. El sistema d\u0027actuació és l\u0027expropiació i la totalitat dels terrenys són de titularitat d\u0027ADIF.\n\nEl pla preveu un sostre residencial de 25.088 m², amb una densitat que esgota el màxim admès pel POUM: 85 m²st per habitatge lliure i 70 m²st per habitatge protegit. L\u0027ordenació genera una nova cremallera verda longitudinal que col·labora en la cohesió dels teixits de l\u0027entorn, obrint una nova referència per al passeig, l\u0027esport i la natura al conjunt de la ciutat."
+     }
 }

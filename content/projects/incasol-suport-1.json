@@ -1,56 +1,70 @@
 {
-    "slug":  "incasol-suport-1",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "incasol-suport-1",
+  "coverImage":  "17_11_2023 Carrer estructurant hortizontal_parc de l\u0027alba_ color 1.jpg",
+  "images":  [
+         "17_11_2023 Carrer estructurant hortizontal_parc de l\u0027alba_ color 1.jpg",
+         "20_11_2023 Carrer interior prototipic residencial_ actualitzat_parc de l\u0027alba.jpg",
+         "2023-07-17 planta capilaritat 5 full.jpg",
+         "2023-07-17 vista aèria eix castell color.jpg",
+         "2023-07-17 vista aèria eix castell zoom.jpg",
+         "2023-07-17 vista àeria eix Gorgs color.jpg",
+         "2023-07-17 vista àeria eix Gorgs zoom.jpg",
+         "2023-07-17 vista carrer eix gorgs color.jpg",
+         "2023-09-19 vista àeria eix Gorgs _ V LINIA REBAIX  MINIMA  .jpg",
+         "2023-09-21 planta general .jpg",
+         "2023-09-21vista carrer eix Castell color.jpg",
+         "Fase 3 - Vista 1 - R1704.jpg",
+         "Fase 3 - Vista 2 -R1601.jpg",
+         "Fase 3 - Vista 3 - R1101.jpg",
+         "Fase 3 - Vista 4 - R3801.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Altres",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
-           },
-    "es":  {
-               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Altres",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
-           },
-    "en":  {
-               "title":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Altres",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba",
-               "descriptionLong":  "Servei de creació de productes gràfics per promoure, promocionar i explicar projectes que impulsa el Govern de la Generalitat de Catalunya mitjançant l\u0027Institut Català del Sòl — Nou barri residencial del Centre Direccional – Parc de l\u0027Alba"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Incasol Suport 1",
+       "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Altres",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  5377,
+       "descriptionShort":  "Encàrrec de l\u0027Institut Català del Sòl (INCASOL) per a la creació d\u0027un conjunt de productes gràfics destinats a promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions —realitzades el juliol de 2023— combinen cartografies territorials a múltiples escales, perspectives aèries axonomètriques del nou teixit urbà de 5.377 habitatges i vistes a peu de carrer, en un estil de traç manual i color aquarel·la.",
+       "descriptionLong":  "L\u0027Institut Català del Sòl (INCASOL), organisme de la Generalitat de Catalunya responsable de promoure el sòl residencial de titularitat pública, va encarregar a Peralta Urbanisme la creació d\u0027un conjunt de productes gràfics destinats a explicar i promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions, realitzades el juliol de 2023, constitueixen una eina de comunicació visual per a un dels projectes residencials de nova planta més grans impulsats pel Govern de la Generalitat: un nou barri de 5.377 habitatges emplaçat en l\u0027àmbit del Centre Direccional de Cerdanyola.\n\nEl conjunt d\u0027il·lustracions s\u0027organitza en tres registres gràfics complementaris. El primer és la cartografia territorial, que presenta l\u0027àmbit en el seu context metropolità a diverses escales, des de la visió panoràmica del sistema viari del Vallès fins a la plasmació detallada del model urbà del nou barri. Mitjançant superposicions de color, cada mapa explica un aspecte del projecte: l\u0027estructura de la mobilitat, la xarxa d\u0027infraestructura verda, els corredors de connectivitat i el teixit urbà proposat, tot sobre un fons de dibuix cartogràfic de traç manual.\n\nEl segon registre és la perspectiva aèria axonomètrica, que representa el nou barri sencer des d\u0027un punt de vista elevat en una il·lustració de gran format. La vista aèria mostra en detall la disposició dels blocs residencials, els carrers arborats, els espais lliures interiors d\u0027illa i la connexió amb el teixit urbà existent de Cerdanyola del Vallès i Sant Cugat del Vallès. L\u0027encaix del barri amb la infraestructura ferroviària i les àrees naturals circumdants és també visible en aquesta vista.\n\nEl tercer registre és la perspectiva a peu de carrer, que mostra l\u0027experiència quotidiana del nou barri des del nivell del vianant. Les vistes il·lustren el passeig central del barri: una avinguda amb carril bus, voreres amples i arbrades, espais de terrassa per al comerç en planta baixa i un paisatge de fons de serres i vegetació. Tant les versions en color aquarel·la com les versions en dibuix de línia pura reforcen el caràcter artesanal i comunicatiu del conjunt.\n\nL\u0027estil gràfic de totes les il·lustracions —traç de ploma manual digitalitzat combinat amb color aquarel·la— aporta al projecte una escala humana i una proximitat que el distingeix de les representacions tècniques habituals, fent-lo accessible a un públic ampli que inclou futurs residents, administracions i agents socials."
+     },
+  "es":  {
+       "title":  "Incasol Suport 1",
+       "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Altres",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  5377,
+       "descriptionShort":  "Encàrrec de l\u0027Institut Català del Sòl (INCASOL) per a la creació d\u0027un conjunt de productes gràfics destinats a promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions —realitzades el juliol de 2023— combinen cartografies territorials a múltiples escales, perspectives aèries axonomètriques del nou teixit urbà de 5.377 habitatges i vistes a peu de carrer, en un estil de traç manual i color aquarel·la.",
+       "descriptionLong":  "L\u0027Institut Català del Sòl (INCASOL), organisme de la Generalitat de Catalunya responsable de promoure el sòl residencial de titularitat pública, va encarregar a Peralta Urbanisme la creació d\u0027un conjunt de productes gràfics destinats a explicar i promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions, realitzades el juliol de 2023, constitueixen una eina de comunicació visual per a un dels projectes residencials de nova planta més grans impulsats pel Govern de la Generalitat: un nou barri de 5.377 habitatges emplaçat en l\u0027àmbit del Centre Direccional de Cerdanyola.\n\nEl conjunt d\u0027il·lustracions s\u0027organitza en tres registres gràfics complementaris. El primer és la cartografia territorial, que presenta l\u0027àmbit en el seu context metropolità a diverses escales, des de la visió panoràmica del sistema viari del Vallès fins a la plasmació detallada del model urbà del nou barri. Mitjançant superposicions de color, cada mapa explica un aspecte del projecte: l\u0027estructura de la mobilitat, la xarxa d\u0027infraestructura verda, els corredors de connectivitat i el teixit urbà proposat, tot sobre un fons de dibuix cartogràfic de traç manual.\n\nEl segon registre és la perspectiva aèria axonomètrica, que representa el nou barri sencer des d\u0027un punt de vista elevat en una il·lustració de gran format. La vista aèria mostra en detall la disposició dels blocs residencials, els carrers arborats, els espais lliures interiors d\u0027illa i la connexió amb el teixit urbà existent de Cerdanyola del Vallès i Sant Cugat del Vallès. L\u0027encaix del barri amb la infraestructura ferroviària i les àrees naturals circumdants és també visible en aquesta vista.\n\nEl tercer registre és la perspectiva a peu de carrer, que mostra l\u0027experiència quotidiana del nou barri des del nivell del vianant. Les vistes il·lustren el passeig central del barri: una avinguda amb carril bus, voreres amples i arbrades, espais de terrassa per al comerç en planta baixa i un paisatge de fons de serres i vegetació. Tant les versions en color aquarel·la com les versions en dibuix de línia pura reforcen el caràcter artesanal i comunicatiu del conjunt.\n\nL\u0027estil gràfic de totes les il·lustracions —traç de ploma manual digitalitzat combinat amb color aquarel·la— aporta al projecte una escala humana i una proximitat que el distingeix de les representacions tècniques habituals, fent-lo accessible a un públic ampli que inclou futurs residents, administracions i agents socials."
+     },
+  "en":  {
+       "title":  "Incasol Suport 1",
+       "municipality":  "Cerdanyola del Vallès / Sant Cugat del Vallès",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Altres",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  5377,
+       "descriptionShort":  "Encàrrec de l\u0027Institut Català del Sòl (INCASOL) per a la creació d\u0027un conjunt de productes gràfics destinats a promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions —realitzades el juliol de 2023— combinen cartografies territorials a múltiples escales, perspectives aèries axonomètriques del nou teixit urbà de 5.377 habitatges i vistes a peu de carrer, en un estil de traç manual i color aquarel·la.",
+       "descriptionLong":  "L\u0027Institut Català del Sòl (INCASOL), organisme de la Generalitat de Catalunya responsable de promoure el sòl residencial de titularitat pública, va encarregar a Peralta Urbanisme la creació d\u0027un conjunt de productes gràfics destinats a explicar i promoure el nou barri residencial del Centre Direccional – Parc de l\u0027Alba, a Cerdanyola del Vallès i Sant Cugat del Vallès. Les il·lustracions, realitzades el juliol de 2023, constitueixen una eina de comunicació visual per a un dels projectes residencials de nova planta més grans impulsats pel Govern de la Generalitat: un nou barri de 5.377 habitatges emplaçat en l\u0027àmbit del Centre Direccional de Cerdanyola.\n\nEl conjunt d\u0027il·lustracions s\u0027organitza en tres registres gràfics complementaris. El primer és la cartografia territorial, que presenta l\u0027àmbit en el seu context metropolità a diverses escales, des de la visió panoràmica del sistema viari del Vallès fins a la plasmació detallada del model urbà del nou barri. Mitjançant superposicions de color, cada mapa explica un aspecte del projecte: l\u0027estructura de la mobilitat, la xarxa d\u0027infraestructura verda, els corredors de connectivitat i el teixit urbà proposat, tot sobre un fons de dibuix cartogràfic de traç manual.\n\nEl segon registre és la perspectiva aèria axonomètrica, que representa el nou barri sencer des d\u0027un punt de vista elevat en una il·lustració de gran format. La vista aèria mostra en detall la disposició dels blocs residencials, els carrers arborats, els espais lliures interiors d\u0027illa i la connexió amb el teixit urbà existent de Cerdanyola del Vallès i Sant Cugat del Vallès. L\u0027encaix del barri amb la infraestructura ferroviària i les àrees naturals circumdants és també visible en aquesta vista.\n\nEl tercer registre és la perspectiva a peu de carrer, que mostra l\u0027experiència quotidiana del nou barri des del nivell del vianant. Les vistes il·lustren el passeig central del barri: una avinguda amb carril bus, voreres amples i arbrades, espais de terrassa per al comerç en planta baixa i un paisatge de fons de serres i vegetació. Tant les versions en color aquarel·la com les versions en dibuix de línia pura reforcen el caràcter artesanal i comunicatiu del conjunt.\n\nL\u0027estil gràfic de totes les il·lustracions —traç de ploma manual digitalitzat combinat amb color aquarel·la— aporta al projecte una escala humana i una proximitat que el distingeix de les representacions tècniques habituals, fent-lo accessible a un públic ampli que inclou futurs residents, administracions i agents socials."
+     }
 }

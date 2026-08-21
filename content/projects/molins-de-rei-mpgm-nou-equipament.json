@@ -1,56 +1,58 @@
 {
-    "slug":  "molins-de-rei-mpgm-nou-equipament",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "molins-de-rei-mpgm-nou-equipament",
+  "coverImage":  "municipi sistema equipaments.jpg",
+  "images":  [
+         "municipi sistema equipaments.jpg",
+         "municipi sistema espais lliures.jpg",
+         "zones.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "municipality":  "Molins de Rei",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
-           },
-    "es":  {
-               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "municipality":  "Molins de Rei",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
-           },
-    "en":  {
-               "title":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "municipality":  "Molins de Rei",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei",
-               "descriptionLong":  "Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull número 4 de Molins de Rei"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Molins de Rei MPGM Nou Equipament",
+       "municipality":  "Molins de Rei",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  3160,
+       "programa":  null,
+       "sostreM2":  5056,
+       "habitatges":  null,
+       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per a la creació d\u0027un equipament públic municipal al carrer Ramon Llull, 4, de Molins de Rei, en una parcel·la de 3.160 m² del polígon industrial de la Riera del Molí. La proposta introdueix una doble qualificació industrial i d\u0027equipament (clau 22a/7b), mantenint l\u0027edificabilitat vigent de 1,60 m²st/m²s, i destina 0,60 m²st/m²s a usos d\u0027equipament de titularitat pública. Aprovada definitivament el febrer de 2026.",
+       "descriptionLong":  "La Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull, número 4, de Molins de Rei és un instrument de planejament general de titularitat municipal redactat per Peralta Urbanisme SLP i aprovat definitivament per la Comissió Territorial d\u0027Urbanisme de l\u0027àmbit Metropolità de Barcelona en sessió de 5 de febrer de 2026.\n\nL\u0027àmbit se situa al polígon industrial de la Riera del Molí, un teixit industrial enclavat entre tres barris residencials de Molins de Rei: el Centre (sud), Riera Nova–La Pau (est) i la Granja (oest), en contacte amb la B-23. La parcel·la objecte de la modificació, de 3.160 m²s, va acollir anteriorment la seu de l\u0027Entitat Autònoma de Jocs i Apostes–Loteries de Catalunya i es troba en desús. L\u0027edifici existent, de 1973 i remodelat el 2010, té una superfície construïda de 2.762 m²st distribuïdes en dues plantes: una planta baixa en semisoterrani (1.812 m²st, alçada lliure de 5 m) i una planta pis (950 m²st).\n\nLa conveniència d\u0027aquesta MPGM respon a quatre necessitats de l\u0027Ajuntament: la creació d\u0027un equipament amb ús administratiu, la provisió d\u0027un magatzem per al Museu municipal, l\u0027ampliació dels espais de servei municipals i l\u0027aprofitament de la parcel·la de titularitat pública sense renunciar a la seva vocació industrial.\n\nLa proposta s\u0027articula en tres modificacions del planejament vigent:\n\nPrimera: la qualificació del sòl passa de la clau industrial 22a a una doble clau 22a/7b (industrial i equipament públic), mantenint l\u0027edificabilitat total màxima de 1,60 m²st/m²s (5.104 m²st). Dins d\u0027aquesta edificabilitat, 1,00 m²st/m²s (3.190 m²st) correspon a l\u0027ús industrial i 0,60 m²st/m²s (1.914 m²st) a l\u0027equipament, que no computa a efectes d\u0027aprofitament urbanístic.\n\nSegona: la regulació dels usos. L\u0027industrial admet categories 1a, 2a i 3a (indústria, magatzem i comerç auxiliar), i l\u0027equipament, de titularitat pública, té com a ús principal l\u0027administratiu, però s\u0027admeten altres usos públics (seguretat, desenvolupament econòmic, recerca, serveis ambientals) i un màxim de 350 m²st d\u0027activitats complementàries com cafeteria o bar.\n\nTercera: la regulació edificatòria concreta l\u0027alçada màxima (15 m, PB+2PP), l\u0027ocupació màxima (70%), les separacions mínimes a vials (5 m) i a la resta de llindars (3 m), i estableix la cota de referència de la planta baixa a +38,80 m."
+     },
+  "es":  {
+       "title":  "Molins de Rei MPGM Nou Equipament",
+       "municipality":  "Molins de Rei",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  3160,
+       "programa":  null,
+       "sostreM2":  5056,
+       "habitatges":  null,
+       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per a la creació d\u0027un equipament públic municipal al carrer Ramon Llull, 4, de Molins de Rei, en una parcel·la de 3.160 m² del polígon industrial de la Riera del Molí. La proposta introdueix una doble qualificació industrial i d\u0027equipament (clau 22a/7b), mantenint l\u0027edificabilitat vigent de 1,60 m²st/m²s, i destina 0,60 m²st/m²s a usos d\u0027equipament de titularitat pública. Aprovada definitivament el febrer de 2026.",
+       "descriptionLong":  "La Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull, número 4, de Molins de Rei és un instrument de planejament general de titularitat municipal redactat per Peralta Urbanisme SLP i aprovat definitivament per la Comissió Territorial d\u0027Urbanisme de l\u0027àmbit Metropolità de Barcelona en sessió de 5 de febrer de 2026.\n\nL\u0027àmbit se situa al polígon industrial de la Riera del Molí, un teixit industrial enclavat entre tres barris residencials de Molins de Rei: el Centre (sud), Riera Nova–La Pau (est) i la Granja (oest), en contacte amb la B-23. La parcel·la objecte de la modificació, de 3.160 m²s, va acollir anteriorment la seu de l\u0027Entitat Autònoma de Jocs i Apostes–Loteries de Catalunya i es troba en desús. L\u0027edifici existent, de 1973 i remodelat el 2010, té una superfície construïda de 2.762 m²st distribuïdes en dues plantes: una planta baixa en semisoterrani (1.812 m²st, alçada lliure de 5 m) i una planta pis (950 m²st).\n\nLa conveniència d\u0027aquesta MPGM respon a quatre necessitats de l\u0027Ajuntament: la creació d\u0027un equipament amb ús administratiu, la provisió d\u0027un magatzem per al Museu municipal, l\u0027ampliació dels espais de servei municipals i l\u0027aprofitament de la parcel·la de titularitat pública sense renunciar a la seva vocació industrial.\n\nLa proposta s\u0027articula en tres modificacions del planejament vigent:\n\nPrimera: la qualificació del sòl passa de la clau industrial 22a a una doble clau 22a/7b (industrial i equipament públic), mantenint l\u0027edificabilitat total màxima de 1,60 m²st/m²s (5.104 m²st). Dins d\u0027aquesta edificabilitat, 1,00 m²st/m²s (3.190 m²st) correspon a l\u0027ús industrial i 0,60 m²st/m²s (1.914 m²st) a l\u0027equipament, que no computa a efectes d\u0027aprofitament urbanístic.\n\nSegona: la regulació dels usos. L\u0027industrial admet categories 1a, 2a i 3a (indústria, magatzem i comerç auxiliar), i l\u0027equipament, de titularitat pública, té com a ús principal l\u0027administratiu, però s\u0027admeten altres usos públics (seguretat, desenvolupament econòmic, recerca, serveis ambientals) i un màxim de 350 m²st d\u0027activitats complementàries com cafeteria o bar.\n\nTercera: la regulació edificatòria concreta l\u0027alçada màxima (15 m, PB+2PP), l\u0027ocupació màxima (70%), les separacions mínimes a vials (5 m) i a la resta de llindars (3 m), i estableix la cota de referència de la planta baixa a +38,80 m."
+     },
+  "en":  {
+       "title":  "Molins de Rei MPGM Nou Equipament",
+       "municipality":  "Molins de Rei",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  3160,
+       "programa":  null,
+       "sostreM2":  5056,
+       "habitatges":  null,
+       "descriptionShort":  "Modificació Puntual del Pla General Metropolità per a la creació d\u0027un equipament públic municipal al carrer Ramon Llull, 4, de Molins de Rei, en una parcel·la de 3.160 m² del polígon industrial de la Riera del Molí. La proposta introdueix una doble qualificació industrial i d\u0027equipament (clau 22a/7b), mantenint l\u0027edificabilitat vigent de 1,60 m²st/m²s, i destina 0,60 m²st/m²s a usos d\u0027equipament de titularitat pública. Aprovada definitivament el febrer de 2026.",
+       "descriptionLong":  "La Modificació Puntual del Pla General Metropolità per la creació d\u0027un equipament municipal al carrer Ramon Llull, número 4, de Molins de Rei és un instrument de planejament general de titularitat municipal redactat per Peralta Urbanisme SLP i aprovat definitivament per la Comissió Territorial d\u0027Urbanisme de l\u0027àmbit Metropolità de Barcelona en sessió de 5 de febrer de 2026.\n\nL\u0027àmbit se situa al polígon industrial de la Riera del Molí, un teixit industrial enclavat entre tres barris residencials de Molins de Rei: el Centre (sud), Riera Nova–La Pau (est) i la Granja (oest), en contacte amb la B-23. La parcel·la objecte de la modificació, de 3.160 m²s, va acollir anteriorment la seu de l\u0027Entitat Autònoma de Jocs i Apostes–Loteries de Catalunya i es troba en desús. L\u0027edifici existent, de 1973 i remodelat el 2010, té una superfície construïda de 2.762 m²st distribuïdes en dues plantes: una planta baixa en semisoterrani (1.812 m²st, alçada lliure de 5 m) i una planta pis (950 m²st).\n\nLa conveniència d\u0027aquesta MPGM respon a quatre necessitats de l\u0027Ajuntament: la creació d\u0027un equipament amb ús administratiu, la provisió d\u0027un magatzem per al Museu municipal, l\u0027ampliació dels espais de servei municipals i l\u0027aprofitament de la parcel·la de titularitat pública sense renunciar a la seva vocació industrial.\n\nLa proposta s\u0027articula en tres modificacions del planejament vigent:\n\nPrimera: la qualificació del sòl passa de la clau industrial 22a a una doble clau 22a/7b (industrial i equipament públic), mantenint l\u0027edificabilitat total màxima de 1,60 m²st/m²s (5.104 m²st). Dins d\u0027aquesta edificabilitat, 1,00 m²st/m²s (3.190 m²st) correspon a l\u0027ús industrial i 0,60 m²st/m²s (1.914 m²st) a l\u0027equipament, que no computa a efectes d\u0027aprofitament urbanístic.\n\nSegona: la regulació dels usos. L\u0027industrial admet categories 1a, 2a i 3a (indústria, magatzem i comerç auxiliar), i l\u0027equipament, de titularitat pública, té com a ús principal l\u0027administratiu, però s\u0027admeten altres usos públics (seguretat, desenvolupament econòmic, recerca, serveis ambientals) i un màxim de 350 m²st d\u0027activitats complementàries com cafeteria o bar.\n\nTercera: la regulació edificatòria concreta l\u0027alçada màxima (15 m, PB+2PP), l\u0027ocupació màxima (70%), les separacions mínimes a vials (5 m) i a la resta de llindars (3 m), i estableix la cota de referència de la planta baixa a +38,80 m."
+     }
 }

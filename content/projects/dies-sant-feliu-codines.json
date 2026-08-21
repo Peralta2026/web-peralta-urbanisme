@@ -1,56 +1,61 @@
 {
-    "slug":  "dies-sant-feliu-codines",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "dies-sant-feliu-codines",
+  "coverImage":  "4.jpg",
+  "images":  [
+         "4.jpg",
+         "5.jpg",
+         "6.jpg",
+         "7.jpg",
+         "8.jpg",
+         "9.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "municipality":  "Sant Feliu de Codines",
-               "year":  "2024",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
-           },
-    "es":  {
-               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "municipality":  "Sant Feliu de Codines",
-               "year":  "2024",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
-           },
-    "en":  {
-               "title":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "municipality":  "Sant Feliu de Codines",
-               "year":  "2024",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines",
-               "descriptionLong":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "DIES Sant Feliu de Codines",
+       "municipality":  "Sant Feliu de Codines",
+       "year":  "2024",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines, elaborat per encàrrec de la Diputació de Barcelona. L\u0027estudi analitza el municipi des de quatre escales —territorial, municipal, centre urbà i domèstica— i quatre vectors —orografia, teixit, xarxa de mobilitat i espais lliures— per definir les estratègies que permetin adaptar el planejament vigent als reptes actuals: la integració de la C-59, la cohesió urbana i la reconversió de zones industrials en desús.",
+       "descriptionLong":  "Sant Feliu de Codines, històricament conegut com \"Sant Feliu del Pinyó\" per les grans extensions de pins, és un municipi del Vallès Oriental situat a la riba dreta de la riera de Tenes, en una zona muntanyosa de la Serralada Prelitoral. Amb 6.527 habitants i 3.272 habitatges, el nucli històric s\u0027ha desenvolupat al voltant de tres barris fundacionals —la Sagrera, la Vendreria i les Creus— separats pels torrents de la Tura i de l\u0027Escletxa, que han condicionat el creixement urbà. Des del segle XX, la vila s\u0027ha consolidat com un centre d\u0027estiueig que multiplica la seva població durant l\u0027estiu.\n\nEl DI_ES (Diagnosi i Estratègies) es planteja com un instrument previ a la presa de decisions sobre la conveniència de revisar el planejament urbanístic general o explorar alternatives urbanístiques. El treball, estructurat en dues fases —anàlisi i diagnosi, i definició d\u0027estratègies i propostes—, desenvolupa una metodologia inter-escalar que creua quatre escales de lectura amb quatre vectors d\u0027anàlisi: l\u0027orografia, que revela la topografia accidentada del municipi entre els 312 i els 858 metres d\u0027altitud; el teixit urbà, amb el seu creixement i evolució històrica; la xarxa de mobilitat, condicionada pel pas de la C-59 pel mig del municipi; i els espais lliures, amb la seva condició paisatgística i funció mediambiental.\n\nLa diagnosi identifica les problemàtiques clau: el pas de la carretera C-59 pel centre i la proposta de variant pel Sot de l\u0027Ullar; els problemes de subministrament d\u0027aigua per als futurs creixements; els desenvolupaments urbanístics no finalitzats amb mancances urbanístiques; la necessitat de reconvertir zones industrials en desús al centre del municipi per generar habitatge, espai públic i cohesió; la manca de regulacions que prioritzin l\u0027ús peatonal i l\u0027accessibilitat; i les tres urbanitzacions amb dèficits urbanístics pendents de resoldre.\n\nL\u0027estudi proposa estructures urbanes clares i robustes, capaces d\u0027admetre variacions sense perdre el seu sentit, orientant les futures accions urbanístiques amb una visió de conjunt que pot materialitzar-se de manera parcial o tàctica segons la disponibilitat pressupostària del municipi."
+     },
+  "es":  {
+       "title":  "DIES Sant Feliu de Codines",
+       "municipality":  "Sant Feliu de Codines",
+       "year":  "2024",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines, elaborat per encàrrec de la Diputació de Barcelona. L\u0027estudi analitza el municipi des de quatre escales —territorial, municipal, centre urbà i domèstica— i quatre vectors —orografia, teixit, xarxa de mobilitat i espais lliures— per definir les estratègies que permetin adaptar el planejament vigent als reptes actuals: la integració de la C-59, la cohesió urbana i la reconversió de zones industrials en desús.",
+       "descriptionLong":  "Sant Feliu de Codines, històricament conegut com \"Sant Feliu del Pinyó\" per les grans extensions de pins, és un municipi del Vallès Oriental situat a la riba dreta de la riera de Tenes, en una zona muntanyosa de la Serralada Prelitoral. Amb 6.527 habitants i 3.272 habitatges, el nucli històric s\u0027ha desenvolupat al voltant de tres barris fundacionals —la Sagrera, la Vendreria i les Creus— separats pels torrents de la Tura i de l\u0027Escletxa, que han condicionat el creixement urbà. Des del segle XX, la vila s\u0027ha consolidat com un centre d\u0027estiueig que multiplica la seva població durant l\u0027estiu.\n\nEl DI_ES (Diagnosi i Estratègies) es planteja com un instrument previ a la presa de decisions sobre la conveniència de revisar el planejament urbanístic general o explorar alternatives urbanístiques. El treball, estructurat en dues fases —anàlisi i diagnosi, i definició d\u0027estratègies i propostes—, desenvolupa una metodologia inter-escalar que creua quatre escales de lectura amb quatre vectors d\u0027anàlisi: l\u0027orografia, que revela la topografia accidentada del municipi entre els 312 i els 858 metres d\u0027altitud; el teixit urbà, amb el seu creixement i evolució històrica; la xarxa de mobilitat, condicionada pel pas de la C-59 pel mig del municipi; i els espais lliures, amb la seva condició paisatgística i funció mediambiental.\n\nLa diagnosi identifica les problemàtiques clau: el pas de la carretera C-59 pel centre i la proposta de variant pel Sot de l\u0027Ullar; els problemes de subministrament d\u0027aigua per als futurs creixements; els desenvolupaments urbanístics no finalitzats amb mancances urbanístiques; la necessitat de reconvertir zones industrials en desús al centre del municipi per generar habitatge, espai públic i cohesió; la manca de regulacions que prioritzin l\u0027ús peatonal i l\u0027accessibilitat; i les tres urbanitzacions amb dèficits urbanístics pendents de resoldre.\n\nL\u0027estudi proposa estructures urbanes clares i robustes, capaces d\u0027admetre variacions sense perdre el seu sentit, orientant les futures accions urbanístiques amb una visió de conjunt que pot materialitzar-se de manera parcial o tàctica segons la disponibilitat pressupostària del municipi."
+     },
+  "en":  {
+       "title":  "DIES Sant Feliu de Codines",
+       "municipality":  "Sant Feliu de Codines",
+       "year":  "2024",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Diagnosi i estratègies d\u0027abordatge del planejament urbanístic municipal de Sant Feliu de Codines, elaborat per encàrrec de la Diputació de Barcelona. L\u0027estudi analitza el municipi des de quatre escales —territorial, municipal, centre urbà i domèstica— i quatre vectors —orografia, teixit, xarxa de mobilitat i espais lliures— per definir les estratègies que permetin adaptar el planejament vigent als reptes actuals: la integració de la C-59, la cohesió urbana i la reconversió de zones industrials en desús.",
+       "descriptionLong":  "Sant Feliu de Codines, històricament conegut com \"Sant Feliu del Pinyó\" per les grans extensions de pins, és un municipi del Vallès Oriental situat a la riba dreta de la riera de Tenes, en una zona muntanyosa de la Serralada Prelitoral. Amb 6.527 habitants i 3.272 habitatges, el nucli històric s\u0027ha desenvolupat al voltant de tres barris fundacionals —la Sagrera, la Vendreria i les Creus— separats pels torrents de la Tura i de l\u0027Escletxa, que han condicionat el creixement urbà. Des del segle XX, la vila s\u0027ha consolidat com un centre d\u0027estiueig que multiplica la seva població durant l\u0027estiu.\n\nEl DI_ES (Diagnosi i Estratègies) es planteja com un instrument previ a la presa de decisions sobre la conveniència de revisar el planejament urbanístic general o explorar alternatives urbanístiques. El treball, estructurat en dues fases —anàlisi i diagnosi, i definició d\u0027estratègies i propostes—, desenvolupa una metodologia inter-escalar que creua quatre escales de lectura amb quatre vectors d\u0027anàlisi: l\u0027orografia, que revela la topografia accidentada del municipi entre els 312 i els 858 metres d\u0027altitud; el teixit urbà, amb el seu creixement i evolució històrica; la xarxa de mobilitat, condicionada pel pas de la C-59 pel mig del municipi; i els espais lliures, amb la seva condició paisatgística i funció mediambiental.\n\nLa diagnosi identifica les problemàtiques clau: el pas de la carretera C-59 pel centre i la proposta de variant pel Sot de l\u0027Ullar; els problemes de subministrament d\u0027aigua per als futurs creixements; els desenvolupaments urbanístics no finalitzats amb mancances urbanístiques; la necessitat de reconvertir zones industrials en desús al centre del municipi per generar habitatge, espai públic i cohesió; la manca de regulacions que prioritzin l\u0027ús peatonal i l\u0027accessibilitat; i les tres urbanitzacions amb dèficits urbanístics pendents de resoldre.\n\nL\u0027estudi proposa estructures urbanes clares i robustes, capaces d\u0027admetre variacions sense perdre el seu sentit, orientant les futures accions urbanístiques amb una visió de conjunt que pot materialitzar-se de manera parcial o tàctica segons la disponibilitat pressupostària del municipi."
+     }
 }

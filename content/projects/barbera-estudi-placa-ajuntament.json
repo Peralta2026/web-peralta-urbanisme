@@ -1,56 +1,67 @@
 {
-    "slug": "barbera-estudi-placa-ajuntament",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "barbera-estudi-placa-ajuntament",
+  "coverImage":  "1 (2).jpg",
+  "images":  [
+         "1 (2).jpg",
+         "1.jpg",
+         "2 (2).jpg",
+         "2.jpg",
+         "3 (2).jpg",
+         "3.jpg",
+         "4 (2).jpg",
+         "4.jpg",
+         "5.jpg",
+         "6.jpg",
+         "7.jpg",
+         "vista conceptual plaça st bonaventura.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "municipality":  "Barberà del Vallès",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
-           },
-    "es":  {
-               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "municipality":  "Barberà del Vallès",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
-           },
-    "en":  {
-               "title":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "municipality":  "Barberà del Vallès",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès",
-               "descriptionLong":  "Estudis previs de la Modificació puntual del Pla general a l\u0027àmbit de l\u0027Ajuntament i el seu entorn proper, del terme municipal de Barberà del Vallès"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Barberà Estudi Plaça Ajuntament",
+       "municipality":  "Barberà del Vallès",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  2800,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs de la Modificació Puntual del Pla General d\u0027Ordenació (MPGO) a l\u0027entorn de la plaça de l\u0027Ajuntament de Barberà del Vallès. En un àmbit de 4.994 m²s al cor del municipi, la proposta resol un buit normatiu heretat de 1990, simplifica i amplia la figura de la plaça, i preveu dos nous edificis públics d\u0027equipament —incloent l\u0027ampliació de la Casa Consistorial— ancorats sobre l\u0027eix cívic de l\u0027Avinguda Generalitat. L\u0027operació requereix l\u0027expropiació d\u0027una parcel·la privada per completar l\u0027ordenació.",
+       "descriptionLong":  "La plaça de l\u0027Ajuntament de Barberà del Vallès és un dels espais més referencials del municipi, presidida per la Casa Consistorial —edifici singular projectat per l\u0027arquitecte Francesc Terol amb dues torres i porxada que evoca els grans masos catalans del segle XIX. Malgrat la seva centralitat, la plaça acumula disfuncions urbanístiques heretades d\u0027una modificació de planejament de 1990 que el Pla General del 2000 va incorporar parcialment sense establir-ne els paràmetres reguladors. El resultat: un buit normatiu que ha generat un espai fragmentat, amb zona verda segregada per un mur escultòric, mitgeres vistes d\u0027un edifici de sis plantes, i dues parcel·les privades mal emplaçades en el front de la plaça.\n\nEls estudis previs de la MPGO, redactats per Peralta Urbanisme per encàrrec de l\u0027Ajuntament, proposen la reordenació integral de l\u0027àmbit —4.994 m²s delimitats pels carrers Consell de Cent, Avinguda Generalitat i passeig Doctor Moragas— amb tres objectius: resoldre el buit normatiu, permetre l\u0027ampliació de la Casa Consistorial, i configurar una nova plaça més àmplia i funcionalment potent.\n\nLa proposta s\u0027ancora en l\u0027Avinguda Generalitat com a gran eix cívic del municipi. La plaça s\u0027expandeix i es simplifica, incorporant la Casa Consistorial com a element exempt protagonista. Al seu darrera sorgeixen dos nous edificis públics: l\u0027Edifici 2 (652 m²s, 2.758 m²st, PB+4), destinat a l\u0027ampliació administrativa de l\u0027Ajuntament; i l\u0027Edifici 3 (510 m²s, 2.080 m²st), amb qualificació d\u0027equipament flexible (clau c.0) que podrà combinar usos administratius, culturals, socials o assistencials. Una passarel·la a primer o segon pis connectarà funcionalment els dos edificis amb la Casa Consistorial.\n\nLa gestió urbanística preveu l\u0027expropiació d\u0027una parcel·la privada on s\u0027ubiquen una fleca i un habitatge, amb un cost estimat d\u0027entre 445.007 € i 1.191.967 € en funció de si l\u0027activitat hi és activa. La proposta incrementa l\u0027equipament en 487 m²s i la zona verda en 16 m²s, mentre manté intacte el sostre residencial de la parcel·la privada que es conserva (696 m²st, 7 habitatges). El mur escultòric existent, que fragmenta l\u0027espai i bloqueja les visuals, es suprimeix o es traslladada a l\u0027interior del nou equipament.\n\nL\u0027execució es preveu en dues fases de quatre anys: la primera, amb la redacció i l\u0027obra d\u0027ampliació del consistori; la segona, condicionada a l\u0027expropiació del sòl privat i la construcció del segon equipament."
+     },
+  "es":  {
+       "title":  "Barberà Estudi Plaça Ajuntament",
+       "municipality":  "Barberà del Vallès",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  2800,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs de la Modificació Puntual del Pla General d\u0027Ordenació (MPGO) a l\u0027entorn de la plaça de l\u0027Ajuntament de Barberà del Vallès. En un àmbit de 4.994 m²s al cor del municipi, la proposta resol un buit normatiu heretat de 1990, simplifica i amplia la figura de la plaça, i preveu dos nous edificis públics d\u0027equipament —incloent l\u0027ampliació de la Casa Consistorial— ancorats sobre l\u0027eix cívic de l\u0027Avinguda Generalitat. L\u0027operació requereix l\u0027expropiació d\u0027una parcel·la privada per completar l\u0027ordenació.",
+       "descriptionLong":  "La plaça de l\u0027Ajuntament de Barberà del Vallès és un dels espais més referencials del municipi, presidida per la Casa Consistorial —edifici singular projectat per l\u0027arquitecte Francesc Terol amb dues torres i porxada que evoca els grans masos catalans del segle XIX. Malgrat la seva centralitat, la plaça acumula disfuncions urbanístiques heretades d\u0027una modificació de planejament de 1990 que el Pla General del 2000 va incorporar parcialment sense establir-ne els paràmetres reguladors. El resultat: un buit normatiu que ha generat un espai fragmentat, amb zona verda segregada per un mur escultòric, mitgeres vistes d\u0027un edifici de sis plantes, i dues parcel·les privades mal emplaçades en el front de la plaça.\n\nEls estudis previs de la MPGO, redactats per Peralta Urbanisme per encàrrec de l\u0027Ajuntament, proposen la reordenació integral de l\u0027àmbit —4.994 m²s delimitats pels carrers Consell de Cent, Avinguda Generalitat i passeig Doctor Moragas— amb tres objectius: resoldre el buit normatiu, permetre l\u0027ampliació de la Casa Consistorial, i configurar una nova plaça més àmplia i funcionalment potent.\n\nLa proposta s\u0027ancora en l\u0027Avinguda Generalitat com a gran eix cívic del municipi. La plaça s\u0027expandeix i es simplifica, incorporant la Casa Consistorial com a element exempt protagonista. Al seu darrera sorgeixen dos nous edificis públics: l\u0027Edifici 2 (652 m²s, 2.758 m²st, PB+4), destinat a l\u0027ampliació administrativa de l\u0027Ajuntament; i l\u0027Edifici 3 (510 m²s, 2.080 m²st), amb qualificació d\u0027equipament flexible (clau c.0) que podrà combinar usos administratius, culturals, socials o assistencials. Una passarel·la a primer o segon pis connectarà funcionalment els dos edificis amb la Casa Consistorial.\n\nLa gestió urbanística preveu l\u0027expropiació d\u0027una parcel·la privada on s\u0027ubiquen una fleca i un habitatge, amb un cost estimat d\u0027entre 445.007 € i 1.191.967 € en funció de si l\u0027activitat hi és activa. La proposta incrementa l\u0027equipament en 487 m²s i la zona verda en 16 m²s, mentre manté intacte el sostre residencial de la parcel·la privada que es conserva (696 m²st, 7 habitatges). El mur escultòric existent, que fragmenta l\u0027espai i bloqueja les visuals, es suprimeix o es traslladada a l\u0027interior del nou equipament.\n\nL\u0027execució es preveu en dues fases de quatre anys: la primera, amb la redacció i l\u0027obra d\u0027ampliació del consistori; la segona, condicionada a l\u0027expropiació del sòl privat i la construcció del segon equipament."
+     },
+  "en":  {
+       "title":  "Barberà Estudi Plaça Ajuntament",
+       "municipality":  "Barberà del Vallès",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  2800,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs de la Modificació Puntual del Pla General d\u0027Ordenació (MPGO) a l\u0027entorn de la plaça de l\u0027Ajuntament de Barberà del Vallès. En un àmbit de 4.994 m²s al cor del municipi, la proposta resol un buit normatiu heretat de 1990, simplifica i amplia la figura de la plaça, i preveu dos nous edificis públics d\u0027equipament —incloent l\u0027ampliació de la Casa Consistorial— ancorats sobre l\u0027eix cívic de l\u0027Avinguda Generalitat. L\u0027operació requereix l\u0027expropiació d\u0027una parcel·la privada per completar l\u0027ordenació.",
+       "descriptionLong":  "La plaça de l\u0027Ajuntament de Barberà del Vallès és un dels espais més referencials del municipi, presidida per la Casa Consistorial —edifici singular projectat per l\u0027arquitecte Francesc Terol amb dues torres i porxada que evoca els grans masos catalans del segle XIX. Malgrat la seva centralitat, la plaça acumula disfuncions urbanístiques heretades d\u0027una modificació de planejament de 1990 que el Pla General del 2000 va incorporar parcialment sense establir-ne els paràmetres reguladors. El resultat: un buit normatiu que ha generat un espai fragmentat, amb zona verda segregada per un mur escultòric, mitgeres vistes d\u0027un edifici de sis plantes, i dues parcel·les privades mal emplaçades en el front de la plaça.\n\nEls estudis previs de la MPGO, redactats per Peralta Urbanisme per encàrrec de l\u0027Ajuntament, proposen la reordenació integral de l\u0027àmbit —4.994 m²s delimitats pels carrers Consell de Cent, Avinguda Generalitat i passeig Doctor Moragas— amb tres objectius: resoldre el buit normatiu, permetre l\u0027ampliació de la Casa Consistorial, i configurar una nova plaça més àmplia i funcionalment potent.\n\nLa proposta s\u0027ancora en l\u0027Avinguda Generalitat com a gran eix cívic del municipi. La plaça s\u0027expandeix i es simplifica, incorporant la Casa Consistorial com a element exempt protagonista. Al seu darrera sorgeixen dos nous edificis públics: l\u0027Edifici 2 (652 m²s, 2.758 m²st, PB+4), destinat a l\u0027ampliació administrativa de l\u0027Ajuntament; i l\u0027Edifici 3 (510 m²s, 2.080 m²st), amb qualificació d\u0027equipament flexible (clau c.0) que podrà combinar usos administratius, culturals, socials o assistencials. Una passarel·la a primer o segon pis connectarà funcionalment els dos edificis amb la Casa Consistorial.\n\nLa gestió urbanística preveu l\u0027expropiació d\u0027una parcel·la privada on s\u0027ubiquen una fleca i un habitatge, amb un cost estimat d\u0027entre 445.007 € i 1.191.967 € en funció de si l\u0027activitat hi és activa. La proposta incrementa l\u0027equipament en 487 m²s i la zona verda en 16 m²s, mentre manté intacte el sostre residencial de la parcel·la privada que es conserva (696 m²st, 7 habitatges). El mur escultòric existent, que fragmenta l\u0027espai i bloqueja les visuals, es suprimeix o es traslladada a l\u0027interior del nou equipament.\n\nL\u0027execució es preveu en dues fases de quatre anys: la primera, amb la redacció i l\u0027obra d\u0027ampliació del consistori; la segona, condicionada a l\u0027expropiació del sòl privat i la construcció del segon equipament."
+     }
 }

@@ -1,56 +1,63 @@
 {
-    "slug":  "22-focus",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "22-focus",
+  "coverImage":  "1.jpg",
+  "images":  [
+         "1.jpg",
+         "2.jpg",
+         "3.jpg",
+         "4.jpg",
+         "5.jpg",
+         "6.jpg",
+         "7.jpg",
+         "8.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
-           },
-    "es":  {
-               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
-           },
-    "en":  {
-               "title":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa",
-               "descriptionLong":  "Pla de Millora Urbana per a la regulació de l\u0027equipament situat al xamfrà dels carrers Àvila i Tànger de Barcelona per ubicar-hi un teatre i escola de dansa"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "22@ Focus",
+       "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  1816,
+       "programa":  null,
+       "sostreM2":  5811,
+       "habitatges":  null,
+       "descriptionShort":  "Pla de Millora Urbana (PMU) per a la regulació de la parcel·la del carrer Àvila 149-155, al xamfrà amb el carrer Tànger al Poblenou de Barcelona (1.802 m²s, clau 22@ah). Emparant-se en la nova Disposició Addicional 4a de la MpMPGM de 2025, el PMU habilita la implantació d\u0027un centre integral de formació en arts escèniques i un auditori per al Grup Focus, amb un sostre de 5.768 m²st, rehabilitant l\u0027edifici industrial existent i conservant la façana del xamfrà.",
+       "descriptionLong":  "L\u0027edifici del xamfrà entre els carrers Àvila i Tànger, al barri del Parc i la Llacuna del Poblenou, és una nau industrial de 1957 de planta baixa i dues plantes, amb un volum de xamfrà singular que l\u0027MPGM per a un 22@ més inclusiu i sostenible (2022) va identificar com a element patrimonial a conservar. La parcel·la, de 1.802 m²s qualificada amb clau 22@ah, estava destinada a usos industrials i d\u0027emmagatzematge pel Grup Focus, empresa de referència en la producció i distribució d\u0027arts escèniques a Espanya, propietària dels teatres Romea, Condal, Goya, Villarroel i La Latina.\n\nLa transformació definitiva d\u0027una parcel·la d\u0027aquestes característiques als usos terciaris i residencials previstos per la clau 22@ah exigia una actuació de dotació amb càrregues elevades, difícils de viabilitzar en el context actual. La Modificació puntual de la MPGM per a la modificació i ajust de les normes urbanístiques (MpMPGM, aprovada definitivament el 6 de març de 2025) va obrir una via alternativa: la seva Disposició Addicional 4a permet implantar usos equipamentals docents, culturals o esportius fins a la totalitat del sostre potencial de la clau 22@ah (3,2 m²st/m²s, enfront dels 2,2 m²st/m²s industrials) en parcel·les amb conservació de façana requerida, sense substitució de l\u0027edificació i sense transformació prèvia.\n\nEl PMU identifica l\u0027àmbit amb la nova subclau 22@ah(*) i habilita un sostre màxim de 5.768 m²st per a usos culturals i docents. El programa proposat pel Grup Focus és un centre integral d\u0027arts escèniques: aules de formació en dansa, teatre, cant i música (45% del sostre), un auditori amb aforament de fins a 499 persones i espais tècnics de producció escènica (34%), zones de gestió del centre (13%) i espais comuns (8%). El centre es concep com un pol formatiu de referència per a la ciutat, amb capacitat per a 250 alumnes simultanis, formació reglada i no reglada, i programació cultural oberta al barri.\n\nLa proposta volumètrica rehabilita l\u0027edifici existent sense substituir-lo: conserva la façana del xamfrà com a peça de memòria industrial del Poblenou i incorpora remuntes a les naus laterals, ajustades a l\u0027entorn mitjançant un gàlib edificatori de regulació flexible. L\u0027operació consolida la rehabilitació del teixit d\u0027activitat econòmica del 22@ i reforça la constel·lació cultural que aglutina l\u0027Auditori, el Teatre Nacional, la Sala Beckett i La Brutal a l\u0027entorn de les Glòries."
+     },
+  "es":  {
+       "title":  "22@ Focus",
+       "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  1816,
+       "programa":  null,
+       "sostreM2":  5811,
+       "habitatges":  null,
+       "descriptionShort":  "Pla de Millora Urbana (PMU) per a la regulació de la parcel·la del carrer Àvila 149-155, al xamfrà amb el carrer Tànger al Poblenou de Barcelona (1.802 m²s, clau 22@ah). Emparant-se en la nova Disposició Addicional 4a de la MpMPGM de 2025, el PMU habilita la implantació d\u0027un centre integral de formació en arts escèniques i un auditori per al Grup Focus, amb un sostre de 5.768 m²st, rehabilitant l\u0027edifici industrial existent i conservant la façana del xamfrà.",
+       "descriptionLong":  "L\u0027edifici del xamfrà entre els carrers Àvila i Tànger, al barri del Parc i la Llacuna del Poblenou, és una nau industrial de 1957 de planta baixa i dues plantes, amb un volum de xamfrà singular que l\u0027MPGM per a un 22@ més inclusiu i sostenible (2022) va identificar com a element patrimonial a conservar. La parcel·la, de 1.802 m²s qualificada amb clau 22@ah, estava destinada a usos industrials i d\u0027emmagatzematge pel Grup Focus, empresa de referència en la producció i distribució d\u0027arts escèniques a Espanya, propietària dels teatres Romea, Condal, Goya, Villarroel i La Latina.\n\nLa transformació definitiva d\u0027una parcel·la d\u0027aquestes característiques als usos terciaris i residencials previstos per la clau 22@ah exigia una actuació de dotació amb càrregues elevades, difícils de viabilitzar en el context actual. La Modificació puntual de la MPGM per a la modificació i ajust de les normes urbanístiques (MpMPGM, aprovada definitivament el 6 de març de 2025) va obrir una via alternativa: la seva Disposició Addicional 4a permet implantar usos equipamentals docents, culturals o esportius fins a la totalitat del sostre potencial de la clau 22@ah (3,2 m²st/m²s, enfront dels 2,2 m²st/m²s industrials) en parcel·les amb conservació de façana requerida, sense substitució de l\u0027edificació i sense transformació prèvia.\n\nEl PMU identifica l\u0027àmbit amb la nova subclau 22@ah(*) i habilita un sostre màxim de 5.768 m²st per a usos culturals i docents. El programa proposat pel Grup Focus és un centre integral d\u0027arts escèniques: aules de formació en dansa, teatre, cant i música (45% del sostre), un auditori amb aforament de fins a 499 persones i espais tècnics de producció escènica (34%), zones de gestió del centre (13%) i espais comuns (8%). El centre es concep com un pol formatiu de referència per a la ciutat, amb capacitat per a 250 alumnes simultanis, formació reglada i no reglada, i programació cultural oberta al barri.\n\nLa proposta volumètrica rehabilita l\u0027edifici existent sense substituir-lo: conserva la façana del xamfrà com a peça de memòria industrial del Poblenou i incorpora remuntes a les naus laterals, ajustades a l\u0027entorn mitjançant un gàlib edificatori de regulació flexible. L\u0027operació consolida la rehabilitació del teixit d\u0027activitat econòmica del 22@ i reforça la constel·lació cultural que aglutina l\u0027Auditori, el Teatre Nacional, la Sala Beckett i La Brutal a l\u0027entorn de les Glòries."
+     },
+  "en":  {
+       "title":  "22@ Focus",
+       "municipality":  "Barcelona (Poblenou, Districte de Sant Martí)",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  1816,
+       "programa":  null,
+       "sostreM2":  5811,
+       "habitatges":  null,
+       "descriptionShort":  "Pla de Millora Urbana (PMU) per a la regulació de la parcel·la del carrer Àvila 149-155, al xamfrà amb el carrer Tànger al Poblenou de Barcelona (1.802 m²s, clau 22@ah). Emparant-se en la nova Disposició Addicional 4a de la MpMPGM de 2025, el PMU habilita la implantació d\u0027un centre integral de formació en arts escèniques i un auditori per al Grup Focus, amb un sostre de 5.768 m²st, rehabilitant l\u0027edifici industrial existent i conservant la façana del xamfrà.",
+       "descriptionLong":  "L\u0027edifici del xamfrà entre els carrers Àvila i Tànger, al barri del Parc i la Llacuna del Poblenou, és una nau industrial de 1957 de planta baixa i dues plantes, amb un volum de xamfrà singular que l\u0027MPGM per a un 22@ més inclusiu i sostenible (2022) va identificar com a element patrimonial a conservar. La parcel·la, de 1.802 m²s qualificada amb clau 22@ah, estava destinada a usos industrials i d\u0027emmagatzematge pel Grup Focus, empresa de referència en la producció i distribució d\u0027arts escèniques a Espanya, propietària dels teatres Romea, Condal, Goya, Villarroel i La Latina.\n\nLa transformació definitiva d\u0027una parcel·la d\u0027aquestes característiques als usos terciaris i residencials previstos per la clau 22@ah exigia una actuació de dotació amb càrregues elevades, difícils de viabilitzar en el context actual. La Modificació puntual de la MPGM per a la modificació i ajust de les normes urbanístiques (MpMPGM, aprovada definitivament el 6 de març de 2025) va obrir una via alternativa: la seva Disposició Addicional 4a permet implantar usos equipamentals docents, culturals o esportius fins a la totalitat del sostre potencial de la clau 22@ah (3,2 m²st/m²s, enfront dels 2,2 m²st/m²s industrials) en parcel·les amb conservació de façana requerida, sense substitució de l\u0027edificació i sense transformació prèvia.\n\nEl PMU identifica l\u0027àmbit amb la nova subclau 22@ah(*) i habilita un sostre màxim de 5.768 m²st per a usos culturals i docents. El programa proposat pel Grup Focus és un centre integral d\u0027arts escèniques: aules de formació en dansa, teatre, cant i música (45% del sostre), un auditori amb aforament de fins a 499 persones i espais tècnics de producció escènica (34%), zones de gestió del centre (13%) i espais comuns (8%). El centre es concep com un pol formatiu de referència per a la ciutat, amb capacitat per a 250 alumnes simultanis, formació reglada i no reglada, i programació cultural oberta al barri.\n\nLa proposta volumètrica rehabilita l\u0027edifici existent sense substituir-lo: conserva la façana del xamfrà com a peça de memòria industrial del Poblenou i incorpora remuntes a les naus laterals, ajustades a l\u0027entorn mitjançant un gàlib edificatori de regulació flexible. L\u0027operació consolida la rehabilitació del teixit d\u0027activitat econòmica del 22@ i reforça la constel·lació cultural que aglutina l\u0027Auditori, el Teatre Nacional, la Sala Beckett i La Brutal a l\u0027entorn de les Glòries."
+     }
 }

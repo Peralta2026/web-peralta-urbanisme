@@ -1,66 +1,67 @@
 {
-    "slug":  "amb-model-riera-st-just",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg",
-                   "01.jpg",
-                   "02.jpg",
-                   "03.jpg",
-                   "04.jpg",
-                   "05.jpg",
-                   "06.jpg",
-                   "07.jpg",
-                   "08.jpg",
-                   "09.jpg",
-                   "10.jpg"
-               ],
-    "tags":  [
+  "slug":  "amb-model-riera-st-just",
+  "coverImage":  "0____01_ENCAIX METROPOLITA.JPG",
+  "images":  [
+         "0____01_ENCAIX METROPOLITA.JPG",
+         "01_RieraStJust.jpg",
+         "format ok_page-0001.jpg",
+         "format ok_page-0002.jpg",
+         "format ok_page-0003.jpg",
+         "format ok_page-0004.jpg",
+         "format ok_page-0005.jpg",
+         "format ok_page-0006.jpg",
+         "Sant Just riera - 2022 - 01.jpg",
+         "Sant Just riera - 2022 - 03.jpg",
+         "Sant Just riera - 2022 - 04.jpg",
+         "Sant Just riera - 2022 - 05.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
-               "year":  "2022",
-               "status":  "Plurimunicipal",
-               "tipus":  "Estudi",
-               "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "descriptionLong":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern"
-           },
-    "es":  {
-               "title":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
-               "year":  "2022",
-               "status":  "Plurimunicipal",
-               "tipus":  "Estudi",
-               "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "descriptionLong":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern"
-           },
-    "en":  {
-               "title":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
-               "year":  "2022",
-               "status":  "Plurimunicipal",
-               "tipus":  "Estudi",
-               "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern",
-               "descriptionLong":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "AMB Riera Sant Just",
+       "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
+       "year":  "2022",
+       "status":  "Plurimunicipal",
+       "tipus":  "Estudi",
+       "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern, encarregat per l\u0027Àrea Metropolitana de Barcelona i Barcelona Regional, amb redacció de Jordi Peralta. El treball, seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023, proposa transformar la riera en un parc fluvial territorial que connecti ecològicament la Serra de Collserola amb el Parc Agrari del Baix Llobregat, incorporant la renaturalització del curs fluvial i un eix verd de mobilitat activa.",
+       "descriptionLong":  "L\u0027Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern és un treball estratègic encarregat per l\u0027Àrea Metropolitana de Barcelona (AMB) i Barcelona Regional, amb redacció de Jordi Peralta, arquitecte urbanista, en col·laboració amb el Departament de projectes ambientals i energia de Barcelona Regional i coordinació de l\u0027Àrea de Desenvolupament de Polítiques Urbanístiques de l\u0027AMB. El treball va ser seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023.\n\nLa vall de la Riera de Sant Just s\u0027estén per la falda oriental de la Serra de Collserola i travessa els municipis de Sant Just Desvern, Sant Feliu de Llobregat i Sant Joan Despí. L\u0027estudi identifica tres trams prototípics: el superior, agroforestal i protegit pel Parc Natural de Collserola (PEPNAT); l\u0027intermedi de la Bonaigua, un espai de gran sensibilitat ambiental però desendreçat, amb sectors pendents de desenvolupament i instal·lacions de serveis tècnics de gran impacte visual; i l\u0027inferior, on la riera discorre canalitzada entre polígons industrials i teixits residencials fins a confluir amb el riu Llobregat a través del Parc Agrari. L\u0027àmbit preserva un valor patrimonial notable: masos, camins carreters i bancals de l\u0027antiga estructura agrícola que cal preservar.\n\nEl model proposat, articulat en un triangle conceptual a tres escales, pretén desvetllar un nou parc fluvial territorial de gran potencial social i ambiental. A escala territorial (relació longitudinal), es crea un eix verd que integra la renaturalització del curs d\u0027aigua, un passeig de vianants i un carril bici continus, i una xarxa rodada subordinada. A escala municipal (relació transversal), es reforça la connectivitat entre els dos costats de la riera a través de passos estratègics que reconeixen les traces i elements patrimonials. A escala humana (relació de contacte), es reverteix el paradigma del calaix de sastre per crear vores urbanes de qualitat orientades cap al futur parc.\n\nL\u0027àmbit de la Bonaigua ocupa un rol central i estratègic: la seva posició intermèdia permet relligar els espais fluvials naturals (aigües amunt fins a Can Fatjó, aigües avall fins a Can Gelabert) i constituir-los en un corredor ambiental i parc territorial coherent. La proposta s\u0027alinea amb el PDUM, que identifica la riera com a eix verd metropolità, i amb el PEPNAT, i serveix com a marc de coordinació per als futurs instruments de planejament urbanístic de la vall."
+     },
+  "es":  {
+       "title":  "AMB Riera Sant Just",
+       "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
+       "year":  "2022",
+       "status":  "Plurimunicipal",
+       "tipus":  "Estudi",
+       "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern, encarregat per l\u0027Àrea Metropolitana de Barcelona i Barcelona Regional, amb redacció de Jordi Peralta. El treball, seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023, proposa transformar la riera en un parc fluvial territorial que connecti ecològicament la Serra de Collserola amb el Parc Agrari del Baix Llobregat, incorporant la renaturalització del curs fluvial i un eix verd de mobilitat activa.",
+       "descriptionLong":  "L\u0027Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern és un treball estratègic encarregat per l\u0027Àrea Metropolitana de Barcelona (AMB) i Barcelona Regional, amb redacció de Jordi Peralta, arquitecte urbanista, en col·laboració amb el Departament de projectes ambientals i energia de Barcelona Regional i coordinació de l\u0027Àrea de Desenvolupament de Polítiques Urbanístiques de l\u0027AMB. El treball va ser seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023.\n\nLa vall de la Riera de Sant Just s\u0027estén per la falda oriental de la Serra de Collserola i travessa els municipis de Sant Just Desvern, Sant Feliu de Llobregat i Sant Joan Despí. L\u0027estudi identifica tres trams prototípics: el superior, agroforestal i protegit pel Parc Natural de Collserola (PEPNAT); l\u0027intermedi de la Bonaigua, un espai de gran sensibilitat ambiental però desendreçat, amb sectors pendents de desenvolupament i instal·lacions de serveis tècnics de gran impacte visual; i l\u0027inferior, on la riera discorre canalitzada entre polígons industrials i teixits residencials fins a confluir amb el riu Llobregat a través del Parc Agrari. L\u0027àmbit preserva un valor patrimonial notable: masos, camins carreters i bancals de l\u0027antiga estructura agrícola que cal preservar.\n\nEl model proposat, articulat en un triangle conceptual a tres escales, pretén desvetllar un nou parc fluvial territorial de gran potencial social i ambiental. A escala territorial (relació longitudinal), es crea un eix verd que integra la renaturalització del curs d\u0027aigua, un passeig de vianants i un carril bici continus, i una xarxa rodada subordinada. A escala municipal (relació transversal), es reforça la connectivitat entre els dos costats de la riera a través de passos estratègics que reconeixen les traces i elements patrimonials. A escala humana (relació de contacte), es reverteix el paradigma del calaix de sastre per crear vores urbanes de qualitat orientades cap al futur parc.\n\nL\u0027àmbit de la Bonaigua ocupa un rol central i estratègic: la seva posició intermèdia permet relligar els espais fluvials naturals (aigües amunt fins a Can Fatjó, aigües avall fins a Can Gelabert) i constituir-los en un corredor ambiental i parc territorial coherent. La proposta s\u0027alinea amb el PDUM, que identifica la riera com a eix verd metropolità, i amb el PEPNAT, i serveix com a marc de coordinació per als futurs instruments de planejament urbanístic de la vall."
+     },
+  "en":  {
+       "title":  "AMB Riera Sant Just",
+       "municipality":  "Sant Just Desvern (+ Sant Feliu de Llobregat, Sant Joan Despí)",
+       "year":  "2022",
+       "status":  "Plurimunicipal",
+       "tipus":  "Estudi",
+       "premi":  "Seleccionat per la 12a Biennal Internacional de Paisatge de Barcelona 2023",
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern, encarregat per l\u0027Àrea Metropolitana de Barcelona i Barcelona Regional, amb redacció de Jordi Peralta. El treball, seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023, proposa transformar la riera en un parc fluvial territorial que connecti ecològicament la Serra de Collserola amb el Parc Agrari del Baix Llobregat, incorporant la renaturalització del curs fluvial i un eix verd de mobilitat activa.",
+       "descriptionLong":  "L\u0027Estudi de definició d\u0027un model urbanístic per a l\u0027entorn de la riera de Sant Just Desvern és un treball estratègic encarregat per l\u0027Àrea Metropolitana de Barcelona (AMB) i Barcelona Regional, amb redacció de Jordi Peralta, arquitecte urbanista, en col·laboració amb el Departament de projectes ambientals i energia de Barcelona Regional i coordinació de l\u0027Àrea de Desenvolupament de Polítiques Urbanístiques de l\u0027AMB. El treball va ser seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023.\n\nLa vall de la Riera de Sant Just s\u0027estén per la falda oriental de la Serra de Collserola i travessa els municipis de Sant Just Desvern, Sant Feliu de Llobregat i Sant Joan Despí. L\u0027estudi identifica tres trams prototípics: el superior, agroforestal i protegit pel Parc Natural de Collserola (PEPNAT); l\u0027intermedi de la Bonaigua, un espai de gran sensibilitat ambiental però desendreçat, amb sectors pendents de desenvolupament i instal·lacions de serveis tècnics de gran impacte visual; i l\u0027inferior, on la riera discorre canalitzada entre polígons industrials i teixits residencials fins a confluir amb el riu Llobregat a través del Parc Agrari. L\u0027àmbit preserva un valor patrimonial notable: masos, camins carreters i bancals de l\u0027antiga estructura agrícola que cal preservar.\n\nEl model proposat, articulat en un triangle conceptual a tres escales, pretén desvetllar un nou parc fluvial territorial de gran potencial social i ambiental. A escala territorial (relació longitudinal), es crea un eix verd que integra la renaturalització del curs d\u0027aigua, un passeig de vianants i un carril bici continus, i una xarxa rodada subordinada. A escala municipal (relació transversal), es reforça la connectivitat entre els dos costats de la riera a través de passos estratègics que reconeixen les traces i elements patrimonials. A escala humana (relació de contacte), es reverteix el paradigma del calaix de sastre per crear vores urbanes de qualitat orientades cap al futur parc.\n\nL\u0027àmbit de la Bonaigua ocupa un rol central i estratègic: la seva posició intermèdia permet relligar els espais fluvials naturals (aigües amunt fins a Can Fatjó, aigües avall fins a Can Gelabert) i constituir-los en un corredor ambiental i parc territorial coherent. La proposta s\u0027alinea amb el PDUM, que identifica la riera com a eix verd metropolità, i amb el PEPNAT, i serveix com a marc de coordinació per als futurs instruments de planejament urbanístic de la vall."
+     }
 }

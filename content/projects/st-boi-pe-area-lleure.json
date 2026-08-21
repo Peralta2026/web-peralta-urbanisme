@@ -1,56 +1,63 @@
 {
-    "slug":  "st-boi-pe-area-lleure",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "st-boi-pe-area-lleure",
+  "coverImage":  "1.jpg",
+  "images":  [
+         "1.jpg",
+         "2.jpg",
+         "3.jpg",
+         "4.jpg",
+         "5.jpg",
+         "6.jpg",
+         "7.jpg",
+         "àrea de lleure St Boi - imaginari.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "municipality":  "Sant Boi de Llobregat",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
-           },
-    "es":  {
-               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "municipality":  "Sant Boi de Llobregat",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
-           },
-    "en":  {
-               "title":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "municipality":  "Sant Boi de Llobregat",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat",
-               "descriptionLong":  "Servei de consultoria d\u0027estudis previs a la redacció d\u0027un Pla Especial Urbanístic per a la creació d\u0027una àrea de lleure en sòl no urbanitzable al municipi de Sant Boi del Llobregat"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Sant Boi PE Àrea Lleure",
+       "municipality":  "Sant Boi de Llobregat",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs per a la redacció d\u0027un Pla Especial Urbanístic per crear una àrea de lleure en sòl no urbanitzable al nord de Sant Boi de Llobregat. L\u0027àmbit, on transcorre l\u0027Anell Verd i la riera de Can Soler, és sota protecció del Pla Territorial Metropolità de Barcelona per l\u0027interès natural i agrari del territori. L\u0027estudi analitza el marc urbanístic vigent —qualificacions 8b, 28 i 24 del PGM— i cataloga quinze espais de lleure de referència de l\u0027àrea metropolitana de Barcelona.",
+       "descriptionLong":  "Sant Boi de Llobregat disposa d\u0027un sector d\u0027alt valor natural al seu extrem nord, en els límits amb Santa Coloma de Cervelló: un mosaic agroforestal de parcel·les rústiques que, tot i la seva proximitat a la trama urbana consolidada, roman classificat com a sòl no urbanitzable pel Pla General Metropolità de 1976. Per on transcorre el camí natural de l\u0027Anell Verd —que envolta pràcticament tot el terme municipal des de la ribera del Llobregat fins a Sant Climent— i on la riera de Can Soler canalitza les aigües cap al riu.\n\nLes parcel·les presenten tres qualificacions urbanístiques del PGM: la clau 8b (verd privat d\u0027interès tradicional), la clau 28 (parc forestal de repoblació) i la clau 24 (rústic protegit de valor agrícola). Les tres admeten usos recreatius i culturals condicionats a la redacció d\u0027un Pla Especial que n\u0027estableixi l\u0027ordenació, els usos admesos i les condicions de protecció. La protecció especial del PTMB per l\u0027interès natural i agrari del territori, i les fortes pendents que afecten bona part del terreny —superiors al 20% en una gran part de l\u0027àmbit— determinen uns condicionants tècnics i normatius exigents. L\u0027àmbit es troba fora de les zones inundables i no queda inclòs en el PEIN ni en la Xarxa Natura 2000.\n\nL\u0027estudi es va articular en dos eixos complementaris. D\u0027una banda, l\u0027anàlisi exhaustiva del marc urbanístic supramunicipal i municipal vigent: el Pla Territorial Metropolità de Barcelona, el Pla General Metropolità, les afectacions específiques per inundabilitat, pendents i catàleg de patrimoni. De l\u0027altra, un catàleg comparatiu de quinze espais de lleure amb barbacoes i serveis de pícnic de l\u0027àrea metropolitana —al Baix Llobregat i el Vallès—, analitzant-ne la titularitat (pública o privada), el règim d\u0027accés, els serveis oferts i el planejament urbanístic habilitant de cadascun.\n\nEl catàleg recull una diversitat de models de gestió: des del Parc de Can Cases de Martorell —públic, 30 ha, catalogat com a forest d\u0027utilitat pública per la Generalitat— fins a espais privats de pagament amb bar, zones esportives i circuïts d\u0027activitat. Aquesta base de coneixement ha de permetre orientar el model de gestió, el programa de serveis i les condicions d\u0027ús del futur espai de lleure de Sant Boi de Llobregat."
+     },
+  "es":  {
+       "title":  "Sant Boi PE Àrea Lleure",
+       "municipality":  "Sant Boi de Llobregat",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs per a la redacció d\u0027un Pla Especial Urbanístic per crear una àrea de lleure en sòl no urbanitzable al nord de Sant Boi de Llobregat. L\u0027àmbit, on transcorre l\u0027Anell Verd i la riera de Can Soler, és sota protecció del Pla Territorial Metropolità de Barcelona per l\u0027interès natural i agrari del territori. L\u0027estudi analitza el marc urbanístic vigent —qualificacions 8b, 28 i 24 del PGM— i cataloga quinze espais de lleure de referència de l\u0027àrea metropolitana de Barcelona.",
+       "descriptionLong":  "Sant Boi de Llobregat disposa d\u0027un sector d\u0027alt valor natural al seu extrem nord, en els límits amb Santa Coloma de Cervelló: un mosaic agroforestal de parcel·les rústiques que, tot i la seva proximitat a la trama urbana consolidada, roman classificat com a sòl no urbanitzable pel Pla General Metropolità de 1976. Per on transcorre el camí natural de l\u0027Anell Verd —que envolta pràcticament tot el terme municipal des de la ribera del Llobregat fins a Sant Climent— i on la riera de Can Soler canalitza les aigües cap al riu.\n\nLes parcel·les presenten tres qualificacions urbanístiques del PGM: la clau 8b (verd privat d\u0027interès tradicional), la clau 28 (parc forestal de repoblació) i la clau 24 (rústic protegit de valor agrícola). Les tres admeten usos recreatius i culturals condicionats a la redacció d\u0027un Pla Especial que n\u0027estableixi l\u0027ordenació, els usos admesos i les condicions de protecció. La protecció especial del PTMB per l\u0027interès natural i agrari del territori, i les fortes pendents que afecten bona part del terreny —superiors al 20% en una gran part de l\u0027àmbit— determinen uns condicionants tècnics i normatius exigents. L\u0027àmbit es troba fora de les zones inundables i no queda inclòs en el PEIN ni en la Xarxa Natura 2000.\n\nL\u0027estudi es va articular en dos eixos complementaris. D\u0027una banda, l\u0027anàlisi exhaustiva del marc urbanístic supramunicipal i municipal vigent: el Pla Territorial Metropolità de Barcelona, el Pla General Metropolità, les afectacions específiques per inundabilitat, pendents i catàleg de patrimoni. De l\u0027altra, un catàleg comparatiu de quinze espais de lleure amb barbacoes i serveis de pícnic de l\u0027àrea metropolitana —al Baix Llobregat i el Vallès—, analitzant-ne la titularitat (pública o privada), el règim d\u0027accés, els serveis oferts i el planejament urbanístic habilitant de cadascun.\n\nEl catàleg recull una diversitat de models de gestió: des del Parc de Can Cases de Martorell —públic, 30 ha, catalogat com a forest d\u0027utilitat pública per la Generalitat— fins a espais privats de pagament amb bar, zones esportives i circuïts d\u0027activitat. Aquesta base de coneixement ha de permetre orientar el model de gestió, el programa de serveis i les condicions d\u0027ús del futur espai de lleure de Sant Boi de Llobregat."
+     },
+  "en":  {
+       "title":  "Sant Boi PE Àrea Lleure",
+       "municipality":  "Sant Boi de Llobregat",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudis previs per a la redacció d\u0027un Pla Especial Urbanístic per crear una àrea de lleure en sòl no urbanitzable al nord de Sant Boi de Llobregat. L\u0027àmbit, on transcorre l\u0027Anell Verd i la riera de Can Soler, és sota protecció del Pla Territorial Metropolità de Barcelona per l\u0027interès natural i agrari del territori. L\u0027estudi analitza el marc urbanístic vigent —qualificacions 8b, 28 i 24 del PGM— i cataloga quinze espais de lleure de referència de l\u0027àrea metropolitana de Barcelona.",
+       "descriptionLong":  "Sant Boi de Llobregat disposa d\u0027un sector d\u0027alt valor natural al seu extrem nord, en els límits amb Santa Coloma de Cervelló: un mosaic agroforestal de parcel·les rústiques que, tot i la seva proximitat a la trama urbana consolidada, roman classificat com a sòl no urbanitzable pel Pla General Metropolità de 1976. Per on transcorre el camí natural de l\u0027Anell Verd —que envolta pràcticament tot el terme municipal des de la ribera del Llobregat fins a Sant Climent— i on la riera de Can Soler canalitza les aigües cap al riu.\n\nLes parcel·les presenten tres qualificacions urbanístiques del PGM: la clau 8b (verd privat d\u0027interès tradicional), la clau 28 (parc forestal de repoblació) i la clau 24 (rústic protegit de valor agrícola). Les tres admeten usos recreatius i culturals condicionats a la redacció d\u0027un Pla Especial que n\u0027estableixi l\u0027ordenació, els usos admesos i les condicions de protecció. La protecció especial del PTMB per l\u0027interès natural i agrari del territori, i les fortes pendents que afecten bona part del terreny —superiors al 20% en una gran part de l\u0027àmbit— determinen uns condicionants tècnics i normatius exigents. L\u0027àmbit es troba fora de les zones inundables i no queda inclòs en el PEIN ni en la Xarxa Natura 2000.\n\nL\u0027estudi es va articular en dos eixos complementaris. D\u0027una banda, l\u0027anàlisi exhaustiva del marc urbanístic supramunicipal i municipal vigent: el Pla Territorial Metropolità de Barcelona, el Pla General Metropolità, les afectacions específiques per inundabilitat, pendents i catàleg de patrimoni. De l\u0027altra, un catàleg comparatiu de quinze espais de lleure amb barbacoes i serveis de pícnic de l\u0027àrea metropolitana —al Baix Llobregat i el Vallès—, analitzant-ne la titularitat (pública o privada), el règim d\u0027accés, els serveis oferts i el planejament urbanístic habilitant de cadascun.\n\nEl catàleg recull una diversitat de models de gestió: des del Parc de Can Cases de Martorell —públic, 30 ha, catalogat com a forest d\u0027utilitat pública per la Generalitat— fins a espais privats de pagament amb bar, zones esportives i circuïts d\u0027activitat. Aquesta base de coneixement ha de permetre orientar el model de gestió, el programa de serveis i les condicions d\u0027ús del futur espai de lleure de Sant Boi de Llobregat."
+     }
 }

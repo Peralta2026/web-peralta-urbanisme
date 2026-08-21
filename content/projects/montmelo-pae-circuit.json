@@ -1,56 +1,60 @@
 {
-    "slug": "montmelo-pae-circuit",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "montmelo-pae-circuit",
+  "coverImage":  "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p001 copia.jpg",
+  "images":  [
+         "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p001 copia.jpg",
+         "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p058.jpg",
+         "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p059.jpg",
+         "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p075.jpg",
+         "PAE CIRCUIT DE CATALUNYA _ reforma clínica i restaurant_p102.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "municipality":  "Montmeló",
-               "year":  "2025",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
-           },
-    "es":  {
-               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "municipality":  "Montmeló",
-               "year":  "2025",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
-           },
-    "en":  {
-               "title":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "municipality":  "Montmeló",
-               "year":  "2025",
-               "status":  "Sector",
-               "tipus":  "Planejament derivat",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya",
-               "descriptionLong":  "Projecte d\u0027Actuació Específica (PAE) per a la reforma de la Clínica i nou restaurant en el paddock del recinte del Circuit de Barcelona – Catalunya"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Montmeló PAE Circuit",
+       "municipality":  "Montmeló",
+       "year":  "2025",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Projecte d\u0027Actuació Específica en sòl no urbanitzable per a la construcció d\u0027un nou edifici destinat a restaurant i l\u0027ampliació de la clínica existent al paddock del Circuit de Barcelona-Catalunya, entre els municipis de Granollers i Montmeló. Les dues intervencions, amb un sostre total de 621 m², responen a la necessitat de modernitzar els serveis de l\u0027equipament esportiu internacional, millorant l\u0027oferta de restauració i reforçant la capacitat d\u0027atenció sanitària durant les competicions.",
+       "descriptionLong":  "El Circuit de velocitat Barcelona-Catalunya, inaugurat el 1991, és un equipament esportiu consolidat i emblemàtic d\u0027abast internacional, amb una important projecció mediàtica gràcies als campionats del món de Fòrmula 1, Moto GP, Rallycross i Superbike, entre d\u0027altres. Amb 120 hectàrees d\u0027extensió i un grau d\u0027ocupació del 83% —uns 340 dies anuals d\u0027activitat—, les seves instal·lacions se situen entre els termes municipals de Montmeló, Granollers i Parets del Vallès, a la comarca del Vallès Oriental, sobre un serral de la Plana del Vallès que configura un mirador privilegiat al territori.\n\nDurant més de trenta anys de funcionament, el circuit ha anat adequant les seves instal·lacions a les necessitats creixents dels esdeveniments esportius. El Pla Director Urbanístic del Circuit, aprovat el 2016, va establir un nou marc urbanístic per assegurar el bon funcionament i la continuïtat de l\u0027equipament com a instal·lació internacional de qualitat, fixant un sostre màxim edificable de 150.000 m² i regulant els usos admesos, entre els quals la restauració i l\u0027ús sanitari.\n\nEn aquest context, el Projecte d\u0027Actuació Específica proposa dues intervencions al paddock del circuit. La primera consisteix en la construcció d\u0027un nou edifici destinat a restaurant, amb una superfície de 541 m², materialitzat amb una estructura lleugera metàl·lica de 15,30 m d\u0027amplada per 35,30 m de longitud, situat a la part nord del paddock amb façanes permeables que potencien la relació amb l\u0027espai exterior. La segona actuació preveu l\u0027ampliació de la clínica existent mitjançant un edicle de 85 m², integrat amb el mateix llenguatge arquitectònic de l\u0027edifici preexistent, amb l\u0027objectiu de millorar la capacitat i funcionalitat de l\u0027atenció sanitària del circuit.\n\nAmbdues intervencions s\u0027emplacen en àrees ja transformades i dotades de les infraestructures necessàries, optimitzant la connexió a les xarxes de serveis existents. El sostre total de les noves edificacions és de 621 m², situant el còmput total de l\u0027equipament en 76.821 m², molt per sota del sostre màxim permès. Els materials i l\u0027estètica dels nous edificis s\u0027adeqüen al llenguatge arquitectònic del circuit, reforçant la imatge de marca de la instal·lació i la seva coherència amb l\u0027entorn industrial i tecnològic del recinte."
+     },
+  "es":  {
+       "title":  "Montmeló PAE Circuit",
+       "municipality":  "Montmeló",
+       "year":  "2025",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Projecte d\u0027Actuació Específica en sòl no urbanitzable per a la construcció d\u0027un nou edifici destinat a restaurant i l\u0027ampliació de la clínica existent al paddock del Circuit de Barcelona-Catalunya, entre els municipis de Granollers i Montmeló. Les dues intervencions, amb un sostre total de 621 m², responen a la necessitat de modernitzar els serveis de l\u0027equipament esportiu internacional, millorant l\u0027oferta de restauració i reforçant la capacitat d\u0027atenció sanitària durant les competicions.",
+       "descriptionLong":  "El Circuit de velocitat Barcelona-Catalunya, inaugurat el 1991, és un equipament esportiu consolidat i emblemàtic d\u0027abast internacional, amb una important projecció mediàtica gràcies als campionats del món de Fòrmula 1, Moto GP, Rallycross i Superbike, entre d\u0027altres. Amb 120 hectàrees d\u0027extensió i un grau d\u0027ocupació del 83% —uns 340 dies anuals d\u0027activitat—, les seves instal·lacions se situen entre els termes municipals de Montmeló, Granollers i Parets del Vallès, a la comarca del Vallès Oriental, sobre un serral de la Plana del Vallès que configura un mirador privilegiat al territori.\n\nDurant més de trenta anys de funcionament, el circuit ha anat adequant les seves instal·lacions a les necessitats creixents dels esdeveniments esportius. El Pla Director Urbanístic del Circuit, aprovat el 2016, va establir un nou marc urbanístic per assegurar el bon funcionament i la continuïtat de l\u0027equipament com a instal·lació internacional de qualitat, fixant un sostre màxim edificable de 150.000 m² i regulant els usos admesos, entre els quals la restauració i l\u0027ús sanitari.\n\nEn aquest context, el Projecte d\u0027Actuació Específica proposa dues intervencions al paddock del circuit. La primera consisteix en la construcció d\u0027un nou edifici destinat a restaurant, amb una superfície de 541 m², materialitzat amb una estructura lleugera metàl·lica de 15,30 m d\u0027amplada per 35,30 m de longitud, situat a la part nord del paddock amb façanes permeables que potencien la relació amb l\u0027espai exterior. La segona actuació preveu l\u0027ampliació de la clínica existent mitjançant un edicle de 85 m², integrat amb el mateix llenguatge arquitectònic de l\u0027edifici preexistent, amb l\u0027objectiu de millorar la capacitat i funcionalitat de l\u0027atenció sanitària del circuit.\n\nAmbdues intervencions s\u0027emplacen en àrees ja transformades i dotades de les infraestructures necessàries, optimitzant la connexió a les xarxes de serveis existents. El sostre total de les noves edificacions és de 621 m², situant el còmput total de l\u0027equipament en 76.821 m², molt per sota del sostre màxim permès. Els materials i l\u0027estètica dels nous edificis s\u0027adeqüen al llenguatge arquitectònic del circuit, reforçant la imatge de marca de la instal·lació i la seva coherència amb l\u0027entorn industrial i tecnològic del recinte."
+     },
+  "en":  {
+       "title":  "Montmeló PAE Circuit",
+       "municipality":  "Montmeló",
+       "year":  "2025",
+       "status":  "Sector",
+       "tipus":  "Planejament derivat",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Projecte d\u0027Actuació Específica en sòl no urbanitzable per a la construcció d\u0027un nou edifici destinat a restaurant i l\u0027ampliació de la clínica existent al paddock del Circuit de Barcelona-Catalunya, entre els municipis de Granollers i Montmeló. Les dues intervencions, amb un sostre total de 621 m², responen a la necessitat de modernitzar els serveis de l\u0027equipament esportiu internacional, millorant l\u0027oferta de restauració i reforçant la capacitat d\u0027atenció sanitària durant les competicions.",
+       "descriptionLong":  "El Circuit de velocitat Barcelona-Catalunya, inaugurat el 1991, és un equipament esportiu consolidat i emblemàtic d\u0027abast internacional, amb una important projecció mediàtica gràcies als campionats del món de Fòrmula 1, Moto GP, Rallycross i Superbike, entre d\u0027altres. Amb 120 hectàrees d\u0027extensió i un grau d\u0027ocupació del 83% —uns 340 dies anuals d\u0027activitat—, les seves instal·lacions se situen entre els termes municipals de Montmeló, Granollers i Parets del Vallès, a la comarca del Vallès Oriental, sobre un serral de la Plana del Vallès que configura un mirador privilegiat al territori.\n\nDurant més de trenta anys de funcionament, el circuit ha anat adequant les seves instal·lacions a les necessitats creixents dels esdeveniments esportius. El Pla Director Urbanístic del Circuit, aprovat el 2016, va establir un nou marc urbanístic per assegurar el bon funcionament i la continuïtat de l\u0027equipament com a instal·lació internacional de qualitat, fixant un sostre màxim edificable de 150.000 m² i regulant els usos admesos, entre els quals la restauració i l\u0027ús sanitari.\n\nEn aquest context, el Projecte d\u0027Actuació Específica proposa dues intervencions al paddock del circuit. La primera consisteix en la construcció d\u0027un nou edifici destinat a restaurant, amb una superfície de 541 m², materialitzat amb una estructura lleugera metàl·lica de 15,30 m d\u0027amplada per 35,30 m de longitud, situat a la part nord del paddock amb façanes permeables que potencien la relació amb l\u0027espai exterior. La segona actuació preveu l\u0027ampliació de la clínica existent mitjançant un edicle de 85 m², integrat amb el mateix llenguatge arquitectònic de l\u0027edifici preexistent, amb l\u0027objectiu de millorar la capacitat i funcionalitat de l\u0027atenció sanitària del circuit.\n\nAmbdues intervencions s\u0027emplacen en àrees ja transformades i dotades de les infraestructures necessàries, optimitzant la connexió a les xarxes de serveis existents. El sostre total de les noves edificacions és de 621 m², situant el còmput total de l\u0027equipament en 76.821 m², molt per sota del sostre màxim permès. Els materials i l\u0027estètica dels nous edificis s\u0027adeqüen al llenguatge arquitectònic del circuit, reforçant la imatge de marca de la instal·lació i la seva coherència amb l\u0027entorn industrial i tecnològic del recinte."
+     }
 }

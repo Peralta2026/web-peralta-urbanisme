@@ -1,56 +1,63 @@
 {
-    "slug":  "rubi-cuines-fantasma",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "rubi-cuines-fantasma",
+  "coverImage":  "1.jpg",
+  "images":  [
+         "1.jpg",
+         "2.jpg",
+         "3_F3 proposta.jpg",
+         "4M11a estructura cívica.jpg",
+         "5M10c locals buits.jpg",
+         "6M10b activitats restauració.jpg",
+         "7_M10a activitats obertes.jpg",
+         "8_M09c isocrones F3.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "municipality":  "Rubí",
-               "year":  "2022",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
-           },
-    "es":  {
-               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "municipality":  "Rubí",
-               "year":  "2022",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
-           },
-    "en":  {
-               "title":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "municipality":  "Rubí",
-               "year":  "2022",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí",
-               "descriptionLong":  "Estudi urbanístic del teixit d\u0027activitat econòmica del municipi de Rubí"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Rubí Cuines Fantasma",
+       "municipality":  "Rubí",
+       "year":  "2022",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi urbanístic encarregat per l\u0027Ajuntament de Rubí a Peralta Urbanisme per analitzar el risc d\u0027implantació de les cuines i supermercats fantasma al municipi i proposar estratègies de regulació. El document defineix el fenomen de les \"dark kitchens\" i dels magatzems de repartiment ultraràpid, diagnostica els àmbits de Rubí on la normativa vigent n\u0027admetria la implantació —especialment l\u0027entorn del Col·legi Ribas— i apunta estratègies de regulació per superfície, posició relativa i densitat d\u0027activitats.",
+       "descriptionLong":  "Les cuines fantasma —cuines industrials en locals comercials dedicades exclusivament al repartiment de menjar a domicili— van néixer a Londres per fugir dels alts lloguers i es van generalitzar arreu amb la pandèmia de 2020. A Espanya, un de cada quatre restaurants amb repartiment a domicili és ja una cuina fantasma. Els supermercats fantasma segueixen una lògica paral·lela: magatzems de comandes online amb lliurament ultraràpid en 10-30 minuts, amb un rang de 1.500 a 2.500 productes d\u0027ús immediat.\n\nTotes dues activitats generen externalitats negatives sobre l\u0027entorn: olors i fums d\u0027extractors industrials, contaminació acústica i, sobretot, el flux constant de repartidors (riders) que ocupen voreres i calçades en les franges punta del vespre. En 200 m² s\u0027hi poden concentrar fins a 12 cuines industrials; un supermercat fantasma en creixement genera 25 repartidors simultanis amb una rotació de 10 minuts. L\u0027impacte sobre el veïnat proper, la restauració de proximitat i la vitalitat de les plantes baixes dels carrers és evident.\n\nL\u0027Ajuntament de Rubí, sense constància de cap establiment implantat al municipi —a diferència del veí Sant Cugat, on ja se\u0027n detectaven tres—, va encarregar l\u0027estudi a Peralta Urbanisme per avançar-se al problema. La diagnosi detecta que la normativa vigent del PGO admet l\u0027ús industrial de categoria 3 en les modalitats de \"consolidació\" i \"substitució de l\u0027edificació aïllada\" de la zona d\u0027illa tancada, la qual cosa obre la porta a la implantació d\u0027aquestes activitats sense cap restricció específica. L\u0027àmbit de major risc identificat és l\u0027entorn del Col·legi Ribas (F3), a l\u0027entrada del casc urbà des de la carretera de Sant Cugat, per la seva densitat de població i la capil·laritat de les seves comunicacions.\n\nPrenent com a referència la regulació aprovada per Barcelona el 2022 —que va prohibir els supermercats fantasma a tota la ciutat i va limitar les cuines fantasma al sòl industrial, en carrers de més de 25 m d\u0027ample i amb un radi mínim de 400 m entre establiments—, l\u0027estudi planteja per a Rubí tres eixos de regulació: per superfície màxima (200 m² en zones residencials i 500 m² en sòl industrial per a les cuines), per posició relativa (exclusió de carrers cívics, entorns sensibles i carrers de menys de 7 m d\u0027ample) i per control de densitat (interdistància mínima de 200 m entre activitats). El document es presenta com a esborrany i les conclusions resten pendents de completar."
+     },
+  "es":  {
+       "title":  "Rubí Cuines Fantasma",
+       "municipality":  "Rubí",
+       "year":  "2022",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi urbanístic encarregat per l\u0027Ajuntament de Rubí a Peralta Urbanisme per analitzar el risc d\u0027implantació de les cuines i supermercats fantasma al municipi i proposar estratègies de regulació. El document defineix el fenomen de les \"dark kitchens\" i dels magatzems de repartiment ultraràpid, diagnostica els àmbits de Rubí on la normativa vigent n\u0027admetria la implantació —especialment l\u0027entorn del Col·legi Ribas— i apunta estratègies de regulació per superfície, posició relativa i densitat d\u0027activitats.",
+       "descriptionLong":  "Les cuines fantasma —cuines industrials en locals comercials dedicades exclusivament al repartiment de menjar a domicili— van néixer a Londres per fugir dels alts lloguers i es van generalitzar arreu amb la pandèmia de 2020. A Espanya, un de cada quatre restaurants amb repartiment a domicili és ja una cuina fantasma. Els supermercats fantasma segueixen una lògica paral·lela: magatzems de comandes online amb lliurament ultraràpid en 10-30 minuts, amb un rang de 1.500 a 2.500 productes d\u0027ús immediat.\n\nTotes dues activitats generen externalitats negatives sobre l\u0027entorn: olors i fums d\u0027extractors industrials, contaminació acústica i, sobretot, el flux constant de repartidors (riders) que ocupen voreres i calçades en les franges punta del vespre. En 200 m² s\u0027hi poden concentrar fins a 12 cuines industrials; un supermercat fantasma en creixement genera 25 repartidors simultanis amb una rotació de 10 minuts. L\u0027impacte sobre el veïnat proper, la restauració de proximitat i la vitalitat de les plantes baixes dels carrers és evident.\n\nL\u0027Ajuntament de Rubí, sense constància de cap establiment implantat al municipi —a diferència del veí Sant Cugat, on ja se\u0027n detectaven tres—, va encarregar l\u0027estudi a Peralta Urbanisme per avançar-se al problema. La diagnosi detecta que la normativa vigent del PGO admet l\u0027ús industrial de categoria 3 en les modalitats de \"consolidació\" i \"substitució de l\u0027edificació aïllada\" de la zona d\u0027illa tancada, la qual cosa obre la porta a la implantació d\u0027aquestes activitats sense cap restricció específica. L\u0027àmbit de major risc identificat és l\u0027entorn del Col·legi Ribas (F3), a l\u0027entrada del casc urbà des de la carretera de Sant Cugat, per la seva densitat de població i la capil·laritat de les seves comunicacions.\n\nPrenent com a referència la regulació aprovada per Barcelona el 2022 —que va prohibir els supermercats fantasma a tota la ciutat i va limitar les cuines fantasma al sòl industrial, en carrers de més de 25 m d\u0027ample i amb un radi mínim de 400 m entre establiments—, l\u0027estudi planteja per a Rubí tres eixos de regulació: per superfície màxima (200 m² en zones residencials i 500 m² en sòl industrial per a les cuines), per posició relativa (exclusió de carrers cívics, entorns sensibles i carrers de menys de 7 m d\u0027ample) i per control de densitat (interdistància mínima de 200 m entre activitats). El document es presenta com a esborrany i les conclusions resten pendents de completar."
+     },
+  "en":  {
+       "title":  "Rubí Cuines Fantasma",
+       "municipality":  "Rubí",
+       "year":  "2022",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi urbanístic encarregat per l\u0027Ajuntament de Rubí a Peralta Urbanisme per analitzar el risc d\u0027implantació de les cuines i supermercats fantasma al municipi i proposar estratègies de regulació. El document defineix el fenomen de les \"dark kitchens\" i dels magatzems de repartiment ultraràpid, diagnostica els àmbits de Rubí on la normativa vigent n\u0027admetria la implantació —especialment l\u0027entorn del Col·legi Ribas— i apunta estratègies de regulació per superfície, posició relativa i densitat d\u0027activitats.",
+       "descriptionLong":  "Les cuines fantasma —cuines industrials en locals comercials dedicades exclusivament al repartiment de menjar a domicili— van néixer a Londres per fugir dels alts lloguers i es van generalitzar arreu amb la pandèmia de 2020. A Espanya, un de cada quatre restaurants amb repartiment a domicili és ja una cuina fantasma. Els supermercats fantasma segueixen una lògica paral·lela: magatzems de comandes online amb lliurament ultraràpid en 10-30 minuts, amb un rang de 1.500 a 2.500 productes d\u0027ús immediat.\n\nTotes dues activitats generen externalitats negatives sobre l\u0027entorn: olors i fums d\u0027extractors industrials, contaminació acústica i, sobretot, el flux constant de repartidors (riders) que ocupen voreres i calçades en les franges punta del vespre. En 200 m² s\u0027hi poden concentrar fins a 12 cuines industrials; un supermercat fantasma en creixement genera 25 repartidors simultanis amb una rotació de 10 minuts. L\u0027impacte sobre el veïnat proper, la restauració de proximitat i la vitalitat de les plantes baixes dels carrers és evident.\n\nL\u0027Ajuntament de Rubí, sense constància de cap establiment implantat al municipi —a diferència del veí Sant Cugat, on ja se\u0027n detectaven tres—, va encarregar l\u0027estudi a Peralta Urbanisme per avançar-se al problema. La diagnosi detecta que la normativa vigent del PGO admet l\u0027ús industrial de categoria 3 en les modalitats de \"consolidació\" i \"substitució de l\u0027edificació aïllada\" de la zona d\u0027illa tancada, la qual cosa obre la porta a la implantació d\u0027aquestes activitats sense cap restricció específica. L\u0027àmbit de major risc identificat és l\u0027entorn del Col·legi Ribas (F3), a l\u0027entrada del casc urbà des de la carretera de Sant Cugat, per la seva densitat de població i la capil·laritat de les seves comunicacions.\n\nPrenent com a referència la regulació aprovada per Barcelona el 2022 —que va prohibir els supermercats fantasma a tota la ciutat i va limitar les cuines fantasma al sòl industrial, en carrers de més de 25 m d\u0027ample i amb un radi mínim de 400 m entre establiments—, l\u0027estudi planteja per a Rubí tres eixos de regulació: per superfície màxima (200 m² en zones residencials i 500 m² en sòl industrial per a les cuines), per posició relativa (exclusió de carrers cívics, entorns sensibles i carrers de menys de 7 m d\u0027ample) i per control de densitat (interdistància mínima de 200 m entre activitats). El document es presenta com a esborrany i les conclusions resten pendents de completar."
+     }
 }

@@ -1,56 +1,60 @@
 {
-    "slug":  "alella-parc",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "alella-parc",
+  "coverImage":  "Diapositiva1.JPG",
+  "images":  [
+         "Diapositiva1.JPG",
+         "Diapositiva18.JPG",
+         "Diapositiva33.JPG",
+         "Diapositiva37.JPG",
+         "Diapositiva7.JPG"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "municipality":  "Alella",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
-           },
-    "es":  {
-               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "municipality":  "Alella",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
-           },
-    "en":  {
-               "title":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "municipality":  "Alella",
-               "year":  "2024",
-               "status":  "Sector",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella",
-               "descriptionLong":  "Document de Criteris d\u0027urbanització i paisatge del futur Parc de La Miralda d\u0027Alella"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Alella Parc",
+       "municipality":  "Alella",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  46437,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Document de Criteris d\u0027Urbanització i Paisatge per al futur Parc de La Miralda, sobre 46.437 m² als límits del casc urbà d\u0027Alella amb el Parc de la Serralada Litoral. La proposta recupera l\u0027estructura agrícola de la finca —bancals, murs de pedra, vinyes, basses i camins rurals— com a matriu del nou parc, i identifica cinc espais de referència: un nou equipament municipal, un eix verd cívic Alella-Masnou, un mirador, un espai verd agrari i una nova plaça urbana.",
+       "descriptionLong":  "La Miralda és una finca situada als límits entre el casc urbà d\u0027Alella i la Serralada Litoral, sobre 46.437 m² amb una rica estratigrafia agroforestal. Durant dècades, l\u0027abandonament de l\u0027explotació agrícola ha provocat la regressió de les vinyes i l\u0027avenç de l\u0027arbustiva, diluint una trama que havia configurat durant segles el paisatge d\u0027entrada al municipi.\n\nEl Document de Criteris d\u0027Urbanització i Paisatge proposa la transformació de La Miralda en un nou parc urbà, articulant la recuperació del llegat patrimonial de la finca amb la creació d\u0027espais cívics de nova generació. El projecte parteix d\u0027una lectura profunda del territori: l\u0027estructura de l\u0027aigua (riera d\u0027Alella, torrent de Rials), la topografia en bancals, els murs de pedra i tàpies, els camins rurals i les antigues basses d\u0027irrigació. Sobre aquesta base, la proposta estableix una seqüència de criteris superposats fins a generar el nou model urbà.\n\nL\u0027estructura organitzadora del parc es recolza en la recuperació del \"cardus i decumanus\" —la doble traça agrícola ortogonal que ha estructurat la finca des dels orígens—, potenciant-ne els eixos com a itineraris estructurants. Els camins es materialitzen amb sauló compactat, en coherència amb el caràcter rural de l\u0027indret, mentre que els espais cívics s\u0027urbanitzen amb material ceràmic en continuïtat amb els murs de contenció rehabilitats.\n\nLa proposta identifica cinc espais de referència:\n1. Nou Equipament Municipal de La Miralda, integrat paisatgísticament amb cobertes enjardinades i materials ceràmics\n2. Nou Eix Verd Cívic Alella-Masnou, gran passeig verd que costura el teixit municipal\n3. Nou Espai Mirador, amb arbrat de copa horitzontal (til·lers) per emfatitzar les visuals panoràmiques\n4. Nou Espai Verd Agrari, amb recuperació de vinyes com a element identitari d\u0027Alella\n5. Nova Plaça Urbana de referència, ròtula entre el parc i el teixit residencial\n\nEl nou teixit mixt adjacent (residencial i comercial) s\u0027ordena amb cinc criteris: permeabilitat visual i física cap al parc, volumetria màxima PB+2+àtic, filtres ambientals i jardins comunitaris, respecte del patrimoni preexistent, i vinculació dels equipaments amb l\u0027espai públic. El document minimitza l\u0027impacte viari i maximitza la continuïtat verda entre el parc i els barris existents.\n\nL\u0027actuació preveu la renaturalització de la riera d\u0027Alella i l\u0027aiguabarreig amb el torrent de Rials com a element ecològic central del conjunt, reforçant la connexió del parc amb la Serralada Litoral."
+     },
+  "es":  {
+       "title":  "Alella Parc",
+       "municipality":  "Alella",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  46437,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Document de Criteris d\u0027Urbanització i Paisatge per al futur Parc de La Miralda, sobre 46.437 m² als límits del casc urbà d\u0027Alella amb el Parc de la Serralada Litoral. La proposta recupera l\u0027estructura agrícola de la finca —bancals, murs de pedra, vinyes, basses i camins rurals— com a matriu del nou parc, i identifica cinc espais de referència: un nou equipament municipal, un eix verd cívic Alella-Masnou, un mirador, un espai verd agrari i una nova plaça urbana.",
+       "descriptionLong":  "La Miralda és una finca situada als límits entre el casc urbà d\u0027Alella i la Serralada Litoral, sobre 46.437 m² amb una rica estratigrafia agroforestal. Durant dècades, l\u0027abandonament de l\u0027explotació agrícola ha provocat la regressió de les vinyes i l\u0027avenç de l\u0027arbustiva, diluint una trama que havia configurat durant segles el paisatge d\u0027entrada al municipi.\n\nEl Document de Criteris d\u0027Urbanització i Paisatge proposa la transformació de La Miralda en un nou parc urbà, articulant la recuperació del llegat patrimonial de la finca amb la creació d\u0027espais cívics de nova generació. El projecte parteix d\u0027una lectura profunda del territori: l\u0027estructura de l\u0027aigua (riera d\u0027Alella, torrent de Rials), la topografia en bancals, els murs de pedra i tàpies, els camins rurals i les antigues basses d\u0027irrigació. Sobre aquesta base, la proposta estableix una seqüència de criteris superposats fins a generar el nou model urbà.\n\nL\u0027estructura organitzadora del parc es recolza en la recuperació del \"cardus i decumanus\" —la doble traça agrícola ortogonal que ha estructurat la finca des dels orígens—, potenciant-ne els eixos com a itineraris estructurants. Els camins es materialitzen amb sauló compactat, en coherència amb el caràcter rural de l\u0027indret, mentre que els espais cívics s\u0027urbanitzen amb material ceràmic en continuïtat amb els murs de contenció rehabilitats.\n\nLa proposta identifica cinc espais de referència:\n1. Nou Equipament Municipal de La Miralda, integrat paisatgísticament amb cobertes enjardinades i materials ceràmics\n2. Nou Eix Verd Cívic Alella-Masnou, gran passeig verd que costura el teixit municipal\n3. Nou Espai Mirador, amb arbrat de copa horitzontal (til·lers) per emfatitzar les visuals panoràmiques\n4. Nou Espai Verd Agrari, amb recuperació de vinyes com a element identitari d\u0027Alella\n5. Nova Plaça Urbana de referència, ròtula entre el parc i el teixit residencial\n\nEl nou teixit mixt adjacent (residencial i comercial) s\u0027ordena amb cinc criteris: permeabilitat visual i física cap al parc, volumetria màxima PB+2+àtic, filtres ambientals i jardins comunitaris, respecte del patrimoni preexistent, i vinculació dels equipaments amb l\u0027espai públic. El document minimitza l\u0027impacte viari i maximitza la continuïtat verda entre el parc i els barris existents.\n\nL\u0027actuació preveu la renaturalització de la riera d\u0027Alella i l\u0027aiguabarreig amb el torrent de Rials com a element ecològic central del conjunt, reforçant la connexió del parc amb la Serralada Litoral."
+     },
+  "en":  {
+       "title":  "Alella Parc",
+       "municipality":  "Alella",
+       "year":  "2024",
+       "status":  "Sector",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  46437,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Document de Criteris d\u0027Urbanització i Paisatge per al futur Parc de La Miralda, sobre 46.437 m² als límits del casc urbà d\u0027Alella amb el Parc de la Serralada Litoral. La proposta recupera l\u0027estructura agrícola de la finca —bancals, murs de pedra, vinyes, basses i camins rurals— com a matriu del nou parc, i identifica cinc espais de referència: un nou equipament municipal, un eix verd cívic Alella-Masnou, un mirador, un espai verd agrari i una nova plaça urbana.",
+       "descriptionLong":  "La Miralda és una finca situada als límits entre el casc urbà d\u0027Alella i la Serralada Litoral, sobre 46.437 m² amb una rica estratigrafia agroforestal. Durant dècades, l\u0027abandonament de l\u0027explotació agrícola ha provocat la regressió de les vinyes i l\u0027avenç de l\u0027arbustiva, diluint una trama que havia configurat durant segles el paisatge d\u0027entrada al municipi.\n\nEl Document de Criteris d\u0027Urbanització i Paisatge proposa la transformació de La Miralda en un nou parc urbà, articulant la recuperació del llegat patrimonial de la finca amb la creació d\u0027espais cívics de nova generació. El projecte parteix d\u0027una lectura profunda del territori: l\u0027estructura de l\u0027aigua (riera d\u0027Alella, torrent de Rials), la topografia en bancals, els murs de pedra i tàpies, els camins rurals i les antigues basses d\u0027irrigació. Sobre aquesta base, la proposta estableix una seqüència de criteris superposats fins a generar el nou model urbà.\n\nL\u0027estructura organitzadora del parc es recolza en la recuperació del \"cardus i decumanus\" —la doble traça agrícola ortogonal que ha estructurat la finca des dels orígens—, potenciant-ne els eixos com a itineraris estructurants. Els camins es materialitzen amb sauló compactat, en coherència amb el caràcter rural de l\u0027indret, mentre que els espais cívics s\u0027urbanitzen amb material ceràmic en continuïtat amb els murs de contenció rehabilitats.\n\nLa proposta identifica cinc espais de referència:\n1. Nou Equipament Municipal de La Miralda, integrat paisatgísticament amb cobertes enjardinades i materials ceràmics\n2. Nou Eix Verd Cívic Alella-Masnou, gran passeig verd que costura el teixit municipal\n3. Nou Espai Mirador, amb arbrat de copa horitzontal (til·lers) per emfatitzar les visuals panoràmiques\n4. Nou Espai Verd Agrari, amb recuperació de vinyes com a element identitari d\u0027Alella\n5. Nova Plaça Urbana de referència, ròtula entre el parc i el teixit residencial\n\nEl nou teixit mixt adjacent (residencial i comercial) s\u0027ordena amb cinc criteris: permeabilitat visual i física cap al parc, volumetria màxima PB+2+àtic, filtres ambientals i jardins comunitaris, respecte del patrimoni preexistent, i vinculació dels equipaments amb l\u0027espai públic. El document minimitza l\u0027impacte viari i maximitza la continuïtat verda entre el parc i els barris existents.\n\nL\u0027actuació preveu la renaturalització de la riera d\u0027Alella i l\u0027aiguabarreig amb el torrent de Rials com a element ecològic central del conjunt, reforçant la connexió del parc amb la Serralada Litoral."
+     }
 }

@@ -1,56 +1,66 @@
 {
-    "slug":  "diputacio-calaf",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "diputacio-calaf",
+  "coverImage":  "2.1.jpg",
+  "images":  [
+         "2.1.jpg",
+         "2.jpg",
+         "3.jpg",
+         "4.jpg",
+         "5.jpg",
+         "6.jpg",
+         "7.jpg",
+         "8.jpg",
+         "Analisi_ESPAI VERD .jpg",
+         "Analisi_teixits def.jpg",
+         "Analisi_VIARI.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "municipality":  "Calaf",
-               "year":  "2023",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
-           },
-    "es":  {
-               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "municipality":  "Calaf",
-               "year":  "2023",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
-           },
-    "en":  {
-               "title":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "municipality":  "Calaf",
-               "year":  "2023",
-               "status":  "Municipi",
-               "tipus":  "Estudi",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)",
-               "descriptionLong":  "Alternatives de desenvolupament dels polígons d\u0027actuació pendents d\u0027executar de Calaf (DI_ES)"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "Diputació Calaf",
+       "municipality":  "Calaf",
+       "year":  "2023",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de diagnosi, estratègies i propostes (DI_ES) encarregat per la Diputació de Barcelona per revisar els sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027executar a Calaf (Anoia), amb una edificabilitat conjunta de 64.685 m²st en 6,5 hectàrees de sòl urbà no consolidat. El treball, en dues fases, proposa l\u0027Anella Verda com a model estructural que relliga els àmbits pendents, reorganitza els polígons prioritaris i planteja les bases per a una futura revisió del POUM municipal.",
+       "descriptionLong":  "Calaf és un municipi de l\u0027Anoia d\u0027uns 3.500 habitants que, malgrat la seva identitat com a capital comarcal i nucli de serveis per als assentaments rurals dels Costers de la Segarra, acumula un parc de polígons urbanístics pendents d\u0027executar que el planejament general (POUM) havia deixat obert sense resoldre. Sis polígons d\u0027actuació urbanística (PAUs) i tres plans de millora urbana (PMUs) amb una edificabilitat bruta conjunta de 64.685 m²st residencials repartits en 6,5 hectàrees de sòl urbà no consolidat, la majoria d\u0027ells amb càrregues urbanístiques tan elevades que feien inviable el seu desenvolupament en el context econòmic actual.\n\nLa Diputació de Barcelona, a través de l\u0027instrument DI_ES (DIagnosi i EStratègies), va encarregar a Peralta Urbanisme un estudi en dues fases per analitzar, diagnosticar i proposar alternatives de desenvolupament per a aquests àmbits. La Fase 1, de novembre de 2023, aprofundeix en l\u0027anàlisi del context legal i territorial, la lectura dels teixits urbans, la mobilitat, el verd urbà i les dinàmiques demogràfiques i econòmiques del municipi, tot culminant en un DAFO i uns objectius estratègics.\n\nLa Fase 2, de juny de 2024, presenta el model estructural de l\u0027Anella Verda: un itinerari circular de mobilitat cívica i saludable que circumda el perímetre del casc urbà i relliga els polígons pendents amb el paisatge agrari, el patrimoni del Convent de Sant Francesc, el nou llac de Calaf i les vies histèriques rurals. L\u0027Anella no és un simple recorregut sinó una infraestructura verda que incorpora espais lliures de vora, places mirador obertes al paisatge, franges de renaturalització i criteris de drenatge sostenible.\n\nEn coherència amb aquest model, el treball proposa ajustos concrets sobre quatre àmbits prioritaris: el PA-2 (Continuació Sallavinera) i el PA-4 (Verdaguer) es subdivideixen per facilitar un desenvolupament gradual per a promotors locals, amb reordenació cap a tipologies unifamiliars en filera; el PA-1 (el polígon amb major edificabilitat bruta de 2,80 m²st/m²s) es reordena per generar una nova plaça de referència urbana; i es proposen dos nous àmbits PA-8a i PA-8b sobre sòl industrial obsolet proper a l\u0027estació, com a oportunitat per crear espai públic i habitatge en connexió directa amb el convent i el tren.\n\nEl treball conclou identificant la redacció d\u0027un nou POUM com el pas necessari per vehicular de manera global totes les propostes generades, fonamentades ara en un relat urbanístic sòlid i engrescador."
+     },
+  "es":  {
+       "title":  "Diputació Calaf",
+       "municipality":  "Calaf",
+       "year":  "2023",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de diagnosi, estratègies i propostes (DI_ES) encarregat per la Diputació de Barcelona per revisar els sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027executar a Calaf (Anoia), amb una edificabilitat conjunta de 64.685 m²st en 6,5 hectàrees de sòl urbà no consolidat. El treball, en dues fases, proposa l\u0027Anella Verda com a model estructural que relliga els àmbits pendents, reorganitza els polígons prioritaris i planteja les bases per a una futura revisió del POUM municipal.",
+       "descriptionLong":  "Calaf és un municipi de l\u0027Anoia d\u0027uns 3.500 habitants que, malgrat la seva identitat com a capital comarcal i nucli de serveis per als assentaments rurals dels Costers de la Segarra, acumula un parc de polígons urbanístics pendents d\u0027executar que el planejament general (POUM) havia deixat obert sense resoldre. Sis polígons d\u0027actuació urbanística (PAUs) i tres plans de millora urbana (PMUs) amb una edificabilitat bruta conjunta de 64.685 m²st residencials repartits en 6,5 hectàrees de sòl urbà no consolidat, la majoria d\u0027ells amb càrregues urbanístiques tan elevades que feien inviable el seu desenvolupament en el context econòmic actual.\n\nLa Diputació de Barcelona, a través de l\u0027instrument DI_ES (DIagnosi i EStratègies), va encarregar a Peralta Urbanisme un estudi en dues fases per analitzar, diagnosticar i proposar alternatives de desenvolupament per a aquests àmbits. La Fase 1, de novembre de 2023, aprofundeix en l\u0027anàlisi del context legal i territorial, la lectura dels teixits urbans, la mobilitat, el verd urbà i les dinàmiques demogràfiques i econòmiques del municipi, tot culminant en un DAFO i uns objectius estratègics.\n\nLa Fase 2, de juny de 2024, presenta el model estructural de l\u0027Anella Verda: un itinerari circular de mobilitat cívica i saludable que circumda el perímetre del casc urbà i relliga els polígons pendents amb el paisatge agrari, el patrimoni del Convent de Sant Francesc, el nou llac de Calaf i les vies histèriques rurals. L\u0027Anella no és un simple recorregut sinó una infraestructura verda que incorpora espais lliures de vora, places mirador obertes al paisatge, franges de renaturalització i criteris de drenatge sostenible.\n\nEn coherència amb aquest model, el treball proposa ajustos concrets sobre quatre àmbits prioritaris: el PA-2 (Continuació Sallavinera) i el PA-4 (Verdaguer) es subdivideixen per facilitar un desenvolupament gradual per a promotors locals, amb reordenació cap a tipologies unifamiliars en filera; el PA-1 (el polígon amb major edificabilitat bruta de 2,80 m²st/m²s) es reordena per generar una nova plaça de referència urbana; i es proposen dos nous àmbits PA-8a i PA-8b sobre sòl industrial obsolet proper a l\u0027estació, com a oportunitat per crear espai públic i habitatge en connexió directa amb el convent i el tren.\n\nEl treball conclou identificant la redacció d\u0027un nou POUM com el pas necessari per vehicular de manera global totes les propostes generades, fonamentades ara en un relat urbanístic sòlid i engrescador."
+     },
+  "en":  {
+       "title":  "Diputació Calaf",
+       "municipality":  "Calaf",
+       "year":  "2023",
+       "status":  "Municipi",
+       "tipus":  "Estudi",
+       "premi":  null,
+       "ambitM2":  null,
+       "programa":  null,
+       "sostreM2":  null,
+       "habitatges":  null,
+       "descriptionShort":  "Estudi de diagnosi, estratègies i propostes (DI_ES) encarregat per la Diputació de Barcelona per revisar els sis polígons d\u0027actuació urbanística i tres plans de millora urbana pendents d\u0027executar a Calaf (Anoia), amb una edificabilitat conjunta de 64.685 m²st en 6,5 hectàrees de sòl urbà no consolidat. El treball, en dues fases, proposa l\u0027Anella Verda com a model estructural que relliga els àmbits pendents, reorganitza els polígons prioritaris i planteja les bases per a una futura revisió del POUM municipal.",
+       "descriptionLong":  "Calaf és un municipi de l\u0027Anoia d\u0027uns 3.500 habitants que, malgrat la seva identitat com a capital comarcal i nucli de serveis per als assentaments rurals dels Costers de la Segarra, acumula un parc de polígons urbanístics pendents d\u0027executar que el planejament general (POUM) havia deixat obert sense resoldre. Sis polígons d\u0027actuació urbanística (PAUs) i tres plans de millora urbana (PMUs) amb una edificabilitat bruta conjunta de 64.685 m²st residencials repartits en 6,5 hectàrees de sòl urbà no consolidat, la majoria d\u0027ells amb càrregues urbanístiques tan elevades que feien inviable el seu desenvolupament en el context econòmic actual.\n\nLa Diputació de Barcelona, a través de l\u0027instrument DI_ES (DIagnosi i EStratègies), va encarregar a Peralta Urbanisme un estudi en dues fases per analitzar, diagnosticar i proposar alternatives de desenvolupament per a aquests àmbits. La Fase 1, de novembre de 2023, aprofundeix en l\u0027anàlisi del context legal i territorial, la lectura dels teixits urbans, la mobilitat, el verd urbà i les dinàmiques demogràfiques i econòmiques del municipi, tot culminant en un DAFO i uns objectius estratègics.\n\nLa Fase 2, de juny de 2024, presenta el model estructural de l\u0027Anella Verda: un itinerari circular de mobilitat cívica i saludable que circumda el perímetre del casc urbà i relliga els polígons pendents amb el paisatge agrari, el patrimoni del Convent de Sant Francesc, el nou llac de Calaf i les vies histèriques rurals. L\u0027Anella no és un simple recorregut sinó una infraestructura verda que incorpora espais lliures de vora, places mirador obertes al paisatge, franges de renaturalització i criteris de drenatge sostenible.\n\nEn coherència amb aquest model, el treball proposa ajustos concrets sobre quatre àmbits prioritaris: el PA-2 (Continuació Sallavinera) i el PA-4 (Verdaguer) es subdivideixen per facilitar un desenvolupament gradual per a promotors locals, amb reordenació cap a tipologies unifamiliars en filera; el PA-1 (el polígon amb major edificabilitat bruta de 2,80 m²st/m²s) es reordena per generar una nova plaça de referència urbana; i es proposen dos nous àmbits PA-8a i PA-8b sobre sòl industrial obsolet proper a l\u0027estació, com a oportunitat per crear espai públic i habitatge en connexió directa amb el convent i el tren.\n\nEl treball conclou identificant la redacció d\u0027un nou POUM com el pas necessari per vehicular de manera global totes les propostes generades, fonamentades ara en un relat urbanístic sòlid i engrescador."
+     }
 }

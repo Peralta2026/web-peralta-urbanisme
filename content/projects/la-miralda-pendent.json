@@ -1,56 +1,75 @@
 {
-    "slug":  "la-miralda-pendent",
-    "coverImage":  "cover.jpg",
-    "images":  [
-                   "cover.jpg"
-               ],
-    "tags":  [
+  "slug":  "la-miralda-pendent",
+  "coverImage":  "AXO  parc miralda.jpg",
+  "images":  [
+         "AXO  parc miralda.jpg",
+         "AXO  social.jpg",
+         "axonometria.jpg",
+         "estado actual maps.jpeg",
+         "Figura 01.jpg",
+         "Figura 02.jpg",
+         "Figura 04.jpg",
+         "Figura 05.jpg",
+         "Figura 08.2.jpg",
+         "Figura 08.jpg",
+         "Figura 09.jpg",
+         "Figura 10.jpg",
+         "Figura 11.jpg",
+         "Figura 12.jpg",
+         "Figura 13.2.JPG",
+         "Figura 13.jpg",
+         "Figura 14.2.JPG",
+         "Figura 14.JPG",
+         "Figura 15.jpg",
+         "proposta indicativa.jpg"
+       ],
+  "tags":  [
 
-             ],
-    "coordinates":  {
-                        "lat":  0,
-                        "lng":  0
-                    },
-    "ca":  {
-               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "municipality":  "La Llagosta",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
-           },
-    "es":  {
-               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "municipality":  "La Llagosta",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
-           },
-    "en":  {
-               "title":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "municipality":  "La Llagosta",
-               "year":  "2023",
-               "status":  "Sector",
-               "tipus":  "Planejament general",
-               "premi":  "—",
-               "ambitM2":  null,
-               "programa":  null,
-               "sostreM2":  null,
-               "habitatges":  null,
-               "descriptionShort":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda",
-               "descriptionLong":  "Modificació Puntual del Pla General d\u0027Ordenació Urbana de La Llagosta en l\u0027àmbit de la Miralda"
-           }
+      ],
+  "coordinates":  {
+            "lat":  0,
+            "lng":  0
+          },
+  "ca":  {
+       "title":  "MPGO La Miralda",
+       "municipality":  "La Llagosta",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  12439,
+       "programa":  null,
+       "sostreM2":  22391,
+       "habitatges":  200,
+       "descriptionShort":  "Modificació puntual del Pla General d\u0027Ordenació Urbana de la Llagosta en l\u0027àmbit de la Miralda, antic solar industrial de l\u0027empresa CAPRESA al cor del nucli urbà. La proposta crea un nou parc central de 9.360 m² articulat amb el Parc Popular i el passeig de Joan Miró, i transforma l\u0027illa en tres volums edificats amb 200 habitatges —75 amb protecció oficial— i un nou equipament públic, reforçant la cohesió social i l\u0027oferta d\u0027habitatge assequible al municipi.",
+       "descriptionLong":  "La Llagosta és un municipi compacte del Vallès Occidental que conservava al seu centre geomètric un buit actiu i pertorbador: les antigues naus industrials de CAPRESA, empresa de calibrats per al mercat de l\u0027automoció fundada l\u0027any 1961 i tancada el 2019. Un solar qualificat com a residencial des del Pla General d\u0027Ordenació Urbana de 1986 i objecte d\u0027una modificació puntual el 1996, però mai transformat, que ocupava el 60% del sector i degradava tots els carrers del seu entorn.\n\nLa Modificació Puntual del PGOU de la Llagosta en l\u0027àmbit de la Miralda (setembre 2024) reprèn i actualitza l\u0027encàrrec inacabat: transformar l\u0027illa delimitada entre el carrer Caldes, el passeig de Joan Miró, el carrer de Cabanyes, el carrer de Vic i la plaça del Centre. L\u0027àmbit total de la MPGOU és de 18.121 m²s, dels quals 12.881 m²s corresponen al sector i 5.240 m²s a sistemes viaris i zones verdes perimetrals.\n\nL\u0027eix vertebrador de la proposta és el nou Parc de la Miralda: una peça verda de 9.360 m²s que es posiciona com el nou espai públic central del municipi, articulada amb el Parc Popular existent, el passeig de Joan Miró i l\u0027Anella Verda municipal. L\u0027ordenació s\u0027estructura en quinze criteris distribuïts en tres blocs —el verd urbà, el teixit equilibrat i integrat, i la mobilitat sostenible— que cerquen convertir la frontissa entre els barris residencials, el polígon industrial i el Parc Popular en una peça de centralitat urbana de nova generació.\n\nTres unitats edificades fragmentàries completen el programa. La Unitat 1 (3.578 m²s) concentra 125 habitatges de renda lliure amb locals comercials en planta baixa; la Unitat 2 (1.024 m²s) acull 40 habitatges amb protecció oficial; i la Unitat 3 (655 m²s), en cessió a l\u0027Ajuntament, suma 35 habitatges HPO i 526 m²s d\u0027equipament públic. En total: 200 habitatges, dels quals 75 amb protecció oficial —un 37,5% del total, per sobre del mínim legal del 30%—, superant per set vegades la producció d\u0027HPO dels darrers deu anys al municipi.\n\nL\u0027increment d\u0027edificabilitat bruta de 1,10 a 1,65 m²st/m²s es justifica en la necessitat de viabilitat econòmica de la transformació i es destina íntegrament a habitatge assequible i a finançar els sistemes d\u0027espais lliures, que superen en 1.385 m²s els estàndards mínims legals. La proposta s\u0027alinea amb el Programa de Regeneració Urbana Sostenible (2023) i l\u0027Agenda Urbana Local de la Llagosta (2024)."
+     },
+  "es":  {
+       "title":  "MPGO La Miralda",
+       "municipality":  "La Llagosta",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  12439,
+       "programa":  null,
+       "sostreM2":  22391,
+       "habitatges":  200,
+       "descriptionShort":  "Modificació puntual del Pla General d\u0027Ordenació Urbana de la Llagosta en l\u0027àmbit de la Miralda, antic solar industrial de l\u0027empresa CAPRESA al cor del nucli urbà. La proposta crea un nou parc central de 9.360 m² articulat amb el Parc Popular i el passeig de Joan Miró, i transforma l\u0027illa en tres volums edificats amb 200 habitatges —75 amb protecció oficial— i un nou equipament públic, reforçant la cohesió social i l\u0027oferta d\u0027habitatge assequible al municipi.",
+       "descriptionLong":  "La Llagosta és un municipi compacte del Vallès Occidental que conservava al seu centre geomètric un buit actiu i pertorbador: les antigues naus industrials de CAPRESA, empresa de calibrats per al mercat de l\u0027automoció fundada l\u0027any 1961 i tancada el 2019. Un solar qualificat com a residencial des del Pla General d\u0027Ordenació Urbana de 1986 i objecte d\u0027una modificació puntual el 1996, però mai transformat, que ocupava el 60% del sector i degradava tots els carrers del seu entorn.\n\nLa Modificació Puntual del PGOU de la Llagosta en l\u0027àmbit de la Miralda (setembre 2024) reprèn i actualitza l\u0027encàrrec inacabat: transformar l\u0027illa delimitada entre el carrer Caldes, el passeig de Joan Miró, el carrer de Cabanyes, el carrer de Vic i la plaça del Centre. L\u0027àmbit total de la MPGOU és de 18.121 m²s, dels quals 12.881 m²s corresponen al sector i 5.240 m²s a sistemes viaris i zones verdes perimetrals.\n\nL\u0027eix vertebrador de la proposta és el nou Parc de la Miralda: una peça verda de 9.360 m²s que es posiciona com el nou espai públic central del municipi, articulada amb el Parc Popular existent, el passeig de Joan Miró i l\u0027Anella Verda municipal. L\u0027ordenació s\u0027estructura en quinze criteris distribuïts en tres blocs —el verd urbà, el teixit equilibrat i integrat, i la mobilitat sostenible— que cerquen convertir la frontissa entre els barris residencials, el polígon industrial i el Parc Popular en una peça de centralitat urbana de nova generació.\n\nTres unitats edificades fragmentàries completen el programa. La Unitat 1 (3.578 m²s) concentra 125 habitatges de renda lliure amb locals comercials en planta baixa; la Unitat 2 (1.024 m²s) acull 40 habitatges amb protecció oficial; i la Unitat 3 (655 m²s), en cessió a l\u0027Ajuntament, suma 35 habitatges HPO i 526 m²s d\u0027equipament públic. En total: 200 habitatges, dels quals 75 amb protecció oficial —un 37,5% del total, per sobre del mínim legal del 30%—, superant per set vegades la producció d\u0027HPO dels darrers deu anys al municipi.\n\nL\u0027increment d\u0027edificabilitat bruta de 1,10 a 1,65 m²st/m²s es justifica en la necessitat de viabilitat econòmica de la transformació i es destina íntegrament a habitatge assequible i a finançar els sistemes d\u0027espais lliures, que superen en 1.385 m²s els estàndards mínims legals. La proposta s\u0027alinea amb el Programa de Regeneració Urbana Sostenible (2023) i l\u0027Agenda Urbana Local de la Llagosta (2024)."
+     },
+  "en":  {
+       "title":  "MPGO La Miralda",
+       "municipality":  "La Llagosta",
+       "year":  "2023",
+       "status":  "Sector",
+       "tipus":  "Planejament general",
+       "premi":  null,
+       "ambitM2":  12439,
+       "programa":  null,
+       "sostreM2":  22391,
+       "habitatges":  200,
+       "descriptionShort":  "Modificació puntual del Pla General d\u0027Ordenació Urbana de la Llagosta en l\u0027àmbit de la Miralda, antic solar industrial de l\u0027empresa CAPRESA al cor del nucli urbà. La proposta crea un nou parc central de 9.360 m² articulat amb el Parc Popular i el passeig de Joan Miró, i transforma l\u0027illa en tres volums edificats amb 200 habitatges —75 amb protecció oficial— i un nou equipament públic, reforçant la cohesió social i l\u0027oferta d\u0027habitatge assequible al municipi.",
+       "descriptionLong":  "La Llagosta és un municipi compacte del Vallès Occidental que conservava al seu centre geomètric un buit actiu i pertorbador: les antigues naus industrials de CAPRESA, empresa de calibrats per al mercat de l\u0027automoció fundada l\u0027any 1961 i tancada el 2019. Un solar qualificat com a residencial des del Pla General d\u0027Ordenació Urbana de 1986 i objecte d\u0027una modificació puntual el 1996, però mai transformat, que ocupava el 60% del sector i degradava tots els carrers del seu entorn.\n\nLa Modificació Puntual del PGOU de la Llagosta en l\u0027àmbit de la Miralda (setembre 2024) reprèn i actualitza l\u0027encàrrec inacabat: transformar l\u0027illa delimitada entre el carrer Caldes, el passeig de Joan Miró, el carrer de Cabanyes, el carrer de Vic i la plaça del Centre. L\u0027àmbit total de la MPGOU és de 18.121 m²s, dels quals 12.881 m²s corresponen al sector i 5.240 m²s a sistemes viaris i zones verdes perimetrals.\n\nL\u0027eix vertebrador de la proposta és el nou Parc de la Miralda: una peça verda de 9.360 m²s que es posiciona com el nou espai públic central del municipi, articulada amb el Parc Popular existent, el passeig de Joan Miró i l\u0027Anella Verda municipal. L\u0027ordenació s\u0027estructura en quinze criteris distribuïts en tres blocs —el verd urbà, el teixit equilibrat i integrat, i la mobilitat sostenible— que cerquen convertir la frontissa entre els barris residencials, el polígon industrial i el Parc Popular en una peça de centralitat urbana de nova generació.\n\nTres unitats edificades fragmentàries completen el programa. La Unitat 1 (3.578 m²s) concentra 125 habitatges de renda lliure amb locals comercials en planta baixa; la Unitat 2 (1.024 m²s) acull 40 habitatges amb protecció oficial; i la Unitat 3 (655 m²s), en cessió a l\u0027Ajuntament, suma 35 habitatges HPO i 526 m²s d\u0027equipament públic. En total: 200 habitatges, dels quals 75 amb protecció oficial —un 37,5% del total, per sobre del mínim legal del 30%—, superant per set vegades la producció d\u0027HPO dels darrers deu anys al municipi.\n\nL\u0027increment d\u0027edificabilitat bruta de 1,10 a 1,65 m²st/m²s es justifica en la necessitat de viabilitat econòmica de la transformació i es destina íntegrament a habitatge assequible i a finançar els sistemes d\u0027espais lliures, que superen en 1.385 m²s els estàndards mínims legals. La proposta s\u0027alinea amb el Programa de Regeneració Urbana Sostenible (2023) i l\u0027Agenda Urbana Local de la Llagosta (2024)."
+     }
 }
