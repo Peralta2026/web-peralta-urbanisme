@@ -51,6 +51,15 @@ export default async function LocaleLayout({
       <IntroWrapper>
         <Nav locale={locale} />
         <main className="flex-1">{children}</main>
+        <footer style={{
+          background: "#0a0a0a",
+          minHeight: "280px",
+          padding: "80px 32px 56px",
+          position: "relative",
+          zIndex: 1,
+        }}>
+          {/* Footer content will be added later */}
+        </footer>
       </IntroWrapper>
     </NextIntlClientProvider>
   );
