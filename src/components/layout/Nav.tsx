@@ -52,8 +52,6 @@ export default function Nav({ locale }: { locale: string }) {
   const isHome    = cleanPath === "/";
   const isArchive = cleanPath.startsWith("/projectes");
 
-  if (isHome) return null;
-
   function switchLocale(newLocale: string) {
     let newPath = pathname;
     if (currentLocale !== "ca") newPath = pathname.replace(/^\/(es|en)/, "");
@@ -66,6 +64,64 @@ export default function Nav({ locale }: { locale: string }) {
 
   const isActive = (href: string) => cleanPath === href || cleanPath.startsWith(href + "/");
   const studioActive = ESTUDIO_LINKS.some(l => isActive(l.href));
+
+  /* On home page: only a floating hamburger button, no bar */
+  if (isHome) {
+    return (
+      <>
+        <button
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Menú"
+          style={{
+            position: "fixed", top: "24px", right: "32px", zIndex: 60,
+            background: "none", border: "none", cursor: "pointer",
+            display: "flex", flexDirection: "column", alignItems: "center",
+            justifyContent: "center", width: "28px", height: "28px",
+          }}
+        >
+          {menuOpen
+            ? <span style={{ fontSize: "24px", lineHeight: 1, color: "#000", userSelect: "none" }}>×</span>
+            : <span style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
+                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
+                <span style={{ display: "block", width: "22px", height: "1px", background: "#000" }} />
+              </span>
+          }
+        </button>
+
+        {menuOpen && (
+          <div style={{ position: "fixed", inset: 0, zIndex: 55, background: "#fff", fontFamily: "var(--font-sans)", overflowY: "auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "32px", minHeight: "100vh" }}>
+              <nav style={{ display: "flex", flexDirection: "column", paddingTop: "60px" }}>
+                <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb", fontFamily: "var(--font-mono)", marginBottom: "12px" }}>Estudi</span>
+                {ESTUDIO_LINKS.map(({ label, href }) => (
+                  <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
+                    style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
+                    {label}
+                  </Link>
+                ))}
+                <div style={{ height: "20px" }} />
+                {MAIN_LINKS.map(({ label, href }) => (
+                  <Link key={href} href={localizeHref(href, locale)} onClick={() => setMenuOpen(false)}
+                    style={{ fontSize: "clamp(22px, 4vw, 38px)", fontWeight: 650, color: "#000", textDecoration: "none", lineHeight: 1.25, padding: "6px 0" }}>
+                    {label}
+                  </Link>
+                ))}
+                <div style={{ height: "24px" }} />
+                <div style={{ display: "flex", gap: "20px", alignItems: "center", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
+                  <Link href={localizeHref("/projectes", locale)} onClick={() => setMenuOpen(false)}
+                    style={{ color: "#999", textDecoration: "none" }}>Arxiu de projectes</Link>
+                </div>
+              </nav>
+              <div style={{ marginTop: "40px" }}>
+                <LangSelector currentLocale={currentLocale} onSwitch={switchLocale} />
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
 
   return (
     <>
