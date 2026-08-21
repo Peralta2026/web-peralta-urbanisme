@@ -135,6 +135,7 @@ export default function HomeScene({ locale, projects }: Props) {
   const settledLayerRef = useRef<HTMLDivElement>(null);
   const hintRef         = useRef<HTMLDivElement>(null);
   const projectsRef     = useRef<HTMLDivElement>(null);
+  const panelNavRef     = useRef<HTMLDivElement>(null);
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
 
@@ -219,6 +220,12 @@ export default function HomeScene({ locale, projects }: Props) {
           const curveV = (CURVE_H * (1 - ep2)).toFixed(1);
           projectsRef.current.style.transform = `translateY(${((1 - ep2) * 100).toFixed(2)}vh)`;
           projectsRef.current.style.borderRadius = `50% 50% 0 0 / ${curveV}px ${curveV}px 0 0`;
+          /* Logo fades in when panel is nearly full */
+          if (panelNavRef.current) {
+            const navOpacity = ep2 > 0.82 ? Math.min(1, (ep2 - 0.82) / 0.18) : 0;
+            panelNavRef.current.style.opacity = navOpacity.toFixed(3);
+            panelNavRef.current.style.pointerEvents = navOpacity > 0.5 ? "auto" : "none";
+          }
         } else {
           projectsRef.current.style.transform = "translateY(100vh)";
           projectsRef.current.style.borderRadius = `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`;
@@ -348,6 +355,15 @@ export default function HomeScene({ locale, projects }: Props) {
 
       {/* ── PROJECTS PANEL ────────────────────────────────────────────── */}
       <div ref={projectsRef} style={{ position: "fixed", inset: 0, zIndex: 150, background: PANEL_BG, transform: "translateY(100vh)", willChange: "transform, border-radius", borderRadius: `50% 50% 0 0 / ${CURVE_H}px ${CURVE_H}px 0 0`, overflow: "hidden" }}>
+
+        {/* Logo — apareix quan el panell és complet */}
+        <div ref={panelNavRef} style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 20, background: PANEL_BG, borderBottom: "1px solid rgba(0,0,0,0.08)", display: "flex", alignItems: "center", padding: "0 clamp(32px,5vw,64px)", height: "72px", opacity: 0, pointerEvents: "none" }}>
+          <Link href={localizeHref("/")} style={{ textDecoration: "none", display: "inline-block" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ height: "32px", width: "auto", display: "block" }} />
+          </Link>
+        </div>
+
         <ProjectViewer ref={viewerRef} projects={projects} locale={locale} />
       </div>
     </>
