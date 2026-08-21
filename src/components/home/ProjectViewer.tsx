@@ -318,6 +318,8 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
 
     const logoRef   = useRef<HTMLDivElement>(null);
     const cardRefs  = useRef<(HTMLDivElement | null)[]>([]);
+    const stageRef  = useRef<HTMLDivElement>(null);
+    const stageHRef = useRef(500); // measured each frame
     const rafId     = useRef(0);
     const projVel   = useRef(0);
     const rawPos    = useRef(0);
@@ -345,31 +347,53 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
     }, [filters]);
 
     const applyTransforms = useCallback(() => {
-      const dp = dispPos.current;
+      const dp   = dispPos.current;
+      const H    = stageHRef.current;
+      /* each card occupies one full stage-height worth of vertical travel */
+      const SLOT = H * 0.94;
+
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
         const delta = i - dp;
         const absD  = Math.abs(delta);
 
-        /* cards more than 2.5 steps away: hide completely, no fade */
+        /* only render cards within ±2 positions */
         if (absD > 2.5) {
           el.style.visibility    = "hidden";
           el.style.pointerEvents = "none";
           return;
         }
         el.style.visibility = "visible";
-        el.style.opacity    = "1"; /* never fade — use brightness for depth */
+        el.style.opacity    = "1"; /* NEVER fade — this is a physical movement */
 
-        /* depth is |delta| capped at 2 for visual calculations */
+        /*
+         * ty: linear vertical travel — one SLOT per card position.
+         *   delta < 0 → card above (slid out to top)
+         *   delta > 0 → card below (coming from bottom)
+         *
+         * rx (rotateX): gives the Rolodex rotational quality.
+         *   Outgoing card (delta < 0): top leans away from viewer (-degrees)
+         *   Incoming card (delta > 0): bottom leans away, top toward viewer (+degrees)
+         *   Active (delta ≈ 0): upright
+         *
+         * sc: very subtle scale for depth cue only.
+         * bright: only slightly darker behind; no transparency.
+         */
+        const ty     = delta * SLOT;
         const depth  = Math.min(absD, 2);
-        const sc     = Math.max(0.88, 1 - depth * 0.044);   /* scale down behind cards */
-        const ty     = depth * 10;                           /* slight downward offset per layer */
-        const bright = Math.max(0.72, 1 - depth * 0.12);    /* darken behind cards, no transparency */
+        const rx     = delta >= 0
+          ? Math.min(delta,   2) *  9   /* below: forward tilt, straightens as it rises */
+          : Math.max(delta, -2) *  6;   /* above: backward tilt as it exits */
+        const sc     = Math.max(0.92, 1 - depth * 0.016);
+        const bright = Math.max(0.80, 1 - depth * 0.095);
+        const z      = Math.round(1000 - absD * 100); /* closest to active = highest z; ties broken by DOM order */
 
-        /* z-index: active card always on top; equal z uses DOM order (later = higher) */
-        const z = Math.round(1000 - absD * 100);
-
-        el.style.transform     = `translate(-50%, calc(-50% + ${ty.toFixed(1)}px)) scale(${sc.toFixed(4)})`;
+        el.style.transform = [
+          `translate(-50%, calc(-50% + ${ty.toFixed(2)}px))`,
+          `perspective(1400px)`,
+          `rotateX(${rx.toFixed(2)}deg)`,
+          `scale(${sc.toFixed(4)})`,
+        ].join(" ");
         el.style.filter        = `brightness(${bright.toFixed(3)})`;
         el.style.zIndex        = String(Math.max(0, z));
         el.style.pointerEvents = absD < 0.4 ? "auto" : "none";
@@ -379,6 +403,12 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
     useEffect(() => {
       let prev = 0;
       const tick = () => {
+        /* measure stage height each frame so SLOT tracks window resizes */
+        if (stageRef.current) {
+          const h = stageRef.current.clientHeight;
+          if (h > 0) stageHRef.current = h;
+        }
+
         const nCurr   = N;
         const settled = performance.now() - lastInput.current > SETTLE_MS;
         if (settled) {
@@ -535,7 +565,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
           <FilterBarPV filters={filters} activeDim={activeDim} onToggleDim={handleToggleDim} onSelectOption={handleSelectOption} onClearDim={handleClearDim} projects={projects} />
 
           {/* Card stage */}
-          <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+          <div ref={stageRef} style={{ flex: 1, position: "relative", overflow: "hidden" }}>
 
             {filteredProjects.length === 0 ? (
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -558,11 +588,17 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
                       height:   "min(calc(100% - 32px), 520px)",
                       transformOrigin: "center center",
                       willChange: "transform, filter",
-                      visibility: i > 2 ? "hidden" : "visible",
-                      opacity:    "1",
-                      transform:  `translate(-50%, calc(-50% + ${Math.min(i, 2) * 10}px)) scale(${Math.max(0.88, 1 - Math.min(i, 2) * 0.044).toFixed(4)})`,
-                      filter:     `brightness(${Math.max(0.72, 1 - Math.min(i, 2) * 0.12).toFixed(3)})`,
-                      zIndex:     String(1000 - i * 100),
+                      visibility:    i > 2 ? "hidden" : "visible",
+                      opacity:       "1",
+                      /* SSR initial state: Rolodex stack (SLOT≈470px for 500px stage) */
+                      transform:     [
+                        `translate(-50%, calc(-50% + ${i * 470}px))`,
+                        `perspective(1400px)`,
+                        `rotateX(${Math.min(i, 2) * 9}deg)`,
+                        `scale(${Math.max(0.92, 1 - Math.min(i, 2) * 0.016).toFixed(4)})`,
+                      ].join(" "),
+                      filter:        `brightness(${Math.max(0.80, 1 - Math.min(i, 2) * 0.095).toFixed(3)})`,
+                      zIndex:        String(1000 - i * 100),
                       pointerEvents: i === 0 ? "auto" : "none",
                     }}
                   >
