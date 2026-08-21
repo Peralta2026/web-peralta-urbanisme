@@ -2,7 +2,8 @@
 
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import type { Project } from "@/lib/types";
+import type { Project, TagSlug } from "@/lib/types";
+import { ALL_TAGS } from "@/lib/types";
 
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
 
@@ -12,34 +13,32 @@ function localizeHref(href: string, locale: string) {
 
 function pad2(n: number) { return String(n).padStart(2, "0"); }
 
-/* ─── Filter data ────────────────────────────────────────────────────────── */
+/* ─── Tag labels (CA) ────────────────────────────────────────────────────── */
 
-const CONCEPTES: { slug: string; label: string }[] = [
-  { slug: "residencial",                 label: "Residencial" },
-  { slug: "transformacio",               label: "Transformació" },
-  { slug: "extensio",                    label: "Extensió" },
-  { slug: "regeneracio",                 label: "Regeneració" },
-  { slug: "activitat-economica",         label: "Activitat econòmica" },
-  { slug: "infraestructura-verda",       label: "Infraestructura verda" },
-  { slug: "integracio-infraestructures", label: "Integració infraestructures" },
-  { slug: "estructura-urbana",           label: "Estructura urbana" },
-  { slug: "divulgacio",                  label: "Divulgació" },
-  { slug: "espai-public",                label: "Espai públic" },
-  { slug: "participacio-ciutadana",      label: "Participació ciutadana" },
-  { slug: "encaixos-singulars",          label: "Encaixos singulars" },
-];
+const TAG_LABELS: Record<TagSlug, string> = {
+  "residencial":                 "Residencial",
+  "transformacio":               "Transformació",
+  "extensio":                    "Extensió",
+  "regeneracio":                 "Regeneració",
+  "activitat-economica":         "Activitat Econòmica",
+  "infraestructura-verda":       "Infraestructura Verda",
+  "integracio-infraestructures": "Integració Infraestructures",
+  "estructura-urbana":           "Estructura Urbana",
+  "divulgacio":                  "Divulgació",
+  "espai-public":                "Espai Públic",
+  "participacio-ciutadana":      "Participació Ciutadana",
+  "encaixos-singulars":          "Encaixos Singulars",
+};
 
 const TIPUS_OPTS = ["Planejament", "Estudis urbanístics", "Avantprojectes singulars"];
 const ABAST_OPTS = ["Sector", "Municipi", "Territorial"];
 
-const SLUG_LABEL: Record<string, string> = Object.fromEntries(
-  CONCEPTES.map(({ slug, label }) => [slug, label])
-);
-
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 
 export interface ProjectViewerHandle {
-  addDelta: (delta: number) => void;
+  addDelta:       (delta: number) => void;
+  isAtTop:        () => boolean;
+  setLogoOpacity: (o: number) => void;
 }
 
 interface Props {
@@ -48,10 +47,12 @@ interface Props {
 }
 
 interface FilterState {
-  conceptes: Set<string>;
-  tipus:     Set<string>;
-  abast:     Set<string>;
+  tema:  string;
+  tipus: string;
+  abast: string;
 }
+
+type Dim = "tema" | "tipus" | "abast";
 
 /* ─── Physics constants ──────────────────────────────────────────────────── */
 
@@ -63,106 +64,160 @@ const SETTLE_MS   = 300;
 const SETTLE_K    = 0.16;
 const SNAP_EPS    = 0.002;
 
-/* ─── FilterBar ──────────────────────────────────────────────────────────── */
+const PANEL_BG    = "#f7f6f3";
 
-function FilterBar({
+/* ─── FilterBar (outside ProjectViewer to avoid remount) ─────────────────── */
+
+function FilterBarPV({
   filters,
-  onToggle,
+  activeDim,
+  onToggleDim,
+  onSelectOption,
+  onClearDim,
+  projects,
 }: {
-  filters: FilterState;
-  onToggle: (g: keyof FilterState, v: string) => void;
+  filters:        FilterState;
+  activeDim:      Dim | null;
+  onToggleDim:    (d: Dim) => void;
+  onSelectOption: (d: Dim, value: string) => void;
+  onClearDim:     (d: Dim) => void;
+  projects:       Project[];
 }) {
-  const chipStyle = (active: boolean): React.CSSProperties => ({
-    fontFamily:          "var(--font-mono)",
-    fontSize:            "9.5px",
-    letterSpacing:       "0.07em",
-    textTransform:       "uppercase" as const,
-    color:               active ? "#111" : "#bbb",
-    fontWeight:          active ? 600 : 400,
-    background:          "none",
-    border:              "none",
-    cursor:              "pointer",
-    padding:             0,
-    textDecoration:      active ? "underline" : "none",
-    textUnderlineOffset: "3px",
-    whiteSpace:          "nowrap" as const,
-    flexShrink:          0,
-  });
+  const dims: { key: Dim; label: string }[] = [
+    { key: "tema",  label: "Temàtica" },
+    { key: "tipus", label: "Tipus"    },
+    { key: "abast", label: "Escala"   },
+  ];
 
-  const groupLabel: React.CSSProperties = {
-    fontFamily:    "var(--font-mono)",
-    fontSize:      "8px",
-    letterSpacing: "0.15em",
-    textTransform: "uppercase" as const,
-    color:         "#ccc",
-    flexShrink:    0,
-    alignSelf:     "center" as const,
+  const getDimDisplayValue = (d: Dim) => {
+    if (d === "tema")  return filters.tema  ? TAG_LABELS[filters.tema as TagSlug] ?? filters.tema : "";
+    if (d === "tipus") return filters.tipus;
+    return filters.abast;
   };
 
-  const row: React.CSSProperties = {
-    display:    "flex",
-    alignItems: "center",
-    gap:        "12px",
-    overflow:   "hidden",
+  const getOptions = (d: Dim): { value: string; label: string }[] => {
+    if (d === "tema") {
+      const used = ALL_TAGS.filter(t => projects.some(p => p.tags.includes(t)));
+      return used.map(t => ({ value: t, label: TAG_LABELS[t] }));
+    }
+    if (d === "tipus") return TIPUS_OPTS.map(v => ({ value: v, label: v }));
+    return ABAST_OPTS.map(v => ({ value: v, label: v }));
   };
 
-  const chips: React.CSSProperties = {
-    display:    "flex",
-    gap:        "10px",
-    overflowX:  "auto" as const,
-    scrollbarWidth: "none" as const,
+  const getActiveValue = (d: Dim) => {
+    if (d === "tema")  return filters.tema;
+    if (d === "tipus") return filters.tipus;
+    return filters.abast;
   };
 
   return (
-    <div style={{
-      position:  "absolute",
-      top:       "24px",
-      left:      "50%",
-      transform: "translateX(-50%)",
-      width:     "min(62vw, 960px)",
-      display:   "flex",
-      flexDirection: "column",
-      gap:       "6px",
-    }}>
-      {/* Row 1: Conceptes */}
-      <div style={row}>
-        <span style={groupLabel}>Conceptes</span>
-        <div style={chips}>
-          {CONCEPTES.map(({ slug, label }) => (
+    <div style={{ borderBottom: "1px solid rgba(0,0,0,0.12)", background: PANEL_BG, flexShrink: 0 }}>
+
+      {/* Main bar: FILTRA PER · TEMÀTICA · TIPUS · ESCALA */}
+      <div style={{
+        padding:     "0 clamp(32px, 5vw, 64px)",
+        display:     "flex",
+        alignItems:  "center",
+        gap:         "clamp(20px, 3.5vw, 48px)",
+        minHeight:   "52px",
+        flexWrap:    "wrap",
+      }}>
+        <span style={{
+          fontFamily:    "var(--font-mono)",
+          fontSize:      "10px",
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color:         "rgba(0,0,0,0.35)",
+          whiteSpace:    "nowrap",
+          flexShrink:    0,
+        }}>
+          Filtra per:
+        </span>
+
+        {dims.map(({ key, label }) => {
+          const val    = getDimDisplayValue(key);
+          const isOpen = activeDim === key;
+          const hasVal = !!val;
+          return (
             <button
-              key={slug}
-              style={chipStyle(filters.conceptes.has(slug))}
-              onClick={() => onToggle("conceptes", slug)}
+              key={key}
+              onClick={() => onToggleDim(key)}
+              style={{
+                background:   "none",
+                border:       "none",
+                borderBottom: isOpen ? "1.5px solid #000" : "1.5px solid transparent",
+                cursor:       "pointer",
+                padding:      "4px 0 2px",
+                fontFamily:   "var(--font-mono)",
+                fontSize:     "11px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color:        (isOpen || hasVal) ? "#000" : "rgba(0,0,0,0.45)",
+                fontWeight:   (isOpen || hasVal) ? 700 : 400,
+                transition:   "color 160ms, border-color 160ms",
+                display:      "flex",
+                alignItems:   "center",
+                gap:          "5px",
+                whiteSpace:   "nowrap",
+                flexShrink:   0,
+              }}
             >
-              {label}
+              {hasVal ? `${label}: ${val}` : label}
+              {hasVal && (
+                <span
+                  role="button"
+                  onClick={e => { e.stopPropagation(); onClearDim(key); }}
+                  style={{ fontSize: "14px", lineHeight: 1, opacity: 0.4, cursor: "pointer", marginLeft: "1px" }}
+                >
+                  ×
+                </span>
+              )}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      {/* Row 2: Tipus + Abast */}
-      <div style={{ ...row, gap: "28px" }}>
-        <div style={row}>
-          <span style={groupLabel}>Tipus</span>
-          <div style={chips}>
-            {TIPUS_OPTS.map(t => (
-              <button key={t} style={chipStyle(filters.tipus.has(t))} onClick={() => onToggle("tipus", t)}>
-                {t}
-              </button>
-            ))}
-          </div>
+      {/* Options panel */}
+      {activeDim && (
+        <div style={{
+          borderTop:   "1px solid rgba(0,0,0,0.07)",
+          padding:     "clamp(12px,2vh,18px) clamp(32px,5vw,64px)",
+          display:     "flex",
+          gap:         "clamp(8px, 1.5vw, 16px)",
+          flexWrap:    "wrap",
+          alignItems:  "center",
+        }}>
+          {getOptions(activeDim).map((opt, i, arr) => {
+            const isSel = getActiveValue(activeDim) === opt.value;
+            return (
+              <span key={opt.value} style={{ display: "flex", alignItems: "center", gap: "clamp(8px,1.5vw,14px)" }}>
+                <button
+                  onClick={() => onSelectOption(activeDim, opt.value)}
+                  style={{
+                    background:         "none",
+                    border:             "none",
+                    cursor:             "pointer",
+                    padding:            0,
+                    fontFamily:         "var(--font-sans)",
+                    fontSize:           "clamp(13px, 1.5vw, 17px)",
+                    letterSpacing:      "-0.01em",
+                    color:              isSel ? "#000" : "#999",
+                    fontWeight:         isSel ? 700 : 400,
+                    textDecoration:     isSel ? "underline" : "none",
+                    textUnderlineOffset: "3px",
+                    whiteSpace:         "nowrap",
+                  }}
+                >
+                  {opt.label}
+                </button>
+                {i < arr.length - 1 && (
+                  <span style={{ color: "rgba(0,0,0,0.2)", fontSize: "11px", userSelect: "none" }}>·</span>
+                )}
+              </span>
+            );
+          })}
         </div>
-        <div style={row}>
-          <span style={groupLabel}>Abast</span>
-          <div style={chips}>
-            {ABAST_OPTS.map(a => (
-              <button key={a} style={chipStyle(filters.abast.has(a))} onClick={() => onToggle("abast", a)}>
-                {a}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -172,34 +227,28 @@ function FilterBar({
 const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
   function ProjectViewer({ projects, locale }, ref) {
     const [activeIdx, setActiveIdx] = useState(0);
-    const [filters, setFilters] = useState<FilterState>({
-      conceptes: new Set(),
-      tipus:     new Set(),
-      abast:     new Set(),
-    });
-    const [slotH, setSlotH] = useState(0);
+    const [filters,   setFilters]   = useState<FilterState>({ tema: "", tipus: "", abast: "" });
+    const [activeDim, setActiveDim] = useState<Dim | null>(null);
+    const [slotH,     setSlotH]     = useState(0);
 
     /* filtered list */
     const filteredProjects = useMemo(() => {
-      const empty = (s: Set<string>) => s.size === 0;
       return projects.filter(p => {
         const ca = p.ca;
-        const ok1 = empty(filters.conceptes) || p.tags.some(t => filters.conceptes.has(t));
-        const ok2 = empty(filters.tipus)     || filters.tipus.has(ca.tipus ?? "");
-        const ok3 = empty(filters.abast)     || filters.abast.has(ca.status ?? "");
+        const ok1 = !filters.tema  || p.tags.includes(filters.tema as TagSlug);
+        const ok2 = !filters.tipus || ca.tipus === filters.tipus;
+        const ok3 = !filters.abast || ca.status === filters.abast;
         return ok1 && ok2 && ok3;
       });
     }, [projects, filters]);
 
     const N = filteredProjects.length;
 
-    function toggleFilter(group: keyof FilterState, value: string) {
-      setFilters(prev => {
-        const s = new Set(prev[group]);
-        s.has(value) ? s.delete(value) : s.add(value);
-        return { ...prev, [group]: s };
-      });
-    }
+    /* refs */
+    const logoRef   = useRef<HTMLDivElement>(null);
+    const trackRef  = useRef<HTMLDivElement>(null);
+    const windowRef = useRef<HTMLDivElement>(null);
+    const rafId     = useRef(0);
 
     /* physics refs */
     const projVel   = useRef(0);
@@ -207,9 +256,6 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
     const dispPos   = useRef(0);
     const lastInput = useRef(0);
     const slotHRef  = useRef(0);
-    const trackRef  = useRef<HTMLDivElement>(null);
-    const windowRef = useRef<HTMLDivElement>(null);
-    const rafId     = useRef(0);
 
     useImperativeHandle(ref, () => ({
       addDelta(delta: number) {
@@ -218,9 +264,18 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
         projVel.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, projVel.current + add));
         lastInput.current = performance.now();
       },
+      isAtTop() {
+        return rawPos.current < 0.05;
+      },
+      setLogoOpacity(o: number) {
+        if (logoRef.current) {
+          logoRef.current.style.opacity    = String(o);
+          logoRef.current.style.pointerEvents = o > 0.5 ? "auto" : "none";
+        }
+      },
     }), [N]);
 
-    /* reset on filter change */
+    /* reset position when filters change */
     useEffect(() => {
       rawPos.current  = 0;
       dispPos.current = 0;
@@ -230,18 +285,18 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
 
     /* RAF loop */
     useEffect(() => {
-      const measure = () => {
-        if (windowRef.current) {
-          slotHRef.current = windowRef.current.clientHeight;
-          setSlotH(windowRef.current.clientHeight);
-        }
-      };
-      measure();
-      window.addEventListener("resize", measure);
-
       let prevActive = 0;
 
       const tick = () => {
+        /* remeasure slot height every frame (handles filter bar open/close) */
+        if (windowRef.current) {
+          const h = windowRef.current.clientHeight;
+          if (h !== slotHRef.current) {
+            slotHRef.current = h;
+            setSlotH(h);
+          }
+        }
+
         const nCurr   = N;
         const settled = performance.now() - lastInput.current > SETTLE_MS;
 
@@ -276,13 +331,26 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
       };
       rafId.current = requestAnimationFrame(tick);
 
-      return () => {
-        cancelAnimationFrame(rafId.current);
-        window.removeEventListener("resize", measure);
-      };
+      return () => cancelAnimationFrame(rafId.current);
     }, [N]);
 
-    const packH = slotH > 0 ? `${slotH}px` : "calc(100vh - 140px)";
+    /* filter handlers */
+    const handleToggleDim = (d: Dim) => setActiveDim(a => a === d ? null : d);
+
+    const handleSelectOption = (d: Dim, value: string) => {
+      setFilters(f => {
+        const cur  = d === "tema" ? f.tema : d === "tipus" ? f.tipus : f.abast;
+        const next = cur === value ? "" : value;
+        return { ...f, [d]: next };
+      });
+      setActiveDim(null);
+    };
+
+    const handleClearDim = (d: Dim) => {
+      setFilters(f => ({ ...f, [d]: "" }));
+    };
+
+    const packH = slotH > 0 ? `${slotH}px` : "50vh";
 
     return (
       <>
@@ -291,263 +359,170 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
             from { opacity: 0; transform: translateY(10px); }
             to   { opacity: 1; transform: translateY(0);    }
           }
-          .pu-pack {
-            display: flex;
-            flex-direction: row;
-          }
-          .pu-pack-img-wrap {
-            flex: 0 0 54%;
-            overflow: hidden;
-            border-radius: 5px;
-          }
-          .pu-pack-text {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            padding: clamp(24px, 3vh, 40px) clamp(24px, 3vw, 40px) clamp(24px, 3vh, 40px) clamp(28px, 3.5vw, 48px);
-            overflow: hidden;
-          }
+          .pu-pack { display: flex; flex-direction: row; }
+          .pu-pack-img-wrap { flex: 0 0 54%; overflow: hidden; border-radius: 5px; }
+          .pu-pack-text { flex: 1; min-width: 0; display: flex; flex-direction: column; padding: clamp(24px,3vh,40px) clamp(24px,3vw,40px) clamp(24px,3vh,40px) clamp(28px,3.5vw,48px); overflow: hidden; }
           @media (max-width: 767px) {
             .pu-pack { flex-direction: column; }
-            .pu-pack-img-wrap {
-              flex: 0 0 52%;
-              border-radius: 5px 5px 0 0;
-            }
+            .pu-pack-img-wrap { flex: 0 0 52%; border-radius: 5px 5px 0 0; }
             .pu-pack-text { flex: 1; padding: 20px 18px; }
           }
-          .pu-filter-chips::-webkit-scrollbar { display: none; }
         `}</style>
 
         <div style={{
-          position:   "absolute",
-          inset:      0,
-          fontFamily: "var(--font-sans)",
+          position:      "absolute",
+          inset:         0,
+          fontFamily:    "var(--font-sans)",
+          display:       "flex",
+          flexDirection: "column",
+          background:    PANEL_BG,
         }}>
-          {/* ── Filter bar ─────────────────────────────────────────────── */}
-          <FilterBar filters={filters} onToggle={toggleFilter} />
 
-          {/* ── Clip window — cards travel through here ─────────────────── */}
+          {/* ── Logo bar — opacity controlled by HomeScene via handle ── */}
           <div
-            ref={windowRef}
+            ref={logoRef}
             style={{
-              position:  "absolute",
-              top:       "88px",
-              bottom:    "44px",
-              left:      "50%",
-              transform: "translateX(-50%)",
-              width:     "min(62vw, 960px)",
-              overflow:  "hidden",
+              flexShrink:   0,
+              height:       "72px",
+              display:      "flex",
+              alignItems:   "center",
+              padding:      "0 clamp(32px,5vw,64px)",
+              opacity:      0,
+              pointerEvents: "none",
+              borderBottom: "1px solid rgba(0,0,0,0.08)",
+              background:   PANEL_BG,
             }}
           >
-            {/* Pack track — translateY drives the card stack */}
-            <div
-              ref={trackRef}
-              style={{
-                position:   "absolute",
-                top:        0,
-                left:       0,
-                right:      0,
-                willChange: "transform",
-              }}
-            >
-              {filteredProjects.length === 0 ? (
-                <div style={{
-                  height:         packH,
-                  display:        "flex",
-                  alignItems:     "center",
-                  justifyContent: "center",
-                }}>
-                  <p style={{
-                    fontFamily:    "var(--font-mono)",
-                    fontSize:      "11px",
-                    letterSpacing: "0.08em",
-                    color:         "#bbb",
-                    textTransform: "uppercase",
-                  }}>
-                    Cap projecte coincideix
-                  </p>
-                </div>
-              ) : (
-                filteredProjects.map((proj, i) => {
-                  const d      = proj[locale as "ca" | "es" | "en"];
-                  const src    = `/projects/${proj.slug}/${proj.coverImage}`;
-                  const hasLong = !!(d.descriptionLong && d.descriptionLong !== d.descriptionShort);
-                  const isActive = i === activeIdx;
-
-                  return (
-                    <div
-                      key={proj.slug}
-                      className="pu-pack"
-                      style={{ height: packH, flexShrink: 0 }}
-                    >
-                      {/* Image */}
-                      <div className="pu-pack-img-wrap">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={src}
-                          alt={d.title}
-                          loading={i <= 1 ? "eager" : "lazy"}
-                          style={{
-                            width:      "100%",
-                            height:     "100%",
-                            objectFit:  "cover",
-                            display:    "block",
-                          }}
-                        />
-                      </div>
-
-                      {/* Text */}
-                      <div className="pu-pack-text">
-                        <div
-                          key={isActive ? "active" : `idle-${i}`}
-                          style={{
-                            flex:          1,
-                            display:       "flex",
-                            flexDirection: "column",
-                            minHeight:     0,
-                            animation:     isActive
-                              ? "pu-info-enter 260ms ease forwards"
-                              : "none",
-                          }}
-                        >
-                          <p style={{
-                            fontFamily:    "var(--font-mono)",
-                            fontSize:      "9px",
-                            letterSpacing: "0.12em",
-                            color:         "#ccc",
-                            textTransform: "uppercase",
-                            marginBottom:  "clamp(16px, 2.5vh, 28px)",
-                            flexShrink:    0,
-                          }}>
-                            {pad2(i + 1)} / {pad2(N)}
-                          </p>
-
-                          <h2 style={{
-                            fontSize:      "clamp(17px, 1.9vw, 29px)",
-                            fontWeight:    700,
-                            letterSpacing: "-0.02em",
-                            lineHeight:    1.1,
-                            color:         "#111",
-                            marginBottom:  "clamp(14px, 2vh, 22px)",
-                            flexShrink:    0,
-                          }}>
-                            {d.title}
-                          </h2>
-
-                          <p style={{
-                            fontSize:         "12.5px",
-                            lineHeight:       1.75,
-                            color:            "#555",
-                            marginBottom:     "clamp(14px, 2vh, 22px)",
-                            overflow:         "hidden",
-                            display:          "-webkit-box",
-                            WebkitLineClamp:  5,
-                            WebkitBoxOrient:  "vertical",
-                            flexShrink:       0,
-                          }}>
-                            {d.descriptionShort}
-                          </p>
-
-                          <p style={{
-                            fontFamily:    "var(--font-mono)",
-                            fontSize:      "9.5px",
-                            letterSpacing: "0.08em",
-                            color:         "#aaa",
-                            textTransform: "uppercase",
-                            lineHeight:    1.65,
-                            marginBottom:  "8px",
-                            flexShrink:    0,
-                          }}>
-                            {d.municipality}
-                            {d.year  ? ` · ${d.year}`  : ""}
-                            {d.tipus ? ` · ${d.tipus}` : ""}
-                          </p>
-
-                          {proj.tags.length > 0 && (
-                            <p style={{
-                              fontFamily:    "var(--font-mono)",
-                              fontSize:      "8.5px",
-                              letterSpacing: "0.08em",
-                              color:         "#ccc",
-                              textTransform: "uppercase",
-                              lineHeight:    1.8,
-                              flexShrink:    0,
-                            }}>
-                              {proj.tags.map(t => SLUG_LABEL[t] ?? t).join("  /  ")}
-                            </p>
-                          )}
-
-                          <div style={{ flex: 1 }} />
-
-                          {hasLong && (
-                            <button style={{
-                              fontFamily:          "var(--font-mono)",
-                              fontSize:            "9.5px",
-                              letterSpacing:       "0.10em",
-                              textTransform:       "uppercase",
-                              color:               "#111",
-                              background:          "none",
-                              border:              "none",
-                              cursor:              "pointer",
-                              padding:             "0 0 2px",
-                              borderBottom:        "1px solid #111",
-                              alignSelf:           "flex-start",
-                              marginBottom:        "14px",
-                              flexShrink:          0,
-                            }}>
-                              Llegir més
-                            </button>
-                          )}
-
-                          <Link
-                            href={localizeHref(`/projectes/${proj.slug}`, locale)}
-                            style={{
-                              fontFamily:     "var(--font-mono)",
-                              fontSize:       "9.5px",
-                              letterSpacing:  "0.12em",
-                              textTransform:  "uppercase",
-                              color:          "#111",
-                              textDecoration: "none",
-                              borderBottom:   "1px solid #111",
-                              paddingBottom:  "2px",
-                              alignSelf:      "flex-start",
-                              flexShrink:     0,
-                            }}
-                          >
-                            Veure projecte →
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
+            <Link href={localizeHref("/", locale)} style={{ textDecoration: "none", display: "inline-block" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-nuevo.png"
+                alt="Peralta Urbanisme"
+                style={{ width: "clamp(160px, 20vw, 210px)", height: "auto", display: "block" }}
+              />
+            </Link>
           </div>
 
-          {/* ── Counter (stable, below clip window) ─────────────────────── */}
-          {N > 0 && (
-            <div style={{
-              position:      "absolute",
-              bottom:        "14px",
-              left:          "50%",
-              transform:     "translateX(-50%)",
-              width:         "min(62vw, 960px)",
-              display:       "flex",
-              justifyContent: "space-between",
-              fontFamily:    "var(--font-mono)",
-              fontSize:      "9px",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color:         "#ccc",
-            }}>
-              <span>{pad2(activeIdx + 1)} / {pad2(N)}</span>
-              {N < projects.length && (
-                <span>{N} de {projects.length}</span>
-              )}
+          {/* ── Filter bar ── */}
+          <FilterBarPV
+            filters={filters}
+            activeDim={activeDim}
+            onToggleDim={handleToggleDim}
+            onSelectOption={handleSelectOption}
+            onClearDim={handleClearDim}
+            projects={projects}
+          />
+
+          {/* ── Cards area (fills remaining space) ── */}
+          <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
+
+            {/* Clip window (centered) */}
+            <div
+              ref={windowRef}
+              style={{
+                position:  "absolute",
+                top:       0,
+                bottom:    "44px",
+                left:      "50%",
+                transform: "translateX(-50%)",
+                width:     "min(62vw, 960px)",
+                overflow:  "hidden",
+              }}
+            >
+              {/* Track — translateY drives the card stack */}
+              <div
+                ref={trackRef}
+                style={{
+                  position:   "absolute",
+                  top:        0,
+                  left:       0,
+                  right:      0,
+                  willChange: "transform",
+                }}
+              >
+                {filteredProjects.length === 0 ? (
+                  <div style={{ height: packH, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em", color: "#bbb", textTransform: "uppercase" }}>
+                      Cap projecte coincideix
+                    </p>
+                  </div>
+                ) : (
+                  filteredProjects.map((proj, i) => {
+                    const d       = proj[locale as "ca" | "es" | "en"];
+                    const src     = `/projects/${proj.slug}/${proj.coverImage}`;
+                    const hasLong = !!(d.descriptionLong && d.descriptionLong !== d.descriptionShort);
+                    const isActive = i === activeIdx;
+
+                    return (
+                      <div key={proj.slug} className="pu-pack" style={{ height: packH, flexShrink: 0 }}>
+
+                        {/* Image */}
+                        <div className="pu-pack-img-wrap">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={src} alt={d.title} loading={i <= 1 ? "eager" : "lazy"} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                        </div>
+
+                        {/* Text */}
+                        <div className="pu-pack-text">
+                          <div
+                            key={isActive ? "active" : `idle-${i}`}
+                            style={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0, animation: isActive ? "pu-info-enter 260ms ease forwards" : "none" }}
+                          >
+                            <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", color: "#ccc", textTransform: "uppercase", marginBottom: "clamp(16px,2.5vh,28px)", flexShrink: 0 }}>
+                              {pad2(i + 1)} / {pad2(N)}
+                            </p>
+
+                            <h2 style={{ fontSize: "clamp(17px,1.9vw,29px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1, color: "#111", marginBottom: "clamp(14px,2vh,22px)", flexShrink: 0 }}>
+                              {d.title}
+                            </h2>
+
+                            <p style={{ fontSize: "12.5px", lineHeight: 1.75, color: "#555", marginBottom: "clamp(14px,2vh,22px)", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical", flexShrink: 0 }}>
+                              {d.descriptionShort}
+                            </p>
+
+                            <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.08em", color: "#aaa", textTransform: "uppercase", lineHeight: 1.65, marginBottom: "8px", flexShrink: 0 }}>
+                              {d.municipality}
+                              {d.year  ? ` · ${d.year}`  : ""}
+                              {d.tipus ? ` · ${d.tipus}` : ""}
+                            </p>
+
+                            {proj.tags.length > 0 && (
+                              <p style={{ fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.08em", color: "#ccc", textTransform: "uppercase", lineHeight: 1.8, flexShrink: 0 }}>
+                                {proj.tags.map(t => TAG_LABELS[t] ?? t).join("  /  ")}
+                              </p>
+                            )}
+
+                            <div style={{ flex: 1 }} />
+
+                            {hasLong && (
+                              <button style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111", background: "none", border: "none", cursor: "pointer", padding: "0 0 2px", borderBottom: "1px solid #111", alignSelf: "flex-start", marginBottom: "14px", flexShrink: 0 }}>
+                                Llegir més
+                              </button>
+                            )}
+
+                            <Link
+                              href={localizeHref(`/projectes/${proj.slug}`, locale)}
+                              style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#111", textDecoration: "none", borderBottom: "1px solid #111", paddingBottom: "2px", alignSelf: "flex-start", flexShrink: 0 }}
+                            >
+                              Veure projecte →
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
             </div>
-          )}
+
+            {/* Counter */}
+            {N > 0 && (
+              <div style={{ position: "absolute", bottom: "14px", left: "50%", transform: "translateX(-50%)", width: "min(62vw, 960px)", display: "flex", justifyContent: "space-between", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#ccc" }}>
+                <span>{pad2(activeIdx + 1)} / {pad2(N)}</span>
+                {N < projects.length && <span>{N} de {projects.length}</span>}
+              </div>
+            )}
+          </div>
         </div>
       </>
     );
