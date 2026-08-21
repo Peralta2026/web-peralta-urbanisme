@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/"
+  to = "/ca"
+  status = 302
+
+[[redirects]]
+  from = "/es"
+  to = "/es"
+  status = 200
+
+[[redirects]]
+  from = "/en"
+  to = "/en"
+  status = 200
