@@ -10,7 +10,6 @@ interface Props {
 }
 
 function localizeHref(href: string, locale: Locale): string {
-  if (locale === "ca") return href;
   return `/${locale}${href}`;
 }
 

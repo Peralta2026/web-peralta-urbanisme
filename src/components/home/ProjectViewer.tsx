@@ -8,7 +8,7 @@ import { ALL_TAGS } from "@/lib/types";
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
 
 function localizeHref(href: string, locale: string) {
-  return locale === "ca" ? href : `/${locale}${href}`;
+  return `/${locale}${href}`;
 }
 
 /* ─── Tag labels ─────────────────────────────────────────────────────────── */

@@ -9,7 +9,6 @@ import Image from "next/image";
 const LOCALES = ["ca", "es", "en"] as const;
 
 function localizeHref(href: string, locale: string): string {
-  if (locale === "ca") return href;
   return `/${locale}${href}`;
 }
 
@@ -48,14 +47,13 @@ export default function Nav({ locale }: { locale: string }) {
   const pathname      = usePathname();
   const router        = useRouter();
 
-  const cleanPath = pathname.replace(/^\/(es|en)/, "") || "/";
+  const cleanPath = pathname.replace(/^\/(ca|es|en)/, "") || "/";
   const isHome    = cleanPath === "/";
   const isArchive = cleanPath.startsWith("/projectes");
 
   function switchLocale(newLocale: string) {
-    let newPath = pathname;
-    if (currentLocale !== "ca") newPath = pathname.replace(/^\/(es|en)/, "");
-    router.push(newLocale === "ca" ? (newPath || "/") : `/${newLocale}${newPath || "/"}`);
+    const newPath = pathname.replace(/^\/(ca|es|en)/, "") || "/";
+    router.push(`/${newLocale}${newPath}`);
     setMenuOpen(false);
   }
 

@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import type { Project, Locale } from "@/lib/types";
 
 function localizeHref(href: string, locale: string): string {
-  if (locale === "ca") return href;
   return `/${locale}${href}`;
 }
 

@@ -83,7 +83,7 @@ const HERO_CONTENT = {
 function LangSelectorHero({ locale }: { locale: string }) {
   const router = useRouter();
   function switchLocale(newLocale: string) {
-    router.push(newLocale === "ca" ? "/" : `/${newLocale}/`);
+    router.push(`/${newLocale}/`);
   }
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.10em" }}>
@@ -101,7 +101,7 @@ function LangSelectorHero({ locale }: { locale: string }) {
 
 function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string; href: string; locale: string }) {
   const [hovered, setHovered] = useState(false);
-  const dest = locale === "ca" ? href : `/${locale}${href}`;
+  const dest = `/${locale}${href}`;
   return (
     <Link href={dest} style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column" }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
@@ -246,7 +246,7 @@ export default function HomeScene({ locale, projects }: Props) {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const localizeHref = (href: string) => locale === "ca" ? href : `/${locale}${href}`;
+  const localizeHref = (href: string) => `/${locale}${href}`;
 
   return (
     <>

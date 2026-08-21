@@ -9,8 +9,10 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectsDir = path.join(__dirname, "..", "public", "projects");
 
-const MAX_WIDTH = 2400;   // px — enough for a retina 1200px display
-const JPEG_QUALITY = 82;  // good balance quality/size
+const MAX_WIDTH = 1600;
+const MAX_HEIGHT = 1200;
+const JPEG_QUALITY = 78;
+const MAX_UNOPTIMIZED_BYTES = 500 * 1024;
 
 async function optimizeDir(dir) {
   const files = fs.readdirSync(dir);
@@ -21,23 +23,36 @@ async function optimizeDir(dir) {
       await optimizeDir(fullPath);
       continue;
     }
-    if (!/\.(jpg|jpeg|JPG|JPEG|png|PNG)$/.test(file)) continue;
-
-    const sizeBefore = (stat.size / 1024 / 1024).toFixed(1);
-    const tmpPath = fullPath + ".tmp";
+    if (!/\.(jpg|jpeg)$/i.test(file)) continue;
 
     try {
-      await sharp(fullPath)
-        .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-        .jpeg({ quality: JPEG_QUALITY, progressive: true })
-        .toFile(tmpPath);
+      const source = fs.readFileSync(fullPath);
+      const metadata = await sharp(source).metadata();
+      const needsResize =
+        (metadata.width ?? 0) > MAX_WIDTH ||
+        (metadata.height ?? 0) > MAX_HEIGHT;
 
-      fs.renameSync(tmpPath, fullPath);
-      const sizeAfter = (fs.statSync(fullPath).size / 1024 / 1024).toFixed(1);
-      console.log(`✓ ${path.relative(projectsDir, fullPath)}: ${sizeBefore}MB → ${sizeAfter}MB`);
+      if (!needsResize && stat.size <= MAX_UNOPTIMIZED_BYTES) continue;
+
+      const optimized = await sharp(source)
+        .rotate()
+        .resize({
+          width: MAX_WIDTH,
+          height: MAX_HEIGHT,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .jpeg({ quality: JPEG_QUALITY, progressive: true })
+        .toBuffer();
+
+      if (optimized.length >= source.length) continue;
+
+      fs.writeFileSync(fullPath, optimized);
+      const sizeBefore = (source.length / 1024 / 1024).toFixed(2);
+      const sizeAfter = (optimized.length / 1024 / 1024).toFixed(2);
+      console.log(`${path.relative(projectsDir, fullPath)}: ${sizeBefore}MB -> ${sizeAfter}MB`);
     } catch (err) {
-      if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
-      console.error(`✗ ${file}: ${err.message}`);
+      console.error(`${file}: ${err.message}`);
     }
   }
 }

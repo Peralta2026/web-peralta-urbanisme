@@ -6,7 +6,6 @@ import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 
 function localizeHref(href: string, locale: string): string {
-  if (locale === "ca") return href;
   return `/${locale}${href}`;
 }
 
