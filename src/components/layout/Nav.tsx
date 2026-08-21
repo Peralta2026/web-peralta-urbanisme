@@ -84,7 +84,7 @@ export default function Nav({ locale }: { locale: string }) {
           {/* Logo */}
           <Link href={localizeHref("/", locale)} onClick={() => setMenuOpen(false)} style={{ flexShrink: 0 }}>
             <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={360} height={90}
-              style={{ width: "165px", height: "auto", objectFit: "contain" }} priority />
+              style={{ width: "clamp(160px, 20vw, 210px)", height: "auto", objectFit: "contain" }} priority />
           </Link>
 
           {/* Desktop center nav */}

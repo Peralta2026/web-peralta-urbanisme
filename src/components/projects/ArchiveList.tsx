@@ -59,7 +59,18 @@ const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
 
 /* ─── UI labels ──────────────────────────────────────────────────────────── */
 
-const UI = {
+interface UiStrings {
+  filtra: string;
+  tema:   string;
+  tipus:  string;
+  escala: string;
+  clear:  string;
+  empty:  string;
+  col:    { project: string; municipality: string; year: string; tipus: string };
+  count:  (n: number) => string;
+}
+
+const UI: Record<Locale, UiStrings> = {
   ca: {
     filtra: "Filtra per:",
     tema:   "Temàtica",
@@ -67,8 +78,8 @@ const UI = {
     escala: "Escala",
     clear:  "Esborrar",
     empty:  "Cap projecte coincideix amb els filtres seleccionats.",
-    col: { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
-    count: (n: number) => `${n} projecte${n !== 1 ? "s" : ""}`,
+    col:    { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
+    count:  (n) => `${n} projecte${n !== 1 ? "s" : ""}`,
   },
   es: {
     filtra: "Filtrar por:",
@@ -77,8 +88,8 @@ const UI = {
     escala: "Escala",
     clear:  "Borrar",
     empty:  "Ningún proyecto coincide con los filtros seleccionados.",
-    col: { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
-    count: (n: number) => `${n} proyecto${n !== 1 ? "s" : ""}`,
+    col:    { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
+    count:  (n) => `${n} proyecto${n !== 1 ? "s" : ""}`,
   },
   en: {
     filtra: "Filter by:",
@@ -87,10 +98,10 @@ const UI = {
     escala: "Scale",
     clear:  "Clear",
     empty:  "No projects match the selected filters.",
-    col: { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
-    count: (n: number) => `${n} project${n !== 1 ? "s" : ""}`,
+    col:    { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
+    count:  (n) => `${n} project${n !== 1 ? "s" : ""}`,
   },
-} as const;
+};
 
 type Dim = "tema" | "tipus" | "escala";
 

@@ -305,7 +305,7 @@ export default function HomeScene({ locale, projects }: Props) {
             {/* Logo top-left */}
             <Link href={localizeHref("/")} style={{ textDecoration: "none", display: "inline-block", flexShrink: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px, 22vw, 260px)", height: "auto", display: "block" }} />
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px, 20vw, 210px)", height: "auto", display: "block" }} />
             </Link>
 
             {/* Spacer — empuja el bloque text+links hacia abajo */}
@@ -360,7 +360,7 @@ export default function HomeScene({ locale, projects }: Props) {
         <div ref={panelNavRef} style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 20, background: PANEL_BG, borderBottom: "1px solid rgba(0,0,0,0.08)", display: "flex", alignItems: "center", padding: "0 clamp(32px,5vw,64px)", height: "72px", opacity: 0, pointerEvents: "none" }}>
           <Link href={localizeHref("/")} style={{ textDecoration: "none", display: "inline-block" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ height: "32px", width: "auto", display: "block" }} />
+            <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px, 20vw, 210px)", height: "auto", display: "block" }} />
           </Link>
         </div>
 
