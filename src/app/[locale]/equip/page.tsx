@@ -2,6 +2,8 @@ import { getAllTeamMembers } from "@/lib/team";
 import { type Locale } from "@/lib/types";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = "force-static";
+
 export default async function EquipPage({
   params,
 }: {

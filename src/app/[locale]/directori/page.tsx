@@ -2,6 +2,8 @@ import { getAllProjects } from "@/lib/projects";
 import { type Locale } from "@/lib/types";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 
+export const dynamic = "force-static";
+
 export default async function DirectoriPage({
   params,
 }: {

@@ -95,11 +95,11 @@ const UI: Record<Locale, {
 };
 
 function projectHref(slug: string, locale: Locale) {
-  return locale === "ca" ? `/projectes/${slug}` : `/${locale}/projectes/${slug}`;
+  return `/${locale}/projectes/${slug}`;
 }
 
 function backHref(locale: Locale) {
-  return locale === "ca" ? "/projectes" : `/${locale}/projectes`;
+  return `/${locale}/projectes`;
 }
 
 export async function generateStaticParams() {

@@ -2,6 +2,8 @@ import { getAllProjects } from "@/lib/projects";
 import { type Locale } from "@/lib/types";
 import MapContainer from "@/components/map/MapContainer";
 
+export const dynamic = "force-static";
+
 export default async function IntervencionsPage({
   params,
 }: {
