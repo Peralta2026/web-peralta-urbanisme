@@ -178,12 +178,14 @@ function LangSelector({ locale }: { locale: string }) {
 function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string; href: string; locale: string }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <Link href={`/${locale}${href}`} style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column" }}
+    <Link href={`/${locale}${href}`}
+      style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column", position: "relative" }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", fontWeight: 600, whiteSpace: "nowrap" }}>
         {label}
       </span>
-      <span style={{ display: "block", height: "17px", marginTop: "5px", overflow: "hidden" }}>
+      {/* position:absolute keeps sub-text out of layout flow so item width = label width only */}
+      <span style={{ position: "absolute", top: "100%", left: 0, display: "block", height: "17px", marginTop: "5px", overflow: "hidden", whiteSpace: "nowrap" }}>
         <span style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: "12px", color: "#999", transition: "transform 220ms ease, opacity 220ms ease", transform: hovered ? "translateY(0)" : "translateY(7px)", opacity: hovered ? 1 : 0 }}>
           {sub}
         </span>
@@ -515,22 +517,22 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         {/* SETTLED LAYER — text + links (no logo; logo is in fixedLogoRef) */}
         <div
           ref={settledLayerRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px", justifyContent: "flex-end" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px var(--margin-page)", justifyContent: "flex-end" }}
         >
-          <div style={{ maxWidth: "min(780px,85%)", paddingBottom: "clamp(16px,2.5vh,36px)" }}>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(24px,2.8vw,42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>
+          <div style={{ maxWidth: "min(900px,90%)", paddingBottom: "clamp(16px,2.5vh,36px)" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.4vw,36px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>
               {content.line1}
             </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(24px,2.8vw,42px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.9em" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.4vw,36px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.9em" }}>
               {content.line2}
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px,1.6vw,22px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 0.5em" }}>
               {content.line3}
             </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1.1vw,15px)", fontWeight: 400, lineHeight: 1.65, color: "#777", margin: "0 0 clamp(24px,3.5vh,44px)" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px,1.6vw,22px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 clamp(24px,3.5vh,44px)" }}>
               {content.line4}
             </p>
-            <div style={{ display: "flex", gap: "clamp(22px,3.5vw,52px)", alignItems: "flex-start", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "clamp(28px,4vw,56px)", alignItems: "flex-start" }}>
               {content.links.map(link => (
                 <NavLinkHero key={link.href} label={link.label} sub={link.sub} href={link.href} locale={locale} />
               ))}
