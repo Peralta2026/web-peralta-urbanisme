@@ -68,10 +68,28 @@ const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: strin
   en: { municipi: "Municipality", any: "Year", ambit: "Scope m²", sostre: "Floor area m²", habitatges: "Dwellings" },
 };
 
-const UI_LABELS: Record<string, { filters: string; close: string; clear: string; noResults: string; explore: string }> = {
-  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar tots els projectes" },
-  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar todos los proyectos" },
-  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore all projects" },
+const TIPUS_VALUES = ["Estudi", "Planejament general", "Planejament derivat", "Altres"] as const;
+type TipusValue = typeof TIPUS_VALUES[number];
+
+const ESCALA_VALUES = ["Barri", "Sector", "Municipi", "Plurimunicipal"] as const;
+type EscalaValue = typeof ESCALA_VALUES[number];
+
+const TIPUS_LABELS: Record<string, Record<TipusValue, string>> = {
+  ca: { "Estudi": "Estudi", "Planejament general": "Planejament general", "Planejament derivat": "Planejament derivat", "Altres": "Altres" },
+  es: { "Estudi": "Estudio", "Planejament general": "Planeamiento general", "Planejament derivat": "Planeamiento derivado", "Altres": "Otros" },
+  en: { "Estudi": "Study", "Planejament general": "General planning", "Planejament derivat": "Derived planning", "Altres": "Other" },
+};
+
+const ESCALA_LABELS: Record<string, Record<EscalaValue, string>> = {
+  ca: { "Barri": "Barri", "Sector": "Sector", "Municipi": "Municipi", "Plurimunicipal": "Plurimunicipal" },
+  es: { "Barri": "Barrio", "Sector": "Sector", "Municipi": "Municipio", "Plurimunicipal": "Plurimunicipal" },
+  en: { "Barri": "Neighbourhood", "Sector": "Sector", "Municipi": "Municipality", "Plurimunicipal": "Plurimunicipal" },
+};
+
+const UI_LABELS: Record<string, { filters: string; close: string; clear: string; noResults: string; explore: string; tematica: string; tipus: string; escala: string }> = {
+  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar tots els projectes", tematica: "Temàtica", tipus: "Tipus", escala: "Escala" },
+  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar todos los proyectos", tematica: "Temática", tipus: "Tipo", escala: "Escala" },
+  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore all projects", tematica: "Theme", tipus: "Type", escala: "Scale" },
 };
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
@@ -176,18 +194,62 @@ function isValid(val: string | number | null | undefined): val is string | numbe
 
 /* ─── FilterPanel ────────────────────────────────────────────────────────── */
 
+function FilterToggleRow({
+  label, active, open, tabIndex: tIdx, onToggle,
+}: { label: string; active: boolean; open: boolean; tabIndex: number; onToggle: () => void }) {
+  return (
+    <div
+      role="button"
+      tabIndex={tIdx}
+      onClick={onToggle}
+      onKeyDown={(e) => e.key === "Enter" && onToggle()}
+      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 0", cursor: "pointer", outline: "none" }}
+    >
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11.5px", color: active ? "#000" : "#444", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
+        {label}
+      </span>
+      <div style={{
+        width: "12px", height: "12px", borderRadius: "50%",
+        border: `1.5px solid ${active ? "#111" : "#ccc"}`,
+        background: active ? "#111" : "transparent",
+        flexShrink: 0, marginLeft: "10px",
+        transition: "background 180ms ease, border-color 180ms ease",
+      }} />
+    </div>
+  );
+}
+
+function FilterSection({ title, open: panelOpen }: { title: string; open: boolean }) {
+  return (
+    <div style={{ marginTop: "18px", marginBottom: "4px", paddingBottom: "6px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb" }}>
+        {title}
+      </span>
+    </div>
+  );
+}
+
 function FilterPanel({
-  open, locale, active, onToggle, onClear, onClose,
+  open, locale, active, activeTipus, activeEscala,
+  onToggle, onToggleTipus, onToggleEscala, onClear, onClose,
 }: {
   open: boolean;
   locale: string;
   active: Set<TagSlug>;
+  activeTipus: Set<string>;
+  activeEscala: Set<string>;
   onToggle: (tag: TagSlug) => void;
+  onToggleTipus: (val: string) => void;
+  onToggleEscala: (val: string) => void;
   onClear: () => void;
   onClose: () => void;
 }) {
-  const labels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
-  const ui     = UI_LABELS[locale]  ?? UI_LABELS.ca;
+  const tagLabels   = TAG_LABELS[locale]   ?? TAG_LABELS.ca;
+  const tipusLabels = TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca;
+  const escalaLabels = ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca;
+  const ui = UI_LABELS[locale] ?? UI_LABELS.ca;
+  const hasAny = active.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
+
   return (
     <div style={{
       position: "absolute", left: 0, top: 0, bottom: 0,
@@ -198,69 +260,62 @@ function FilterPanel({
     }}>
       <div style={{
         width: "260px", height: "100%", overflowY: "auto",
-        padding: "24px 24px 32px",
+        padding: "20px 22px 32px",
         boxSizing: "border-box",
         background: "#fff",
         borderRight: "1px solid rgba(0,0,0,0.08)",
         display: "flex", flexDirection: "column",
       }}>
         {/* Panel header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexShrink: 0 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px", flexShrink: 0 }}>
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#999" }}>
-            {locale === "ca" ? "Filtres" : locale === "es" ? "Filtros" : "Filters"}
+            {ui.filters.replace(" +", "")}
           </span>
           <button
             onClick={onClose}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
             aria-label="Tancar filtres"
           >
             ×
           </button>
         </div>
 
-        {/* Tag list */}
+        {/* Scrollable list */}
         <div style={{ flex: 1, overflowY: "auto" }}>
+          {/* Temàtica */}
+          <FilterSection title={ui.tematica} open={open} />
           {ALL_TAGS.map((tag, i) => (
             <div key={tag}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.06)" }} />}
-              <div
-                role="button"
-                tabIndex={open ? 0 : -1}
-                onClick={() => onToggle(tag)}
-                onKeyDown={(e) => e.key === "Enter" && onToggle(tag)}
-                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 0", cursor: "pointer", outline: "none" }}
-              >
-                <span style={{
-                  fontFamily: "var(--font-sans)", fontSize: "12px",
-                  color: active.has(tag) ? "#000" : "#444",
-                  lineHeight: 1.3,
-                  fontWeight: active.has(tag) ? 600 : 400,
-                  transition: "color 160ms, font-weight 160ms",
-                }}>
-                  {labels[tag]}
-                </span>
-                <div style={{
-                  width: "13px", height: "13px", borderRadius: "50%",
-                  border: `1.5px solid ${active.has(tag) ? "#111" : "#ccc"}`,
-                  background: active.has(tag) ? "#111" : "transparent",
-                  flexShrink: 0, marginLeft: "12px",
-                  transition: "background 180ms ease, border-color 180ms ease",
-                }} />
-              </div>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow label={tagLabels[tag]} active={active.has(tag)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggle(tag)} />
+            </div>
+          ))}
+
+          {/* Tipus */}
+          <FilterSection title={ui.tipus} open={open} />
+          {TIPUS_VALUES.map((val, i) => (
+            <div key={val}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow label={tipusLabels[val]} active={activeTipus.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
+            </div>
+          ))}
+
+          {/* Escala */}
+          <FilterSection title={ui.escala} open={open} />
+          {ESCALA_VALUES.map((val, i) => (
+            <div key={val}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow label={escalaLabels[val]} active={activeEscala.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
             </div>
           ))}
         </div>
 
         {/* Clear button */}
-        {active.size > 0 && (
-          <div style={{ flexShrink: 0, marginTop: "16px", paddingTop: "16px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+        {hasAny && (
+          <div style={{ flexShrink: 0, marginTop: "14px", paddingTop: "14px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
             <button
               onClick={onClear}
-              style={{
-                background: "none", border: "none", cursor: "pointer", padding: 0,
-                fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em",
-                textTransform: "uppercase", color: "#aaa",
-              }}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa" }}
             >
               {ui.clear}
             </button>
@@ -356,10 +411,10 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   /* ── Desktop layout: image left, content right ── */
   return (
     <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
-      <div style={{ flex: "0 0 50%", padding: "20px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+      <div style={{ flex: "0 0 50%", overflow: "hidden", position: "relative" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
-          style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block", userSelect: "none" }} />
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", userSelect: "none" }} />
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,32px)", overflow: "hidden" }}>
@@ -401,14 +456,24 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
   /* ── State ── */
   const [activeFilters, setActiveFilters] = useState<Set<TagSlug>>(new Set());
+  const [activeTipus, setActiveTipus]     = useState<Set<string>>(new Set());
+  const [activeEscala, setActiveEscala]   = useState<Set<string>>(new Set());
   const [filterOpen, setFilterOpen]       = useState(false);
   const [isMobile, setIsMobile]           = useState(false);
 
   /* ── Computed display projects ── */
   const displayProjects = useMemo(() => {
-    if (activeFilters.size === 0) return featured;
-    return projects.filter(p => p.tags.some(t => activeFilters.has(t)));
-  }, [activeFilters, featured, projects]);
+    const hasTag   = activeFilters.size > 0;
+    const hasTipus = activeTipus.size > 0;
+    const hasEscala = activeEscala.size > 0;
+    if (!hasTag && !hasTipus && !hasEscala) return featured;
+    return projects.filter(p => {
+      const matchTag   = !hasTag   || p.tags.some(t => activeFilters.has(t));
+      const matchTipus = !hasTipus || activeTipus.has(p.ca.tipus);
+      const matchEscala = !hasEscala || activeEscala.has(p.ca.status);
+      return matchTag && matchTipus && matchEscala;
+    });
+  }, [activeFilters, activeTipus, activeEscala, featured, projects]);
 
   /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
@@ -420,7 +485,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const cardsPanelRef   = useRef<HTMLDivElement>(null);
   const cardRefs        = useRef<(HTMLDivElement | null)[]>([]);
   const exploreRef      = useRef<HTMLDivElement>(null);
-  const counterRef      = useRef<HTMLSpanElement>(null);
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
   const scrollSpaceRef  = useRef<HTMLDivElement>(null);
@@ -445,13 +509,15 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
   /* ── Handlers ── */
   const toggleFilter = (tag: TagSlug) => {
-    setActiveFilters(prev => {
-      const next = new Set(prev);
-      if (next.has(tag)) next.delete(tag); else next.add(tag);
-      return next;
-    });
+    setActiveFilters(prev => { const n = new Set(prev); n.has(tag) ? n.delete(tag) : n.add(tag); return n; });
   };
-  const clearFilters = () => setActiveFilters(new Set());
+  const toggleTipus = (val: string) => {
+    setActiveTipus(prev => { const n = new Set(prev); n.has(val) ? n.delete(val) : n.add(val); return n; });
+  };
+  const toggleEscala = (val: string) => {
+    setActiveEscala(prev => { const n = new Set(prev); n.has(val) ? n.delete(val) : n.add(val); return n; });
+  };
+  const clearFilters = () => { setActiveFilters(new Set()); setActiveTipus(new Set()); setActiveEscala(new Set()); };
 
   /* ── Sync nCardsRef when displayProjects changes ── */
   useEffect(() => {
@@ -536,11 +602,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       if (sy >= SETTLE_END) {
         const cardPos = Math.max(0, Math.min(nCards - 1, (sy - SETTLE_END) / CARDS_PER_STEP));
         applyCardTransforms(cardRefs.current.slice(0, nCards), cardPos);
-        const cardIdx = Math.round(cardPos);
-        if (counterRef.current) {
-          counterRef.current.textContent =
-            `${String(cardIdx + 1).padStart(2, "0")} / ${String(nCards).padStart(2, "0")}`;
-        }
         if (exploreRef.current) {
           const show = cardPos > nCards - 1.3;
           exploreRef.current.style.opacity       = show ? "1" : "0";
@@ -646,59 +707,57 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       >
         {/* ── Header ── */}
         <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(20px, 3vh, 40px)", position: "relative", zIndex: 2000, background: "#fff" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "12px", marginBottom: activeFilters.size > 0 ? "12px" : "10px" }}>
-            <div style={{ display: "flex", alignItems: "flex-end", gap: "18px", minWidth: 0 }}>
-              <h2 style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "clamp(28px,3.6vw,52px)",
-                fontWeight: 700,
-                letterSpacing: "-0.04em",
-                lineHeight: 1,
-                color: "#000",
-                margin: 0,
-                flexShrink: 0,
-              }}>
-                {content.destacats}
-              </h2>
-              <button
-                onClick={() => setFilterOpen(f => !f)}
-                style={{
-                  fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
-                  textTransform: "uppercase", color: filterOpen ? "#000" : "#bbb",
-                  background: "none", border: "none", cursor: "pointer", padding: "0 0 6px",
-                  transition: "color 200ms ease", flexShrink: 0, whiteSpace: "nowrap",
-                }}
-              >
-                {filterOpen ? ui.close : ui.filters}
-              </button>
-            </div>
-            <span
-              ref={counterRef}
+          <div style={{ display: "flex", alignItems: "flex-end", gap: "18px", marginBottom: (activeFilters.size > 0 || activeTipus.size > 0 || activeEscala.size > 0) ? "12px" : "10px" }}>
+            <h2 style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(28px,3.6vw,52px)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+              color: "#000",
+              margin: 0,
+              flexShrink: 0,
+            }}>
+              {content.destacats}
+            </h2>
+            <button
+              onClick={() => setFilterOpen(f => !f)}
               style={{
-                fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em",
-                color: "#ccc", flexShrink: 0, paddingBottom: "6px",
+                fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
+                textTransform: "uppercase", color: filterOpen ? "#000" : "#bbb",
+                background: "none", border: "none", cursor: "pointer", padding: "0 0 6px",
+                transition: "color 200ms ease", flexShrink: 0, whiteSpace: "nowrap",
               }}
             >
-              01 / {String(displayProjects.length || 1).padStart(2, "0")}
-            </span>
+              {filterOpen ? ui.close : ui.filters}
+            </button>
           </div>
 
-          {/* Active filter chips */}
-          {activeFilters.size > 0 && (
+          {/* Active filter chips — shown for all three filter groups */}
+          {(activeFilters.size > 0 || activeTipus.size > 0 || activeEscala.size > 0) && (
             <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "10px" }}>
               {Array.from(activeFilters).map(tag => (
-                <button key={tag}
+                <button key={`tag-${tag}`}
                   onClick={() => toggleFilter(tag)}
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: "5px",
-                    padding: "4px 10px",
-                    border: "1px solid #111", borderRadius: "100px",
-                    background: "none", cursor: "pointer",
-                    fontFamily: "var(--font-mono)", fontSize: "9px",
-                    letterSpacing: "0.10em", textTransform: "uppercase", color: "#111",
-                  }}>
+                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
                   {tagLabels[tag]}
-                  <span style={{ fontSize: "12px", lineHeight: 1, marginTop: "-1px" }}>×</span>
+                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
+                </button>
+              ))}
+              {Array.from(activeTipus).map(val => (
+                <button key={`tipus-${val}`}
+                  onClick={() => toggleTipus(val)}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+                  {(TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca)[val as TipusValue]}
+                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
+                </button>
+              ))}
+              {Array.from(activeEscala).map(val => (
+                <button key={`escala-${val}`}
+                  onClick={() => toggleEscala(val)}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+                  {(ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca)[val as EscalaValue]}
+                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
                 </button>
               ))}
             </div>
@@ -713,7 +772,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             open={filterOpen}
             locale={locale}
             active={activeFilters}
+            activeTipus={activeTipus}
+            activeEscala={activeEscala}
             onToggle={toggleFilter}
+            onToggleTipus={toggleTipus}
+            onToggleEscala={toggleEscala}
             onClear={clearFilters}
             onClose={() => setFilterOpen(false)}
           />
