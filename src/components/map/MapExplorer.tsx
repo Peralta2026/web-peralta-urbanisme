@@ -7,10 +7,18 @@ import MapView from "./MapView";
 
 type Dimension = "theme" | "type" | "scale";
 
-const LABELS: Record<Locale, { title: string; locations: (count: number) => string; filterBy: string; theme: string; type: string; scale: string; clear: string; noThemes: string }> = {
-  ca: { title: "Mapa de projectes", locations: (n) => `${n} ubicacion${n === 1 ? "" : "s"}`, filterBy: "Filtra per:", theme: "Temàtica", type: "Tipus", scale: "Escala", clear: "Esborrar", noThemes: "Temàtiques pendents d'assignar" },
-  es: { title: "Mapa de proyectos", locations: (n) => `${n} ubicacion${n === 1 ? "" : "es"}`, filterBy: "Filtrar por:", theme: "Temática", type: "Tipo", scale: "Escala", clear: "Borrar", noThemes: "Temáticas pendientes de asignar" },
-  en: { title: "Project map", locations: (n) => `${n} location${n === 1 ? "" : "s"}`, filterBy: "Filter by:", theme: "Theme", type: "Type", scale: "Scale", clear: "Clear", noThemes: "Themes pending assignment" },
+const PAGE_TITLES: Record<Locale, string> = {
+  ca: "Directori territorial",
+  es: "Directori territorial",
+  en: "Territorial directory",
+};
+
+const LABELS: Record<Locale, {
+  filtra: string; theme: string; type: string; scale: string; clear: string; noThemes: string;
+}> = {
+  ca: { filtra: "Filtra per:", theme: "Temàtica", type: "Tipus", scale: "Escala", clear: "Esborrar", noThemes: "Temàtiques pendents d'assignar" },
+  es: { filtra: "Filtrar por:", theme: "Temática", type: "Tipo", scale: "Escala", clear: "Borrar", noThemes: "Temáticas pendientes de asignar" },
+  en: { filtra: "Filter by:", theme: "Theme", type: "Type", scale: "Scale", clear: "Clear", noThemes: "Themes pending assignment" },
 };
 
 const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
@@ -19,79 +27,319 @@ const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
   en: { residencial: "Residential", transformacio: "Transformation", extensio: "Extension", regeneracio: "Regeneration", "activitat-economica": "Economic Activity", "infraestructura-verda": "Green Infrastructure", "integracio-infraestructures": "Infrastructure Integration", "estructura-urbana": "Urban Structure", divulgacio: "Outreach", "espai-public": "Public Space", "participacio-ciutadana": "Citizen Participation", "encaixos-singulars": "Singular Insertions" },
 };
 
+const TIPUS_COLORS: Record<string, string> = {
+  "Estudi":               "#F9EE76",
+  "Planejament general":  "#B4EFC5",
+  "Planejament derivat":  "#A8DEF5",
+  "Altres":               "#F5C0DA",
+};
+
 export default function MapExplorer({ projects, locale }: { projects: Project[]; locale: string }) {
   const loc = locale as Locale;
-  const ui = LABELS[loc] ?? LABELS.ca;
-  const [openDimension, setOpenDimension] = useState<Dimension | null>(null);
+  const ui    = LABELS[loc]      ?? LABELS.ca;
+  const title = PAGE_TITLES[loc] ?? PAGE_TITLES.ca;
+
+  const [activeDim, setActiveDim] = useState<Dimension | null>(null);
   const [theme, setTheme] = useState("");
-  const [type, setType] = useState("");
+  const [type,  setType]  = useState("");
   const [scale, setScale] = useState("");
 
-  const locatedProjects = useMemo(() => projects.filter(({ coordinates }) => coordinates.lat !== 0 && coordinates.lng !== 0), [projects]);
+  const locatedProjects = useMemo(
+    () => projects.filter(({ coordinates }) => coordinates.lat !== 0 && coordinates.lng !== 0),
+    [projects]
+  );
   const themeOptions = ALL_TAGS;
-  const typeOptions = useMemo(() => [...new Set(locatedProjects.map((project) => project[loc].tipus).filter(Boolean))].sort(), [locatedProjects, loc]);
-  const scaleOptions = useMemo(() => [...new Set(locatedProjects.map((project) => project[loc].status).filter(Boolean))].sort(), [locatedProjects, loc]);
-  const visibleProjects = useMemo(() => locatedProjects.filter((project) => {
-    if (theme && !project.tags.includes(theme as TagSlug)) return false;
-    if (type && project[loc].tipus !== type) return false;
-    if (scale && project[loc].status !== scale) return false;
+  const typeOptions  = useMemo(
+    () => [...new Set(locatedProjects.map((p) => p[loc].tipus).filter(Boolean))].sort(),
+    [locatedProjects, loc]
+  );
+  const scaleOptions = useMemo(
+    () => [...new Set(locatedProjects.map((p) => p[loc].status).filter(Boolean))].sort(),
+    [locatedProjects, loc]
+  );
+
+  const visibleProjects = useMemo(() => locatedProjects.filter((p) => {
+    if (theme && !p.tags.includes(theme as TagSlug)) return false;
+    if (type  && p[loc].tipus  !== type)             return false;
+    if (scale && p[loc].status !== scale)             return false;
     return true;
   }), [locatedProjects, loc, theme, type, scale]);
 
-  const dimensions: { key: Dimension; label: string; value: string }[] = [
-    { key: "theme", label: ui.theme, value: theme ? TAG_LABELS[loc][theme as TagSlug] : "" },
-    { key: "type", label: ui.type, value: type },
-    { key: "scale", label: ui.scale, value: scale },
-  ];
-  const options = openDimension === "theme" ? themeOptions.map((value) => ({ value, label: TAG_LABELS[loc][value] })) : openDimension === "type" ? typeOptions.map((value) => ({ value, label: value })) : scaleOptions.map((value) => ({ value, label: value }));
-  const currentValue = openDimension === "theme" ? theme : openDimension === "type" ? type : scale;
-  const setValue = (dimension: Dimension, value: string) => {
-    if (dimension === "theme") setTheme(value);
-    if (dimension === "type") setType(value);
-    if (dimension === "scale") setScale(value);
+  const hasFilters = !!(theme || type || scale);
+  const clearAll   = () => { setTheme(""); setType(""); setScale(""); setActiveDim(null); };
+  const toggleDim  = (dim: Dimension) => setActiveDim((d) => d === dim ? null : dim);
+
+  const getDimValue = (dim: Dimension) => {
+    if (dim === "theme") return theme ? TAG_LABELS[loc][theme as TagSlug] : "";
+    if (dim === "type")  return type;
+    return scale;
   };
-  const clearAll = () => { setTheme(""); setType(""); setScale(""); setOpenDimension(null); };
+  const clearDim = (dim: Dimension) => {
+    if (dim === "theme") setTheme("");
+    else if (dim === "type") setType("");
+    else setScale("");
+  };
+  const getOptions = (): { value: string; label: string }[] => {
+    if (activeDim === "theme") return themeOptions.map((t) => ({ value: t, label: TAG_LABELS[loc][t] }));
+    if (activeDim === "type")  return typeOptions.map((v)  => ({ value: v, label: v }));
+    return scaleOptions.map((v) => ({ value: v, label: v }));
+  };
+  const getActiveFilter = () => {
+    if (activeDim === "theme") return theme;
+    if (activeDim === "type")  return type;
+    return scale;
+  };
+  const setActiveFilter = (value: string) => {
+    const current = getActiveFilter();
+    const next = value === current ? "" : value;
+    if (activeDim === "theme") setTheme(next);
+    else if (activeDim === "type") setType(next);
+    else setScale(next);
+    if (next) setActiveDim(null);
+  };
+
+  const dims: { key: Dimension; label: string }[] = [
+    { key: "theme", label: ui.theme },
+    { key: "type",  label: ui.type  },
+    { key: "scale", label: ui.scale },
+  ];
 
   return (
     <div className="pu-map-explorer">
+
+      {/* ── Títol pàgina ──────────────────────────────────────────────── */}
+      <div style={{ padding: "clamp(36px,5vh,64px) var(--margin-page) 0", flexShrink: 0 }}>
+        <h1 style={{
+          fontFamily:    "var(--font-sans)",
+          fontSize:      "clamp(32px,4vw,60px)",
+          fontWeight:    700,
+          letterSpacing: "-0.04em",
+          lineHeight:    1,
+          color:         "#000",
+          margin:        0,
+        }}>
+          {title}
+        </h1>
+      </div>
+
+      {/* ── Barra de filtres ──────────────────────────────────────────── */}
       <div className="pu-map-toolbar">
-        <div className="pu-map-heading"><strong>{ui.title}</strong><span>{ui.locations(visibleProjects.length)}</span></div>
-        <div className="pu-map-filters">
-          <span className="pu-filter-label">{ui.filterBy}</span>
-          {dimensions.map(({ key, label, value }) => (
-            <button key={key} type="button" className={openDimension === key || value ? "is-active" : ""} onClick={() => setOpenDimension((current) => current === key ? null : key)}>
-              {value ? `${label}: ${value}` : label}
-              {value && <span role="button" aria-label={`${ui.clear} ${label}`} onClick={(event) => { event.stopPropagation(); setValue(key, ""); }}>×</span>}
+
+        {/* Main bar */}
+        <div style={{
+          padding:    "0 var(--margin-page)",
+          display:    "flex",
+          alignItems: "center",
+          gap:        "clamp(20px, 3.5vw, 48px)",
+          minHeight:  "76px",
+          flexWrap:   "wrap",
+        }}>
+          <span style={{
+            fontFamily:    "var(--font-mono)",
+            fontSize:      "11px",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color:         "rgba(0,0,0,0.35)",
+            whiteSpace:    "nowrap",
+            flexShrink:    0,
+          }}>
+            {ui.filtra}
+          </span>
+
+          {dims.map(({ key, label }) => {
+            const val      = getDimValue(key);
+            const isOpen   = activeDim === key;
+            const hasVal   = !!val;
+            const chipColor = key === "type" && hasVal ? TIPUS_COLORS[val] : undefined;
+
+            return hasVal ? (
+              <span key={key} style={{ display: "inline-flex", alignItems: "center" }}>
+                <button
+                  onClick={() => toggleDim(key)}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    padding:      "5px 8px 5px 12px",
+                    borderRadius: "100px 0 0 100px",
+                    border:       "1px solid #1a1a1a",
+                    borderRight:  "none",
+                    background:   chipColor ?? "#111",
+                    color:        chipColor ? "#111" : "#fff",
+                    fontFamily:   "var(--font-mono)",
+                    fontSize:     "9px",
+                    letterSpacing:"0.10em",
+                    textTransform:"uppercase",
+                    fontWeight:   500,
+                    cursor:       "pointer",
+                    whiteSpace:   "nowrap",
+                    transition:   "opacity 150ms",
+                  }}
+                >
+                  {chipColor && (
+                    <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#111", flexShrink: 0 }} />
+                  )}
+                  {val}
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); clearDim(key); if (activeDim === key) setActiveDim(null); }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    padding:      "5px 10px 5px 8px",
+                    borderRadius: "0 100px 100px 0",
+                    border:       "1px solid #1a1a1a",
+                    borderLeft:   "none",
+                    background:   chipColor ?? "#111",
+                    color:        chipColor ? "#111" : "#fff",
+                    fontFamily:   "var(--font-mono)",
+                    fontSize:     "14px",
+                    lineHeight:   1,
+                    cursor:       "pointer",
+                    transition:   "opacity 150ms",
+                  }}
+                  aria-label={`Esborrar ${label}`}
+                >
+                  ×
+                </button>
+              </span>
+            ) : (
+              <button
+                key={key}
+                onClick={() => toggleDim(key)}
+                style={{
+                  background:    "none",
+                  border:        "none",
+                  borderBottom:  isOpen ? "1px solid #000" : "1px solid transparent",
+                  cursor:        "pointer",
+                  padding:       "4px 0 3px",
+                  fontFamily:    "var(--font-mono)",
+                  fontSize:      "10px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color:         isOpen ? "#000" : "rgba(0,0,0,0.40)",
+                  fontWeight:    isOpen ? 600 : 400,
+                  transition:    "color 160ms, border-color 160ms",
+                  whiteSpace:    "nowrap",
+                  flexShrink:    0,
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+
+          {hasFilters && (
+            <button
+              onClick={clearAll}
+              style={{
+                marginLeft:    "auto",
+                background:    "none",
+                border:        "none",
+                cursor:        "pointer",
+                fontFamily:    "var(--font-mono)",
+                fontSize:      "9px",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color:         "#aaa",
+                textDecoration:"underline",
+                flexShrink:    0,
+              }}
+            >
+              {ui.clear}
             </button>
-          ))}
-          {(theme || type || scale) && <button type="button" className="pu-clear-filters" onClick={clearAll}>{ui.clear}</button>}
+          )}
         </div>
-        {openDimension && (
-          <div className="pu-map-options">
-            {options.length === 0 ? <span>{ui.noThemes}</span> : options.map((option) => (
-              <button type="button" key={option.value} className={currentValue === option.value ? "is-selected" : ""} onClick={() => { setValue(openDimension, currentValue === option.value ? "" : option.value); setOpenDimension(null); }}>{option.label}</button>
-            ))}
+
+        {/* Options panel */}
+        {activeDim && (
+          <div style={{
+            borderTop: "1px solid rgba(0,0,0,0.07)",
+            padding:   "clamp(20px, 2.5vh, 28px) var(--margin-page) clamp(22px, 3vh, 36px)",
+            display:   "flex",
+            gap:       "6px 0",
+            flexWrap:  "wrap",
+            alignItems:"center",
+          }}>
+            {getOptions().length === 0 ? (
+              <span style={{ color: "#aaa", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
+                {ui.noThemes}
+              </span>
+            ) : getOptions().map((opt, i, arr) => {
+              const isSelected = getActiveFilter() === opt.value;
+              const swatch     = activeDim === "type" ? TIPUS_COLORS[opt.value] : undefined;
+              return (
+                <span key={opt.value} style={{ display: "flex", alignItems: "center" }}>
+                  <button
+                    onClick={() => setActiveFilter(opt.value)}
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: "8px",
+                      background: "none",
+                      border:     "none",
+                      cursor:     "pointer",
+                      padding:    "6px 0",
+                      fontFamily: "var(--font-sans)",
+                      fontSize:   "clamp(15px, 1.6vw, 20px)",
+                      letterSpacing: "-0.01em",
+                      color:      isSelected ? "#000" : "#999",
+                      fontWeight: isSelected ? 650 : 400,
+                      transition: "color 150ms",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {swatch && (
+                      <span style={{
+                        display:      "inline-block",
+                        width:        "10px",
+                        height:       "10px",
+                        borderRadius: "50%",
+                        background:   swatch,
+                        border:       isSelected ? "1.5px solid #111" : "1.5px solid transparent",
+                        flexShrink:   0,
+                        transition:   "border-color 150ms",
+                      }} />
+                    )}
+                    {opt.label}
+                    {isSelected && <span style={{ fontSize: "12px", opacity: 0.5, marginLeft: "1px" }}>✓</span>}
+                  </button>
+                  {i < arr.length - 1 && (
+                    <span style={{ color: "rgba(0,0,0,0.15)", fontSize: "10px", userSelect: "none", padding: "0 clamp(12px, 1.8vw, 24px)" }}>·</span>
+                  )}
+                </span>
+              );
+            })}
           </div>
         )}
       </div>
-      <div className="pu-map-canvas"><MapView projects={visibleProjects} locale={locale} /></div>
+
+      {/* ── Mapa ──────────────────────────────────────────────────────── */}
+      <div className="pu-map-canvas">
+        <MapView projects={visibleProjects} locale={locale} />
+      </div>
+
       <style>{`
-        .pu-map-explorer { height: 100svh; padding-top: var(--header-height); display: flex; flex-direction: column; background: #fff; }
-        .pu-map-toolbar { flex: 0 0 auto; border-bottom: 1px solid var(--color-border); background: #fff; z-index: 2; }
-        .pu-map-heading { min-height: 48px; padding: 0 var(--margin-page); display: flex; align-items: center; gap: 32px; border-bottom: 1px solid var(--color-border-soft); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .12em; font-size: var(--size-label); }
-        .pu-map-heading span { color: var(--color-muted); font-weight: 400; }
-        .pu-map-filters { min-height: 54px; padding: 0 var(--margin-page); display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); overflow-x: auto; font-family: var(--font-mono); }
-        .pu-filter-label { color: var(--color-muted); font-size: var(--size-label); letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
-        .pu-map-filters button { border: 0; border-bottom: 1px solid transparent; padding: 4px 0 2px; background: none; color: var(--color-muted); font-family: inherit; font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; cursor: pointer; }
-        .pu-map-filters button.is-active { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: 700; }
-        .pu-map-filters button span { margin-left: 6px; font-size: 15px; line-height: 0; }
-        .pu-map-filters .pu-clear-filters { margin-left: auto; color: var(--color-gray-mid); text-decoration: underline; }
-        .pu-map-options { min-height: 52px; padding: 12px var(--margin-page); display: flex; align-items: center; flex-wrap: wrap; gap: 10px 24px; border-top: 1px solid var(--color-border-soft); font-family: var(--font-sans); }
-        .pu-map-options > span { color: var(--color-gray-mid); font-size: 13px; }
-        .pu-map-options button { border: 0; padding: 0; background: none; color: var(--color-muted); font: inherit; font-size: 15px; cursor: pointer; }
-        .pu-map-options button.is-selected { color: var(--color-fg); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-        .pu-map-canvas { min-height: 0; flex: 1; position: relative; }
-        @media (max-width: 768px) { .pu-map-heading { min-height: 42px; } .pu-map-filters { gap: 20px; min-height: 50px; } .pu-filter-label { display: none; } }
+        .pu-map-explorer {
+          height: 100svh;
+          padding-top: var(--header-height);
+          display: flex;
+          flex-direction: column;
+          background: #fff;
+          overflow: hidden;
+        }
+        .pu-map-toolbar {
+          flex: 0 0 auto;
+          border-top: 1px solid rgba(0,0,0,0.10);
+          border-bottom: 1px solid rgba(0,0,0,0.10);
+          background: #fff;
+          margin-top: clamp(24px, 3.5vh, 44px);
+        }
+        .pu-map-canvas {
+          min-height: 0;
+          flex: 1;
+          position: relative;
+          z-index: 1;
+          isolation: isolate;
+        }
+        @media (max-width: 768px) {
+          .pu-map-toolbar { margin-top: 20px; }
+        }
       `}</style>
     </div>
   );

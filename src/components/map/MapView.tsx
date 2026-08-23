@@ -122,24 +122,23 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
             />
           </div>
           <div className="pu-map-card-copy">
-            <span>{selected[activeLocale].municipality} · {selected[activeLocale].year}</span>
             <h2>{selected[activeLocale].title}</h2>
-            <p>{selected[activeLocale].tipus} · {selected[activeLocale].status}</p>
+            <span>{selected[activeLocale].municipality}</span>
+            <p>{[selected[activeLocale].year, selected[activeLocale].tipus, selected[activeLocale].status].filter(Boolean).join(" · ")}</p>
             <Link href={projectHref(selected.slug, locale)}>Veure projecte <b>→</b></Link>
           </div>
         </aside>
       )}
       <style>{`
         .pu-map { width: 100%; height: 100%; background: #fff; }
-        .pu-map .leaflet-tile-pane { filter: grayscale(1) contrast(1.28) brightness(1.14); opacity: .62; }
-        .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 1000; width: min(320px, calc(100vw - 40px)); background: #fff; border: 1px solid var(--color-border); box-shadow: 9px 9px 0 rgba(255,255,255,.78); }
-        .pu-map-card-close { position: absolute; top: 9px; right: 10px; z-index: 2; width: 25px; height: 25px; border: 1px solid var(--color-border); background: #fff; color: var(--color-fg); font-family: var(--font-mono); font-size: 17px; line-height: 21px; cursor: pointer; }
-        .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-bottom: 1px solid var(--color-border); background: var(--color-gray-light); }
-        .pu-map-card-copy { padding: 18px 18px 20px; }
-        .pu-map-card-copy > span, .pu-map-card-copy p { display: block; margin: 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
-        .pu-map-card-copy h2 { margin: 10px 0 8px; color: var(--color-fg); font-family: var(--font-sans); font-size: 20px; font-weight: 650; letter-spacing: -.02em; line-height: 1.1; }
-        .pu-map-card-copy p { color: var(--color-gray-mid); }
-        .pu-map-card-copy a { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; color: var(--color-fg); font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+        .pu-map .leaflet-tile-pane { filter: grayscale(1) contrast(1.9) brightness(0.88); opacity: .88; }
+        .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 400; width: min(300px, calc(100vw - 40px)); background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden; }
+        .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-gray-light); }
+        .pu-map-card-copy { padding: 16px 18px 20px; }
+        .pu-map-card-copy h2 { margin: 0 0 10px; color: var(--color-fg); font-family: var(--font-sans); font-size: 18px; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
+        .pu-map-card-copy > span, .pu-map-card-copy p { display: block; margin: 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.6; }
+        .pu-map-card-copy a { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; color: var(--color-fg); font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
         .pu-map-card-copy a b { font-size: 14px; font-weight: 400; }
         .pu-project-marker-host { background: none; border: 0; }
         .pu-project-marker { position: relative; display: block; width: 58px; height: 58px; cursor: pointer; transition: transform var(--dur-fast) var(--ease-smooth); }
