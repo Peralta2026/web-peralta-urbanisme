@@ -9,25 +9,19 @@ const LOCALES = ["ca", "es", "en"] as const;
 
 const MENU = {
   ca: [
-    { label: "Projectes", href: "/projectes" },
-    { label: "Directori visual", href: "/directori" },
-    { label: "Directori territorial", href: "/mapa" },
+    { label: "Arxiu de Projectes", href: "/projectes" },
     { label: "Mètode", href: "/principis" },
     { label: "Persones", href: "/equip" },
     { label: "Contacte", href: "/contacte" },
   ],
   es: [
-    { label: "Proyectos", href: "/projectes" },
-    { label: "Directorio visual", href: "/directori" },
-    { label: "Directorio territorial", href: "/mapa" },
+    { label: "Arxiu de Projectes", href: "/projectes" },
     { label: "Método", href: "/principis" },
     { label: "Personas", href: "/equip" },
     { label: "Contacto", href: "/contacte" },
   ],
   en: [
-    { label: "Projects", href: "/projectes" },
-    { label: "Visual directory", href: "/directori" },
-    { label: "Territorial directory", href: "/mapa" },
+    { label: "Project Archive", href: "/projectes" },
     { label: "Method", href: "/principis" },
     { label: "People", href: "/equip" },
     { label: "Contact", href: "/contacte" },

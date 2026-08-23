@@ -106,6 +106,15 @@ const UI: Record<Locale, UiStrings> = {
   },
 };
 
+/* ─── Tipus color palette (post-it tones) ────────────────────────────────── */
+
+const TIPUS_COLORS: Record<string, string> = {
+  "Estudi":                "#F9EE76",  /* yellow  */
+  "Planejament general":   "#B4EFC5",  /* green   */
+  "Planejament derivat":   "#A8DEF5",  /* cyan    */
+  "Altres":                "#F5C0DA",  /* pink    */
+};
+
 type Dim = "tema" | "tipus" | "escala";
 
 interface Props {
@@ -218,7 +227,7 @@ export default function ArchiveList({ projects, locale }: Props) {
   return (
     <>
       {/* ── FILTRA PER ──────────────────────────────────────────────── */}
-      <div className="pu-filter-box" style={{ borderTop: "1px solid #1a1a1a", borderBottom: "1px solid #1a1a1a", background: "#f7f7f5" }}>
+      <div className="pu-filter-box" style={{ borderTop: "1px solid rgba(0,0,0,0.10)", borderBottom: "1px solid rgba(0,0,0,0.10)", background: "#fff" }}>
 
         {/* Main bar */}
         <div style={{
@@ -248,39 +257,79 @@ export default function ArchiveList({ projects, locale }: Props) {
             const val    = getDimValue(key);
             const isOpen = activeDim === key;
             const hasVal = !!val;
-            return (
+            const chipColor = key === "tipus" && hasVal ? TIPUS_COLORS[val] : undefined;
+            return hasVal ? (
+              /* Active: pill/capsule chip */
+              <span key={key} style={{ display: "inline-flex", alignItems: "center", gap: "0" }}>
+                <button
+                  onClick={() => toggleDim(key)}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    padding: "5px 8px 5px 12px",
+                    borderRadius: "100px 0 0 100px",
+                    border: "1px solid #1a1a1a",
+                    borderRight: "none",
+                    background: chipColor ?? "#111",
+                    color: chipColor ? "#111" : "#fff",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "9px",
+                    letterSpacing: "0.10em",
+                    textTransform: "uppercase",
+                    fontWeight: 500,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    transition: "opacity 150ms",
+                  }}
+                >
+                  {chipColor && (
+                    <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#111", flexShrink: 0 }} />
+                  )}
+                  {val}
+                </button>
+                <button
+                  onClick={e => { e.stopPropagation(); clearDim(key); if (activeDim === key) setActiveDim(null); }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    padding: "5px 10px 5px 8px",
+                    borderRadius: "0 100px 100px 0",
+                    border: "1px solid #1a1a1a",
+                    borderLeft: "none",
+                    background: chipColor ?? "#111",
+                    color: chipColor ? "#111" : "#fff",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "14px",
+                    lineHeight: 1,
+                    cursor: "pointer",
+                    transition: "opacity 150ms",
+                  }}
+                  aria-label={`Esborrar ${label}`}
+                >
+                  ×
+                </button>
+              </span>
+            ) : (
+              /* Inactive: plain text tab */
               <button
                 key={key}
                 onClick={() => toggleDim(key)}
                 style={{
                   background: "none",
                   border: "none",
-                  borderBottom: isOpen ? "1.5px solid #000" : "1.5px solid transparent",
+                  borderBottom: isOpen ? "1px solid #000" : "1px solid transparent",
                   cursor: "pointer",
-                  padding: "4px 0 2px",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "13px",
-                  letterSpacing: "0.01em",
-                  color: (isOpen || hasVal) ? "#000" : "rgba(0,0,0,0.45)",
-                  fontWeight: (isOpen || hasVal) ? 650 : 500,
+                  padding: "4px 0 3px",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: isOpen ? "#000" : "rgba(0,0,0,0.40)",
+                  fontWeight: isOpen ? 600 : 400,
                   transition: "color 160ms, border-color 160ms",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "5px",
                   whiteSpace: "nowrap",
                   flexShrink: 0,
                 }}
               >
-                {hasVal ? `${label}: ${val}` : label}
-                {hasVal && (
-                  <span
-                    role="button"
-                    onClick={e => { e.stopPropagation(); clearDim(key); if (activeDim === key) setActiveDim(null); }}
-                    style={{ fontSize: "15px", lineHeight: 1, opacity: 0.45, marginLeft: "1px", cursor: "pointer" }}
-                  >
-                    ×
-                  </span>
-                )}
+                {label}
               </button>
             );
           })}
@@ -312,38 +361,49 @@ export default function ArchiveList({ projects, locale }: Props) {
         {activeDim && (
           <div style={{
             borderTop: "1px solid rgba(0,0,0,0.07)",
-            padding: "clamp(22px, 3vh, 32px) clamp(32px, 5vw, 64px) clamp(28px, 4vh, 44px)",
+            padding: "clamp(20px, 2.5vh, 28px) clamp(32px, 5vw, 64px) clamp(22px, 3vh, 36px)",
             display: "flex",
-            gap: "clamp(8px, 1.5vw, 16px)",
+            gap: "6px 0",
             flexWrap: "wrap",
             alignItems: "center",
           }}>
             {getOptions().map((opt, i, arr) => {
               const isSelected = getActiveFilter() === opt.value;
+              const swatch     = activeDim === "tipus" ? TIPUS_COLORS[opt.value] : undefined;
               return (
-                <span key={opt.value} style={{ display: "flex", alignItems: "center", gap: "clamp(8px, 1.5vw, 16px)" }}>
+                <span key={opt.value} style={{ display: "flex", alignItems: "center" }}>
                   <button
                     onClick={() => setActiveFilter(opt.value)}
                     style={{
+                      display: "inline-flex", alignItems: "center", gap: "8px",
                       background: "none",
                       border: "none",
                       cursor: "pointer",
-                      padding: 0,
+                      padding: "6px 0",
                       fontFamily: "var(--font-sans)",
-                      fontSize: "clamp(16px, 1.7vw, 20px)",
+                      fontSize: "clamp(15px, 1.6vw, 20px)",
                       letterSpacing: "-0.01em",
                       color: isSelected ? "#000" : "#999",
-                      fontWeight: isSelected ? 650 : 450,
-                      textDecoration: isSelected ? "underline" : "none",
-                      textUnderlineOffset: "3px",
-                      transition: "color 150ms, font-weight 150ms",
+                      fontWeight: isSelected ? 650 : 400,
+                      transition: "color 150ms",
                       whiteSpace: "nowrap",
                     }}
                   >
+                    {swatch && (
+                      <span style={{
+                        display: "inline-block", width: "10px", height: "10px",
+                        borderRadius: "50%",
+                        background: swatch,
+                        border: isSelected ? "1.5px solid #111" : "1.5px solid transparent",
+                        flexShrink: 0,
+                        transition: "border-color 150ms",
+                      }} />
+                    )}
                     {opt.label}
+                    {isSelected && <span style={{ fontSize: "12px", opacity: 0.5, marginLeft: "1px" }}>✓</span>}
                   </button>
                   {i < arr.length - 1 && (
-                    <span style={{ color: "rgba(0,0,0,0.2)", fontSize: "11px", userSelect: "none" }}>·</span>
+                    <span style={{ color: "rgba(0,0,0,0.15)", fontSize: "10px", userSelect: "none", padding: "0 clamp(12px, 1.8vw, 24px)" }}>·</span>
                   )}
                 </span>
               );
@@ -376,10 +436,16 @@ export default function ArchiveList({ projects, locale }: Props) {
                 <div key={project.slug}>
                   <div
                     className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
+                    data-tipus={d.tipus}
                     role="button"
                     tabIndex={0}
                     aria-expanded={isExpanded}
-                    style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center", cursor: "pointer", transition: "background 160ms" }}
+                    style={{
+                      display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
+                      padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
+                      cursor: "pointer", transition: "background 200ms ease",
+                      background: isExpanded ? (TIPUS_COLORS[d.tipus] ?? "#f5f5f3") : undefined,
+                    }}
                     onClick={() => setExpandedSlug(current => current === project.slug ? null : project.slug)}
                     onKeyDown={(event) => {
                       if (event.key === "Enter" || event.key === " ") {
@@ -397,7 +463,10 @@ export default function ArchiveList({ projects, locale }: Props) {
                     <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
                       {d.year}
                     </span>
-                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#777" }}>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666", display: "flex", alignItems: "center", gap: "6px" }}>
+                      {TIPUS_COLORS[d.tipus] && (
+                        <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0 }} />
+                      )}
                       {d.tipus}
                     </span>
                     <Link
@@ -427,8 +496,13 @@ export default function ArchiveList({ projects, locale }: Props) {
       </div>
 
       <style>{`
-        .pu-archive-row:hover,
-        .pu-archive-row.is-expanded { background: #f7f7f5; }
+        /* Default hover — applies when no tipus match */
+        .pu-archive-row:hover { background: #f5f5f3; }
+        /* Tipus-specific hover colors */
+        .pu-archive-row[data-tipus="Estudi"]:hover              { background: #F9EE76; }
+        .pu-archive-row[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
+        .pu-archive-row[data-tipus="Planejament derivat"]:hover { background: #A8DEF5; }
+        .pu-archive-row[data-tipus="Altres"]:hover              { background: #F5C0DA; }
         .pu-archive-row:focus-visible { outline: 1px solid #111; outline-offset: -1px; }
         .pu-archive-expand {
           padding: 14px 0 24px;
