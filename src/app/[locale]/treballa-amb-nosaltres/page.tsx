@@ -32,18 +32,8 @@ export default async function TreballaAmbNosaltresPage({
                   Correu electrònic
                 </dt>
                 <dd style={{ margin: 0 }}>
-                  <a href="mailto:info@peraltaurbanisme.cat" style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 500, color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
-                    info@peraltaurbanisme.cat
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa", marginBottom: "8px" }}>
-                  Telèfon
-                </dt>
-                <dd style={{ margin: 0 }}>
-                  <a href="tel:+34930000000" style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 500, color: "#000", textDecoration: "none" }}>
-                    +34 93 000 00 00
+                  <a href="mailto:info@peraltaurbanisme.com" style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 500, color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
+                    info@peraltaurbanisme.com
                   </a>
                 </dd>
               </div>
@@ -52,8 +42,8 @@ export default async function TreballaAmbNosaltresPage({
                   Adreça
                 </dt>
                 <dd style={{ margin: 0, fontFamily: "var(--font-sans)", fontSize: "16px", lineHeight: 1.6, color: "#333" }}>
-                  Carrer de la Indústria, 00<br />
-                  08025 Barcelona
+                  Carrer d&apos;Argentona, 59<br />
+                  08302 Mataró, Barcelona
                 </dd>
               </div>
               <div>
@@ -61,10 +51,10 @@ export default async function TreballaAmbNosaltresPage({
                   Xarxes socials
                 </dt>
                 <dd style={{ margin: 0, display: "flex", gap: "20px" }}>
-                  <a href="https://www.instagram.com/peraltaurbanisme" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
+                  <a href="https://www.instagram.com/peraltaurbanisme/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
                     Instagram
                   </a>
-                  <a href="https://www.linkedin.com/company/peralta-urbanisme" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
+                  <a href="https://es.linkedin.com/company/peralta-urbanisme-slp" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid currentColor", paddingBottom: "2px" }}>
                     LinkedIn
                   </a>
                 </dd>
