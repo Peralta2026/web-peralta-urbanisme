@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ALL_TAGS } from "@/lib/types";
 import type { Project, TagSlug } from "@/lib/types";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */
@@ -27,16 +28,15 @@ const SPEED_R   = 38;
 
 /* ─── Scroll constants ───────────────────────────────────────────────────── */
 
-const SETTLE_START = 180;
-const SETTLE_END   = 480;        // hero content fully settled
-const OPEN_RANGE   = 380;        // hero slides UP, cards rise (480→860)
-const CARDS_PER_STEP = 440;      // virtual px per card advance
-const N_CARDS      = FEATURED_SLUGS.length;
-const TOTAL_RANGE  = SETTLE_END + N_CARDS * CARDS_PER_STEP; // 480+2200=2680
-
-const LERP_K = 0.08;
+const SETTLE_START   = 180;
+const SETTLE_END     = 480;
+const OPEN_RANGE     = 380;
+const CARDS_PER_STEP = 440;
+const LERP_K         = 0.08;
 
 const LOCALES = ["ca", "es", "en"] as const;
+
+/* ─── Labels ─────────────────────────────────────────────────────────────── */
 
 const TAG_LABELS: Record<string, Record<TagSlug, string>> = {
   ca: {
@@ -62,6 +62,18 @@ const TAG_LABELS: Record<string, Record<TagSlug, string>> = {
   },
 };
 
+const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: string; sostre: string; habitatges: string }> = {
+  ca: { municipi: "Municipi", any: "Any", ambit: "Àmbit m²", sostre: "Sostre m²", habitatges: "Habitatges" },
+  es: { municipi: "Municipio", any: "Año", ambit: "Ámbito m²", sostre: "Techo m²", habitatges: "Viviendas" },
+  en: { municipi: "Municipality", any: "Year", ambit: "Scope m²", sostre: "Floor area m²", habitatges: "Dwellings" },
+};
+
+const UI_LABELS: Record<string, { filters: string; close: string; clear: string; noResults: string; explore: string }> = {
+  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar tots els projectes" },
+  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar todos los proyectos" },
+  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore all projects" },
+};
+
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
 function easeInOutSine(t: number) { return -(Math.cos(Math.PI * Math.min(t, 1)) - 1) / 2; }
@@ -80,7 +92,6 @@ const CONTENT = {
       { label: "Principis ↗", href: "/principis", sub: "Com pensem"   },
     ],
     destacats: "Projectes destacats",
-    explorar:  "Explorar tots els projectes",
   },
   es: {
     line1: "El potencial de un lugar no siempre es evidente.",
@@ -93,7 +104,6 @@ const CONTENT = {
       { label: "Principios ↗", href: "/principis", sub: "Cómo pensamos"    },
     ],
     destacats: "Proyectos destacados",
-    explorar:  "Explorar todos los proyectos",
   },
   en: {
     line1: "The potential of a place is not always evident.",
@@ -106,7 +116,6 @@ const CONTENT = {
       { label: "Principles ↗", href: "/principis", sub: "How we think"  },
     ],
     destacats: "Featured projects",
-    explorar:  "Explore all projects",
   },
 } as const;
 
@@ -156,7 +165,113 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
-/* ─── Sub-components ─────────────────────────────────────────────────────── */
+/* ─── Data validity helper ───────────────────────────────────────────────── */
+
+function isValid(val: string | number | null | undefined): val is string | number {
+  if (val === null || val === undefined) return false;
+  if (val === "-" || val === "No aplica" || val === "") return false;
+  if (typeof val === "number" && val <= 0) return false;
+  return true;
+}
+
+/* ─── FilterPanel ────────────────────────────────────────────────────────── */
+
+function FilterPanel({
+  open, locale, active, onToggle, onClear, onClose,
+}: {
+  open: boolean;
+  locale: string;
+  active: Set<TagSlug>;
+  onToggle: (tag: TagSlug) => void;
+  onClear: () => void;
+  onClose: () => void;
+}) {
+  const labels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
+  const ui     = UI_LABELS[locale]  ?? UI_LABELS.ca;
+  return (
+    <div style={{
+      position: "absolute", left: 0, top: 0, bottom: 0,
+      width: open ? "260px" : "0",
+      overflow: "hidden",
+      transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
+      zIndex: 100,
+    }}>
+      <div style={{
+        width: "260px", height: "100%", overflowY: "auto",
+        padding: "24px 24px 32px",
+        boxSizing: "border-box",
+        background: "#fff",
+        borderRight: "1px solid rgba(0,0,0,0.08)",
+        display: "flex", flexDirection: "column",
+      }}>
+        {/* Panel header */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexShrink: 0 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#999" }}>
+            {locale === "ca" ? "Filtres" : locale === "es" ? "Filtros" : "Filters"}
+          </span>
+          <button
+            onClick={onClose}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
+            aria-label="Tancar filtres"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Tag list */}
+        <div style={{ flex: 1, overflowY: "auto" }}>
+          {ALL_TAGS.map((tag, i) => (
+            <div key={tag}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.06)" }} />}
+              <div
+                role="button"
+                tabIndex={open ? 0 : -1}
+                onClick={() => onToggle(tag)}
+                onKeyDown={(e) => e.key === "Enter" && onToggle(tag)}
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 0", cursor: "pointer", outline: "none" }}
+              >
+                <span style={{
+                  fontFamily: "var(--font-sans)", fontSize: "12px",
+                  color: active.has(tag) ? "#000" : "#444",
+                  lineHeight: 1.3,
+                  fontWeight: active.has(tag) ? 600 : 400,
+                  transition: "color 160ms, font-weight 160ms",
+                }}>
+                  {labels[tag]}
+                </span>
+                <div style={{
+                  width: "13px", height: "13px", borderRadius: "50%",
+                  border: `1.5px solid ${active.has(tag) ? "#111" : "#ccc"}`,
+                  background: active.has(tag) ? "#111" : "transparent",
+                  flexShrink: 0, marginLeft: "12px",
+                  transition: "background 180ms ease, border-color 180ms ease",
+                }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Clear button */}
+        {active.size > 0 && (
+          <div style={{ flexShrink: 0, marginTop: "16px", paddingTop: "16px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+            <button
+              onClick={onClear}
+              style={{
+                background: "none", border: "none", cursor: "pointer", padding: 0,
+                fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em",
+                textTransform: "uppercase", color: "#aaa",
+              }}
+            >
+              {ui.clear}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─── LangSelector ───────────────────────────────────────────────────────── */
 
 function LangSelector({ locale }: { locale: string }) {
   const router = useRouter();
@@ -175,6 +290,8 @@ function LangSelector({ locale }: { locale: string }) {
   );
 }
 
+/* ─── NavLinkHero ────────────────────────────────────────────────────────── */
+
 function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string; href: string; locale: string }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -184,7 +301,6 @@ function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string;
       <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", fontWeight: 600, whiteSpace: "nowrap" }}>
         {label}
       </span>
-      {/* position:absolute keeps sub-text out of layout flow so item width = label width only */}
       <span style={{ position: "absolute", top: "100%", left: 0, display: "block", height: "17px", marginTop: "5px", overflow: "hidden", whiteSpace: "nowrap" }}>
         <span style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: "12px", color: "#999", transition: "transform 220ms ease, opacity 220ms ease", transform: hovered ? "translateY(0)" : "translateY(7px)", opacity: hovered ? 1 : 0 }}>
           {sub}
@@ -194,10 +310,50 @@ function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string;
   );
 }
 
-function FeaturedCard({ project, locale }: { project: Project; locale: string }) {
+/* ─── FeaturedCard ───────────────────────────────────────────────────────── */
+
+function FeaturedCard({ project, locale, mobile }: { project: Project; locale: string; mobile?: boolean }) {
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
-  const tagLabels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
+  const fl     = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
+
+  const dataRows = [
+    { label: fl.municipi,    value: d.municipality },
+    { label: fl.any,         value: d.year },
+    { label: fl.ambit,       value: isValid(d.ambitM2)    ? d.ambitM2!.toLocaleString("ca-ES")    : null },
+    { label: fl.sostre,      value: isValid(d.sostreM2)   ? d.sostreM2!.toLocaleString("ca-ES")   : null },
+    { label: fl.habitatges,  value: isValid(d.habitatges) ? String(d.habitatges)                  : null },
+  ].filter(r => isValid(r.value));
+
+  /* ── Mobile layout: image top, content bottom ── */
+  if (mobile) {
+    return (
+      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: "0 0 58%", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
+        </div>
+        <div style={{ flex: 1, overflow: "auto", padding: "16px 20px", display: "flex", flexDirection: "column", gap: "2px" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 10px" }}>
+            {d.title}
+          </h3>
+          {dataRows.map(r => (
+            <div key={r.label} style={{ display: "flex", gap: "8px" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+            </div>
+          ))}
+          <Link href={`/${locale}/projectes/${project.slug}`}
+            style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "1px", alignSelf: "flex-start", marginTop: "12px" }}>
+            Veure →
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  /* ── Desktop layout: image left, content right ── */
   return (
     <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
       <div style={{ flex: "0 0 50%", padding: "20px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
@@ -207,17 +363,19 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,32px)", overflow: "hidden" }}>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px,1.7vw,26px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 12px" }}>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px,1.7vw,26px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 16px" }}>
           {d.title}
         </h3>
-        {project.tags.length > 0 && (
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#666", margin: "0 0 7px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {project.tags.map((tag) => tagLabels[tag]).join(" · ")}
-          </p>
+        {dataRows.length > 0 && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px", marginBottom: "16px" }}>
+            {dataRows.map(r => (
+              <div key={r.label} style={{ display: "flex", gap: "12px", alignItems: "baseline" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              </div>
+            ))}
+          </div>
         )}
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", margin: "0 0 16px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-          {[d.municipality, d.year, d.status, d.tipus].filter(Boolean).join(" · ")}
-        </p>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,13.5px)", lineHeight: 1.7, color: "#555", margin: 0, flex: 1, overflow: "hidden" }}>
           {d.descriptionShort}
         </p>
@@ -234,11 +392,25 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
 
 export default function HomeScene({ locale, projects }: { locale: string; projects: Project[] }) {
   const content  = CONTENT[locale as keyof typeof CONTENT] ?? CONTENT.ca;
+  const ui       = UI_LABELS[locale] ?? UI_LABELS.ca;
+  const tagLabels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
+
   const featured = FEATURED_SLUGS
     .map(s => projects.find(p => p.slug === s))
     .filter((p): p is Project => !!p);
 
-  /* ── refs ── */
+  /* ── State ── */
+  const [activeFilters, setActiveFilters] = useState<Set<TagSlug>>(new Set());
+  const [filterOpen, setFilterOpen]       = useState(false);
+  const [isMobile, setIsMobile]           = useState(false);
+
+  /* ── Computed display projects ── */
+  const displayProjects = useMemo(() => {
+    if (activeFilters.size === 0) return featured;
+    return projects.filter(p => p.tags.some(t => activeFilters.has(t)));
+  }, [activeFilters, featured, projects]);
+
+  /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
   const heroRef         = useRef<HTMLDivElement>(null);
   const initialLayerRef = useRef<HTMLDivElement>(null);
@@ -251,6 +423,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const counterRef      = useRef<HTMLSpanElement>(null);
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
+  const scrollSpaceRef  = useRef<HTMLDivElement>(null);
+
+  /* Dynamic scroll values */
+  const nCardsRef    = useRef(displayProjects.length);
+  const totalRangeRef = useRef(SETTLE_END + displayProjects.length * CARDS_PER_STEP);
 
   /* RAF state */
   const vY       = useRef(0);
@@ -262,6 +439,40 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const rightOff = useRef(0);
   const pageY    = useRef(0);
 
+  /* Touch swipe */
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+
+  /* ── Handlers ── */
+  const toggleFilter = (tag: TagSlug) => {
+    setActiveFilters(prev => {
+      const next = new Set(prev);
+      if (next.has(tag)) next.delete(tag); else next.add(tag);
+      return next;
+    });
+  };
+  const clearFilters = () => setActiveFilters(new Set());
+
+  /* ── Sync nCardsRef when displayProjects changes ── */
+  useEffect(() => {
+    const n = Math.max(1, displayProjects.length);
+    nCardsRef.current    = n;
+    totalRangeRef.current = SETTLE_END + n * CARDS_PER_STEP;
+    if (scrollSpaceRef.current) {
+      scrollSpaceRef.current.style.height = `calc(100vh + ${totalRangeRef.current}px)`;
+    }
+    vY.current = Math.max(0, Math.min(vY.current, totalRangeRef.current));
+  }, [displayProjects.length]);
+
+  /* ── Mobile detection ── */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ── RAF loop ── */
   useEffect(() => {
     const imgH = window.innerHeight * IMG_H_VH;
     loopH.current    = LEFT_SRCS.length * (imgH + COL_GAP);
@@ -269,7 +480,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
     const onScroll = () => {
       pageY.current = window.scrollY;
-      vY.current = Math.max(0, Math.min(window.scrollY, TOTAL_RANGE));
+      vY.current = Math.max(0, Math.min(window.scrollY, totalRangeRef.current));
     };
 
     onScroll();
@@ -280,6 +491,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       const now = performance.now();
       const dt  = Math.min((now - lastTime.current) / 1000, 0.1);
       lastTime.current = now;
+
+      const nCards    = nCardsRef.current;
+      const totalRange = totalRangeRef.current;
 
       /* Mosaic */
       if (loopH.current > 0) {
@@ -293,7 +507,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       sY.current += (vY.current - sY.current) * LERP_K;
       const sy = sY.current;
 
-      /* ── Phase 0: hero content crossfade ── */
+      /* ── Phase 0: hero crossfade ── */
       const settleRaw = (sy - SETTLE_START) / (SETTLE_END - SETTLE_START);
       const settleP   = easeInOutSine(Math.max(0, Math.min(1, settleRaw)));
 
@@ -302,7 +516,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
 
-      /* ── Phase 1: hero slides UP, cards rise from BELOW ── */
+      /* ── Phase 1: hero slides UP, cards rise ── */
       if (sy < SETTLE_END) {
         if (heroRef.current)       heroRef.current.style.transform       = "translateY(0)";
         if (cardsPanelRef.current) cardsPanelRef.current.style.transform = "translateY(100vh)";
@@ -320,25 +534,25 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
       /* ── Cards cycling ── */
       if (sy >= SETTLE_END) {
-        const cardPos = Math.max(0, Math.min(N_CARDS - 1, (sy - SETTLE_END) / CARDS_PER_STEP));
-        applyCardTransforms(cardRefs.current, cardPos);
+        const cardPos = Math.max(0, Math.min(nCards - 1, (sy - SETTLE_END) / CARDS_PER_STEP));
+        applyCardTransforms(cardRefs.current.slice(0, nCards), cardPos);
         const cardIdx = Math.round(cardPos);
         if (counterRef.current) {
           counterRef.current.textContent =
-            `${String(cardIdx + 1).padStart(2, "0")} / ${String(N_CARDS).padStart(2, "0")}`;
+            `${String(cardIdx + 1).padStart(2, "0")} / ${String(nCards).padStart(2, "0")}`;
         }
         if (exploreRef.current) {
-          const show = cardPos > N_CARDS - 1.3;
+          const show = cardPos > nCards - 1.3;
           exploreRef.current.style.opacity       = show ? "1" : "0";
           exploreRef.current.style.pointerEvents = show ? "auto" : "none";
         }
       }
 
-      /* Native page exit: reveal the shared footer after the final card. */
-      const exitY = Math.max(0, pageY.current - TOTAL_RANGE);
+      /* Exit: reveal footer */
+      const exitY = Math.max(0, pageY.current - totalRange);
       if (exitY > 0) {
         if (cardsPanelRef.current) cardsPanelRef.current.style.transform = `translateY(-${exitY.toFixed(1)}px)`;
-        if (mosaicRef.current) mosaicRef.current.style.transform = `translateY(-${exitY.toFixed(1)}px)`;
+        if (mosaicRef.current)     mosaicRef.current.style.transform     = `translateY(-${exitY.toFixed(1)}px)`;
       } else if (mosaicRef.current) {
         mosaicRef.current.style.transform = "translateY(0)";
       }
@@ -352,6 +566,12 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       cancelAnimationFrame(rafId.current);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /* ── Card left offset when filter panel open ── */
+  const filterOffset = filterOpen ? 130 : 0;
+  const cardWidth    = filterOpen
+    ? "min(calc(100% - 300px), 1000px)"
+    : "min(calc(100% - 40px), 1040px)";
 
   return (
     <>
@@ -386,7 +606,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* ── FIXED LOGO z=100 — persists across all sections ─────────────────── */}
+      {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
       <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto", transform: "translateX(-14%)" }}>
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -406,48 +626,121 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           display: "flex",
           flexDirection: "column",
         }}
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches[0].clientX;
+          touchStartY.current = e.touches[0].clientY;
+        }}
+        onTouchEnd={(e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          const dy = e.changedTouches[0].clientY - touchStartY.current;
+          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            const cardPos    = Math.max(0, (sY.current - SETTLE_END) / CARDS_PER_STEP);
+            const currentCard = Math.round(cardPos);
+            const nCards     = nCardsRef.current;
+            const targetCard = dx < 0
+              ? Math.min(nCards - 1, currentCard + 1)
+              : Math.max(0, currentCard - 1);
+            window.scrollTo({ top: SETTLE_END + targetCard * CARDS_PER_STEP, behavior: "smooth" });
+          }
+        }}
       >
-        {/* ── Header: big editorial title + counter ── */}
-        <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(34px, 4vh, 52px)", position: "relative", zIndex: 2000, background: "#fff" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "12px", marginBottom: "10px" }}>
-            <h2 style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "clamp(28px,3.6vw,52px)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              lineHeight: 1,
-              color: "#000",
-              margin: 0,
-            }}>
-              {content.destacats}
-            </h2>
+        {/* ── Header ── */}
+        <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(20px, 3vh, 40px)", position: "relative", zIndex: 2000, background: "#fff" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "12px", marginBottom: activeFilters.size > 0 ? "12px" : "10px" }}>
+            <div style={{ display: "flex", alignItems: "flex-end", gap: "18px", minWidth: 0 }}>
+              <h2 style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "clamp(28px,3.6vw,52px)",
+                fontWeight: 700,
+                letterSpacing: "-0.04em",
+                lineHeight: 1,
+                color: "#000",
+                margin: 0,
+                flexShrink: 0,
+              }}>
+                {content.destacats}
+              </h2>
+              <button
+                onClick={() => setFilterOpen(f => !f)}
+                style={{
+                  fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
+                  textTransform: "uppercase", color: filterOpen ? "#000" : "#bbb",
+                  background: "none", border: "none", cursor: "pointer", padding: "0 0 6px",
+                  transition: "color 200ms ease", flexShrink: 0, whiteSpace: "nowrap",
+                }}
+              >
+                {filterOpen ? ui.close : ui.filters}
+              </button>
+            </div>
             <span
               ref={counterRef}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                letterSpacing: "0.12em",
-                color: "#ccc",
-                flexShrink: 0,
-                paddingBottom: "6px",
+                fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em",
+                color: "#ccc", flexShrink: 0, paddingBottom: "6px",
               }}
             >
-              01 / {String(N_CARDS).padStart(2, "0")}
+              01 / {String(displayProjects.length || 1).padStart(2, "0")}
             </span>
           </div>
+
+          {/* Active filter chips */}
+          {activeFilters.size > 0 && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "10px" }}>
+              {Array.from(activeFilters).map(tag => (
+                <button key={tag}
+                  onClick={() => toggleFilter(tag)}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "5px",
+                    padding: "4px 10px",
+                    border: "1px solid #111", borderRadius: "100px",
+                    background: "none", cursor: "pointer",
+                    fontFamily: "var(--font-mono)", fontSize: "9px",
+                    letterSpacing: "0.10em", textTransform: "uppercase", color: "#111",
+                  }}>
+                  {tagLabels[tag]}
+                  <span style={{ fontSize: "12px", lineHeight: 1, marginTop: "-1px" }}>×</span>
+                </button>
+              ))}
+            </div>
+          )}
+
           <div style={{ height: "1px", background: "rgba(0,0,0,0.08)" }} />
         </div>
 
-        {/* ── Card stage — flex-1, cards centered ── */}
+        {/* ── Card stage ── */}
         <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
-          {featured.map((proj, i) => (
+          <FilterPanel
+            open={filterOpen}
+            locale={locale}
+            active={activeFilters}
+            onToggle={toggleFilter}
+            onClear={clearFilters}
+            onClose={() => setFilterOpen(false)}
+          />
+
+          {displayProjects.length === 0 && (
+            <div style={{
+              position: "absolute",
+              top: "50%", left: `calc(50% + ${filterOffset}px)`,
+              transform: "translate(-50%, -50%)",
+              textAlign: "center",
+              transition: "left 350ms cubic-bezier(0.22,1,0.36,1)",
+            }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#bbb" }}>
+                {ui.noResults}
+              </p>
+            </div>
+          )}
+
+          {displayProjects.map((proj, i) => (
             <div
               key={proj.slug}
               ref={el => { cardRefs.current[i] = el; }}
               style={{
                 position: "absolute",
-                top: "calc(50% + clamp(36px, 6vh, 64px))", left: "50%",
-                width: "min(calc(100% - 40px), 1040px)",
+                top: "calc(50% + clamp(36px, 6vh, 64px))",
+                left: `calc(50% + ${filterOffset}px)`,
+                width: cardWidth,
                 height: "min(calc(100% - 96px), 560px)",
                 transformOrigin: "center center",
                 willChange: "transform, filter",
@@ -456,14 +749,15 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
                 filter: `brightness(${Math.max(0.84, 1 - Math.min(i, 2) * 0.07).toFixed(3)})`,
                 zIndex: String(1000 - i * 100),
                 pointerEvents: i === 0 ? "auto" : "none",
+                transition: "left 350ms cubic-bezier(0.22,1,0.36,1), width 350ms cubic-bezier(0.22,1,0.36,1)",
               }}
             >
-              <FeaturedCard project={proj} locale={locale} />
+              <FeaturedCard project={proj} locale={locale} mobile={isMobile} />
             </div>
           ))}
         </div>
 
-        {/* ── Explore button row — always reserves space at bottom ── */}
+        {/* ── Explore button ── */}
         <div style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div
             ref={exploreRef}
@@ -472,40 +766,29 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             <Link
               href={`/${locale}/projectes`}
               style={{
-                display: "inline-block",
-                background: "#000",
-                color: "#fff",
-                fontFamily: "var(--font-sans)",
-                fontSize: "15px",
-                fontWeight: 500,
-                letterSpacing: "0.01em",
-                padding: "15px 34px",
-                borderRadius: "100px",
-                textDecoration: "none",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
+                display: "inline-block", background: "#000", color: "#fff",
+                fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500,
+                letterSpacing: "0.01em", padding: "15px 34px", borderRadius: "100px",
+                textDecoration: "none", boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
               }}
             >
-              {content.explorar}
+              {ui.explore}
             </Link>
           </div>
         </div>
       </div>
 
-      {/* ── HERO z=10 — full-screen white, no scale ───────────────────────────── */}
+      {/* ── HERO z=10 ────────────────────────────────────────────────────────── */}
       <div
         ref={heroRef}
-        style={{
-          position: "fixed", inset: 0, zIndex: 10,
-          background: "#fff",
-          willChange: "transform",
-        }}
+        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform" }}
       >
-        {/* Lang selector — vertically centred with the 22 px hamburger dot (top:27px) */}
+        {/* Lang selector */}
         <div style={{ position: "absolute", top: "27px", right: "76px", zIndex: 20, height: "22px", display: "flex", alignItems: "center" }}>
           <LangSelector locale={locale} />
         </div>
 
-        {/* INITIAL LAYER — large centered logo */}
+        {/* INITIAL LAYER — centered logo */}
         <div ref={initialLayerRef} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -514,7 +797,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           </Link>
         </div>
 
-        {/* SETTLED LAYER — text + links (no logo; logo is in fixedLogoRef) */}
+        {/* SETTLED LAYER — text + links */}
         <div
           ref={settledLayerRef}
           style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px var(--margin-page)", justifyContent: "flex-end" }}
@@ -552,8 +835,12 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
       </div>
 
-      {/* Real scroll space: after the animation, normal page flow reveals the footer. */}
-      <div aria-hidden="true" style={{ height: `calc(100vh + ${TOTAL_RANGE}px)`, pointerEvents: "none" }} />
+      {/* Real scroll space */}
+      <div
+        ref={scrollSpaceRef}
+        aria-hidden="true"
+        style={{ height: `calc(100vh + ${SETTLE_END + displayProjects.length * CARDS_PER_STEP}px)`, pointerEvents: "none" }}
+      />
     </>
   );
 }
