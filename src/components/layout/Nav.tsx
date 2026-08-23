@@ -108,7 +108,6 @@ export default function Nav({ locale }: { locale: string }) {
           <Link href={localizeHref("/", locale)} onClick={() => setOpen(false)}>
             <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={360} height={90} />
           </Link>
-          <span>Menu</span>
         </div>
 
         <nav className="pu-menu-links" aria-label="Main navigation">
@@ -125,7 +124,6 @@ export default function Nav({ locale }: { locale: string }) {
 
         <div className="pu-menu-bottom">
           <LanguageSelector locale={locale} onSwitch={switchLocale} />
-          <span>Peralta Urbanisme</span>
         </div>
       </aside>
 
@@ -144,7 +142,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-profile-trigger:hover span { transform: scale(.82); }
         .pu-profile-trigger.is-open span { background: var(--color-bg); transform: scale(.72); }
         .pu-menu-backdrop { position: fixed; inset: 0; z-index: 320; border: 0; background: rgba(0,0,0,.16); cursor: default; }
-        .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 40vw; min-width: 430px; padding: 28px var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); border-right: 1px solid var(--color-border); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
+        .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 33vw; min-width: 300px; padding: 28px var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
         .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
         .pu-menu-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 26px; border-bottom: 1px solid var(--color-border); }
         .pu-menu-top a { width: clamp(150px, 15vw, 205px); }
@@ -157,12 +155,18 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-links a:hover span::after, .pu-menu-links a.is-active span::after { transform: scaleX(1); transform-origin: left; }
         .pu-menu-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--color-border); }
         .pu-menu-bottom .pu-language-selector { margin: 0; }
+        @media (max-width: 1024px) {
+          .pu-menu-panel { width: 50vw; min-width: 280px; }
+        }
         @media (max-width: 768px) {
           .pu-site-header { padding: 0 var(--margin-mobile); }
           .pu-site-header > .pu-language-selector { display: none; }
           .pu-profile-trigger { right: var(--margin-mobile); }
-          .pu-menu-panel { width: 100vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }
-          .pu-menu-links span { font-size: clamp(30px, 10vw, 46px); }
+          .pu-menu-panel { width: 88vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }
+          .pu-menu-links span { font-size: clamp(26px, 8vw, 40px); }
+        }
+        @media (max-width: 480px) {
+          .pu-menu-panel { width: 100vw; }
         }
         @media (prefers-reduced-motion: reduce) {
           .pu-menu-panel, .pu-profile-trigger span, .pu-menu-links span::after { transition-duration: 0ms; }
