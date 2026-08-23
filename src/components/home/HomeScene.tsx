@@ -498,8 +498,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           willChange: "transform",
         }}
       >
-        {/* Lang selector — slightly left of the hamburger (nav z=60) */}
-        <div style={{ position: "absolute", top: "28px", right: "76px", zIndex: 20 }}>
+        {/* Lang selector — vertically centred with the 22 px hamburger dot (top:27px) */}
+        <div style={{ position: "absolute", top: "27px", right: "76px", zIndex: 20, height: "22px", display: "flex", alignItems: "center" }}>
           <LangSelector locale={locale} />
         </div>
 
@@ -540,11 +540,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
         {/* Scroll hint */}
         <div ref={hintRef} style={{ position: "absolute", bottom: "36px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", userSelect: "none", pointerEvents: "none", fontFamily: "var(--font-mono)" }}>
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", color: "rgba(0,0,0,0.30)", textTransform: "uppercase" }}>Scroll</span>
+          <span style={{ fontSize: "9px", letterSpacing: "0.22em", color: "rgba(0,0,0,0.55)", textTransform: "uppercase" }}>Scroll</span>
           <span style={{ display: "flex", flexDirection: "column", alignItems: "center", animation: "pu-hint-drop 2.4s ease-in-out infinite" }}>
-            <span style={{ display: "block", width: "1px", height: "28px", background: "rgba(0,0,0,0.20)" }} />
+            <span style={{ display: "block", width: "1px", height: "28px", background: "rgba(0,0,0,0.42)" }} />
             <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
-              <path d="M0.5 0.5L4 4.5L7.5 0.5" stroke="rgba(0,0,0,0.20)" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M0.5 0.5L4 4.5L7.5 0.5" stroke="rgba(0,0,0,0.42)" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
           </span>
         </div>
