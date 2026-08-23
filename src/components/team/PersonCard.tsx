@@ -3,13 +3,15 @@
 import { useState } from "react";
 import type { TeamMember, Locale } from "@/lib/types";
 
-const PHOTO_W = 280;
-const PHOTO_H = 370;
+const PHOTO_W    = 260;
+const PHOTO_H    = 344;
+const EXP_PHOTO_W = 380;
+const EXP_PHOTO_H = 500;
 
 interface Props {
-  member: TeamMember;
-  locale: Locale;
-  photoSide: "left" | "right";
+  member:     TeamMember;
+  locale:     Locale;
+  photoSide:  "left" | "right";
 }
 
 export default function PersonCard({ member, locale, photoSide }: Props) {
@@ -19,11 +21,12 @@ export default function PersonCard({ member, locale, photoSide }: Props) {
   const photoEl = (
     <div
       style={{
-        width: `${PHOTO_W}px`,
-        height: `${PHOTO_H}px`,
+        width:      `${expanded ? EXP_PHOTO_W : PHOTO_W}px`,
+        height:     `${expanded ? EXP_PHOTO_H : PHOTO_H}px`,
+        transition: "width 0.5s cubic-bezier(0.22,1,0.36,1), height 0.5s cubic-bezier(0.22,1,0.36,1)",
         backgroundColor: "#c8c8c8",
-        overflow: "hidden",
-        position: "relative",
+        overflow:   "hidden",
+        position:   "relative",
         flexShrink: 0,
       }}
     >
@@ -31,60 +34,52 @@ export default function PersonCard({ member, locale, photoSide }: Props) {
       <img
         src={`/team/${member.photo}`}
         alt={data.name}
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
+        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
         style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
+          position:       "absolute",
+          inset:          0,
+          width:          "100%",
+          height:         "100%",
+          objectFit:      "cover",
           objectPosition: "center top",
-          filter: "grayscale(100%)",
-          display: "block",
+          filter:         "grayscale(100%)",
+          display:        "block",
         }}
       />
     </div>
   );
 
   const textEl = (
-    <div style={{ maxWidth: "260px" }}>
-      {/* Role — small mono above name */}
-      <p
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "11px",
-          color: "#888",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          marginBottom: "20px",
-          lineHeight: 1.5,
-        }}
-      >
+    <div style={{
+      maxWidth:   expanded ? "340px" : "240px",
+      transition: "max-width 0.5s cubic-bezier(0.22,1,0.36,1)",
+    }}>
+      {/* Role */}
+      <p style={{
+        fontFamily:    "var(--font-mono)",
+        fontSize:      "10px",
+        color:         "#888",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom:  "16px",
+        lineHeight:    1.5,
+        transition:    "font-size 0.4s ease",
+      }}>
         {data.role}
       </p>
 
       {/* Name + toggle */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          gap: "12px",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 700,
-            fontSize: "24px",
-            letterSpacing: "-0.01em",
-            lineHeight: 1.1,
-            color: "#000",
-            margin: 0,
-          }}
-        >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "10px" }}>
+        <h2 style={{
+          fontFamily:    "var(--font-sans)",
+          fontWeight:    700,
+          fontSize:      expanded ? "32px" : "22px",
+          letterSpacing: "-0.02em",
+          lineHeight:    1.05,
+          color:         "#000",
+          margin:        0,
+          transition:    "font-size 0.4s cubic-bezier(0.22,1,0.36,1)",
+        }}>
           {data.name}
         </h2>
         <button
@@ -93,68 +88,62 @@ export default function PersonCard({ member, locale, photoSide }: Props) {
           aria-label={expanded ? "Tancar bio" : "Llegir bio"}
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "20px",
+            fontSize:   "20px",
             fontWeight: 300,
-            color: "#000",
+            color:      "#000",
             background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: 0,
+            border:     "none",
+            cursor:     "pointer",
+            padding:    0,
             lineHeight: 1,
             flexShrink: 0,
+            transition: "transform 0.3s ease",
+            transform:  expanded ? "rotate(45deg)" : "none",
           }}
         >
-          {expanded ? "−" : "+"}
+          +
         </button>
       </div>
 
-      {/* Bio */}
-      {expanded && (
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "14px",
-            lineHeight: 1.7,
-            color: "#222",
-            marginTop: "20px",
-            whiteSpace: "pre-line",
-          }}
-        >
+      {/* Bio — fade in */}
+      <div style={{
+        maxHeight:  expanded ? "600px" : "0px",
+        overflow:   "hidden",
+        transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1)",
+      }}>
+        <p style={{
+          fontFamily: "var(--font-sans)",
+          fontSize:   "14px",
+          lineHeight: 1.7,
+          color:      "#333",
+          marginTop:  "18px",
+          whiteSpace: "pre-line",
+        }}>
           {data.bioLong}
         </p>
-      )}
+      </div>
     </div>
   );
 
   return (
     <>
-      {/* ── Mobile: stacked ── */}
-      <div className="flex flex-col gap-6 md:hidden">
+      {/* ── Mobile ── */}
+      <div className="flex flex-col gap-5 md:hidden">
         <div style={{ maxWidth: `${PHOTO_W}px` }}>{photoEl}</div>
         {textEl}
       </div>
 
-      {/* ── Desktop: photo-left layout ── */}
+      {/* ── Desktop: photo left ── */}
       {photoSide === "left" && (
-        <div
-          className="hidden md:flex"
-          style={{ alignItems: "center", gap: "52px" }}
-        >
+        <div className="hidden md:flex" style={{ alignItems: "flex-start", gap: "40px" }}>
           {photoEl}
           {textEl}
         </div>
       )}
 
-      {/* ── Desktop: photo-right layout (text top-left, photo bottom-right) ── */}
+      {/* ── Desktop: photo right ── */}
       {photoSide === "right" && (
-        <div
-          className="hidden md:flex"
-          style={{
-            alignItems: "flex-start",
-            gap: "52px",
-            justifyContent: "flex-end",
-          }}
-        >
+        <div className="hidden md:flex" style={{ alignItems: "flex-start", gap: "40px", justifyContent: "flex-end" }}>
           {textEl}
           {photoEl}
         </div>
