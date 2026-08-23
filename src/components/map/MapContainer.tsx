@@ -21,7 +21,7 @@ interface Props {
 }
 
 function projectHref(slug: string, locale: string): string {
-  return locale === "ca" ? `/projectes/${slug}` : `/${locale}/projectes/${slug}`;
+  return `/${locale}/projectes/${slug}`;
 }
 
 // Zoom ≤ 9  → quadradet sòlid petit (punt)

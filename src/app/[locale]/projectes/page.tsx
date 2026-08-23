@@ -55,62 +55,20 @@ export default async function ProjectesPage({
 
       {/* ── Sub-navegació: Directori visual | Directori territorial ── */}
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        margin: "clamp(24px,3.5vh,44px) var(--margin-page) 0",
-        borderTop: "1px solid #1a1a1a",
-        borderBottom: "1px solid #1a1a1a",
+        display: "flex",
+        gap: "8px",
+        margin: "clamp(16px,2.5vh,28px) var(--margin-page) 0",
+        flexWrap: "wrap",
       }}>
-        {subNav.map((item, i) => (
+        {subNav.map((item) => (
           <Link
             key={item.href}
             href={`/${locale}${item.href}`}
-            className="pu-dir-card"
-            style={{
-              textDecoration: "none",
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              padding: "clamp(22px,3vh,36px) clamp(20px,3vw,40px) clamp(22px,3vh,36px) 0",
-              borderRight: i === 0 ? "1px solid #1a1a1a" : "none",
-              paddingLeft: i === 1 ? "clamp(20px,3vw,40px)" : 0,
-            }}
+            className="pu-dir-btn"
+            style={{ textDecoration: "none" }}
           >
-            <span style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "9px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "#bbb",
-            }}>
-              {item.num}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "clamp(18px,2vw,28px)",
-              fontWeight: 700,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#000",
-            }}>
-              {item.label}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "13px",
-              color: "#888",
-              lineHeight: 1.45,
-            }}>
-              {item.desc}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "13px",
-              color: "#000",
-              marginTop: "4px",
-            }}>
-              →
-            </span>
+            <span className="pu-dir-btn-label">{item.label}</span>
+            <span className="pu-dir-btn-arrow">→</span>
           </Link>
         ))}
       </div>
@@ -118,11 +76,23 @@ export default async function ProjectesPage({
       <ArchiveList projects={projects} locale={locale} />
 
       <style>{`
-        .pu-dir-card { transition: background 200ms ease; }
-        .pu-dir-card:hover { background: #f8f8f6; }
-        @media (max-width: 600px) {
-          .pu-dir-card { padding-left: 0 !important; padding-right: 0 !important; }
+        .pu-dir-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 20px;
+          border: 1px solid #1a1a1a;
+          background: transparent;
+          transition: background 180ms ease, color 180ms ease;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          color: #000;
         }
+        .pu-dir-btn:hover { background: #000; color: #fff; }
+        .pu-dir-btn-arrow { font-size: 11px; opacity: 0.6; transition: opacity 180ms; }
+        .pu-dir-btn:hover .pu-dir-btn-arrow { opacity: 1; }
       `}</style>
     </div>
   );

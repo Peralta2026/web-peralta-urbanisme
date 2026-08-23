@@ -5,11 +5,13 @@ import Link from "next/link";
 import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 
-function localizeHref(href: string, locale: string): string {
-  return `/${locale}${href}`;
+/* ─── URL helper ────────────────────────────────────────────────────────────── */
+
+function projectHref(slug: string, locale: string): string {
+  return `/${locale}/projectes/${slug}`;
 }
 
-/* ─── Tag labels per locale ──────────────────────────────────────────────── */
+/* ─── Tag labels per locale ──────────────────────────────────────────────────── */
 
 const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
   ca: {
@@ -56,7 +58,32 @@ const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
   },
 };
 
-/* ─── UI labels ──────────────────────────────────────────────────────────── */
+/* ─── UI labels ──────────────────────────────────────────────────────────────── */
+
+const TIPUS_VALUES = ["Estudi", "Planejament general", "Planejament derivat", "Altres"] as const;
+type TipusValue = typeof TIPUS_VALUES[number];
+
+const ESCALA_VALUES = ["Barri", "Sector", "Municipi", "Plurimunicipal"] as const;
+type EscalaValue = typeof ESCALA_VALUES[number];
+
+const TIPUS_COLORS: Record<string, string> = {
+  "Estudi":                "#F9EE76",
+  "Planejament general":   "#B4EFC5",
+  "Planejament derivat":   "#A8DEF5",
+  "Altres":                "#F5C0DA",
+};
+
+const TIPUS_LABELS: Record<string, Record<TipusValue, string>> = {
+  ca: { "Estudi": "Estudi", "Planejament general": "Planejament general", "Planejament derivat": "Planejament derivat", "Altres": "Altres" },
+  es: { "Estudi": "Estudio", "Planejament general": "Planeamiento general", "Planejament derivat": "Planeamiento derivado", "Altres": "Otros" },
+  en: { "Estudi": "Study", "Planejament general": "General planning", "Planejament derivat": "Derived planning", "Altres": "Other" },
+};
+
+const ESCALA_LABELS: Record<string, Record<EscalaValue, string>> = {
+  ca: { "Barri": "Barri", "Sector": "Sector", "Municipi": "Municipi", "Plurimunicipal": "Plurimunicipal" },
+  es: { "Barri": "Barrio", "Sector": "Sector", "Municipi": "Municipio", "Plurimunicipal": "Plurimunicipal" },
+  en: { "Barri": "Neighbourhood", "Sector": "Sector", "Municipi": "Municipality", "Plurimunicipal": "Plurimunicipal" },
+};
 
 interface UiStrings {
   filtra: string;
@@ -66,61 +93,215 @@ interface UiStrings {
   clear:  string;
   empty:  string;
   view:   string;
+  filters: string;
+  close:   string;
   col:    { project: string; municipality: string; year: string; tipus: string };
   count:  (n: number) => string;
 }
 
 const UI: Record<Locale, UiStrings> = {
   ca: {
-    filtra: "Filtra per:",
-    tema:   "Temàtica",
-    tipus:  "Tipus",
-    escala: "Escala",
-    clear:  "Esborrar",
-    empty:  "Cap projecte coincideix amb els filtres seleccionats.",
-    view:   "Veure projecte →",
+    filtra:  "Filtra per:",
+    tema:    "Temàtica",
+    tipus:   "Tipus",
+    escala:  "Escala",
+    clear:   "Netejar",
+    empty:   "Cap projecte coincideix amb els filtres seleccionats.",
+    view:    "Veure projecte →",
+    filters: "Filtres",
+    close:   "Tancar",
     col:    { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
     count:  (n) => `${n} projecte${n !== 1 ? "s" : ""}`,
   },
   es: {
-    filtra: "Filtrar por:",
-    tema:   "Temática",
-    tipus:  "Tipo",
-    escala: "Escala",
-    clear:  "Borrar",
-    empty:  "Ningún proyecto coincide con los filtros seleccionados.",
-    view:   "Ver proyecto →",
+    filtra:  "Filtrar por:",
+    tema:    "Temática",
+    tipus:   "Tipo",
+    escala:  "Escala",
+    clear:   "Borrar",
+    empty:   "Ningún proyecto coincide con los filtros seleccionados.",
+    view:    "Ver proyecto →",
+    filters: "Filtros",
+    close:   "Cerrar",
     col:    { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
     count:  (n) => `${n} proyecto${n !== 1 ? "s" : ""}`,
   },
   en: {
-    filtra: "Filter by:",
-    tema:   "Theme",
-    tipus:  "Type",
-    escala: "Scale",
-    clear:  "Clear",
-    empty:  "No projects match the selected filters.",
-    view:   "View project →",
+    filtra:  "Filter by:",
+    tema:    "Theme",
+    tipus:   "Type",
+    escala:  "Scale",
+    clear:   "Clear",
+    empty:   "No projects match the selected filters.",
+    view:    "View project →",
+    filters: "Filters",
+    close:   "Close",
     col:    { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
     count:  (n) => `${n} project${n !== 1 ? "s" : ""}`,
   },
 };
 
-/* ─── Tipus color palette (post-it tones) ────────────────────────────────── */
+/* ─── FilterToggleRow ──────────────────────────────────────────────────────── */
 
-const TIPUS_COLORS: Record<string, string> = {
-  "Estudi":                "#F9EE76",  /* yellow  */
-  "Planejament general":   "#B4EFC5",  /* green   */
-  "Planejament derivat":   "#A8DEF5",  /* cyan    */
-  "Altres":                "#F5C0DA",  /* pink    */
-};
-
-type Dim = "tema" | "tipus" | "escala";
-
-interface Props {
-  projects: Project[];
-  locale:   string;
+function FilterToggleRow({
+  label, active, onToggle, tabIndex: tIdx,
+}: { label: string; active: boolean; onToggle: () => void; tabIndex: number }) {
+  return (
+    <div
+      role="button"
+      tabIndex={tIdx}
+      onClick={onToggle}
+      onKeyDown={(e) => e.key === "Enter" && onToggle()}
+      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 0", cursor: "pointer", outline: "none" }}
+    >
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11.5px", color: active ? "#000" : "#444", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
+        {label}
+      </span>
+      <div style={{
+        width: "12px", height: "12px", borderRadius: "50%",
+        border: `1.5px solid ${active ? "#111" : "#ccc"}`,
+        background: active ? "#111" : "transparent",
+        flexShrink: 0, marginLeft: "10px",
+        transition: "background 180ms ease, border-color 180ms ease",
+      }} />
+    </div>
+  );
 }
+
+/* ─── FilterSectionHead ────────────────────────────────────────────────────── */
+
+function FilterSectionHead({ title }: { title: string }) {
+  return (
+    <div style={{ marginTop: "18px", marginBottom: "4px", paddingBottom: "6px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb" }}>
+        {title}
+      </span>
+    </div>
+  );
+}
+
+/* ─── LeftFilterPanel ──────────────────────────────────────────────────────── */
+
+function LeftFilterPanel({
+  open, locale,
+  activeTema, activeTipus, activeEscala,
+  onToggleTema, onToggleTipus, onToggleEscala,
+  onClear, onClose,
+}: {
+  open: boolean;
+  locale: string;
+  activeTema: Set<TagSlug>;
+  activeTipus: Set<string>;
+  activeEscala: Set<string>;
+  onToggleTema: (t: TagSlug) => void;
+  onToggleTipus: (v: string) => void;
+  onToggleEscala: (v: string) => void;
+  onClear: () => void;
+  onClose: () => void;
+}) {
+  const tagLabels   = TAG_LABELS[locale as Locale] ?? TAG_LABELS.ca;
+  const tipusLabels = TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca;
+  const escalaLabels = ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca;
+  const ui = UI[locale as Locale] ?? UI.ca;
+  const hasAny = activeTema.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
+
+  return (
+    <div
+      aria-hidden={!open}
+      style={{
+        width: open ? "260px" : "0",
+        flexShrink: 0,
+        overflow: "hidden",
+        transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
+        borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
+        position: "relative",
+      }}
+    >
+      <div style={{
+        width: "260px",
+        height: "100%",
+        overflowY: "auto",
+        padding: "20px 22px 32px",
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+      }}>
+        {/* Panel header */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px", flexShrink: 0 }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#999" }}>
+            {ui.filters}
+          </span>
+          <button
+            onClick={onClose}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
+            aria-label="Tancar filtres"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Scrollable list */}
+        <div style={{ flex: 1, overflowY: "auto" }}>
+          {/* Temàtica */}
+          <FilterSectionHead title={ui.tema} />
+          {ALL_TAGS.map((tag, i) => (
+            <div key={tag}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow
+                label={tagLabels[tag]}
+                active={activeTema.has(tag)}
+                tabIndex={open ? 0 : -1}
+                onToggle={() => onToggleTema(tag)}
+              />
+            </div>
+          ))}
+
+          {/* Tipus */}
+          <FilterSectionHead title={ui.tipus} />
+          {TIPUS_VALUES.map((val, i) => (
+            <div key={val}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow
+                label={tipusLabels[val]}
+                active={activeTipus.has(val)}
+                tabIndex={open ? 0 : -1}
+                onToggle={() => onToggleTipus(val)}
+              />
+            </div>
+          ))}
+
+          {/* Escala */}
+          <FilterSectionHead title={ui.escala} />
+          {ESCALA_VALUES.map((val, i) => (
+            <div key={val}>
+              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
+              <FilterToggleRow
+                label={escalaLabels[val]}
+                active={activeEscala.has(val)}
+                tabIndex={open ? 0 : -1}
+                onToggle={() => onToggleEscala(val)}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Clear button */}
+        {hasAny && (
+          <div style={{ flexShrink: 0, marginTop: "14px", paddingTop: "14px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+            <button
+              onClick={onClear}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa" }}
+            >
+              {ui.clear}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─── ArchiveProjectCard ─────────────────────────────────────────────────────── */
 
 function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; locale: Locale; viewLabel: string }) {
   const data = project[locale];
@@ -144,361 +325,227 @@ function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; 
           {[data.municipality, data.year, data.status, data.tipus].filter(Boolean).join(" · ")}
         </p>
         <p className="pu-archive-card-description">{data.descriptionShort}</p>
-        <Link href={localizeHref(`/projectes/${project.slug}`, locale)}>{viewLabel}</Link>
+        <Link href={projectHref(project.slug, locale)}>{viewLabel}</Link>
       </div>
     </div>
   );
 }
 
+/* ─── ArchiveList ────────────────────────────────────────────────────────────── */
+
+interface Props {
+  projects: Project[];
+  locale:   string;
+}
+
 export default function ArchiveList({ projects, locale }: Props) {
   const loc = locale as Locale;
   const ui  = UI[loc];
+  const tagLabels = TAG_LABELS[loc] ?? TAG_LABELS.ca;
 
-  const [activeDim,    setActiveDim]    = useState<Dim | null>(null);
-  const [filterTema,   setFilterTema]   = useState<string>("");
-  const [filterTipus,  setFilterTipus]  = useState<string>("");
-  const [filterEscala, setFilterEscala] = useState<string>("");
+  /* ── Filter state (multi-select) ── */
+  const [panelOpen,    setPanelOpen]    = useState(true);
+  const [activeTema,   setActiveTema]   = useState<Set<TagSlug>>(new Set());
+  const [activeTipus,  setActiveTipus]  = useState<Set<string>>(new Set());
+  const [activeEscala, setActiveEscala] = useState<Set<string>>(new Set());
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
-  /* Options derived from actual data */
-  const temaOptions = ALL_TAGS;
-  const tipusOptions = useMemo(() =>
-    [...new Set(projects.map(p => p[loc].tipus).filter(Boolean))].sort(),
-    [projects, loc]
-  );
-  const escalaOptions = useMemo(() =>
-    [...new Set(projects.map(p => p[loc].status).filter(Boolean))].sort(),
-    [projects, loc]
-  );
+  const toggleTema   = (t: TagSlug) => setActiveTema(p => { const n = new Set(p); n.has(t) ? n.delete(t) : n.add(t); return n; });
+  const toggleTipus  = (v: string) => setActiveTipus(p => { const n = new Set(p); n.has(v) ? n.delete(v) : n.add(v); return n; });
+  const toggleEscala = (v: string) => setActiveEscala(p => { const n = new Set(p); n.has(v) ? n.delete(v) : n.add(v); return n; });
+  const clearAll     = () => { setActiveTema(new Set()); setActiveTipus(new Set()); setActiveEscala(new Set()); };
 
-  /* Filtered list */
+  const hasFilters = activeTema.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
+
+  /* ── Filtered list ── */
   const filtered = useMemo(() => projects.filter(p => {
-    if (filterTema   && !p.tags.includes(filterTema as TagSlug)) return false;
-    if (filterTipus  && p[loc].tipus  !== filterTipus)           return false;
-    if (filterEscala && p[loc].status !== filterEscala)          return false;
-    return true;
-  }), [projects, loc, filterTema, filterTipus, filterEscala]);
-
-  const hasFilters = !!(filterTema || filterTipus || filterEscala);
-  const clearAll   = () => { setFilterTema(""); setFilterTipus(""); setFilterEscala(""); };
-
-  /* Dim helpers */
-  const toggleDim  = (dim: Dim) => setActiveDim(d => d === dim ? null : dim);
-
-  const getDimValue = (dim: Dim) => {
-    if (dim === "tema")   return filterTema  ? TAG_LABELS[loc][filterTema as TagSlug] : "";
-    if (dim === "tipus")  return filterTipus;
-    return filterEscala;
-  };
-
-  const clearDim = (dim: Dim) => {
-    if (dim === "tema")   setFilterTema("");
-    else if (dim === "tipus")  setFilterTipus("");
-    else setFilterEscala("");
-  };
-
-  const getOptions = (): { value: string; label: string }[] => {
-    if (activeDim === "tema")   return temaOptions.map(t => ({ value: t, label: TAG_LABELS[loc][t] }));
-    if (activeDim === "tipus")  return tipusOptions.map(v => ({ value: v, label: v }));
-    return escalaOptions.map(v => ({ value: v, label: v }));
-  };
-
-  const getActiveFilter = () => {
-    if (activeDim === "tema")  return filterTema;
-    if (activeDim === "tipus") return filterTipus;
-    return filterEscala;
-  };
-
-  const setActiveFilter = (value: string) => {
-    const current = getActiveFilter();
-    const next = value === current ? "" : value;
-    if (activeDim === "tema")   setFilterTema(next);
-    else if (activeDim === "tipus")  setFilterTipus(next);
-    else setFilterEscala(next);
-    if (next) setActiveDim(null);
-  };
-
-  const dims: { key: Dim; label: string }[] = [
-    { key: "tema",   label: ui.tema   },
-    { key: "tipus",  label: ui.tipus  },
-    { key: "escala", label: ui.escala },
-  ];
+    const matchTema   = activeTema.size === 0   || p.tags.some(t => activeTema.has(t));
+    const matchTipus  = activeTipus.size === 0  || activeTipus.has(p[loc].tipus);
+    const matchEscala = activeEscala.size === 0 || activeEscala.has(p[loc].status);
+    return matchTema && matchTipus && matchEscala;
+  }), [projects, loc, activeTema, activeTipus, activeEscala]);
 
   return (
     <>
-      {/* ── FILTRA PER ──────────────────────────────────────────────── */}
-      <div className="pu-filter-box" style={{ borderTop: "1px solid rgba(0,0,0,0.10)", borderBottom: "1px solid rgba(0,0,0,0.10)", background: "#fff" }}>
-
-        {/* Main bar */}
+      {/* ── Top bar: filtra per + active chips ─────────────────────────── */}
+      <div
+        className="pu-filter-box"
+        style={{ borderTop: "1px solid rgba(0,0,0,0.10)", borderBottom: "1px solid rgba(0,0,0,0.10)", background: "#fff" }}
+      >
         <div style={{
           padding: "0 clamp(32px, 5vw, 64px)",
           display: "flex",
           alignItems: "center",
-          gap: "clamp(20px, 3.5vw, 48px)",
-          minHeight: "76px",
+          gap: "clamp(16px, 2.5vw, 32px)",
+          minHeight: "60px",
           flexWrap: "wrap",
         }}>
+          {/* Toggle sidebar button */}
+          <button
+            onClick={() => setPanelOpen(f => !f)}
+            style={{
+              fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
+              textTransform: "uppercase", color: panelOpen ? "#000" : "#bbb",
+              background: "none", border: "none", cursor: "pointer", padding: "0 0 2px",
+              borderBottom: panelOpen ? "1px solid #000" : "1px solid transparent",
+              transition: "color 200ms ease, border-color 200ms ease",
+              flexShrink: 0, whiteSpace: "nowrap",
+            }}
+          >
+            {panelOpen ? `← ${ui.close}` : `${ui.filters} +`}
+          </button>
 
-          {/* "Filtra per:" label */}
-          <span style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "rgba(0,0,0,0.35)",
-            whiteSpace: "nowrap",
-            flexShrink: 0,
-          }}>
-            {ui.filtra}
-          </span>
+          {/* Divider */}
+          {hasFilters && <span style={{ color: "rgba(0,0,0,0.12)", fontSize: "10px" }}>|</span>}
 
-          {/* Dimension tabs */}
-          {dims.map(({ key, label }) => {
-            const val    = getDimValue(key);
-            const isOpen = activeDim === key;
-            const hasVal = !!val;
-            const chipColor = key === "tipus" && hasVal ? TIPUS_COLORS[val] : undefined;
-            return hasVal ? (
-              /* Active: pill/capsule chip */
-              <span key={key} style={{ display: "inline-flex", alignItems: "center", gap: "0" }}>
-                <button
-                  onClick={() => toggleDim(key)}
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: "6px",
-                    padding: "5px 8px 5px 12px",
-                    borderRadius: "100px 0 0 100px",
-                    border: "1px solid #1a1a1a",
-                    borderRight: "none",
-                    background: chipColor ?? "#111",
-                    color: chipColor ? "#111" : "#fff",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "9px",
-                    letterSpacing: "0.10em",
-                    textTransform: "uppercase",
-                    fontWeight: 500,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    transition: "opacity 150ms",
-                  }}
-                >
-                  {chipColor && (
-                    <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#111", flexShrink: 0 }} />
-                  )}
-                  {val}
-                </button>
-                <button
-                  onClick={e => { e.stopPropagation(); clearDim(key); if (activeDim === key) setActiveDim(null); }}
-                  style={{
-                    display: "inline-flex", alignItems: "center", justifyContent: "center",
-                    padding: "5px 10px 5px 8px",
-                    borderRadius: "0 100px 100px 0",
-                    border: "1px solid #1a1a1a",
-                    borderLeft: "none",
-                    background: chipColor ?? "#111",
-                    color: chipColor ? "#111" : "#fff",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "14px",
-                    lineHeight: 1,
-                    cursor: "pointer",
-                    transition: "opacity 150ms",
-                  }}
-                  aria-label={`Esborrar ${label}`}
-                >
-                  ×
-                </button>
-              </span>
-            ) : (
-              /* Inactive: plain text tab */
-              <button
-                key={key}
-                onClick={() => toggleDim(key)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  borderBottom: isOpen ? "1px solid #000" : "1px solid transparent",
-                  cursor: "pointer",
-                  padding: "4px 0 3px",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: isOpen ? "#000" : "rgba(0,0,0,0.40)",
-                  fontWeight: isOpen ? 600 : 400,
-                  transition: "color 160ms, border-color 160ms",
-                  whiteSpace: "nowrap",
-                  flexShrink: 0,
-                }}
-              >
-                {label}
+          {/* Active filter chips */}
+          {Array.from(activeTema).map(tag => (
+            <button key={`tag-${tag}`}
+              onClick={() => toggleTema(tag)}
+              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+              {tagLabels[tag]}
+              <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
+            </button>
+          ))}
+          {Array.from(activeTipus).map(val => {
+            const chipColor = TIPUS_COLORS[val];
+            return (
+              <button key={`tipus-${val}`}
+                onClick={() => toggleTipus(val)}
+                style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: chipColor ?? "#111", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: chipColor ? "#111" : "#fff" }}>
+                {(TIPUS_LABELS[loc] ?? TIPUS_LABELS.ca)[val as TipusValue]}
+                <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
               </button>
             );
           })}
+          {Array.from(activeEscala).map(val => (
+            <button key={`escala-${val}`}
+              onClick={() => toggleEscala(val)}
+              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+              {(ESCALA_LABELS[loc] ?? ESCALA_LABELS.ca)[val as EscalaValue]}
+              <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
+            </button>
+          ))}
 
-          {/* Esborrar tot — right edge */}
+          {/* Clear all */}
           {hasFilters && (
             <button
               onClick={clearAll}
-              style={{
-                marginLeft: "auto",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "var(--font-mono)",
-                fontSize: "9px",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#aaa",
-                textDecoration: "underline",
-                flexShrink: 0,
-              }}
+              style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa", textDecoration: "underline", flexShrink: 0 }}
             >
               {ui.clear}
             </button>
           )}
         </div>
-
-        {/* Options panel — expands when a dimension is selected */}
-        {activeDim && (
-          <div style={{
-            borderTop: "1px solid rgba(0,0,0,0.07)",
-            padding: "clamp(20px, 2.5vh, 28px) clamp(32px, 5vw, 64px) clamp(22px, 3vh, 36px)",
-            display: "flex",
-            gap: "6px 0",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}>
-            {getOptions().map((opt, i, arr) => {
-              const isSelected = getActiveFilter() === opt.value;
-              const swatch     = activeDim === "tipus" ? TIPUS_COLORS[opt.value] : undefined;
-              return (
-                <span key={opt.value} style={{ display: "flex", alignItems: "center" }}>
-                  <button
-                    onClick={() => setActiveFilter(opt.value)}
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: "8px",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      padding: "6px 0",
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "clamp(15px, 1.6vw, 20px)",
-                      letterSpacing: "-0.01em",
-                      color: isSelected ? "#000" : "#999",
-                      fontWeight: isSelected ? 650 : 400,
-                      transition: "color 150ms",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {swatch && (
-                      <span style={{
-                        display: "inline-block", width: "10px", height: "10px",
-                        borderRadius: "50%",
-                        background: swatch,
-                        border: isSelected ? "1.5px solid #111" : "1.5px solid transparent",
-                        flexShrink: 0,
-                        transition: "border-color 150ms",
-                      }} />
-                    )}
-                    {opt.label}
-                    {isSelected && <span style={{ fontSize: "12px", opacity: 0.5, marginLeft: "1px" }}>✓</span>}
-                  </button>
-                  {i < arr.length - 1 && (
-                    <span style={{ color: "rgba(0,0,0,0.15)", fontSize: "10px", userSelect: "none", padding: "0 clamp(12px, 1.8vw, 24px)" }}>·</span>
-                  )}
-                </span>
-              );
-            })}
-          </div>
-        )}
       </div>
 
-      {/* ── Llista de projectes ─────────────────────────────────────── */}
-      <div style={{ maxWidth: "1380px", margin: "0 auto", padding: "0 clamp(32px, 5vw, 64px) 88px" }}>
-        {filtered.length === 0 ? (
-          <div style={{ paddingTop: "64px", fontFamily: "var(--font-mono)", fontSize: "13px", color: "#aaa", letterSpacing: "0.04em" }}>
-            {ui.empty}
-          </div>
-        ) : (
-          <>
-            {/* Column headers */}
-            <div className="pu-archive-header" style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "14px 0", borderBottom: "1px solid #e8e8e8", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa" }}>
-              <span>{ui.col.project}</span>
-              <span className="pu-archive-hide-sm">{ui.col.municipality}</span>
-              <span className="pu-archive-hide-sm">{ui.col.year}</span>
-              <span className="pu-archive-hide-sm">{ui.col.tipus}</span>
-              <span />
-            </div>
+      {/* ── Content area: left panel + list ──────────────────────────────── */}
+      <div style={{ display: "flex", alignItems: "flex-start" }}>
 
-            {filtered.map(project => {
-              const d = project[loc];
-              const isExpanded = expandedSlug === project.slug;
-              return (
-                <div key={project.slug}>
-                  <div
-                    className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
-                    data-tipus={d.tipus}
-                    role="button"
-                    tabIndex={0}
-                    aria-expanded={isExpanded}
-                    style={{
-                      display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
-                      padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
-                      cursor: "pointer", transition: "background 200ms ease",
-                      background: isExpanded ? (TIPUS_COLORS[d.tipus] ?? "#f5f5f3") : undefined,
-                    }}
-                    onClick={() => setExpandedSlug(current => current === project.slug ? null : project.slug)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        setExpandedSlug(current => current === project.slug ? null : project.slug);
-                      }
-                    }}
-                  >
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: isExpanded ? 650 : 500, color: "#000", letterSpacing: "-0.01em" }}>
-                      {d.title}
-                    </span>
-                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
-                      {d.municipality}
-                    </span>
-                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
-                      {d.year}
-                    </span>
-                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666", display: "flex", alignItems: "center", gap: "6px" }}>
-                      {TIPUS_COLORS[d.tipus] && (
-                        <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0 }} />
-                      )}
-                      {d.tipus}
-                    </span>
-                    <Link
-                      href={localizeHref(`/projectes/${project.slug}`, locale)}
-                      onClick={(event) => event.stopPropagation()}
-                      style={{ fontFamily: "var(--font-mono)", fontSize: "17px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
-                      aria-label={`Obrir ${d.title}`}
+        {/* Left filter panel */}
+        <LeftFilterPanel
+          open={panelOpen}
+          locale={locale}
+          activeTema={activeTema}
+          activeTipus={activeTipus}
+          activeEscala={activeEscala}
+          onToggleTema={toggleTema}
+          onToggleTipus={toggleTipus}
+          onToggleEscala={toggleEscala}
+          onClear={clearAll}
+          onClose={() => setPanelOpen(false)}
+        />
+
+        {/* Project list */}
+        <div style={{ flex: 1, minWidth: 0, padding: "0 clamp(32px, 5vw, 64px) 88px" }}>
+          {filtered.length === 0 ? (
+            <div style={{ paddingTop: "64px", fontFamily: "var(--font-mono)", fontSize: "13px", color: "#aaa", letterSpacing: "0.04em" }}>
+              {ui.empty}
+            </div>
+          ) : (
+            <>
+              {/* Column headers */}
+              <div
+                className="pu-archive-header"
+                style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "14px 0", borderBottom: "1px solid #e8e8e8", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa" }}
+              >
+                <span>{ui.col.project}</span>
+                <span className="pu-archive-hide-sm">{ui.col.municipality}</span>
+                <span className="pu-archive-hide-sm">{ui.col.year}</span>
+                <span className="pu-archive-hide-sm">{ui.col.tipus}</span>
+                <span />
+              </div>
+
+              {filtered.map(project => {
+                const d = project[loc];
+                const isExpanded = expandedSlug === project.slug;
+                return (
+                  <div key={project.slug}>
+                    <div
+                      className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
+                      data-tipus={d.tipus}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
+                      style={{
+                        display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
+                        padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
+                        cursor: "pointer", transition: "background 200ms ease",
+                        background: isExpanded ? (TIPUS_COLORS[d.tipus] ?? "#f5f5f3") : undefined,
+                      }}
+                      onClick={() => setExpandedSlug(cur => cur === project.slug ? null : project.slug)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setExpandedSlug(cur => cur === project.slug ? null : project.slug);
+                        }
+                      }}
                     >
-                      +
-                    </Link>
-                  </div>
-
-                  {isExpanded && (
-                    <div className="pu-archive-expand">
-                      <ArchiveProjectCard project={project} locale={loc} viewLabel={ui.view} />
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: isExpanded ? 650 : 500, color: "#000", letterSpacing: "-0.01em" }}>
+                        {d.title}
+                      </span>
+                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                        {d.municipality}
+                      </span>
+                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                        {d.year}
+                      </span>
+                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666", display: "flex", alignItems: "center", gap: "6px" }}>
+                        {TIPUS_COLORS[d.tipus] && (
+                          <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0 }} />
+                        )}
+                        {d.tipus}
+                      </span>
+                      {/* Navigate to project — stops row expand */}
+                      <Link
+                        href={projectHref(project.slug, locale)}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ fontFamily: "var(--font-mono)", fontSize: "15px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
+                        aria-label={`Obrir ${d.title}`}
+                      >
+                        →
+                      </Link>
                     </div>
-                  )}
-                </div>
-              );
-            })}
 
-            <div style={{ paddingTop: "16px", fontFamily: "var(--font-mono)", fontSize: "10px", color: "#bbb", letterSpacing: "0.08em" }}>
-              {ui.count(filtered.length)}
-            </div>
-          </>
-        )}
+                    {isExpanded && (
+                      <div className="pu-archive-expand">
+                        <ArchiveProjectCard project={project} locale={loc} viewLabel={ui.view} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              <div style={{ paddingTop: "16px", fontFamily: "var(--font-mono)", fontSize: "10px", color: "#bbb", letterSpacing: "0.08em" }}>
+                {ui.count(filtered.length)}
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <style>{`
-        /* Default hover — applies when no tipus match */
         .pu-archive-row:hover { background: #f5f5f3; }
-        /* Tipus-specific hover colors */
         .pu-archive-row[data-tipus="Estudi"]:hover              { background: #F9EE76; }
         .pu-archive-row[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
         .pu-archive-row[data-tipus="Planejament derivat"]:hover { background: #A8DEF5; }

@@ -458,7 +458,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const [activeFilters, setActiveFilters] = useState<Set<TagSlug>>(new Set());
   const [activeTipus, setActiveTipus]     = useState<Set<string>>(new Set());
   const [activeEscala, setActiveEscala]   = useState<Set<string>>(new Set());
-  const [filterOpen, setFilterOpen]       = useState(false);
+  const [filterOpen, setFilterOpen]       = useState(true);
   const [isMobile, setIsMobile]           = useState(false);
 
   /* ── Computed display projects ── */

@@ -10,10 +10,7 @@ interface Props {
 
 export default function ProjectCard({ project, locale }: Props) {
   const data = project[locale];
-  const href =
-    locale === "ca"
-      ? `/projectes/${project.slug}`
-      : `/${locale}/projectes/${project.slug}`;
+  const href = `/${locale}/projectes/${project.slug}`;
 
   const meta = [data.tipus, data.municipality, data.year]
     .filter(Boolean)

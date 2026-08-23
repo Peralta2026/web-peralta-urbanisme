@@ -12,7 +12,7 @@ const COOLDOWN = 750; // ms entre canvis de carta
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function href(slug: string, locale: Locale) {
-  return locale === "ca" ? `/projectes/${slug}` : `/${locale}/projectes/${slug}`;
+  return `/${locale}/projectes/${slug}`;
 }
 
 // ─── Crossfade AB d'imatges ───────────────────────────────────────────────────
