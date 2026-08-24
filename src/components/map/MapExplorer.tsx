@@ -259,10 +259,9 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
         .pu-map-canvas {
           flex: 1;
           min-width: 0;
-          min-height: 0;
+          min-height: 300px;
           position: relative;
           z-index: 1;
-          isolation: isolate;
         }
         .pu-dir-btn {
           display: inline-flex;

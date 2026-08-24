@@ -63,7 +63,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         zoomControl: false,
       });
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: "abcd",
         maxZoom: 19,
@@ -76,11 +76,18 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
       leafletRef.current = L;
       mapRef.current = map;
 
-      // Auto-fit to show all pins
-      const bounds = markerLayer.getBounds();
-      if (bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
-      }
+      // Auto-fit to show all pins, then invalidate size in case container was 0 at init
+      setTimeout(() => {
+        map.invalidateSize();
+        const bounds = markerLayer.getBounds();
+        if (bounds.isValid()) {
+          map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
+        }
+      }, 100);
+
+      // Keep map sized correctly if the container resizes
+      const ro = new ResizeObserver(() => map.invalidateSize());
+      if (elementRef.current) ro.observe(elementRef.current);
 
       const setZoomMode = () => {
         map.getContainer().dataset.zoomMode = map.getZoom() < 9 ? "territory" : "point";
@@ -92,6 +99,10 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
 
     return () => {
       cancelled = true;
+      if (elementRef.current) {
+        const ro = new ResizeObserver(() => {});
+        ro.disconnect();
+      }
       mapRef.current?.remove();
       mapRef.current = null;
       leafletRef.current = null;
@@ -137,8 +148,8 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         </aside>
       )}
       <style>{`
-        .pu-map { position: absolute; inset: 0; background: #fff; }
-        .pu-map .leaflet-tile-pane { filter: grayscale(1) brightness(1.18) contrast(2.2); }
+        .pu-map { width: 100%; height: 100%; min-height: 300px; background: #f8f8f6; }
+        .pu-map .leaflet-tile-pane { filter: grayscale(1) contrast(1.3); }
         .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 400; width: min(300px, calc(100vw - 40px)); background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden; }
         .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-gray-light); }
