@@ -637,12 +637,14 @@ export default function ArchiveList({ projects, locale }: Props) {
         .pu-archive-card-copy > a {
           align-self: flex-start;
           margin-top: auto;
+          padding-top: 24px;
           padding-bottom: 3px;
-          border-bottom: 1px solid #000;
+          border-bottom: 1.5px solid #000;
           color: #000;
           font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: .12em;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: .10em;
           text-decoration: none;
           text-transform: uppercase;
         }

@@ -386,7 +386,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "1px", alignSelf: "flex-start", marginTop: "14px" }}>
+            style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
             Veure →
           </Link>
         </div>
@@ -404,11 +404,11 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(24px,3.5vh,44px) clamp(24px,2.8vw,40px)", overflow: "hidden" }}>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px,2vw,32px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 20px" }}>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px,2vw,32px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 clamp(28px,4.5vh,52px)" }}>
           {d.title}
         </h3>
         {dataRows.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "7px", marginBottom: "20px" }}>
             {dataRows.map(r => (
               <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
@@ -418,7 +418,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           </div>
         )}
         {descOpen ? (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: 0, flex: 1, overflow: "auto" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: 0, overflow: "auto" }}>
             {d.descriptionShort}
           </p>
         ) : (
@@ -430,7 +430,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "20px", flexShrink: 0 }}>
+          style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
           Veure projecte →
         </Link>
       </div>
