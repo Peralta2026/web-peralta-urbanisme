@@ -19,7 +19,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
   const elementRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<import("leaflet").Map | null>(null);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
-  const markerLayerRef = useRef<import("leaflet").LayerGroup | null>(null);
+  const markerLayerRef = useRef<import("leaflet").FeatureGroup | null>(null);
   const projectsRef = useRef(projects);
   const localeRef = useRef(locale);
 
@@ -70,7 +70,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
       }).addTo(map);
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      const markerLayer = L.layerGroup().addTo(map);
+      const markerLayer = L.featureGroup().addTo(map);
       projectsRef.current.forEach((project) => addMarker(L, markerLayer, project));
       markerLayerRef.current = markerLayer;
       leafletRef.current = L;
