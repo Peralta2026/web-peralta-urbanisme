@@ -621,18 +621,21 @@ export default function ArchiveList({ projects, locale }: Props) {
           line-height: 1.65;
         }
         .pu-archive-card-readmore {
-          align-self: flex-start;
+          align-self: flex-end;
           background: none;
           border: none;
           border-bottom: 1px solid #ccc;
           padding: 0 0 2px;
-          margin-top: 16px;
+          margin-top: clamp(28px, 4.5vh, 52px);
           cursor: pointer;
           font-family: var(--font-mono);
           font-size: 10px;
           letter-spacing: 0.10em;
           text-transform: uppercase;
           color: #888;
+        }
+        .pu-archive-card-description {
+          margin-top: clamp(28px, 4.5vh, 52px) !important;
         }
         .pu-archive-card-copy > a {
           align-self: flex-start;

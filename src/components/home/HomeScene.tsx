@@ -408,7 +408,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           {d.title}
         </h3>
         {dataRows.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "7px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
               <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
@@ -418,13 +418,13 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           </div>
         )}
         {descOpen ? (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: 0, overflow: "auto" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: "clamp(28px,4.5vh,52px) 0 0", overflow: "auto" }}>
             {d.descriptionShort}
           </p>
         ) : (
           <button
             onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px" }}
+            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(28px,4.5vh,52px)" }}
           >
             {fl.readMore}
           </button>
