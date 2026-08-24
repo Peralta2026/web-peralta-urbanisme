@@ -87,9 +87,9 @@ const ESCALA_LABELS: Record<string, Record<EscalaValue, string>> = {
 };
 
 const UI_LABELS: Record<string, { filters: string; close: string; clear: string; noResults: string; explore: string; tematica: string; tipus: string; escala: string }> = {
-  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar tots els projectes", tematica: "Temàtica", tipus: "Tipus", escala: "Escala" },
-  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar todos los proyectos", tematica: "Temática", tipus: "Tipo", escala: "Escala" },
-  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore all projects", tematica: "Theme", tipus: "Type", escala: "Scale" },
+  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar l'arxiu de projectes", tematica: "Temàtica", tipus: "Tipus", escala: "Escala" },
+  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar el archivo de proyectos", tematica: "Temática", tipus: "Tipo", escala: "Escala" },
+  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore the project archive", tematica: "Theme", tipus: "Type", escala: "Scale" },
 };
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
@@ -776,7 +776,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               ref={el => { cardRefs.current[i] = el; }}
               style={{
                 position: "absolute",
-                top: "calc(50% + clamp(36px, 6vh, 64px))",
+                top: "calc(50% + clamp(10px, 2vh, 20px))",
                 left: `calc(50% + ${filterOffset}px)`,
                 width: cardWidth,
                 height: "min(calc(100% - 96px), 560px)",
@@ -796,18 +796,23 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         </div>
 
         {/* ── Explore button ── */}
-        <div style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ flexShrink: 0, height: "64px", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div
             ref={exploreRef}
-            style={{ opacity: 0, transition: "opacity 400ms ease", pointerEvents: "none" }}
+            style={{
+              opacity: 0,
+              transition: "opacity 400ms ease, transform 350ms cubic-bezier(0.22,1,0.36,1)",
+              pointerEvents: "none",
+              transform: `translateX(${filterOffset}px)`,
+            }}
           >
             <Link
               href={`/${locale}/projectes`}
               style={{
                 display: "inline-block", background: "#000", color: "#fff",
-                fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 500,
-                letterSpacing: "0.01em", padding: "15px 34px", borderRadius: "100px",
-                textDecoration: "none", boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
+                fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 500,
+                letterSpacing: "0.01em", padding: "11px 26px", borderRadius: "100px",
+                textDecoration: "none", boxShadow: "0 3px 16px rgba(0,0,0,0.15)",
               }}
             >
               {ui.explore}
