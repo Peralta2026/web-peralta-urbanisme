@@ -7,24 +7,48 @@ import Link from "next/link";
 
 const LOCALES = ["ca", "es", "en"] as const;
 
-const MENU = {
+interface MenuItem {
+  label: string;
+  href:  string;
+  sub?:  { label: string; href: string }[];
+}
+
+const MENU: Record<string, MenuItem[]> = {
   ca: [
-    { label: "Arxiu de Projectes", href: "/projectes" },
-    { label: "Mètode", href: "/principis" },
-    { label: "Persones", href: "/equip" },
-    { label: "Contacte", href: "/contacte" },
+    {
+      label: "Arxiu de Projectes", href: "/projectes",
+      sub: [
+        { label: "Directori visual",      href: "/directori" },
+        { label: "Directori territorial", href: "/mapa"      },
+      ],
+    },
+    { label: "Mètode",   href: "/principis" },
+    { label: "Persones", href: "/equip"     },
+    { label: "Contacte", href: "/contacte"  },
   ],
   es: [
-    { label: "Arxiu de Projectes", href: "/projectes" },
-    { label: "Método", href: "/principis" },
-    { label: "Personas", href: "/equip" },
-    { label: "Contacto", href: "/contacte" },
+    {
+      label: "Arxiu de Projectes", href: "/projectes",
+      sub: [
+        { label: "Directorio visual",      href: "/directori" },
+        { label: "Directorio territorial", href: "/mapa"      },
+      ],
+    },
+    { label: "Método",   href: "/principis" },
+    { label: "Personas", href: "/equip"     },
+    { label: "Contacto", href: "/contacte"  },
   ],
   en: [
-    { label: "Project Archive", href: "/projectes" },
-    { label: "Method", href: "/principis" },
-    { label: "People", href: "/equip" },
-    { label: "Contact", href: "/contacte" },
+    {
+      label: "Project Archive", href: "/projectes",
+      sub: [
+        { label: "Visual directory",      href: "/directori" },
+        { label: "Territorial directory", href: "/mapa"      },
+      ],
+    },
+    { label: "Method",  href: "/principis" },
+    { label: "People",  href: "/equip"     },
+    { label: "Contact", href: "/contacte"  },
   ],
 };
 
@@ -108,10 +132,26 @@ export default function Nav({ locale }: { locale: string }) {
           {links.map((link, index) => {
             const active = cleanPath === link.href || cleanPath.startsWith(`${link.href}/`);
             return (
-              <Link key={link.href} href={localizeHref(link.href, locale)} className={active ? "is-active" : ""} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
-                <small>{String(index + 1).padStart(2, "0")}</small>
-                <span>{link.label}</span>
-              </Link>
+              <div key={link.href} className="pu-menu-item">
+                <Link href={localizeHref(link.href, locale)} className={active ? "is-active" : ""} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+                  <small>{String(index + 1).padStart(2, "0")}</small>
+                  <span>{link.label}</span>
+                </Link>
+                {link.sub && link.sub.map((sub) => {
+                  const subActive = cleanPath === sub.href;
+                  return (
+                    <Link
+                      key={sub.href}
+                      href={localizeHref(sub.href, locale)}
+                      className={`pu-menu-sub-link${subActive ? " is-active" : ""}`}
+                      onClick={() => setOpen(false)}
+                      tabIndex={open ? 0 : -1}
+                    >
+                      {sub.label}
+                    </Link>
+                  );
+                })}
+              </div>
             );
           })}
         </nav>
@@ -142,7 +182,10 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-top a { width: clamp(184px, 22vw, 240px); transform: translateX(-14%); }
         .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; }
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
+        .pu-menu-item { display: flex; flex-direction: column; }
         .pu-menu-links a { display: grid; grid-template-columns: 32px 1fr; align-items: baseline; gap: 12px; padding: 13px 0; color: var(--color-fg); text-decoration: none; }
+        .pu-menu-sub-link { display: block; grid-template-columns: unset; padding: 3px 0 3px 44px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--color-gray-mid); text-decoration: none; transition: color 160ms; }
+        .pu-menu-sub-link:hover, .pu-menu-sub-link.is-active { color: var(--color-fg); }
         .pu-menu-links small { color: var(--color-gray-mid); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; }
         .pu-menu-links span { position: relative; width: fit-content; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
         .pu-menu-links span::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform var(--dur-mid) var(--ease-smooth); }
