@@ -183,13 +183,11 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; }
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
         .pu-menu-item { display: flex; flex-direction: column; }
-        .pu-menu-links a { display: grid; grid-template-columns: 32px 1fr; align-items: baseline; gap: 12px; padding: 13px 0; color: var(--color-fg); text-decoration: none; }
-        .pu-menu-sub-link { display: block; padding: 1px 0 1px 44px; font-family: var(--font-sans); font-size: clamp(24px, 2.6vw, 44px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.05; color: #999; text-decoration: none; transition: color 200ms; }
-        .pu-menu-sub-link:hover, .pu-menu-sub-link.is-active { color: var(--color-fg); }
-        .pu-menu-links small { color: var(--color-gray-mid); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; }
-        .pu-menu-links span { position: relative; width: fit-content; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
-        .pu-menu-links span::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform var(--dur-mid) var(--ease-smooth); }
-        .pu-menu-links a:hover span::after, .pu-menu-links a.is-active span::after { transform: scaleX(1); transform-origin: left; }
+        .pu-menu-links a { display: block; padding: 10px 0; color: var(--color-fg); text-decoration: none; }
+        .pu-menu-links small { display: none; }
+        .pu-menu-links span { font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
+        .pu-menu-links .pu-menu-sub-link { display: block; padding: 2px 0; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -0.035em; line-height: 1.02; color: #999; text-decoration: none; transition: color 200ms; }
+        .pu-menu-links .pu-menu-sub-link:hover, .pu-menu-links .pu-menu-sub-link.is-active { color: var(--color-fg); }
         .pu-menu-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--color-border); }
         .pu-menu-bottom .pu-language-selector { margin: 0; }
         @media (max-width: 1024px) {
@@ -200,13 +198,13 @@ export default function Nav({ locale }: { locale: string }) {
           .pu-site-header > .pu-language-selector { display: none; }
           .pu-profile-trigger { right: var(--margin-mobile); }
           .pu-menu-panel { width: 88vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }
-          .pu-menu-links span { font-size: clamp(26px, 8vw, 40px); }
+          .pu-menu-links span, .pu-menu-links .pu-menu-sub-link { font-size: clamp(26px, 8vw, 40px); }
         }
         @media (max-width: 480px) {
           .pu-menu-panel { width: 100vw; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .pu-menu-panel, .pu-profile-trigger span, .pu-menu-links span::after { transition-duration: 0ms; }
+          .pu-menu-panel, .pu-profile-trigger span { transition-duration: 0ms; }
         }
       `}</style>
     </>
