@@ -278,9 +278,21 @@ function LeftFilterPanel({
 
 /* ─── ArchiveProjectCard ─────────────────────────────────────────────────────── */
 
+const READ_MORE: Record<Locale, string> = { ca: "Llegir més", es: "Leer más", en: "Read more" };
+
 function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; locale: Locale; viewLabel: string }) {
   const data = project[locale];
   const image = project.images[0] || project.coverImage;
+  const [descOpen, setDescOpen] = useState(false);
+
+  const facts = [
+    data.municipality,
+    data.year,
+    data.status,
+    data.tipus,
+    data.ambitM2  ? `${data.ambitM2.toLocaleString("ca-ES")} m²`   : null,
+    data.sostreM2 ? `${data.sostreM2.toLocaleString("ca-ES")} m²st` : null,
+  ].filter(Boolean).join(" · ");
 
   return (
     <div className="pu-archive-card">
@@ -296,10 +308,17 @@ function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; 
             {project.tags.map((tag) => TAG_LABELS[locale][tag]).join(" · ")}
           </p>
         )}
-        <p className="pu-archive-card-facts">
-          {[data.municipality, data.year, data.status, data.tipus].filter(Boolean).join(" · ")}
-        </p>
-        <p className="pu-archive-card-description">{data.descriptionShort}</p>
+        <p className="pu-archive-card-facts">{facts}</p>
+        {descOpen ? (
+          <p className="pu-archive-card-description">{data.descriptionShort}</p>
+        ) : (
+          <button
+            onClick={() => setDescOpen(true)}
+            className="pu-archive-card-readmore"
+          >
+            {READ_MORE[locale]}
+          </button>
+        )}
         <Link href={projectHref(project.slug, locale)}>{viewLabel}</Link>
       </div>
     </div>
@@ -570,12 +589,12 @@ export default function ArchiveList({ projects, locale }: Props) {
           padding: clamp(24px, 3vw, 42px);
         }
         .pu-archive-card-copy h3 {
-          margin: 0 0 14px;
+          margin: 0 0 16px;
           color: #000;
           font-family: var(--font-sans);
-          font-size: clamp(24px, 2.5vw, 38px);
+          font-size: clamp(26px, 2.8vw, 42px);
           font-weight: 700;
-          letter-spacing: -.035em;
+          letter-spacing: -.04em;
           line-height: 1.02;
         }
         .pu-archive-card-tags,
@@ -594,12 +613,26 @@ export default function ArchiveList({ projects, locale }: Props) {
         .pu-archive-card-tags { color: #333; }
         .pu-archive-card-description {
           max-width: 620px;
-          margin: 18px 0 0;
+          margin: 16px 0 0;
           overflow: hidden;
-          color: #555;
+          color: #444;
           font-family: var(--font-sans);
-          font-size: clamp(13px, 1.15vw, 16px);
+          font-size: clamp(14px, 1.2vw, 17px);
           line-height: 1.65;
+        }
+        .pu-archive-card-readmore {
+          align-self: flex-start;
+          background: none;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          padding: 0 0 2px;
+          margin-top: 16px;
+          cursor: pointer;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.10em;
+          text-transform: uppercase;
+          color: #888;
         }
         .pu-archive-card-copy > a {
           align-self: flex-start;

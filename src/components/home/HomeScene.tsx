@@ -62,10 +62,10 @@ const TAG_LABELS: Record<string, Record<TagSlug, string>> = {
   },
 };
 
-const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: string; sostre: string; habitatges: string }> = {
-  ca: { municipi: "Municipi", any: "Any", ambit: "Àmbit m²", sostre: "Sostre m²", habitatges: "Habitatges" },
-  es: { municipi: "Municipio", any: "Año", ambit: "Ámbito m²", sostre: "Techo m²", habitatges: "Viviendas" },
-  en: { municipi: "Municipality", any: "Year", ambit: "Scope m²", sostre: "Floor area m²", habitatges: "Dwellings" },
+const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: string; sostre: string; habitatges: string; readMore: string }> = {
+  ca: { municipi: "Municipi", any: "Any", ambit: "Àmbit", sostre: "Sostre", habitatges: "Habitatges", readMore: "Llegir més" },
+  es: { municipi: "Municipio", any: "Año", ambit: "Ámbito", sostre: "Techo", habitatges: "Viviendas", readMore: "Leer más" },
+  en: { municipi: "Municipality", any: "Year", ambit: "Scope", sostre: "Floor area", habitatges: "Dwellings", readMore: "Read more" },
 };
 
 const TIPUS_VALUES = ["Estudi", "Planejament general", "Planejament derivat", "Altres"] as const;
@@ -344,13 +344,14 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   const fl     = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
+  const [descOpen, setDescOpen] = useState(false);
 
   const dataRows = [
     { label: fl.municipi,    value: d.municipality },
     { label: fl.any,         value: d.year },
-    { label: fl.ambit,       value: isValid(d.ambitM2)    ? d.ambitM2!.toLocaleString("ca-ES")    : null },
-    { label: fl.sostre,      value: isValid(d.sostreM2)   ? d.sostreM2!.toLocaleString("ca-ES")   : null },
-    { label: fl.habitatges,  value: isValid(d.habitatges) ? String(d.habitatges)                  : null },
+    { label: fl.ambit,       value: isValid(d.ambitM2)    ? `${d.ambitM2!.toLocaleString("ca-ES")} m²`   : null },
+    { label: fl.sostre,      value: isValid(d.sostreM2)   ? `${d.sostreM2!.toLocaleString("ca-ES")} m²st` : null },
+    { label: fl.habitatges,  value: isValid(d.habitatges) ? String(d.habitatges)                          : null },
   ].filter(r => isValid(r.value));
 
   /* ── Mobile layout: image top, content bottom ── */
@@ -362,18 +363,30 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
         </div>
-        <div style={{ flex: 1, overflow: "auto", padding: "16px 20px", display: "flex", flexDirection: "column", gap: "2px" }}>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "17px", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 10px" }}>
+        <div style={{ flex: 1, overflow: "auto", padding: "18px 22px", display: "flex", flexDirection: "column", gap: "3px" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "19px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 12px" }}>
             {d.title}
           </h3>
           {dataRows.map(r => (
-            <div key={r.label} style={{ display: "flex", gap: "8px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+            <div key={r.label} style={{ display: "flex", gap: "10px" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
             </div>
           ))}
+          {descOpen ? (
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.6, color: "#444", margin: "10px 0 0" }}>
+              {d.descriptionShort}
+            </p>
+          ) : (
+            <button
+              onClick={() => setDescOpen(true)}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+            >
+              {fl.readMore}
+            </button>
+          )}
           <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "1px", alignSelf: "flex-start", marginTop: "12px" }}>
+            style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "1px", alignSelf: "flex-start", marginTop: "14px" }}>
             Veure →
           </Link>
         </div>
@@ -390,25 +403,34 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", userSelect: "none" }} />
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
-      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(20px,3vh,36px) clamp(18px,2.5vw,32px)", overflow: "hidden" }}>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(17px,1.7vw,26px)", fontWeight: 700, letterSpacing: "-0.025em", lineHeight: 1.1, color: "#000", margin: "0 0 16px" }}>
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(24px,3.5vh,44px) clamp(24px,2.8vw,40px)", overflow: "hidden" }}>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px,2vw,32px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 20px" }}>
           {d.title}
         </h3>
         {dataRows.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px", marginBottom: "16px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "20px" }}>
             {dataRows.map(r => (
-              <div key={r.label} style={{ display: "flex", gap: "12px", alignItems: "baseline" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
               </div>
             ))}
           </div>
         )}
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,13.5px)", lineHeight: 1.7, color: "#555", margin: 0, flex: 1, overflow: "hidden" }}>
-          {d.descriptionShort}
-        </p>
+        {descOpen ? (
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: 0, flex: 1, overflow: "auto" }}>
+            {d.descriptionShort}
+          </p>
+        ) : (
+          <button
+            onClick={() => setDescOpen(true)}
+            style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px" }}
+          >
+            {fl.readMore}
+          </button>
+        )}
         <Link href={`/${locale}/projectes/${project.slug}`}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "9.5px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "20px", flexShrink: 0 }}>
+          style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "20px", flexShrink: 0 }}>
           Veure projecte →
         </Link>
       </div>
