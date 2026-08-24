@@ -184,7 +184,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
         .pu-menu-item { display: flex; flex-direction: column; }
         .pu-menu-links a { display: grid; grid-template-columns: 32px 1fr; align-items: baseline; gap: 12px; padding: 13px 0; color: var(--color-fg); text-decoration: none; }
-        .pu-menu-sub-link { display: block; grid-template-columns: unset; padding: 3px 0 3px 44px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--color-gray-mid); text-decoration: none; transition: color 160ms; }
+        .pu-menu-sub-link { display: block; padding: 1px 0 1px 44px; font-family: var(--font-sans); font-size: clamp(24px, 2.6vw, 44px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.05; color: #999; text-decoration: none; transition: color 200ms; }
         .pu-menu-sub-link:hover, .pu-menu-sub-link.is-active { color: var(--color-fg); }
         .pu-menu-links small { color: var(--color-gray-mid); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; }
         .pu-menu-links span { position: relative; width: fit-content; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
