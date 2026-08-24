@@ -249,14 +249,12 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
 
       <style>{`
         .pu-map-explorer {
-          position: fixed;
-          inset: 0;
-          top: var(--header-height);
           display: flex;
           flex-direction: column;
           background: #fff;
           overflow: hidden;
-          z-index: 1;
+          height: calc(100svh - var(--header-height));
+          width: 100%;
         }
         .pu-map-canvas {
           flex: 1;
