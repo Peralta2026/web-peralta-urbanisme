@@ -203,13 +203,13 @@ function FilterToggleRow({
       tabIndex={tIdx}
       onClick={onToggle}
       onKeyDown={(e) => e.key === "Enter" && onToggle()}
-      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 0", cursor: "pointer", outline: "none" }}
+      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 0", cursor: "pointer", outline: "none" }}
     >
-      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11.5px", color: active ? "#000" : "#444", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: active ? "#000" : "#555", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
         {label}
       </span>
       <div style={{
-        width: "12px", height: "12px", borderRadius: "50%",
+        width: "10px", height: "10px", borderRadius: "50%",
         border: `1.5px solid ${active ? "#111" : "#ccc"}`,
         background: active ? "#111" : "transparent",
         flexShrink: 0, marginLeft: "10px",
@@ -221,8 +221,8 @@ function FilterToggleRow({
 
 function FilterSection({ title, open: panelOpen }: { title: string; open: boolean }) {
   return (
-    <div style={{ marginTop: "18px", marginBottom: "4px", paddingBottom: "6px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb" }}>
+    <div style={{ marginTop: "10px", marginBottom: "1px", paddingBottom: "4px", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc" }}>
         {title}
       </span>
     </div>
@@ -260,55 +260,28 @@ function FilterPanel({
     }}>
       <div style={{
         width: "260px", height: "100%", overflowY: "auto",
-        padding: "20px 22px 32px",
+        padding: "16px 20px 24px var(--margin-page)",
         boxSizing: "border-box",
         background: "#fff",
         borderRight: "1px solid rgba(0,0,0,0.08)",
-        display: "flex", flexDirection: "column",
       }}>
-        {/* Panel header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px", flexShrink: 0 }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#999" }}>
-            {ui.filters.replace(" +", "")}
-          </span>
-          <button
-            onClick={onClose}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
-            aria-label="Tancar filtres"
-          >
-            ×
-          </button>
-        </div>
-
-        {/* Scrollable list */}
-        <div style={{ flex: 1, overflowY: "auto" }}>
           {/* Temàtica */}
           <FilterSection title={ui.tematica} open={open} />
-          {ALL_TAGS.map((tag, i) => (
-            <div key={tag}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow label={tagLabels[tag]} active={active.has(tag)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggle(tag)} />
-            </div>
+          {ALL_TAGS.map((tag) => (
+            <FilterToggleRow key={tag} label={tagLabels[tag]} active={active.has(tag)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggle(tag)} />
           ))}
 
           {/* Tipus */}
           <FilterSection title={ui.tipus} open={open} />
-          {TIPUS_VALUES.map((val, i) => (
-            <div key={val}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow label={tipusLabels[val]} active={activeTipus.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
-            </div>
+          {TIPUS_VALUES.map((val) => (
+            <FilterToggleRow key={val} label={tipusLabels[val]} active={activeTipus.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
           ))}
 
           {/* Escala */}
           <FilterSection title={ui.escala} open={open} />
-          {ESCALA_VALUES.map((val, i) => (
-            <div key={val}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow label={escalaLabels[val]} active={activeEscala.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
-            </div>
+          {ESCALA_VALUES.map((val) => (
+            <FilterToggleRow key={val} label={escalaLabels[val]} active={activeEscala.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
           ))}
-        </div>
 
         {/* Clear button */}
         {hasAny && (
@@ -722,14 +695,16 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             </h2>
             <button
               onClick={() => setFilterOpen(f => !f)}
+              title={filterOpen ? ui.close : ui.filters}
               style={{
-                fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
-                textTransform: "uppercase", color: filterOpen ? "#000" : "#bbb",
-                background: "none", border: "none", cursor: "pointer", padding: "0 0 6px",
-                transition: "color 200ms ease", flexShrink: 0, whiteSpace: "nowrap",
+                fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
+                color: filterOpen ? "#888" : "#bbb",
+                background: "none", border: "none", cursor: "pointer", padding: "2px 0",
+                transition: "color 200ms ease", flexShrink: 0,
+                letterSpacing: "-0.02em",
               }}
             >
-              {filterOpen ? ui.close : ui.filters}
+              {filterOpen ? "‹‹" : "››"}
             </button>
           </div>
 
