@@ -185,9 +185,11 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-item { display: flex; flex-direction: column; }
         .pu-menu-links a { display: block; padding: 10px 0; color: var(--color-fg); text-decoration: none; }
         .pu-menu-links small { display: none; }
-        .pu-menu-links span { font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
-        .pu-menu-links .pu-menu-sub-link { display: block; padding: 1px 0 1px 2rem; font-family: var(--font-sans); font-size: clamp(20px, 2.2vw, 38px); font-weight: 580; letter-spacing: -0.035em; line-height: 1.02; color: #999; text-decoration: none; transition: color 200ms; }
-        .pu-menu-links .pu-menu-sub-link:hover, .pu-menu-links .pu-menu-sub-link.is-active { color: var(--color-fg); }
+        .pu-menu-links span { position: relative; width: fit-content; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
+        .pu-menu-links span::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform var(--dur-mid) var(--ease-smooth); }
+        .pu-menu-links a:hover span::after { transform: scaleX(1); transform-origin: left; }
+        .pu-menu-links .pu-menu-sub-link { display: block; padding: 1px 0 1px 2rem; font-family: var(--font-sans); font-size: clamp(20px, 2.2vw, 38px); font-weight: 580; letter-spacing: -0.035em; line-height: 1.02; color: var(--color-fg); text-decoration: none; }
+        .pu-menu-links .pu-menu-sub-link:hover { opacity: 0.6; }
         .pu-menu-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--color-border); }
         .pu-menu-bottom .pu-language-selector { margin: 0; }
         @media (max-width: 1024px) {
