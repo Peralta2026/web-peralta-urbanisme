@@ -63,7 +63,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         zoomControl: false,
       });
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png", {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png", {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: "abcd",
         maxZoom: 19,
@@ -149,7 +149,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
       )}
       <style>{`
         .pu-map { width: 100%; height: 100%; min-height: 300px; background: #f8f8f6; }
-        .pu-map .leaflet-tile-pane { filter: contrast(1.15) saturate(0.7); }
+        .pu-map .leaflet-tile-pane { filter: saturate(0.28) contrast(1.25) brightness(1.04); }
         .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 400; width: min(300px, calc(100vw - 40px)); background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden; }
         .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-gray-light); }
