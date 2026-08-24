@@ -356,7 +356,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   /* ── Mobile layout: image top, content bottom ── */
   if (mobile) {
     return (
-      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <div style={{ flex: "0 0 58%", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
@@ -383,7 +383,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 
   /* ── Desktop layout: image left, content right ── */
   return (
-    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", borderRadius: "16px", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
+    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
       <div style={{ flex: "0 0 50%", overflow: "hidden", position: "relative" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}

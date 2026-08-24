@@ -543,7 +543,7 @@ export default function ArchiveList({ projects, locale }: Props) {
           height: clamp(400px, 48vw, 560px);
           overflow: hidden;
           border: 1px solid rgba(0,0,0,.12);
-          border-radius: 16px;
+          border-radius: 0;
           background: #fff;
           box-shadow: 0 12px 40px rgba(0,0,0,.08);
         }
@@ -623,7 +623,7 @@ export default function ArchiveList({ projects, locale }: Props) {
           .pu-archive-hide-sm { display: none !important; }
           .pu-filter-box > div:first-child { padding-inline: 20px !important; }
           .pu-filter-box > div { min-height: 44px !important; }
-          .pu-archive-card { height: auto; min-height: 0; flex-direction: column; border-radius: 11px; }
+          .pu-archive-card { height: auto; min-height: 0; flex-direction: column; }
           .pu-archive-card-image { flex: none; width: 100%; height: 280px; }
           .pu-archive-card-divider { width: 100%; height: 1px; }
           .pu-archive-card-copy { min-height: 330px; }
