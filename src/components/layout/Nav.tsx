@@ -186,7 +186,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-links a { display: block; padding: 10px 0; color: var(--color-fg); text-decoration: none; }
         .pu-menu-links small { display: none; }
         .pu-menu-links span { font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -.035em; line-height: 1.02; }
-        .pu-menu-links .pu-menu-sub-link { display: block; padding: 2px 0; font-family: var(--font-sans); font-size: clamp(30px, 3.2vw, 54px); font-weight: 580; letter-spacing: -0.035em; line-height: 1.02; color: #999; text-decoration: none; transition: color 200ms; }
+        .pu-menu-links .pu-menu-sub-link { display: block; padding: 1px 0 1px 2rem; font-family: var(--font-sans); font-size: clamp(20px, 2.2vw, 38px); font-weight: 580; letter-spacing: -0.035em; line-height: 1.02; color: #999; text-decoration: none; transition: color 200ms; }
         .pu-menu-links .pu-menu-sub-link:hover, .pu-menu-links .pu-menu-sub-link.is-active { color: var(--color-fg); }
         .pu-menu-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--color-border); }
         .pu-menu-bottom .pu-language-selector { margin: 0; }
@@ -198,7 +198,8 @@ export default function Nav({ locale }: { locale: string }) {
           .pu-site-header > .pu-language-selector { display: none; }
           .pu-profile-trigger { right: var(--margin-mobile); }
           .pu-menu-panel { width: 88vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }
-          .pu-menu-links span, .pu-menu-links .pu-menu-sub-link { font-size: clamp(26px, 8vw, 40px); }
+          .pu-menu-links span { font-size: clamp(26px, 8vw, 40px); }
+          .pu-menu-links .pu-menu-sub-link { font-size: clamp(18px, 6vw, 30px); }
         }
         @media (max-width: 480px) {
           .pu-menu-panel { width: 100vw; }
