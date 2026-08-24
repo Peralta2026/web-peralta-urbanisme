@@ -4,21 +4,17 @@ import Link from "next/link";
 import type { Locale, Project } from "@/lib/types";
 
 interface ImageCell {
-  slug:   string;
-  title:  string;
-  src:    string;
+  slug:  string;
+  title: string;
+  src:   string;
 }
 
 function buildImageCells(projects: Project[], locale: Locale): ImageCell[] {
-  const cells: ImageCell[] = [];
-  for (const project of projects) {
-    const title  = project[locale].title;
-    const first  = project.coverImage;
-    const second = project.images?.[0] ?? project.coverImage;
-    cells.push({ slug: project.slug, title, src: `/projects/${project.slug}/${first}` });
-    cells.push({ slug: project.slug, title, src: `/projects/${project.slug}/${second}` });
-  }
-  return cells;
+  return projects.map((project) => ({
+    slug:  project.slug,
+    title: project[locale].title,
+    src:   `/projects/${project.slug}/${project.coverImage}`,
+  }));
 }
 
 interface Props {
@@ -43,7 +39,7 @@ export default function VisualGrid({ projects, locale }: Props) {
             <img
               src={cell.src}
               alt={cell.title}
-              loading="lazy"
+              loading={i < 10 ? "eager" : "lazy"}
               className="pu-visual-img"
             />
             <div className="pu-visual-overlay">
@@ -60,7 +56,7 @@ export default function VisualGrid({ projects, locale }: Props) {
         .pu-visual-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: clamp(6px, 0.8vw, 14px);
+          gap: clamp(16px, 1.8vw, 26px);
         }
         .pu-visual-cell {
           position: relative;
@@ -69,6 +65,15 @@ export default function VisualGrid({ projects, locale }: Props) {
           overflow: hidden;
           text-decoration: none;
           background: #f0f0ee;
+          z-index: 1;
+          transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
+                      z-index 0ms 480ms;
+        }
+        .pu-visual-cell:hover {
+          transform: scale(1.07);
+          z-index: 20;
+          transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
+                      z-index 0ms 0ms;
         }
         .pu-visual-img {
           position: absolute;
@@ -77,42 +82,43 @@ export default function VisualGrid({ projects, locale }: Props) {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .pu-visual-cell:hover .pu-visual-img {
-          transform: scale(1.04);
         }
         .pu-visual-overlay {
           position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.52);
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0) 60%);
           display: flex;
           align-items: flex-end;
-          padding: clamp(10px, 1.2vw, 16px);
+          padding: clamp(20px, 2vw, 28px) clamp(10px, 1vw, 14px) clamp(10px, 1vw, 14px);
           opacity: 0;
-          transition: opacity 260ms ease;
+          transition: opacity 280ms ease;
+          pointer-events: none;
         }
         .pu-visual-cell:hover .pu-visual-overlay {
           opacity: 1;
         }
         .pu-visual-overlay span {
-          color: #fff;
+          color: #000;
           font-family: var(--font-sans);
           font-size: clamp(11px, 0.9vw, 14px);
-          font-weight: 600;
-          letter-spacing: -0.01em;
+          font-weight: 700;
+          letter-spacing: -0.02em;
           line-height: 1.2;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.4);
         }
         @media (max-width: 1024px) {
           .pu-visual-grid { grid-template-columns: repeat(4, 1fr); }
         }
         @media (max-width: 640px) {
-          .pu-visual-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+          .pu-visual-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
           .pu-visual-grid-wrap { padding: 20px var(--margin-mobile) 48px; }
         }
         @media (max-width: 400px) {
           .pu-visual-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pu-visual-cell { transition-duration: 0ms !important; }
         }
       `}</style>
     </div>
