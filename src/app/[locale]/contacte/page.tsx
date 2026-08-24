@@ -1,11 +1,6 @@
-import nextDynamic from "next/dynamic";
+import ContactMapLoader from "@/components/contact/ContactMapLoader";
 
 export const dynamic = "force-static";
-
-const ContactMap = nextDynamic(
-  () => import("@/components/contact/ContactMap"),
-  { ssr: false, loading: () => <div style={{ width: "100%", height: "100%", minHeight: "480px", background: "#f2f1ee" }} /> }
-);
 
 export default async function ContactePage({
   params,
@@ -99,7 +94,7 @@ export default async function ContactePage({
 
         {/* ── Columna dreta: mapa ─────────────────────────────────────── */}
         <div className="pu-contacte-map-wrap">
-          <ContactMap />
+          <ContactMapLoader />
         </div>
       </div>
 
