@@ -131,26 +131,11 @@ export default function MetodePage() {
   return (
     <>
       <style>{`
-        /* ── HERO ── */
-        .met-hero {
-          background: var(--color-border);
-          min-height: 52vh;
-          padding-top: var(--header-height);
-          display: flex; flex-direction: column; justify-content: flex-end;
-          padding-bottom: 52px;
-          padding-left: var(--margin-page); padding-right: var(--margin-page);
-          position: relative; overflow: hidden;
-        }
-        /* VIDEO PLACEHOLDER: when ready, add <video> inside .met-hero with these styles:
-           position:absolute; right:0; top:0; height:100%; width:50%;
-           object-fit:contain; mix-blend-mode:screen; pointer-events:none; */
-        .met-hero-title {
-          font-family: var(--font-sans);
-          font-size: clamp(32px, 4.8vw, 68px);
-          font-weight: 700; letter-spacing: -0.04em; line-height: 1.0;
-          color: var(--color-bg);
-          position: relative; z-index: 1;
-        }
+        /* ── HEADER ── */
+        .met-page-header { padding-top: var(--header-height); }
+        .met-page-title-row { padding: clamp(36px,5vh,64px) var(--margin-page) 0; }
+        .met-page-title { font-family: var(--font-sans); font-size: clamp(32px,4vw,60px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: #000; margin: 0; }
+        .met-page-sep { margin: clamp(16px,2.5vh,28px) var(--margin-page) 0; height: 1px; background: rgba(0,0,0,0.08); }
 
         /* ── SECTION LABELS ── */
         .met-section-label {
@@ -174,6 +159,7 @@ export default function MetodePage() {
         .met-value:not(:last-child) { border-right: 1px solid var(--color-border-soft); margin-right: 32px; }
         .met-value-name { font-family: var(--font-sans); font-size: clamp(26px, 2.8vw, 40px); font-weight: 700; letter-spacing: -.035em; line-height: 1.0; margin-bottom: 18px; }
         .met-value-desc { font-family: var(--font-sans); font-size: 14px; line-height: 1.65; color: var(--color-muted); max-width: 260px; }
+        .met-value-desc strong { font-weight: 700; color: var(--color-fg); }
 
         /* ── PILARS ── */
         .met-pilars-top {
@@ -181,7 +167,8 @@ export default function MetodePage() {
           border-bottom: 1px solid rgba(0,0,0,0.08);
         }
         .met-pilars-top .met-section-heading { display: block; margin-bottom: 12px; }
-        .met-pilars-h2 { font-family: var(--font-sans); font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -.02em; margin: 0; }
+        .met-pilars-h2 { font-family: var(--font-sans); font-size: clamp(22px, 2vw, 30px); font-weight: 500; letter-spacing: -.02em; margin: 0; }
+        .met-pilars-h2 strong { font-weight: 900; }
 
         /* Pillar interactive columns */
         .met-pillar-cols { display: flex; min-height: 58vh; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); }
@@ -194,10 +181,11 @@ export default function MetodePage() {
         .met-pillar-word-v {
           position: absolute; inset: 0;
           display: flex; align-items: center; justify-content: center;
-          writing-mode: vertical-rl; transform: rotate(180deg);
-          font-family: var(--font-sans); font-size: clamp(20px,2.4vw,36px); font-weight: 700; letter-spacing: -0.04em;
-          color: var(--color-fg); padding: 32px 8px;
+          writing-mode: horizontal-tb; transform: none;
+          font-family: var(--font-sans); font-size: clamp(16px,1.6vw,24px); font-weight: 700; letter-spacing: -0.03em;
+          color: var(--color-fg); padding: 16px 8px;
           opacity: 1; transition: opacity 0.22s ease; pointer-events: none;
+          text-align: center;
         }
         .met-pillar-col.is-open .met-pillar-word-v,
         .met-pillar-cols.is-locked .met-pillar-word-v { opacity: 0; }
@@ -211,7 +199,7 @@ export default function MetodePage() {
         }
         .met-pillar-col.is-open .met-pillar-expand,
         .met-pillar-cols.is-locked .met-pillar-expand { opacity: 1; pointer-events: auto; }
-        .met-pillar-e-num { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-faint); margin: 0 0 16px; }
+        .met-pillar-e-num { font-family: var(--font-sans); font-size: clamp(28px,3vw,48px); font-weight: 900; letter-spacing: -0.04em; color: var(--color-fg); margin: 0 0 12px; line-height: 1; }
         .met-pillar-e-title { font-family: var(--font-sans); font-size: clamp(22px,2.2vw,34px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
         .met-pillar-e-tagline { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 16px; }
         .met-pillar-e-desc { font-family: var(--font-sans); font-size: 14px; line-height: 1.65; color: var(--color-muted); max-width: 340px; margin: 0; }
@@ -298,17 +286,13 @@ export default function MetodePage() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
-      <section className="met-hero">
-        {/*
-          VIDEO — uncomment when file "pagina metode" is placed in public/videos/:
-          <video autoPlay muted loop playsInline
-            src="/videos/pagina-metode.webm"
-            style={{ position:"absolute", right:0, top:0, height:"100%", width:"50%",
-                     objectFit:"contain", mixBlendMode:"screen", pointerEvents:"none" }} />
-        */}
-        <h1 className="met-hero-title">Com treballem<br />la complexitat</h1>
-      </section>
+      {/* ── HEADER ── */}
+      <div className="met-page-header">
+        <div className="met-page-title-row">
+          <h1 className="met-page-title">Mètode</h1>
+        </div>
+        <div className="met-page-sep" />
+      </div>
 
       {/* ── VALORS FONAMENTALS ── */}
       <section className="met-values">
@@ -316,15 +300,15 @@ export default function MetodePage() {
         <div className="met-values-grid">
           <div className="met-value met-reveal met-d1">
             <h3 className="met-value-name">Esforç</h3>
-            <p className="met-value-desc">Cada encàrrec mereix la màxima dedicació. No hi ha atajos ni solucions prefabricades: el rigor és la base de qualsevol bon resultat.</p>
+            <p className="met-value-desc">Tota la <strong>dedicació</strong> necessària per assolir amb rigor els <strong>objectius</strong> marcats, amb l&apos;<strong>actitud</strong> i el convenciment que el propi trajecte aporta sempre nous <strong>aprenentatges</strong>.</p>
           </div>
           <div className="met-value met-reveal met-d2">
             <h3 className="met-value-name">Talent</h3>
-            <p className="met-value-desc">L&apos;urbanisme demana pensament creatiu i tècnic alhora. Cultivem la capacitat d&apos;imaginar territoris millors i de fer-los possible.</p>
+            <p className="met-value-desc">Confiança en la <strong>creativitat</strong> i la <strong>intuïció</strong> experta com a capacitats que s&apos;alimenten d&apos;una sòlida <strong>experiència</strong> professional, una mirada <strong>reflexiva</strong> i un llapis <strong>audaç</strong>.</p>
           </div>
           <div className="met-value met-reveal met-d3">
             <h3 className="met-value-name">Ètica</h3>
-            <p className="met-value-desc">Treballem per a la col·lectivitat. Cada decisió tècnica té conseqüències sobre persones i llocs: actuem amb responsabilitat i integritat.</p>
+            <p className="met-value-desc">Una vocació sincera i <strong>honesta</strong> per millorar les nostres ciutats i territoris des del principi fonamental de l&apos;<strong>interès públic</strong> i la bona <strong>gestió</strong> d&apos;un marc jurídic complex.</p>
           </div>
         </div>
       </section>
@@ -333,7 +317,7 @@ export default function MetodePage() {
       <section>
         <div className="met-pilars-top met-reveal">
           <p className="met-section-heading">Els nostres pilars urbanístics</p>
-          <h2 className="met-pilars-h2">Tres eixos que orienten cada projecte</h2>
+          <h2 className="met-pilars-h2"><strong>Tres</strong> eixos que orienten cada projecte</h2>
         </div>
         <PillarCols />
       </section>
