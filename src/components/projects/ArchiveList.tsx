@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 
-/* ─── URL helper ────────────────────────────────────────────────────────────── */
+/* ─── URL helper ─────────────────────────────────────────────────────────────── */
 
 function projectHref(slug: string, locale: string): string {
   return `/${locale}/projectes/${slug}`;
@@ -58,6 +58,14 @@ const TAG_LABELS: Record<Locale, Record<TagSlug, string>> = {
   },
 };
 
+/* ─── Field labels for card data rows ───────────────────────────────────────── */
+
+const FIELD_LABELS: Record<Locale, { municipi: string; any: string; ambit: string; sostre: string }> = {
+  ca: { municipi: "Municipi", any: "Any",      ambit: "Àmbit",  sostre: "Sostre"     },
+  es: { municipi: "Municipio", any: "Año",     ambit: "Ámbito", sostre: "Techo"      },
+  en: { municipi: "Municipality", any: "Year", ambit: "Scope",  sostre: "Floor area" },
+};
+
 /* ─── UI labels ──────────────────────────────────────────────────────────────── */
 
 const TIPUS_VALUES = ["Estudi", "Planejament general", "Planejament derivat", "Altres"] as const;
@@ -86,22 +94,23 @@ const ESCALA_LABELS: Record<string, Record<EscalaValue, string>> = {
 };
 
 interface UiStrings {
-  filtra: string;
-  tema:   string;
-  tipus:  string;
-  escala: string;
-  clear:  string;
-  empty:  string;
-  view:   string;
+  tema:    string;
+  tipus:   string;
+  escala:  string;
+  clear:   string;
+  empty:   string;
+  view:    string;
   filters: string;
   close:   string;
-  col:    { project: string; municipality: string; year: string; tipus: string };
-  count:  (n: number) => string;
+  col:     { project: string; municipality: string; year: string; tipus: string };
+  count:   (n: number) => string;
+  title:   string;
+  dirVisual:       string;
+  dirTerritorial:  string;
 }
 
 const UI: Record<Locale, UiStrings> = {
   ca: {
-    filtra:  "Filtra per:",
     tema:    "Temàtica",
     tipus:   "Tipus",
     escala:  "Escala",
@@ -110,11 +119,13 @@ const UI: Record<Locale, UiStrings> = {
     view:    "Veure projecte →",
     filters: "Filtres",
     close:   "Tancar",
-    col:    { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
-    count:  (n) => `${n} projecte${n !== 1 ? "s" : ""}`,
+    col:     { project: "Projecte", municipality: "Municipi", year: "Any", tipus: "Tipus" },
+    count:   (n) => `${n} projecte${n !== 1 ? "s" : ""}`,
+    title:   "Arxiu de Projectes",
+    dirVisual:      "Directori visual →",
+    dirTerritorial: "Directori territorial →",
   },
   es: {
-    filtra:  "Filtrar por:",
     tema:    "Temática",
     tipus:   "Tipo",
     escala:  "Escala",
@@ -123,11 +134,13 @@ const UI: Record<Locale, UiStrings> = {
     view:    "Ver proyecto →",
     filters: "Filtros",
     close:   "Cerrar",
-    col:    { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
-    count:  (n) => `${n} proyecto${n !== 1 ? "s" : ""}`,
+    col:     { project: "Proyecto", municipality: "Municipio", year: "Año", tipus: "Tipo" },
+    count:   (n) => `${n} proyecto${n !== 1 ? "s" : ""}`,
+    title:   "Arxiu de Projectes",
+    dirVisual:      "Directorio visual →",
+    dirTerritorial: "Directorio territorial →",
   },
   en: {
-    filtra:  "Filter by:",
     tema:    "Theme",
     tipus:   "Type",
     escala:  "Scale",
@@ -136,12 +149,17 @@ const UI: Record<Locale, UiStrings> = {
     view:    "View project →",
     filters: "Filters",
     close:   "Close",
-    col:    { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
-    count:  (n) => `${n} project${n !== 1 ? "s" : ""}`,
+    col:     { project: "Project", municipality: "Municipality", year: "Year", tipus: "Type" },
+    count:   (n) => `${n} project${n !== 1 ? "s" : ""}`,
+    title:   "Project Archive",
+    dirVisual:      "Visual directory →",
+    dirTerritorial: "Territorial directory →",
   },
 };
 
-/* ─── FilterToggleRow ──────────────────────────────────────────────────────── */
+const READ_MORE: Record<Locale, string> = { ca: "Llegir més", es: "Leer más", en: "Read more" };
+
+/* ─── FilterToggleRow ────────────────────────────────────────────────────────── */
 
 function FilterToggleRow({
   label, active, onToggle, tabIndex: tIdx,
@@ -168,7 +186,7 @@ function FilterToggleRow({
   );
 }
 
-/* ─── FilterSectionHead ────────────────────────────────────────────────────── */
+/* ─── FilterSectionHead ──────────────────────────────────────────────────────── */
 
 function FilterSectionHead({ title }: { title: string }) {
   return (
@@ -180,13 +198,13 @@ function FilterSectionHead({ title }: { title: string }) {
   );
 }
 
-/* ─── LeftFilterPanel ──────────────────────────────────────────────────────── */
+/* ─── LeftFilterPanel ────────────────────────────────────────────────────────── */
 
 function LeftFilterPanel({
   open, locale,
   activeTema, activeTipus, activeEscala,
   onToggleTema, onToggleTipus, onToggleEscala,
-  onClear, onClose,
+  onClear,
 }: {
   open: boolean;
   locale: string;
@@ -197,11 +215,10 @@ function LeftFilterPanel({
   onToggleTipus: (v: string) => void;
   onToggleEscala: (v: string) => void;
   onClear: () => void;
-  onClose: () => void;
 }) {
-  const tagLabels   = TAG_LABELS[locale as Locale] ?? TAG_LABELS.ca;
-  const tipusLabels = TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca;
-  const escalaLabels = ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca;
+  const tagLabels    = TAG_LABELS[locale as Locale]   ?? TAG_LABELS.ca;
+  const tipusLabels  = TIPUS_LABELS[locale]            ?? TIPUS_LABELS.ca;
+  const escalaLabels = ESCALA_LABELS[locale]           ?? ESCALA_LABELS.ca;
   const ui = UI[locale as Locale] ?? UI.ca;
   const hasAny = activeTema.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
 
@@ -214,14 +231,13 @@ function LeftFilterPanel({
         overflow: "hidden",
         transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
         borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
-        position: "relative",
       }}
     >
       <div style={{
         width: "260px",
         height: "100%",
         overflowY: "auto",
-        padding: "16px 20px 24px",
+        padding: "16px 20px 24px var(--margin-page)",
         boxSizing: "border-box",
       }}>
         {/* Temàtica */}
@@ -278,21 +294,20 @@ function LeftFilterPanel({
 
 /* ─── ArchiveProjectCard ─────────────────────────────────────────────────────── */
 
-const READ_MORE: Record<Locale, string> = { ca: "Llegir més", es: "Leer más", en: "Read more" };
-
 function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; locale: Locale; viewLabel: string }) {
   const data = project[locale];
   const image = project.images[0] || project.coverImage;
   const [descOpen, setDescOpen] = useState(false);
+  const fl = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
 
-  const facts = [
-    data.municipality,
-    data.year,
-    data.status,
-    data.tipus,
-    data.ambitM2  ? `${data.ambitM2.toLocaleString("ca-ES")} m²`   : null,
-    data.sostreM2 ? `${data.sostreM2.toLocaleString("ca-ES")} m²st` : null,
-  ].filter(Boolean).join(" · ");
+  const dataRows = [
+    { label: fl.municipi, value: data.municipality },
+    { label: fl.any,      value: data.year ? String(data.year) : null },
+    { label: fl.ambit,    value: data.ambitM2  ? `${data.ambitM2.toLocaleString("ca-ES")} m²`   : null },
+    { label: fl.sostre,   value: data.sostreM2 ? `${data.sostreM2.toLocaleString("ca-ES")} m²st` : null },
+  ].filter((r): r is { label: string; value: string } =>
+    r.value !== null && r.value !== "" && r.value !== "-" && r.value !== "No aplica"
+  );
 
   return (
     <div className="pu-archive-card">
@@ -303,12 +318,16 @@ function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; 
       <div className="pu-archive-card-divider" />
       <div className="pu-archive-card-copy">
         <h3>{data.title}</h3>
-        {project.tags.length > 0 && (
-          <p className="pu-archive-card-tags">
-            {project.tags.map((tag) => TAG_LABELS[locale][tag]).join(" · ")}
-          </p>
+        {dataRows.length > 0 && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
+            {dataRows.map(r => (
+              <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              </div>
+            ))}
+          </div>
         )}
-        <p className="pu-archive-card-facts">{facts}</p>
         {descOpen ? (
           <p className="pu-archive-card-description">{data.descriptionShort}</p>
         ) : (
@@ -360,40 +379,61 @@ export default function ArchiveList({ projects, locale }: Props) {
   }), [projects, loc, activeTema, activeTipus, activeEscala]);
 
   return (
-    <>
-      {/* ── Top bar: filtra per + active chips ─────────────────────────── */}
-      <div
-        className="pu-filter-box"
-        style={{ borderTop: "1px solid rgba(0,0,0,0.10)", borderBottom: "1px solid rgba(0,0,0,0.10)", background: "#fff" }}
-      >
-        <div style={{
-          padding: "0 var(--margin-page)",
-          display: "flex",
-          alignItems: "center",
-          gap: "20px",
-          minHeight: "52px",
-          flexWrap: "wrap",
-        }}>
-          {/* Toggle sidebar button — just two small arrows */}
+    <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
+
+      {/* ── Capçalera: títol + toggle (esquerra) · botones dir (dreta) ── */}
+      <div style={{
+        padding: "clamp(36px,5vh,64px) var(--margin-page) 0",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        gap: "24px",
+        flexWrap: "wrap",
+      }}>
+        {/* Esquerra: títol + toggle */}
+        <div style={{ display: "flex", alignItems: "flex-end", gap: "18px" }}>
+          <h1 style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(32px,4vw,60px)",
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            color: "#000",
+            margin: 0,
+            flexShrink: 0,
+          }}>
+            {ui.title}
+          </h1>
           <button
             onClick={() => setPanelOpen(f => !f)}
             title={panelOpen ? ui.close : ui.filters}
             style={{
               fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
               color: panelOpen ? "#888" : "#bbb",
-              background: "none", border: "none", cursor: "pointer", padding: "2px 0",
-              transition: "color 200ms ease",
-              flexShrink: 0,
+              background: "none", border: "none", cursor: "pointer",
+              padding: "0 0 5px",
+              transition: "color 200ms ease", flexShrink: 0,
               letterSpacing: "-0.02em",
             }}
           >
-            {panelOpen ? "‹‹" : "››"}
+            {panelOpen ? "‹‹" : "»»"}
           </button>
+        </div>
 
-          {/* Divider */}
-          {hasFilters && <span style={{ color: "rgba(0,0,0,0.12)", fontSize: "10px" }}>|</span>}
+        {/* Dreta: botons Directori */}
+        <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
+          <Link href={`/${locale}/directori`} className="pu-dir-btn">
+            {ui.dirVisual}
+          </Link>
+          <Link href={`/${locale}/mapa`} className="pu-dir-btn">
+            {ui.dirTerritorial}
+          </Link>
+        </div>
+      </div>
 
-          {/* Active filter chips */}
+      {/* ── Active filter chips ── */}
+      {hasFilters && (
+        <div style={{ padding: "10px var(--margin-page) 0", display: "flex", flexWrap: "wrap", gap: "6px", alignItems: "center" }}>
           {Array.from(activeTema).map(tag => (
             <button key={`tag-${tag}`}
               onClick={() => toggleTema(tag)}
@@ -421,18 +461,17 @@ export default function ArchiveList({ projects, locale }: Props) {
               <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
             </button>
           ))}
-
-          {/* Clear all */}
-          {hasFilters && (
-            <button
-              onClick={clearAll}
-              style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa", textDecoration: "underline", flexShrink: 0 }}
-            >
-              {ui.clear}
-            </button>
-          )}
+          <button
+            onClick={clearAll}
+            style={{ marginLeft: "4px", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa", textDecoration: "underline" }}
+          >
+            {ui.clear}
+          </button>
         </div>
-      </div>
+      )}
+
+      {/* ── Separator ── */}
+      <div style={{ margin: "clamp(16px,2.5vh,28px) var(--margin-page) 0", height: "1px", background: "rgba(0,0,0,0.08)" }} />
 
       {/* ── Content area: left panel + list ──────────────────────────────── */}
       <div style={{ display: "flex", alignItems: "flex-start" }}>
@@ -448,7 +487,6 @@ export default function ArchiveList({ projects, locale }: Props) {
           onToggleTipus={toggleTipus}
           onToggleEscala={toggleEscala}
           onClear={clearAll}
-          onClose={() => setPanelOpen(false)}
         />
 
         {/* Project list */}
@@ -515,7 +553,7 @@ export default function ArchiveList({ projects, locale }: Props) {
                         )}
                         {d.tipus}
                       </span>
-                      {/* Navigate to project — stops row expand */}
+                      {/* Navigate to project */}
                       <Link
                         href={projectHref(project.slug, locale)}
                         onClick={(e) => e.stopPropagation()}
@@ -544,6 +582,23 @@ export default function ArchiveList({ projects, locale }: Props) {
       </div>
 
       <style>{`
+        .pu-dir-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 9px 18px;
+          border: 1px solid #1a1a1a;
+          background: transparent;
+          transition: background 180ms ease, color 180ms ease;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: #000;
+          text-decoration: none;
+        }
+        .pu-dir-btn:hover { background: #000; color: #fff; }
         .pu-archive-row:hover { background: #f5f5f3; }
         .pu-archive-row[data-tipus="Estudi"]:hover              { background: #F9EE76; }
         .pu-archive-row[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
@@ -589,35 +644,21 @@ export default function ArchiveList({ projects, locale }: Props) {
           padding: clamp(24px, 3vw, 42px);
         }
         .pu-archive-card-copy h3 {
-          margin: 0 0 16px;
+          margin: 0 0 clamp(28px, 4.5vh, 52px);
           color: #000;
           font-family: var(--font-sans);
-          font-size: clamp(26px, 2.8vw, 42px);
+          font-size: clamp(22px, 2.4vw, 36px);
           font-weight: 700;
           letter-spacing: -.04em;
           line-height: 1.02;
         }
-        .pu-archive-card-tags,
-        .pu-archive-card-facts {
-          margin: 0 0 8px;
-          overflow: hidden;
-          color: #777;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: .1em;
-          line-height: 1.45;
-          text-overflow: ellipsis;
-          text-transform: uppercase;
-          white-space: nowrap;
-        }
-        .pu-archive-card-tags { color: #333; }
         .pu-archive-card-description {
           max-width: 620px;
-          margin: 16px 0 0;
-          overflow: hidden;
+          margin-top: clamp(28px, 4.5vh, 52px) !important;
+          overflow: auto;
           color: #444;
           font-family: var(--font-sans);
-          font-size: clamp(14px, 1.2vw, 17px);
+          font-size: clamp(13px, 1.1vw, 16px);
           line-height: 1.65;
         }
         .pu-archive-card-readmore {
@@ -633,9 +674,6 @@ export default function ArchiveList({ projects, locale }: Props) {
           letter-spacing: 0.10em;
           text-transform: uppercase;
           color: #888;
-        }
-        .pu-archive-card-description {
-          margin-top: clamp(28px, 4.5vh, 52px) !important;
         }
         .pu-archive-card-copy > a {
           align-self: flex-start;
@@ -659,8 +697,6 @@ export default function ArchiveList({ projects, locale }: Props) {
           .pu-archive-row    { grid-template-columns: 1fr 32px !important; }
           .pu-archive-header { display: none !important; }
           .pu-archive-hide-sm { display: none !important; }
-          .pu-filter-box > div:first-child { padding-inline: 20px !important; }
-          .pu-filter-box > div { min-height: 44px !important; }
           .pu-archive-card { height: auto; min-height: 0; flex-direction: column; }
           .pu-archive-card-image { flex: none; width: 100%; height: 280px; }
           .pu-archive-card-divider { width: 100%; height: 1px; }
@@ -670,6 +706,6 @@ export default function ArchiveList({ projects, locale }: Props) {
           .pu-archive-expand { animation: none; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
