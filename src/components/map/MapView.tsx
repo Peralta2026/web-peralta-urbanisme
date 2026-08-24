@@ -76,6 +76,12 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
       leafletRef.current = L;
       mapRef.current = map;
 
+      // Auto-fit to show all pins
+      const bounds = markerLayer.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
+      }
+
       const setZoomMode = () => {
         map.getContainer().dataset.zoomMode = map.getZoom() < 9 ? "territory" : "point";
       };
@@ -131,7 +137,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         </aside>
       )}
       <style>{`
-        .pu-map { width: 100%; height: 100%; background: #fff; }
+        .pu-map { position: absolute; inset: 0; background: #fff; }
         .pu-map .leaflet-tile-pane { filter: grayscale(1) brightness(1.18) contrast(2.2); }
         .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 400; width: min(300px, calc(100vw - 40px)); background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden; }
         .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
@@ -159,7 +165,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         .pu-project-marker:hover { transform: scale(1.12); z-index: 5; }
         .pu-map[data-zoom-mode="territory"] .pu-project-marker { transform: scale(.72); }
         .pu-map[data-zoom-mode="territory"] .pu-project-marker i { opacity: 0; }
-        .pu-project-tooltip { border: 1px solid #111; border-radius: 0; box-shadow: none; padding: 10px 12px; background: rgba(255,255,255,.96); color: #111; }
+        .pu-project-tooltip { border: 1px solid #111; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); padding: 10px 12px; background: rgba(255,255,255,.97); color: #111; }
         .pu-project-tooltip::before { display: none; }
         .pu-project-tooltip strong, .pu-project-tooltip span { display: block; }
         .pu-project-tooltip strong { max-width: 220px; font-family: var(--font-sans); font-size: 12px; line-height: 1.3; }
