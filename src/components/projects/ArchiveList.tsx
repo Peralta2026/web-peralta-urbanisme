@@ -152,13 +152,13 @@ function FilterToggleRow({
       tabIndex={tIdx}
       onClick={onToggle}
       onKeyDown={(e) => e.key === "Enter" && onToggle()}
-      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 0", cursor: "pointer", outline: "none" }}
+      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 0", cursor: "pointer", outline: "none" }}
     >
-      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11.5px", color: active ? "#000" : "#444", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: active ? "#000" : "#555", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
         {label}
       </span>
       <div style={{
-        width: "12px", height: "12px", borderRadius: "50%",
+        width: "10px", height: "10px", borderRadius: "50%",
         border: `1.5px solid ${active ? "#111" : "#ccc"}`,
         background: active ? "#111" : "transparent",
         flexShrink: 0, marginLeft: "10px",
@@ -172,8 +172,8 @@ function FilterToggleRow({
 
 function FilterSectionHead({ title }: { title: string }) {
   return (
-    <div style={{ marginTop: "18px", marginBottom: "4px", paddingBottom: "6px", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#bbb" }}>
+    <div style={{ marginTop: "10px", marginBottom: "1px", paddingBottom: "4px", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc" }}>
         {title}
       </span>
     </div>
@@ -221,76 +221,51 @@ function LeftFilterPanel({
         width: "260px",
         height: "100%",
         overflowY: "auto",
-        padding: "20px 22px 32px",
+        padding: "16px 20px 24px",
         boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
       }}>
-        {/* Panel header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px", flexShrink: 0 }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#999" }}>
-            {ui.filters}
-          </span>
-          <button
-            onClick={onClose}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", color: "#bbb", fontSize: "16px", lineHeight: 1, fontFamily: "var(--font-sans)" }}
-            aria-label="Tancar filtres"
-          >
-            ×
-          </button>
-        </div>
+        {/* Temàtica */}
+        <FilterSectionHead title={ui.tema} />
+        {ALL_TAGS.map((tag) => (
+          <FilterToggleRow
+            key={tag}
+            label={tagLabels[tag]}
+            active={activeTema.has(tag)}
+            tabIndex={open ? 0 : -1}
+            onToggle={() => onToggleTema(tag)}
+          />
+        ))}
 
-        {/* Scrollable list */}
-        <div style={{ flex: 1, overflowY: "auto" }}>
-          {/* Temàtica */}
-          <FilterSectionHead title={ui.tema} />
-          {ALL_TAGS.map((tag, i) => (
-            <div key={tag}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow
-                label={tagLabels[tag]}
-                active={activeTema.has(tag)}
-                tabIndex={open ? 0 : -1}
-                onToggle={() => onToggleTema(tag)}
-              />
-            </div>
-          ))}
+        {/* Tipus */}
+        <FilterSectionHead title={ui.tipus} />
+        {TIPUS_VALUES.map((val) => (
+          <FilterToggleRow
+            key={val}
+            label={tipusLabels[val]}
+            active={activeTipus.has(val)}
+            tabIndex={open ? 0 : -1}
+            onToggle={() => onToggleTipus(val)}
+          />
+        ))}
 
-          {/* Tipus */}
-          <FilterSectionHead title={ui.tipus} />
-          {TIPUS_VALUES.map((val, i) => (
-            <div key={val}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow
-                label={tipusLabels[val]}
-                active={activeTipus.has(val)}
-                tabIndex={open ? 0 : -1}
-                onToggle={() => onToggleTipus(val)}
-              />
-            </div>
-          ))}
-
-          {/* Escala */}
-          <FilterSectionHead title={ui.escala} />
-          {ESCALA_VALUES.map((val, i) => (
-            <div key={val}>
-              {i > 0 && <div style={{ height: "1px", background: "rgba(0,0,0,0.05)" }} />}
-              <FilterToggleRow
-                label={escalaLabels[val]}
-                active={activeEscala.has(val)}
-                tabIndex={open ? 0 : -1}
-                onToggle={() => onToggleEscala(val)}
-              />
-            </div>
-          ))}
-        </div>
+        {/* Escala */}
+        <FilterSectionHead title={ui.escala} />
+        {ESCALA_VALUES.map((val) => (
+          <FilterToggleRow
+            key={val}
+            label={escalaLabels[val]}
+            active={activeEscala.has(val)}
+            tabIndex={open ? 0 : -1}
+            onToggle={() => onToggleEscala(val)}
+          />
+        ))}
 
         {/* Clear button */}
         {hasAny && (
-          <div style={{ flexShrink: 0, marginTop: "14px", paddingTop: "14px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
             <button
               onClick={onClear}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa" }}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb" }}
             >
               {ui.clear}
             </button>
@@ -373,26 +348,27 @@ export default function ArchiveList({ projects, locale }: Props) {
         style={{ borderTop: "1px solid rgba(0,0,0,0.10)", borderBottom: "1px solid rgba(0,0,0,0.10)", background: "#fff" }}
       >
         <div style={{
-          padding: "0 clamp(32px, 5vw, 64px)",
+          padding: "0 var(--margin-page)",
           display: "flex",
           alignItems: "center",
-          gap: "clamp(16px, 2.5vw, 32px)",
-          minHeight: "60px",
+          gap: "20px",
+          minHeight: "52px",
           flexWrap: "wrap",
         }}>
-          {/* Toggle sidebar button */}
+          {/* Toggle sidebar button — just two small arrows */}
           <button
             onClick={() => setPanelOpen(f => !f)}
+            title={panelOpen ? ui.close : ui.filters}
             style={{
-              fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em",
-              textTransform: "uppercase", color: panelOpen ? "#000" : "#bbb",
-              background: "none", border: "none", cursor: "pointer", padding: "0 0 2px",
-              borderBottom: panelOpen ? "1px solid #000" : "1px solid transparent",
-              transition: "color 200ms ease, border-color 200ms ease",
-              flexShrink: 0, whiteSpace: "nowrap",
+              fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
+              color: panelOpen ? "#888" : "#bbb",
+              background: "none", border: "none", cursor: "pointer", padding: "2px 0",
+              transition: "color 200ms ease",
+              flexShrink: 0,
+              letterSpacing: "-0.02em",
             }}
           >
-            {panelOpen ? `← ${ui.close}` : `${ui.filters} +`}
+            {panelOpen ? "‹‹" : "››"}
           </button>
 
           {/* Divider */}
@@ -457,7 +433,11 @@ export default function ArchiveList({ projects, locale }: Props) {
         />
 
         {/* Project list */}
-        <div style={{ flex: 1, minWidth: 0, padding: "0 clamp(32px, 5vw, 64px) 88px" }}>
+        <div style={{
+          flex: 1, minWidth: 0,
+          padding: `0 var(--margin-page) 88px ${panelOpen ? "28px" : "var(--margin-page)"}`,
+          transition: "padding-left 350ms cubic-bezier(0.22,1,0.36,1)",
+        }}>
           {filtered.length === 0 ? (
             <div style={{ paddingTop: "64px", fontFamily: "var(--font-mono)", fontSize: "13px", color: "#aaa", letterSpacing: "0.04em" }}>
               {ui.empty}
@@ -642,6 +622,7 @@ export default function ArchiveList({ projects, locale }: Props) {
           .pu-archive-header { display: none !important; }
           .pu-archive-hide-sm { display: none !important; }
           .pu-filter-box > div:first-child { padding-inline: 20px !important; }
+          .pu-filter-box > div { min-height: 44px !important; }
           .pu-archive-card { height: auto; min-height: 0; flex-direction: column; border-radius: 11px; }
           .pu-archive-card-image { flex: none; width: 100%; height: 280px; }
           .pu-archive-card-divider { width: 100%; height: 1px; }
