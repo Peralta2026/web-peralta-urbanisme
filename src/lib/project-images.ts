@@ -1,5 +1,6 @@
 import path from "node:path";
-import sharp from "sharp";
+import fs from "node:fs";
+import sizeOf from "image-size";
 
 export interface ProjectImageData {
   file: string;
@@ -13,21 +14,19 @@ export async function getProjectImages(
   slug: string,
   files: string[],
 ): Promise<ProjectImageData[]> {
-  return Promise.all(
-    files.map(async (file) => {
-      try {
-        const metadata = await sharp(
-          path.join(process.cwd(), "public", "projects", slug, file),
-        ).metadata();
-
-        return {
-          file,
-          width: metadata.width ?? FALLBACK_SIZE.width,
-          height: metadata.height ?? FALLBACK_SIZE.height,
-        };
-      } catch {
-        return { file, ...FALLBACK_SIZE };
-      }
-    }),
-  );
+  return files.map((file) => {
+    try {
+      const filePath = path.join(process.cwd(), "public", "projects", slug, file);
+      if (!fs.existsSync(filePath)) return { file, ...FALLBACK_SIZE };
+      const buffer = fs.readFileSync(filePath);
+      const { width, height } = sizeOf(buffer);
+      return {
+        file,
+        width:  width  ?? FALLBACK_SIZE.width,
+        height: height ?? FALLBACK_SIZE.height,
+      };
+    } catch {
+      return { file, ...FALLBACK_SIZE };
+    }
+  });
 }

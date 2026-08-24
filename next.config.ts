@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/webp"],
   },
-  serverExternalPackages: ["sharp"],
 };
 
 export default withNextIntl(nextConfig);
