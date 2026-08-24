@@ -249,19 +249,20 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
 
       <style>{`
         .pu-map-explorer {
-          height: 100svh;
-          padding-top: var(--header-height);
+          position: fixed;
+          inset: 0;
+          top: var(--header-height);
           display: flex;
           flex-direction: column;
           background: #fff;
           overflow: hidden;
+          z-index: 1;
         }
         .pu-map-canvas {
           flex: 1;
           min-width: 0;
-          min-height: 300px;
           position: relative;
-          z-index: 1;
+          overflow: hidden;
         }
         .pu-dir-btn {
           display: inline-flex;
