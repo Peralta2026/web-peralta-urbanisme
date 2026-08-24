@@ -7,7 +7,7 @@ function L(locale: string, path: string) {
 
 function IconInstagram() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-label="Instagram">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-label="Instagram">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r="0.1" fill="currentColor" strokeWidth="2.5"/>
@@ -17,7 +17,7 @@ function IconInstagram() {
 
 function IconLinkedin() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-label="LinkedIn">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-label="LinkedIn">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
       <rect x="2" y="9" width="4" height="12"/>
       <circle cx="4" cy="4" r="2"/>
@@ -38,7 +38,7 @@ export default function Footer({ locale }: { locale: string }) {
               alt="Peralta Urbanisme"
               width={280}
               height={70}
-              style={{ filter: "invert(1)", width: "100%", height: "auto" }}
+              style={{ filter: "invert(1)", display: "block", width: "100%", height: "auto" }}
             />
           </Link>
           <p className="pu-footer-tagline">
@@ -61,9 +61,14 @@ export default function Footer({ locale }: { locale: string }) {
 
         {/* ── Col 3: Contacte ── */}
         <div className="pu-footer-contact-col">
-          <p className="pu-footer-col-label">Contacte</p>
-          <a href="tel:+34935389893" className="pu-footer-phone">
+          <Link href={L(locale, "/contacte")} className="pu-footer-nav-sub-link">
+            Contacte
+          </Link>
+          <a href="tel:+34935389893" className="pu-footer-contact-detail">
             +34 935 389 893
+          </a>
+          <a href="mailto:info@peraltaurbanisme.com" className="pu-footer-contact-detail">
+            info@peraltaurbanisme.com
           </a>
           <div className="pu-footer-social">
             <a href="https://www.instagram.com/peraltaurbanisme" target="_blank" rel="noopener noreferrer" className="pu-footer-social-icon" aria-label="Instagram">
@@ -106,20 +111,28 @@ export default function Footer({ locale }: { locale: string }) {
         }
 
         /* Brand */
-        .pu-footer-brand { display: flex; flex-direction: column; gap: 0; }
-        .pu-footer-logo-link { display: block; width: clamp(180px, 20vw, 280px); margin-bottom: 22px; }
-        .pu-footer-logo-link img { display: block; width: 100%; height: auto; }
+        .pu-footer-brand {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        .pu-footer-logo-link {
+          display: block;
+          width: clamp(160px, 18vw, 260px);
+        }
         .pu-footer-tagline {
           font-family: var(--font-mono);
           font-size: 9.5px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          line-height: 1.8;
+          line-height: 1.85;
           color: rgba(255,255,255,0.5);
           margin: 0;
+          padding-left: 1px;
         }
 
-        /* Nav */
+        /* Nav col 2 */
         .pu-footer-nav-wrap {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -139,40 +152,50 @@ export default function Footer({ locale }: { locale: string }) {
         }
         .pu-footer-nav-sub a:hover { color: #fff; }
 
-        /* Contact */
-        .pu-footer-col-label {
-          font-family: var(--font-mono);
-          font-size: 8px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.22);
-          margin: 0 0 18px;
+        /* Contact col 3 */
+        .pu-footer-contact-col {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding-top: 6px;
         }
-        .pu-footer-phone {
-          display: block;
+        .pu-footer-nav-sub-link {
           font-family: var(--font-sans);
-          font-size: clamp(16px, 1.5vw, 22px);
-          font-weight: 600;
-          letter-spacing: -0.03em;
-          color: #fff;
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.45);
           text-decoration: none;
-          margin-bottom: 24px;
-          transition: opacity 180ms ease;
+          transition: color 180ms ease;
+          line-height: 1.3;
+          margin-bottom: 4px;
         }
-        .pu-footer-phone:hover { opacity: 0.65; }
-        .pu-footer-social { display: flex; gap: 14px; align-items: center; }
+        .pu-footer-nav-sub-link:hover { color: #fff; }
+        .pu-footer-contact-detail {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.06em;
+          color: rgba(255,255,255,0.32);
+          text-decoration: none;
+          transition: color 180ms ease;
+          line-height: 1.5;
+        }
+        .pu-footer-contact-detail:hover { color: rgba(255,255,255,0.75); }
+        .pu-footer-social {
+          display: flex;
+          gap: 18px;
+          align-items: center;
+          margin-top: 8px;
+        }
         .pu-footer-social-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 36px;
-          height: 36px;
-          border: 1px solid rgba(255,255,255,0.18);
-          color: rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.28);
           text-decoration: none;
-          transition: color 180ms ease, border-color 180ms ease;
+          transition: color 180ms ease;
         }
-        .pu-footer-social-icon:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+        .pu-footer-social-icon:hover { color: rgba(255,255,255,0.85); }
 
         /* Bottom */
         .pu-footer-rule { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 28px; }
@@ -206,12 +229,11 @@ export default function Footer({ locale }: { locale: string }) {
         @media (max-width: 960px) {
           .pu-footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
           .pu-footer-brand { grid-column: 1 / -1; flex-direction: row; align-items: flex-end; gap: 32px; }
-          .pu-footer-tagline { margin-bottom: 4px; }
         }
         @media (max-width: 600px) {
           .pu-footer { padding: 56px var(--margin-mobile) 36px; }
           .pu-footer-inner { grid-template-columns: 1fr; gap: 36px; }
-          .pu-footer-brand { flex-direction: column; align-items: flex-start; gap: 16px; }
+          .pu-footer-brand { flex-direction: column; align-items: flex-start; gap: 14px; }
           .pu-footer-nav-wrap { gap: 0 16px; }
           .pu-footer-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
         }

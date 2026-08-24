@@ -61,7 +61,7 @@ export default async function PersonesPage({
         }}>
           Equip humà
         </h1>
-        <div style={{ maxWidth: "520px", display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div style={{ maxWidth: "720px", display: "flex", flexDirection: "column", gap: "12px" }}>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.65, color: "#000" }}>
             Peralta Urbanisme és un equip d&apos;arquitectes i urbanistes dedicat al planejament,
             l&apos;estratègia urbana i la transformació del territori.

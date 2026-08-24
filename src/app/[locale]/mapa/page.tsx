@@ -11,5 +11,9 @@ export default async function MapaPage({
   const { locale } = await params;
   const projects = getAllProjects();
 
-  return <MapExplorer projects={projects} locale={locale} />;
+  return (
+    <div style={{ paddingTop: "var(--header-height)" }}>
+      <MapExplorer projects={projects} locale={locale} />
+    </div>
+  );
 }
