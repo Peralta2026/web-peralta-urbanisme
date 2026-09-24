@@ -116,7 +116,7 @@ export default function Nav({ locale }: { locale: string }) {
         aria-expanded={open}
         aria-controls="pu-main-menu"
       >
-        <span />
+        <span aria-hidden="true">+</span>
       </button>
 
       {open && <button type="button" className="pu-menu-backdrop" onClick={() => setOpen(false)} aria-label="Tancar menú" />}
@@ -172,9 +172,9 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-language-selector i { color: var(--color-faint); font-style: normal; }
         .pu-profile-trigger { position: fixed; top: 33px; right: var(--margin-page); z-index: 360; width: 22px; height: 22px; padding: 0; border: 0; background: transparent; cursor: pointer; }
         .pu-profile-trigger.is-home { top: 27px; }
-        .pu-profile-trigger span { display: block; width: 18px; height: 18px; margin: 2px; border: 1px solid var(--color-fg); border-radius: 50%; background: var(--color-fg); transition: transform var(--dur-mid) var(--ease-smooth), background var(--dur-fast); }
+        .pu-profile-trigger span { display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; margin: 2px; border: 1px solid var(--color-fg); border-radius: 50%; background: var(--color-fg); color: #fff; font-family: var(--font-sans); font-size: 13px; font-weight: 300; line-height: 1; letter-spacing: 0; transition: transform var(--dur-mid) var(--ease-smooth), background var(--dur-fast), color var(--dur-fast); user-select: none; }
         .pu-profile-trigger:hover span { transform: scale(.82); }
-        .pu-profile-trigger.is-open span { background: var(--color-bg); transform: scale(.72); }
+        .pu-profile-trigger.is-open span { background: var(--color-bg); color: var(--color-fg); transform: scale(.72); }
         .pu-menu-backdrop { position: fixed; inset: 0; z-index: 320; border: 0; background: rgba(0,0,0,.16); cursor: default; }
         .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 33vw; min-width: 300px; padding: 0 var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
         .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
