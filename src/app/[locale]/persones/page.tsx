@@ -1,30 +1,9 @@
 import Link from "next/link";
 import { getAllTeamMembers } from "@/lib/team";
-import type { Locale, TeamMember } from "@/lib/types";
-import PersonCard from "@/components/team/PersonCard";
+import type { Locale } from "@/lib/types";
+import PersonRow from "@/components/team/PersonRow";
 
 export const dynamic = "force-static";
-
-// ─── Posicions de la constel·lació ────────────────────────────────────────
-// Marc ↔ Mar intercanviats; Delfina ↔ Julia intercanviades
-const CONSTELLATION: Record<
-  string,
-  { photoSide: "left" | "right"; paddingTop: string; gridColumn: string }
-> = {
-  "jordi-peralta":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 7"  },
-  "marc-vizcarra":      { photoSide: "right", paddingTop: "60px", gridColumn: "7 / 13" },
-  "mar-castarlenas":    { photoSide: "left",  paddingTop: "0px",  gridColumn: "1 / 8"  },
-  "delfina-capiglioni": { photoSide: "right", paddingTop: "0px",  gridColumn: "6 / 13" },
-  "julia-renones":      { photoSide: "left",  paddingTop: "0px",  gridColumn: "3 / 10" },
-};
-
-const GROUPS: string[][] = [
-  ["jordi-peralta",  "marc-vizcarra"],
-  ["mar-castarlenas","delfina-capiglioni"],
-  ["julia-renones"],
-];
-
-const GROUP_MARGIN = ["40px", "52px", "8px"];
 
 const PILLARS = ["Encàrrec", "Subjecte", "Sentit", "Resultat"];
 
@@ -35,9 +14,6 @@ export default async function PersonesPage({
 }) {
   const { locale } = await params;
   const members = getAllTeamMembers();
-  const bySlug: Record<string, TeamMember> = Object.fromEntries(
-    members.map((m) => [m.slug, m])
-  );
 
   return (
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
@@ -74,40 +50,14 @@ export default async function PersonesPage({
         </div>
       </header>
 
-      {/* ── Constel·lació ─────────────────────────────────────────────── */}
+      {/* ── Equip ─────────────────────────────────────────────────────── */}
       <section style={{
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
+        paddingTop:    "clamp(40px,5vh,64px)",
         paddingBottom: "80px",
       }}>
-        {GROUPS.map((group, groupIndex) => (
-          <div
-            key={groupIndex}
-            className="block md:grid md:grid-cols-12"
-            style={{ marginTop: GROUP_MARGIN[groupIndex] ?? "56px" }}
-          >
-            {group.map((slug) => {
-              const member = bySlug[slug];
-              if (!member) return null;
-              const cfg = CONSTELLATION[slug];
-              if (!cfg) return null;
-              return (
-                <div
-                  key={slug}
-                  data-person={slug}
-                  className="mt-12 md:mt-0"
-                  style={{ gridColumn: cfg.gridColumn, paddingTop: cfg.paddingTop }}
-                >
-                  <PersonCard
-                    member={member}
-                    locale={locale as Locale}
-                    photoSide={cfg.photoSide}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        ))}
+        <PersonRow members={members} locale={locale as Locale} />
       </section>
 
       {/* ── Manera de treballar ───────────────────────────────────────── */}
