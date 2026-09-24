@@ -3,8 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ALL_TAGS } from "@/lib/types";
-import type { Project, TagSlug } from "@/lib/types";
+import type { Project } from "@/lib/types";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */
 
@@ -38,29 +37,6 @@ const LOCALES = ["ca", "es", "en"] as const;
 
 /* ─── Labels ─────────────────────────────────────────────────────────────── */
 
-const TAG_LABELS: Record<string, Record<TagSlug, string>> = {
-  ca: {
-    residencial: "Residencial", transformacio: "Transformació", extensio: "Extensió",
-    regeneracio: "Regeneració", "activitat-economica": "Activitat econòmica",
-    "infraestructura-verda": "Infraestructura verda", "integracio-infraestructures": "Integració d'infraestructures",
-    "estructura-urbana": "Estructura urbana", divulgacio: "Divulgació", "espai-public": "Espai públic",
-    "participacio-ciutadana": "Participació ciutadana", "encaixos-singulars": "Encaixos singulars",
-  },
-  es: {
-    residencial: "Residencial", transformacio: "Transformación", extensio: "Extensión",
-    regeneracio: "Regeneración", "activitat-economica": "Actividad económica",
-    "infraestructura-verda": "Infraestructura verde", "integracio-infraestructures": "Integración de infraestructuras",
-    "estructura-urbana": "Estructura urbana", divulgacio: "Divulgación", "espai-public": "Espacio público",
-    "participacio-ciutadana": "Participación ciudadana", "encaixos-singulars": "Encajes singulares",
-  },
-  en: {
-    residencial: "Residential", transformacio: "Transformation", extensio: "Extension",
-    regeneracio: "Regeneration", "activitat-economica": "Economic activity",
-    "infraestructura-verda": "Green infrastructure", "integracio-infraestructures": "Infrastructure integration",
-    "estructura-urbana": "Urban structure", divulgacio: "Outreach", "espai-public": "Public space",
-    "participacio-ciutadana": "Civic participation", "encaixos-singulars": "Singular insertions",
-  },
-};
 
 const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: string; sostre: string; habitatges: string; readMore: string }> = {
   ca: { municipi: "Municipi", any: "Any", ambit: "Àmbit", sostre: "Sostre", habitatges: "Habitatges", readMore: "Llegir més" },
@@ -68,28 +44,10 @@ const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: strin
   en: { municipi: "Municipality", any: "Year", ambit: "Scope", sostre: "Floor area", habitatges: "Dwellings", readMore: "Read more" },
 };
 
-const TIPUS_VALUES = ["Estudi", "Planejament general", "Planejament derivat", "Altres"] as const;
-type TipusValue = typeof TIPUS_VALUES[number];
-
-const ESCALA_VALUES = ["Barri", "Sector", "Municipi", "Plurimunicipal"] as const;
-type EscalaValue = typeof ESCALA_VALUES[number];
-
-const TIPUS_LABELS: Record<string, Record<TipusValue, string>> = {
-  ca: { "Estudi": "Estudi", "Planejament general": "Planejament general", "Planejament derivat": "Planejament derivat", "Altres": "Altres" },
-  es: { "Estudi": "Estudio", "Planejament general": "Planeamiento general", "Planejament derivat": "Planeamiento derivado", "Altres": "Otros" },
-  en: { "Estudi": "Study", "Planejament general": "General planning", "Planejament derivat": "Derived planning", "Altres": "Other" },
-};
-
-const ESCALA_LABELS: Record<string, Record<EscalaValue, string>> = {
-  ca: { "Barri": "Barri", "Sector": "Sector", "Municipi": "Municipi", "Plurimunicipal": "Plurimunicipal" },
-  es: { "Barri": "Barrio", "Sector": "Sector", "Municipi": "Municipio", "Plurimunicipal": "Plurimunicipal" },
-  en: { "Barri": "Neighbourhood", "Sector": "Sector", "Municipi": "Municipality", "Plurimunicipal": "Plurimunicipal" },
-};
-
-const UI_LABELS: Record<string, { filters: string; close: string; clear: string; noResults: string; explore: string; tematica: string; tipus: string; escala: string }> = {
-  ca: { filters: "Filtres +", close: "← Tancar", clear: "Netejar filtres", noResults: "Cap projecte trobat", explore: "Explorar l'arxiu de projectes", tematica: "Temàtica", tipus: "Tipus", escala: "Escala" },
-  es: { filters: "Filtros +", close: "← Cerrar", clear: "Limpiar filtros", noResults: "Sin proyectos", explore: "Explorar el archivo de proyectos", tematica: "Temática", tipus: "Tipo", escala: "Escala" },
-  en: { filters: "Filters +", close: "← Close", clear: "Clear filters", noResults: "No projects found", explore: "Explore the project archive", tematica: "Theme", tipus: "Type", escala: "Scale" },
+const UI_LABELS: Record<string, { noResults: string; explore: string }> = {
+  ca: { noResults: "Cap projecte trobat", explore: "Explorar l'arxiu de projectes" },
+  es: { noResults: "Sin proyectos", explore: "Explorar el archivo de proyectos" },
+  en: { noResults: "No projects found", explore: "Explore the project archive" },
 };
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
@@ -192,112 +150,6 @@ function isValid(val: string | number | null | undefined): val is string | numbe
   return true;
 }
 
-/* ─── FilterPanel ────────────────────────────────────────────────────────── */
-
-function FilterToggleRow({
-  label, active, open, tabIndex: tIdx, onToggle,
-}: { label: string; active: boolean; open: boolean; tabIndex: number; onToggle: () => void }) {
-  return (
-    <div
-      role="button"
-      tabIndex={tIdx}
-      onClick={onToggle}
-      onKeyDown={(e) => e.key === "Enter" && onToggle()}
-      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 0", cursor: "pointer", outline: "none" }}
-    >
-      <span style={{ fontFamily: "var(--font-sans)", fontSize: "11px", color: active ? "#000" : "#555", lineHeight: 1.3, fontWeight: active ? 600 : 400, transition: "color 160ms" }}>
-        {label}
-      </span>
-      <div style={{
-        width: "10px", height: "10px", borderRadius: "50%",
-        border: `1.5px solid ${active ? "#111" : "#ccc"}`,
-        background: active ? "#111" : "transparent",
-        flexShrink: 0, marginLeft: "10px",
-        transition: "background 180ms ease, border-color 180ms ease",
-      }} />
-    </div>
-  );
-}
-
-function FilterSection({ title, open: panelOpen }: { title: string; open: boolean }) {
-  return (
-    <div style={{ marginTop: "10px", marginBottom: "1px", paddingBottom: "4px", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc" }}>
-        {title}
-      </span>
-    </div>
-  );
-}
-
-function FilterPanel({
-  open, locale, active, activeTipus, activeEscala,
-  onToggle, onToggleTipus, onToggleEscala, onClear, onClose,
-}: {
-  open: boolean;
-  locale: string;
-  active: Set<TagSlug>;
-  activeTipus: Set<string>;
-  activeEscala: Set<string>;
-  onToggle: (tag: TagSlug) => void;
-  onToggleTipus: (val: string) => void;
-  onToggleEscala: (val: string) => void;
-  onClear: () => void;
-  onClose: () => void;
-}) {
-  const tagLabels   = TAG_LABELS[locale]   ?? TAG_LABELS.ca;
-  const tipusLabels = TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca;
-  const escalaLabels = ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca;
-  const ui = UI_LABELS[locale] ?? UI_LABELS.ca;
-  const hasAny = active.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
-
-  return (
-    <div style={{
-      position: "absolute", left: 0, top: 0, bottom: 0,
-      width: open ? "260px" : "0",
-      overflow: "hidden",
-      transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
-      zIndex: 100,
-    }}>
-      <div style={{
-        width: "260px", height: "100%", overflowY: "auto",
-        padding: "16px 20px 24px var(--margin-page)",
-        boxSizing: "border-box",
-        background: "#fff",
-        borderRight: "1px solid rgba(0,0,0,0.08)",
-      }}>
-          {/* Temàtica */}
-          <FilterSection title={ui.tematica} open={open} />
-          {ALL_TAGS.map((tag) => (
-            <FilterToggleRow key={tag} label={tagLabels[tag]} active={active.has(tag)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggle(tag)} />
-          ))}
-
-          {/* Tipus */}
-          <FilterSection title={ui.tipus} open={open} />
-          {TIPUS_VALUES.map((val) => (
-            <FilterToggleRow key={val} label={tipusLabels[val]} active={activeTipus.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
-          ))}
-
-          {/* Escala */}
-          <FilterSection title={ui.escala} open={open} />
-          {ESCALA_VALUES.map((val) => (
-            <FilterToggleRow key={val} label={escalaLabels[val]} active={activeEscala.has(val)} open={open} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
-          ))}
-
-        {/* Clear button */}
-        {hasAny && (
-          <div style={{ flexShrink: 0, marginTop: "14px", paddingTop: "14px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-            <button
-              onClick={onClear}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa" }}
-            >
-              {ui.clear}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 /* ─── LangSelector ───────────────────────────────────────────────────────── */
 
@@ -443,32 +295,16 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 export default function HomeScene({ locale, projects }: { locale: string; projects: Project[] }) {
   const content  = CONTENT[locale as keyof typeof CONTENT] ?? CONTENT.ca;
   const ui       = UI_LABELS[locale] ?? UI_LABELS.ca;
-  const tagLabels = TAG_LABELS[locale] ?? TAG_LABELS.ca;
 
-  const featured = FEATURED_SLUGS
+  const featured = useMemo(() => FEATURED_SLUGS
     .map(s => projects.find(p => p.slug === s))
-    .filter((p): p is Project => !!p);
+    .filter((p): p is Project => !!p),
+  [projects]);
+
+  const displayProjects = featured;
 
   /* ── State ── */
-  const [activeFilters, setActiveFilters] = useState<Set<TagSlug>>(new Set());
-  const [activeTipus, setActiveTipus]     = useState<Set<string>>(new Set());
-  const [activeEscala, setActiveEscala]   = useState<Set<string>>(new Set());
-  const [filterOpen, setFilterOpen]       = useState(true);
   const [isMobile, setIsMobile]           = useState(false);
-
-  /* ── Computed display projects ── */
-  const displayProjects = useMemo(() => {
-    const hasTag   = activeFilters.size > 0;
-    const hasTipus = activeTipus.size > 0;
-    const hasEscala = activeEscala.size > 0;
-    if (!hasTag && !hasTipus && !hasEscala) return featured;
-    return projects.filter(p => {
-      const matchTag   = !hasTag   || p.tags.some(t => activeFilters.has(t));
-      const matchTipus = !hasTipus || activeTipus.has(p.ca.tipus);
-      const matchEscala = !hasEscala || activeEscala.has(p.ca.status);
-      return matchTag && matchTipus && matchEscala;
-    });
-  }, [activeFilters, activeTipus, activeEscala, featured, projects]);
 
   /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
@@ -501,18 +337,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   /* Touch swipe */
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
-
-  /* ── Handlers ── */
-  const toggleFilter = (tag: TagSlug) => {
-    setActiveFilters(prev => { const n = new Set(prev); n.has(tag) ? n.delete(tag) : n.add(tag); return n; });
-  };
-  const toggleTipus = (val: string) => {
-    setActiveTipus(prev => { const n = new Set(prev); n.has(val) ? n.delete(val) : n.add(val); return n; });
-  };
-  const toggleEscala = (val: string) => {
-    setActiveEscala(prev => { const n = new Set(prev); n.has(val) ? n.delete(val) : n.add(val); return n; });
-  };
-  const clearFilters = () => { setActiveFilters(new Set()); setActiveTipus(new Set()); setActiveEscala(new Set()); };
 
   /* ── Sync nCardsRef when displayProjects changes ── */
   useEffect(() => {
@@ -623,11 +447,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* ── Card left offset when filter panel open ── */
-  const filterOffset = filterOpen ? 130 : 0;
-  const cardWidth    = filterOpen
-    ? "min(calc(100% - 300px), 1000px)"
-    : "min(calc(100% - 40px), 1040px)";
+  const cardWidth = "min(calc(100% - 40px), 1040px)";
 
   return (
     <>
@@ -702,89 +522,28 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       >
         {/* ── Header ── */}
         <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(20px, 3vh, 40px)", position: "relative", zIndex: 2000, background: "#fff" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: "18px", marginBottom: (activeFilters.size > 0 || activeTipus.size > 0 || activeEscala.size > 0) ? "12px" : "10px" }}>
-            <h2 style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "clamp(28px,3.6vw,52px)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              lineHeight: 1,
-              color: "#000",
-              margin: 0,
-              flexShrink: 0,
-            }}>
-              {content.destacats}
-            </h2>
-            <button
-              onClick={() => setFilterOpen(f => !f)}
-              title={filterOpen ? ui.close : ui.filters}
-              style={{
-                fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
-                color: filterOpen ? "#888" : "#bbb",
-                background: "none", border: "none", cursor: "pointer", padding: "2px 0",
-                transition: "color 200ms ease", flexShrink: 0,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              {filterOpen ? "‹‹" : "››"}
-            </button>
-          </div>
-
-          {/* Active filter chips — shown for all three filter groups */}
-          {(activeFilters.size > 0 || activeTipus.size > 0 || activeEscala.size > 0) && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "10px" }}>
-              {Array.from(activeFilters).map(tag => (
-                <button key={`tag-${tag}`}
-                  onClick={() => toggleFilter(tag)}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
-                  {tagLabels[tag]}
-                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
-                </button>
-              ))}
-              {Array.from(activeTipus).map(val => (
-                <button key={`tipus-${val}`}
-                  onClick={() => toggleTipus(val)}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
-                  {(TIPUS_LABELS[locale] ?? TIPUS_LABELS.ca)[val as TipusValue]}
-                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
-                </button>
-              ))}
-              {Array.from(activeEscala).map(val => (
-                <button key={`escala-${val}`}
-                  onClick={() => toggleEscala(val)}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
-                  {(ESCALA_LABELS[locale] ?? ESCALA_LABELS.ca)[val as EscalaValue]}
-                  <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
-                </button>
-              ))}
-            </div>
-          )}
-
+          <h2 style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(28px,3.6vw,52px)",
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            color: "#000",
+            margin: "0 0 10px",
+          }}>
+            {content.destacats}
+          </h2>
           <div style={{ height: "1px", background: "rgba(0,0,0,0.08)" }} />
         </div>
 
         {/* ── Card stage ── */}
         <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
-          <FilterPanel
-            open={filterOpen}
-            locale={locale}
-            active={activeFilters}
-            activeTipus={activeTipus}
-            activeEscala={activeEscala}
-            onToggle={toggleFilter}
-            onToggleTipus={toggleTipus}
-            onToggleEscala={toggleEscala}
-            onClear={clearFilters}
-            onClose={() => setFilterOpen(false)}
-          />
-
           {displayProjects.length === 0 && (
             <div style={{
               position: "absolute",
-              top: "50%", left: `calc(50% + ${filterOffset}px)`,
+              top: "50%", left: "50%",
               transform: "translate(-50%, -50%)",
               textAlign: "center",
-              transition: "left 350ms cubic-bezier(0.22,1,0.36,1)",
             }}>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#bbb" }}>
                 {ui.noResults}
@@ -799,7 +558,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
               style={{
                 position: "absolute",
                 top: "calc(50% + clamp(10px, 2vh, 20px))",
-                left: `calc(50% + ${filterOffset}px)`,
+                left: "50%",
                 width: cardWidth,
                 height: "min(calc(100% - 96px), 560px)",
                 transformOrigin: "center center",
@@ -809,7 +568,6 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
                 filter: `brightness(${Math.max(0.84, 1 - Math.min(i, 2) * 0.07).toFixed(3)})`,
                 zIndex: String(1000 - i * 100),
                 pointerEvents: i === 0 ? "auto" : "none",
-                transition: "left 350ms cubic-bezier(0.22,1,0.36,1), width 350ms cubic-bezier(0.22,1,0.36,1)",
               }}
             >
               <FeaturedCard project={proj} locale={locale} mobile={isMobile} />
@@ -823,9 +581,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             ref={exploreRef}
             style={{
               opacity: 0,
-              transition: "opacity 400ms ease, transform 350ms cubic-bezier(0.22,1,0.36,1)",
+              transition: "opacity 400ms ease",
               pointerEvents: "none",
-              transform: `translateX(${filterOffset}px)`,
             }}
           >
             <Link
@@ -906,6 +663,18 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         aria-hidden="true"
         style={{ height: `calc(100vh + ${SETTLE_END + displayProjects.length * CARDS_PER_STEP}px)`, pointerEvents: "none" }}
       />
+
+      {/* ── Notícies ── */}
+      <section style={{ padding: "clamp(64px,8vh,100px) var(--margin-page)", borderTop: "1px solid #1a1a1a", background: "#fff" }}>
+        <header style={{ borderBottom: "1px solid #1a1a1a", paddingBottom: "clamp(20px,3vh,36px)", marginBottom: "clamp(40px,5vh,72px)" }}>
+          <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000", margin: 0 }}>
+            Notícies
+          </h2>
+        </header>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc", margin: 0 }}>
+          Properament
+        </p>
+      </section>
     </>
   );
 }
