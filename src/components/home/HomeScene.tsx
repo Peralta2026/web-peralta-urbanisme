@@ -50,6 +50,12 @@ const UI_LABELS: Record<string, { noResults: string; explore: string }> = {
   en: { noResults: "No projects found", explore: "Explore the project archive" },
 };
 
+const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string }> = {
+  ca: { draw: "Dibuixar", erase: "Esborrar", clear: "Netejar" },
+  es: { draw: "Dibujar",  erase: "Borrar",   clear: "Borrar todo" },
+  en: { draw: "Draw",     erase: "Erase",    clear: "Clear" },
+};
+
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
 function easeInOutSine(t: number) { return -(Math.cos(Math.PI * Math.min(t, 1)) - 1) / 2; }
@@ -340,7 +346,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const displayProjects = featured;
 
   /* ── State ── */
-  const [isMobile, setIsMobile]           = useState(false);
+  const [isMobile,  setIsMobile]  = useState(false);
+  const [drawMode,  setDrawMode]  = useState<"draw" | "erase">("draw");
 
   /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
@@ -358,9 +365,12 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const videoRef        = useRef<HTMLDivElement>(null);
   const canvasRef       = useRef<HTMLCanvasElement>(null);
   const cursorRef       = useRef<HTMLDivElement>(null);
+  const toolsRef        = useRef<HTMLDivElement>(null);
   const isDrawingRef    = useRef(false);
   const lastPtRef       = useRef<{ x: number; y: number } | null>(null);
   const prevMidRef      = useRef<{ x: number; y: number } | null>(null);
+  const drawModeRef     = useRef<"draw" | "erase">("draw");
+  const clearFnRef      = useRef<() => void>(() => {});
 
   /* Hero-exit lock */
   const heroDoneRef      = useRef(false);
@@ -402,6 +412,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  const handleModeChange = (mode: "draw" | "erase") => {
+    drawModeRef.current = mode;
+    setDrawMode(mode);
+  };
 
   /* ── RAF loop ── */
   useEffect(() => {
@@ -455,6 +470,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
       if (cursorRef.current)       cursorRef.current.style.opacity       = heroDoneRef.current ? "0" : settleP.toFixed(3);
+      if (toolsRef.current) {
+        const show = !heroDoneRef.current && settleP > 0.3;
+        toolsRef.current.style.opacity       = show ? Math.min(1, (settleP - 0.3) / 0.5).toFixed(3) : "0";
+        toolsRef.current.style.pointerEvents = show ? "auto" : "none";
+      }
 
       /* ── Phase 1: hero slides UP, cards rise ── */
       if (sy < SETTLE_END) {
@@ -472,9 +492,9 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         }
         if (openP >= 1 && !heroDoneRef.current) {
           heroDoneRef.current      = true;
-          heroMinScrollRef.current = SETTLE_END + OPEN_RANGE;
-          if (heroRef.current)   heroRef.current.style.visibility   = "hidden";
+          heroMinScrollRef.current = SETTLE_END;
           if (canvasRef.current) canvasRef.current.style.display    = "none";
+          if (toolsRef.current)  toolsRef.current.style.display     = "none";
         }
       }
 
@@ -527,12 +547,45 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       canvas.getContext("2d")?.drawImage(tmp, 0, 0);
     };
 
+    clearFnRef.current = () => {
+      const ctx = canvas.getContext("2d");
+      if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
     const onMove = (e: MouseEvent) => {
       cursorEl.style.left = `${e.clientX}px`;
       cursorEl.style.top  = `${e.clientY}px`;
+
+      if (drawModeRef.current === "erase") {
+        cursorEl.style.width        = "28px";
+        cursorEl.style.height       = "28px";
+        cursorEl.style.background   = "transparent";
+        cursorEl.style.border       = "1.5px solid rgba(0,0,0,0.5)";
+        cursorEl.style.mixBlendMode = "normal";
+      } else {
+        cursorEl.style.width        = "10px";
+        cursorEl.style.height       = "10px";
+        cursorEl.style.background   = "#fff";
+        cursorEl.style.border       = "none";
+        cursorEl.style.mixBlendMode = "difference";
+      }
+
       if (!isDrawingRef.current || !lastPtRef.current) return;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
+
+      if (drawModeRef.current === "erase") {
+        ctx.save();
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(e.clientX, e.clientY, 14, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fill();
+        ctx.restore();
+        lastPtRef.current = { x: e.clientX, y: e.clientY };
+        return;
+      }
+
       prevMidRef.current = drawCalli(ctx, lastPtRef.current, { x: e.clientX, y: e.clientY }, prevMidRef.current);
       lastPtRef.current  = { x: e.clientX, y: e.clientY };
     };
@@ -551,16 +604,25 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       prevMidRef.current   = null;
     };
 
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (heroDoneRef.current) return;
+      if (e.key === "e" || e.key === "E") { drawModeRef.current = "erase"; setDrawMode("erase"); }
+      if (e.key === "d" || e.key === "D") { drawModeRef.current = "draw";  setDrawMode("draw");  }
+      if (e.key === "Escape")              clearFnRef.current();
+    };
+
     window.addEventListener("resize",    onResize);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup",   onUp);
+    window.addEventListener("keydown",   onKeyDown);
 
     return () => {
       window.removeEventListener("resize",    onResize);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup",   onUp);
+      window.removeEventListener("keydown",   onKeyDown);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -824,6 +886,63 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           Properament
         </p>
       </section>
+
+      {/* ── Drawing tools UI ── */}
+      <div
+        ref={toolsRef}
+        style={{
+          position:      "fixed",
+          bottom:        "36px",
+          right:         "var(--margin-page, 48px)",
+          zIndex:        9996,
+          display:       "flex",
+          gap:           "20px",
+          alignItems:    "center",
+          opacity:       0,
+          pointerEvents: "none",
+          userSelect:    "none",
+        }}
+      >
+        {(["draw", "erase"] as const).map((mode) => (
+          <button
+            key={mode}
+            onClick={() => handleModeChange(mode)}
+            style={{
+              background:    "none",
+              border:        "none",
+              padding:       0,
+              cursor:        "pointer",
+              fontFamily:    "var(--font-mono)",
+              fontSize:      "9px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase" as const,
+              color:         drawMode === mode ? "#000" : "rgba(0,0,0,0.32)",
+              fontWeight:    drawMode === mode ? 700 : 400,
+              transition:    "color 180ms ease",
+            }}
+          >
+            {(TOOL_LABELS[locale] ?? TOOL_LABELS.ca)[mode]}
+          </button>
+        ))}
+        <span style={{ color: "rgba(0,0,0,0.18)", fontFamily: "var(--font-mono)", fontSize: "9px" }}>·</span>
+        <button
+          onClick={() => clearFnRef.current()}
+          style={{
+            background:    "none",
+            border:        "none",
+            padding:       0,
+            cursor:        "pointer",
+            fontFamily:    "var(--font-mono)",
+            fontSize:      "9px",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase" as const,
+            color:         "rgba(0,0,0,0.32)",
+            transition:    "color 180ms ease",
+          }}
+        >
+          {(TOOL_LABELS[locale] ?? TOOL_LABELS.ca).clear}
+        </button>
+      </div>
 
       {/* ── Calligraphic drawing canvas (pointer-events:none — links still work) ── */}
       <canvas

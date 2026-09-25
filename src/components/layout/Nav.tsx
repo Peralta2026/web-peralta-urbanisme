@@ -170,9 +170,9 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-language-selector button { border: 0; padding: 0; background: none; color: var(--color-gray-mid); font: inherit; text-transform: inherit; cursor: pointer; }
         .pu-language-selector button.is-active { color: var(--color-fg); font-weight: 700; }
         .pu-language-selector i { color: var(--color-faint); font-style: normal; }
-        .pu-profile-trigger { position: fixed; top: 33px; right: var(--margin-page); z-index: 360; width: 22px; height: 22px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+        .pu-profile-trigger { position: fixed; top: 33px; right: var(--margin-page); z-index: 360; width: 22px; height: 22px; padding: 0; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .pu-profile-trigger.is-home { top: 27px; }
-        .pu-profile-trigger span { display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; margin: 2px; border: 1px solid var(--color-fg); border-radius: 50%; background: var(--color-fg); color: #fff; font-family: var(--font-sans); font-size: 13px; font-weight: 300; line-height: 1; letter-spacing: 0; transition: transform var(--dur-mid) var(--ease-smooth), background var(--dur-fast), color var(--dur-fast); user-select: none; }
+        .pu-profile-trigger span { display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid var(--color-fg); border-radius: 50%; background: var(--color-fg); color: #fff; font-family: var(--font-sans); font-size: 13px; font-weight: 300; line-height: 1; letter-spacing: 0; padding-bottom: 1px; transition: transform var(--dur-mid) var(--ease-smooth), background var(--dur-fast), color var(--dur-fast); user-select: none; }
         .pu-profile-trigger:hover span { transform: scale(.82); }
         .pu-profile-trigger.is-open span { background: var(--color-bg); color: var(--color-fg); transform: scale(.72); }
         .pu-menu-backdrop { position: fixed; inset: 0; z-index: 320; border: 0; background: rgba(0,0,0,.16); cursor: default; }
