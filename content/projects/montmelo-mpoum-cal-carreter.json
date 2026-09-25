@@ -1,0 +1,56 @@
+{
+  "slug": "montmelo-mpoum-cal-carreter",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.55113759080814,
+    "lng": 2.246136350715956
+  },
+  "ca": {
+    "title": "Nova Plaça del carrer Major de Montmeló",
+    "subtitle": "Modificació puntual del Pla d'Ordenació Urbanística Municipal",
+    "municipality": "Montmeló",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3305,
+    "programa": null,
+    "sostreM2": 6369,
+    "habitatges": 65,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nova Plaça del carrer Major de Montmeló",
+    "subtitle": "Modificació puntual del Pla d'Ordenació Urbanística Municipal",
+    "municipality": "Montmeló",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3305,
+    "programa": null,
+    "sostreM2": 6369,
+    "habitatges": 65,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nova Plaça del carrer Major de Montmeló",
+    "subtitle": "Modificació puntual del Pla d'Ordenació Urbanística Municipal",
+    "municipality": "Montmeló",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3305,
+    "programa": null,
+    "sostreM2": 6369,
+    "habitatges": 65,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

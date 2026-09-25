@@ -1,0 +1,56 @@
+{
+  "slug": "castelldefels-eixos",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.2814,
+    "lng": 1.9768
+  },
+  "ca": {
+    "title": "Suport urbanístic estratègic Castelldefels",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "Castelldefels",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Suport urbanístic estratègic Castelldefels",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "Castelldefels",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Suport urbanístic estratègic Castelldefels",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "Castelldefels",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "harquitectes-pei-foneria",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.37702504650509,
+    "lng": 2.1771983478619887
+  },
+  "ca": {
+    "title": "La Foneria de la Rambla",
+    "subtitle": "Pla Especial Integral",
+    "municipality": "Barcelona",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 702,
+    "programa": null,
+    "sostreM2": 3380,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "La Foneria de la Rambla",
+    "subtitle": "Pla Especial Integral",
+    "municipality": "Barcelona",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 702,
+    "programa": null,
+    "sostreM2": 3380,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "La Foneria de la Rambla",
+    "subtitle": "Pla Especial Integral",
+    "municipality": "Barcelona",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 702,
+    "programa": null,
+    "sostreM2": 3380,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

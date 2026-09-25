@@ -1,0 +1,56 @@
+{
+  "slug": "penedes-pdu-civac",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.31,
+    "lng": 1.51
+  },
+  "ca": {
+    "title": "CIVAC: Centre d'Innovació del Vehicle Autònom i Connectat",
+    "subtitle": "Pla Director Urbanístic",
+    "municipality": "Penedès (supramunicipal)",
+    "year": "2026",
+    "status": "Plurimunicipal",
+    "tipus": "Planejament director",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "CIVAC: Centre d'Innovació del Vehicle Autònom i Connectat",
+    "subtitle": "Pla Director Urbanístic",
+    "municipality": "Penedès (supramunicipal)",
+    "year": "2026",
+    "status": "Plurimunicipal",
+    "tipus": "Planejament director",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "CIVAC: Centre d'Innovació del Vehicle Autònom i Connectat",
+    "subtitle": "Pla Director Urbanístic",
+    "municipality": "Penedès (supramunicipal)",
+    "year": "2026",
+    "status": "Plurimunicipal",
+    "tipus": "Planejament director",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

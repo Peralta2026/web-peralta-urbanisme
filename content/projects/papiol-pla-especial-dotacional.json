@@ -1,0 +1,56 @@
+{
+  "slug": "papiol-pla-especial-dotacional",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.439302733452735,
+    "lng": 2.0154859377489434
+  },
+  "ca": {
+    "title": "Allotjament dotacional Carme 33",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "El Papiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 2763,
+    "programa": null,
+    "sostreM2": 6217,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Allotjament dotacional Carme 33",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "El Papiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 2763,
+    "programa": null,
+    "sostreM2": 6217,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Allotjament dotacional Carme 33",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "El Papiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 2763,
+    "programa": null,
+    "sostreM2": 6217,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "bigues-riells-can-barri",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.67105299591705,
+    "lng": 2.2260027043300776
+  },
+  "ca": {
+    "title": "Sorli centre de Can Barri",
+    "subtitle": "Pla de Millora Urbana regulació equipament",
+    "municipality": "Bigues i Riells del Fai",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 17576,
+    "programa": null,
+    "sostreM2": 8788,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Sorli centre de Can Barri",
+    "subtitle": "Pla de Millora Urbana regulació equipament",
+    "municipality": "Bigues i Riells del Fai",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 17576,
+    "programa": null,
+    "sostreM2": 8788,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Sorli centre de Can Barri",
+    "subtitle": "Pla de Millora Urbana regulació equipament",
+    "municipality": "Bigues i Riells del Fai",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 17576,
+    "programa": null,
+    "sostreM2": 8788,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

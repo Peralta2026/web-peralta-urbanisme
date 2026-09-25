@@ -5,6 +5,12 @@ import Link from "next/link";
 import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 
+const EN_PROCES_LABEL: Record<string, string> = {
+  ca: "En procés",
+  es: "En proceso",
+  en: "In progress",
+};
+
 /* ─── URL helper ─────────────────────────────────────────────────────────────── */
 
 function projectHref(slug: string, locale: string): string {
@@ -372,6 +378,7 @@ export default function ArchiveList({ projects, locale }: Props) {
 
   /* ── Filtered list ── */
   const filtered = useMemo(() => projects.filter(p => {
+    if (p.webStatus === "no") return false;
     const matchTema   = activeTema.size === 0   || p.tags.some(t => activeTema.has(t));
     const matchTipus  = activeTipus.size === 0  || activeTipus.has(p[loc].tipus);
     const matchEscala = activeEscala.size === 0 || activeEscala.has(p[loc].status);
@@ -515,60 +522,103 @@ export default function ArchiveList({ projects, locale }: Props) {
 
               {filtered.map(project => {
                 const d = project[loc];
-                const isExpanded = expandedSlug === project.slug;
-                return (
-                  <div key={project.slug}>
-                    <div
-                      className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
-                      data-tipus={d.tipus}
-                      role="button"
-                      tabIndex={0}
-                      aria-expanded={isExpanded}
-                      style={{
-                        display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
-                        padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
-                        cursor: "pointer", transition: "background 200ms ease",
-                        background: isExpanded ? (TIPUS_COLORS[d.tipus] ?? "#f5f5f3") : undefined,
-                      }}
-                      onClick={() => setExpandedSlug(cur => cur === project.slug ? null : project.slug)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setExpandedSlug(cur => cur === project.slug ? null : project.slug);
-                        }
-                      }}
-                    >
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: isExpanded ? 650 : 500, color: "#000", letterSpacing: "-0.01em" }}>
-                        {d.title}
-                      </span>
-                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
-                        {d.municipality}
-                      </span>
-                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
-                        {d.year}
-                      </span>
-                      <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666", display: "flex", alignItems: "center", gap: "6px" }}>
-                        {TIPUS_COLORS[d.tipus] && (
-                          <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0 }} />
-                        )}
-                        {d.tipus}
-                      </span>
-                      {/* Navigate to project */}
-                      <Link
-                        href={projectHref(project.slug, locale)}
-                        onClick={(e) => e.stopPropagation()}
-                        style={{ fontFamily: "var(--font-mono)", fontSize: "15px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
-                        aria-label={`Obrir ${d.title}`}
-                      >
-                        →
-                      </Link>
-                    </div>
+                const ws = project.webStatus ?? "si";
+                const isClickable = ws === "si" || ws === "relevant";
+                const isEnProces = ws === "en-proces";
+                const isExpanded = isClickable && expandedSlug === project.slug;
 
-                    {isExpanded && (
-                      <div className="pu-archive-expand">
-                        <ArchiveProjectCard project={project} locale={loc} viewLabel={ui.view} />
+                if (isClickable) {
+                  return (
+                    <div key={project.slug}>
+                      <div
+                        className={`pu-archive-row ${isExpanded ? "is-expanded" : ""}`}
+                        data-tipus={d.tipus}
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={isExpanded}
+                        style={{
+                          display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
+                          padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
+                          cursor: "pointer", transition: "background 200ms ease",
+                          background: isExpanded ? (TIPUS_COLORS[d.tipus] ?? "#f5f5f3") : undefined,
+                        }}
+                        onClick={() => setExpandedSlug(cur => cur === project.slug ? null : project.slug)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setExpandedSlug(cur => cur === project.slug ? null : project.slug);
+                          }
+                        }}
+                      >
+                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: isExpanded ? 650 : 500, color: "#000", letterSpacing: "-0.01em" }}>
+                          {d.title}
+                        </span>
+                        <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                          {d.municipality}
+                        </span>
+                        <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666" }}>
+                          {d.year}
+                        </span>
+                        <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#666", display: "flex", alignItems: "center", gap: "6px" }}>
+                          {TIPUS_COLORS[d.tipus] && (
+                            <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0 }} />
+                          )}
+                          {d.tipus}
+                        </span>
+                        <Link
+                          href={projectHref(project.slug, locale)}
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ fontFamily: "var(--font-mono)", fontSize: "15px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
+                          aria-label={`Obrir ${d.title}`}
+                        >
+                          →
+                        </Link>
                       </div>
-                    )}
+                      {isExpanded && (
+                        <div className="pu-archive-expand">
+                          <ArchiveProjectCard project={project} locale={loc} viewLabel={ui.view} />
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                /* SENSE FITXA / EN PROCÉS — not clickable */
+                return (
+                  <div key={project.slug}
+                    className="pu-archive-row pu-archive-row--static"
+                    data-tipus={d.tipus}
+                    style={{
+                      display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px",
+                      padding: "17px 0", borderBottom: "1px solid #e8e8e8", alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "15px", fontWeight: 400, color: "#888", letterSpacing: "-0.01em" }}>
+                      {d.title}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#aaa" }}>
+                      {d.municipality}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#aaa" }}>
+                      {d.year}
+                    </span>
+                    <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#aaa", display: "flex", alignItems: "center", gap: "6px" }}>
+                      {isEnProces ? (
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", border: "1px solid #ddd", padding: "2px 6px", borderRadius: "2px" }}>
+                          {EN_PROCES_LABEL[locale] ?? EN_PROCES_LABEL.ca}
+                        </span>
+                      ) : (
+                        d.tipus && (
+                          <>
+                            {TIPUS_COLORS[d.tipus] && (
+                              <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: TIPUS_COLORS[d.tipus], flexShrink: 0, opacity: 0.4 }} />
+                            )}
+                            {d.tipus}
+                          </>
+                        )
+                      )}
+                    </span>
+                    <span />
                   </div>
                 );
               })}
@@ -599,11 +649,12 @@ export default function ArchiveList({ projects, locale }: Props) {
           text-decoration: none;
         }
         .pu-dir-btn:hover { background: #000; color: #fff; }
-        .pu-archive-row:hover { background: #f5f5f3; }
-        .pu-archive-row[data-tipus="Estudi"]:hover              { background: #F9EE76; }
-        .pu-archive-row[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
-        .pu-archive-row[data-tipus="Planejament derivat"]:hover { background: #A8DEF5; }
-        .pu-archive-row[data-tipus="Altres"]:hover              { background: #F5C0DA; }
+        .pu-archive-row:not(.pu-archive-row--static):hover { background: #f5f5f3; }
+        .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Estudi"]:hover              { background: #F9EE76; }
+        .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
+        .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Planejament derivat"]:hover { background: #A8DEF5; }
+        .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Altres"]:hover              { background: #F5C0DA; }
+        .pu-archive-row--static { cursor: default; }
         .pu-archive-row:focus-visible { outline: 1px solid #111; outline-offset: -1px; }
         .pu-archive-expand {
           padding: 14px 0 24px;

@@ -1,0 +1,56 @@
+{
+  "slug": "parc-alba-ifae-space",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.48500143210959,
+    "lng": 2.1117485534571694
+  },
+  "ca": {
+    "title": "Space Hub: nova seu de l'Institut de Física d'Altes Energies",
+    "subtitle": "Estudi volumètric i il·lustracions estratègiques",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": 6300,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Space Hub: nova seu de l'Institut de Física d'Altes Energies",
+    "subtitle": "Estudi volumètric i il·lustracions estratègiques",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": 6300,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Space Hub: nova seu de l'Institut de Física d'Altes Energies",
+    "subtitle": "Estudi volumètric i il·lustracions estratègiques",
+    "municipality": "Cerdanyola del Vallès",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": 6300,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

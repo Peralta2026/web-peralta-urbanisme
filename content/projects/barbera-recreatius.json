@@ -1,0 +1,56 @@
+{
+  "slug": "barbera-recreatius",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.5158,
+    "lng": 2.1249
+  },
+  "ca": {
+    "title": "Regulació dels usos recreatius",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "Barberà del Vallès",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Regulació dels usos recreatius",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "Barberà del Vallès",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Regulació dels usos recreatius",
+    "subtitle": "Pla Especial Urbanístic",
+    "municipality": "Barberà del Vallès",
+    "year": "2022",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

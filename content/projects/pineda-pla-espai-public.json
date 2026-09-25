@@ -1,0 +1,56 @@
+{
+  "slug": "pineda-pla-espai-public",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.62625996453493,
+    "lng": 2.6828623383438
+  },
+  "ca": {
+    "title": "Nou Model d'espai públic a Pineda",
+    "subtitle": "Pla Director de l'Espai Públic",
+    "municipality": "Pineda de Mar",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nou Model d'espai públic a Pineda",
+    "subtitle": "Pla Director de l'Espai Públic",
+    "municipality": "Pineda de Mar",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nou Model d'espai públic a Pineda",
+    "subtitle": "Pla Director de l'Espai Públic",
+    "municipality": "Pineda de Mar",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

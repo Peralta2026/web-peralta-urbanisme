@@ -1,0 +1,56 @@
+{
+  "slug": "matarrania-pae",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.241853700223444,
+    "lng": 1.1536198815524592
+  },
+  "ca": {
+    "title": "Mas Matarrania",
+    "subtitle": "PAE / Projecte d'Actuació Específica",
+    "municipality": "L'Albiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 214733,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Mas Matarrania",
+    "subtitle": "PAE / Projecte d'Actuació Específica",
+    "municipality": "L'Albiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 214733,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Mas Matarrania",
+    "subtitle": "PAE / Projecte d'Actuació Específica",
+    "municipality": "L'Albiol",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 214733,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

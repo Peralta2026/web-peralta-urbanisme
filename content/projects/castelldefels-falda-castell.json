@@ -1,0 +1,56 @@
+{
+  "slug": "castelldefels-falda-castell",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.272553912038326,
+    "lng": 1.9961453635273
+  },
+  "ca": {
+    "title": "Recosint la falda del castell",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "Castelldefels",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Recosint la falda del castell",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "Castelldefels",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Recosint la falda del castell",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "Castelldefels",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

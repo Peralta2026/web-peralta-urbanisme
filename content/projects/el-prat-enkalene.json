@@ -1,0 +1,56 @@
+{
+  "slug": "el-prat-enkalene",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.32202518420527,
+    "lng": 2.0946996125261435
+  },
+  "ca": {
+    "title": "Transformació Enkalene i Fondo d'en Peixo",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "El Prat de Llobregat",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Transformació Enkalene i Fondo d'en Peixo",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "El Prat de Llobregat",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Transformació Enkalene i Fondo d'en Peixo",
+    "subtitle": "Estudi previ planejament equipament municipal",
+    "municipality": "El Prat de Llobregat",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

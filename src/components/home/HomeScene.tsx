@@ -10,9 +10,10 @@ import type { Project } from "@/lib/types";
 const FEATURED_SLUGS = [
   "la-miralda-pendent",
   "mpgm-bonaigua",
-  "sant-cugat-andana",
-  "diputacio-calaf",
+  "pmu-granollers-110b",
+  "can-carreres-st-boi",
   "amb-ppu-hospital-valles",
+  "alta-costura",
 ];
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */

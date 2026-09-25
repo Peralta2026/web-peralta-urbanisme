@@ -1,0 +1,56 @@
+{
+  "slug": "gava-mpgm-can-tries",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.31295572897645,
+    "lng": 1.9910384151565756
+  },
+  "ca": {
+    "title": "Regeneració urbana del barri de Can Tries",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Gavà",
+    "year": "2025",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 71707,
+    "programa": null,
+    "sostreM2": 11996,
+    "habitatges": 128,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Regeneració urbana del barri de Can Tries",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Gavà",
+    "year": "2025",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 71707,
+    "programa": null,
+    "sostreM2": 11996,
+    "habitatges": 128,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Regeneració urbana del barri de Can Tries",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Gavà",
+    "year": "2025",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 71707,
+    "programa": null,
+    "sostreM2": 11996,
+    "habitatges": 128,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

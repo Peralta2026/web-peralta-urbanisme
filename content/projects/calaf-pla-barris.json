@@ -1,0 +1,56 @@
+{
+  "slug": "calaf-pla-barris",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.73255255863149,
+    "lng": 1.513555490108261
+  },
+  "ca": {
+    "title": "Revitalització del nucli antic de Calaf",
+    "subtitle": "Pla de Barris i Viles 2026",
+    "municipality": "Calaf",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Revitalització del nucli antic de Calaf",
+    "subtitle": "Pla de Barris i Viles 2026",
+    "municipality": "Calaf",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Revitalització del nucli antic de Calaf",
+    "subtitle": "Pla de Barris i Viles 2026",
+    "municipality": "Calaf",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

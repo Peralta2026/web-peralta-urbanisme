@@ -1,0 +1,56 @@
+{
+  "slug": "seu-urgell-regulacio",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 42.3574,
+    "lng": 1.4572
+  },
+  "ca": {
+    "title": "Regulació equipaments La Seu d'Urgell",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Seu d'Urgell",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Regulació equipaments La Seu d'Urgell",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Seu d'Urgell",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Regulació equipaments La Seu d'Urgell",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Seu d'Urgell",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

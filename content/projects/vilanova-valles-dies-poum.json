@@ -1,0 +1,56 @@
+{
+  "slug": "vilanova-valles-dies-poum",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.552455138413166,
+    "lng": 2.286687136118891
+  },
+  "ca": {
+    "title": "Formes de creixement més sostenibles",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Vilanova del Vallès",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 462400,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 800,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Formes de creixement més sostenibles",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Vilanova del Vallès",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 462400,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 800,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Formes de creixement més sostenibles",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Vilanova del Vallès",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 462400,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 800,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

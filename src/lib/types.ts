@@ -29,6 +29,7 @@ export const ALL_TAGS: TagSlug[] = [
 
 export interface ProjectLocale {
   title: string;
+  subtitle?: string;
   municipality: string;
   year: string;
   status: string;
@@ -42,8 +43,11 @@ export interface ProjectLocale {
   descriptionLong: string;
 }
 
+export type WebStatus = "relevant" | "si" | "sense-fitxa" | "en-proces" | "no";
+
 export interface Project {
   slug: string;
+  webStatus?: WebStatus;
   coverImage: string;
   images: string[];
   tags: TagSlug[];

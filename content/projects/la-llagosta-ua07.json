@@ -1,0 +1,56 @@
+{
+  "slug": "la-llagosta-ua07",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.5388,
+    "lng": 2.1962
+  },
+  "ca": {
+    "title": "Reordenació d'una illa residencial",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació Urbana del sector UA7abc",
+    "municipality": "La Llagosta",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3341,
+    "programa": null,
+    "sostreM2": 4212,
+    "habitatges": 36,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Reordenació d'una illa residencial",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació Urbana del sector UA7abc",
+    "municipality": "La Llagosta",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3341,
+    "programa": null,
+    "sostreM2": 4212,
+    "habitatges": 36,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Reordenació d'una illa residencial",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació Urbana del sector UA7abc",
+    "municipality": "La Llagosta",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 3341,
+    "programa": null,
+    "sostreM2": 4212,
+    "habitatges": 36,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "sant-feliu-codines-pla-barris",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.690687414091165,
+    "lng": 2.1654284323422672
+  },
+  "ca": {
+    "title": "El Torrent Cívic de l'Escletxa",
+    "subtitle": "Pla de Barris i Viles 2025 i 2026",
+    "municipality": "Sant Feliu de Codines",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "El Torrent Cívic de l'Escletxa",
+    "subtitle": "Pla de Barris i Viles 2025 i 2026",
+    "municipality": "Sant Feliu de Codines",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "El Torrent Cívic de l'Escletxa",
+    "subtitle": "Pla de Barris i Viles 2025 i 2026",
+    "municipality": "Sant Feliu de Codines",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

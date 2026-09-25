@@ -1,0 +1,56 @@
+{
+  "slug": "la-llagosta-i",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.5388,
+    "lng": 2.1962
+  },
+  "ca": {
+    "title": "Suport urbanístic estratègic La Llagosta",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "La Llagosta",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 523,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Suport urbanístic estratègic La Llagosta",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "La Llagosta",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 523,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Suport urbanístic estratègic La Llagosta",
+    "subtitle": "Elaboració de propostes de diferents sectors i àmbits clau del municipi",
+    "municipality": "La Llagosta",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": 523,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

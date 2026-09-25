@@ -1,0 +1,56 @@
+{
+  "slug": "granollers-muralles",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.608172711358385,
+    "lng": 2.287280025415564
+  },
+  "ca": {
+    "title": "Les Muralles de Granollers",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Granollers",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Les Muralles de Granollers",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Granollers",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Les Muralles de Granollers",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Granollers",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

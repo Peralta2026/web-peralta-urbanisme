@@ -1,0 +1,56 @@
+{
+  "slug": "vilanova-geltru-mpgm",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.2052430743284,
+    "lng": 1.6866669982452602
+  },
+  "ca": {
+    "title": "Creació habitatges al carrer Xarxes",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació",
+    "municipality": "Vilanova i la Geltrú",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 761,
+    "programa": null,
+    "sostreM2": 913,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Creació habitatges al carrer Xarxes",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació",
+    "municipality": "Vilanova i la Geltrú",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 761,
+    "programa": null,
+    "sostreM2": 913,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Creació habitatges al carrer Xarxes",
+    "subtitle": "Modificació puntual del Pla General d'Ordenació",
+    "municipality": "Vilanova i la Geltrú",
+    "year": "2025",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": 761,
+    "programa": null,
+    "sostreM2": 913,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

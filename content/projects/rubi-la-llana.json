@@ -1,0 +1,56 @@
+{
+  "slug": "rubi-la-llana",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.51009753493461,
+    "lng": 2.0321648372249093
+  },
+  "ca": {
+    "title": "Ajust de la regulació d'una activitat amb impacte",
+    "subtitle": "Modificació puntual del Pla Parcial Urbanística del sector U La Llana",
+    "municipality": "Rubí",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 65102,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Ajust de la regulació d'una activitat amb impacte",
+    "subtitle": "Modificació puntual del Pla Parcial Urbanística del sector U La Llana",
+    "municipality": "Rubí",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 65102,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Ajust de la regulació d'una activitat amb impacte",
+    "subtitle": "Modificació puntual del Pla Parcial Urbanística del sector U La Llana",
+    "municipality": "Rubí",
+    "year": "2022",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 65102,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

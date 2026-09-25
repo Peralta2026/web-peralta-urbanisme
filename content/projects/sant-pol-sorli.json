@@ -1,0 +1,56 @@
+{
+  "slug": "sant-pol-sorli",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.6047,
+    "lng": 2.6323
+  },
+  "ca": {
+    "title": "Node comercial",
+    "subtitle": "Estudi preliminar del sector urbanitzable delimitat 1",
+    "municipality": "Sant Pol de Mar",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 33732,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Node comercial",
+    "subtitle": "Estudi preliminar del sector urbanitzable delimitat 1",
+    "municipality": "Sant Pol de Mar",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 33732,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Node comercial",
+    "subtitle": "Estudi preliminar del sector urbanitzable delimitat 1",
+    "municipality": "Sant Pol de Mar",
+    "year": "2024",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 33732,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

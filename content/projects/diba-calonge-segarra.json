@@ -1,0 +1,56 @@
+{
+  "slug": "diba-calonge-segarra",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.76005624060231,
+    "lng": 1.4814656036691936
+  },
+  "ca": {
+    "title": "Alternatives de desenvolupament en nuclis rurals",
+    "subtitle": "DI_ES / Diagnosi i estratègia",
+    "municipality": "Calonge de Segarra",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Alternatives de desenvolupament en nuclis rurals",
+    "subtitle": "DI_ES / Diagnosi i estratègia",
+    "municipality": "Calonge de Segarra",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Alternatives de desenvolupament en nuclis rurals",
+    "subtitle": "DI_ES / Diagnosi i estratègia",
+    "municipality": "Calonge de Segarra",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

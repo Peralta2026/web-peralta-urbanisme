@@ -1,0 +1,56 @@
+{
+  "slug": "la-pobla-regulacio",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.5,
+    "lng": 1.5
+  },
+  "ca": {
+    "title": "Regulació usos recreatius La Pobla",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Pobla",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Regulació usos recreatius La Pobla",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Pobla",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Regulació usos recreatius La Pobla",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "La Pobla",
+    "year": "2026",
+    "status": "Municipi",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

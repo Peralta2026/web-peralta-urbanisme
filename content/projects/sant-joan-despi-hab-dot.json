@@ -1,0 +1,56 @@
+{
+  "slug": "sant-joan-despi-hab-dot",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.36672472281247,
+    "lng": 2.0554367448532327
+  },
+  "ca": {
+    "title": "Nous habitatges sobre el mercat",
+    "subtitle": "Suport tècnic per a la redacció d'un informe urbanístic i jurídic",
+    "municipality": "Sant Joan Despí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 426,
+    "programa": null,
+    "sostreM2": 1300,
+    "habitatges": 14,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nous habitatges sobre el mercat",
+    "subtitle": "Suport tècnic per a la redacció d'un informe urbanístic i jurídic",
+    "municipality": "Sant Joan Despí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 426,
+    "programa": null,
+    "sostreM2": 1300,
+    "habitatges": 14,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nous habitatges sobre el mercat",
+    "subtitle": "Suport tècnic per a la redacció d'un informe urbanístic i jurídic",
+    "municipality": "Sant Joan Despí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 426,
+    "programa": null,
+    "sostreM2": 1300,
+    "habitatges": 14,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

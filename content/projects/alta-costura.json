@@ -1,0 +1,56 @@
+{
+  "slug": "alta-costura",
+  "webStatus": "relevant",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.4365,
+    "lng": 2.2284
+  },
+  "ca": {
+    "title": "ALTA COSTURA",
+    "subtitle": "",
+    "municipality": "Consorci del Besòs",
+    "year": "",
+    "status": "Plurimunicipal",
+    "tipus": "Estudi",
+    "premi": "Ha participat al Fòrum d'Urbanisme 2026",
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "ALTA COSTURA",
+    "subtitle": "",
+    "municipality": "Consorci del Besòs",
+    "year": "",
+    "status": "Plurimunicipal",
+    "tipus": "Estudi",
+    "premi": "Ha participat al Fòrum d'Urbanisme 2026",
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "ALTA COSTURA",
+    "subtitle": "",
+    "municipality": "Consorci del Besòs",
+    "year": "",
+    "status": "Plurimunicipal",
+    "tipus": "Estudi",
+    "premi": "Ha participat al Fòrum d'Urbanisme 2026",
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

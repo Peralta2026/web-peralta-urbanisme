@@ -1,0 +1,56 @@
+{
+  "slug": "bcn-casa-asia",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.38744010222002,
+    "lng": 2.117782137688457
+  },
+  "ca": {
+    "title": "Casa Àsia als Jardins de Pedralbes",
+    "subtitle": "Pla Especial Integral i de Millora Urbana de regulació d'un equipament i zona verda",
+    "municipality": "Barcelona",
+    "year": "2023",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 73166,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Casa Àsia als Jardins de Pedralbes",
+    "subtitle": "Pla Especial Integral i de Millora Urbana de regulació d'un equipament i zona verda",
+    "municipality": "Barcelona",
+    "year": "2023",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 73166,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Casa Àsia als Jardins de Pedralbes",
+    "subtitle": "Pla Especial Integral i de Millora Urbana de regulació d'un equipament i zona verda",
+    "municipality": "Barcelona",
+    "year": "2023",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 73166,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

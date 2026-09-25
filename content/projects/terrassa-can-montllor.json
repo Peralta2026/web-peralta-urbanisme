@@ -1,0 +1,56 @@
+{
+  "slug": "terrassa-can-montllor",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.5647,
+    "lng": 2.009
+  },
+  "ca": {
+    "title": "Nou campus de Can Montllor",
+    "subtitle": "Modificació puntual de POUM",
+    "municipality": "Terrassa",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nou campus de Can Montllor",
+    "subtitle": "Modificació puntual de POUM",
+    "municipality": "Terrassa",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nou campus de Can Montllor",
+    "subtitle": "Modificació puntual de POUM",
+    "municipality": "Terrassa",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

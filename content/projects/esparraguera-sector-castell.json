@@ -1,0 +1,56 @@
+{
+  "slug": "esparraguera-sector-castell",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.533496754928485,
+    "lng": 1.876989563647036
+  },
+  "ca": {
+    "title": "Nou centre a Esparraguera",
+    "subtitle": "Pla Parcial Urbanístic del sector El Castell II",
+    "municipality": "Esparraguera",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 237100,
+    "programa": null,
+    "sostreM2": 142708,
+    "habitatges": 1712,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nou centre a Esparraguera",
+    "subtitle": "Pla Parcial Urbanístic del sector El Castell II",
+    "municipality": "Esparraguera",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 237100,
+    "programa": null,
+    "sostreM2": 142708,
+    "habitatges": 1712,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nou centre a Esparraguera",
+    "subtitle": "Pla Parcial Urbanístic del sector El Castell II",
+    "municipality": "Esparraguera",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament derivat",
+    "premi": null,
+    "ambitM2": 237100,
+    "programa": null,
+    "sostreM2": 142708,
+    "habitatges": 1712,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

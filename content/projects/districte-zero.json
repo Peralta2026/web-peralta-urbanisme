@@ -1,0 +1,56 @@
+{
+  "slug": "districte-zero",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.566638778600016,
+    "lng": 2.010520367564228
+  },
+  "ca": {
+    "title": "Districte Zero",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 490000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Districte Zero",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 490000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Districte Zero",
+    "subtitle": "Pla Director de regeneració urbana",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Barri",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 490000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

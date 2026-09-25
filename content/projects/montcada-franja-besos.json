@@ -1,0 +1,56 @@
+{
+  "slug": "montcada-franja-besos",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.492112335896365,
+    "lng": 2.1843879225033147
+  },
+  "ca": {
+    "title": "Revitalització de les vores del Besòs",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Montcada i Reixac",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 1030000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Revitalització de les vores del Besòs",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Montcada i Reixac",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 1030000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Revitalització de les vores del Besòs",
+    "subtitle": "Estudi i model urbanístic",
+    "municipality": "Montcada i Reixac",
+    "year": "2025",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": 1030000,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

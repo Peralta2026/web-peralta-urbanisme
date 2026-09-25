@@ -1,0 +1,56 @@
+{
+  "slug": "montcada-terranostra",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.492112335896365,
+    "lng": 2.1843879225033147
+  },
+  "ca": {
+    "title": "Regeneració urbana de Terranostra",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Montcada i Reixac",
+    "year": "2026",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Regeneració urbana de Terranostra",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Montcada i Reixac",
+    "year": "2026",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Regeneració urbana de Terranostra",
+    "subtitle": "Modificació puntual del Pla General Metropolità",
+    "municipality": "Montcada i Reixac",
+    "year": "2026",
+    "status": "Barri",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

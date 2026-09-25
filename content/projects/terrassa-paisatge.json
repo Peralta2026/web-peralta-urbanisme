@@ -1,0 +1,56 @@
+{
+  "slug": "terrassa-paisatge",
+  "webStatus": "si",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.563152158615644,
+    "lng": 2.0054888916299998
+  },
+  "ca": {
+    "title": "Paisatge Urbà",
+    "subtitle": "Avantprojecte de l'Ordenança del Paisatge Urbà",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Paisatge Urbà",
+    "subtitle": "Avantprojecte de l'Ordenança del Paisatge Urbà",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Paisatge Urbà",
+    "subtitle": "Avantprojecte de l'Ordenança del Paisatge Urbà",
+    "municipality": "Terrassa",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

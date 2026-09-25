@@ -1,0 +1,56 @@
+{
+  "slug": "rubi-industrial",
+  "webStatus": "sense-fitxa",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.4971101781097,
+    "lng": 2.034921775009254
+  },
+  "ca": {
+    "title": "Nou marc normatiu industrial",
+    "subtitle": "Estudi d'anàlisi i nova proposta normativa per tot el sòl industrial municipal",
+    "municipality": "Rubí",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Nou marc normatiu industrial",
+    "subtitle": "Estudi d'anàlisi i nova proposta normativa per tot el sòl industrial municipal",
+    "municipality": "Rubí",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Nou marc normatiu industrial",
+    "subtitle": "Estudi d'anàlisi i nova proposta normativa per tot el sòl industrial municipal",
+    "municipality": "Rubí",
+    "year": "2021",
+    "status": "Municipi",
+    "tipus": "Estudi",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}

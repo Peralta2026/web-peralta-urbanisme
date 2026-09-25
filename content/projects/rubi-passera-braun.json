@@ -1,0 +1,56 @@
+{
+  "slug": "rubi-passera-braun",
+  "webStatus": "en-proces",
+  "coverImage": "",
+  "images": [],
+  "tags": [],
+  "coordinates": {
+    "lat": 41.4971101781097,
+    "lng": 2.034921775009254
+  },
+  "ca": {
+    "title": "Passera Braun",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "Rubí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "es": {
+    "title": "Passera Braun",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "Rubí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  },
+  "en": {
+    "title": "Passera Braun",
+    "subtitle": "Modificació puntual Pla General d'Ordenació",
+    "municipality": "Rubí",
+    "year": "2026",
+    "status": "Sector",
+    "tipus": "Planejament general",
+    "premi": null,
+    "ambitM2": null,
+    "programa": null,
+    "sostreM2": null,
+    "habitatges": null,
+    "descriptionShort": "",
+    "descriptionLong": ""
+  }
+}
