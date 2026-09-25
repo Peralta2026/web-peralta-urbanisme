@@ -319,7 +319,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
   const scrollSpaceRef  = useRef<HTMLDivElement>(null);
-  const videoRef        = useRef<HTMLVideoElement>(null);
+  const videoRef        = useRef<HTMLDivElement>(null);
 
   /* Hero-exit lock */
   const heroDoneRef      = useRef(false);
@@ -623,28 +623,34 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         ref={heroRef}
         style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform" }}
       >
-        {/* Vídeo de fons — apareix quan es fa el settle, es congela a l'últim fotograma */}
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video
+        {/* Vídeo de fons — wrapper clips edge artifacts; opacity controlled via ref */}
+        <div
           ref={videoRef}
-          autoPlay
-          muted
-          playsInline
           style={{
-            position:  "absolute",
-            top:       "18%",
-            right:     "0%",
-            width:     "55%",
-            height:    "68%",
-            objectFit: "cover",
-            display:   "block",
-            opacity:   0,
-            border:    0,
-            outline:   0,
+            position: "absolute",
+            top:      "18%",
+            right:    "7%",
+            width:    "55%",
+            height:   "68%",
+            overflow: "hidden",
+            opacity:  0,
           }}
         >
-          <source src="/intro.mp4" type="video/mp4" />
-        </video>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            autoPlay
+            muted
+            playsInline
+            style={{
+              width:     "100%",
+              height:    "100%",
+              objectFit: "cover",
+              display:   "block",
+            }}
+          >
+            <source src="/intro.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         {/* Lang selector */}
         <div style={{ position: "absolute", top: "27px", right: "76px", zIndex: 20, height: "22px", display: "flex", alignItems: "center" }}>
