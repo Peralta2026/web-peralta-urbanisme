@@ -120,7 +120,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
       }}>
         <Link href={`/${locale}/projectes`} className="pu-dirview-link">ARXIU</Link>
         <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px,3.8vw,58px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
         <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
         <button
           onClick={() => setPanelOpen(f => !f)}
@@ -235,7 +235,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
         }
         .pu-dirview-link {
           font-family: var(--font-sans);
-          font-size: clamp(28px, 3.8vw, 58px);
+          font-size: clamp(32px, 4vw, 60px);
           font-weight: 300;
           letter-spacing: -0.04em;
           line-height: 1;

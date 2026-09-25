@@ -401,7 +401,7 @@ export default function ArchiveList({ projects, locale }: Props) {
         flexWrap: "wrap",
       }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(14px,2.2vw,32px)", flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px,3.8vw,58px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
           <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
           <Link href={`/${locale}/mapa`} className="pu-dirview-link">TERRITORIAL</Link>
           <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
@@ -619,7 +619,7 @@ export default function ArchiveList({ projects, locale }: Props) {
       <style>{`
         .pu-dirview-link {
           font-family: var(--font-sans);
-          font-size: clamp(28px, 3.8vw, 58px);
+          font-size: clamp(32px, 4vw, 60px);
           font-weight: 300;
           letter-spacing: -0.04em;
           line-height: 1;

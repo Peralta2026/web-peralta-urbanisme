@@ -18,9 +18,9 @@ const MENU: Record<string, MenuItem[]> = {
     {
       label: "Arxiu de Projectes", href: "/projectes",
       sub: [
-        { label: "Directori visual",      href: "/directori" },
-        { label: "Directori territorial", href: "/mapa"      },
-        { label: "Directori sintètic",    href: "/sintetic"  },
+        { label: "Visual",      href: "/directori" },
+        { label: "Territorial", href: "/mapa"      },
+        { label: "Sintètic",    href: "/sintetic"  },
       ],
     },
     { label: "Mètode",   href: "/principis" },
@@ -31,9 +31,9 @@ const MENU: Record<string, MenuItem[]> = {
     {
       label: "Arxiu de Projectes", href: "/projectes",
       sub: [
-        { label: "Directorio visual",      href: "/directori" },
-        { label: "Directorio territorial", href: "/mapa"      },
-        { label: "Directorio sintético",   href: "/sintetic"  },
+        { label: "Visual",      href: "/directori" },
+        { label: "Territorial", href: "/mapa"      },
+        { label: "Sintético",   href: "/sintetic"  },
       ],
     },
     { label: "Método",   href: "/principis" },
@@ -44,9 +44,9 @@ const MENU: Record<string, MenuItem[]> = {
     {
       label: "Project Archive", href: "/projectes",
       sub: [
-        { label: "Visual directory",      href: "/directori" },
-        { label: "Territorial directory", href: "/mapa"      },
-        { label: "Synthetic directory",   href: "/sintetic"  },
+        { label: "Visual",      href: "/directori" },
+        { label: "Territorial", href: "/mapa"      },
+        { label: "Synthetic",   href: "/sintetic"  },
       ],
     },
     { label: "Method",  href: "/principis" },

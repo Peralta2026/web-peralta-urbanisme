@@ -30,15 +30,14 @@ export default async function ContactePage({
   await params;
 
   return (
-    <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
+    <div style={{ paddingTop: "var(--header-height)", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Capçalera estàndard ─────────────────────────────────────────── */}
+      {/* ── Capçalera ── */}
       <header style={{
         paddingTop:    "clamp(36px,5vh,64px)",
         paddingBottom: "clamp(24px,3.5vh,44px)",
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
-        borderBottom:  "1px solid #1a1a1a",
       }}>
         <h1 style={{
           fontFamily:    "var(--font-sans)",
@@ -53,13 +52,12 @@ export default async function ContactePage({
         </h1>
       </header>
 
-      {/* ── Contingut principal ───────────────────────────────────────── */}
-      <div className="pu-contacte-grid">
+      {/* ── Contingut principal ── */}
+      <div className="pu-contacte-layout">
 
-        {/* ── Columna esquerra: dades ─────────────────────────────────── */}
-        <div className="pu-contacte-left">
+        {/* Columna esquerra: dades de contacte */}
+        <div className="pu-contacte-info">
 
-          {/* Email */}
           <div className="pu-contacte-block">
             <p className="pu-contacte-label">Escriu-nos</p>
             <a href="mailto:info@peraltaurbanisme.com" className="pu-contacte-email">
@@ -67,7 +65,6 @@ export default async function ContactePage({
             </a>
           </div>
 
-          {/* Telèfon */}
           <div className="pu-contacte-block">
             <p className="pu-contacte-label">Telèfon</p>
             <a href="tel:+34935389893" className="pu-contacte-phone">
@@ -75,19 +72,18 @@ export default async function ContactePage({
             </a>
           </div>
 
-          {/* Adreça */}
           <div className="pu-contacte-block">
             <p className="pu-contacte-label">Adreça</p>
             <address className="pu-contacte-address">
-              Carrer d&apos;Argentona, 59<br />
+              Carrer de l&apos;Argentona, 29<br />
+              Pis 3-3<br />
               08302 Mataró, Barcelona
             </address>
           </div>
 
-          {/* Xarxes */}
           <div className="pu-contacte-block">
             <p className="pu-contacte-label">Segueix-nos</p>
-            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
               <a
                 href="https://www.instagram.com/peraltaurbanisme/"
                 target="_blank"
@@ -111,36 +107,37 @@ export default async function ContactePage({
 
         </div>
 
-        {/* ── Columna dreta: mapa ─────────────────────────────────────── */}
-        <div className="pu-contacte-map-wrap">
+        {/* Columna dreta: mapa */}
+        <div className="pu-contacte-map-col">
           <ContactMapLoader />
         </div>
+
       </div>
 
       <style>{`
-        .pu-contacte-grid {
+        .pu-contacte-layout {
           display: grid;
-          grid-template-columns: 5fr 7fr;
-          align-items: start;
-          border-bottom: 1px solid #1a1a1a;
+          grid-template-columns: 1fr 1fr;
+          gap: 0;
+          padding: 0 0 clamp(60px,10vh,100px);
         }
-        .pu-contacte-left {
+        .pu-contacte-info {
           display: flex;
           flex-direction: column;
-          padding: clamp(36px,5vh,64px) var(--margin-page);
-          gap: 36px;
+          gap: clamp(36px,5vh,52px);
+          padding: 0 var(--margin-page) clamp(48px,7vh,72px);
         }
         .pu-contacte-block {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
         }
         .pu-contacte-label {
           font-family: var(--font-mono);
           font-size: 9px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #aaa;
+          color: #bbb;
           margin: 0;
         }
         .pu-contacte-email {
@@ -152,7 +149,7 @@ export default async function ContactePage({
           text-decoration: none;
           transition: opacity 200ms ease;
         }
-        .pu-contacte-email:hover { opacity: 0.5; }
+        .pu-contacte-email:hover { opacity: 0.45; }
         .pu-contacte-phone {
           font-family: var(--font-sans);
           font-size: clamp(14px, 1.3vw, 18px);
@@ -162,12 +159,12 @@ export default async function ContactePage({
           text-decoration: none;
           transition: opacity 200ms ease;
         }
-        .pu-contacte-phone:hover { opacity: 0.5; }
+        .pu-contacte-phone:hover { opacity: 0.45; }
         .pu-contacte-address {
           font-family: var(--font-sans);
           font-size: clamp(13px, 1.2vw, 16px);
           font-weight: 400;
-          line-height: 1.65;
+          line-height: 1.75;
           color: #555;
           font-style: normal;
           margin: 0;
@@ -176,33 +173,40 @@ export default async function ContactePage({
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
-          border: 1px solid rgba(0,0,0,0.15);
-          color: #444;
+          width: 36px;
+          height: 36px;
+          color: #999;
           text-decoration: none;
-          transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+          transition: color 180ms ease;
         }
-        .pu-social-icon:hover { color: #000; border-color: #000; }
-        .pu-contacte-map-wrap {
-          height: 480px;
+        .pu-social-icon:hover { color: #000; }
+        .pu-contacte-map-col {
+          height: 100%;
+          min-height: 320px;
           position: sticky;
-          top: 88px;
+          top: var(--header-height);
           overflow: hidden;
-          border-left: 1px solid #1a1a1a;
+          opacity: 0.88;
         }
-        .pu-contacte-map-wrap > div {
+        .pu-contacte-map-col > div {
           width: 100%;
           height: 100%;
         }
-        @media (max-width: 768px) {
-          .pu-contacte-grid { grid-template-columns: 1fr; }
-          .pu-contacte-map-wrap {
-            height: 340px;
+        @media (max-width: 900px) {
+          .pu-contacte-layout {
+            grid-template-columns: 1fr;
+          }
+          .pu-contacte-map-col {
             position: relative;
             top: 0;
-            border-left: none;
-            border-top: 1px solid #1a1a1a;
+            height: 280px;
+            margin: 0 var(--margin-page) 0;
+          }
+        }
+        @media (max-width: 480px) {
+          .pu-contacte-map-col {
+            margin: 0;
+            height: 220px;
           }
         }
       `}</style>

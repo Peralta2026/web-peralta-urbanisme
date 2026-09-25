@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 
-// Carrer d'Argentona, 59 · 08302 Mataró, Barcelona
-const LAT = 41.5392;
-const LNG = 2.4412;
+// Carrer de l'Argentona, 29 · Pis 3-3 · 08302 Mataró, Barcelona
+const LAT = 41.5396;
+const LNG = 2.4408;
 const ZOOM = 15;
 
 const TILE_URL =
@@ -63,7 +63,7 @@ export default function ContactMap() {
     <>
       <div
         ref={containerRef}
-        style={{ width: "100%", height: "100%", minHeight: "480px" }}
+        style={{ width: "100%", height: "100%" }}
       />
       <style>{`
         .leaflet-container {

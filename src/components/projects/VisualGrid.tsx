@@ -82,6 +82,14 @@ export default function VisualGrid({ projects, locale }: Props) {
           transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
                       z-index 0ms 0ms;
         }
+        .pu-visual-grid:has(.pu-visual-cell:hover) .pu-visual-cell:not(:hover) {
+          opacity: 0.35;
+          filter: brightness(0.85);
+          transition: transform 480ms cubic-bezier(0.22,1,0.36,1),
+                      z-index 0ms 480ms,
+                      opacity 280ms ease,
+                      filter 280ms ease;
+        }
         .pu-visual-img {
           position: absolute;
           inset: 0;
