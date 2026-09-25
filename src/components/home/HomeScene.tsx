@@ -642,13 +642,13 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             muted
             playsInline
             style={{
-              width:       "104%",
-              height:      "104%",
-              marginLeft:  "-2%",
-              marginTop:   "-2%",
-              objectFit:   "cover",
+              width:       "100%",
+              height:      "100%",
+              objectFit:   "contain",
               display:     "block",
+              background:  "transparent",
               willChange:  "transform",
+              transform:   "scale(1.004)",
             }}
           >
             <source src="/intro.mp4" type="video/mp4" />
