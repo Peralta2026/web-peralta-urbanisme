@@ -163,8 +163,8 @@ export default function Nav({ locale }: { locale: string }) {
 
       <style>{`
         .pu-site-header { position: fixed; inset: 0 0 auto; z-index: 200; height: var(--header-height); padding: 0 var(--margin-page); display: flex; align-items: center; justify-content: space-between; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-        .pu-header-logo { display: flex; align-items: center; height: calc(var(--header-height) - 16px); }
-        .pu-header-logo img, .pu-menu-top img { display: block; height: 100%; width: auto; }
+        .pu-header-logo { display: block; width: clamp(184px, 22vw, 240px); }
+        .pu-header-logo img, .pu-menu-top img { display: block; width: 100%; height: auto; }
         .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-mono); font-size: var(--size-meta); letter-spacing: .08em; text-transform: uppercase; }
         .pu-language-selector span { display: flex; align-items: center; gap: 6px; }
         .pu-language-selector button { border: 0; padding: 0; background: none; color: var(--color-gray-mid); font: inherit; text-transform: inherit; cursor: pointer; }
@@ -179,7 +179,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 33vw; min-width: 300px; padding: 0 var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
         .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
         .pu-menu-top { height: var(--header-height); display: flex; align-items: center; border-bottom: 1px solid var(--color-border); flex-shrink: 0; }
-        .pu-menu-top a { display: flex; align-items: center; height: calc(var(--header-height) - 16px); }
+        .pu-menu-top a { width: clamp(184px, 22vw, 240px); }
         .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; }
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
         .pu-menu-item { display: flex; flex-direction: column; }

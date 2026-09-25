@@ -711,7 +711,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ height: "clamp(44px,5.5vh,62px)", width: "auto", display: "block" }} />
+            style={{ width: "clamp(184px,22vw,240px)", height: "auto", display: "block" }} />
         </Link>
       </div>
 
