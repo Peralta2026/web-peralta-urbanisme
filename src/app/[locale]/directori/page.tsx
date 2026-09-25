@@ -40,7 +40,7 @@ export default async function DirectoriPage({
         .pu-dirview-link {
           font-family: var(--font-sans);
           font-size: clamp(32px, 4vw, 60px);
-          font-weight: 300;
+          font-weight: 700;
           letter-spacing: -0.04em;
           line-height: 1;
           color: #bbb;

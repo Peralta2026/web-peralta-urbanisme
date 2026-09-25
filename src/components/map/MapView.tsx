@@ -63,10 +63,9 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         zoomControl: false,
       });
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png", {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: "abcd",
-        maxZoom: 19,
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+        attribution: '© <a href="https://www.esri.com">Esri</a>',
+        maxZoom: 16,
       }).addTo(map);
       L.control.zoom({ position: "bottomright" }).addTo(map);
 

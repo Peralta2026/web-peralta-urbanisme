@@ -166,7 +166,7 @@ export default function Nav({ locale }: { locale: string }) {
 
       <style>{`
         .pu-site-header { position: fixed; inset: 0 0 auto; z-index: 200; height: var(--header-height); padding: 0 var(--margin-page); display: flex; align-items: center; justify-content: space-between; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-        .pu-header-logo { display: block; width: clamp(202px, 24vw, 264px); margin-left: -6px; }
+        .pu-header-logo { display: block; width: clamp(202px, 24vw, 264px); margin-left: clamp(-33px, -3vw, -25px); }
         .pu-header-logo img, .pu-menu-top img { display: block; width: 100%; height: auto; }
         .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-mono); font-size: var(--size-meta); letter-spacing: .08em; text-transform: uppercase; }
         .pu-language-selector span { display: flex; align-items: center; gap: 6px; }
