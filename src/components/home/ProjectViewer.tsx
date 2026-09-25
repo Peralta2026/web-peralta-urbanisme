@@ -573,7 +573,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
           <div ref={logoRef} style={{ flexShrink: 0, height: "72px", display: "flex", alignItems: "center", padding: "0 clamp(32px,5vw,64px)", opacity: 0, pointerEvents: "none", borderBottom: "1px solid rgba(0,0,0,0.08)", background: PANEL_BG, position: "relative", zIndex: 30 }}>
             <Link href={localizeHref("/", locale)} style={{ textDecoration: "none", display: "inline-block" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ width: "clamp(160px,20vw,210px)", height: "auto", display: "block" }} />
+              <img src="/logo-nuevo.png" alt="Peralta Urbanisme" style={{ height: "clamp(42px,5vh,56px)", width: "auto", display: "block" }} />
             </Link>
           </div>
 

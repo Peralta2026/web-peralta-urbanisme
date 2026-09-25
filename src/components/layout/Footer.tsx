@@ -36,9 +36,9 @@ export default function Footer({ locale }: { locale: string }) {
             <Image
               src="/logo-nuevo.png"
               alt="Peralta Urbanisme"
-              width={280}
-              height={70}
-              style={{ filter: "invert(1)", display: "block", width: "100%", height: "auto" }}
+              width={500}
+              height={300}
+              style={{ filter: "invert(1)", display: "block", width: "clamp(160px,18vw,220px)", height: "auto" }}
             />
           </Link>
           <p className="pu-footer-tagline">

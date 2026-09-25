@@ -707,11 +707,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       </div>
 
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
-      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto", transform: "translateX(-14%)" }}>
+      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto" }}>
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ width: "clamp(184px,22vw,240px)", height: "auto", display: "block" }} />
+            style={{ height: "clamp(44px,5.5vh,62px)", width: "auto", display: "block" }} />
         </Link>
       </div>
 
@@ -847,6 +847,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           <video
             autoPlay
             muted
+            loop
             playsInline
             style={{
               width:      "100%",
