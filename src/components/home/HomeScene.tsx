@@ -50,11 +50,13 @@ const UI_LABELS: Record<string, { noResults: string; explore: string }> = {
   en: { noResults: "No projects found", explore: "Explore the project archive" },
 };
 
-const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string }> = {
-  ca: { draw: "Dibuixar", erase: "Esborrar", clear: "Netejar" },
-  es: { draw: "Dibujar",  erase: "Borrar",   clear: "Borrar todo" },
-  en: { draw: "Draw",     erase: "Erase",    clear: "Clear" },
+const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string; thin: string; normal: string; thick: string }> = {
+  ca: { draw: "Dibuixar", erase: "Esborrar", clear: "Netejar",     thin: "Fi",   normal: "Normal", thick: "Gruixut" },
+  es: { draw: "Dibujar",  erase: "Borrar",   clear: "Borrar todo", thin: "Fino", normal: "Normal", thick: "Grueso"  },
+  en: { draw: "Draw",     erase: "Erase",    clear: "Clear",       thin: "Thin", normal: "Normal", thick: "Thick"   },
 };
+
+const STROKE_MULS = { 1: 0.45, 2: 1, 3: 2.4 } as const;
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
@@ -164,6 +166,7 @@ function drawCalli(
   from: { x: number; y: number },
   to:   { x: number; y: number },
   prevMid: { x: number; y: number } | null,
+  sizeMul = 1,
 ): { x: number; y: number } {
   const dx   = to.x - from.x;
   const dy   = to.y - from.y;
@@ -173,7 +176,7 @@ function drawCalli(
   const speed    = Math.hypot(dx, dy);
   const pressure = Math.max(0, 1 - speed / 28);
   // Nib at 45° — thick when horizontal, thin when vertical
-  const w   = 1.2 + pressure * 1.8 + 4.8 * Math.abs(Math.cos(angle - Math.PI / 4));
+  const w   = (1.2 + pressure * 1.8 + 4.8 * Math.abs(Math.cos(angle - Math.PI / 4))) * sizeMul;
   const mid = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
 
   ctx.beginPath();
@@ -347,7 +350,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
   /* ── State ── */
   const [isMobile,  setIsMobile]  = useState(false);
-  const [drawMode,  setDrawMode]  = useState<"draw" | "erase">("draw");
+  const [drawMode,   setDrawMode]   = useState<"draw" | "erase">("draw");
+  const [strokeSize, setStrokeSize] = useState<1 | 2 | 3>(2);
 
   /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
@@ -370,6 +374,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const lastPtRef       = useRef<{ x: number; y: number } | null>(null);
   const prevMidRef      = useRef<{ x: number; y: number } | null>(null);
   const drawModeRef     = useRef<"draw" | "erase">("draw");
+  const strokeSizeRef   = useRef<1 | 2 | 3>(2);
   const clearFnRef      = useRef<() => void>(() => {});
 
   /* Hero-exit lock */
@@ -416,6 +421,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const handleModeChange = (mode: "draw" | "erase") => {
     drawModeRef.current = mode;
     setDrawMode(mode);
+  };
+
+  const handleSizeChange = (size: 1 | 2 | 3) => {
+    strokeSizeRef.current = size;
+    setStrokeSize(size);
   };
 
   /* ── RAF loop ── */
@@ -586,7 +596,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         return;
       }
 
-      prevMidRef.current = drawCalli(ctx, lastPtRef.current, { x: e.clientX, y: e.clientY }, prevMidRef.current);
+      prevMidRef.current = drawCalli(ctx, lastPtRef.current, { x: e.clientX, y: e.clientY }, prevMidRef.current, STROKE_MULS[strokeSizeRef.current]);
       lastPtRef.current  = { x: e.clientX, y: e.clientY };
     };
 
@@ -925,6 +935,32 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             {(TOOL_LABELS[locale] ?? TOOL_LABELS.ca)[mode]}
           </button>
         ))}
+        <span style={{ color: "rgba(0,0,0,0.18)", fontFamily: "var(--font-mono)", fontSize: "9px" }}>·</span>
+        {([1, 2, 3] as const).map((size) => {
+          const labels = TOOL_LABELS[locale] ?? TOOL_LABELS.ca;
+          const label  = size === 1 ? labels.thin : size === 2 ? labels.normal : labels.thick;
+          return (
+            <button
+              key={size}
+              onClick={() => handleSizeChange(size)}
+              style={{
+                background:    "none",
+                border:        "none",
+                padding:       0,
+                cursor:        "pointer",
+                fontFamily:    "var(--font-mono)",
+                fontSize:      "9px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase" as const,
+                color:         strokeSize === size ? "#000" : "rgba(0,0,0,0.32)",
+                fontWeight:    strokeSize === size ? 700 : 400,
+                transition:    "color 180ms ease",
+              }}
+            >
+              {label}
+            </button>
+          );
+        })}
         <span style={{ color: "rgba(0,0,0,0.18)", fontFamily: "var(--font-mono)", fontSize: "9px" }}>·</span>
         <button
           onClick={() => clearFnRef.current()}
