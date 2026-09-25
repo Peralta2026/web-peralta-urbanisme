@@ -146,6 +146,9 @@ export default async function ProjectPage({
     data.premi       && { label: f.premi,      value: data.premi! },
   ].filter(Boolean) as { label: string; value: string }[];
 
+  const hasSubtitle = !!data.subtitle;
+  const hasCredits = !!project.credits;
+
   // Paràgrafs del text llarg
   const paragraphs = (data.descriptionLong || data.descriptionShort)
     .split("\n\n")
@@ -223,11 +226,60 @@ export default async function ProjectPage({
               fontWeight: 800,
               letterSpacing: "-0.05em",
               color: "#000",
-              margin: "0 0 32px 0",
+              margin: hasSubtitle || hasCredits ? "0 0 14px 0" : "0 0 32px 0",
             }}
           >
             {data.title}
           </h1>
+
+          {/* Subtitle */}
+          {data.subtitle && (
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10.5px",
+                fontWeight: 400,
+                letterSpacing: "0.04em",
+                color: "#888",
+                margin: "0 0 22px 0",
+                lineHeight: 1.5,
+                textTransform: "none",
+              }}
+            >
+              {data.subtitle}
+            </p>
+          )}
+
+          {/* Crèdits */}
+          {project.credits && (
+            <div
+              style={{
+                margin: "0 0 28px 0",
+                paddingBottom: "22px",
+                borderBottom: "1px solid #f0f0f0",
+              }}
+            >
+              {(() => {
+                const lines = project.credits.split("\n");
+                return lines.map((line, i) => (
+                  <p
+                    key={i}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "9.5px",
+                      fontWeight: 400,
+                      letterSpacing: "0.05em",
+                      color: "#999",
+                      margin: i === 1 ? "12px 0 0 0" : "2px 0 0 0",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {line}
+                  </p>
+                ));
+              })()}
+            </div>
+          )}
 
           {/* Dades tècniques — immediatament sota el títol */}
           <dl

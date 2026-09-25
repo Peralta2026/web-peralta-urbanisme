@@ -52,6 +52,7 @@ export interface Project {
   images: string[];
   tags: TagSlug[];
   coordinates: { lat: number; lng: number };
+  credits?: string;
   ca: ProjectLocale;
   es: ProjectLocale;
   en: ProjectLocale;
