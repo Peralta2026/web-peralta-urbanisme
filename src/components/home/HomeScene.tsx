@@ -605,6 +605,24 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         ref={heroRef}
         style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform" }}
       >
+        {/* Vídeo de fons — reprodueix una vegada, es congela a l'últim fotograma */}
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          autoPlay
+          muted
+          playsInline
+          style={{
+            position:   "absolute",
+            inset:      0,
+            width:      "100%",
+            height:     "100%",
+            objectFit:  "cover",
+            zIndex:     1,
+          }}
+        >
+          <source src="/intro.mp4" type="video/mp4" />
+        </video>
+
         {/* Lang selector */}
         <div style={{ position: "absolute", top: "27px", right: "76px", zIndex: 20, height: "22px", display: "flex", alignItems: "center" }}>
           <LangSelector locale={locale} />
