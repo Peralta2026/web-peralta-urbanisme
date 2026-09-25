@@ -7,13 +7,10 @@ const CURTAIN_MS   = 1350;
 const CURTAIN_EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function IntroWrapper({ children }: { children: React.ReactNode }) {
-  const [mounted,   setMounted]   = useState(false);
   const [curtainUp, setCurtainUp] = useState(false);
   const [done,      setDone]      = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     if (sessionStorage.getItem("pu-intro") === "1") {
       setDone(true);
       return;
@@ -37,17 +34,16 @@ export default function IntroWrapper({ children }: { children: React.ReactNode }
 
   return (
     <>
-      {mounted && !done && (
+      {!done && (
         <div
           style={{
-            position:   "fixed",
-            inset:      0,
-            zIndex:     9999,
-            background: "#000000",
-            transform:  curtainUp ? "translateY(-100%)" : "translateY(0)",
-            transition: curtainUp
-              ? `transform ${CURTAIN_MS}ms ${CURTAIN_EASE}`
-              : "none",
+            position:      "fixed",
+            inset:         0,
+            zIndex:        9999,
+            background:    "#000000",
+            transform:     curtainUp ? "translateY(-100%)" : "translateY(0)",
+            transition:    curtainUp ? `transform ${CURTAIN_MS}ms ${CURTAIN_EASE}` : "none",
+            pointerEvents: curtainUp ? "none" : "auto",
           }}
         />
       )}

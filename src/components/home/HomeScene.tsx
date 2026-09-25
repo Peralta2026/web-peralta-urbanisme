@@ -319,6 +319,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const leftColRef      = useRef<HTMLDivElement>(null);
   const rightColRef     = useRef<HTMLDivElement>(null);
   const scrollSpaceRef  = useRef<HTMLDivElement>(null);
+  const videoRef        = useRef<HTMLVideoElement>(null);
+
+  /* Hero-exit lock */
+  const heroDoneRef      = useRef(false);
+  const heroMinScrollRef = useRef(0);
 
   /* Dynamic scroll values */
   const nCardsRef    = useRef(displayProjects.length);
@@ -364,8 +369,15 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     rightOff.current = loopH.current * 0.4;
 
     const onScroll = () => {
-      pageY.current = window.scrollY;
-      vY.current = Math.max(0, Math.min(window.scrollY, totalRangeRef.current));
+      const raw = window.scrollY;
+      if (heroDoneRef.current && raw < heroMinScrollRef.current) {
+        window.scrollTo(0, heroMinScrollRef.current);
+        pageY.current = heroMinScrollRef.current;
+        vY.current    = heroMinScrollRef.current;
+        return;
+      }
+      pageY.current = raw;
+      vY.current = Math.max(0, Math.min(raw, totalRangeRef.current));
     };
 
     onScroll();
@@ -398,6 +410,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
       if (initialLayerRef.current) initialLayerRef.current.style.opacity = (1 - settleP).toFixed(3);
       if (settledLayerRef.current) settledLayerRef.current.style.opacity = settleP.toFixed(3);
+      if (videoRef.current)        videoRef.current.style.opacity        = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
 
@@ -414,6 +427,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         }
         if (cardsPanelRef.current) {
           cardsPanelRef.current.style.transform = `translateY(${((1 - easedP) * 100).toFixed(2)}vh)`;
+        }
+        if (openP >= 1 && !heroDoneRef.current) {
+          heroDoneRef.current      = true;
+          heroMinScrollRef.current = SETTLE_END + OPEN_RANGE;
+          if (heroRef.current) heroRef.current.style.visibility = "hidden";
         }
       }
 
@@ -605,20 +623,24 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         ref={heroRef}
         style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform" }}
       >
-        {/* Vídeo de fons — reprodueix una vegada, es congela a l'últim fotograma */}
+        {/* Vídeo de fons — apareix quan es fa el settle, es congela a l'últim fotograma */}
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
+          ref={videoRef}
           autoPlay
           muted
           playsInline
           style={{
             position:  "absolute",
-            top:       "6%",
-            right:     "2%",
+            top:       "18%",
+            right:     "0%",
             width:     "55%",
-            height:    "62%",
+            height:    "68%",
             objectFit: "cover",
             display:   "block",
+            opacity:   0,
+            border:    0,
+            outline:   0,
           }}
         >
           <source src="/intro.mp4" type="video/mp4" />
