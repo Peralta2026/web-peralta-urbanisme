@@ -613,11 +613,10 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           playsInline
           style={{
             position:  "absolute",
-            top:       "50%",
-            left:      "35%",
-            transform: "translate(-50%, -50%)",
-            width:     "60%",
-            height:    "60%",
+            top:       "6%",
+            right:     "2%",
+            width:     "55%",
+            height:    "62%",
             objectFit: "cover",
             display:   "block",
           }}
