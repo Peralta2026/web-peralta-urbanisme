@@ -151,6 +151,42 @@ function isValid(val: string | number | null | undefined): val is string | numbe
 }
 
 
+/* ─── Calligraphic drawing ───────────────────────────────────────────────── */
+
+function drawCalli(
+  ctx: CanvasRenderingContext2D,
+  from: { x: number; y: number },
+  to:   { x: number; y: number },
+  prevMid: { x: number; y: number } | null,
+): { x: number; y: number } {
+  const dx   = to.x - from.x;
+  const dy   = to.y - from.y;
+  if (Math.hypot(dx, dy) < 0.5) return prevMid ?? from;
+
+  const angle    = Math.atan2(dy, dx);
+  const speed    = Math.hypot(dx, dy);
+  const pressure = Math.max(0, 1 - speed / 28);
+  // Nib at 45° — thick when horizontal, thin when vertical
+  const w   = 1.2 + pressure * 1.8 + 4.8 * Math.abs(Math.cos(angle - Math.PI / 4));
+  const mid = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
+
+  ctx.beginPath();
+  ctx.lineWidth   = w;
+  ctx.lineCap     = "round";
+  ctx.lineJoin    = "round";
+  ctx.strokeStyle = "#111";
+  ctx.globalAlpha = 0.88;
+  if (prevMid) {
+    ctx.moveTo(prevMid.x, prevMid.y);
+    ctx.quadraticCurveTo(from.x, from.y, mid.x, mid.y);
+  } else {
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(mid.x, mid.y);
+  }
+  ctx.stroke();
+  return mid;
+}
+
 /* ─── LangSelector ───────────────────────────────────────────────────────── */
 
 function LangSelector({ locale }: { locale: string }) {
@@ -320,6 +356,11 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
   const rightColRef     = useRef<HTMLDivElement>(null);
   const scrollSpaceRef  = useRef<HTMLDivElement>(null);
   const videoRef        = useRef<HTMLDivElement>(null);
+  const canvasRef       = useRef<HTMLCanvasElement>(null);
+  const cursorRef       = useRef<HTMLDivElement>(null);
+  const isDrawingRef    = useRef(false);
+  const lastPtRef       = useRef<{ x: number; y: number } | null>(null);
+  const prevMidRef      = useRef<{ x: number; y: number } | null>(null);
 
   /* Hero-exit lock */
   const heroDoneRef      = useRef(false);
@@ -413,6 +454,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       if (videoRef.current)        videoRef.current.style.opacity        = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
+      if (cursorRef.current)       cursorRef.current.style.opacity       = heroDoneRef.current ? "0" : settleP.toFixed(3);
 
       /* ── Phase 1: hero slides UP, cards rise ── */
       if (sy < SETTLE_END) {
@@ -431,7 +473,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         if (openP >= 1 && !heroDoneRef.current) {
           heroDoneRef.current      = true;
           heroMinScrollRef.current = SETTLE_END + OPEN_RANGE;
-          if (heroRef.current) heroRef.current.style.visibility = "hidden";
+          if (heroRef.current)   heroRef.current.style.visibility   = "hidden";
+          if (canvasRef.current) canvasRef.current.style.display    = "none";
         }
       }
 
@@ -462,6 +505,62 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId.current);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /* ── Drawing canvas + custom cursor ── */
+  useEffect(() => {
+    const canvas   = canvasRef.current;
+    const cursorEl = cursorRef.current;
+    if (!canvas || !cursorEl) return;
+
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const onResize = () => {
+      const tmp = document.createElement("canvas");
+      tmp.width  = canvas.width;
+      tmp.height = canvas.height;
+      tmp.getContext("2d")?.drawImage(canvas, 0, 0);
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.getContext("2d")?.drawImage(tmp, 0, 0);
+    };
+
+    const onMove = (e: MouseEvent) => {
+      cursorEl.style.left = `${e.clientX}px`;
+      cursorEl.style.top  = `${e.clientY}px`;
+      if (!isDrawingRef.current || !lastPtRef.current) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      prevMidRef.current = drawCalli(ctx, lastPtRef.current, { x: e.clientX, y: e.clientY }, prevMidRef.current);
+      lastPtRef.current  = { x: e.clientX, y: e.clientY };
+    };
+
+    const onDown = (e: MouseEvent) => {
+      if (heroDoneRef.current) return;
+      if ((e.target as HTMLElement).closest("a, button")) return;
+      isDrawingRef.current = true;
+      prevMidRef.current   = null;
+      lastPtRef.current    = { x: e.clientX, y: e.clientY };
+    };
+
+    const onUp = () => {
+      isDrawingRef.current = false;
+      lastPtRef.current    = null;
+      prevMidRef.current   = null;
+    };
+
+    window.addEventListener("resize",    onResize);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup",   onUp);
+
+    return () => {
+      window.removeEventListener("resize",    onResize);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup",   onUp);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -621,7 +720,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       {/* ── HERO z=10 ────────────────────────────────────────────────────────── */}
       <div
         ref={heroRef}
-        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform" }}
+        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: "none" }}
       >
         {/* Vídeo de fons — wrapper clips edge artifacts; opacity controlled via ref */}
         <div
@@ -630,8 +729,8 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
             position: "absolute",
             top:      "18%",
             right:    "7%",
-            width:    "55%",
-            height:   "68%",
+            width:    "62%",
+            height:   "77%",
             overflow: "hidden",
             opacity:  0,
           }}
@@ -725,6 +824,36 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
           Properament
         </p>
       </section>
+
+      {/* ── Calligraphic drawing canvas (pointer-events:none — links still work) ── */}
+      <canvas
+        ref={canvasRef}
+        style={{
+          position:      "fixed",
+          inset:         0,
+          zIndex:        9997,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ── Custom cursor: black dot that inverts colors via mix-blend-mode ── */}
+      <div
+        ref={cursorRef}
+        style={{
+          position:     "fixed",
+          top:          0,
+          left:         0,
+          width:        "10px",
+          height:       "10px",
+          borderRadius: "50%",
+          background:   "#fff",
+          mixBlendMode: "difference",
+          pointerEvents:"none",
+          zIndex:       9998,
+          transform:    "translate(-50%, -50%)",
+          opacity:      0,
+        }}
+      />
     </>
   );
 }
