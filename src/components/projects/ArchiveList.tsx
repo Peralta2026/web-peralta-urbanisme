@@ -324,6 +324,9 @@ function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; 
       <div className="pu-archive-card-divider" />
       <div className="pu-archive-card-copy">
         <h3>{data.title}</h3>
+        {data.subtitle && (
+          <p className="pu-archive-card-subtitle">{data.subtitle}</p>
+        )}
         {dataRows.length > 0 && (
           <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
@@ -388,7 +391,7 @@ export default function ArchiveList({ projects, locale }: Props) {
   return (
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Capçalera: títol + toggle (esquerra) · botones dir (dreta) ── */}
+      {/* ── Capçalera: nav tipogràfica unificada ── */}
       <div style={{
         padding: "clamp(36px,5vh,64px) var(--margin-page) 0",
         display: "flex",
@@ -397,44 +400,26 @@ export default function ArchiveList({ projects, locale }: Props) {
         gap: "24px",
         flexWrap: "wrap",
       }}>
-        {/* Esquerra: títol + toggle */}
-        <div style={{ display: "flex", alignItems: "flex-end", gap: "18px" }}>
-          <h1 style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "clamp(32px,4vw,60px)",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-            color: "#000",
-            margin: 0,
-            flexShrink: 0,
-          }}>
-            {ui.title}
-          </h1>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(14px,2.2vw,32px)", flexWrap: "wrap" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px,3.8vw,58px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
+          <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
+          <Link href={`/${locale}/mapa`} className="pu-dirview-link">TERRITORIAL</Link>
+          <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
           <button
             onClick={() => setPanelOpen(f => !f)}
             title={panelOpen ? ui.close : ui.filters}
             style={{
-              fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
-              color: panelOpen ? "#888" : "#bbb",
+              fontFamily: "var(--font-mono)", fontSize: "12px", lineHeight: 1,
+              color: panelOpen ? "#999" : "#ccc",
               background: "none", border: "none", cursor: "pointer",
-              padding: "0 0 5px",
-              transition: "color 200ms ease", flexShrink: 0,
+              padding: "0 0 4px",
+              transition: "color 200ms ease",
               letterSpacing: "-0.02em",
+              marginLeft: "4px",
             }}
           >
             {panelOpen ? "‹‹" : "»»"}
           </button>
-        </div>
-
-        {/* Dreta: botons Directori */}
-        <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
-          <Link href={`/${locale}/directori`} className="pu-dir-btn">
-            {ui.dirVisual}
-          </Link>
-          <Link href={`/${locale}/mapa`} className="pu-dir-btn">
-            {ui.dirTerritorial}
-          </Link>
         </div>
       </div>
 
@@ -632,23 +617,17 @@ export default function ArchiveList({ projects, locale }: Props) {
       </div>
 
       <style>{`
-        .pu-dir-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 9px 18px;
-          border: 1px solid #1a1a1a;
-          background: transparent;
-          transition: background 180ms ease, color 180ms ease;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: #000;
+        .pu-dirview-link {
+          font-family: var(--font-sans);
+          font-size: clamp(28px, 3.8vw, 58px);
+          font-weight: 300;
+          letter-spacing: -0.04em;
+          line-height: 1;
+          color: #bbb;
           text-decoration: none;
+          transition: color 200ms ease;
         }
-        .pu-dir-btn:hover { background: #000; color: #fff; }
+        .pu-dirview-link:hover { color: #555; }
         .pu-archive-row:not(.pu-archive-row--static):hover { background: #f5f5f3; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Estudi"]:hover              { background: #F9EE76; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Planejament general"]:hover { background: #B4EFC5; }
@@ -695,13 +674,23 @@ export default function ArchiveList({ projects, locale }: Props) {
           padding: clamp(24px, 3vw, 42px);
         }
         .pu-archive-card-copy h3 {
-          margin: 0 0 clamp(28px, 4.5vh, 52px);
+          margin: 0 0 8px;
           color: #000;
           font-family: var(--font-sans);
           font-size: clamp(22px, 2.4vw, 36px);
           font-weight: 700;
           letter-spacing: -.04em;
           line-height: 1.02;
+        }
+        .pu-archive-card-subtitle {
+          margin: 0 0 clamp(22px, 3.5vh, 40px);
+          color: #666;
+          font-family: var(--font-sans);
+          font-size: clamp(12px, 1.1vw, 15px);
+          font-style: italic;
+          font-weight: 400;
+          letter-spacing: -0.01em;
+          line-height: 1.35;
         }
         .pu-archive-card-description {
           max-width: 620px;

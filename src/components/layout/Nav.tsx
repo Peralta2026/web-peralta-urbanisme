@@ -20,6 +20,7 @@ const MENU: Record<string, MenuItem[]> = {
       sub: [
         { label: "Directori visual",      href: "/directori" },
         { label: "Directori territorial", href: "/mapa"      },
+        { label: "Directori sintètic",    href: "/sintetic"  },
       ],
     },
     { label: "Mètode",   href: "/principis" },
@@ -32,6 +33,7 @@ const MENU: Record<string, MenuItem[]> = {
       sub: [
         { label: "Directorio visual",      href: "/directori" },
         { label: "Directorio territorial", href: "/mapa"      },
+        { label: "Directorio sintético",   href: "/sintetic"  },
       ],
     },
     { label: "Método",   href: "/principis" },
@@ -44,6 +46,7 @@ const MENU: Record<string, MenuItem[]> = {
       sub: [
         { label: "Visual directory",      href: "/directori" },
         { label: "Territorial directory", href: "/mapa"      },
+        { label: "Synthetic directory",   href: "/sintetic"  },
       ],
     },
     { label: "Method",  href: "/principis" },
@@ -163,7 +166,7 @@ export default function Nav({ locale }: { locale: string }) {
 
       <style>{`
         .pu-site-header { position: fixed; inset: 0 0 auto; z-index: 200; height: var(--header-height); padding: 0 var(--margin-page); display: flex; align-items: center; justify-content: space-between; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
-        .pu-header-logo { display: block; width: clamp(202px, 24vw, 264px); }
+        .pu-header-logo { display: block; width: clamp(202px, 24vw, 264px); margin-left: -6px; }
         .pu-header-logo img, .pu-menu-top img { display: block; width: 100%; height: auto; }
         .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-mono); font-size: var(--size-meta); letter-spacing: .08em; text-transform: uppercase; }
         .pu-language-selector span { display: flex; align-items: center; gap: 6px; }

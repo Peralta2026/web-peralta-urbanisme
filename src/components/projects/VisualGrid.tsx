@@ -4,17 +4,21 @@ import Link from "next/link";
 import type { Locale, Project } from "@/lib/types";
 
 interface ImageCell {
-  slug:  string;
-  title: string;
-  src:   string;
+  slug:     string;
+  title:    string;
+  subtitle: string;
+  src:      string;
 }
 
 function buildImageCells(projects: Project[], locale: Locale): ImageCell[] {
-  return projects.map((project) => ({
-    slug:  project.slug,
-    title: project[locale].title,
-    src:   `/projects/${project.slug}/${project.coverImage}`,
-  }));
+  return projects
+    .filter(p => p.coverImage && p.webStatus !== "no")
+    .map((project) => ({
+      slug:     project.slug,
+      title:    project[locale].title,
+      subtitle: project[locale].subtitle ?? "",
+      src:      `/projects/${project.slug}/${project.coverImage}`,
+    }));
 }
 
 interface Props {
@@ -43,7 +47,10 @@ export default function VisualGrid({ projects, locale }: Props) {
               className="pu-visual-img"
             />
             <div className="pu-visual-overlay">
-              <span>{cell.title}</span>
+              <span className="pu-visual-title">{cell.title}</span>
+              {cell.subtitle && (
+                <span className="pu-visual-subtitle">{cell.subtitle}</span>
+              )}
             </div>
           </Link>
         ))}
@@ -70,7 +77,7 @@ export default function VisualGrid({ projects, locale }: Props) {
                       z-index 0ms 480ms;
         }
         .pu-visual-cell:hover {
-          transform: scale(1.07);
+          transform: scale(1.23);
           z-index: 20;
           transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
                       z-index 0ms 0ms;
@@ -88,9 +95,10 @@ export default function VisualGrid({ projects, locale }: Props) {
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0) 60%);
+          background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 70%);
           display: flex;
-          align-items: flex-end;
+          flex-direction: column;
+          justify-content: flex-end;
           padding: clamp(20px, 2vw, 28px) clamp(10px, 1vw, 14px) clamp(10px, 1vw, 14px);
           opacity: 0;
           transition: opacity 280ms ease;
@@ -99,13 +107,24 @@ export default function VisualGrid({ projects, locale }: Props) {
         .pu-visual-cell:hover .pu-visual-overlay {
           opacity: 1;
         }
-        .pu-visual-overlay span {
-          color: #000;
+        .pu-visual-title {
+          color: #fff;
           font-family: var(--font-sans);
           font-size: clamp(11px, 0.9vw, 14px);
           font-weight: 700;
           letter-spacing: -0.02em;
           line-height: 1.2;
+          display: block;
+        }
+        .pu-visual-subtitle {
+          color: rgba(255,255,255,0.68);
+          font-family: var(--font-mono);
+          font-size: clamp(8px, 0.62vw, 10px);
+          font-weight: 400;
+          letter-spacing: 0.02em;
+          line-height: 1.3;
+          display: block;
+          margin-top: 4px;
         }
         @media (max-width: 1024px) {
           .pu-visual-grid { grid-template-columns: repeat(4, 1fr); }

@@ -236,14 +236,14 @@ export default async function ProjectPage({
           {data.subtitle && (
             <p
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10.5px",
+                fontFamily: "var(--font-sans)",
+                fontSize: "15px",
                 fontWeight: 400,
-                letterSpacing: "0.04em",
-                color: "#888",
+                fontStyle: "italic",
+                letterSpacing: "-0.01em",
+                color: "#666",
                 margin: "0 0 22px 0",
-                lineHeight: 1.5,
-                textTransform: "none",
+                lineHeight: 1.4,
               }}
             >
               {data.subtitle}

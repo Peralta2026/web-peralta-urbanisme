@@ -6,18 +6,6 @@ import type { Locale, Project, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 import MapView from "./MapView";
 
-const PAGE_TITLES: Record<Locale, string> = {
-  ca: "Directori territorial",
-  es: "Directori territorial",
-  en: "Territorial directory",
-};
-
-const NAV: Record<Locale, { visual: string; arxiu: string }> = {
-  ca: { visual: "Directori visual →",   arxiu: "Arxiu de Projectes →" },
-  es: { visual: "Directorio visual →",  arxiu: "Arxiu de Projectes →" },
-  en: { visual: "Visual directory →",   arxiu: "Project Archive →"    },
-};
-
 const SECTION_LABELS: Record<Locale, { tematica: string; tipus: string; escala: string; clear: string }> = {
   ca: { tematica: "Temàtica", tipus: "Tipus", escala: "Escala", clear: "Netejar" },
   es: { tematica: "Temática", tipus: "Tipo",  escala: "Escala", clear: "Borrar"  },
@@ -89,8 +77,6 @@ function FilterSectionHead({ title }: { title: string }) {
 export default function MapExplorer({ projects, locale }: { projects: Project[]; locale: string }) {
   const loc    = locale as Locale;
   const ui     = SECTION_LABELS[loc] ?? SECTION_LABELS.ca;
-  const nav    = NAV[loc]            ?? NAV.ca;
-  const title  = PAGE_TITLES[loc]   ?? PAGE_TITLES.ca;
   const tagLbl = TAG_LABELS[loc]     ?? TAG_LABELS.ca;
   const tipLbl = TIPUS_LABELS[loc]   ?? TIPUS_LABELS.ca;
   const escLbl = ESCALA_LABELS[loc]  ?? ESCALA_LABELS.ca;
@@ -123,50 +109,33 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
   return (
     <div className="pu-map-explorer">
 
-      {/* ── Capçalera: títol + toggle (esquerra) · botons nav (dreta) ── */}
+      {/* ── Capçalera: nav tipogràfica unificada ── */}
       <div style={{
-        flexShrink:     0,
-        padding:        "clamp(36px,5vh,64px) var(--margin-page) 0",
-        display:        "flex",
-        alignItems:     "flex-end",
-        justifyContent: "space-between",
-        gap:            "24px",
-        flexWrap:       "wrap",
+        flexShrink: 0,
+        padding:    "clamp(36px,5vh,64px) var(--margin-page) 0",
+        display:    "flex",
+        alignItems: "flex-end",
+        gap:        "clamp(14px,2.2vw,32px)",
+        flexWrap:   "wrap",
       }}>
-        {/* Esquerra */}
-        <div style={{ display: "flex", alignItems: "flex-end", gap: "18px" }}>
-          <h1 style={{
-            fontFamily:    "var(--font-sans)",
-            fontSize:      "clamp(32px,4vw,60px)",
-            fontWeight:    700,
-            letterSpacing: "-0.04em",
-            lineHeight:    1,
-            color:         "#000",
-            margin:        0,
-            flexShrink:    0,
-          }}>
-            {title}
-          </h1>
-          <button
-            onClick={() => setPanelOpen(f => !f)}
-            style={{
-              fontFamily: "var(--font-mono)", fontSize: "13px", lineHeight: 1,
-              color: panelOpen ? "#888" : "#bbb",
-              background: "none", border: "none", cursor: "pointer",
-              padding: "0 0 5px",
-              transition: "color 200ms ease", flexShrink: 0,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {panelOpen ? "‹‹" : "»»"}
-          </button>
-        </div>
-
-        {/* Dreta */}
-        <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
-          <Link href={`/${locale}/directori`} className="pu-dir-btn">{nav.visual}</Link>
-          <Link href={`/${locale}/projectes`} className="pu-dir-btn">{nav.arxiu}</Link>
-        </div>
+        <Link href={`/${locale}/projectes`} className="pu-dirview-link">ARXIU</Link>
+        <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px,3.8vw,58px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
+        <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
+        <button
+          onClick={() => setPanelOpen(f => !f)}
+          style={{
+            fontFamily: "var(--font-mono)", fontSize: "12px", lineHeight: 1,
+            color: panelOpen ? "#999" : "#ccc",
+            background: "none", border: "none", cursor: "pointer",
+            padding: "0 0 4px",
+            transition: "color 200ms ease",
+            letterSpacing: "-0.02em",
+            marginLeft: "4px",
+          }}
+        >
+          {panelOpen ? "‹‹" : "»»"}
+        </button>
       </div>
 
       {/* ── Línia separadora ── */}
@@ -264,23 +233,17 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
           position: relative;
           overflow: hidden;
         }
-        .pu-dir-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 9px 18px;
-          border: 1px solid #1a1a1a;
-          background: transparent;
-          transition: background 180ms ease, color 180ms ease;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: #000;
+        .pu-dirview-link {
+          font-family: var(--font-sans);
+          font-size: clamp(28px, 3.8vw, 58px);
+          font-weight: 300;
+          letter-spacing: -0.04em;
+          line-height: 1;
+          color: #bbb;
           text-decoration: none;
+          transition: color 200ms ease;
         }
-        .pu-dir-btn:hover { background: #000; color: #fff; }
+        .pu-dirview-link:hover { color: #555; }
         @media (max-width: 768px) {
           .pu-map-explorer { height: 100dvh; }
         }

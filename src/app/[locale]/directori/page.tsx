@@ -5,18 +5,6 @@ import Link from "next/link";
 
 export const dynamic = "force-static";
 
-const TITLES: Record<string, string> = {
-  ca: "Directori visual",
-  es: "Directorio visual",
-  en: "Visual directory",
-};
-
-const NAV: Record<string, { arxiu: string; territorial: string }> = {
-  ca: { arxiu: "Arxiu de Projectes →", territorial: "Directori territorial →" },
-  es: { arxiu: "Arxiu de Projectes →", territorial: "Directorio territorial →" },
-  en: { arxiu: "Project Archive →",    territorial: "Territorial directory →" },
-};
-
 export default async function DirectoriPage({
   params,
 }: {
@@ -24,41 +12,22 @@ export default async function DirectoriPage({
 }) {
   const { locale } = await params;
   const projects = getAllProjects();
-  const title    = TITLES[locale] ?? TITLES.ca;
-  const nav      = NAV[locale]    ?? NAV.ca;
 
   return (
     <div style={{ paddingTop: "var(--header-height)", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Capçalera: títol (esquerra) · botons nav (dreta) ── */}
+      {/* ── Capçalera: nav tipogràfica unificada ── */}
       <div style={{
-        padding:         "clamp(36px,5vh,64px) var(--margin-page) 0",
-        display:         "flex",
-        alignItems:      "flex-end",
-        justifyContent:  "space-between",
-        gap:             "24px",
-        flexWrap:        "wrap",
+        padding:        "clamp(36px,5vh,64px) var(--margin-page) 0",
+        display:        "flex",
+        alignItems:     "flex-end",
+        gap:            "clamp(14px,2.2vw,32px)",
+        flexWrap:       "wrap",
       }}>
-        <h1 style={{
-          fontFamily:    "var(--font-sans)",
-          fontSize:      "clamp(32px,4vw,60px)",
-          fontWeight:    700,
-          letterSpacing: "-0.04em",
-          lineHeight:    1,
-          color:         "#000",
-          margin:        0,
-        }}>
-          {title}
-        </h1>
-
-        <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
-          <Link href={`/${locale}/projectes`} className="pu-dir-btn">
-            {nav.arxiu}
-          </Link>
-          <Link href={`/${locale}/mapa`} className="pu-dir-btn">
-            {nav.territorial}
-          </Link>
-        </div>
+        <Link href={`/${locale}/projectes`} className="pu-dirview-link">ARXIU</Link>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(28px,3.8vw,58px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>VISUAL</span>
+        <Link href={`/${locale}/mapa`} className="pu-dirview-link">TERRITORIAL</Link>
+        <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
       </div>
 
       {/* ── Línia separadora ── */}
@@ -68,23 +37,17 @@ export default async function DirectoriPage({
       <VisualGrid projects={projects} locale={locale as Locale} />
 
       <style>{`
-        .pu-dir-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 9px 18px;
-          border: 1px solid #1a1a1a;
-          background: transparent;
-          transition: background 180ms ease, color 180ms ease;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: #000;
+        .pu-dirview-link {
+          font-family: var(--font-sans);
+          font-size: clamp(28px, 3.8vw, 58px);
+          font-weight: 300;
+          letter-spacing: -0.04em;
+          line-height: 1;
+          color: #bbb;
           text-decoration: none;
+          transition: color 200ms ease;
         }
-        .pu-dir-btn:hover { background: #000; color: #fff; }
+        .pu-dirview-link:hover { color: #555; }
       `}</style>
     </div>
   );
