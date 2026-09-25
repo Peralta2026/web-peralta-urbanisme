@@ -9,13 +9,23 @@ export function getAllProjects(): Project[] {
 
   const files = fs.readdirSync(projectsDir).filter((f) => f.endsWith(".json"));
 
+  const STATUS_ORDER: Record<string, number> = {
+    "relevant": 0,
+    "si": 1,
+    "sense-fitxa": 2,
+    "en-proces": 3,
+    "no": 4,
+  };
+
   return files
     .map((file) => {
       const raw = fs.readFileSync(path.join(projectsDir, file), "utf-8");
       return JSON.parse(raw) as Project;
     })
     .sort((a, b) => {
-      // Sort by year descending (most recent first)
+      const orderA = STATUS_ORDER[a.webStatus ?? "si"] ?? 1;
+      const orderB = STATUS_ORDER[b.webStatus ?? "si"] ?? 1;
+      if (orderA !== orderB) return orderA - orderB;
       const yearA = parseInt(a.ca.year) || 0;
       const yearB = parseInt(b.ca.year) || 0;
       return yearB - yearA;

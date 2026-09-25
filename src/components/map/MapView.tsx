@@ -126,26 +126,38 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
   return (
     <>
       <div ref={elementRef} className="pu-map" />
-      {selected && (
-        <aside className="pu-map-card" aria-label={selected[activeLocale].title}>
-          <button type="button" className="pu-map-card-close" onClick={() => setSelected(null)} aria-label="Tancar">×</button>
-          <div className="pu-map-card-image">
-            <Image
-              src={`/projects/${selected.slug}/${selected.coverImage}`}
-              alt={selected[activeLocale].title}
-              fill
-              sizes="(max-width: 640px) 78vw, 320px"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <div className="pu-map-card-copy">
-            <h2>{selected[activeLocale].title}</h2>
-            <span>{selected[activeLocale].municipality}</span>
-            <p>{[selected[activeLocale].year, selected[activeLocale].tipus, selected[activeLocale].status].filter(Boolean).join(" · ")}</p>
-            <Link href={projectHref(selected.slug, locale)}>Veure projecte <b>→</b></Link>
-          </div>
-        </aside>
-      )}
+      {selected && (() => {
+        const ws = selected.webStatus ?? "si";
+        const hasPage = ws === "si" || ws === "relevant";
+        const hasImage = hasPage && !!selected.coverImage;
+        const d = selected[activeLocale];
+        return (
+          <aside className="pu-map-card" aria-label={d.title}>
+            <button type="button" className="pu-map-card-close" onClick={() => setSelected(null)} aria-label="Tancar">×</button>
+            {hasImage && (
+              <div className="pu-map-card-image">
+                <Image
+                  src={`/projects/${selected.slug}/${selected.coverImage}`}
+                  alt={d.title}
+                  fill
+                  sizes="(max-width: 640px) 78vw, 320px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            )}
+            <div className="pu-map-card-copy">
+              <h2>{d.title}</h2>
+              <span>{d.municipality}</span>
+              <p>{[d.year, d.tipus, d.status].filter(Boolean).join(" · ")}</p>
+              {hasPage ? (
+                <Link href={projectHref(selected.slug, locale)}>Veure projecte <b>→</b></Link>
+              ) : ws === "en-proces" ? (
+                <p style={{ marginTop: "18px", paddingTop: "12px", borderTop: "1px solid rgba(0,0,0,0.08)", color: "#aaa", fontSize: "9px", letterSpacing: ".1em", textTransform: "uppercase" }}>En procés</p>
+              ) : null}
+            </div>
+          </aside>
+        );
+      })()}
       <style>{`
         .pu-map { position: absolute; inset: 0; background: #eee; }
         .pu-map .leaflet-tile-pane { filter: grayscale(1) contrast(1.1); }
@@ -153,7 +165,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-gray-light); }
         .pu-map-card-copy { padding: 16px 18px 20px; }
-        .pu-map-card-copy h2 { margin: 0 0 10px; color: var(--color-fg); font-family: var(--font-sans); font-size: 18px; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
+        .pu-map-card-copy h2 { margin: 0 0 10px; color: var(--color-fg); font-family: var(--font-sans); font-size: 17px; font-weight: 650; letter-spacing: -.02em; line-height: 1.2; overflow-wrap: break-word; word-break: break-word; }
         .pu-map-card-copy > span, .pu-map-card-copy p { display: block; margin: 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.6; }
         .pu-map-card-copy a { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; color: var(--color-fg); font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
         .pu-map-card-copy a b { font-size: 14px; font-weight: 400; }

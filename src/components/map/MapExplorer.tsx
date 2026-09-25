@@ -101,7 +101,9 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
   const [scale,     setScale]     = useState("");
 
   const locatedProjects = useMemo(
-    () => projects.filter(({ coordinates }) => coordinates.lat !== 0 && coordinates.lng !== 0),
+    () => projects.filter(({ coordinates, webStatus }) =>
+      coordinates.lat !== 0 && coordinates.lng !== 0 && webStatus !== "no"
+    ),
     [projects]
   );
 
