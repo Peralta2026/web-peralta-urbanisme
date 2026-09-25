@@ -34,7 +34,7 @@ export default function Footer({ locale }: { locale: string }) {
         <div className="pu-footer-brand">
           <Link href={L(locale, "/")} className="pu-footer-logo-link">
             <Image
-              src="/logo-nuevo.png"
+              src="/logo-nuevo-transparent.png"
               alt="Peralta Urbanisme"
               width={500}
               height={300}
@@ -74,7 +74,7 @@ export default function Footer({ locale }: { locale: string }) {
             <a href="https://www.instagram.com/peraltaurbanisme" target="_blank" rel="noopener noreferrer" className="pu-footer-social-icon" aria-label="Instagram">
               <IconInstagram />
             </a>
-            <a href="https://www.linkedin.com/company/peralta-urbanisme" target="_blank" rel="noopener noreferrer" className="pu-footer-social-icon" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/peralta-urbanisme-slp/" target="_blank" rel="noopener noreferrer" className="pu-footer-social-icon" aria-label="LinkedIn">
               <IconLinkedin />
             </a>
           </div>

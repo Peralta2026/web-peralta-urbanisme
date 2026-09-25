@@ -74,3 +74,33 @@ export interface TeamMember {
 }
 
 export type Locale = "ca" | "es" | "en";
+
+export type NewsCategory =
+  | "esdeveniment"
+  | "concurs"
+  | "aprovacio"
+  | "participacio"
+  | "premsa"
+  | "premi"
+  | "equip";
+
+export interface NewsLocale {
+  title: string;
+  summary: string;
+  body: string[];
+  credits?: string;
+}
+
+export interface NewsItem {
+  slug: string;
+  /** "YYYY-MM" o "YYYY-MM-DD" — ordena cronològicament com a text */
+  date: string;
+  category: NewsCategory;
+  coverImage?: string;
+  images: string[];
+  relatedProjects: string[];
+  source?: { network: "linkedin" | "instagram"; url: string };
+  ca: NewsLocale;
+  es: NewsLocale;
+  en: NewsLocale;
+}

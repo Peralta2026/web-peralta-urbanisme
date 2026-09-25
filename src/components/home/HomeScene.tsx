@@ -3,7 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Project } from "@/lib/types";
+import type { NewsItem, Project } from "@/lib/types";
+import NewsList, { NEWS_LABELS, newsHref, toLoc } from "@/components/news/NewsList";
+import HomeContact from "@/components/home/HomeContact";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */
 
@@ -339,7 +341,7 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 
 /* ─── HomeScene ──────────────────────────────────────────────────────────── */
 
-export default function HomeScene({ locale, projects }: { locale: string; projects: Project[] }) {
+export default function HomeScene({ locale, projects, news }: { locale: string; projects: Project[]; news: NewsItem[] }) {
   const content  = CONTENT[locale as keyof typeof CONTENT] ?? CONTENT.ca;
   const ui       = UI_LABELS[locale] ?? UI_LABELS.ca;
 
@@ -711,7 +713,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
         <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ width: "clamp(184px,22vw,240px)", height: "auto", display: "block" }} />
+            style={{ width: "clamp(202px,24vw,264px)", height: "auto", display: "block" }} />
         </Link>
       </div>
 
@@ -924,15 +926,33 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
 
       {/* ── Notícies ── */}
       <section style={{ padding: "clamp(64px,8vh,100px) var(--margin-page)", borderTop: "1px solid #1a1a1a", background: "#fff" }}>
-        <header style={{ borderBottom: "1px solid #1a1a1a", paddingBottom: "clamp(20px,3vh,36px)", marginBottom: "clamp(40px,5vh,72px)" }}>
+        <header style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "24px", paddingBottom: "clamp(20px,3vh,36px)", marginBottom: "clamp(40px,5vh,72px)" }}>
           <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000", margin: 0 }}>
-            Notícies
+            {NEWS_LABELS[toLoc(locale)].title}
           </h2>
+          <Link href={newsHref(locale)} className="pu-home-news-all">
+            {NEWS_LABELS[toLoc(locale)].all} →
+          </Link>
         </header>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc", margin: 0 }}>
-          Properament
-        </p>
+        <NewsList items={news.slice(0, 3)} locale={locale} />
+        <style>{`
+          .pu-home-news-all {
+            font-family: var(--font-mono);
+            font-size: var(--size-label);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+            white-space: nowrap;
+            transition: opacity var(--dur-fast) ease;
+          }
+          .pu-home-news-all:hover { opacity: 0.5; }
+        `}</style>
       </section>
+
+      <HomeContact locale={locale} />
 
       {/* ── Drawing tools UI ── */}
       <div

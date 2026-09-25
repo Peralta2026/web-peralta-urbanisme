@@ -37,30 +37,31 @@ const inputStyle: React.CSSProperties = {
 };
 
 export default function TreballaPage() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [fileName, setFileName] = useState("");
+  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  // Netlify Forms no existeix a Vercel: obrim el client de correu amb la candidatura redactada
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!formRef.current) return;
-    setStatus("sending");
-    try {
-      const formData = new FormData(formRef.current);
-      const res = await fetch("/", {
-        method: "POST",
-        body:   formData,
-      });
-      if (res.ok) {
-        setStatus("sent");
-        formRef.current.reset();
-        setFileName("");
-      } else {
-        setStatus("error");
-      }
-    } catch {
+    if (!formRef.current.checkValidity()) {
       setStatus("error");
+      return;
     }
+    const data = new FormData(formRef.current);
+    const nom = String(data.get("nom") ?? "").trim();
+    const subject = `Candidatura — ${nom}`;
+    const body = [
+      `Nom: ${nom}`,
+      `Correu: ${String(data.get("email") ?? "").trim()}`,
+      `Telèfon: ${String(data.get("telefon") ?? "").trim() || "—"}`,
+      "",
+      String(data.get("motivacio") ?? "").trim(),
+      "",
+      "[Adjunto el CV / portafoli]",
+    ].join("\n");
+    window.location.href = `mailto:info@peraltaurbanisme.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus("sent");
   }
 
   return (
@@ -122,10 +123,11 @@ export default function TreballaPage() {
         <div className="pu-treballa-form-col">
           {status === "sent" ? (
             <div className="pu-form-success">
-              <p className="pu-form-success-head">Missatge enviat</p>
+              <p className="pu-form-success-head">Últim pas</p>
               <p className="pu-form-success-body">
-                Hem rebut la teva candidatura. Ens posarem en contacte si el perfil
-                s&apos;ajusta a les nostres necessitats actuals.
+                S&apos;ha obert el teu correu amb la candidatura redactada. Adjunta-hi el CV
+                o portafoli i envia-la a info@peraltaurbanisme.com. Ens posarem en contacte
+                si el perfil s&apos;ajusta a les nostres necessitats actuals.
               </p>
               <button
                 className="pu-form-reset"
@@ -138,13 +140,9 @@ export default function TreballaPage() {
             <form
               ref={formRef}
               name="treballa-amb-nosaltres"
-              method="POST"
-              encType="multipart/form-data"
-              data-netlify="true"
               onSubmit={handleSubmit}
               noValidate
             >
-              <input type="hidden" name="form-name" value="treballa-amb-nosaltres" />
 
               <div className="pu-form-fields">
 
@@ -181,44 +179,23 @@ export default function TreballaPage() {
 
                 {/* CV / Portafoli */}
                 <div className="pu-form-field" style={{ gridColumn: "1 / -1" }}>
-                  <FieldLabel>CV o Portafoli (PDF, màx. 10 MB)</FieldLabel>
-                  <label className="pu-file-label">
-                    <input
-                      name="arxiu"
-                      type="file"
-                      accept=".pdf,.jpg,.jpeg,.png,.zip"
-                      style={{ display: "none" }}
-                      onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
-                    />
-                    <span className="pu-file-btn">
-                      {fileName ? fileName : "Adjuntar arxiu →"}
-                    </span>
-                  </label>
-                  {fileName && (
-                    <button
-                      type="button"
-                      className="pu-file-clear"
-                      onClick={() => {
-                        setFileName("");
-                        const input = formRef.current?.querySelector<HTMLInputElement>('input[name="arxiu"]');
-                        if (input) input.value = "";
-                      }}
-                    >
-                      Eliminar arxiu
-                    </button>
-                  )}
+                  <FieldLabel>CV o Portafoli</FieldLabel>
+                  <p className="pu-file-note">
+                    En enviar, s&apos;obrirà el teu correu amb la candidatura redactada. Adjunta-hi
+                    el CV o portafoli (PDF) abans d&apos;enviar-lo.
+                  </p>
                 </div>
 
               </div>
 
               {status === "error" && (
                 <p style={{ color: "#c00", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.06em", marginBottom: "16px" }}>
-                  Hi ha hagut un error. Prova-ho de nou o escriu-nos directament per correu.
+                  Revisa els camps obligatoris (*) o escriu-nos directament a info@peraltaurbanisme.com.
                 </p>
               )}
 
-              <button type="submit" className="pu-submit-btn" disabled={status === "sending"}>
-                {status === "sending" ? "Enviant..." : "Enviar candidatura"}
+              <button type="submit" className="pu-submit-btn">
+                Enviar candidatura
               </button>
             </form>
           )}
@@ -292,33 +269,13 @@ export default function TreballaPage() {
         }
         .pu-form-field { display: flex; flex-direction: column; }
         .pu-input:focus { border-bottom-color: #000; }
-        .pu-file-label { cursor: pointer; display: block; }
-        .pu-file-btn {
-          display: inline-block;
-          font-family: var(--font-mono);
-          font-size: 9.5px;
-          letter-spacing: 0.10em;
-          text-transform: uppercase;
-          color: #000;
-          border-bottom: 1px solid #000;
-          padding-bottom: 2px;
-          transition: opacity 200ms ease;
+        .pu-file-note {
+          font-family: var(--font-sans);
+          font-size: 14px;
+          line-height: 1.6;
+          color: #777;
+          margin: 4px 0 0;
         }
-        .pu-file-btn:hover { opacity: 0.55; }
-        .pu-file-clear {
-          background: none;
-          border: none;
-          cursor: pointer;
-          font-family: var(--font-mono);
-          font-size: 8px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #aaa;
-          padding: 0;
-          margin-top: 6px;
-          transition: color 180ms ease;
-        }
-        .pu-file-clear:hover { color: #000; }
         .pu-submit-btn {
           font-family: var(--font-mono);
           font-size: 10px;

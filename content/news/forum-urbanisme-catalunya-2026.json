@@ -1,0 +1,43 @@
+{
+  "slug": "forum-urbanisme-catalunya-2026",
+  "date": "2026-05",
+  "category": "esdeveniment",
+  "coverImage": "/news/forum-urbanisme-2026/equip.jpg",
+  "images": [
+    "/news/forum-urbanisme-2026/equip.jpg",
+    "/news/forum-urbanisme-2026/debat.jpg",
+    "/news/forum-urbanisme-2026/taller.jpg"
+  ],
+  "relatedProjects": ["alta-costura"],
+  "source": {
+    "network": "linkedin",
+    "url": "https://www.linkedin.com/company/peralta-urbanisme-slp/posts/?feedView=all"
+  },
+  "ca": {
+    "title": "Primera edició del Fòrum d'Urbanisme de Catalunya",
+    "summary": "Presentem Alta Costura al COAC en una jornada que aposta per formats d'intercanvi oberts i propers, amb l'urbanisme al centre.",
+    "body": [
+      "El 5 de maig vam participar a la primera edició del Fòrum d'Urbanisme de Catalunya, al COAC, on vam presentar la proposta Alta Costura per al Besòs Central.",
+      "La jornada va reunir perfils, disciplines i veus d'arreu del territori català. Més enllà de l'exposició, vam proposar un diàleg a través del dibuix amb les persones que s'hi van acostar a conversar i a preguntar pels nostres projectes.",
+      "El Fòrum trenca amb els formats convencionals i les dinàmiques unidireccionals, i aposta per un intercanvi més obert i proper. Agraïm la invitació a l'Agrupació d'Arquitectes Urbanistes de Catalunya (AAUC), a l'Àrea Metropolitana de Barcelona i al Col·legi d'Arquitectes de Catalunya, així com la feina de Mar Castarlenas i Rabassa en el muntatge, l'organització i la dinamització de l'acte."
+    ]
+  },
+  "es": {
+    "title": "Primera edición del Fòrum d'Urbanisme de Catalunya",
+    "summary": "Presentamos Alta Costura en el COAC en una jornada que apuesta por formatos de intercambio abiertos y cercanos, con el urbanismo en el centro.",
+    "body": [
+      "El 5 de mayo participamos en la primera edición del Fòrum d'Urbanisme de Catalunya, en el COAC, donde presentamos la propuesta Alta Costura para el Besòs Central.",
+      "La jornada reunió perfiles, disciplinas y voces de todo el territorio catalán. Más allá de la exposición, propusimos un diálogo a través del dibujo con las personas que se acercaron a conversar y a preguntar por nuestros proyectos.",
+      "El Fòrum rompe con los formatos convencionales y las dinámicas unidireccionales, y apuesta por un intercambio más abierto y cercano. Agradecemos la invitación a la Agrupació d'Arquitectes Urbanistes de Catalunya (AAUC), al Área Metropolitana de Barcelona y al Col·legi d'Arquitectes de Catalunya, así como el trabajo de Mar Castarlenas i Rabassa en el montaje, la organización y la dinamización del acto."
+    ]
+  },
+  "en": {
+    "title": "First edition of the Catalan Urbanism Forum",
+    "summary": "We presented Alta Costura at the COAC, at an event committed to open, accessible formats of exchange with urbanism at its centre.",
+    "body": [
+      "On 5 May we took part in the first edition of the Fòrum d'Urbanisme de Catalunya at the COAC, where we presented Alta Costura, our proposal for the Besòs Central.",
+      "The day brought together profiles, disciplines and voices from across Catalonia. Beyond the exhibition, we invited those who came to talk and ask about our projects into a dialogue through drawing.",
+      "The Forum breaks away from conventional, one-directional formats in favour of a more open and accessible exchange. We thank the Association of Urban Planning Architects of Catalonia (AAUC), the Barcelona Metropolitan Area and the Architects' Association of Catalonia (COAC) for the invitation, and Mar Castarlenas i Rabassa for the setup, organisation and facilitation of the event."
+    ]
+  }
+}
