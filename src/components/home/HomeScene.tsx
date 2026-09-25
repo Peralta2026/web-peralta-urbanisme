@@ -593,6 +593,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
     const onDown = (e: MouseEvent) => {
       if (heroDoneRef.current) return;
       if ((e.target as HTMLElement).closest("a, button")) return;
+      e.preventDefault(); // prevent browser text-selection drag
       isDrawingRef.current = true;
       prevMidRef.current   = null;
       lastPtRef.current    = { x: e.clientX, y: e.clientY };
@@ -782,7 +783,7 @@ export default function HomeScene({ locale, projects }: { locale: string; projec
       {/* ── HERO z=10 ────────────────────────────────────────────────────────── */}
       <div
         ref={heroRef}
-        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: "none" }}
+        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: "none", userSelect: "none" }}
       >
         {/* Vídeo de fons — wrapper clips edge artifacts; opacity controlled via ref */}
         <div
