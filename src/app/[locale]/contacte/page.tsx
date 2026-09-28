@@ -51,6 +51,9 @@ export default async function ContactePage({
             <a href="tel:+34935389893" className="pu-contact-phone">
               +34 935 389 893
             </a>
+            <a href="tel:+34617005675" className="pu-contact-phone">
+              +34 617 005 675
+            </a>
           </div>
 
           {/* Adreça + mini-mapa */}

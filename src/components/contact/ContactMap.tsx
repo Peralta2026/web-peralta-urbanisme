@@ -200,12 +200,11 @@ export default function ContactMap() {
           user-select: none;
         }
 
-        /* ── Popup ── */
+        /* ── Popup — s'obre a la dreta del mapa ── */
         .pu-cmap-popup {
           position: absolute;
-          bottom: calc(100% + 12px);
-          left: 50%;
-          transform: translateX(-50%);
+          top: 0;
+          left: calc(100% + 12px);
           z-index: 9000;
           width: 260px;
           background: #fff;
