@@ -35,6 +35,20 @@ export default async function ContactePage({
 
         <h1 className="pu-contact-heading">Parlem</h1>
 
+        <div className="pu-contact-intro">
+          <p>
+            Si teniu un projecte, una consulta o un repte urbanístic que vulgueu compartir
+            amb nosaltres, poseu-vos en contacte amb l&apos;estudi.
+          </p>
+          <p>
+            Treballem amb administracions, entitats, empreses i altres equips professionals,
+            tant en nous encàrrecs com en col·laboracions.
+          </p>
+          <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-cta">
+            Expliqueu-nos el vostre projecte →
+          </a>
+        </div>
+
         <div className="pu-contact-grid">
 
           {/* Email */}
@@ -98,6 +112,33 @@ export default async function ContactePage({
       </div>
 
       <style>{`
+        .pu-contact-intro {
+          max-width: 560px;
+          margin-bottom: clamp(40px, 6vh, 72px);
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        .pu-contact-intro p {
+          font-family: var(--font-sans);
+          font-size: clamp(14px, 1.15vw, 16px);
+          line-height: 1.7;
+          color: #444;
+          margin: 0;
+        }
+        .pu-contact-cta {
+          font-family: var(--font-sans);
+          font-size: clamp(13px, 1.1vw, 15px);
+          font-weight: 600;
+          color: #000;
+          text-decoration: none;
+          letter-spacing: -0.01em;
+          margin-top: 4px;
+          transition: opacity 180ms ease;
+          display: inline-block;
+        }
+        .pu-contact-cta:hover { opacity: 0.4; }
+
         .pu-contact-root {
           padding-top: var(--header-height);
           padding-left: var(--margin-page);

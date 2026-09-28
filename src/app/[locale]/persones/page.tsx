@@ -15,6 +15,32 @@ const COLLABORATORS = [
   { name: "VAIC Mobility", file: "vaic.png" },
 ];
 
+const CLIENTS = [
+  { name: "AMB", file: "amb.jpg" },
+  { name: "Diputació de Barcelona", file: "diputacio-bcn.png" },
+  { name: "Barcelona Regional", file: "barcelona-regional.png" },
+  { name: "Incasol", file: "incasol.jpg" },
+  { name: "Federació Catalana de Municipis", file: "federacio-municipis.jpg" },
+  { name: "Terrassa", file: "terrassa.png" },
+  { name: "Granollers", file: "granollers.jpg" },
+  { name: "Sant Cugat", file: "sant-cugat.jpg" },
+  { name: "Rubí", file: "rubi.png" },
+  { name: "Cornellà", file: "cornella.png" },
+  { name: "Castelldefels", file: "castelldefels.png" },
+  { name: "Gavà", file: "gava.png" },
+  { name: "El Prat de Llobregat", file: "el-prat.png" },
+  { name: "Premià de Mar", file: "premia-de-mar.jpg" },
+  { name: "La Llagosta", file: "la-llagosta.png" },
+  { name: "Calaf", file: "calaf.jpg" },
+  { name: "Molins de Rei", file: "molins-de-rei.png" },
+  { name: "Sant Just Desvern", file: "sant-just.jpg" },
+  { name: "Pineda de Mar", file: "pineda-de-mar.png" },
+  { name: "Bigues", file: "bigues.png" },
+  { name: "Montcada i Reixac", file: "montcada.png" },
+  { name: "L'Hospitalet", file: "hospitalet.jpg" },
+  { name: "Barberà del Vallès", file: "barbera.jpg" },
+];
+
 export default async function PersonesPage({
   params,
 }: {
@@ -76,12 +102,25 @@ export default async function PersonesPage({
         borderTop:     "1px solid rgba(0,0,0,0.07)",
       }}>
         <p style={{
-          fontFamily:    "var(--font-sans)",
-          fontSize:      "var(--size-meta)",
+          fontFamily:    "var(--font-mono)",
+          fontSize:      "8px",
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
           color:         "#bbb",
-          marginBottom:  "clamp(24px,3.5vh,40px)",
+          marginBottom:  "clamp(16px,2vh,24px)",
         }}>
           Col·laboradors habituals
+        </p>
+        <p style={{
+          fontFamily:    "var(--font-sans)",
+          fontSize:      "clamp(13px,1.1vw,15px)",
+          lineHeight:    1.7,
+          color:         "#444",
+          maxWidth:      "640px",
+          marginBottom:  "clamp(24px,3.5vh,40px)",
+        }}>
+          Entenem l&apos;urbanisme com una pràctica col·lectiva. Treballem amb una xarxa de professionals
+          especialitzats que amplia i complementa la nostra mirada.
         </p>
 
         <div className="pu-collab-strip">
@@ -148,21 +187,31 @@ export default async function PersonesPage({
           ))}
         </div>
 
-        {/* Secondary text + municipalities */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)", alignItems: "end" }}>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: 0, maxWidth: "400px" }}>
-            Treballem arreu del territori català amb ajuntaments i agents públics i privats.
-            Cada encàrrec és una oportunitat de descobrir un nou municipi i deixar-hi un relat
-            holístic i potent per crear noves oportunitats.
+        {/* Secondary text */}
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "0 0 clamp(36px,5vh,56px)", maxWidth: "480px" }}>
+          Treballem arreu del territori català amb ajuntaments i agents públics i privats.
+          Cada encàrrec és una oportunitat de descobrir un nou municipi i deixar-hi un relat
+          holístic i potent per crear noves oportunitats.
+        </p>
+
+        {/* Clients marquee */}
+        <div>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "clamp(20px,3vh,32px)" }}>
+            Administracions i entitats amb qui hem treballat
           </p>
-          <div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>
-              Municipis on hem treballat
-            </p>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.8, color: "rgba(255,255,255,0.6)", margin: 0 }}>
-              Granollers · Terrassa · Sant Cugat · Rubí<br />
-              Premià de Mar · La Llagosta · Calaf · i molts més
-            </p>
+          <div className="pu-clients-track-wrap">
+            <div className="pu-clients-track">
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <div key={i} className="pu-client-logo" title={c.name}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/clients/${c.file}`}
+                    alt={c.name}
+                    style={{ maxHeight: "32px", maxWidth: "100px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -210,6 +259,35 @@ export default async function PersonesPage({
 
       <style>{`
         .pu-cta-btn:hover { background: #000; color: #fff; }
+
+        /* ── Clients marquee ── */
+        .pu-clients-track-wrap {
+          overflow: hidden;
+          width: 100%;
+          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+        .pu-clients-track {
+          display: flex;
+          align-items: center;
+          gap: clamp(40px, 5vw, 72px);
+          width: max-content;
+          animation: pu-marquee 38s linear infinite;
+        }
+        .pu-clients-track:hover { animation-play-state: paused; }
+        @keyframes pu-marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .pu-client-logo {
+          opacity: 0.38;
+          filter: brightness(0) invert(1);
+          transition: opacity 280ms ease;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+        }
+        .pu-client-logo:hover { opacity: 0.75; }
 
         .pu-collab-strip {
           display: flex;
