@@ -58,6 +58,7 @@ const UI: Record<Locale, {
   next: string;
   allProjects: string;
   topics: string;
+  credits: string;
   facts: Record<string, string>;
 }> = {
   ca: {
@@ -66,6 +67,7 @@ const UI: Record<Locale, {
     next: "Següent →",
     allProjects: "Tots els projectes",
     topics: "Temes",
+    credits: "Crèdits",
     facts: {
       tipus: "Tipus", municipi: "Municipi", any: "Any", estat: "Estat",
       programa: "Programa", ambit: "Àmbit", sostre: "Sostre", habitatges: "Habitatges", premi: "Premi",
@@ -77,6 +79,7 @@ const UI: Record<Locale, {
     next: "Siguiente →",
     allProjects: "Todos los proyectos",
     topics: "Temas",
+    credits: "Créditos",
     facts: {
       tipus: "Tipo", municipi: "Municipio", any: "Año", estat: "Estado",
       programa: "Programa", ambit: "Ámbito", sostre: "Techo", habitatges: "Viviendas", premi: "Premio",
@@ -88,6 +91,7 @@ const UI: Record<Locale, {
     next: "Next →",
     allProjects: "All projects",
     topics: "Topics",
+    credits: "Credits",
     facts: {
       tipus: "Type", municipi: "Municipality", any: "Year", estat: "Status",
       programa: "Programme", ambit: "Scope", sostre: "Built", habitatges: "Dwellings", premi: "Prize",
@@ -147,7 +151,6 @@ export default async function ProjectPage({
   ].filter(Boolean) as { label: string; value: string }[];
 
   const hasSubtitle = !!data.subtitle;
-  const hasCredits = !!project.credits;
 
   // Paràgrafs del text llarg
   const paragraphs = (data.descriptionLong || data.descriptionShort)
@@ -226,7 +229,7 @@ export default async function ProjectPage({
               fontWeight: 800,
               letterSpacing: "-0.05em",
               color: "#000",
-              margin: hasSubtitle || hasCredits ? "0 0 14px 0" : "0 0 32px 0",
+              margin: hasSubtitle ? "0 0 14px 0" : "0 0 32px 0",
             }}
           >
             {data.title}
@@ -248,36 +251,6 @@ export default async function ProjectPage({
             >
               {data.subtitle}
             </p>
-          )}
-
-          {/* Crèdits */}
-          {project.credits && (
-            <div
-              style={{
-                margin: "0 0 28px 0",
-                paddingBottom: "22px",
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              {(() => {
-                const lines = project.credits.split("\n");
-                return lines.map((line, i) => (
-                  <p
-                    key={i}
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "var(--size-meta)",
-                      fontWeight: 400,
-                      color: "#999",
-                      margin: i === 1 ? "12px 0 0 0" : "2px 0 0 0",
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {line}
-                  </p>
-                ));
-              })()}
-            </div>
           )}
 
           {/* Dades tècniques — immediatament sota el títol */}
@@ -322,6 +295,18 @@ export default async function ProjectPage({
               </div>
             ))}
           </dl>
+
+          {/* Crèdits — la primera línia (l'equip de Peralta) separada de la resta */}
+          {project.credits && (
+            <div className="project-detail-credits">
+              <p className="project-detail-credits-label">{ui.credits}</p>
+              {project.credits.split("\n").map((line, i) => (
+                <p key={i} className={i === 0 ? "project-detail-credits-lead" : undefined}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          )}
 
           {/* Descripció curta — dreta, text de lectura */}
           <p
@@ -480,6 +465,24 @@ export default async function ProjectPage({
         </div>
 
         <style>{`
+          .project-detail-credits {
+            margin: 0 0 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e0e0e0;
+            font-family: var(--font-sans);
+            font-size: var(--size-meta);
+            line-height: 1.5;
+            color: #555;
+          }
+          .project-detail-credits p { margin: 0 0 4px; }
+          .project-detail-credits-label {
+            color: #888;
+            margin-bottom: 6px !important;
+          }
+          .project-detail-credits-lead {
+            color: #111;
+            margin-bottom: 12px !important;
+          }
           @media (min-width: 1024px) {
             .project-detail-shell {
               display: grid;
