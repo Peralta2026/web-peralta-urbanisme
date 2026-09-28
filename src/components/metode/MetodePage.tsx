@@ -298,12 +298,15 @@ export default function MetodePage() {
         .met-pillar-e-img img { width: 100%; max-height: 160px; object-fit: contain; display: block; }
 
         /* ── MODES ── */
-        .met-modes { border-top: 1px solid var(--color-border); }
-        .met-modes-left { padding-bottom: 80px; }
+        .met-modes { display: grid; grid-template-columns: 3fr 2fr; border-top: 1px solid var(--color-border); }
+        .met-modes-left { border-right: 1px solid rgba(0,0,0,0.08); padding-bottom: 80px; }
+        .met-modes-right { display: flex; align-items: flex-start; padding: 48px 32px; }
         .met-modes-header-block { padding: 72px var(--margin-page) 48px; border-bottom: 1px solid var(--color-border); }
         .met-modes-header-block h2 { font-family: var(--font-sans); font-size: clamp(30px,3.6vw,52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
         .met-modes-header-block > p { font-family: var(--font-sans); font-size: 14px; color: var(--color-muted); line-height: 1.65; max-width: 380px; margin: 0; }
         .met-modes-list { padding: 0 var(--margin-page); }
+        /* Diagram in column context — no section padding or border */
+        .met-modes-right .md-section { padding: 0; border-top: none; width: 100%; }
 
         /* Accordion */
         .met-mode-item { border-top: 1px solid var(--color-border-soft); }
@@ -431,6 +434,11 @@ export default function MetodePage() {
           .met-pillar-col.is-open, .met-pillar-cols.is-locked .met-pillar-col { min-height: 320px; }
           .met-pillar-word-v { writing-mode: horizontal-tb; transform: none; font-size: clamp(22px,5vw,34px); justify-content: flex-start; padding: 0 var(--margin-page); }
         }
+        @media (max-width: 900px) {
+          .met-modes { grid-template-columns: 1fr; }
+          .met-modes-left { border-right: none; }
+          .met-modes-right { padding: 0 var(--margin-page) 56px; }
+        }
         @media (max-width: 768px) {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }
           .met-value:not(:last-child) { border-right: none; border-bottom: 1px solid var(--color-border-soft); padding-bottom: 40px; margin-right: 0; }
@@ -500,10 +508,10 @@ export default function MetodePage() {
             />
           </div>
         </div>
+        <div className="met-modes-right">
+          <MethodDiagram />
+        </div>
       </section>
-
-      {/* ── DIAGRAMA TRIANGLE INTERACTIU ── */}
-      <MethodDiagram />
 
       {/* ── Han confiat en nosaltres ── */}
       <section className="met-clients-section">
