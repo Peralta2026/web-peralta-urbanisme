@@ -93,7 +93,7 @@ export default async function PersonesPage({
         <PersonRow members={members} locale={locale as Locale} />
       </section>
 
-      {/* ── Col·laboradors ────────────────────────────────────────────── */}
+      {/* ── Col·laboradors habituals ──────────────────────────────────── */}
       <section style={{
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
@@ -102,22 +102,21 @@ export default async function PersonesPage({
         borderTop:     "1px solid rgba(0,0,0,0.07)",
       }}>
         <p style={{
-          fontFamily:    "var(--font-mono)",
-          fontSize:      "8px",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color:         "#bbb",
-          marginBottom:  "clamp(16px,2vh,24px)",
+          fontFamily: "var(--font-sans)",
+          fontSize:   "13px",
+          fontWeight: 400,
+          color:      "#888",
+          margin:     "0 0 clamp(14px,2vh,20px)",
         }}>
           Col·laboradors habituals
         </p>
         <p style={{
-          fontFamily:    "var(--font-sans)",
-          fontSize:      "clamp(13px,1.1vw,15px)",
-          lineHeight:    1.7,
-          color:         "#444",
-          maxWidth:      "640px",
-          marginBottom:  "clamp(24px,3.5vh,40px)",
+          fontFamily:   "var(--font-sans)",
+          fontSize:     "clamp(13px,1.1vw,15px)",
+          lineHeight:   1.7,
+          color:        "#444",
+          maxWidth:     "640px",
+          margin:       "0 0 clamp(24px,3.5vh,40px)",
         }}>
           Entenem l&apos;urbanisme com una pràctica col·lectiva. Treballem amb una xarxa de professionals
           especialitzats que amplia i complementa la nostra mirada.
@@ -145,150 +144,173 @@ export default async function PersonesPage({
       </section>
 
       {/* ── Manera de treballar ───────────────────────────────────────── */}
-      <section style={{
-        borderTop:   "1px solid #1a1a1a",
-        background:  "var(--color-fg)",
-        color:       "var(--color-bg)",
-        padding:     "clamp(64px,9vh,112px) var(--margin-page)",
-        WebkitFontSmoothing: "antialiased",
-      }}>
-        <blockquote style={{
-          fontFamily:    "var(--font-sans)",
-          fontSize:      "clamp(20px,2.6vw,38px)",
-          fontWeight:    700,
-          letterSpacing: "-0.035em",
-          lineHeight:    1.1,
-          color:         "#fff",
-          maxWidth:      "820px",
-          margin:        "0 0 clamp(48px,7vh,80px)",
-        }}>
+      <section className="pu-dark-section">
+        <blockquote className="pu-dark-quote">
           &ldquo;L&apos;estratègia no és res més que traçar el camí a través de quatre paraules:
           encàrrec, subjecte, sentit i resultat. Una metodologia honesta i responsable amb el territori.&rdquo;
         </blockquote>
 
         {/* 4 pillars */}
-        <div style={{
-          display:             "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          borderTop:           "1px solid rgba(255,255,255,0.15)",
-          marginBottom:        "clamp(40px,6vh,72px)",
-        }}>
+        <div className="pu-pillars-grid">
           {PILLARS.map((word, i) => (
-            <div key={word} style={{
-              padding:     "clamp(20px,3vh,32px) 0",
-              borderRight: i < 3 ? "1px solid rgba(255,255,255,0.15)" : "none",
-              paddingRight: i < 3 ? "clamp(16px,2vw,32px)" : 0,
-              paddingLeft:  i > 0 ? "clamp(16px,2vw,32px)" : 0,
-            }}>
-              <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px,2vw,28px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", margin: 0 }}>
-                {word}
-              </h3>
+            <div key={word} className={`pu-pillar-cell${i < 3 ? " pu-pillar-cell--border" : ""}`}>
+              <h3 className="pu-pillar-word">{word}</h3>
             </div>
           ))}
         </div>
 
-        {/* Secondary text */}
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "0 0 clamp(36px,5vh,56px)", maxWidth: "480px" }}>
+        <p className="pu-dark-body">
           Treballem arreu del territori català amb ajuntaments i agents públics i privats.
           Cada encàrrec és una oportunitat de descobrir un nou municipi i deixar-hi un relat
           holístic i potent per crear noves oportunitats.
         </p>
+      </section>
 
-        {/* Clients marquee */}
-        <div>
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "clamp(20px,3vh,32px)" }}>
-            Administracions i entitats amb qui hem treballat
-          </p>
-          <div className="pu-clients-track-wrap">
-            <div className="pu-clients-track">
-              {[...CLIENTS, ...CLIENTS].map((c, i) => (
-                <div key={i} className="pu-client-logo" title={c.name}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/clients/${c.file}`}
-                    alt={c.name}
-                    style={{ maxHeight: "32px", maxWidth: "100px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
-                  />
-                </div>
-              ))}
-            </div>
+      {/* ── Clients — fons blanc, carrusel quiet fins hover ──────────── */}
+      <section className="pu-clients-section">
+        <p className="pu-clients-label">Han confiat en nosaltres</p>
+        <div className="pu-clients-track-wrap">
+          <div className="pu-clients-track">
+            {[...CLIENTS, ...CLIENTS].map((c, i) => (
+              <div key={i} className="pu-client-logo" title={c.name}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/clients/${c.file}`}
+                  alt={c.name}
+                  className="pu-client-img"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── CTA: Vols treballar amb nosaltres? ────────────────────────── */}
-      <section style={{
-        borderTop:   "1px solid #e8e8e4",
-        padding:     "clamp(48px,7vh,88px) var(--margin-page)",
-        display:     "flex",
-        alignItems:  "center",
-        justifyContent: "space-between",
-        gap:         "32px",
-        flexWrap:    "wrap",
-      }}>
-        <h2 style={{
-          fontFamily:    "var(--font-sans)",
-          fontSize:      "clamp(26px,3.2vw,48px)",
-          fontWeight:    700,
-          letterSpacing: "-0.04em",
-          lineHeight:    1.0,
-          color:         "#000",
-          margin:        0,
-        }}>
+      <section className="pu-cta-section">
+        <h2 className="pu-cta-heading">
           Vols treballar<br />amb nosaltres?
         </h2>
-        <Link
-          href={`/${locale}/treballa-amb-nosaltres`}
-          style={{
-            display:       "inline-flex",
-            alignItems:    "center",
-            gap:           "10px",
-            padding:       "14px 28px",
-            border:        "1px solid #000",
-            fontFamily:    "var(--font-sans)",
-            fontSize:      "var(--size-meta)",
-            color:         "#000",
-            textDecoration:"none",
-            transition:    "background 200ms ease, color 200ms ease",
-          }}
-          className="pu-cta-btn"
-        >
+        <Link href={`/${locale}/treballa-amb-nosaltres`} className="pu-cta-btn">
           Comencem <span style={{ fontSize: "14px" }}>→</span>
         </Link>
       </section>
 
       <style>{`
-        .pu-cta-btn:hover { background: #000; color: #fff; }
+        /* ── Secció fosca ── */
+        .pu-dark-section {
+          border-top: 1px solid #1a1a1a;
+          background: var(--color-fg);
+          color: var(--color-bg);
+          padding: clamp(64px,9vh,112px) var(--margin-page);
+          -webkit-font-smoothing: antialiased;
+        }
+        .pu-dark-quote {
+          font-family: var(--font-sans);
+          font-size: clamp(20px,2.6vw,38px);
+          font-weight: 700;
+          letter-spacing: -0.035em;
+          line-height: 1.1;
+          color: #fff;
+          max-width: 820px;
+          margin: 0 0 clamp(48px,7vh,80px);
+        }
+        .pu-pillars-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          border-top: 1px solid rgba(255,255,255,0.15);
+          margin-bottom: clamp(40px,6vh,72px);
+        }
+        .pu-pillar-cell {
+          padding: clamp(20px,3vh,32px) clamp(16px,2vw,32px) clamp(20px,3vh,32px) 0;
+        }
+        .pu-pillar-cell--border {
+          border-right: 1px solid rgba(255,255,255,0.15);
+          margin-right: 0;
+        }
+        .pu-pillar-cell:not(:first-child) {
+          padding-left: clamp(16px,2vw,32px);
+        }
+        .pu-pillar-word {
+          font-family: var(--font-sans);
+          font-size: clamp(18px,2vw,28px);
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          color: #fff;
+          margin: 0;
+        }
+        .pu-dark-body {
+          font-family: var(--font-sans);
+          font-size: 14px;
+          line-height: 1.7;
+          color: rgba(255,255,255,0.55);
+          margin: 0;
+          max-width: 480px;
+        }
 
-        /* ── Clients marquee ── */
+        /* ── Clients marquee — blanc, quiet fins hover ── */
+        .pu-clients-section {
+          border-top: 1px solid rgba(0,0,0,0.07);
+          padding: clamp(36px,5vh,64px) 0;
+          background: #fff;
+          overflow: hidden;
+        }
+        .pu-clients-label {
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 400;
+          color: #888;
+          margin: 0 0 clamp(20px,3vh,32px);
+          padding: 0 var(--margin-page);
+        }
         .pu-clients-track-wrap {
           overflow: hidden;
           width: 100%;
-          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          cursor: pointer;
         }
         .pu-clients-track {
           display: flex;
           align-items: center;
-          gap: clamp(40px, 5vw, 72px);
+          gap: clamp(40px, 5vw, 80px);
           width: max-content;
-          animation: pu-marquee 38s linear infinite;
+          padding: 8px 0;
+          animation: pu-marquee 42s linear infinite;
+          animation-play-state: paused;
         }
-        .pu-clients-track:hover { animation-play-state: paused; }
+        .pu-clients-track-wrap:hover .pu-clients-track {
+          animation-play-state: running;
+        }
         @keyframes pu-marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .pu-client-logo {
-          opacity: 0.38;
-          filter: brightness(0) invert(1);
-          transition: opacity 280ms ease;
           flex-shrink: 0;
           display: flex;
           align-items: center;
+          justify-content: center;
+          opacity: 0.5;
+          filter: grayscale(100%);
+          transition: opacity 300ms ease, filter 300ms ease;
         }
-        .pu-client-logo:hover { opacity: 0.75; }
+        .pu-clients-track-wrap:hover .pu-client-logo {
+          opacity: 0.7;
+        }
+        .pu-client-logo:hover {
+          opacity: 1 !important;
+          filter: grayscale(0%) !important;
+        }
+        .pu-client-img {
+          max-height: 36px;
+          max-width: 110px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+        }
 
+        /* ── Col·laboradors habituals ── */
         .pu-collab-strip {
           display: flex;
           align-items: center;
@@ -307,11 +329,61 @@ export default async function PersonesPage({
           filter: grayscale(0%);
         }
 
+        /* ── CTA ── */
+        .pu-cta-section {
+          border-top: 1px solid #e8e8e4;
+          padding: clamp(48px,7vh,88px) var(--margin-page);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+        .pu-cta-heading {
+          font-family: var(--font-sans);
+          font-size: clamp(26px,3.2vw,48px);
+          font-weight: 700;
+          letter-spacing: -0.04em;
+          line-height: 1.0;
+          color: #000;
+          margin: 0;
+        }
+        .pu-cta-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 28px;
+          border: 1px solid #000;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          color: #000;
+          text-decoration: none;
+          transition: background 200ms ease, color 200ms ease;
+          white-space: nowrap;
+        }
+        .pu-cta-btn:hover { background: #000; color: #fff; }
+
+        /* ── Mòbil ── */
         @media (max-width: 768px) {
-          .pu-pillars-grid { grid-template-columns: repeat(2,1fr) !important; }
-          .pu-cta-section { flex-direction: column; align-items: flex-start !important; }
-          .pu-treballar-grid { grid-template-columns: 1fr !important; }
+          .pu-pillars-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .pu-pillar-cell:nth-child(2) {
+            border-right: none !important;
+          }
+          .pu-pillar-cell:nth-child(3) {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            border-right: 1px solid rgba(255,255,255,0.15);
+          }
+          .pu-pillar-cell:nth-child(4) {
+            border-top: 1px solid rgba(255,255,255,0.15);
+          }
           .pu-collab-strip { gap: 24px; }
+          .pu-cta-section { flex-direction: column; align-items: flex-start; }
+          .pu-client-img { max-height: 28px; max-width: 80px; }
+        }
+        @media (max-width: 480px) {
+          .pu-clients-track { gap: 32px; }
         }
       `}</style>
     </div>
