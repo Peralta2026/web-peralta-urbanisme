@@ -122,15 +122,15 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
       {/* ── Capçalera: nav tipogràfica unificada ── */}
       <div style={{
         flexShrink: 0,
-        padding:    "clamp(36px,5vh,64px) var(--margin-page) 0",
+        padding:    isMobile ? "8px var(--margin-mobile) 4px" : "clamp(36px,5vh,64px) var(--margin-page) 0",
         display:    "flex",
         alignItems: "flex-end",
-        gap:        "clamp(14px,2.2vw,32px)",
+        gap:        isMobile ? "clamp(8px,2vw,14px)" : "clamp(14px,2.2vw,32px)",
         flexWrap:   "wrap",
       }}>
         <Link href={`/${locale}/projectes`} className="pu-dirview-link">ARXIU</Link>
         <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "clamp(14px,3.5vw,20px)" : "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: isMobile ? "-0.02em" : "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
         <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
         <button
           onClick={() => setPanelOpen(f => !f)}
@@ -242,6 +242,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
         .pu-dirview-link:hover { color: #555; }
         @media (max-width: 768px) {
           .pu-map-explorer { height: 100dvh; }
+          .pu-dirview-link { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
         }
       `}</style>
     </div>

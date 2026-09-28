@@ -7,6 +7,6 @@ export default async function PrincipisPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
-  return <MetodePage />;
+  const { locale } = await params;
+  return <MetodePage locale={locale} />;
 }

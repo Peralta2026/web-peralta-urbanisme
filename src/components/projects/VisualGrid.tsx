@@ -62,8 +62,8 @@ export default function VisualGrid({ projects, locale }: Props) {
         }
         .pu-visual-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: clamp(16px, 1.8vw, 26px);
+          grid-template-columns: repeat(6, 1fr);
+          gap: clamp(10px, 1.2vw, 18px);
         }
         .pu-visual-cell {
           position: relative;
@@ -133,12 +133,16 @@ export default function VisualGrid({ projects, locale }: Props) {
           display: block;
           margin-top: 4px;
         }
-        @media (max-width: 1024px) {
-          .pu-visual-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 1200px) {
+          .pu-visual-grid { grid-template-columns: repeat(5, 1fr); }
+        }
+        @media (max-width: 900px) {
+          .pu-visual-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
         }
         @media (max-width: 640px) {
-          .pu-visual-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-          .pu-visual-grid-wrap { padding: 20px var(--margin-mobile) 48px; }
+          .pu-visual-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
+          .pu-visual-cell { aspect-ratio: 1 / 1; }
+          .pu-visual-grid-wrap { padding: 0 0 48px; }
         }
         @media (max-width: 400px) {
           .pu-visual-grid { grid-template-columns: repeat(2, 1fr); }

@@ -93,41 +93,41 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   if (mobile) {
     return (
       <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "8px" }}>
-        <div style={{ flexShrink: 0, width: "100%", aspectRatio: "1 / 1", overflow: "hidden" }}>
+        <div style={{ flex: "0 0 48%", width: "100%", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
         </div>
-        <div style={{ flex: 1, overflow: "auto", padding: "18px 22px", display: "flex", flexDirection: "column", gap: "3px" }}>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "19px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 4px" }}>
+        <div style={{ flex: "0 0 52%", overflow: "auto", padding: "16px 20px", display: "flex", flexDirection: "column", gap: "3px", borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 4px" }}>
             {d.title}
           </h3>
           {d.subtitle && (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontStyle: "italic", color: "#666", margin: "0 0 10px", lineHeight: 1.3 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontStyle: "italic", color: "#666", margin: "0 0 8px", lineHeight: 1.3 }}>
               {d.subtitle}
             </p>
           )}
           {dataRows.map(r => (
             <div key={r.label} style={{ display: "flex", gap: "10px" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "78px", flexShrink: 0, lineHeight: 1.5 }}>{r.label}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.5, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
             </div>
           ))}
           {descOpen ? (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.6, color: "#444", margin: "10px 0 0" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1.55, color: "#444", margin: "8px 0 0" }}>
               {d.descriptionShort}
             </p>
           ) : (
             <button
               onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "8px" }}
             >
               + {fl.readMore}
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
-            Veure →
+            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "12px" }}>
+            {fl.view}
           </Link>
         </div>
       </div>

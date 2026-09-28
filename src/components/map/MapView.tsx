@@ -75,14 +75,21 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
       leafletRef.current = L;
       mapRef.current = map;
 
-      // Auto-fit to show all pins, then invalidate size in case container was 0 at init
+      // Step 1: show full extent of all pins
       setTimeout(() => {
         map.invalidateSize();
         const bounds = markerLayer.getBounds();
         if (bounds.isValid()) {
-          map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
+          map.fitBounds(bounds, { padding: [80, 80], maxZoom: 10, animate: false });
         }
       }, 100);
+      // Step 2: fly in to AMB detail level
+      setTimeout(() => {
+        const bounds = markerLayer.getBounds();
+        if (bounds.isValid()) {
+          map.flyToBounds(bounds, { padding: [50, 50], maxZoom: 11, duration: 2.2 });
+        }
+      }, 1800);
 
       // Keep map sized correctly if the container resizes
       const ro = new ResizeObserver(() => map.invalidateSize());

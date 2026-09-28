@@ -436,6 +436,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       const m = window.innerWidth <= 768;
       setIsMobile(m);
       isMobileRef.current = m;
+      if (mosaicRef.current) mosaicRef.current.style.display = m ? "none" : "flex";
     };
     check();
     window.addEventListener("resize", check);
@@ -736,7 +737,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ width: "clamp(220px,26vw,290px)", height: "auto", display: "block", marginLeft: "clamp(-33px,-3vw,-25px)" }} />
+            style={{ width: "clamp(220px,26vw,290px)", height: "auto", display: "block", marginLeft: "clamp(-33px,-3vw,-25px)", mixBlendMode: "multiply" }} />
         </button>
       </div>
 
@@ -859,11 +860,11 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
           ref={videoRef}
           style={isMobile ? {
             position:   "absolute",
-            top:        0,
+            top:        "7%",
             left:       0,
             right:      0,
             width:      "100%",
-            height:     "52%",
+            height:     "44%",
             overflow:   "hidden",
             opacity:    0,
             background: "#fff",
@@ -908,14 +909,14 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
           <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-              style={{ width: "clamp(280px,40vw,560px)", height: "auto" }} />
+              style={{ width: "clamp(280px,40vw,560px)", height: "auto", mixBlendMode: "multiply" }} />
           </Link>
         </div>
 
         {/* SETTLED LAYER — text + links */}
         <div
           ref={settledLayerRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: isMobile ? "56% var(--margin-mobile) 20px" : "20px var(--margin-page)", justifyContent: isMobile ? "flex-start" : "flex-end", overflowY: isMobile ? "auto" : "hidden" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: isMobile ? "58% var(--margin-mobile) 20px" : "20px var(--margin-page)", justifyContent: isMobile ? "flex-start" : "flex-end", overflowY: isMobile ? "auto" : "hidden" }}
         >
           <div style={{ maxWidth: isMobile ? "100%" : "min(900px,90%)", paddingBottom: isMobile ? "0" : "clamp(16px,2.5vh,36px)" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.4vw,36px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>

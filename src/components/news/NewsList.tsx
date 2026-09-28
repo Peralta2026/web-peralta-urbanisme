@@ -196,9 +196,9 @@ export default function NewsList({
             object-fit: cover;
             display: block;
             filter: grayscale(1);
-            transition: filter var(--dur-mid) ease;
+            transition: filter 340ms ease;
           }
-          .pu-mag-item:hover .pu-mag-img img { filter: grayscale(0); }
+          .pu-mag-item:hover .pu-mag-img img { filter: grayscale(0) saturate(1.35); }
           .pu-mag-img--contain { background: #fff; }
           .pu-mag-img--contain img { object-fit: contain; }
 
