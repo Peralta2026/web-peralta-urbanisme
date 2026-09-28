@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 function IconInstagram() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r="0.1" fill="currentColor" strokeWidth="2.5"/>
@@ -14,7 +14,7 @@ function IconInstagram() {
 
 function IconLinkedin() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
       <rect x="2" y="9" width="4" height="12"/>
       <circle cx="4" cy="4" r="2"/>
@@ -30,186 +30,204 @@ export default async function ContactePage({
   await params;
 
   return (
-    <div style={{ paddingTop: "var(--header-height)", fontFamily: "var(--font-sans)" }}>
+    <>
+      <div className="pu-contact-root">
 
-      {/* ── Capçalera ── */}
-      <header style={{
-        paddingTop:    "clamp(36px,5vh,64px)",
-        paddingBottom: "clamp(24px,3.5vh,44px)",
-        paddingLeft:   "var(--margin-page)",
-        paddingRight:  "var(--margin-page)",
-      }}>
-        <h1 style={{
-          fontFamily:    "var(--font-sans)",
-          fontWeight:    700,
-          fontSize:      "clamp(32px,4vw,60px)",
-          letterSpacing: "-0.04em",
-          lineHeight:    1,
-          color:         "#000",
-          margin:        0,
-        }}>
-          Parlem
-        </h1>
-      </header>
+        {/* ── Columna esquerra: info ── */}
+        <aside className="pu-contact-info">
 
-      {/* ── Contingut principal ── */}
-      <div className="pu-contacte-layout">
+          <h1 className="pu-contact-heading">Parlem</h1>
 
-        {/* Columna esquerra: dades de contacte */}
-        <div className="pu-contacte-info">
+          <div className="pu-contact-blocks">
 
-          <div className="pu-contacte-block">
-            <p className="pu-contacte-label">Escriu-nos</p>
-            <a href="mailto:info@peraltaurbanisme.com" className="pu-contacte-email">
-              info@peraltaurbanisme.com
-            </a>
-          </div>
-
-          <div className="pu-contacte-block">
-            <p className="pu-contacte-label">Telèfon</p>
-            <a href="tel:+34935389893" className="pu-contacte-phone">
-              +34 935 389 893
-            </a>
-          </div>
-
-          <div className="pu-contacte-block">
-            <p className="pu-contacte-label">Adreça</p>
-            <address className="pu-contacte-address">
-              Carrer de l&apos;Argentona, 29<br />
-              Pis 3-3<br />
-              08302 Mataró, Barcelona
-            </address>
-          </div>
-
-          <div className="pu-contacte-block">
-            <p className="pu-contacte-label">Segueix-nos</p>
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <a
-                href="https://www.instagram.com/peraltaurbanisme/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pu-social-icon"
-                aria-label="Instagram"
-              >
-                <IconInstagram />
-              </a>
-              <a
-                href="https://es.linkedin.com/company/peralta-urbanisme-slp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pu-social-icon"
-                aria-label="LinkedIn"
-              >
-                <IconLinkedin />
+            <div className="pu-contact-block">
+              <span className="pu-contact-label">Escriu-nos</span>
+              <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-email">
+                info@peraltaurbanisme.com
               </a>
             </div>
+
+            <div className="pu-contact-block">
+              <span className="pu-contact-label">Telèfon</span>
+              <a href="tel:+34935389893" className="pu-contact-phone">
+                +34 935 389 893
+              </a>
+            </div>
+
+            <div className="pu-contact-block">
+              <span className="pu-contact-label">Adreça</span>
+              <address className="pu-contact-address">
+                Carrer de l&apos;Argentona, 29<br />
+                Pis 3-3 · 08302 Mataró
+              </address>
+            </div>
+
+            <div className="pu-contact-block">
+              <span className="pu-contact-label">Segueix-nos</span>
+              <div className="pu-contact-socials">
+                <a
+                  href="https://www.instagram.com/peraltaurbanisme/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pu-contact-social"
+                  aria-label="Instagram"
+                >
+                  <IconInstagram /> Instagram
+                </a>
+                <a
+                  href="https://es.linkedin.com/company/peralta-urbanisme-slp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pu-contact-social"
+                  aria-label="LinkedIn"
+                >
+                  <IconLinkedin /> LinkedIn
+                </a>
+              </div>
+            </div>
+
           </div>
+        </aside>
 
-        </div>
-
-        {/* Columna dreta: mapa */}
-        <div className="pu-contacte-map-col">
+        {/* ── Columna dreta: mapa ── */}
+        <div className="pu-contact-map">
           <ContactMapLoader />
         </div>
 
       </div>
 
       <style>{`
-        .pu-contacte-layout {
+        .pu-contact-root {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0;
-          padding: 0 0 clamp(60px,10vh,100px);
+          grid-template-columns: 340px 1fr;
+          height: 100svh;
+          padding-top: var(--header-height);
+          overflow: hidden;
+          font-family: var(--font-sans);
         }
-        .pu-contacte-info {
+
+        /* ── Panel info ── */
+        .pu-contact-info {
           display: flex;
           flex-direction: column;
-          gap: clamp(36px,5vh,52px);
-          padding: 0 var(--margin-page) clamp(48px,7vh,72px);
+          justify-content: flex-end;
+          padding: clamp(32px,5vh,56px) var(--margin-page) clamp(40px,6vh,64px);
+          border-right: 1px solid rgba(0,0,0,0.08);
+          overflow-y: auto;
         }
-        .pu-contacte-block {
+
+        .pu-contact-heading {
+          font-family: var(--font-sans);
+          font-size: clamp(42px, 5vw, 72px);
+          font-weight: 700;
+          letter-spacing: -0.045em;
+          line-height: 1;
+          color: #000;
+          margin: 0 0 clamp(40px, 6vh, 64px);
+        }
+
+        .pu-contact-blocks {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: clamp(24px, 3.5vh, 36px);
         }
-        .pu-contacte-label {
+
+        .pu-contact-block {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+        }
+
+        .pu-contact-label {
           font-family: var(--font-mono);
-          font-size: 9px;
+          font-size: 8.5px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: #bbb;
-          margin: 0;
         }
-        .pu-contacte-email {
+
+        .pu-contact-email {
           font-family: var(--font-sans);
-          font-size: clamp(14px, 1.4vw, 20px);
+          font-size: clamp(13px, 1.1vw, 15px);
           font-weight: 600;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
           color: #000;
           text-decoration: none;
-          transition: opacity 200ms ease;
+          transition: opacity 180ms ease;
         }
-        .pu-contacte-email:hover { opacity: 0.45; }
-        .pu-contacte-phone {
+        .pu-contact-email:hover { opacity: 0.4; }
+
+        .pu-contact-phone {
           font-family: var(--font-sans);
-          font-size: clamp(14px, 1.3vw, 18px);
+          font-size: clamp(13px, 1.05vw, 15px);
           font-weight: 400;
-          letter-spacing: -0.01em;
-          color: #333;
+          color: #444;
           text-decoration: none;
-          transition: opacity 200ms ease;
+          transition: opacity 180ms ease;
         }
-        .pu-contacte-phone:hover { opacity: 0.45; }
-        .pu-contacte-address {
+        .pu-contact-phone:hover { opacity: 0.4; }
+
+        .pu-contact-address {
           font-family: var(--font-sans);
-          font-size: clamp(13px, 1.2vw, 16px);
+          font-size: clamp(12px, 1vw, 14px);
           font-weight: 400;
-          line-height: 1.75;
-          color: #555;
+          line-height: 1.7;
+          color: #666;
           font-style: normal;
-          margin: 0;
         }
-        .pu-social-icon {
+
+        .pu-contact-socials {
           display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .pu-contact-social {
+          display: inline-flex;
           align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          color: #999;
+          gap: 8px;
+          font-family: var(--font-mono);
+          font-size: 9.5px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #888;
           text-decoration: none;
           transition: color 180ms ease;
         }
-        .pu-social-icon:hover { color: #000; }
-        .pu-contacte-map-col {
-          height: 100%;
-          min-height: 320px;
-          position: sticky;
-          top: var(--header-height);
+        .pu-contact-social:hover { color: #000; }
+
+        /* ── Mapa ── */
+        .pu-contact-map {
+          position: relative;
           overflow: hidden;
-          opacity: 0.88;
         }
-        .pu-contacte-map-col > div {
+        .pu-contact-map > div {
           width: 100%;
           height: 100%;
         }
-        @media (max-width: 900px) {
-          .pu-contacte-layout {
+
+        /* ── Mòbil ── */
+        @media (max-width: 768px) {
+          .pu-contact-root {
             grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            height: auto;
+            min-height: 100svh;
+            overflow: visible;
           }
-          .pu-contacte-map-col {
-            position: relative;
-            top: 0;
-            height: 280px;
-            margin: 0 var(--margin-page) 0;
+          .pu-contact-info {
+            justify-content: flex-start;
+            border-right: none;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
           }
-        }
-        @media (max-width: 480px) {
-          .pu-contacte-map-col {
-            margin: 0;
-            height: 220px;
+          .pu-contact-heading {
+            margin-bottom: clamp(28px, 4vh, 40px);
+          }
+          .pu-contact-map {
+            height: 52vw;
+            min-height: 240px;
           }
         }
       `}</style>
-    </div>
+    </>
   );
 }

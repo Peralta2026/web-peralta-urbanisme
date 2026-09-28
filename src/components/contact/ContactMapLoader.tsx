@@ -7,7 +7,7 @@ const ContactMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div style={{ width: "100%", height: "100%", minHeight: "480px", background: "#f2f1ee" }} />
+      <div style={{ width: "100%", height: "100%", background: "#f5f5f3" }} />
     ),
   }
 );
