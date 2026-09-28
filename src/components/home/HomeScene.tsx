@@ -4,7 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { NewsItem, Project } from "@/lib/types";
-import NewsList, { NEWS_LABELS, newsHref, toLoc } from "@/components/news/NewsList";
+import NewsList from "@/components/news/NewsList";
+import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
 
 /* ─── Featured slugs ─────────────────────────────────────────────────────── */

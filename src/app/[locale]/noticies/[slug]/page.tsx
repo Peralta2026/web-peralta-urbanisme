@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllNews, getNewsBySlug } from "@/lib/news";
 import { getProjectBySlug } from "@/lib/projects";
 import type { Project } from "@/lib/types";
-import { NEWS_LABELS, newsDate, newsHref, toLoc } from "@/components/news/NewsList";
+import { NEWS_LABELS, newsDate, newsHref, toLoc } from "@/components/news/newsUtils";
 
 export const dynamic = "force-static";
 

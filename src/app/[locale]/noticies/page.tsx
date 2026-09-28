@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllNews } from "@/lib/news";
-import NewsList, { NEWS_LABELS, toLoc } from "@/components/news/NewsList";
+import NewsList from "@/components/news/NewsList";
+import { NEWS_LABELS, toLoc } from "@/components/news/newsUtils";
 
 export const dynamic = "force-static";
 
