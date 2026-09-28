@@ -40,6 +40,32 @@ function AccordionItem({ name, description, tags, defaultOpen = false }: {
   );
 }
 
+const CLIENTS = [
+  { name: "AMB", file: "amb.jpg" },
+  { name: "Diputació de Barcelona", file: "diputacio-bcn.png" },
+  { name: "Barcelona Regional", file: "barcelona-regional.png" },
+  { name: "Incasol", file: "incasol.jpg" },
+  { name: "Federació Catalana de Municipis", file: "federacio-municipis.jpg" },
+  { name: "Terrassa", file: "terrassa.png" },
+  { name: "Granollers", file: "granollers.jpg" },
+  { name: "Sant Cugat", file: "sant-cugat.jpg" },
+  { name: "Rubí", file: "rubi.png" },
+  { name: "Cornellà", file: "cornella.png" },
+  { name: "Castelldefels", file: "castelldefels.png" },
+  { name: "Gavà", file: "gava.png" },
+  { name: "El Prat de Llobregat", file: "el-prat.png" },
+  { name: "Premià de Mar", file: "premia-de-mar.jpg" },
+  { name: "La Llagosta", file: "la-llagosta.png" },
+  { name: "Calaf", file: "calaf.jpg" },
+  { name: "Molins de Rei", file: "molins-de-rei.png" },
+  { name: "Sant Just Desvern", file: "sant-just.jpg" },
+  { name: "Pineda de Mar", file: "pineda-de-mar.png" },
+  { name: "Bigues", file: "bigues.png" },
+  { name: "Montcada i Reixac", file: "montcada.png" },
+  { name: "L'Hospitalet", file: "hospitalet.jpg" },
+  { name: "Barberà del Vallès", file: "barbera.jpg" },
+];
+
 const PILLARS = [
   { key: "estrategia",  num: "01", name: "Estratègia",  tagline: "Visió territorial i planificació", desc: "Analitzem el context des d'una mirada àmplia: mobilitat, usos, dinàmiques socials i econòmiques. Definim les estratègies que permeten transformar el territori de forma coherent i sostenible.", img: "/metode/sketch-estrategia.png" },
   { key: "disseny",     num: "02", name: "Disseny",     tagline: "Proposta i forma urbana",          desc: "Projectem espais públics, teixits urbans i plans amb criteris de qualitat formal i funcional. El disseny és l'eina amb la qual materialitzem les idees i les fem habitables.",                img: "/metode/sketch-disseny.png" },
@@ -257,6 +283,67 @@ export default function MetodePage() {
         .met-reveal.met-in { opacity: 1; transform: none; }
         .met-d1 { transition-delay: 80ms; } .met-d2 { transition-delay: 160ms; } .met-d3 { transition-delay: 240ms; }
 
+        /* ── Han confiat en nosaltres ── */
+        .met-clients-section {
+          border-top: 1px solid rgba(0,0,0,0.07);
+          padding: clamp(36px,5vh,64px) 0;
+          background: #fff;
+          overflow: hidden;
+        }
+        .met-clients-label {
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 400;
+          color: #888;
+          margin: 0 0 clamp(20px,3vh,32px);
+          padding: 0 var(--margin-page);
+        }
+        .met-clients-wrap {
+          overflow: hidden;
+          width: 100%;
+          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          cursor: pointer;
+        }
+        .met-clients-track {
+          display: flex;
+          align-items: center;
+          gap: clamp(40px, 5vw, 80px);
+          width: max-content;
+          padding: 8px 0;
+          animation: met-marquee 42s linear infinite;
+          animation-play-state: paused;
+        }
+        .met-clients-wrap:hover .met-clients-track {
+          animation-play-state: running;
+        }
+        @keyframes met-marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .met-client-logo {
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.5;
+          filter: grayscale(100%);
+          transition: opacity 300ms ease, filter 300ms ease;
+        }
+        .met-clients-wrap:hover .met-client-logo { opacity: 0.7; }
+        .met-client-logo:hover {
+          opacity: 1 !important;
+          filter: grayscale(0%) !important;
+        }
+        .met-client-img {
+          max-height: 36px;
+          max-width: 110px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+        }
+
         /* ── MOBILE ── */
         @media (max-width: 900px) {
           .met-modes { grid-template-columns: 1fr; }
@@ -272,6 +359,8 @@ export default function MetodePage() {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }
           .met-value:not(:last-child) { border-right: none; border-bottom: 1px solid var(--color-border-soft); padding-bottom: 40px; margin-right: 0; }
           .met-ball.is-open { width: min(300px, 86vw); height: min(300px, 86vw); }
+          .met-client-img { max-height: 28px; max-width: 80px; }
+          .met-clients-track { gap: 32px; }
         }
       `}</style>
 
@@ -338,6 +427,25 @@ export default function MetodePage() {
         </div>
         <div className="met-modes-right">
           <ClientBall />
+        </div>
+      </section>
+
+      {/* ── Han confiat en nosaltres ── */}
+      <section className="met-clients-section">
+        <p className="met-clients-label">Han confiat en nosaltres</p>
+        <div className="met-clients-wrap">
+          <div className="met-clients-track">
+            {[...CLIENTS, ...CLIENTS].map((c, i) => (
+              <div key={i} className="met-client-logo" title={c.name}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/clients/${c.file}`}
+                  alt={c.name}
+                  className="met-client-img"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
