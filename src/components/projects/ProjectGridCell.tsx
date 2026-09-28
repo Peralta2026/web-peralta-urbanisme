@@ -38,7 +38,7 @@ export default function ProjectGridCell({ project, locale, type }: Props) {
           </p>
           <p
             className="text-white/60 text-xs mt-0.5"
-            style={{ fontFamily: "var(--font-mono)" }}
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             {data.municipality} — {data.year}
           </p>
@@ -61,7 +61,7 @@ export default function ProjectGridCell({ project, locale, type }: Props) {
         </p>
         <p
           className="text-white/50 text-xs"
-          style={{ fontFamily: "var(--font-mono)" }}
+          style={{ fontFamily: "var(--font-sans)" }}
         >
           {data.municipality} — {data.year}
         </p>

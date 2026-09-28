@@ -76,10 +76,8 @@ export default async function PersonesPage({
         borderTop:     "1px solid rgba(0,0,0,0.07)",
       }}>
         <p style={{
-          fontFamily:    "var(--font-mono)",
-          fontSize:      "9px",
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
+          fontFamily:    "var(--font-sans)",
+          fontSize:      "var(--size-meta)",
           color:         "#bbb",
           marginBottom:  "clamp(24px,3.5vh,40px)",
         }}>
@@ -115,17 +113,6 @@ export default async function PersonesPage({
         padding:     "clamp(64px,9vh,112px) var(--margin-page)",
         WebkitFontSmoothing: "antialiased",
       }}>
-        <p style={{
-          fontFamily:    "var(--font-mono)",
-          fontSize:      "10px",
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color:         "rgba(255,255,255,0.4)",
-          marginBottom:  "clamp(32px,5vh,56px)",
-        }}>
-          Com treballem
-        </p>
-
         <blockquote style={{
           fontFamily:    "var(--font-sans)",
           fontSize:      "clamp(20px,2.6vw,38px)",
@@ -154,9 +141,6 @@ export default async function PersonesPage({
               paddingRight: i < 3 ? "clamp(16px,2vw,32px)" : 0,
               paddingLeft:  i > 0 ? "clamp(16px,2vw,32px)" : 0,
             }}>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: "0 0 10px" }}>
-                {String(i + 1).padStart(2, "0")}
-              </p>
               <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(18px,2vw,28px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", margin: 0 }}>
                 {word}
               </h3>
@@ -172,7 +156,7 @@ export default async function PersonesPage({
             holístic i potent per crear noves oportunitats.
           </p>
           <div>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>
               Municipis on hem treballat
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.8, color: "rgba(255,255,255,0.6)", margin: 0 }}>
@@ -212,10 +196,8 @@ export default async function PersonesPage({
             gap:           "10px",
             padding:       "14px 28px",
             border:        "1px solid #000",
-            fontFamily:    "var(--font-mono)",
-            fontSize:      "10px",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
+            fontFamily:    "var(--font-sans)",
+            fontSize:      "var(--size-meta)",
             color:         "#000",
             textDecoration:"none",
             transition:    "background 200ms ease, color 200ms ease",

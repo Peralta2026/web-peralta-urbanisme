@@ -11,7 +11,10 @@
 
 - Paleta estrictament B/N: `#ffffff`, `#000000/#111111`, grisos per jerarquia
 - **Mai dark mode** · **Mai gradients** · **Mai border-radius** (excepte elements d'UI menors)
-- Tipografies self-hosted: `Instrument Sans` (sans) + `IBM Plex Mono` (mono)
+- Tipografia self-hosted única: `Instrument Sans`. **No hi ha mono** (IBM Plex Mono retirada el 2026-09-28)
+- **Sense "eyebrows"**: cap mini títol en majúscules espaiades damunt d'un títol. Una etiqueta només existeix si anomena una dada (data, municipi, any, filtre...)
+- Etiquetes i metadades: Instrument Sans 400, `var(--size-meta)` (13px), gris, minúscules, sense letter-spacing, `tabular-nums` per a xifres
+- Enllaços d'acció: text subratllat (1px, offset 4px) a mida de lectura, sense majúscules
 - Variables de disseny sempre de `src/styles/tokens.css` — mai valors màgics inline
 - Mapa: fons blanc, cartografia negra, zero color
 

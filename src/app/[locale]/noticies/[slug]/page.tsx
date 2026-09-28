@@ -52,9 +52,7 @@ export default async function NoticiaPage({
     <article className="pu-noticia">
       <header className="pu-noticia-header">
         <p className="pu-noticia-meta">
-          <span>{formatNewsDate(item.date)}</span>
-          <span>/</span>
-          <span>{CATEGORY_LABELS[loc][item.category]}</span>
+          {formatNewsDate(item.date, locale)} · {CATEGORY_LABELS[loc][item.category]}
         </p>
         <h1>{t.title}</h1>
       </header>
@@ -123,14 +121,11 @@ export default async function NoticiaPage({
           border-bottom: 1px solid var(--color-border);
         }
         .pu-noticia-meta {
-          display: flex;
-          gap: 10px;
           margin: 0 0 clamp(16px,2.5vh,28px);
-          font-family: var(--font-mono);
-          font-size: var(--size-label);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: var(--color-muted);
+          font-variant-numeric: tabular-nums;
         }
         .pu-noticia-header h1 {
           font-family: var(--font-sans);
@@ -180,10 +175,8 @@ export default async function NoticiaPage({
           border-bottom: 1px solid var(--color-border-soft);
         }
         .pu-noticia-facts dt {
-          font-family: var(--font-mono);
-          font-size: var(--size-label);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: var(--color-muted);
           padding-top: 2px;
         }
@@ -205,14 +198,12 @@ export default async function NoticiaPage({
         .pu-noticia-back {
           align-self: flex-start;
           margin-top: clamp(40px,6vh,64px);
-          font-family: var(--font-mono);
-          font-size: var(--size-label);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-body);
           color: #000;
-          text-decoration: none;
-          border-bottom: 1px solid #000;
-          padding-bottom: 4px;
+          text-decoration: underline;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 4px;
           transition: opacity var(--dur-fast) ease;
         }
         .pu-noticia-back:hover { opacity: 0.5; }

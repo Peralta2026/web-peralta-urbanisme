@@ -197,7 +197,7 @@ function FilterToggleRow({
 function FilterSectionHead({ title }: { title: string }) {
   return (
     <div style={{ marginTop: "10px", marginBottom: "1px", paddingBottom: "4px", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#ccc" }}>
         {title}
       </span>
     </div>
@@ -287,7 +287,7 @@ function LeftFilterPanel({
           <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
             <button
               onClick={onClear}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb" }}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}
             >
               {ui.clear}
             </button>
@@ -331,8 +331,8 @@ function ArchiveProjectCard({ project, locale, viewLabel }: { project: Project; 
           <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
               <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0 }}>{r.label}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
               </div>
             ))}
           </div>
@@ -409,7 +409,7 @@ export default function ArchiveList({ projects, locale }: Props) {
             onClick={() => setPanelOpen(f => !f)}
             title={panelOpen ? ui.close : ui.filters}
             style={{
-              fontFamily: "var(--font-mono)", fontSize: "12px", lineHeight: 1,
+              fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1,
               color: panelOpen ? "#999" : "#ccc",
               background: "none", border: "none", cursor: "pointer",
               padding: "0 0 4px",
@@ -429,7 +429,7 @@ export default function ArchiveList({ projects, locale }: Props) {
           {Array.from(activeTema).map(tag => (
             <button key={`tag-${tag}`}
               onClick={() => toggleTema(tag)}
-              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111" }}>
               {tagLabels[tag]}
               <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
             </button>
@@ -439,7 +439,7 @@ export default function ArchiveList({ projects, locale }: Props) {
             return (
               <button key={`tipus-${val}`}
                 onClick={() => toggleTipus(val)}
-                style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: chipColor ?? "#111", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: chipColor ? "#111" : "#fff" }}>
+                style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: chipColor ?? "#111", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: chipColor ? "#111" : "#fff" }}>
                 {(TIPUS_LABELS[loc] ?? TIPUS_LABELS.ca)[val as TipusValue]}
                 <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
               </button>
@@ -448,14 +448,14 @@ export default function ArchiveList({ projects, locale }: Props) {
           {Array.from(activeEscala).map(val => (
             <button key={`escala-${val}`}
               onClick={() => toggleEscala(val)}
-              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#111" }}>
+              style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 10px", border: "1px solid #111", borderRadius: "100px", background: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111" }}>
               {(ESCALA_LABELS[loc] ?? ESCALA_LABELS.ca)[val as EscalaValue]}
               <span style={{ fontSize: "12px", lineHeight: 1 }}>×</span>
             </button>
           ))}
           <button
             onClick={clearAll}
-            style={{ marginLeft: "4px", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa", textDecoration: "underline" }}
+            style={{ marginLeft: "4px", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", textDecoration: "underline" }}
           >
             {ui.clear}
           </button>
@@ -488,7 +488,7 @@ export default function ArchiveList({ projects, locale }: Props) {
           transition: "padding-left 350ms cubic-bezier(0.22,1,0.36,1)",
         }}>
           {filtered.length === 0 ? (
-            <div style={{ paddingTop: "64px", fontFamily: "var(--font-mono)", fontSize: "13px", color: "#aaa", letterSpacing: "0.04em" }}>
+            <div style={{ paddingTop: "64px", fontFamily: "var(--font-sans)", fontSize: "13px", color: "#aaa", }}>
               {ui.empty}
             </div>
           ) : (
@@ -496,7 +496,7 @@ export default function ArchiveList({ projects, locale }: Props) {
               {/* Column headers */}
               <div
                 className="pu-archive-header"
-                style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "14px 0", borderBottom: "1px solid #e8e8e8", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa" }}
+                style={{ display: "grid", gridTemplateColumns: "1fr 160px 64px 180px 32px", gap: "0 24px", padding: "14px 0", borderBottom: "1px solid #e8e8e8", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa" }}
               >
                 <span>{ui.col.project}</span>
                 <span className="pu-archive-hide-sm">{ui.col.municipality}</span>
@@ -553,7 +553,7 @@ export default function ArchiveList({ projects, locale }: Props) {
                         <Link
                           href={projectHref(project.slug, locale)}
                           onClick={(e) => e.stopPropagation()}
-                          style={{ fontFamily: "var(--font-mono)", fontSize: "15px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
+                          style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "#000", textDecoration: "none", textAlign: "center", lineHeight: 1 }}
                           aria-label={`Obrir ${d.title}`}
                         >
                           →
@@ -589,7 +589,7 @@ export default function ArchiveList({ projects, locale }: Props) {
                     </span>
                     <span className="pu-archive-hide-sm" style={{ fontFamily: "var(--font-sans)", fontSize: "12px", color: "#aaa", display: "flex", alignItems: "center", gap: "6px" }}>
                       {isEnProces ? (
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", border: "1px solid #ddd", padding: "2px 6px", borderRadius: "2px" }}>
+                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", border: "1px solid #ddd", padding: "2px 6px", borderRadius: "2px" }}>
                           {EN_PROCES_LABEL[locale] ?? EN_PROCES_LABEL.ca}
                         </span>
                       ) : (
@@ -608,7 +608,7 @@ export default function ArchiveList({ projects, locale }: Props) {
                 );
               })}
 
-              <div style={{ paddingTop: "16px", fontFamily: "var(--font-mono)", fontSize: "10px", color: "#bbb", letterSpacing: "0.08em" }}>
+              <div style={{ paddingTop: "16px", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb", }}>
                 {ui.count(filtered.length)}
               </div>
             </>
@@ -709,10 +709,8 @@ export default function ArchiveList({ projects, locale }: Props) {
           padding: 0 0 2px;
           margin-top: clamp(28px, 4.5vh, 52px);
           cursor: pointer;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.10em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #888;
         }
         .pu-archive-card-copy > a {
@@ -722,12 +720,10 @@ export default function ArchiveList({ projects, locale }: Props) {
           padding-bottom: 3px;
           border-bottom: 1.5px solid #000;
           color: #000;
-          font-family: var(--font-mono);
-          font-size: 11px;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           font-weight: 700;
-          letter-spacing: .10em;
           text-decoration: none;
-          text-transform: uppercase;
         }
         @keyframes pu-archive-open {
           from { opacity: 0; transform: translateY(-10px); }

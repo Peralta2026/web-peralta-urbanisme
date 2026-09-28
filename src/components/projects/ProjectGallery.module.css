@@ -49,9 +49,9 @@
   padding: 3px 5px;
   background: rgb(255 255 255 / 86%);
   color: var(--color-fg);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: .08em;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   opacity: 0;
   transition: opacity var(--dur-fast);
 }
@@ -107,9 +107,9 @@
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: .1em;
+  font-family: var(--font-sans);
+  font-size: var(--size-meta);
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 720px) {

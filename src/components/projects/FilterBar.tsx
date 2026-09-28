@@ -20,7 +20,7 @@ export default function FilterBar({
   return (
     <div
       className="flex flex-wrap gap-x-6 gap-y-2 px-6 py-4 border-b border-black"
-      style={{ fontFamily: "var(--font-mono)" }}
+      style={{ fontFamily: "var(--font-sans)" }}
     >
       <button
         onClick={onClearAll}

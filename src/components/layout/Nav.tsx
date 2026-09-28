@@ -168,7 +168,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-site-header { position: fixed; inset: 0 0 auto; z-index: 200; height: var(--header-height); padding: 0 var(--margin-page); display: flex; align-items: center; justify-content: space-between; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
         .pu-header-logo { display: block; width: clamp(202px, 24vw, 264px); margin-left: clamp(-33px, -3vw, -25px); }
         .pu-header-logo img, .pu-menu-top img { display: block; width: 100%; height: auto; }
-        .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-mono); font-size: var(--size-meta); letter-spacing: .08em; text-transform: uppercase; }
+        .pu-language-selector { display: flex; align-items: center; gap: 6px; margin-right: 48px; font-family: var(--font-sans); font-size: var(--size-meta); letter-spacing: .04em; text-transform: uppercase; }
         .pu-language-selector span { display: flex; align-items: center; gap: 6px; }
         .pu-language-selector button { border: 0; padding: 0; background: none; color: var(--color-gray-mid); font: inherit; text-transform: inherit; cursor: pointer; }
         .pu-language-selector button.is-active { color: var(--color-fg); font-weight: 700; }
@@ -183,7 +183,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
         .pu-menu-top { height: var(--header-height); display: flex; align-items: center; border-bottom: 1px solid var(--color-border); flex-shrink: 0; }
         .pu-menu-top a { width: clamp(202px, 24vw, 264px); }
-        .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em; text-transform: uppercase; }
+        .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-sans); font-size: var(--size-meta); }
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
         .pu-menu-item { display: flex; flex-direction: column; }
         .pu-menu-links a { display: block; padding: 10px 0; color: var(--color-fg); text-decoration: none; }

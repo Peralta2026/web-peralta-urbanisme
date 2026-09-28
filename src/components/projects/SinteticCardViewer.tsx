@@ -108,8 +108,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           )}
           {dataRows.map(r => (
             <div key={r.label} style={{ display: "flex", gap: "10px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
             </div>
           ))}
           {descOpen ? (
@@ -119,13 +119,13 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           ) : (
             <button
               onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
             >
               {fl.readMore}
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
+            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
             Veure →
           </Link>
         </div>
@@ -158,8 +158,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
               <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
               </div>
             ))}
           </div>
@@ -171,13 +171,13 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
         ) : (
           <button
             onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
+            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
           >
             {fl.readMore}
           </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
+          style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
           {fl.view}
         </Link>
       </div>

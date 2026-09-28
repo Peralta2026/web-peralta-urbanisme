@@ -13,13 +13,12 @@
 
   /* ── Typography ─────────────────────────────────────────────────── */
   --font-sans:  "Instrument Sans", sans-serif;
-  --font-mono:  "IBM Plex Mono", monospace;
 
   --size-hero:  clamp(40px, 5vw, 72px);
   --size-title: clamp(28px, 2.8vw, 42px);
   --size-body:  15px;
-  --size-meta:  11px;
-  --size-label: 10px;
+  --size-meta:  13px;
+  --size-label: 13px;
   --size-nav:   12px;
 
   /* ── Spacing ────────────────────────────────────────────────────── */

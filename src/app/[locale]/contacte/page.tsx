@@ -39,7 +39,6 @@ export default async function ContactePage({
 
           {/* Email */}
           <div className="pu-contact-block">
-            <span className="pu-contact-label">Escriu-nos</span>
             <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-email">
               info@peraltaurbanisme.com
             </a>
@@ -47,7 +46,6 @@ export default async function ContactePage({
 
           {/* Telèfon */}
           <div className="pu-contact-block">
-            <span className="pu-contact-label">Telèfon</span>
             <a href="tel:+34935389893" className="pu-contact-phone">
               +34 935 389 893
             </a>
@@ -58,7 +56,6 @@ export default async function ContactePage({
 
           {/* Adreça + mini-mapa */}
           <div className="pu-contact-block pu-contact-block--addr">
-            <span className="pu-contact-label">Adreça</span>
             <div className="pu-contact-addr-row">
               <address className="pu-contact-address">
                 Carrer de l&apos;Argentona, 59<br />
@@ -73,7 +70,6 @@ export default async function ContactePage({
 
           {/* Xarxes */}
           <div className="pu-contact-block">
-            <span className="pu-contact-label">Segueix-nos</span>
             <div className="pu-contact-socials">
               <a
                 href="https://www.instagram.com/peraltaurbanisme/"
@@ -136,13 +132,6 @@ export default async function ContactePage({
           grid-column: 1 / -1;
         }
 
-        .pu-contact-label {
-          font-family: var(--font-mono);
-          font-size: 8px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #bbb;
-        }
 
         .pu-contact-email {
           font-family: var(--font-sans);

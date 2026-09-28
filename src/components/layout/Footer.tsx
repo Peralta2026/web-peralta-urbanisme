@@ -122,10 +122,8 @@ export default function Footer({ locale }: { locale: string }) {
           width: clamp(160px, 18vw, 260px);
         }
         .pu-footer-tagline {
-          font-family: var(--font-mono);
-          font-size: 9.5px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           line-height: 1.85;
           color: rgba(255,255,255,0.5);
           margin: 0;
@@ -172,9 +170,8 @@ export default function Footer({ locale }: { locale: string }) {
         }
         .pu-footer-nav-sub-link:hover { color: #fff; }
         .pu-footer-contact-detail {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.06em;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: rgba(255,255,255,0.32);
           text-decoration: none;
           transition: color 180ms ease;
@@ -207,18 +204,14 @@ export default function Footer({ locale }: { locale: string }) {
           flex-wrap: wrap;
         }
         .pu-footer-copy {
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: rgba(255,255,255,0.18);
         }
         .pu-footer-legal { display: flex; gap: 24px; }
         .pu-footer-legal a {
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: rgba(255,255,255,0.18);
           text-decoration: none;
           transition: color 180ms ease;

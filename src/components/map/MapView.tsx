@@ -152,7 +152,7 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
               {hasPage ? (
                 <Link href={projectHref(selected.slug, locale)}>Veure projecte <b>→</b></Link>
               ) : ws === "en-proces" ? (
-                <p style={{ marginTop: "18px", paddingTop: "12px", borderTop: "1px solid rgba(0,0,0,0.08)", color: "#aaa", fontSize: "9px", letterSpacing: ".1em", textTransform: "uppercase" }}>En procés</p>
+                <p style={{ marginTop: "18px", paddingTop: "12px", borderTop: "1px solid rgba(0,0,0,0.08)", color: "#888", fontSize: "var(--size-meta)" }}>En procés</p>
               ) : null}
             </div>
           </aside>
@@ -162,12 +162,12 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         .pu-map { position: absolute; inset: 0; background: #f5f5f3; }
         .pu-map .leaflet-tile-pane { filter: contrast(1.05) brightness(1.02); }
         .pu-map-card { position: absolute; left: var(--margin-page); bottom: 28px; z-index: 400; width: min(300px, calc(100vw - 40px)); background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden; }
-        .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-mono); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .pu-map-card-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.92); color: var(--color-fg); font-family: var(--font-sans); font-size: 16px; line-height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .pu-map-card-image { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-gray-light); }
         .pu-map-card-copy { padding: 16px 18px 20px; }
         .pu-map-card-copy h2 { margin: 0 0 10px; color: var(--color-fg); font-family: var(--font-sans); font-size: 17px; font-weight: 650; letter-spacing: -.02em; line-height: 1.2; overflow-wrap: break-word; word-break: break-word; }
-        .pu-map-card-copy > span, .pu-map-card-copy p { display: block; margin: 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.6; }
-        .pu-map-card-copy a { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; color: var(--color-fg); font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+        .pu-map-card-copy > span, .pu-map-card-copy p { display: block; margin: 0; color: var(--color-muted); font-family: var(--font-sans); font-size: var(--size-meta); line-height: 1.6; }
+        .pu-map-card-copy a { margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; color: var(--color-fg); font-family: var(--font-sans); font-size: var(--size-meta); font-weight: 600; text-decoration: none; }
         .pu-map-card-copy a b { font-size: 14px; font-weight: 400; }
         .pu-project-marker-host { background: none; border: 0; }
         .pu-project-marker { position: relative; display: block; width: 58px; height: 58px; cursor: pointer; transition: transform var(--dur-fast) var(--ease-smooth); }
@@ -191,10 +191,10 @@ export default function MapView({ projects, locale }: { projects: Project[]; loc
         .pu-project-tooltip::before { display: none; }
         .pu-project-tooltip strong, .pu-project-tooltip span { display: block; }
         .pu-project-tooltip strong { max-width: 220px; font-family: var(--font-sans); font-size: 12px; line-height: 1.3; }
-        .pu-project-tooltip span { margin-top: 5px; font-family: var(--font-mono); font-size: 9px; color: var(--color-muted); letter-spacing: .04em; }
+        .pu-project-tooltip span { margin-top: 5px; font-family: var(--font-sans); font-size: var(--size-meta); color: var(--color-muted); }
         .leaflet-control-zoom { border: 1px solid #111 !important; border-radius: 0 !important; box-shadow: none !important; }
-        .leaflet-control-zoom a { border-radius: 0 !important; color: #111 !important; font-family: var(--font-mono) !important; font-size: 14px !important; }
-        .leaflet-control-attribution { border-radius: 0 !important; background: rgba(255,255,255,.82) !important; font-family: var(--font-mono) !important; font-size: 8px !important; }
+        .leaflet-control-zoom a { border-radius: 0 !important; color: #111 !important; font-family: var(--font-sans) !important; font-size: 14px !important; }
+        .leaflet-control-attribution { border-radius: 0 !important; background: rgba(255,255,255,.82) !important; font-family: var(--font-sans) !important; font-size: var(--size-meta) !important; }
         .leaflet-attribution-flag { display: none !important; }
         @media (max-width: 640px) {
           .pu-map-card { left: 50%; bottom: 16px; width: min(78vw, 300px); transform: translateX(-50%); }

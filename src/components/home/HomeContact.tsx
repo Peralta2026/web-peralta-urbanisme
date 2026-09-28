@@ -3,7 +3,6 @@ import Link from "next/link";
 type Loc = "ca" | "es" | "en";
 
 interface Column {
-  label: string;
   heading: string;
   text: string;
   cta: string;
@@ -13,14 +12,12 @@ interface Column {
 const COPY: Record<Loc, { clients: Column; talent: Column }> = {
   ca: {
     clients: {
-      label: "Administracions i clients",
       heading: "Parlem del vostre projecte",
-      text: "Acompanyem ajuntaments, consorcis i entitats públiques i privades en el planejament urbanístic, l'estratègia territorial i el projecte de l'espai públic.",
+      text: "Per a ajuntaments, consorcis i entitats públiques i privades: planejament urbanístic, estratègia territorial i projecte de l'espai públic.",
       cta: "Contactar amb l'estudi",
       href: "/contacte",
     },
     talent: {
-      label: "Professionals",
       heading: "Treballa amb nosaltres",
       text: "Busquem persones amb formació en arquitectura, urbanisme o disciplines afins, amb ganes d'implicar-se en projectes de planejament i estratègia urbana.",
       cta: "Enviar candidatura",
@@ -29,14 +26,12 @@ const COPY: Record<Loc, { clients: Column; talent: Column }> = {
   },
   es: {
     clients: {
-      label: "Administraciones y clientes",
       heading: "Hablemos de su proyecto",
-      text: "Acompañamos a ayuntamientos, consorcios y entidades públicas y privadas en el planeamiento urbanístico, la estrategia territorial y el proyecto del espacio público.",
+      text: "Para ayuntamientos, consorcios y entidades públicas y privadas: planeamiento urbanístico, estrategia territorial y proyecto del espacio público.",
       cta: "Contactar con el estudio",
       href: "/contacte",
     },
     talent: {
-      label: "Profesionales",
       heading: "Trabaja con nosotros",
       text: "Buscamos personas con formación en arquitectura, urbanismo o disciplinas afines, con ganas de implicarse en proyectos de planeamiento y estrategia urbana.",
       cta: "Enviar candidatura",
@@ -45,14 +40,12 @@ const COPY: Record<Loc, { clients: Column; talent: Column }> = {
   },
   en: {
     clients: {
-      label: "Public bodies and clients",
       heading: "Let's talk about your project",
-      text: "We work with municipalities, consortia and public and private organisations on urban planning, territorial strategy and public space design.",
+      text: "For municipalities, consortia and public and private organisations: urban planning, territorial strategy and public space design.",
       cta: "Contact the studio",
       href: "/contacte",
     },
     talent: {
-      label: "Professionals",
       heading: "Work with us",
       text: "We are looking for people with a background in architecture, urban planning or related fields who want to get involved in planning and urban strategy projects.",
       cta: "Send your application",
@@ -64,12 +57,11 @@ const COPY: Record<Loc, { clients: Column; talent: Column }> = {
 function ContactColumn({ col, locale, children }: { col: Column; locale: string; children?: React.ReactNode }) {
   return (
     <div className="pu-hc-col">
-      <p className="pu-hc-label">{col.label}</p>
       <h2 className="pu-hc-heading">{col.heading}</h2>
       <p className="pu-hc-text">{col.text}</p>
       {children}
       <Link href={`/${locale}${col.href}`} className="pu-hc-cta">
-        {col.cta} →
+        {col.cta}
       </Link>
     </div>
   );
@@ -102,14 +94,6 @@ export default function HomeContact({ locale }: { locale: string }) {
           padding: clamp(56px, 9vh, 112px) var(--margin-page);
         }
         .pu-hc-col + .pu-hc-col { border-left: 1px solid var(--color-border); }
-        .pu-hc-label {
-          font-family: var(--font-mono);
-          font-size: var(--size-label);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--color-muted);
-          margin: 0 0 clamp(20px, 3vh, 32px);
-        }
         .pu-hc-heading {
           font-family: var(--font-sans);
           font-size: var(--size-title);
@@ -132,9 +116,9 @@ export default function HomeContact({ locale }: { locale: string }) {
           flex-wrap: wrap;
           gap: 6px 24px;
           margin: 20px 0 0;
-          font-family: var(--font-mono);
-          font-size: var(--size-meta);
-          letter-spacing: 0.04em;
+          font-family: var(--font-sans);
+          font-size: var(--size-body);
+          font-variant-numeric: tabular-nums;
         }
         .pu-hc-direct a {
           color: var(--color-fg);
@@ -145,14 +129,13 @@ export default function HomeContact({ locale }: { locale: string }) {
         .pu-hc-cta {
           align-self: flex-start;
           margin-top: auto;
-          padding: clamp(32px, 5vh, 56px) 0 4px;
-          border-bottom: 1px solid #000;
-          font-family: var(--font-mono);
-          font-size: var(--size-label);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          padding-top: clamp(32px, 5vh, 56px);
+          font-family: var(--font-sans);
+          font-size: var(--size-body);
           color: #000;
-          text-decoration: none;
+          text-decoration: underline;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 4px;
           transition: opacity var(--dur-fast) ease;
         }
         .pu-hc-cta:hover { opacity: 0.5; }

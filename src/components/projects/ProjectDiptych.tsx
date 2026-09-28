@@ -22,10 +22,8 @@ function MetaItem({
     <div style={{ marginBottom: "20px" }}>
       <p
         style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "10px",
-          textTransform: "uppercase",
-          letterSpacing: "0.08em",
+          fontFamily: "var(--font-sans)",
+          fontSize: "var(--size-meta)",
           color: "#888",
           marginBottom: "4px",
         }}
@@ -134,8 +132,8 @@ export default function ProjectDiptych({ project, locale }: Props) {
                     position: "absolute",
                     bottom: "10px",
                     right: "10px",
-                    fontSize: "10px",
-                    fontFamily: "var(--font-mono)",
+                    fontSize: "var(--size-meta)",
+                    fontFamily: "var(--font-sans)",
                     color: "#fff",
                     backgroundColor: "rgba(0,0,0,0.4)",
                     padding: "2px 7px",
@@ -192,10 +190,8 @@ export default function ProjectDiptych({ project, locale }: Props) {
                 onClick={() => setExpanded(true)}
                 style={{
                   marginTop: "28px",
-                  fontSize: "10px",
-                  fontFamily: "var(--font-mono)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.12em",
+                  fontSize: "var(--size-meta)",
+                  fontFamily: "var(--font-sans)",
                   textDecoration: "underline",
                   background: "none",
                   border: "none",
@@ -236,10 +232,8 @@ export default function ProjectDiptych({ project, locale }: Props) {
                   onClick={() => setExpanded(false)}
                   style={{
                     marginTop: "28px",
-                    fontSize: "10px",
-                    fontFamily: "var(--font-mono)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
+                    fontSize: "var(--size-meta)",
+                    fontFamily: "var(--font-sans)",
                     textDecoration: "underline",
                     background: "none",
                     border: "none",

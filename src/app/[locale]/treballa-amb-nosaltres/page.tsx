@@ -6,11 +6,9 @@ import Link from "next/link";
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
     <label style={{
-      fontFamily:    "var(--font-mono)",
-      fontSize:      "9px",
-      letterSpacing: "0.16em",
-      textTransform: "uppercase",
-      color:         "#aaa",
+      fontFamily:    "var(--font-sans)",
+      fontSize:      "var(--size-meta)",
+      color:         "#888",
       display:       "block",
       marginBottom:  "8px",
     }}>
@@ -94,7 +92,6 @@ export default function TreballaPage() {
         {/* ── Columna esquerra: intro ─────────────────────────────────── */}
         <div className="pu-treballa-left">
           <div className="pu-treballa-block">
-            <p className="pu-treballa-label">Qui busquem</p>
             <p className="pu-treballa-text">
               Busquem persones amb formació en arquitectura, urbanisme o disciplines afins,
               amb ganes d&apos;implicar-se en projectes de planejament i estratègia urbana.
@@ -106,7 +103,6 @@ export default function TreballaPage() {
           </div>
 
           <div className="pu-treballa-block">
-            <p className="pu-treballa-label">Contacte</p>
             <a href="mailto:info@peraltaurbanisme.com" className="pu-treballa-email">
               info@peraltaurbanisme.com
             </a>
@@ -189,7 +185,7 @@ export default function TreballaPage() {
               </div>
 
               {status === "error" && (
-                <p style={{ color: "#c00", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.06em", marginBottom: "16px" }}>
+                <p style={{ color: "#c00", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", marginBottom: "16px" }}>
                   Revisa els camps obligatoris (*) o escriu-nos directament a info@peraltaurbanisme.com.
                 </p>
               )}
@@ -220,14 +216,6 @@ export default function TreballaPage() {
           flex-direction: column;
           gap: 10px;
         }
-        .pu-treballa-label {
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #aaa;
-          margin: 0;
-        }
         .pu-treballa-text {
           font-family: var(--font-sans);
           font-size: 14px;
@@ -246,10 +234,8 @@ export default function TreballaPage() {
         }
         .pu-treballa-email:hover { opacity: 0.5; }
         .pu-back-link {
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #aaa;
           text-decoration: none;
           transition: color 200ms ease;
@@ -277,10 +263,8 @@ export default function TreballaPage() {
           margin: 4px 0 0;
         }
         .pu-submit-btn {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-body);
           color: #fff;
           background: #000;
           border: 1px solid #000;
@@ -317,10 +301,8 @@ export default function TreballaPage() {
         .pu-form-reset {
           background: none;
           border: none;
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.10em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #aaa;
           cursor: pointer;
           padding: 0;

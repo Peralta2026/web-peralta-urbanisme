@@ -21,7 +21,7 @@ function MetaRow({ label, value, unit }: MetaRowProps) {
     <div className="mb-4">
       <p
         className="text-xs uppercase tracking-wider text-gray-500 mb-0.5"
-        style={{ fontFamily: "var(--font-mono)" }}
+        style={{ fontFamily: "var(--font-sans)" }}
       >
         {label}
       </p>
@@ -99,7 +99,7 @@ export default function ProjectMeta({ data, tags }: Props) {
       {tags.length > 0 && (
         <div
           className="text-xs text-gray-500 mt-auto"
-          style={{ fontFamily: "var(--font-mono)" }}
+          style={{ fontFamily: "var(--font-sans)" }}
         >
           {tags.map((tag) => tf(tag)).join(" / ")}
         </div>

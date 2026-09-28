@@ -56,11 +56,9 @@ export default function PersonCard({ member, locale, photoSide }: Props) {
     }}>
       {/* Role */}
       <p style={{
-        fontFamily:    "var(--font-mono)",
-        fontSize:      "10px",
+        fontFamily:    "var(--font-sans)",
+        fontSize:      "var(--size-meta)",
         color:         "#888",
-        letterSpacing: "0.05em",
-        textTransform: "uppercase",
         marginBottom:  "16px",
         lineHeight:    1.5,
         transition:    "font-size 0.4s ease",

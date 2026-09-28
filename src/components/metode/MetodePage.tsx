@@ -13,8 +13,8 @@ function useReveal() {
   }, []);
 }
 
-function AccordionItem({ index, name, description, tags, defaultOpen = false }: {
-  index: string; name: string; description: string; tags: string[]; defaultOpen?: boolean;
+function AccordionItem({ name, description, tags, defaultOpen = false }: {
+  name: string; description: string; tags: string[]; defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -25,18 +25,14 @@ function AccordionItem({ index, name, description, tags, defaultOpen = false }: 
   return (
     <div className="met-mode-item">
       <button type="button" className="met-mode-summary" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-        <span className="met-mode-index">{index}</span>
         <span className="met-mode-name">{name}</span>
         <span className="met-mode-arrow" style={{ transform: open ? "rotate(45deg)" : undefined }}>+</span>
       </button>
       <div ref={bodyRef} className="met-mode-body">
         <div className="met-mode-body-inner">
-          <div />
           <div>
             <p className="met-mode-desc">{description}</p>
-            <div className="met-mode-tags">
-              {tags.map((t) => <span key={t} className="met-mode-tag">{t}</span>)}
-            </div>
+            <p className="met-mode-tags">{tags.join(" / ")}</p>
           </div>
         </div>
       </div>
@@ -137,17 +133,13 @@ export default function MetodePage() {
         .met-page-title { font-family: var(--font-sans); font-size: clamp(32px,4vw,60px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: #000; margin: 0; }
         .met-page-sep { margin: clamp(16px,2.5vh,28px) var(--margin-page) 0; height: 1px; background: rgba(0,0,0,0.08); }
 
-        /* ── SECTION LABELS ── */
-        .met-section-label {
-          font-family: var(--font-mono); font-size: var(--size-label); letter-spacing: .14em;
-          text-transform: uppercase; color: var(--color-muted);
-        }
+        /* ── SECTION HEADINGS ── */
         .met-section-heading {
           font-family: var(--font-sans);
-          font-size: clamp(10px, 0.85vw, 12px);
+          font-size: clamp(30px, 3.6vw, 52px);
           font-weight: 700;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
+          letter-spacing: -0.04em;
+          line-height: 1;
           color: var(--color-fg);
         }
 
@@ -201,7 +193,7 @@ export default function MetodePage() {
         .met-pillar-cols.is-locked .met-pillar-expand { opacity: 1; pointer-events: auto; }
         .met-pillar-e-num { font-family: var(--font-sans); font-size: clamp(28px,3vw,48px); font-weight: 900; letter-spacing: -0.04em; color: var(--color-fg); margin: 0 0 12px; line-height: 1; }
         .met-pillar-e-title { font-family: var(--font-sans); font-size: clamp(22px,2.2vw,34px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
-        .met-pillar-e-tagline { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 16px; }
+        .met-pillar-e-tagline { font-family: var(--font-sans); font-size: var(--size-meta); color: var(--color-muted); margin: 0 0 16px; }
         .met-pillar-e-desc { font-family: var(--font-sans); font-size: 14px; line-height: 1.65; color: var(--color-muted); max-width: 340px; margin: 0; }
         .met-pillar-e-img { margin-top: auto; padding-top: 24px; }
         .met-pillar-e-img img { width: 100%; max-height: 160px; object-fit: contain; display: block; }
@@ -210,7 +202,6 @@ export default function MetodePage() {
         .met-modes { display: grid; grid-template-columns: 3fr 2fr; border-top: 1px solid var(--color-border); }
         .met-modes-left { border-right: 1px solid rgba(0,0,0,0.08); padding-bottom: 80px; }
         .met-modes-header-block { padding: 72px var(--margin-page) 48px; border-bottom: 1px solid var(--color-border); }
-        .met-modes-header-block .met-section-label { display: block; margin-bottom: 16px; }
         .met-modes-header-block h2 { font-family: var(--font-sans); font-size: clamp(30px,3.6vw,52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
         .met-modes-header-block > p { font-family: var(--font-sans); font-size: 14px; color: var(--color-muted); line-height: 1.65; max-width: 380px; margin: 0; }
         .met-modes-list { padding: 0 var(--margin-page); }
@@ -219,15 +210,13 @@ export default function MetodePage() {
         /* Accordion */
         .met-mode-item { border-top: 1px solid var(--color-border-soft); }
         .met-mode-item:last-child { border-bottom: 1px solid var(--color-border-soft); }
-        .met-mode-summary { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 24px; padding: 32px 0; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
-        .met-mode-index { font-family: var(--font-mono); font-size: var(--size-label); color: var(--color-faint); letter-spacing: .1em; }
+        .met-mode-summary { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 32px 0; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
         .met-mode-name { font-family: var(--font-sans); font-size: clamp(22px,2.4vw,34px); font-weight: 700; letter-spacing: -.035em; color: var(--color-fg); }
         .met-mode-arrow { font-size: 22px; color: var(--color-gray-mid); transition: transform var(--dur-mid) var(--ease-smooth); }
         .met-mode-body { overflow: hidden; max-height: 0; transition: max-height 0.4s var(--ease-smooth); }
-        .met-mode-body-inner { display: grid; grid-template-columns: 40px 1fr; gap: 24px; padding-bottom: 40px; }
+        .met-mode-body-inner { display: grid; grid-template-columns: 1fr; gap: 24px; padding-bottom: 40px; }
         .met-mode-desc { font-family: var(--font-sans); font-size: 15px; color: var(--color-fg); line-height: 1.7; max-width: 560px; margin-bottom: 24px; }
-        .met-mode-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .met-mode-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #111; background: #dcdcd8; padding: 6px 12px; }
+        .met-mode-tags { font-family: var(--font-sans); font-size: var(--size-meta); line-height: 1.6; color: var(--color-muted); margin: 0; }
 
         /* ── BALL ── */
         .met-ball-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
@@ -245,7 +234,7 @@ export default function MetodePage() {
 
         .met-ball-simple { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; opacity: 1; transition: opacity 0.2s ease; pointer-events: none; }
         .met-ball.is-open .met-ball-simple { opacity: 0; }
-        .met-ball-slabel { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+        .met-ball-slabel { font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.5); }
         .met-ball-sname { font-family: var(--font-sans); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
 
         .met-ball-diagram { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease 0.35s; pointer-events: none; }
@@ -253,14 +242,14 @@ export default function MetodePage() {
         .met-hub-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 
         .met-hnode { position: absolute; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.65); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
-        .met-hnode-label { font-family: var(--font-mono); font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+        .met-hnode-label { font-family: var(--font-sans); font-size: 10px; color: rgba(255,255,255,0.5); }
         .met-hnode-name { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.01em; }
         .met-hnode-client  { width: 100px; height: 100px; top: 130px; left: 130px; border-color: rgba(255,255,255,0.95); background: var(--color-fg); }
         .met-hnode-peralta  { width: 72px; height: 72px; top: 14px;  left: 144px; }
         .met-hnode-projecte { width: 72px; height: 72px; top: 259px; left: 34px;  }
         .met-hnode-territori{ width: 72px; height: 72px; top: 259px; left: 254px; }
 
-        .met-ball-btn { background: none; border: 1px solid var(--color-fg); padding: 10px 24px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; color: var(--color-fg); transition: background 200ms ease, color 200ms ease; }
+        .met-ball-btn { background: none; border: 1px solid var(--color-fg); padding: 10px 24px; font-family: var(--font-sans); font-size: var(--size-meta); cursor: pointer; color: var(--color-fg); transition: background 200ms ease, color 200ms ease; }
         .met-ball-btn:hover { background: var(--color-fg); color: var(--color-bg); }
 
         /* ── REVEAL ── */
@@ -326,23 +315,22 @@ export default function MetodePage() {
       <section className="met-modes">
         <div className="met-modes-left">
           <div className="met-modes-header-block met-reveal">
-            <p className="met-section-label">Com col·laborem</p>
             <h2>Tres formes<br />d&apos;acompanyar-vos</h2>
             <p>Adaptem la nostra implicació a les necessitats reals de cada client i cada fase del projecte. Cada encàrrec és diferent: la nostra estructura és flexible per respondre-hi amb precisió.</p>
           </div>
           <div className="met-modes-list">
             <AccordionItem
-              index="01" name="Assessorament" defaultOpen
+              name="Assessorament" defaultOpen
               description="Oferim consultes tècniques puntuals i acompanyament estratègic en moments clau. Analitzem situacions complexes, avaluem opcions i donem suport en la presa de decisions urbanístiques i territorials."
               tags={["Consultes tècniques", "Dictàmens", "Suport a la decisió", "Administracions locals"]}
             />
             <AccordionItem
-              index="02" name="Intervencions"
+              name="Intervencions"
               description="Redactem plans, estudis i projectes d'urbanisme des del principi fins al final. Assumim la responsabilitat tècnica completa de l'encàrrec: diagnosi, proposta, documentació i tràmit."
               tags={["Plans directors", "Plans parcials", "Espai públic", "Estudis de viabilitat"]}
             />
             <AccordionItem
-              index="03" name="Desenvolupament"
+              name="Desenvolupament"
               description="Col·laborem en projectes de llarga durada com a equip tècnic estable. Integrem-nos en l'estructura del client per garantir continuïtat, coherència i suport continu al llarg de tot el procés."
               tags={["Projectes plurianuals", "Suport continu", "Equip tècnic integrat", "Seguiment i gestió"]}
             />

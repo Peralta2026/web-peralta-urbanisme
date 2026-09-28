@@ -108,7 +108,7 @@ function Lightbox({
       </button>
 
       {imgs.length > 1 && (
-        <div style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.5)", userSelect: "none" }}>
+        <div style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "rgba(255,255,255,0.5)", userSelect: "none" }}>
           {idx + 1} / {imgs.length}
         </div>
       )}
@@ -173,13 +173,13 @@ function FilterBarPV({
   return (
     <div style={{ borderBottom: "1px solid rgba(0,0,0,0.12)", background: PANEL_BG, flexShrink: 0 }}>
       <div style={{ padding: "0 clamp(32px,5vw,64px)", display: "flex", alignItems: "center", gap: "clamp(20px,3.5vw,48px)", minHeight: "52px", flexWrap: "wrap" }}>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", whiteSpace: "nowrap", flexShrink: 0 }}>
+        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "rgba(0,0,0,0.35)", whiteSpace: "nowrap", flexShrink: 0 }}>
           Filtra per:
         </span>
         {dims.map(({ key, label }) => {
           const val = getDisplay(key); const isOpen = activeDim === key; const hasVal = !!val;
           return (
-            <button key={key} onClick={() => onToggleDim(key)} style={{ background: "none", border: "none", borderBottom: isOpen ? "1.5px solid #000" : "1.5px solid transparent", cursor: "pointer", padding: "4px 0 2px", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.16em", textTransform: "uppercase", color: (isOpen || hasVal) ? "#000" : "rgba(0,0,0,0.45)", fontWeight: (isOpen || hasVal) ? 700 : 400, transition: "color 160ms, border-color 160ms", display: "flex", alignItems: "center", gap: "5px", whiteSpace: "nowrap", flexShrink: 0 }}>
+            <button key={key} onClick={() => onToggleDim(key)} style={{ background: "none", border: "none", borderBottom: isOpen ? "1.5px solid #000" : "1.5px solid transparent", cursor: "pointer", padding: "4px 0 2px", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: (isOpen || hasVal) ? "#000" : "rgba(0,0,0,0.45)", fontWeight: (isOpen || hasVal) ? 700 : 400, transition: "color 160ms, border-color 160ms", display: "flex", alignItems: "center", gap: "5px", whiteSpace: "nowrap", flexShrink: 0 }}>
               {hasVal ? `${label}: ${val}` : label}
               {hasVal && <span role="button" onClick={e => { e.stopPropagation(); onClearDim(key); }} style={{ fontSize: "14px", lineHeight: 1, opacity: 0.4, cursor: "pointer" }}>×</span>}
             </button>
@@ -517,8 +517,8 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
             overflow: hidden;
           }
           .pu-meta {
-            font-family: var(--font-mono);
-            font-size: 9.5px; letter-spacing: 0.10em; text-transform: uppercase;
+            font-family: var(--font-sans);
+            font-size: var(--size-meta);
             color: #bbb; margin: 0 0 clamp(12px,2.2vh,20px);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           }
@@ -536,9 +536,8 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
           }
           .pu-card-desc::-webkit-scrollbar { display: none; }
           .pu-tags {
-            font-family: var(--font-mono);
-            font-size: 8px; letter-spacing: 0.08em; color: #ccc;
-            text-transform: uppercase; line-height: 1.9;
+            font-family: var(--font-sans);
+            font-size: var(--size-meta); color: #ccc; line-height: 1.9;
             margin: 0 0 clamp(12px,2vh,20px); flex-shrink: 0;
           }
           .pu-card-actions {
@@ -546,15 +545,15 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
             flex-wrap: wrap; flex-shrink: 0;
           }
           .pu-action-btn {
-            font-family: var(--font-mono);
-            font-size: 9.5px; letter-spacing: 0.10em; text-transform: uppercase;
+            font-family: var(--font-sans);
+            font-size: var(--size-meta);
             color: #555; background: none; border: none; cursor: pointer;
             padding: 0 0 2px; border-bottom: 1px solid #bbb;
           }
           .pu-action-btn:hover { color: #000; border-color: #000; }
           .pu-action-link {
-            font-family: var(--font-mono);
-            font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+            font-family: var(--font-sans);
+            font-size: var(--size-meta);
             color: #111; text-decoration: none;
             border-bottom: 1px solid #111; padding-bottom: 2px;
           }
@@ -587,7 +586,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
 
             {filteredProjects.length === 0 ? (
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em", color: "#bbb", textTransform: "uppercase" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb", }}>
                   Cap projecte coincideix
                 </p>
               </div>
@@ -631,7 +630,7 @@ const ProjectViewer = forwardRef<ProjectViewerHandle, Props>(
             )}
 
             {N > 0 && (
-              <div style={{ position: "absolute", bottom: "12px", right: "clamp(32px,5vw,64px)", fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#ccc", userSelect: "none", zIndex: 200 }}>
+              <div style={{ position: "absolute", bottom: "12px", right: "clamp(32px,5vw,64px)", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#ccc", userSelect: "none", zIndex: 200 }}>
                 {String(activeIdx + 1).padStart(2, "0")} / {String(N).padStart(2, "0")}
               </div>
             )}

@@ -126,10 +126,9 @@ export default function VisualGrid({ projects, locale }: Props) {
         }
         .pu-visual-subtitle {
           color: rgba(255,255,255,0.68);
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: clamp(8px, 0.62vw, 10px);
           font-weight: 400;
-          letter-spacing: 0.02em;
           line-height: 1.3;
           display: block;
           margin-top: 4px;

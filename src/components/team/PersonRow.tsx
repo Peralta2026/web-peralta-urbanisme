@@ -193,10 +193,8 @@ export default function PersonRow({ members, locale }: Props) {
           white-space: nowrap;
         }
         .pu-person-role {
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #888;
           margin: 0 0 14px;
           white-space: nowrap;
@@ -225,10 +223,8 @@ export default function PersonRow({ members, locale }: Props) {
           margin: 0 0 3px;
         }
         .pu-person-foot-role {
-          font-family: var(--font-mono);
-          font-size: 8px;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #999;
           margin: 0;
         }

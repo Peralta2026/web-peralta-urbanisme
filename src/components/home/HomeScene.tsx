@@ -205,11 +205,11 @@ function drawCalli(
 function LangSelector({ locale }: { locale: string }) {
   const router = useRouter();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.10em" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)" }}>
       {LOCALES.map((loc, i) => (
         <span key={loc} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <button onClick={() => router.push(`/${loc}/`)}
-            style={{ fontSize: "11px", letterSpacing: "0.10em", fontWeight: locale === loc ? 700 : 400, color: locale === loc ? "#000" : "#bbb", background: "none", border: "none", cursor: "pointer", padding: 0, textTransform: "uppercase" }}>
+            style={{ fontSize: "var(--size-meta)", letterSpacing: "0.04em", fontWeight: locale === loc ? 700 : 400, color: locale === loc ? "#000" : "#bbb", background: "none", border: "none", cursor: "pointer", padding: 0, textTransform: "uppercase" }}>
             {loc}
           </button>
           {i < LOCALES.length - 1 && <span style={{ color: "#ddd" }}>/</span>}
@@ -227,7 +227,7 @@ function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string;
     <Link href={`/${locale}${href}`}
       style={{ textDecoration: "none", display: "inline-flex", flexDirection: "column", position: "relative" }}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", fontWeight: 600, whiteSpace: "nowrap" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#000", fontWeight: 600, whiteSpace: "nowrap" }}>
         {label}
       </span>
       <span style={{ position: "absolute", top: "100%", left: 0, display: "block", height: "17px", marginTop: "5px", overflow: "hidden", whiteSpace: "nowrap" }}>
@@ -270,8 +270,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           </h3>
           {dataRows.map(r => (
             <div key={r.label} style={{ display: "flex", gap: "10px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
             </div>
           ))}
           {descOpen ? (
@@ -281,13 +281,13 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           ) : (
             <button
               onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
             >
               {fl.readMore}
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
+            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
             Veure →
           </Link>
         </div>
@@ -312,8 +312,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
               <div key={r.label} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "90px", flexShrink: 0 }}>{r.label}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
               </div>
             ))}
           </div>
@@ -325,13 +325,13 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
         ) : (
           <button
             onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(28px,4.5vh,52px)" }}
+            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(28px,4.5vh,52px)" }}
           >
             {fl.readMore}
           </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
-          style={{ fontFamily: "var(--font-mono)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
+          style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
           Veure projecte →
         </Link>
       </div>
@@ -771,7 +771,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
               transform: "translate(-50%, -50%)",
               textAlign: "center",
             }}>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#bbb" }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}>
                 {ui.noResults}
               </p>
             </div>
@@ -906,8 +906,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         </div>
 
         {/* Scroll hint */}
-        <div ref={hintRef} style={{ position: "absolute", bottom: "36px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", userSelect: "none", pointerEvents: "none", fontFamily: "var(--font-mono)" }}>
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", color: "rgba(0,0,0,0.55)", textTransform: "uppercase" }}>Scroll</span>
+        <div ref={hintRef} style={{ position: "absolute", bottom: "36px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", userSelect: "none", pointerEvents: "none", fontFamily: "var(--font-sans)" }}>
           <span style={{ display: "flex", flexDirection: "column", alignItems: "center", animation: "pu-hint-drop 2.4s ease-in-out infinite" }}>
             <span style={{ display: "block", width: "1px", height: "28px", background: "rgba(0,0,0,0.42)" }} />
             <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
@@ -931,20 +930,18 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             {NEWS_LABELS[toLoc(locale)].title}
           </h2>
           <Link href={newsHref(locale)} className="pu-home-news-all">
-            {NEWS_LABELS[toLoc(locale)].all} →
+            {NEWS_LABELS[toLoc(locale)].all}
           </Link>
         </header>
         <NewsList items={news.slice(0, 3)} locale={locale} />
         <style>{`
           .pu-home-news-all {
-            font-family: var(--font-mono);
-            font-size: var(--size-label);
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
+            font-family: var(--font-sans);
+            font-size: var(--size-body);
             color: #000;
-            text-decoration: none;
-            border-bottom: 1px solid #000;
-            padding-bottom: 4px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
             white-space: nowrap;
             transition: opacity var(--dur-fast) ease;
           }
@@ -979,10 +976,8 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
               border:        "none",
               padding:       0,
               cursor:        "pointer",
-              fontFamily:    "var(--font-mono)",
-              fontSize:      "9px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase" as const,
+              fontFamily:    "var(--font-sans)",
+              fontSize:      "var(--size-meta)",
               color:         drawMode === mode ? "#000" : "rgba(0,0,0,0.32)",
               fontWeight:    drawMode === mode ? 700 : 400,
               transition:    "color 180ms ease",
@@ -994,12 +989,12 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         ))}
 
         {/* Separator */}
-        <span style={{ color: "rgba(0,0,0,0.18)", fontSize: "9px", lineHeight: 1, fontFamily: "var(--font-mono)" }}>·</span>
+        <span style={{ color: "rgba(0,0,0,0.18)", fontSize: "var(--size-meta)", lineHeight: 1, fontFamily: "var(--font-sans)" }}>·</span>
 
         {/* Size: − [dots] + */}
         <button
           onClick={() => handleSizeChange(Math.max(1, strokeSize - 1) as 1|2|3|4)}
-          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "14px", lineHeight: 1, color: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center" }}
+          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1, color: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center" }}
         >−</button>
         {([1, 2, 3, 4] as const).map((size) => (
           <span
@@ -1015,11 +1010,11 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         ))}
         <button
           onClick={() => handleSizeChange(Math.min(4, strokeSize + 1) as 1|2|3|4)}
-          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: "var(--font-mono)", fontSize: "14px", lineHeight: 1, color: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center" }}
+          style={{ background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1, color: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center" }}
         >+</button>
 
         {/* Separator */}
-        <span style={{ color: "rgba(0,0,0,0.18)", fontSize: "9px", lineHeight: 1, fontFamily: "var(--font-mono)" }}>·</span>
+        <span style={{ color: "rgba(0,0,0,0.18)", fontSize: "var(--size-meta)", lineHeight: 1, fontFamily: "var(--font-sans)" }}>·</span>
 
         {/* Clear */}
         <button
@@ -1029,10 +1024,8 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             border:        "none",
             padding:       0,
             cursor:        "pointer",
-            fontFamily:    "var(--font-mono)",
-            fontSize:      "9px",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase" as const,
+            fontFamily:    "var(--font-sans)",
+            fontSize:      "var(--size-meta)",
             color:         "rgba(0,0,0,0.32)",
             transition:    "color 180ms ease",
             lineHeight:    1,

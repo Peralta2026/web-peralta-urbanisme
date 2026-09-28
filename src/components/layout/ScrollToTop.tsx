@@ -37,7 +37,7 @@ export default function ScrollToTop() {
           backdrop-filter: blur(6px);
           -webkit-backdrop-filter: blur(6px);
           color: #111;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 14px;
           line-height: 1;
           cursor: pointer;

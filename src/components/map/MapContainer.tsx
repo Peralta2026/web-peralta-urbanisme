@@ -154,7 +154,7 @@ export default function MapContainer({ markers, locale }: Props) {
               background: "transparent",
               padding: 0,
               color: "#000",
-              fontFamily: "var(--font-mono)",
+              fontFamily: "var(--font-sans)",
               zIndex: 1,
             }}
           >
@@ -180,19 +180,19 @@ export default function MapContainer({ markers, locale }: Props) {
           </div>
 
           <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: 1 }}>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.1em", color: "#888", marginBottom: "10px" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", marginBottom: "10px" }}>
               {selected.municipality}
             </p>
             <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "13px", fontWeight: 600, lineHeight: 1.35, marginBottom: "10px", color: "#000" }}>
               {selected.title}
             </h2>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "#888" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888" }}>
               {selected.year}{selected.status ? ` — ${selected.status}` : ""}
             </p>
             <div style={{ marginTop: "auto", paddingTop: "24px", borderTop: "1px solid #000" }}>
               <Link
                 href={projectHref(selected.slug, locale)}
-                style={{ fontFamily: "var(--font-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#000", textDecoration: "none" }}
+                style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#000", textDecoration: "none" }}
               >
                 Veure projecte →
               </Link>
@@ -249,7 +249,7 @@ export default function MapContainer({ markers, locale }: Props) {
 
         /* ── Controls Leaflet ── */
         .leaflet-control-attribution {
-          font-family: 'IBM Plex Mono', monospace !important;
+          font-family: var(--font-sans) !important;
           font-size: 9px !important;
           background: rgba(255,255,255,0.85) !important;
           border-radius: 0 !important;
@@ -263,7 +263,7 @@ export default function MapContainer({ markers, locale }: Props) {
           border-radius: 0 !important;
           color: #000 !important;
           border-bottom: 1px solid #e0e0e0 !important;
-          font-family: 'IBM Plex Mono', monospace !important;
+          font-family: var(--font-sans) !important;
           font-size: 14px !important;
           line-height: 26px !important;
           width: 26px !important;

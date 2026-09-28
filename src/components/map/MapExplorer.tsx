@@ -65,7 +65,7 @@ function FilterToggleRow({ label, active, onToggle, tabIndex: tIdx }: {
 function FilterSectionHead({ title }: { title: string }) {
   return (
     <div style={{ marginTop: "10px", marginBottom: "1px", paddingBottom: "4px", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
-      <span style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ccc" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#ccc" }}>
         {title}
       </span>
     </div>
@@ -125,7 +125,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
         <button
           onClick={() => setPanelOpen(f => !f)}
           style={{
-            fontFamily: "var(--font-mono)", fontSize: "12px", lineHeight: 1,
+            fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1,
             color: panelOpen ? "#999" : "#ccc",
             background: "none", border: "none", cursor: "pointer",
             padding: "0 0 4px",
@@ -203,7 +203,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
               <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                 <button
                   onClick={clearAll}
-                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-mono)", fontSize: "8.5px", letterSpacing: "0.10em", textTransform: "uppercase", color: "#bbb" }}
+                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}
                 >
                   {ui.clear}
                 </button>

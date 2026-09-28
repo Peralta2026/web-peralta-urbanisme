@@ -154,8 +154,8 @@ export default function ContactMap() {
         .leaflet-tile-pane { filter: contrast(1.04) brightness(1.01); }
         .leaflet-attribution-flag { display: none !important; }
         .leaflet-control-attribution {
-          font-family: var(--font-mono) !important;
-          font-size: 7px !important;
+          font-family: var(--font-sans) !important;
+          font-size: var(--size-meta) !important;
           background: rgba(255,255,255,0.7) !important;
           border-radius: 0 !important;
           padding: 2px 6px !important;
@@ -230,7 +230,7 @@ export default function ContactMap() {
           border: 1px solid rgba(0,0,0,0.12);
           background: rgba(255,255,255,0.92);
           color: #111;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 16px;
           line-height: 1;
           cursor: pointer;
@@ -242,10 +242,8 @@ export default function ContactMap() {
         }
         .pu-cmap-popup-close:hover { background: #fff; }
         .pu-cmap-popup-title {
-          font-family: var(--font-mono);
-          font-size: 8.5px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: var(--size-meta);
           color: #aaa;
           margin: 0 0 10px;
         }

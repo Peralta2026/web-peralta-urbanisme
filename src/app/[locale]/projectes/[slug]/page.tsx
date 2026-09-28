@@ -265,10 +265,9 @@ export default async function ProjectPage({
                   <p
                     key={i}
                     style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "9.5px",
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "var(--size-meta)",
                       fontWeight: 400,
-                      letterSpacing: "0.05em",
                       color: "#999",
                       margin: i === 1 ? "12px 0 0 0" : "2px 0 0 0",
                       lineHeight: 1.5,
@@ -299,11 +298,9 @@ export default async function ProjectPage({
                 <dt
                   style={{
                     fontFamily: sans,
-                    fontSize: "10px",
-                    fontWeight: 600,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#aaa",
+                    fontSize: "var(--size-meta)",
+                    fontWeight: 400,
+                    color: "#888",
                     marginBottom: "3px",
                     lineHeight: 1.2,
                   }}
@@ -360,11 +357,9 @@ export default async function ProjectPage({
             <p
               style={{
                 fontFamily: sans,
-                fontSize: "10px",
-                fontWeight: 600,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#aaa",
+                fontSize: "var(--size-meta)",
+                fontWeight: 400,
+                color: "#888",
                 marginBottom: "14px",
                 lineHeight: 1.2,
               }}
@@ -455,12 +450,10 @@ export default async function ProjectPage({
             href={backHref(loc)}
             style={{
               fontFamily: sans,
-              fontSize: "12px",
-              fontWeight: 500,
+              fontSize: "var(--size-meta)",
+              fontWeight: 400,
               textDecoration: "none",
-              color: "#aaa",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
+              color: "#888",
             }}
           >
             {ui.allProjects}
