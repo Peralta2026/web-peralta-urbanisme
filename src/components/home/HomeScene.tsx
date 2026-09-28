@@ -258,16 +258,21 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   /* ── Mobile layout: image top, content bottom ── */
   if (mobile) {
     return (
-      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-        <div style={{ flex: "0 0 58%", overflow: "hidden" }}>
+      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "8px" }}>
+        <div style={{ flexShrink: 0, width: "100%", aspectRatio: "1 / 1", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
         </div>
         <div style={{ flex: 1, overflow: "auto", padding: "18px 22px", display: "flex", flexDirection: "column", gap: "3px" }}>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "19px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 12px" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "19px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 4px" }}>
             {d.title}
           </h3>
+          {d.subtitle && (
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontStyle: "italic", color: "#666", margin: "0 0 10px", lineHeight: 1.3 }}>
+              {d.subtitle}
+            </p>
+          )}
           {dataRows.map(r => (
             <div key={r.label} style={{ display: "flex", gap: "10px" }}>
               <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
@@ -281,9 +286,9 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           ) : (
             <button
               onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
             >
-              {fl.readMore}
+              + {fl.readMore}
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
@@ -297,17 +302,25 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 
   /* ── Desktop layout: image left, content right ── */
   return (
-    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
-      <div style={{ flex: "0 0 50%", overflow: "hidden", position: "relative" }}>
+    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden", borderRadius: "8px" }}>
+      <div style={{ flex: "none", aspectRatio: "1 / 1", alignSelf: "stretch", overflow: "hidden", position: "relative" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", userSelect: "none" }} />
       </div>
       <div style={{ width: "1px", background: "rgba(0,0,0,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", padding: "clamp(24px,3.5vh,44px) clamp(24px,2.8vw,40px)", overflow: "hidden" }}>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px,2vw,32px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 clamp(28px,4.5vh,52px)" }}>
-          {d.title}
-        </h3>
+        <div>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(20px,2vw,32px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 6px" }}>
+            {d.title}
+          </h3>
+          {d.subtitle && (
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(12px,1vw,14px)", fontStyle: "italic", color: "#777", margin: "0 0 clamp(20px,3.5vh,40px)", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+              {d.subtitle}
+            </p>
+          )}
+          {!d.subtitle && <div style={{ height: "clamp(20px,3.5vh,40px)" }} />}
+        </div>
         {dataRows.length > 0 && (
           <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
             {dataRows.map(r => (
@@ -325,9 +338,9 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
         ) : (
           <button
             onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(28px,4.5vh,52px)" }}
+            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
           >
-            {fl.readMore}
+            + {fl.readMore}
           </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}

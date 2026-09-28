@@ -26,46 +26,24 @@ export default function ProjectCard({ project, locale }: Props) {
         color: "inherit",
         overflow: "hidden",
         display: "block",
+        borderRadius: "8px",
       }}
     >
-      {/* Grid: 52% imatge / 48% text en desktop — apilat en mòbil */}
-      <div className="grid grid-cols-1 md:grid-cols-[52%_48%] md:h-[420px]">
+      {/* Grid: image 1:1 / text en desktop — apilat en mòbil */}
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] md:h-[420px]">
 
         {/* ── Columna imatge ── */}
         <div
-          className="flex items-center justify-center border-b border-[#7e7e7e] md:border-b-0 md:border-r md:border-r-[#7e7e7e] h-[260px] md:h-full"
-          style={{
-            padding: "22px",
-            overflow: "hidden",
-          }}
+          className="border-b border-[#7e7e7e] md:border-b-0 md:border-r md:border-r-[#7e7e7e]"
+          style={{ aspectRatio: "1 / 1", overflow: "hidden" }}
         >
-          {/* Contenidor interior que assegura el confinament */}
-          <div
-            className="md:h-full"
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`/projects/${project.slug}/${project.coverImage}`}
-              alt={data.title}
-              className="group-hover:opacity-[0.88] transition-opacity duration-[160ms]"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                display: "block",
-                maxWidth: "100%",
-                maxHeight: "100%",
-              }}
-            />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/projects/${project.slug}/${project.coverImage}`}
+            alt={data.title}
+            className="group-hover:opacity-[0.88] transition-opacity duration-[160ms]"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
         </div>
 
         {/* ── Columna text ── */}

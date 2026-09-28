@@ -92,8 +92,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
   /* ── Mobile layout ── */
   if (mobile) {
     return (
-      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-        <div style={{ flex: "0 0 58%", overflow: "hidden" }}>
+      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "8px" }}>
+        <div style={{ flexShrink: 0, width: "100%", aspectRatio: "1 / 1", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
@@ -120,9 +120,9 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
           ) : (
             <button
               onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
+              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
             >
-              {fl.readMore}
+              + {fl.readMore}
             </button>
           )}
           <Link href={`/${locale}/projectes/${project.slug}`}
@@ -136,8 +136,8 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 
   /* ── Desktop layout ── */
   return (
-    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden" }}>
-      <div style={{ flex: "0 0 50%", overflow: "hidden", position: "relative" }}>
+    <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 8px 48px rgba(0,0,0,0.08)", display: "flex", overflow: "hidden", borderRadius: "8px" }}>
+      <div style={{ flex: "none", aspectRatio: "1 / 1", alignSelf: "stretch", overflow: "hidden", position: "relative" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", userSelect: "none" }} />
@@ -172,9 +172,9 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
         ) : (
           <button
             onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
+            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
           >
-            {fl.readMore}
+            + {fl.readMore}
           </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
