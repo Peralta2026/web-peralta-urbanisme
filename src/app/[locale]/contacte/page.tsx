@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 function IconInstagram() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r="0.1" fill="currentColor" strokeWidth="2.5"/>
@@ -14,7 +14,7 @@ function IconInstagram() {
 
 function IconLinkedin() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
       <rect x="2" y="9" width="4" height="12"/>
       <circle cx="4" cy="4" r="2"/>
@@ -33,16 +33,14 @@ export default async function ContactePage({
     <>
       <div className="pu-contact-root">
 
-        {/* ── Heading ── */}
         <h1 className="pu-contact-heading">Parlem</h1>
 
-        {/* ── Grid de blocs ── */}
         <div className="pu-contact-grid">
 
           {/* Email */}
           <div className="pu-contact-block">
             <span className="pu-contact-label">Escriu-nos</span>
-            <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-value pu-contact-email">
+            <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-email">
               info@peraltaurbanisme.com
             </a>
           </div>
@@ -50,20 +48,20 @@ export default async function ContactePage({
           {/* Telèfon */}
           <div className="pu-contact-block">
             <span className="pu-contact-label">Telèfon</span>
-            <a href="tel:+34935389893" className="pu-contact-value pu-contact-phone">
+            <a href="tel:+34935389893" className="pu-contact-phone">
               +34 935 389 893
             </a>
           </div>
 
           {/* Adreça + mini-mapa */}
-          <div className="pu-contact-block pu-contact-block--address">
+          <div className="pu-contact-block pu-contact-block--addr">
             <span className="pu-contact-label">Adreça</span>
-            <div className="pu-contact-address-wrap">
-              <address className="pu-contact-value pu-contact-address">
-                Carrer de l&apos;Argentona, 29<br />
+            <div className="pu-contact-addr-row">
+              <address className="pu-contact-address">
+                Carrer de l&apos;Argentona, 59<br />
                 Pis 3-3 · 08302 Mataró
               </address>
-              {/* Mini mapa */}
+              {/* Mini mapa — overflow visible so popup can escape */}
               <div className="pu-contact-minimap">
                 <ContactMapLoader />
               </div>
@@ -81,7 +79,8 @@ export default async function ContactePage({
                 className="pu-contact-social"
                 aria-label="Instagram"
               >
-                <IconInstagram /> Instagram
+                <IconInstagram />
+                <span>Instagram</span>
               </a>
               <a
                 href="https://es.linkedin.com/company/peralta-urbanisme-slp"
@@ -90,13 +89,13 @@ export default async function ContactePage({
                 className="pu-contact-social"
                 aria-label="LinkedIn"
               >
-                <IconLinkedin /> LinkedIn
+                <IconLinkedin />
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>
 
         </div>
-
       </div>
 
       <style>{`
@@ -106,7 +105,7 @@ export default async function ContactePage({
           padding-right: var(--margin-page);
           padding-bottom: clamp(64px, 10vh, 120px);
           font-family: var(--font-sans);
-          max-width: 860px;
+          max-width: 900px;
         }
 
         .pu-contact-heading {
@@ -119,7 +118,6 @@ export default async function ContactePage({
           margin: clamp(40px, 6vh, 72px) 0 clamp(48px, 7vh, 80px);
         }
 
-        /* ── Grid de blocs ── */
         .pu-contact-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -131,8 +129,7 @@ export default async function ContactePage({
           flex-direction: column;
           gap: 10px;
         }
-
-        .pu-contact-block--address {
+        .pu-contact-block--addr {
           grid-column: 1 / -1;
         }
 
@@ -142,11 +139,6 @@ export default async function ContactePage({
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #bbb;
-          display: block;
-        }
-
-        .pu-contact-value {
-          display: block;
         }
 
         .pu-contact-email {
@@ -164,17 +156,16 @@ export default async function ContactePage({
           font-family: var(--font-sans);
           font-size: clamp(14px, 1.2vw, 17px);
           font-weight: 400;
-          letter-spacing: -0.01em;
           color: #444;
           text-decoration: none;
           transition: opacity 180ms ease;
         }
         .pu-contact-phone:hover { opacity: 0.35; }
 
-        .pu-contact-address-wrap {
+        .pu-contact-addr-row {
           display: flex;
           align-items: flex-start;
-          gap: clamp(24px, 3vw, 48px);
+          gap: clamp(28px, 3vw, 52px);
         }
 
         .pu-contact-address {
@@ -186,36 +177,41 @@ export default async function ContactePage({
           font-style: normal;
         }
 
-        /* ── Mini mapa ── */
+        /* Mini mapa: overflow visible so the popup can appear above it */
         .pu-contact-minimap {
           width: clamp(160px, 18vw, 220px);
           height: clamp(160px, 18vw, 220px);
           flex-shrink: 0;
-          overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.08);
+          position: relative;
+          border: 1px solid rgba(0,0,0,0.09);
         }
         .pu-contact-minimap > div {
           width: 100%;
           height: 100%;
         }
 
-        /* Social */
+        /* Social icons — bigger, clearer */
         .pu-contact-socials {
           display: flex;
           flex-direction: column;
-          gap: 9px;
+          gap: 12px;
         }
         .pu-contact-social {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          font-family: var(--font-mono);
-          font-size: 9px;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #888;
+          gap: 10px;
+          color: #555;
           text-decoration: none;
           transition: color 180ms ease;
+        }
+        .pu-contact-social svg {
+          flex-shrink: 0;
+        }
+        .pu-contact-social span {
+          font-family: var(--font-sans);
+          font-size: clamp(13px, 1.1vw, 15px);
+          font-weight: 500;
+          letter-spacing: -0.01em;
         }
         .pu-contact-social:hover { color: #000; }
 
@@ -224,10 +220,10 @@ export default async function ContactePage({
           .pu-contact-grid {
             grid-template-columns: 1fr;
           }
-          .pu-contact-block--address {
+          .pu-contact-block--addr {
             grid-column: 1;
           }
-          .pu-contact-address-wrap {
+          .pu-contact-addr-row {
             flex-direction: column;
           }
           .pu-contact-minimap {
