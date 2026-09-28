@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 function IconInstagram() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r="0.1" fill="currentColor" strokeWidth="2.5"/>
@@ -14,7 +14,7 @@ function IconInstagram() {
 
 function IconLinkedin() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
       <rect x="2" y="9" width="4" height="12"/>
       <circle cx="4" cy="4" r="2"/>
@@ -33,161 +33,185 @@ export default async function ContactePage({
     <>
       <div className="pu-contact-root">
 
-        {/* ── Columna esquerra: info ── */}
-        <aside className="pu-contact-info">
+        {/* ── Heading ── */}
+        <h1 className="pu-contact-heading">Parlem</h1>
 
-          <h1 className="pu-contact-heading">Parlem</h1>
+        {/* ── Grid de blocs ── */}
+        <div className="pu-contact-grid">
 
-          <div className="pu-contact-blocks">
+          {/* Email */}
+          <div className="pu-contact-block">
+            <span className="pu-contact-label">Escriu-nos</span>
+            <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-value pu-contact-email">
+              info@peraltaurbanisme.com
+            </a>
+          </div>
 
-            <div className="pu-contact-block">
-              <span className="pu-contact-label">Escriu-nos</span>
-              <a href="mailto:info@peraltaurbanisme.com" className="pu-contact-email">
-                info@peraltaurbanisme.com
-              </a>
-            </div>
+          {/* Telèfon */}
+          <div className="pu-contact-block">
+            <span className="pu-contact-label">Telèfon</span>
+            <a href="tel:+34935389893" className="pu-contact-value pu-contact-phone">
+              +34 935 389 893
+            </a>
+          </div>
 
-            <div className="pu-contact-block">
-              <span className="pu-contact-label">Telèfon</span>
-              <a href="tel:+34935389893" className="pu-contact-phone">
-                +34 935 389 893
-              </a>
-            </div>
-
-            <div className="pu-contact-block">
-              <span className="pu-contact-label">Adreça</span>
-              <address className="pu-contact-address">
+          {/* Adreça + mini-mapa */}
+          <div className="pu-contact-block pu-contact-block--address">
+            <span className="pu-contact-label">Adreça</span>
+            <div className="pu-contact-address-wrap">
+              <address className="pu-contact-value pu-contact-address">
                 Carrer de l&apos;Argentona, 29<br />
                 Pis 3-3 · 08302 Mataró
               </address>
-            </div>
-
-            <div className="pu-contact-block">
-              <span className="pu-contact-label">Segueix-nos</span>
-              <div className="pu-contact-socials">
-                <a
-                  href="https://www.instagram.com/peraltaurbanisme/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pu-contact-social"
-                  aria-label="Instagram"
-                >
-                  <IconInstagram /> Instagram
-                </a>
-                <a
-                  href="https://es.linkedin.com/company/peralta-urbanisme-slp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pu-contact-social"
-                  aria-label="LinkedIn"
-                >
-                  <IconLinkedin /> LinkedIn
-                </a>
+              {/* Mini mapa */}
+              <div className="pu-contact-minimap">
+                <ContactMapLoader />
               </div>
             </div>
-
           </div>
-        </aside>
 
-        {/* ── Columna dreta: mapa ── */}
-        <div className="pu-contact-map">
-          <ContactMapLoader />
+          {/* Xarxes */}
+          <div className="pu-contact-block">
+            <span className="pu-contact-label">Segueix-nos</span>
+            <div className="pu-contact-socials">
+              <a
+                href="https://www.instagram.com/peraltaurbanisme/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pu-contact-social"
+                aria-label="Instagram"
+              >
+                <IconInstagram /> Instagram
+              </a>
+              <a
+                href="https://es.linkedin.com/company/peralta-urbanisme-slp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pu-contact-social"
+                aria-label="LinkedIn"
+              >
+                <IconLinkedin /> LinkedIn
+              </a>
+            </div>
+          </div>
+
         </div>
 
       </div>
 
       <style>{`
         .pu-contact-root {
-          display: grid;
-          grid-template-columns: 340px 1fr;
-          height: 100svh;
           padding-top: var(--header-height);
-          overflow: hidden;
+          padding-left: var(--margin-page);
+          padding-right: var(--margin-page);
+          padding-bottom: clamp(64px, 10vh, 120px);
           font-family: var(--font-sans);
-        }
-
-        /* ── Panel info ── */
-        .pu-contact-info {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          padding: clamp(32px,5vh,56px) var(--margin-page) clamp(40px,6vh,64px);
-          border-right: 1px solid rgba(0,0,0,0.08);
-          overflow-y: auto;
+          max-width: 860px;
         }
 
         .pu-contact-heading {
           font-family: var(--font-sans);
-          font-size: clamp(42px, 5vw, 72px);
+          font-size: clamp(48px, 6vw, 88px);
           font-weight: 700;
-          letter-spacing: -0.045em;
+          letter-spacing: -0.05em;
           line-height: 1;
           color: #000;
-          margin: 0 0 clamp(40px, 6vh, 64px);
+          margin: clamp(40px, 6vh, 72px) 0 clamp(48px, 7vh, 80px);
         }
 
-        .pu-contact-blocks {
-          display: flex;
-          flex-direction: column;
-          gap: clamp(24px, 3.5vh, 36px);
+        /* ── Grid de blocs ── */
+        .pu-contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: clamp(36px, 5vh, 56px) clamp(40px, 6vw, 80px);
         }
 
         .pu-contact-block {
           display: flex;
           flex-direction: column;
-          gap: 7px;
+          gap: 10px;
+        }
+
+        .pu-contact-block--address {
+          grid-column: 1 / -1;
         }
 
         .pu-contact-label {
           font-family: var(--font-mono);
-          font-size: 8.5px;
-          letter-spacing: 0.16em;
+          font-size: 8px;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #bbb;
+          display: block;
+        }
+
+        .pu-contact-value {
+          display: block;
         }
 
         .pu-contact-email {
           font-family: var(--font-sans);
-          font-size: clamp(13px, 1.1vw, 15px);
+          font-size: clamp(14px, 1.3vw, 18px);
           font-weight: 600;
-          letter-spacing: -0.01em;
+          letter-spacing: -0.02em;
           color: #000;
           text-decoration: none;
           transition: opacity 180ms ease;
         }
-        .pu-contact-email:hover { opacity: 0.4; }
+        .pu-contact-email:hover { opacity: 0.35; }
 
         .pu-contact-phone {
           font-family: var(--font-sans);
-          font-size: clamp(13px, 1.05vw, 15px);
+          font-size: clamp(14px, 1.2vw, 17px);
           font-weight: 400;
+          letter-spacing: -0.01em;
           color: #444;
           text-decoration: none;
           transition: opacity 180ms ease;
         }
-        .pu-contact-phone:hover { opacity: 0.4; }
+        .pu-contact-phone:hover { opacity: 0.35; }
+
+        .pu-contact-address-wrap {
+          display: flex;
+          align-items: flex-start;
+          gap: clamp(24px, 3vw, 48px);
+        }
 
         .pu-contact-address {
           font-family: var(--font-sans);
-          font-size: clamp(12px, 1vw, 14px);
+          font-size: clamp(13px, 1.1vw, 15px);
           font-weight: 400;
-          line-height: 1.7;
-          color: #666;
+          line-height: 1.75;
+          color: #555;
           font-style: normal;
         }
 
+        /* ── Mini mapa ── */
+        .pu-contact-minimap {
+          width: clamp(160px, 18vw, 220px);
+          height: clamp(160px, 18vw, 220px);
+          flex-shrink: 0;
+          overflow: hidden;
+          border: 1px solid rgba(0,0,0,0.08);
+        }
+        .pu-contact-minimap > div {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* Social */
         .pu-contact-socials {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 9px;
         }
         .pu-contact-social {
           display: inline-flex;
           align-items: center;
           gap: 8px;
           font-family: var(--font-mono);
-          font-size: 9.5px;
-          letter-spacing: 0.08em;
+          font-size: 9px;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           color: #888;
           text-decoration: none;
@@ -195,36 +219,20 @@ export default async function ContactePage({
         }
         .pu-contact-social:hover { color: #000; }
 
-        /* ── Mapa ── */
-        .pu-contact-map {
-          position: relative;
-          overflow: hidden;
-        }
-        .pu-contact-map > div {
-          width: 100%;
-          height: 100%;
-        }
-
         /* ── Mòbil ── */
-        @media (max-width: 768px) {
-          .pu-contact-root {
+        @media (max-width: 640px) {
+          .pu-contact-grid {
             grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr;
-            height: auto;
-            min-height: 100svh;
-            overflow: visible;
           }
-          .pu-contact-info {
-            justify-content: flex-start;
-            border-right: none;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
+          .pu-contact-block--address {
+            grid-column: 1;
           }
-          .pu-contact-heading {
-            margin-bottom: clamp(28px, 4vh, 40px);
+          .pu-contact-address-wrap {
+            flex-direction: column;
           }
-          .pu-contact-map {
+          .pu-contact-minimap {
+            width: 100%;
             height: 52vw;
-            min-height: 240px;
           }
         }
       `}</style>
