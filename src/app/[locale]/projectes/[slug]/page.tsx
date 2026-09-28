@@ -466,22 +466,20 @@ export default async function ProjectPage({
 
         <style>{`
           .project-detail-credits {
-            margin: 0 0 32px;
-            padding-bottom: 32px;
+            margin: 0 0 28px;
+            padding-bottom: 24px;
             border-bottom: 1px solid #e0e0e0;
             font-family: var(--font-sans);
-            font-size: var(--size-meta);
-            line-height: 1.5;
-            color: #555;
-          }
-          .project-detail-credits p { margin: 0 0 4px; }
-          .project-detail-credits-label {
+            font-size: 10.5px;
+            line-height: 1.4;
             color: #888;
-            margin-bottom: 6px !important;
+            max-width: 340px;
           }
+          .project-detail-credits p { margin: 0; }
+          .project-detail-credits-label { margin-bottom: 3px !important; }
           .project-detail-credits-lead {
-            color: #111;
-            margin-bottom: 12px !important;
+            color: #333;
+            margin-bottom: 6px !important;
           }
           @media (min-width: 1024px) {
             .project-detail-shell {

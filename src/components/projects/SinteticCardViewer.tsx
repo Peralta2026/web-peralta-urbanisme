@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Locale, Project } from "@/lib/types";
+import { FILTER_UI, FilterPanelToggle, LeftFilterPanel, useProjectFilters } from "./ProjectFilterPanel";
 
 /* ─── Constants (same as HomeScene) ───────────────────────────────────────── */
 
@@ -188,9 +189,12 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
 /* ─── SinteticCardViewer ──────────────────────────────────────────────────── */
 
 export default function SinteticCardViewer({ projects, locale }: { projects: Project[]; locale: string }) {
-  const loc = locale as Locale;
-  void loc;
+  const loc: Locale = locale === "es" || locale === "en" ? locale : "ca";
   const fl = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
+
+  const [panelOpen, setPanelOpen] = useState(true);
+  const filters = useProjectFilters(projects, loc);
+  const shown   = filters.filtered;
 
   const cardRefs    = useRef<(HTMLDivElement | null)[]>([]);
   const exploreRef  = useRef<HTMLDivElement>(null);
@@ -198,7 +202,7 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
   const sY          = useRef(0);
   const rafId       = useRef(0);
   const lastTime    = useRef(0);
-  const nCardsRef   = useRef(projects.length);
+  const nCardsRef   = useRef(shown.length);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
@@ -208,13 +212,19 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
+    if (window.innerWidth <= 768) setPanelOpen(false);
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
   /* ── Scroll + RAF loop ── */
   useEffect(() => {
-    nCardsRef.current = projects.length;
+    nCardsRef.current = shown.length;
+
+    // Un nou filtrat torna a començar per la primera targeta
+    window.scrollTo(0, 0);
+    vY.current = 0;
+    sY.current = 0;
 
     const onScroll = () => {
       vY.current = Math.max(0, window.scrollY);
@@ -246,9 +256,9 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId.current);
     };
-  }, [projects.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [shown]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const totalScrollHeight = projects.length * CARDS_PER_STEP + 300;
+  const totalScrollHeight = shown.length * CARDS_PER_STEP + 300;
   const cardWidth = "min(calc(100% - 40px), 1040px)";
 
   return (
@@ -300,12 +310,32 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
           <Link href={`/${locale}/directori`} className="pu-sintetic-navlink">VISUAL</Link>
           <Link href={`/${locale}/mapa`} className="pu-sintetic-navlink">TERRITORIAL</Link>
           <span className="pu-sintetic-navactive">SINTÈTIC</span>
+          <FilterPanelToggle open={panelOpen} locale={locale} onToggle={() => setPanelOpen(o => !o)} />
         </div>
         <div style={{ flexShrink: 0, height: "1px", margin: "0 var(--margin-page)", background: "rgba(0,0,0,0.08)" }} />
 
+        {/* ── Panell de filtres (esquerra) + targetes (resta) ── */}
+        <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
+          <LeftFilterPanel
+            open={panelOpen}
+            locale={locale}
+            activeTema={filters.activeTema}
+            activeTipus={filters.activeTipus}
+            activeEscala={filters.activeEscala}
+            onToggleTema={filters.toggleTema}
+            onToggleTipus={filters.toggleTipus}
+            onToggleEscala={filters.toggleEscala}
+            onClear={filters.clearAll}
+          />
+
         {/* ── Card stage ── */}
-        <div style={{ flex: 1, position: "relative", overflow: "visible", minHeight: 0 }}>
-          {projects.map((proj, i) => (
+        <div style={{ flex: 1, minWidth: 0, position: "relative", overflow: "visible", minHeight: 0 }}>
+          {shown.length === 0 && (
+            <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", margin: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-body)", color: "#888", textAlign: "center", maxWidth: "80%" }}>
+              {FILTER_UI[loc].empty}
+            </p>
+          )}
+          {shown.map((proj, i) => (
             <div
               key={proj.slug}
               ref={el => { cardRefs.current[i] = el; }}
@@ -327,6 +357,7 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
               <FeaturedCard project={proj} locale={locale} mobile={isMobile} />
             </div>
           ))}
+        </div>
         </div>
 
         {/* ── Explore button ── */}
