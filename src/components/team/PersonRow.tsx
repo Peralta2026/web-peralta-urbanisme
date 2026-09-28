@@ -29,10 +29,7 @@ export default function PersonRow({ members, locale }: Props) {
   return (
     <>
       {/* ── Desktop: fila horitzontal ── */}
-      <div
-        className="pu-person-row"
-        style={{ display: "flex", gap: "28px", alignItems: "flex-start" }}
-      >
+      <div className="pu-person-row" style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
         {ordered.map(member => {
           const isActive = active === member.slug;
           const data     = member[locale];
@@ -41,63 +38,28 @@ export default function PersonRow({ members, locale }: Props) {
             <div
               key={member.slug}
               style={{
-                flex:       isActive ? 3 : 1,
-                minWidth:   0,
-                transition: "flex 0.55s cubic-bezier(0.22,1,0.36,1)",
-                display:    "flex",
+                flex:          isActive ? "4 1 0" : "1 1 0",
+                minWidth:      0,
+                transition:    "flex 0.55s cubic-bezier(0.22,1,0.36,1)",
+                display:       "flex",
                 flexDirection: "column",
               }}
             >
-              {/* ── Nom + rol sobre la foto — s'oculta quan expandit ── */}
-              <div
-                onClick={() => toggle(member.slug)}
-                style={{
-                  cursor:       "pointer",
-                  maxHeight:    isActive ? "0px" : "60px",
-                  opacity:      isActive ? 0 : 1,
-                  overflow:     "hidden",
-                  marginBottom: isActive ? "0px" : "12px",
-                  transition:   "max-height 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease, margin-bottom 0.4s",
-                }}
-              >
-                <h3 style={{
-                  fontFamily:    "var(--font-sans)",
-                  fontSize:      "clamp(11px,1vw,14px)",
-                  fontWeight:    700,
-                  letterSpacing: "-0.02em",
-                  lineHeight:    1.15,
-                  color:         "#000",
-                  margin:        "0 0 3px",
-                }}>
-                  {data.name}
-                </h3>
-                <p style={{
-                  fontFamily:    "var(--font-mono)",
-                  fontSize:      "9px",
-                  letterSpacing: "0.07em",
-                  textTransform: "uppercase",
-                  color:         "#999",
-                  margin:        0,
-                }}>
-                  {data.role}
-                </p>
-              </div>
-
               {/* ── Foto + panell lateral ── */}
               <div style={{ display: "flex", alignItems: "flex-start" }}>
 
-                {/* Foto: mida fixa — petita quan inactiva, gran quan activa */}
+                {/* Foto */}
                 <div
                   onClick={() => toggle(member.slug)}
                   style={{
-                    position:   "relative",
-                    flexShrink: 0,
-                    width:      isActive ? "190px" : "150px",
-                    aspectRatio: "260 / 344",
-                    overflow:   "hidden",
+                    position:        "relative",
+                    flexShrink:      0,
+                    width:           isActive ? "clamp(140px,14vw,190px)" : "100%",
+                    aspectRatio:     "260 / 344",
+                    overflow:        "hidden",
                     backgroundColor: "#c8c8c8",
-                    cursor:     "pointer",
-                    transition: "width 0.55s cubic-bezier(0.22,1,0.36,1)",
+                    cursor:          "pointer",
+                    transition:      "width 0.55s cubic-bezier(0.22,1,0.36,1)",
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -162,12 +124,12 @@ export default function PersonRow({ members, locale }: Props) {
                 >
                   <h3 style={{
                     fontFamily:    "var(--font-sans)",
-                    fontSize:      "clamp(15px,1.3vw,20px)",
+                    fontSize:      "clamp(14px,1.1vw,18px)",
                     fontWeight:    700,
                     letterSpacing: "-0.03em",
                     lineHeight:    1.05,
                     color:         "#000",
-                    margin:        "0 0 5px",
+                    margin:        "0 0 4px",
                     whiteSpace:    "nowrap",
                   }}>
                     {data.name}
@@ -178,14 +140,14 @@ export default function PersonRow({ members, locale }: Props) {
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",
                     color:         "#888",
-                    margin:        "0 0 16px",
+                    margin:        "0 0 14px",
                     whiteSpace:    "nowrap",
                   }}>
                     {data.role}
                   </p>
                   <p style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize:   "12.5px",
+                    fontSize:   "12px",
                     lineHeight: 1.72,
                     color:      "#333",
                     margin:     0,
@@ -196,48 +158,102 @@ export default function PersonRow({ members, locale }: Props) {
                 </div>
 
               </div>
+
+              {/* ── Nom + rol sota la foto ── */}
+              <div style={{ marginTop: "10px", paddingRight: "4px" }}>
+                <p style={{
+                  fontFamily:    "var(--font-sans)",
+                  fontSize:      "clamp(10px,0.9vw,13px)",
+                  fontWeight:    700,
+                  letterSpacing: "-0.02em",
+                  lineHeight:    1.15,
+                  color:         "#000",
+                  margin:        "0 0 3px",
+                }}>
+                  {data.name}
+                </p>
+                <p style={{
+                  fontFamily:    "var(--font-mono)",
+                  fontSize:      "8px",
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase",
+                  color:         "#999",
+                  margin:        0,
+                }}>
+                  {data.role}
+                </p>
+              </div>
             </div>
           );
         })}
       </div>
 
       {/* ── Mòbil: columna vertical ── */}
-      <div className="pu-person-col" style={{ display: "none", flexDirection: "column", gap: "40px" }}>
+      <div className="pu-person-col" style={{ display: "none", flexDirection: "column", gap: "48px" }}>
         {ordered.map(member => {
-          const isActive = active === member.slug;
-          const data     = member[locale];
-
+          const data = member[locale];
           return (
             <div key={`mob-${member.slug}`}>
-              <div onClick={() => toggle(member.slug)} style={{ cursor: "pointer", marginBottom: "14px" }}>
-                <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1, color: "#000", margin: "0 0 5px" }}>
-                  {data.name}
-                </h3>
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: "9px", letterSpacing: "0.07em", textTransform: "uppercase", color: "#999", margin: 0 }}>
-                  {data.role}
-                </p>
-              </div>
-
-              <div onClick={() => toggle(member.slug)}
-                style={{ position: "relative", width: "170px", maxWidth: "100%", aspectRatio: "260 / 344", overflow: "hidden", backgroundColor: "#c8c8c8", cursor: "pointer" }}
-              >
+              {/* Foto full-width */}
+              <div style={{
+                position:        "relative",
+                width:           "100%",
+                aspectRatio:     "3 / 2",
+                overflow:        "hidden",
+                backgroundColor: "#c8c8c8",
+                marginBottom:    "16px",
+              }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/team/${member.photo}`} alt={data.name}
+                <img
+                  src={`/team/${member.photo}`}
+                  alt={data.name}
                   onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: "grayscale(100%)" }} />
-                <button onClick={e => { e.stopPropagation(); toggle(member.slug); }}
-                  aria-expanded={isActive}
-                  aria-label={isActive ? "Tancar bio" : "Llegir bio"}
-                  style={{ position: "absolute", bottom: "10px", right: "10px", width: "24px", height: "24px", border: "1px solid rgba(255,255,255,0.65)", borderRadius: "50%", background: "rgba(0,0,0,0.28)", color: "#fff", fontSize: "16px", fontWeight: 300, lineHeight: 1, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", padding: 0, transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1)", transform: isActive ? "rotate(45deg)" : "none" }}>
-                  +
-                </button>
+                  style={{
+                    position:       "absolute",
+                    inset:          0,
+                    width:          "100%",
+                    height:         "100%",
+                    objectFit:      "cover",
+                    objectPosition: "center top",
+                    filter:         "grayscale(100%)",
+                  }}
+                />
               </div>
 
-              <div style={{ maxHeight: isActive ? "700px" : "0px", overflow: "hidden", transition: "max-height 0.55s cubic-bezier(0.22,1,0.36,1)" }}>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.72, color: "#333", paddingTop: "18px", margin: 0, whiteSpace: "pre-line" }}>
-                  {data.bioLong}
-                </p>
-              </div>
+              {/* Nom + rol */}
+              <h3 style={{
+                fontFamily:    "var(--font-sans)",
+                fontSize:      "18px",
+                fontWeight:    700,
+                letterSpacing: "-0.02em",
+                lineHeight:    1.1,
+                color:         "#000",
+                margin:        "0 0 5px",
+              }}>
+                {data.name}
+              </h3>
+              <p style={{
+                fontFamily:    "var(--font-mono)",
+                fontSize:      "9px",
+                letterSpacing: "0.07em",
+                textTransform: "uppercase",
+                color:         "#999",
+                margin:        "0 0 14px",
+              }}>
+                {data.role}
+              </p>
+
+              {/* Bio */}
+              <p style={{
+                fontFamily: "var(--font-sans)",
+                fontSize:   "14px",
+                lineHeight: 1.72,
+                color:      "#333",
+                margin:     0,
+                whiteSpace: "pre-line",
+              }}>
+                {data.bioLong}
+              </p>
             </div>
           );
         })}

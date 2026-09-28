@@ -7,6 +7,14 @@ export const dynamic = "force-static";
 
 const PILLARS = ["Encàrrec", "Subjecte", "Sentit", "Resultat"];
 
+const COLLABORATORS = [
+  { name: "AFAC · Amador Ferrer / Víctor Ferrer", file: "afac.jpg" },
+  { name: "Cobrusi Arquitectes", file: "cobrusi.png" },
+  { name: "EMF", file: "emf.jpg" },
+  { name: "OUA", file: "oua.png" },
+  { name: "VAIC Mobility", file: "vaic.png" },
+];
+
 export default async function PersonesPage({
   params,
 }: {
@@ -24,7 +32,6 @@ export default async function PersonesPage({
         paddingBottom: "clamp(24px,3.5vh,44px)",
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
-        borderBottom:  "1px solid #1a1a1a",
       }}>
         <h1 style={{
           fontFamily:    "var(--font-sans)",
@@ -54,10 +61,50 @@ export default async function PersonesPage({
       <section style={{
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
-        paddingTop:    "clamp(40px,5vh,64px)",
-        paddingBottom: "80px",
+        paddingTop:    "clamp(24px,3vh,40px)",
+        paddingBottom: "clamp(24px,3vh,40px)",
       }}>
         <PersonRow members={members} locale={locale as Locale} />
+      </section>
+
+      {/* ── Col·laboradors ────────────────────────────────────────────── */}
+      <section style={{
+        paddingLeft:   "var(--margin-page)",
+        paddingRight:  "var(--margin-page)",
+        paddingTop:    "clamp(32px,4vh,56px)",
+        paddingBottom: "clamp(40px,5vh,72px)",
+        borderTop:     "1px solid rgba(0,0,0,0.07)",
+      }}>
+        <p style={{
+          fontFamily:    "var(--font-mono)",
+          fontSize:      "9px",
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          color:         "#bbb",
+          marginBottom:  "clamp(24px,3.5vh,40px)",
+        }}>
+          Col·laboradors habituals
+        </p>
+
+        <div className="pu-collab-strip">
+          {COLLABORATORS.map(c => (
+            <div key={c.file} className="pu-collab-logo" title={c.name}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/collaborators/${c.file}`}
+                alt={c.name}
+                style={{
+                  maxHeight: "36px",
+                  maxWidth:  "120px",
+                  width:     "auto",
+                  height:    "auto",
+                  objectFit: "contain",
+                  display:   "block",
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── Manera de treballar ───────────────────────────────────────── */}
@@ -181,10 +228,30 @@ export default async function PersonesPage({
 
       <style>{`
         .pu-cta-btn:hover { background: #000; color: #fff; }
+
+        .pu-collab-strip {
+          display: flex;
+          align-items: center;
+          gap: clamp(32px, 5vw, 72px);
+          flex-wrap: wrap;
+        }
+        .pu-collab-logo {
+          opacity: 0.45;
+          filter: grayscale(100%);
+          transition: opacity 280ms ease, filter 280ms ease;
+          display: flex;
+          align-items: center;
+        }
+        .pu-collab-logo:hover {
+          opacity: 0.85;
+          filter: grayscale(0%);
+        }
+
         @media (max-width: 768px) {
           .pu-pillars-grid { grid-template-columns: repeat(2,1fr) !important; }
           .pu-cta-section { flex-direction: column; align-items: flex-start !important; }
           .pu-treballar-grid { grid-template-columns: 1fr !important; }
+          .pu-collab-strip { gap: 24px; }
         }
       `}</style>
     </div>
