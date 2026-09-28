@@ -70,19 +70,18 @@ export default function ContactMap() {
       <div className="pu-cmap-wrap">
         <div ref={containerRef} className="pu-cmap-leaflet" />
 
-        {/* Popup — shown above the map */}
+        {/* Popup — fixed, espai dret de la pàgina */}
         {popupOpen && (
           <div className="pu-cmap-popup">
             <button className="pu-cmap-popup-close" onClick={() => setPopupOpen(false)}>×</button>
-            <p className="pu-cmap-popup-title">El nostre espai</p>
 
+            {/* Imatge carousel — sense padding, va fins a la vora */}
             <div className="pu-cmap-strip">
               <button
                 className="pu-cmap-arrow pu-cmap-arrow--l"
                 onClick={() => setPopupIdx(i => mod(i - 1, ESPAI_IMGS.length))}
                 aria-label="Anterior"
               >‹</button>
-
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={ESPAI_IMGS[popupIdx]}
@@ -90,7 +89,6 @@ export default function ContactMap() {
                 className="pu-cmap-img"
                 onClick={() => { setLightboxIdx(popupIdx); setLightbox(true); }}
               />
-
               <button
                 className="pu-cmap-arrow pu-cmap-arrow--r"
                 onClick={() => setPopupIdx(i => mod(i + 1, ESPAI_IMGS.length))}
@@ -98,15 +96,19 @@ export default function ContactMap() {
               >›</button>
             </div>
 
-            <div className="pu-cmap-dots">
-              {ESPAI_IMGS.map((_, i) => (
-                <button
-                  key={i}
-                  className={`pu-cmap-dot${i === popupIdx ? " pu-cmap-dot--on" : ""}`}
-                  onClick={() => setPopupIdx(i)}
-                  aria-label={`Imatge ${i + 1}`}
-                />
-              ))}
+            {/* Info */}
+            <div className="pu-cmap-popup-inner">
+              <p className="pu-cmap-popup-title">El nostre espai</p>
+              <div className="pu-cmap-dots">
+                {ESPAI_IMGS.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`pu-cmap-dot${i === popupIdx ? " pu-cmap-dot--on" : ""}`}
+                    onClick={() => setPopupIdx(i)}
+                    aria-label={`Imatge ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -200,32 +202,45 @@ export default function ContactMap() {
           user-select: none;
         }
 
-        /* ── Popup — s'obre a la dreta del mapa ── */
+        /* ── Popup — fixed, en l'espai buit a la dreta ── */
         .pu-cmap-popup {
-          position: absolute;
-          top: 0;
-          left: calc(100% + 12px);
+          position: fixed;
+          top: 50%;
+          right: clamp(24px, 8vw, 120px);
+          transform: translateY(-50%);
           z-index: 9000;
-          width: 260px;
+          width: 280px;
           background: #fff;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.16);
-          padding: 14px 14px 12px;
+          border-radius: 14px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+          overflow: hidden;
           pointer-events: all;
+        }
+        .pu-cmap-popup-inner {
+          padding: 16px 16px 14px;
         }
         .pu-cmap-popup-close {
           position: absolute;
-          top: 8px;
+          top: 10px;
           right: 10px;
-          background: none;
-          border: none;
-          font-size: 18px;
-          color: #bbb;
-          cursor: pointer;
+          z-index: 2;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          border: 1px solid rgba(0,0,0,0.12);
+          background: rgba(255,255,255,0.92);
+          color: #111;
+          font-family: var(--font-mono);
+          font-size: 16px;
           line-height: 1;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           padding: 0;
-          font-family: var(--font-sans);
+          transition: background 150ms ease;
         }
-        .pu-cmap-popup-close:hover { color: #000; }
+        .pu-cmap-popup-close:hover { background: #fff; }
         .pu-cmap-popup-title {
           font-family: var(--font-mono);
           font-size: 8.5px;
@@ -233,6 +248,13 @@ export default function ContactMap() {
           text-transform: uppercase;
           color: #aaa;
           margin: 0 0 10px;
+        }
+        @media (max-width: 640px) {
+          .pu-cmap-popup {
+            right: 50%;
+            transform: translate(50%, -50%);
+            width: min(280px, calc(100vw - 40px));
+          }
         }
 
         /* Strip */
