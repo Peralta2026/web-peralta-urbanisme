@@ -140,6 +140,7 @@ export default function ContactMap() {
           position: relative;
           width: 100%;
           height: 100%;
+          isolation: isolate;
         }
         .pu-cmap-leaflet {
           position: absolute;

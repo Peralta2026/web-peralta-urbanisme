@@ -232,6 +232,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
           min-width: 0;
           position: relative;
           overflow: hidden;
+          isolation: isolate;
         }
         .pu-dirview-link {
           font-family: var(--font-sans);
