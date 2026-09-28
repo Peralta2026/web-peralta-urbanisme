@@ -5,16 +5,7 @@
   "relatedProjects": [
     "sant-feliu-codines-pla-barris"
   ],
-  "sources": [
-    {
-      "label": "Contratos Radar — registre de l’encàrrec",
-      "url": "https://www.contratosradar.es/empresa/peralta-urbanisme-slp"
-    },
-    {
-      "label": "Ona Codinenca — projecte del Torrent de l’Escletxa",
-      "url": "https://onacodinenca.cat/sant-feliu-es-presenta-a-una-subvencio-de-la-generalitat-amb-un-projecte-de-123-milions-deuros-per"
-    }
-  ],
+  "sources": [],
   "ca": {
     "tag": "Projecte · Regeneració urbana",
     "title": "Continuïtat del treball a Sant Feliu de Codines en el marc del Pla de Barris",

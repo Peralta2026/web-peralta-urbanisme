@@ -5,12 +5,7 @@
   "relatedProjects": [
     "parc-alba-ifae-space"
   ],
-  "sources": [
-    {
-      "label": "Contratos Radar — registre públic de l’adjudicació",
-      "url": "https://www.contratosradar.es/empresa/peralta-urbanisme-slp"
-    }
-  ],
+  "sources": [],
   "ca": {
     "tag": "Estudi · Arquitectura i campus",
     "title": "Nou estudi volumètric per a l’ALBA Campus",

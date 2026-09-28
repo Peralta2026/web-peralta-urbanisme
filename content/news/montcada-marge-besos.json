@@ -5,12 +5,7 @@
   "relatedProjects": [
     "montcada-franja-besos"
   ],
-  "sources": [
-    {
-      "label": "Gobierto Contratación — Ajuntament de Montcada i Reixac",
-      "url": "https://contratos.gobierto.es/adjudicatarios/peralta-urbanisme-slp"
-    }
-  ],
+  "sources": [],
   "ca": {
     "tag": "Estudi · Model urbà",
     "title": "Un nou model urbanístic per al marge esquerre del Besòs a Montcada i Reixac",

@@ -5,12 +5,7 @@
   "relatedProjects": [
     "hospitalet-proteccio-comercial"
   ],
-  "sources": [
-    {
-      "label": "Contractes.cat — Ajuntament de l’Hospitalet",
-      "url": "https://www.contractes.cat/organismes/Ajuntament%20de%20l%27Hospitalet%20de%20Llobregat?electes_page=2"
-    }
-  ],
+  "sources": [],
   "ca": {
     "tag": "Projecte · Ciutat i comerç",
     "title": "Peralta Urbanisme estudiarà l’estructura dels eixos comercials de l’Hospitalet",

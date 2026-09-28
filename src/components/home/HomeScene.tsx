@@ -924,7 +924,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       />
 
       {/* ── Notícies ── */}
-      <section style={{ padding: "clamp(64px,8vh,100px) var(--margin-page)", borderTop: "1px solid #1a1a1a", background: "#fff" }}>
+      <section style={{ padding: "clamp(64px,8vh,100px) var(--margin-page)", background: "#fff" }}>
         <header style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "24px", paddingBottom: "clamp(20px,3vh,36px)", marginBottom: "clamp(40px,5vh,72px)" }}>
           <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000", margin: 0 }}>
             {NEWS_LABELS[toLoc(locale)].title}
@@ -933,7 +933,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             {NEWS_LABELS[toLoc(locale)].all}
           </Link>
         </header>
-        <NewsList items={news.slice(0, 6)} locale={locale} />
+        <NewsList items={news.slice(0, 6)} locale={locale} expandable />
         <style>{`
           .pu-home-news-all {
             font-family: var(--font-sans);
