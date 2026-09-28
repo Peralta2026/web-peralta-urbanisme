@@ -399,6 +399,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
   const heroDoneRef      = useRef(false);  // dynamic: true when hero fully off-screen
   const heroCompletedRef = useRef(false);  // one-time: stays true after first exit
   const heroMinScrollRef = useRef(0);
+  const isMobileRef      = useRef(false);
 
   /* Dynamic scroll values */
   const nCardsRef    = useRef(displayProjects.length);
@@ -431,7 +432,11 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
 
   /* ── Mobile detection ── */
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
+    const check = () => {
+      const m = window.innerWidth <= 768;
+      setIsMobile(m);
+      isMobileRef.current = m;
+    };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -507,11 +512,11 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       if (videoRef.current)        videoRef.current.style.opacity        = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
-      if (cursorRef.current)       cursorRef.current.style.opacity       = heroDone ? "0" : settleP.toFixed(3);
-      if (canvasRef.current)       canvasRef.current.style.display       = heroDone ? "none" : "block";
+      if (cursorRef.current)       cursorRef.current.style.opacity       = (heroDone || isMobileRef.current) ? "0" : settleP.toFixed(3);
+      if (canvasRef.current)       canvasRef.current.style.display       = (heroDone || isMobileRef.current) ? "none" : "block";
       if (toolsRef.current) {
-        const show = !heroDone && settleP > 0.3;
-        toolsRef.current.style.display       = heroDone ? "none" : "flex";
+        const show = !heroDone && !isMobileRef.current && settleP > 0.3;
+        toolsRef.current.style.display       = (heroDone || isMobileRef.current) ? "none" : "flex";
         toolsRef.current.style.opacity       = show ? Math.min(1, (settleP - 0.3) / 0.5).toFixed(3) : "0";
         toolsRef.current.style.pointerEvents = show ? "auto" : "none";
       }
@@ -724,11 +729,15 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
 
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
       <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto" }}>
-        <Link href={`/${locale}/`} style={{ textDecoration: "none" }}>
+        <button
+          onClick={() => window.scrollTo({ top: SETTLE_END + OPEN_RANGE + 10, behavior: "smooth" })}
+          style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "block" }}
+          aria-label="Anar a la pàgina principal"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-nuevo.png" alt="Peralta Urbanisme"
-            style={{ width: "clamp(202px,24vw,264px)", height: "auto", display: "block" }} />
-        </Link>
+            style={{ width: "clamp(220px,26vw,290px)", height: "auto", display: "block", marginLeft: "clamp(-33px,-3vw,-25px)" }} />
+        </button>
       </div>
 
       {/* ── CARDS PANEL z=8 ───────────────────────────────────────────────────── */}
@@ -843,12 +852,22 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       {/* ── HERO z=10 ────────────────────────────────────────────────────────── */}
       <div
         ref={heroRef}
-        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: "none", userSelect: "none", touchAction: "none" }}
+        style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: isMobile ? "default" : "none", userSelect: "none", touchAction: isMobile ? "auto" : "none" }}
       >
         {/* Vídeo de fons — wrapper clips edge artifacts; opacity controlled via ref */}
         <div
           ref={videoRef}
-          style={{
+          style={isMobile ? {
+            position:   "absolute",
+            top:        0,
+            left:       0,
+            right:      0,
+            width:      "100%",
+            height:     "52%",
+            overflow:   "hidden",
+            opacity:    0,
+            background: "#fff",
+          } : {
             position:   "absolute",
             top:        "11%",
             right:      "7%",
@@ -896,9 +915,9 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         {/* SETTLED LAYER — text + links */}
         <div
           ref={settledLayerRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: "20px var(--margin-page)", justifyContent: "flex-end" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: isMobile ? "56% var(--margin-mobile) 20px" : "20px var(--margin-page)", justifyContent: isMobile ? "flex-start" : "flex-end", overflowY: isMobile ? "auto" : "hidden" }}
         >
-          <div style={{ maxWidth: "min(900px,90%)", paddingBottom: "clamp(16px,2.5vh,36px)" }}>
+          <div style={{ maxWidth: isMobile ? "100%" : "min(900px,90%)", paddingBottom: isMobile ? "0" : "clamp(16px,2.5vh,36px)" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.4vw,36px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>
               {content.line1}
             </p>

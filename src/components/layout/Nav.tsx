@@ -182,7 +182,7 @@ export default function Nav({ locale }: { locale: string }) {
         .pu-menu-panel { position: fixed; inset: 0 auto 0 0; z-index: 340; width: 33vw; min-width: 300px; padding: 0 var(--margin-page) 32px; display: flex; flex-direction: column; background: var(--color-bg); transform: translateX(-101%); visibility: hidden; transition: transform var(--dur-slow) var(--ease-smooth), visibility 0s var(--dur-slow); }
         .pu-menu-panel.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
         .pu-menu-top { height: var(--header-height); display: flex; align-items: center; border-bottom: 1px solid var(--color-border); flex-shrink: 0; }
-        .pu-menu-top a { width: clamp(202px, 24vw, 264px); }
+        .pu-menu-top a { width: clamp(202px, 24vw, 264px); margin-left: clamp(-33px, -3vw, -25px); }
         .pu-menu-top > span, .pu-menu-bottom > span { color: var(--color-muted); font-family: var(--font-sans); font-size: var(--size-meta); }
         .pu-menu-links { margin: auto 0; display: flex; flex-direction: column; }
         .pu-menu-item { display: flex; flex-direction: column; }

@@ -104,12 +104,13 @@ function FilterSectionHead({ title }: { title: string }) {
 /* ─── LeftFilterPanel ────────────────────────────────────────────────────────── */
 
 export function LeftFilterPanel({
-  open, locale,
+  open, mobile, locale,
   activeTema, activeTipus, activeEscala,
   onToggleTema, onToggleTipus, onToggleEscala,
   onClear,
 }: {
   open: boolean;
+  mobile?: boolean;
   locale: string;
   activeTema: Set<TagSlug>;
   activeTipus: Set<string>;
@@ -126,24 +127,29 @@ export function LeftFilterPanel({
   const ui           = FILTER_UI[loc];
   const hasAny = activeTema.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
 
-  return (
-    <div
-      aria-hidden={!open}
-      style={{
-        width: open ? "260px" : "0",
-        flexShrink: 0,
-        overflow: "hidden",
-        transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
-        borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
-      }}
-    >
-      <div style={{
-        width: "260px",
-        height: "100%",
-        overflowY: "auto",
-        padding: "16px 20px 24px var(--margin-page)",
-        boxSizing: "border-box",
-      }}>
+  if (mobile) {
+    return (
+      <div
+        aria-hidden={!open}
+        style={{
+          position: "fixed",
+          top: 0, bottom: 0, left: 0,
+          width: open ? "min(85vw, 280px)" : "0",
+          zIndex: 250,
+          background: "#fff",
+          boxShadow: open ? "4px 0 24px rgba(0,0,0,0.12)" : "none",
+          overflow: "hidden",
+          transition: "width 350ms cubic-bezier(0.22,1,0.36,1), box-shadow 350ms ease",
+          borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
+        }}
+      >
+        <div style={{
+          width: "min(85vw, 280px)",
+          height: "100%",
+          overflowY: "auto",
+          padding: "80px 20px 24px 20px",
+          boxSizing: "border-box",
+        }}>
         <FilterSectionHead title={ui.tema} />
         {ALL_TAGS.map((tag) => (
           <FilterToggleRow
@@ -183,6 +189,49 @@ export function LeftFilterPanel({
               onClick={onClear}
               style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}
             >
+              {ui.clear}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+    );
+  }
+
+  /* ── Desktop: inline expand/collapse ── */
+  return (
+    <div
+      aria-hidden={!open}
+      style={{
+        width: open ? "260px" : "0",
+        flexShrink: 0,
+        overflow: "hidden",
+        transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
+        borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
+      }}
+    >
+      <div style={{
+        width: "260px",
+        height: "100%",
+        overflowY: "auto",
+        padding: "16px 20px 24px var(--margin-page)",
+        boxSizing: "border-box",
+      }}>
+        <FilterSectionHead title={ui.tema} />
+        {ALL_TAGS.map((tag) => (
+          <FilterToggleRow key={tag} label={tagLabels[tag]} active={activeTema.has(tag)} tabIndex={open ? 0 : -1} onToggle={() => onToggleTema(tag)} />
+        ))}
+        <FilterSectionHead title={ui.tipus} />
+        {TIPUS_VALUES.map((val) => (
+          <FilterToggleRow key={val} label={tipusLabels[val]} active={activeTipus.has(val)} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
+        ))}
+        <FilterSectionHead title={ui.escala} />
+        {ESCALA_VALUES.map((val) => (
+          <FilterToggleRow key={val} label={escalaLabels[val]} active={activeEscala.has(val)} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
+        ))}
+        {hasAny && (
+          <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+            <button onClick={onClear} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}>
               {ui.clear}
             </button>
           </div>

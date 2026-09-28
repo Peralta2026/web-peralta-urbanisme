@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
@@ -207,12 +207,13 @@ function FilterSectionHead({ title }: { title: string }) {
 /* ─── LeftFilterPanel ────────────────────────────────────────────────────────── */
 
 function LeftFilterPanel({
-  open, locale,
+  open, mobile, locale,
   activeTema, activeTipus, activeEscala,
   onToggleTema, onToggleTipus, onToggleEscala,
   onClear,
 }: {
   open: boolean;
+  mobile?: boolean;
   locale: string;
   activeTema: Set<TagSlug>;
   activeTipus: Set<string>;
@@ -228,71 +229,58 @@ function LeftFilterPanel({
   const ui = UI[locale as Locale] ?? UI.ca;
   const hasAny = activeTema.size > 0 || activeTipus.size > 0 || activeEscala.size > 0;
 
-  return (
-    <div
-      aria-hidden={!open}
-      style={{
-        width: open ? "260px" : "0",
-        flexShrink: 0,
+  const innerContent = (
+    <>
+      <FilterSectionHead title={ui.tema} />
+      {ALL_TAGS.map((tag) => (
+        <FilterToggleRow key={tag} label={tagLabels[tag]} active={activeTema.has(tag)} tabIndex={open ? 0 : -1} onToggle={() => onToggleTema(tag)} />
+      ))}
+      <FilterSectionHead title={ui.tipus} />
+      {TIPUS_VALUES.map((val) => (
+        <FilterToggleRow key={val} label={tipusLabels[val]} active={activeTipus.has(val)} tabIndex={open ? 0 : -1} onToggle={() => onToggleTipus(val)} />
+      ))}
+      <FilterSectionHead title={ui.escala} />
+      {ESCALA_VALUES.map((val) => (
+        <FilterToggleRow key={val} label={escalaLabels[val]} active={activeEscala.has(val)} tabIndex={open ? 0 : -1} onToggle={() => onToggleEscala(val)} />
+      ))}
+      {hasAny && (
+        <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+          <button onClick={onClear} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}>
+            {ui.clear}
+          </button>
+        </div>
+      )}
+    </>
+  );
+
+  if (mobile) {
+    return (
+      <div aria-hidden={!open} style={{
+        position: "fixed", top: 0, bottom: 0, left: 0,
+        width: open ? "min(85vw, 280px)" : "0",
+        zIndex: 250, background: "#fff",
+        boxShadow: open ? "4px 0 24px rgba(0,0,0,0.12)" : "none",
         overflow: "hidden",
-        transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
+        transition: "width 350ms cubic-bezier(0.22,1,0.36,1), box-shadow 350ms ease",
         borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
-      }}
-    >
-      <div style={{
-        width: "260px",
-        height: "100%",
-        overflowY: "auto",
-        padding: "16px 20px 24px var(--margin-page)",
-        boxSizing: "border-box",
       }}>
-        {/* Temàtica */}
-        <FilterSectionHead title={ui.tema} />
-        {ALL_TAGS.map((tag) => (
-          <FilterToggleRow
-            key={tag}
-            label={tagLabels[tag]}
-            active={activeTema.has(tag)}
-            tabIndex={open ? 0 : -1}
-            onToggle={() => onToggleTema(tag)}
-          />
-        ))}
+        <div style={{ width: "min(85vw, 280px)", height: "100%", overflowY: "auto", padding: "80px 20px 24px 20px", boxSizing: "border-box" }}>
+          {innerContent}
+        </div>
+      </div>
+    );
+  }
 
-        {/* Tipus */}
-        <FilterSectionHead title={ui.tipus} />
-        {TIPUS_VALUES.map((val) => (
-          <FilterToggleRow
-            key={val}
-            label={tipusLabels[val]}
-            active={activeTipus.has(val)}
-            tabIndex={open ? 0 : -1}
-            onToggle={() => onToggleTipus(val)}
-          />
-        ))}
-
-        {/* Escala */}
-        <FilterSectionHead title={ui.escala} />
-        {ESCALA_VALUES.map((val) => (
-          <FilterToggleRow
-            key={val}
-            label={escalaLabels[val]}
-            active={activeEscala.has(val)}
-            tabIndex={open ? 0 : -1}
-            onToggle={() => onToggleEscala(val)}
-          />
-        ))}
-
-        {/* Clear button */}
-        {hasAny && (
-          <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-            <button
-              onClick={onClear}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}
-            >
-              {ui.clear}
-            </button>
-          </div>
-        )}
+  return (
+    <div aria-hidden={!open} style={{
+      width: open ? "260px" : "0",
+      flexShrink: 0,
+      overflow: "hidden",
+      transition: "width 350ms cubic-bezier(0.22,1,0.36,1)",
+      borderRight: open ? "1px solid rgba(0,0,0,0.08)" : "none",
+    }}>
+      <div style={{ width: "260px", height: "100%", overflowY: "auto", padding: "16px 20px 24px var(--margin-page)", boxSizing: "border-box" }}>
+        {innerContent}
       </div>
     </div>
   );
@@ -365,8 +353,19 @@ export default function ArchiveList({ projects, locale }: Props) {
   const ui  = UI[loc];
   const tagLabels = TAG_LABELS[loc] ?? TAG_LABELS.ca;
 
+  /* ── Mobile detection ── */
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    if (window.innerWidth > 768) setPanelOpen(true);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   /* ── Filter state (multi-select) ── */
-  const [panelOpen,    setPanelOpen]    = useState(true);
+  const [panelOpen,    setPanelOpen]    = useState(false);
   const [activeTema,   setActiveTema]   = useState<Set<TagSlug>>(new Set());
   const [activeTipus,  setActiveTipus]  = useState<Set<string>>(new Set());
   const [activeEscala, setActiveEscala] = useState<Set<string>>(new Set());
@@ -468,9 +467,15 @@ export default function ArchiveList({ projects, locale }: Props) {
       {/* ── Content area: left panel + list ──────────────────────────────── */}
       <div style={{ display: "flex", alignItems: "flex-start" }}>
 
+        {/* Backdrop for mobile overlay */}
+        {isMobile && panelOpen && (
+          <div onClick={() => setPanelOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 249, background: "rgba(0,0,0,0.18)" }} />
+        )}
+
         {/* Left filter panel */}
         <LeftFilterPanel
           open={panelOpen}
+          mobile={isMobile}
           locale={locale}
           activeTema={activeTema}
           activeTipus={activeTipus}
@@ -484,7 +489,7 @@ export default function ArchiveList({ projects, locale }: Props) {
         {/* Project list */}
         <div style={{
           flex: 1, minWidth: 0,
-          padding: `0 var(--margin-page) 88px ${panelOpen ? "28px" : "var(--margin-page)"}`,
+          padding: `0 var(--margin-page) 88px ${!isMobile && panelOpen ? "28px" : "var(--margin-page)"}`,
           transition: "padding-left 350ms cubic-bezier(0.22,1,0.36,1)",
         }}>
           {filtered.length === 0 ? (

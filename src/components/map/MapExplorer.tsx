@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import type { Locale, Project, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
@@ -81,7 +81,17 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
   const tipLbl = TIPUS_LABELS[loc]   ?? TIPUS_LABELS.ca;
   const escLbl = ESCALA_LABELS[loc]  ?? ESCALA_LABELS.ca;
 
-  const [panelOpen, setPanelOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    if (window.innerWidth > 768) setPanelOpen(true);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [panelOpen, setPanelOpen] = useState(false);
   const [theme,     setTheme]     = useState("");
   const [type,      setType]      = useState("");
   const [scale,     setScale]     = useState("");
@@ -144,10 +154,23 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
       {/* ── Contingut: panell filtres (esquerra) + mapa (resta) ── */}
       <div style={{ flex: 1, minHeight: 0, display: "flex" }}>
 
+        {/* Backdrop for mobile overlay */}
+        {isMobile && panelOpen && (
+          <div onClick={() => setPanelOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 249, background: "rgba(0,0,0,0.18)" }} />
+        )}
+
         {/* Panell de filtres esquerre */}
         <div
           aria-hidden={!panelOpen}
-          style={{
+          style={isMobile ? {
+            position: "fixed", top: 0, bottom: 0, left: 0,
+            width: panelOpen ? "min(85vw, 280px)" : "0",
+            zIndex: 250, background: "#fff",
+            boxShadow: panelOpen ? "4px 0 24px rgba(0,0,0,0.12)" : "none",
+            overflow: "hidden",
+            transition: "width 350ms cubic-bezier(0.22,1,0.36,1), box-shadow 350ms ease",
+            borderRight: panelOpen ? "1px solid rgba(0,0,0,0.08)" : "none",
+          } : {
             width:      panelOpen ? "260px" : "0",
             flexShrink: 0,
             overflow:   "hidden",
@@ -156,55 +179,27 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
           }}
         >
           <div style={{
-            width: "260px",
+            width: isMobile ? "min(85vw, 280px)" : "260px",
             height: "100%",
             overflowY: "auto",
-            padding: "16px 20px 24px var(--margin-page)",
+            padding: isMobile ? "80px 20px 24px 20px" : "16px 20px 24px var(--margin-page)",
             boxSizing: "border-box",
           }}>
-            {/* Temàtica */}
             <FilterSectionHead title={ui.tematica} />
             {ALL_TAGS.map((tag) => (
-              <FilterToggleRow
-                key={tag}
-                label={tagLbl[tag]}
-                active={theme === tag}
-                tabIndex={panelOpen ? 0 : -1}
-                onToggle={() => toggle(tag, theme, setTheme)}
-              />
+              <FilterToggleRow key={tag} label={tagLbl[tag]} active={theme === tag} tabIndex={panelOpen ? 0 : -1} onToggle={() => toggle(tag, theme, setTheme)} />
             ))}
-
-            {/* Tipus */}
             <FilterSectionHead title={ui.tipus} />
             {TIPUS_VALUES.map((val) => (
-              <FilterToggleRow
-                key={val}
-                label={tipLbl[val]}
-                active={type === val}
-                tabIndex={panelOpen ? 0 : -1}
-                onToggle={() => toggle(val, type, setType)}
-              />
+              <FilterToggleRow key={val} label={tipLbl[val]} active={type === val} tabIndex={panelOpen ? 0 : -1} onToggle={() => toggle(val, type, setType)} />
             ))}
-
-            {/* Escala */}
             <FilterSectionHead title={ui.escala} />
             {ESCALA_VALUES.map((val) => (
-              <FilterToggleRow
-                key={val}
-                label={escLbl[val]}
-                active={scale === val}
-                tabIndex={panelOpen ? 0 : -1}
-                onToggle={() => toggle(val, scale, setScale)}
-              />
+              <FilterToggleRow key={val} label={escLbl[val]} active={scale === val} tabIndex={panelOpen ? 0 : -1} onToggle={() => toggle(val, scale, setScale)} />
             ))}
-
-            {/* Clear */}
             {hasFilters && (
               <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                <button
-                  onClick={clearAll}
-                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}
-                >
+                <button onClick={clearAll} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#bbb" }}>
                   {ui.clear}
                 </button>
               </div>

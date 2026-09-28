@@ -21,44 +21,53 @@ export default function ScrollToTop() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Tornar a dalt"
       >
-        ↑
+        <span aria-hidden="true">↑</span>
       </button>
       <style>{`
         .pu-scroll-top {
           position: fixed;
           bottom: 32px;
-          right: var(--margin-page, 48px);
+          left: var(--margin-page, 48px);
           z-index: 500;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid rgba(0,0,0,0.18);
-          background: rgba(255,255,255,0.92);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-          color: #111;
-          font-family: var(--font-sans);
-          font-size: 14px;
-          line-height: 1;
+          width: 22px;
+          height: 22px;
+          padding: 0;
+          border: 0;
+          background: transparent;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-          transition: background 180ms ease, transform 180ms ease, opacity 220ms ease;
           animation: pu-scroll-top-in 220ms ease both;
         }
-        .pu-scroll-top:hover {
-          background: #111;
+        .pu-scroll-top span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 18px;
+          height: 18px;
+          border: 1px solid #000;
+          border-radius: 50%;
+          background: #000;
           color: #fff;
-          transform: translateY(-2px);
+          font-family: var(--font-sans);
+          font-size: 11px;
+          font-weight: 300;
+          line-height: 1;
+          transition: transform var(--dur-mid, 200ms) ease, background 180ms ease;
+          user-select: none;
+          padding-bottom: 1px;
         }
+        .pu-scroll-top:hover span { transform: scale(0.82); }
         @keyframes pu-scroll-top-in {
           from { opacity: 0; transform: translateY(8px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @media (max-width: 640px) {
-          .pu-scroll-top { bottom: 20px; right: 16px; }
+        @media (max-width: 768px) {
+          .pu-scroll-top {
+            bottom: 20px;
+            left: var(--margin-mobile, 20px);
+          }
         }
       `}</style>
     </>

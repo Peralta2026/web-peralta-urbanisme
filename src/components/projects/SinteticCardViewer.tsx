@@ -316,8 +316,15 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
 
         {/* ── Panell de filtres (esquerra) + targetes (resta) ── */}
         <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
+          {isMobile && panelOpen && (
+            <div
+              onClick={() => setPanelOpen(false)}
+              style={{ position: "fixed", inset: 0, zIndex: 249, background: "rgba(0,0,0,0.18)" }}
+            />
+          )}
           <LeftFilterPanel
             open={panelOpen}
+            mobile={isMobile}
             locale={locale}
             activeTema={filters.activeTema}
             activeTipus={filters.activeTipus}
