@@ -107,43 +107,116 @@ function PillarCols() {
   );
 }
 
-function ClientBall() {
-  const [open, setOpen] = useState(false);
+function MethodDiagram() {
+  const [st, setSt] = useState(0);
+  const [col, setCol] = useState({
+    z0: "#F9EE76", z1: "#B4EFC5", z2: "#A8DEF5",
+    wf0: "rgba(180,239,197,.11)", wf1: "rgba(168,222,245,.11)", wf2: "rgba(249,238,118,.11)",
+  });
+
+  useEffect(() => {
+    const P = ["#F9EE76","#B4EFC5","#A8DEF5","#F5C0DA"];
+    const s = [...P].sort(() => Math.random() - .5);
+    const t = (h: string, a: number) => {
+      const r=parseInt(h.slice(1,3),16), g=parseInt(h.slice(3,5),16), b=parseInt(h.slice(5,7),16);
+      return `rgba(${r},${g},${b},${a})`;
+    };
+    setCol({ z0:s[0], z1:s[1], z2:s[2], wf0:t(s[1],.11), wf1:t(s[2],.11), wf2:t(s[0],.11) });
+  }, []);
+
+  const go = (n: number) => setSt(n);
+  const sc = `md-s${st}`;
+
   return (
-    <div className="met-ball-wrap">
-      <div className={`met-ball${open ? " is-open" : ""}`}>
-        <div className="met-ball-simple">
-          <span className="met-ball-slabel">Qui lidera</span>
-          <span className="met-ball-sname">Client</span>
-        </div>
-        <div className="met-ball-diagram">
-          <svg viewBox="0 0 360 360" className="met-hub-svg" aria-hidden="true">
-            <line x1="180" y1="130" x2="180" y2="86"  stroke="rgba(255,255,255,.55)" strokeWidth="1.5" />
-            <line x1="145" y1="216" x2="95"  y2="269" stroke="rgba(255,255,255,.55)" strokeWidth="1.5" />
-            <line x1="215" y1="216" x2="265" y2="269" stroke="rgba(255,255,255,.55)" strokeWidth="1.5" />
-          </svg>
-          <div className="met-hnode met-hnode-client">
-            <span className="met-hnode-label">Qui lidera</span>
-            <span className="met-hnode-name" style={{ fontSize: "14px" }}>Client</span>
-          </div>
-          <div className="met-hnode met-hnode-peralta">
-            <span className="met-hnode-label">Mètode</span>
-            <span className="met-hnode-name">Peralta</span>
-          </div>
-          <div className="met-hnode met-hnode-projecte">
-            <span className="met-hnode-label">Resultat</span>
-            <span className="met-hnode-name">Projecte</span>
-          </div>
-          <div className="met-hnode met-hnode-territori">
-            <span className="met-hnode-label">Impacte</span>
-            <span className="met-hnode-name">Territori</span>
-          </div>
+    <section className="md-section">
+      <div className="md-header">
+        <p className="md-intro-label">L&apos;equip i els àmbits de coneixement</p>
+        <div className="md-tabs">
+          {["Base","Equip","Àmbits"].map((l, i) => (
+            <button key={i} className={`md-tab${st===i?" md-on":""}`} onClick={() => go(i)}>{l}</button>
+          ))}
         </div>
       </div>
-      <button type="button" className="met-ball-btn" onClick={() => setOpen((v) => !v)}>
-        {open ? "Tancar" : "Filosofia de treball"}
-      </button>
-    </div>
+      <div className={`md-svg-outer ${sc}`} onClick={() => go((st+1)%3)}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <svg className="md-svg" viewBox="0 0 1100 870" xmlns="http://www.w3.org/2000/svg">
+          {/* Wing fills */}
+          <polygon className="md-ext-fill" style={{fill:col.wf0}} points="550,65 338,432 126,65"/>
+          <polygon className="md-ext-fill" style={{fill:col.wf1}} points="550,65 762,432 974,65"/>
+          <polygon className="md-ext-fill" style={{fill:col.wf2}} points="338,432 762,432 550,799"/>
+          {/* Colour zones */}
+          <polygon className="md-z" style={{fill:col.z0}} points="550,65 444,248 656,248"/>
+          <polygon className="md-z" style={{fill:col.z1}} points="338,432 444,248 550,432"/>
+          <polygon className="md-z" style={{fill:col.z2}} points="762,432 656,248 550,432"/>
+          <polygon fill="#fff" points="444,248 656,248 550,432"/>
+          {/* Triangle structure */}
+          <polygon className="md-tri-inner" points="444,248 656,248 550,432"/>
+          <polygon className="md-tri-outer" points="550,65 338,432 762,432"/>
+          {/* Vertex dots */}
+          <circle cx="550" cy="65"  r="4" fill="#111"/>
+          <circle cx="338" cy="432" r="4" fill="#111"/>
+          <circle cx="762" cy="432" r="4" fill="#111"/>
+          {/* Zone dividers */}
+          <line className="md-zdiv" x1="400" y1="325" x2="461" y2="432"/>
+          <line className="md-zdiv" x1="700" y1="325" x2="639" y2="432"/>
+          {/* Vertex labels */}
+          <text x="550" y="24"  className="md-vl">ESTRATÈGIA</text>
+          <text x="550" y="38"  className="md-vs">entendre · decidir · orientar</text>
+          <text x="338" y="460" className="md-vl">PROJECTE</text>
+          <text x="338" y="474" className="md-vs">definir · transformar</text>
+          <text x="762" y="460" className="md-vl">TERRITORI</text>
+          <text x="762" y="474" className="md-vs">context · impacte</text>
+          {/* CLIENT centre */}
+          <text x="550" y="316" className="md-cl">CLIENT</text>
+          <text x="550" y="333" className="md-cl-sub">AL CENTRE</text>
+          {/* Person names */}
+          <text x="550" y="180" className="md-pn">Jordi</text>
+          <text x="550" y="197" className="md-pn">Peralta</text>
+          <text x="460" y="314" className="md-pn">Mar</text>
+          <text x="460" y="331" className="md-pn">Castarlenas</text>
+          <text x="410" y="392" className="md-pn">Julia</text>
+          <text x="410" y="409" className="md-pn">Reñones</text>
+          <text x="640" y="314" className="md-pn">Marc</text>
+          <text x="640" y="331" className="md-pn">Vizcarra</text>
+          <text x="690" y="392" className="md-pn">Delfina</text>
+          <text x="690" y="409" className="md-pn">Capiglioni</text>
+          {/* Outer network edges */}
+          <g className="md-ext-edges">
+            <line className="md-ext-edge" x1="126" y1="65"  x2="550" y2="65"/>
+            <line className="md-ext-edge" x1="126" y1="65"  x2="338" y2="432"/>
+            <line className="md-ext-edge" x1="550" y1="65"  x2="974" y2="65"/>
+            <line className="md-ext-edge" x1="974" y1="65"  x2="762" y2="432"/>
+            <line className="md-ext-edge" x1="338" y1="432" x2="550" y2="799"/>
+            <line className="md-ext-edge" x1="762" y1="432" x2="550" y2="799"/>
+          </g>
+          {/* Domain text in wings */}
+          <g className="md-ext-txt">
+            <line className="md-wsep" x1="218" y1="117" x2="458" y2="117"/>
+            <text x="338" y="108" className="md-wlabel">ÀMBIT SOCIAL</text>
+            <text x="338" y="142" className="md-wdom">Societat i Participació</text>
+            <line className="md-wsep" x1="240" y1="174" x2="436" y2="174"/>
+            <text x="338" y="196" className="md-wdom">Mobilitat i Infraestructures</text>
+            <line className="md-wsep" x1="258" y1="228" x2="418" y2="228"/>
+            <text x="338" y="250" className="md-wdom">Economia i Viabilitat</text>
+            <line className="md-wsep" x1="270" y1="282" x2="406" y2="282"/>
+            <line className="md-wsep" x1="642" y1="117" x2="882" y2="117"/>
+            <text x="762" y="108" className="md-wlabel">ÀMBIT NORMATIU</text>
+            <text x="762" y="142" className="md-wdom">Regulació i Planejament</text>
+            <line className="md-wsep" x1="664" y1="174" x2="860" y2="174"/>
+            <text x="762" y="196" className="md-wdom">Legalitat i Gestió</text>
+            <line className="md-wsep" x1="682" y1="228" x2="842" y2="228"/>
+            <text x="762" y="250" className="md-wdom">Urbanisme i Paisatge</text>
+            <line className="md-wsep" x1="694" y1="282" x2="830" y2="282"/>
+            <line className="md-wsep" x1="386" y1="498" x2="714" y2="498"/>
+            <text x="550" y="488" className="md-wlabel">ÀMBIT FÍSIC</text>
+            <text x="550" y="526" className="md-wdom">Disseny Urbà i Espai Públic</text>
+            <line className="md-wsep" x1="410" y1="564" x2="690" y2="564"/>
+            <text x="550" y="596" className="md-wdom">Medi Ambient i Territori</text>
+            <line className="md-wsep" x1="432" y1="634" x2="668" y2="634"/>
+          </g>
+        </svg>
+      </div>
+    </section>
   );
 }
 
@@ -224,14 +297,13 @@ export default function MetodePage() {
         .met-pillar-e-img { margin-top: auto; padding-top: 24px; }
         .met-pillar-e-img img { width: 100%; max-height: 160px; object-fit: contain; display: block; }
 
-        /* ── MODES + BALL ── */
-        .met-modes { display: grid; grid-template-columns: 3fr 2fr; border-top: 1px solid var(--color-border); }
-        .met-modes-left { border-right: 1px solid rgba(0,0,0,0.08); padding-bottom: 80px; }
+        /* ── MODES ── */
+        .met-modes { border-top: 1px solid var(--color-border); }
+        .met-modes-left { padding-bottom: 80px; }
         .met-modes-header-block { padding: 72px var(--margin-page) 48px; border-bottom: 1px solid var(--color-border); }
         .met-modes-header-block h2 { font-family: var(--font-sans); font-size: clamp(30px,3.6vw,52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
         .met-modes-header-block > p { font-family: var(--font-sans); font-size: 14px; color: var(--color-muted); line-height: 1.65; max-width: 380px; margin: 0; }
         .met-modes-list { padding: 0 var(--margin-page); }
-        .met-modes-right { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 32px; gap: 28px; }
 
         /* Accordion */
         .met-mode-item { border-top: 1px solid var(--color-border-soft); }
@@ -244,39 +316,46 @@ export default function MetodePage() {
         .met-mode-desc { font-family: var(--font-sans); font-size: 15px; color: var(--color-fg); line-height: 1.7; max-width: 560px; margin-bottom: 24px; }
         .met-mode-tags { font-family: var(--font-sans); font-size: var(--size-meta); line-height: 1.6; color: var(--color-muted); margin: 0; }
 
-        /* ── BALL ── */
-        .met-ball-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
-        .met-ball {
-          position: relative;
-          width: 200px; height: 200px;
-          border-radius: 50%;
-          background: var(--color-fg);
-          overflow: hidden;
-          transition: width 0.65s cubic-bezier(0.22,1,0.36,1), height 0.65s cubic-bezier(0.22,1,0.36,1);
-          -webkit-font-smoothing: antialiased;
-          flex-shrink: 0;
-        }
-        .met-ball.is-open { width: 360px; height: 360px; }
-
-        .met-ball-simple { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; opacity: 1; transition: opacity 0.2s ease; pointer-events: none; }
-        .met-ball.is-open .met-ball-simple { opacity: 0; }
-        .met-ball-slabel { font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.5); }
-        .met-ball-sname { font-family: var(--font-sans); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
-
-        .met-ball-diagram { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease 0.35s; pointer-events: none; }
-        .met-ball.is-open .met-ball-diagram { opacity: 1; }
-        .met-hub-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-
-        .met-hnode { position: absolute; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.65); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
-        .met-hnode-label { font-family: var(--font-sans); font-size: 10px; color: rgba(255,255,255,0.5); }
-        .met-hnode-name { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.01em; }
-        .met-hnode-client  { width: 100px; height: 100px; top: 130px; left: 130px; border-color: rgba(255,255,255,0.95); background: var(--color-fg); }
-        .met-hnode-peralta  { width: 72px; height: 72px; top: 14px;  left: 144px; }
-        .met-hnode-projecte { width: 72px; height: 72px; top: 259px; left: 34px;  }
-        .met-hnode-territori{ width: 72px; height: 72px; top: 259px; left: 254px; }
-
-        .met-ball-btn { background: none; border: 1px solid var(--color-fg); padding: 10px 24px; font-family: var(--font-sans); font-size: var(--size-meta); cursor: pointer; color: var(--color-fg); transition: background 200ms ease, color 200ms ease; }
-        .met-ball-btn:hover { background: var(--color-fg); color: var(--color-bg); }
+        /* ── TRIANGLE DIAGRAM ── */
+        .md-section { padding: clamp(56px,8vh,96px) var(--margin-page); border-top: 1px solid rgba(0,0,0,0.07); }
+        .md-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: clamp(28px,4vh,48px); flex-wrap: wrap; gap: 16px; }
+        .md-intro-label { font-family: var(--font-sans); font-size: 13px; font-weight: 400; color: #888; }
+        .md-tabs { display: flex; border: 1px solid rgba(0,0,0,0.12); border-radius: 7px; overflow: hidden; }
+        .md-tab { padding: 8px 20px; border: none; border-right: 1px solid rgba(0,0,0,0.09); background: transparent; font-family: var(--font-sans); font-size: 11.5px; font-weight: 500; color: #aaa; cursor: pointer; transition: background 150ms, color 150ms; }
+        .md-tab:last-child { border-right: none; }
+        .md-on { background: #111; color: #fff; }
+        .md-tab:hover:not(.md-on) { color: #444; }
+        .md-svg-outer { width: 100%; cursor: pointer; }
+        .md-svg { width: 100%; height: auto; overflow: visible; display: block; }
+        .md-svg text { font-family: var(--font-sans), sans-serif; }
+        /* zones */
+        .md-z { opacity: 0; transition: opacity .65s cubic-bezier(.4,0,.2,1); }
+        .md-s1 .md-z, .md-s2 .md-z { opacity: 1; }
+        /* dividers */
+        .md-zdiv { fill: none; stroke: rgba(0,0,0,.14); stroke-width: .75; stroke-dasharray: 3.5 4; opacity: 0; transition: opacity .4s ease .3s; }
+        .md-s1 .md-zdiv, .md-s2 .md-zdiv { opacity: 1; }
+        /* person names */
+        .md-pn { font-size: 13px; font-weight: 600; fill: rgba(0,0,0,.76); text-anchor: middle; opacity: 0; transition: opacity .45s ease .3s; }
+        .md-s1 .md-pn, .md-s2 .md-pn { opacity: 1; }
+        /* triangle lines */
+        .md-tri-outer { fill: none; stroke: #111; stroke-width: 1.5; }
+        .md-tri-inner { fill: none; stroke: rgba(0,0,0,.22); stroke-width: 1.0; stroke-dasharray: 6 4; }
+        /* vertex labels */
+        .md-vl { font-size: 13.5px; font-weight: 700; fill: #111; text-anchor: middle; letter-spacing: .04em; }
+        .md-vs { font-size: 10px; fill: #c0c0c0; text-anchor: middle; }
+        .md-cl { font-size: 18px; font-weight: 700; fill: #111; text-anchor: middle; letter-spacing: -.03em; }
+        .md-cl-sub { font-size: 9.5px; fill: #ccc; text-anchor: middle; letter-spacing: .04em; }
+        /* outer network */
+        .md-ext-fill { opacity: 0; transition: opacity .55s ease .05s; }
+        .md-s2 .md-ext-fill { opacity: 1; }
+        .md-ext-edges { opacity: 0; transition: opacity .55s ease .05s; }
+        .md-s2 .md-ext-edges { opacity: 1; }
+        .md-ext-edge { fill: none; stroke: #111; stroke-width: 1.1; stroke-dasharray: 9 6; }
+        .md-ext-txt { opacity: 0; transition: opacity .5s ease .55s; }
+        .md-s2 .md-ext-txt { opacity: 1; }
+        .md-wdom { font-size: 12px; font-weight: 600; fill: #222; text-anchor: middle; }
+        .md-wlabel { font-size: 8.5px; font-weight: 600; fill: #bbb; text-anchor: middle; letter-spacing: .1em; }
+        .md-wsep { fill: none; stroke: rgba(0,0,0,.1); stroke-width: .6; stroke-dasharray: 3 4; }
 
         /* ── REVEAL ── */
         .met-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth); }
@@ -346,9 +425,6 @@ export default function MetodePage() {
 
         /* ── MOBILE ── */
         @media (max-width: 900px) {
-          .met-modes { grid-template-columns: 1fr; }
-          .met-modes-left { border-right: none; border-bottom: 1px solid var(--color-border-soft); }
-          .met-modes-right { border-top: 1px solid var(--color-border-soft); padding: 56px 24px; }
           .met-pillar-cols { flex-direction: column; min-height: auto; }
           .met-pillar-col { flex: none !important; min-height: 64px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
           .met-pillar-col:last-child { border-bottom: none; }
@@ -358,7 +434,6 @@ export default function MetodePage() {
         @media (max-width: 768px) {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }
           .met-value:not(:last-child) { border-right: none; border-bottom: 1px solid var(--color-border-soft); padding-bottom: 40px; margin-right: 0; }
-          .met-ball.is-open { width: min(300px, 86vw); height: min(300px, 86vw); }
           .met-client-img { max-height: 28px; max-width: 80px; }
           .met-clients-track { gap: 32px; }
         }
@@ -400,7 +475,7 @@ export default function MetodePage() {
         <PillarCols />
       </section>
 
-      {/* ── TRES FORMES + BALL ── */}
+      {/* ── TRES FORMES ── */}
       <section className="met-modes">
         <div className="met-modes-left">
           <div className="met-modes-header-block met-reveal">
@@ -425,10 +500,10 @@ export default function MetodePage() {
             />
           </div>
         </div>
-        <div className="met-modes-right">
-          <ClientBall />
-        </div>
       </section>
+
+      {/* ── DIAGRAMA TRIANGLE INTERACTIU ── */}
+      <MethodDiagram />
 
       {/* ── Han confiat en nosaltres ── */}
       <section className="met-clients-section">
