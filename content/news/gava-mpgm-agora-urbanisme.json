@@ -1,0 +1,45 @@
+{
+  "slug": "gava-mpgm-agora-urbanisme",
+  "date": "2025-11-11",
+  "coverImage": "/news/gava-mpgm-agora-urbanisme/agora-1.jpg",
+  "images": [
+    "/news/gava-mpgm-agora-urbanisme/agora-1.jpg",
+    "/news/gava-mpgm-agora-urbanisme/agora-2.jpg"
+  ],
+  "relatedProjects": [
+    "mpgm-usos-gava"
+  ],
+  "sources": [
+    {
+      "label": "Programa oficial Àgora d’Urbanisme 2025 — COAC",
+      "url": "https://www.arquitectes.cat/ca/system/files/users/36454/20251107_programa_agora_v2.pdf"
+    }
+  ],
+  "ca": {
+    "tag": "Jornada · Planejament",
+    "title": "La MPGM de Gavà, presentada a l’Àgora d’Urbanisme",
+    "summary": "Peralta Urbanisme i l’Ajuntament de Gavà presenten una proposta que relaciona estructura viària, plantes baixes i comerç de proximitat.",
+    "body": [
+      "La Modificació del Pla General Metropolità de regulació de l’estructura viària i els usos en planta baixa del nucli urbà de Gavà va formar part del programa de l’Àgora d’Urbanisme 2025.",
+      "El planejament parteix de l’anàlisi conjunta de carrers, verds i activitat comercial per introduir regulacions precises sobre la ciutat consolidada i reforçar el paper de les plantes baixes i del comerç de proximitat."
+    ]
+  },
+  "es": {
+    "tag": "Jornada · Planeamiento",
+    "title": "La MPGM de Gavà, presentada en el Àgora d’Urbanisme",
+    "summary": "Peralta Urbanisme y el Ayuntamiento de Gavà presentan una propuesta que relaciona estructura viaria, plantas bajas y comercio de proximidad.",
+    "body": [
+      "La Modificación del Plan General Metropolitano de regulación de la estructura viaria y los usos en planta baja del núcleo urbano de Gavà formó parte del programa del Àgora d’Urbanisme 2025.",
+      "El planeamiento parte del análisis conjunto de calles, verdes y actividad comercial para introducir regulaciones precisas sobre la ciudad consolidada y reforzar el papel de las plantas bajas y del comercio de proximidad."
+    ]
+  },
+  "en": {
+    "tag": "Talk · Planning",
+    "title": "Gavà’s MPGM presented at the Àgora d’Urbanisme",
+    "summary": "Peralta Urbanisme and Gavà City Council present a proposal linking street structure, ground floors and local retail.",
+    "body": [
+      "The amendment to the Metropolitan General Plan regulating the street structure and ground-floor uses in Gavà’s town centre was part of the Àgora d’Urbanisme 2025 programme.",
+      "The plan is based on a joint analysis of streets, green spaces and retail activity, introducing precise regulations for the consolidated city and strengthening the role of ground floors and local shops."
+    ]
+  }
+}

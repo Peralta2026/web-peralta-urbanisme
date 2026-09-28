@@ -1,0 +1,35 @@
+{
+  "slug": "inauguracio-oficina-mataro",
+  "date": "2026-10-02",
+  "coverImage": "/news/inauguracio-oficina-mataro/invitacio.jpg",
+  "coverFit": "contain",
+  "images": [
+    "/news/inauguracio-oficina-mataro/invitacio.jpg"
+  ],
+  "relatedProjects": [],
+  "sources": [],
+  "ca": {
+    "tag": "Esdeveniment",
+    "title": "Peralta Urbanisme inaugura la seva nova oficina a Mataró",
+    "summary": "Obrim les portes del nostre nou espai al centre de Mataró.",
+    "body": [
+      "Aquest divendres 2 d’octubre inaugurem la nova oficina de Peralta Urbanisme, al carrer d’Argentona 59. Una trobada per compartir aquest nou espai amb les persones, equips i col·laboradors que ens han acompanyat al llarg del camí."
+    ]
+  },
+  "es": {
+    "tag": "Evento",
+    "title": "Peralta Urbanisme inaugura su nueva oficina en Mataró",
+    "summary": "Abrimos las puertas de nuestro nuevo espacio en el centro de Mataró.",
+    "body": [
+      "Este viernes 2 de octubre inauguramos la nueva oficina de Peralta Urbanisme, en la calle Argentona 59. Un encuentro para compartir este nuevo espacio con las personas, equipos y colaboradores que nos han acompañado a lo largo del camino."
+    ]
+  },
+  "en": {
+    "tag": "Event",
+    "title": "Peralta Urbanisme opens its new office in Mataró",
+    "summary": "We are opening the doors of our new space in the centre of Mataró.",
+    "body": [
+      "This Friday, 2 October, we open the new Peralta Urbanisme office at Carrer d’Argentona 59. A gathering to share this new space with the people, teams and collaborators who have accompanied us along the way."
+    ]
+  }
+}

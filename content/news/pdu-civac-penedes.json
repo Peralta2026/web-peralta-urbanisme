@@ -1,0 +1,41 @@
+{
+  "slug": "pdu-civac-penedes",
+  "date": "2026-05",
+  "images": [],
+  "relatedProjects": [
+    "penedes-pdu-civac"
+  ],
+  "sources": [
+    {
+      "label": "Publicació de Peralta Urbanisme (LinkedIn)",
+      "url": "https://es.linkedin.com/posts/peralta-urbanisme-slp_pdu-civac-innovaci%C3%B3-paisatge-i-infraestructura-activity-7447247083381788672-KNVO"
+    }
+  ],
+  "ca": {
+    "tag": "Projecte · Territori",
+    "title": "PDU CIVAC: tecnologia, paisatge i infraestructura al Penedès",
+    "summary": "Peralta Urbanisme forma part de l’equip adjudicatari per redactar el Pla Director Urbanístic del Centre d’Innovació del Vehicle Autònom i Connectat.",
+    "body": [
+      "Peralta Urbanisme participa, juntament amb OUA Group, IGREMAP, Pla Estel, Mcrit, VIA i Projectes Urbans, Arquitectura i Territori, en l’equip adjudicatari per a la redacció del PDU CIVAC.",
+      "La proposta planteja compatibilitzar recerca i alta tecnologia amb la identitat agrícola del territori, incorporant el sòl agrícola com a infraestructura activa i treballant simultàniament sobre paisatge, mobilitat i relació amb els nuclis habitats."
+    ]
+  },
+  "es": {
+    "tag": "Proyecto · Territorio",
+    "title": "PDU CIVAC: tecnología, paisaje e infraestructura en el Penedès",
+    "summary": "Peralta Urbanisme forma parte del equipo adjudicatario para redactar el Plan Director Urbanístico del Centro de Innovación del Vehículo Autónomo y Conectado.",
+    "body": [
+      "Peralta Urbanisme participa, junto con OUA Group, IGREMAP, Pla Estel, Mcrit, VIA y Projectes Urbans, Arquitectura i Territori, en el equipo adjudicatario para la redacción del PDU CIVAC.",
+      "La propuesta plantea compatibilizar investigación y alta tecnología con la identidad agrícola del territorio, incorporando el suelo agrícola como infraestructura activa y trabajando simultáneamente sobre paisaje, movilidad y relación con los núcleos habitados."
+    ]
+  },
+  "en": {
+    "tag": "Project · Territory",
+    "title": "PDU CIVAC: technology, landscape and infrastructure in the Penedès",
+    "summary": "Peralta Urbanisme is part of the team awarded the Urban Master Plan for the Centre for Innovation in Autonomous and Connected Vehicles.",
+    "body": [
+      "Peralta Urbanisme is part of the team awarded the drafting of the PDU CIVAC, together with OUA Group, IGREMAP, Pla Estel, Mcrit, VIA and Projectes Urbans, Arquitectura i Territori.",
+      "The proposal seeks to reconcile research and high technology with the agricultural identity of the territory, treating farmland as active infrastructure and working simultaneously on landscape, mobility and the relationship with nearby settlements."
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "la-miralda-scot",
+  "date": "2026-07",
+  "coverImage": "/news/la-miralda-scot/scot.jpg",
+  "images": [
+    "/news/la-miralda-scot/scot.jpg"
+  ],
+  "relatedProjects": [
+    "la-miralda-pendent"
+  ],
+  "sources": [
+    {
+      "label": "Publicació de Marc Vizcarra sobre la conferència (LinkedIn)",
+      "url": "https://es.linkedin.com/in/marc-vizcarra-pascual-236695290"
+    },
+    {
+      "label": "La Llagosta Informa, juny 2026",
+      "url": "https://lallagostainforma.cat/load/2026/06/La-Llagosta-informa-135-catala.pdf"
+    }
+  ],
+  "ca": {
+    "tag": "Esdeveniment · Reconeixement",
+    "title": "La Miralda, presentada a la SCOT després de rebre el Premi Catalunya d’Urbanisme",
+    "summary": "Peralta Urbanisme presenta a l’Institut d’Estudis Catalans una transformació urbana sobre ciutat consolidada.",
+    "body": [
+      "Després de ser distingida amb el Premi Catalunya d’Urbanisme Manuel de Solà-Morales, la Modificació del Pla General d’Ordenació Urbanística de la Miralda es va presentar en una jornada de la Societat Catalana d’Ordenació del Territori (SCOT) a l’Institut d’Estudis Catalans.",
+      "El projecte, redactat per Peralta Urbanisme conjuntament amb els tècnics de l’Ajuntament de la Llagosta, planteja la substitució d’una antiga fàbrica per un nou parc estructurant i una nova centralitat urbana, reforçant la connexió entre els teixits de l’entorn."
+    ]
+  },
+  "es": {
+    "tag": "Evento · Reconocimiento",
+    "title": "La Miralda, presentada en la SCOT tras recibir el Premio Cataluña de Urbanismo",
+    "summary": "Peralta Urbanisme presenta en el Institut d’Estudis Catalans una transformación urbana sobre ciudad consolidada.",
+    "body": [
+      "Tras ser distinguida con el Premio Cataluña de Urbanismo Manuel de Solà-Morales, la Modificación del Plan General de Ordenación Urbanística de la Miralda se presentó en una jornada de la Societat Catalana d’Ordenació del Territori (SCOT) en el Institut d’Estudis Catalans.",
+      "El proyecto, redactado por Peralta Urbanisme conjuntamente con los técnicos del Ayuntamiento de La Llagosta, plantea la sustitución de una antigua fábrica por un nuevo parque estructurante y una nueva centralidad urbana, reforzando la conexión entre los tejidos del entorno."
+    ]
+  },
+  "en": {
+    "tag": "Event · Recognition",
+    "title": "La Miralda presented at the SCOT after receiving the Catalonia Urban Planning Award",
+    "summary": "Peralta Urbanisme presents an urban transformation of the consolidated city at the Institut d’Estudis Catalans.",
+    "body": [
+      "After receiving the Manuel de Solà-Morales Catalonia Urban Planning Award, the amendment to the General Urban Development Plan for La Miralda was presented at a session of the Catalan Society for Territorial Planning (SCOT) at the Institut d’Estudis Catalans.",
+      "The project, drafted by Peralta Urbanisme together with the technical staff of La Llagosta City Council, replaces a former factory with a new structuring park and a new urban centrality, strengthening the connection between the surrounding urban fabrics."
+    ]
+  }
+}

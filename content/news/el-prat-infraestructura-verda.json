@@ -1,0 +1,38 @@
+{
+  "slug": "el-prat-infraestructura-verda",
+  "date": "2025-07",
+  "images": [],
+  "relatedProjects": [
+    "el-prat-br-pla-d-infraestructura-verda"
+  ],
+  "sources": [
+    {
+      "label": "CIDO — Diputació de Barcelona, adjudicació 18/07/2025",
+      "url": "https://cido.diba.cat/contractacio/19684379/serveis-de-consultoria-i-redaccio-de-lestudi-del-pla-dinfraestructura-verda-del-prat-de-llobregat-barcelona-regional-agencia-de-desenvolupament-urba-sa"
+    }
+  ],
+  "ca": {
+    "tag": "Projecte · Infraestructura verda",
+    "title": "Peralta Urbanisme redactarà el Pla d’Infraestructura Verda del Prat de Llobregat",
+    "summary": "Un estudi per llegir i estructurar la infraestructura verda del municipi des d’una escala urbana i territorial.",
+    "body": [
+      "Barcelona Regional va adjudicar a Peralta Urbanisme els serveis de consultoria i redacció de l’estudi del Pla d’Infraestructura Verda del Prat de Llobregat."
+    ]
+  },
+  "es": {
+    "tag": "Proyecto · Infraestructura verde",
+    "title": "Peralta Urbanisme redactará el Plan de Infraestructura Verde de El Prat de Llobregat",
+    "summary": "Un estudio para leer y estructurar la infraestructura verde del municipio desde una escala urbana y territorial.",
+    "body": [
+      "Barcelona Regional adjudicó a Peralta Urbanisme los servicios de consultoría y redacción del estudio del Plan de Infraestructura Verde de El Prat de Llobregat."
+    ]
+  },
+  "en": {
+    "tag": "Project · Green infrastructure",
+    "title": "Peralta Urbanisme to draft the Green Infrastructure Plan for El Prat de Llobregat",
+    "summary": "A study to read and structure the municipality’s green infrastructure at the urban and territorial scale.",
+    "body": [
+      "Barcelona Regional awarded Peralta Urbanisme the consultancy and drafting services for the Green Infrastructure Plan study of El Prat de Llobregat."
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "slug": "alba-campus-estudi-volumetric",
+  "date": "2026-02-17",
+  "images": [],
+  "relatedProjects": [
+    "parc-alba-ifae-space"
+  ],
+  "sources": [
+    {
+      "label": "Contratos Radar — registre públic de l’adjudicació",
+      "url": "https://www.contratosradar.es/empresa/peralta-urbanisme-slp"
+    }
+  ],
+  "ca": {
+    "tag": "Estudi · Arquitectura i campus",
+    "title": "Nou estudi volumètric per a l’ALBA Campus",
+    "summary": "Peralta Urbanisme treballa en un encaix volumètric preliminar i la seva documentació gràfica.",
+    "body": [
+      "El Consorci Institut de Física d’Altes Energies va adjudicar a Peralta Urbanisme un encàrrec per a la realització d’un encaix volumètric preliminar i documentació gràfica a l’ALBA Campus."
+    ]
+  },
+  "es": {
+    "tag": "Estudio · Arquitectura y campus",
+    "title": "Nuevo estudio volumétrico para el ALBA Campus",
+    "summary": "Peralta Urbanisme trabaja en un encaje volumétrico preliminar y su documentación gráfica.",
+    "body": [
+      "El Consorcio Institut de Física d’Altes Energies adjudicó a Peralta Urbanisme un encargo para la realización de un encaje volumétrico preliminar y documentación gráfica en el ALBA Campus."
+    ]
+  },
+  "en": {
+    "tag": "Study · Architecture and campus",
+    "title": "New massing study for the ALBA Campus",
+    "summary": "Peralta Urbanisme is working on a preliminary massing study and its graphic documentation.",
+    "body": [
+      "The Institut de Física d’Altes Energies consortium commissioned Peralta Urbanisme to produce a preliminary massing study and graphic documentation for the ALBA Campus."
+    ]
+  }
+}

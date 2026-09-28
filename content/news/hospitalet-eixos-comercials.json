@@ -1,0 +1,38 @@
+{
+  "slug": "hospitalet-eixos-comercials",
+  "date": "2026-05-28",
+  "images": [],
+  "relatedProjects": [
+    "hospitalet-proteccio-comercial"
+  ],
+  "sources": [
+    {
+      "label": "Contractes.cat — Ajuntament de l’Hospitalet",
+      "url": "https://www.contractes.cat/organismes/Ajuntament%20de%20l%27Hospitalet%20de%20Llobregat?electes_page=2"
+    }
+  ],
+  "ca": {
+    "tag": "Projecte · Ciutat i comerç",
+    "title": "Peralta Urbanisme estudiarà l’estructura dels eixos comercials de l’Hospitalet",
+    "summary": "Un nou encàrrec per llegir la relació entre activitat comercial, estructura urbana i ciutat quotidiana.",
+    "body": [
+      "L’Ajuntament de l’Hospitalet de Llobregat va adjudicar a Peralta Urbanisme un estudi sobre l’estructura dels eixos comercials de la ciutat."
+    ]
+  },
+  "es": {
+    "tag": "Proyecto · Ciudad y comercio",
+    "title": "Peralta Urbanisme estudiará la estructura de los ejes comerciales de L’Hospitalet",
+    "summary": "Un nuevo encargo para leer la relación entre actividad comercial, estructura urbana y ciudad cotidiana.",
+    "body": [
+      "El Ayuntamiento de L’Hospitalet de Llobregat adjudicó a Peralta Urbanisme un estudio sobre la estructura de los ejes comerciales de la ciudad."
+    ]
+  },
+  "en": {
+    "tag": "Project · City and retail",
+    "title": "Peralta Urbanisme to study the structure of L’Hospitalet’s shopping streets",
+    "summary": "A new commission to read the relationship between retail activity, urban structure and the everyday city.",
+    "body": [
+      "L’Hospitalet de Llobregat City Council awarded Peralta Urbanisme a study on the structure of the city’s main shopping streets."
+    ]
+  }
+}

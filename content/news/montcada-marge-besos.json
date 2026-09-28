@@ -1,0 +1,38 @@
+{
+  "slug": "montcada-marge-besos",
+  "date": "2025-11-25",
+  "images": [],
+  "relatedProjects": [
+    "montcada-franja-besos"
+  ],
+  "sources": [
+    {
+      "label": "Gobierto Contratación — Ajuntament de Montcada i Reixac",
+      "url": "https://contratos.gobierto.es/adjudicatarios/peralta-urbanisme-slp"
+    }
+  ],
+  "ca": {
+    "tag": "Estudi · Model urbà",
+    "title": "Un nou model urbanístic per al marge esquerre del Besòs a Montcada i Reixac",
+    "summary": "Peralta Urbanisme estudia les oportunitats de transformació d’un àmbit estratègic entre riu, infraestructures i teixits urbans.",
+    "body": [
+      "L’Ajuntament de Montcada i Reixac va encarregar a Peralta Urbanisme el suport per a la definició d’un model urbanístic per a l’àmbit que abasta el marge esquerre adjacent al riu Besòs."
+    ]
+  },
+  "es": {
+    "tag": "Estudio · Modelo urbano",
+    "title": "Un nuevo modelo urbanístico para el margen izquierdo del Besòs en Montcada i Reixac",
+    "summary": "Peralta Urbanisme estudia las oportunidades de transformación de un ámbito estratégico entre río, infraestructuras y tejidos urbanos.",
+    "body": [
+      "El Ayuntamiento de Montcada i Reixac encargó a Peralta Urbanisme el apoyo para la definición de un modelo urbanístico para el ámbito que abarca el margen izquierdo adyacente al río Besòs."
+    ]
+  },
+  "en": {
+    "tag": "Study · Urban model",
+    "title": "A new urban model for the left bank of the Besòs in Montcada i Reixac",
+    "summary": "Peralta Urbanisme is studying the transformation opportunities of a strategic area between the river, infrastructure and urban fabric.",
+    "body": [
+      "Montcada i Reixac City Council commissioned Peralta Urbanisme to support the definition of an urban model for the area along the left bank of the Besòs river."
+    ]
+  }
+}

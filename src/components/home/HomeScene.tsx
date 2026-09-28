@@ -933,7 +933,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             {NEWS_LABELS[toLoc(locale)].all}
           </Link>
         </header>
-        <NewsList items={news.slice(0, 3)} locale={locale} />
+        <NewsList items={news.slice(0, 6)} locale={locale} />
         <style>{`
           .pu-home-news-all {
             font-family: var(--font-sans);

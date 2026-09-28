@@ -1,0 +1,41 @@
+{
+  "slug": "granollers-pmu-110b-aprovacio",
+  "date": "2025-03-05",
+  "images": [],
+  "relatedProjects": [
+    "pmu-granollers-110b"
+  ],
+  "sources": [
+    {
+      "label": "Ajuntament de Granollers — resum del Ple de 4/03/2025",
+      "url": "https://www.granollers.cat/noticies/sala-de-premsa/resum-dels-acords-del-ple-de-4-de-mar%C3%A7-de-2025"
+    }
+  ],
+  "ca": {
+    "tag": "Aprovació · Planejament",
+    "title": "Aprovació definitiva del PMU 110b de Granollers",
+    "summary": "El planejament redactat per Peralta Urbanisme fa possible una nova peça urbana vinculada al soterrament ferroviari i a l’estació.",
+    "body": [
+      "El Ple de l’Ajuntament de Granollers va aprovar definitivament el Pla de Millora Urbana del sector 110b, redactat per Peralta Urbanisme.",
+      "El pla s’emmarca en la transformació de l’entorn ferroviari i permet configurar un nou front urbà al costat de l’estació, vinculat al soterrament d’un tram de les vies."
+    ]
+  },
+  "es": {
+    "tag": "Aprobación · Planeamiento",
+    "title": "Aprobación definitiva del PMU 110b de Granollers",
+    "summary": "El planeamiento redactado por Peralta Urbanisme hace posible una nueva pieza urbana vinculada al soterramiento ferroviario y a la estación.",
+    "body": [
+      "El Pleno del Ayuntamiento de Granollers aprobó definitivamente el Plan de Mejora Urbana del sector 110b, redactado por Peralta Urbanisme.",
+      "El plan se enmarca en la transformación del entorno ferroviario y permite configurar un nuevo frente urbano junto a la estación, vinculado al soterramiento de un tramo de las vías."
+    ]
+  },
+  "en": {
+    "tag": "Approval · Planning",
+    "title": "Final approval of the PMU 110b in Granollers",
+    "summary": "The plan drafted by Peralta Urbanisme enables a new urban piece linked to the railway undergrounding and the station.",
+    "body": [
+      "Granollers City Council’s plenary session gave final approval to the Urban Improvement Plan for sector 110b, drafted by Peralta Urbanisme.",
+      "The plan is part of the transformation of the railway area and creates a new urban frontage next to the station, linked to the undergrounding of a section of the tracks."
+    ]
+  }
+}

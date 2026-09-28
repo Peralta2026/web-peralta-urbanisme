@@ -1,0 +1,45 @@
+{
+  "slug": "sant-feliu-codines-pla-de-barris-continuitat",
+  "date": "2026-03-19",
+  "images": [],
+  "relatedProjects": [
+    "sant-feliu-codines-pla-barris"
+  ],
+  "sources": [
+    {
+      "label": "Contratos Radar — registre de l’encàrrec",
+      "url": "https://www.contratosradar.es/empresa/peralta-urbanisme-slp"
+    },
+    {
+      "label": "Ona Codinenca — projecte del Torrent de l’Escletxa",
+      "url": "https://onacodinenca.cat/sant-feliu-es-presenta-a-una-subvencio-de-la-generalitat-amb-un-projecte-de-123-milions-deuros-per"
+    }
+  ],
+  "ca": {
+    "tag": "Projecte · Regeneració urbana",
+    "title": "Continuïtat del treball a Sant Feliu de Codines en el marc del Pla de Barris",
+    "summary": "Un nou encàrrec dona continuïtat a l’estratègia de transformació urbana vinculada al Torrent de l’Escletxa.",
+    "body": [
+      "Peralta Urbanisme va rebre un nou encàrrec de l’Ajuntament de Sant Feliu de Codines per a la memòria d’intervenció integral vinculada a la segona convocatòria del Pla de Barris.",
+      "El treball dona continuïtat a la proposta presentada el 2025 per transformar l’àmbit del Torrent de l’Escletxa en un eix cívic, verd i patrimonial capaç de vertebrar el municipi."
+    ]
+  },
+  "es": {
+    "tag": "Proyecto · Regeneración urbana",
+    "title": "Continuidad del trabajo en Sant Feliu de Codines en el marco del Plan de Barrios",
+    "summary": "Un nuevo encargo da continuidad a la estrategia de transformación urbana vinculada al Torrent de l’Escletxa.",
+    "body": [
+      "Peralta Urbanisme recibió un nuevo encargo del Ayuntamiento de Sant Feliu de Codines para la memoria de intervención integral vinculada a la segunda convocatoria del Plan de Barrios.",
+      "El trabajo da continuidad a la propuesta presentada en 2025 para transformar el ámbito del Torrent de l’Escletxa en un eje cívico, verde y patrimonial capaz de vertebrar el municipio."
+    ]
+  },
+  "en": {
+    "tag": "Project · Urban regeneration",
+    "title": "Continued work in Sant Feliu de Codines under the Neighbourhoods Plan",
+    "summary": "A new commission continues the urban transformation strategy for the Torrent de l’Escletxa.",
+    "body": [
+      "Peralta Urbanisme received a new commission from Sant Feliu de Codines City Council for the comprehensive intervention report linked to the second call of the Neighbourhoods Plan.",
+      "The work builds on the proposal presented in 2025 to turn the Torrent de l’Escletxa area into a civic, green and heritage axis capable of structuring the town."
+    ]
+  }
+}

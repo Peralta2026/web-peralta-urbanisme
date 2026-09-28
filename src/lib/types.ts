@@ -76,19 +76,14 @@ export interface TeamMember {
 
 export type Locale = "ca" | "es" | "en";
 
-export type NewsCategory =
-  | "esdeveniment"
-  | "concurs"
-  | "aprovacio"
-  | "participacio"
-  | "premsa"
-  | "premi"
-  | "equip";
-
 export interface NewsLocale {
+  /** Etiqueta editorial, p. ex. "Projecte · Planejament" */
+  tag: string;
   title: string;
   summary: string;
   body: string[];
+  /** Substitueix la data calculada quan no és exacta, p. ex. "Primavera 2026" */
+  dateLabel?: string;
   credits?: string;
 }
 
@@ -96,11 +91,12 @@ export interface NewsItem {
   slug: string;
   /** "YYYY-MM" o "YYYY-MM-DD" — ordena cronològicament com a text */
   date: string;
-  category: NewsCategory;
   coverImage?: string;
+  /** "contain" per a cartells o gràfics que no s'han de retallar */
+  coverFit?: "cover" | "contain";
   images: string[];
   relatedProjects: string[];
-  source?: { network: "linkedin" | "instagram"; url: string };
+  sources?: { label: string; url: string }[];
   ca: NewsLocale;
   es: NewsLocale;
   en: NewsLocale;

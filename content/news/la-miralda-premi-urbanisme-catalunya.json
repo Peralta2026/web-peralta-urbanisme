@@ -1,0 +1,48 @@
+{
+  "slug": "la-miralda-premi-urbanisme-catalunya",
+  "date": "2026-04",
+  "coverImage": "/news/la-miralda-premi-urbanisme-catalunya/premi-1.jpg",
+  "images": [
+    "/news/la-miralda-premi-urbanisme-catalunya/premi-1.jpg",
+    "/news/la-miralda-premi-urbanisme-catalunya/premi-2.jpg"
+  ],
+  "relatedProjects": [
+    "la-miralda-pendent"
+  ],
+  "sources": [
+    {
+      "label": "La Llagosta Informa, núm. 135, juny 2026",
+      "url": "https://lallagostainforma.cat/load/2026/06/La-Llagosta-informa-135-catala.pdf"
+    }
+  ],
+  "ca": {
+    "tag": "Premi · Urbanisme",
+    "title": "La Miralda rep el Premi d’Urbanisme de Catalunya Manuel de Solà-Morales",
+    "summary": "El planejament de la Llagosta és reconegut per afrontar amb ambició i rigor la transformació d’un àmbit urbà complex.",
+    "body": [
+      "La Modificació puntual del Pla General d’Ordenació Urbana de la Llagosta en l’àmbit de la Miralda, redactada per Peralta Urbanisme conjuntament amb els tècnics municipals, va obtenir el primer Premi d’Urbanisme de Catalunya Manuel de Solà-Morales, convocat per la Societat Catalana d’Ordenació del Territori.",
+      "El projecte transforma una antiga peça industrial en una nova centralitat urbana articulada al voltant d’un parc estructurant, habitatge i activitat en planta baixa."
+    ],
+    "dateLabel": "Primavera 2026"
+  },
+  "es": {
+    "tag": "Premio · Urbanismo",
+    "title": "La Miralda recibe el Premio de Urbanismo de Cataluña Manuel de Solà-Morales",
+    "summary": "El planeamiento de La Llagosta es reconocido por afrontar con ambición y rigor la transformación de un ámbito urbano complejo.",
+    "body": [
+      "La Modificación puntual del Plan General de Ordenación Urbana de La Llagosta en el ámbito de la Miralda, redactada por Peralta Urbanisme conjuntamente con los técnicos municipales, obtuvo el primer Premio de Urbanismo de Cataluña Manuel de Solà-Morales, convocado por la Societat Catalana d’Ordenació del Territori.",
+      "El proyecto transforma una antigua pieza industrial en una nueva centralidad urbana articulada en torno a un parque estructurante, vivienda y actividad en planta baja."
+    ],
+    "dateLabel": "Primavera 2026"
+  },
+  "en": {
+    "tag": "Award · Urban planning",
+    "title": "La Miralda receives the Manuel de Solà-Morales Catalonia Urban Planning Award",
+    "summary": "The La Llagosta plan is recognised for tackling the transformation of a complex urban area with ambition and rigour.",
+    "body": [
+      "The specific amendment to La Llagosta’s General Urban Development Plan for the La Miralda area, drafted by Peralta Urbanisme together with the municipal technical staff, received the first Manuel de Solà-Morales Catalonia Urban Planning Award, organised by the Catalan Society for Territorial Planning.",
+      "The project transforms a former industrial site into a new urban centrality organised around a structuring park, housing and ground-floor activity."
+    ],
+    "dateLabel": "Spring 2026"
+  }
+}

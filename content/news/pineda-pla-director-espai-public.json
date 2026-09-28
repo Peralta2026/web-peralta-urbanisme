@@ -1,0 +1,45 @@
+{
+  "slug": "pineda-pla-director-espai-public",
+  "date": "2026-03",
+  "images": [],
+  "relatedProjects": [
+    "pineda-pla-espai-public"
+  ],
+  "sources": [
+    {
+      "label": "Gobierto Contratación — adjudicació PDEP Pineda",
+      "url": "https://contratos.gobierto.es/adjudicatarios/peralta-urbanisme-slp"
+    },
+    {
+      "label": "Peralta Urbanisme a LinkedIn",
+      "url": "https://es.linkedin.com/company/peralta-urbanisme-slp"
+    }
+  ],
+  "ca": {
+    "tag": "Projecte · Espai públic",
+    "title": "Peralta Urbanisme redactarà el Pla Director de l’Espai Públic de Pineda de Mar",
+    "summary": "Paisatge, mobilitat i participació per construir un nou model d’espai públic a escala municipal.",
+    "body": [
+      "La Diputació de Barcelona va adjudicar a Peralta Urbanisme la redacció del Pla Director de l’Espai Públic de Pineda de Mar. El treball es desenvolupa amb Estudi Martí Franch i Raons Públiques.",
+      "La proposta parteix d’una lectura conjunta de l’estructura territorial i dels espais de proximitat, amb les rieres, la platja, la carretera i el samontà com a elements capaços d’articular un sistema d’espais públics més saludable, inclusiu i resilient."
+    ]
+  },
+  "es": {
+    "tag": "Proyecto · Espacio público",
+    "title": "Peralta Urbanisme redactará el Plan Director del Espacio Público de Pineda de Mar",
+    "summary": "Paisaje, movilidad y participación para construir un nuevo modelo de espacio público a escala municipal.",
+    "body": [
+      "La Diputación de Barcelona adjudicó a Peralta Urbanisme la redacción del Plan Director del Espacio Público de Pineda de Mar. El trabajo se desarrolla con Estudi Martí Franch y Raons Públiques.",
+      "La propuesta parte de una lectura conjunta de la estructura territorial y de los espacios de proximidad, con las rieras, la playa, la carretera y el piedemonte como elementos capaces de articular un sistema de espacios públicos más saludable, inclusivo y resiliente."
+    ]
+  },
+  "en": {
+    "tag": "Project · Public space",
+    "title": "Peralta Urbanisme to draft the Public Space Master Plan for Pineda de Mar",
+    "summary": "Landscape, mobility and participation to build a new model of public space at the municipal scale.",
+    "body": [
+      "Barcelona Provincial Council awarded Peralta Urbanisme the drafting of the Public Space Master Plan for Pineda de Mar. The work is being developed with Estudi Martí Franch and Raons Públiques.",
+      "The proposal starts from a joint reading of the territorial structure and everyday local spaces, with the streams, the beach, the road and the foothills as elements capable of structuring a healthier, more inclusive and more resilient system of public spaces."
+    ]
+  }
+}

@@ -1,18 +1,12 @@
 import Link from "next/link";
-import type { NewsCategory, NewsItem } from "@/lib/types";
+import type { NewsItem } from "@/lib/types";
 
 type Loc = "ca" | "es" | "en";
 
-export const CATEGORY_LABELS: Record<Loc, Record<NewsCategory, string>> = {
-  ca: { esdeveniment: "Esdeveniment", concurs: "Concurs", aprovacio: "Aprovació", participacio: "Participació", premsa: "Premsa", premi: "Premi", equip: "Equip" },
-  es: { esdeveniment: "Evento", concurs: "Concurso", aprovacio: "Aprobación", participacio: "Participación", premsa: "Prensa", premi: "Premio", equip: "Equipo" },
-  en: { esdeveniment: "Event", concurs: "Competition", aprovacio: "Approval", participacio: "Participation", premsa: "Press", premi: "Award", equip: "Studio" },
-};
-
-export const NEWS_LABELS: Record<Loc, { title: string; all: string; back: string; source: string; related: string; credits: string }> = {
-  ca: { title: "Notícies", all: "Totes les notícies", back: "Totes les notícies", source: "Publicat a", related: "Projectes relacionats", credits: "Equip" },
-  es: { title: "Noticias", all: "Todas las noticias", back: "Todas las noticias", source: "Publicado en", related: "Proyectos relacionados", credits: "Equipo" },
-  en: { title: "News", all: "All news", back: "All news", source: "Published on", related: "Related projects", credits: "Team" },
+export const NEWS_LABELS: Record<Loc, { title: string; all: string; back: string; sources: string; related: string; credits: string }> = {
+  ca: { title: "Notícies", all: "Totes les notícies", back: "Totes les notícies", sources: "Fonts", related: "Projectes relacionats", credits: "Equip" },
+  es: { title: "Noticias", all: "Todas las noticias", back: "Todas las noticias", sources: "Fuentes", related: "Proyectos relacionados", credits: "Equipo" },
+  en: { title: "News", all: "All news", back: "All news", sources: "Sources", related: "Related projects", credits: "Team" },
 };
 
 export function toLoc(locale: string): Loc {
@@ -32,84 +26,89 @@ export function formatNewsDate(date: string, locale: string) {
   return [day ? String(Number(day)) : null, name, year].filter(Boolean).join(" ");
 }
 
+/** Data visible: l'etiqueta manual ("Primavera 2026") té prioritat sobre la calculada */
+export function newsDate(item: NewsItem, locale: string) {
+  return item[toLoc(locale)].dateLabel ?? formatNewsDate(item.date, locale);
+}
+
 export function newsHref(locale: string, slug?: string) {
   return `/${locale}/noticies${slug ? `/${slug}` : ""}`;
 }
 
+function NewsCard({ item, index, locale }: { item: NewsItem; index: number; locale: string }) {
+  const t = item[toLoc(locale)];
+  return (
+    <Link href={newsHref(locale, item.slug)} className="pu-mag-item" style={{ order: index }}>
+      {item.coverImage && (
+        <span className={`pu-mag-img${item.coverFit === "contain" ? " pu-mag-img--contain" : ""}`}>
+          <img src={item.coverImage} alt="" loading="lazy" />
+        </span>
+      )}
+      <span className="pu-mag-meta">
+        <span className="pu-mag-date">{newsDate(item, locale)}</span>
+        <span className="pu-mag-tag">{t.tag}</span>
+      </span>
+      <span className="pu-mag-title">{t.title}</span>
+      <span className="pu-mag-summary">{t.summary}</span>
+    </Link>
+  );
+}
+
+/**
+ * Maqueta de revista: tres columnes separades per filets verticals.
+ * Les notícies es reparteixen d'esquerra a dreta (1·2·3, 4·5·6…) perquè
+ * l'ordre de lectura segueixi sent cronològic; en mòbil es tornen a llegir
+ * en una sola columna gràcies a `order`.
+ */
 export default function NewsList({ items, locale }: { items: NewsItem[]; locale: string }) {
-  const loc = toLoc(locale);
+  const columns: { item: NewsItem; index: number }[][] = [[], [], []];
+  items.forEach((item, index) => columns[index % 3].push({ item, index }));
 
   return (
-    <ol className="pu-news-list">
-      {items.map((item) => {
-        const t = item[loc];
-        return (
-          <li key={item.slug}>
-            <Link href={newsHref(locale, item.slug)} className="pu-news-row">
-              <span className="pu-news-text">
-                <span className="pu-news-meta">
-                  {formatNewsDate(item.date, locale)} · {CATEGORY_LABELS[loc][item.category]}
-                </span>
-                <span className="pu-news-title">{t.title}</span>
-                <span className="pu-news-summary">{t.summary}</span>
-              </span>
-              <span className="pu-news-thumb">
-                {item.coverImage ? <img src={item.coverImage} alt="" loading="lazy" /> : null}
-              </span>
-            </Link>
-          </li>
-        );
-      })}
+    <div className="pu-mag">
+      {columns.map((col, c) => (
+        <div key={c} className="pu-mag-col">
+          {col.map(({ item, index }) => (
+            <NewsCard key={item.slug} item={item} index={index} locale={locale} />
+          ))}
+        </div>
+      ))}
 
       <style>{`
-        .pu-news-list {
-          list-style: none;
-          margin: 0;
-          padding: 0;
+        .pu-mag {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           border-top: 1px solid var(--color-border);
         }
-        .pu-news-row {
-          display: grid;
-          grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
-          gap: clamp(20px, 3vw, 48px);
-          padding: clamp(24px, 3.5vh, 40px) 0;
-          border-bottom: 1px solid var(--color-border);
+        .pu-mag-col {
+          display: flex;
+          flex-direction: column;
+          padding: 0 clamp(24px, 3vw, 48px);
+        }
+        .pu-mag-col:first-child { padding-left: 0; }
+        .pu-mag-col:last-child  { padding-right: 0; }
+        .pu-mag-col + .pu-mag-col { border-left: 1px solid var(--color-border); }
+
+        .pu-mag-item {
+          display: flex;
+          flex-direction: column;
+          padding: clamp(32px, 4.5vh, 52px) 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
           color: var(--color-fg);
           text-decoration: none;
           transition: opacity var(--dur-fast) ease;
         }
-        .pu-news-row:hover { opacity: 0.55; }
-        .pu-news-meta {
-          font-family: var(--font-sans);
-          font-size: var(--size-meta);
-          color: var(--color-muted);
-          font-variant-numeric: tabular-nums;
-        }
-        .pu-news-text {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          max-width: 640px;
-        }
-        .pu-news-title {
-          font-family: var(--font-sans);
-          font-size: clamp(20px, 1.9vw, 28px);
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          line-height: 1.12;
-        }
-        .pu-news-summary {
-          font-family: var(--font-sans);
-          font-size: var(--size-body);
-          line-height: 1.6;
-          color: #444;
-        }
-        .pu-news-thumb {
+        .pu-mag-col .pu-mag-item:last-child { border-bottom: none; }
+        .pu-mag-item:hover { opacity: 0.6; }
+
+        .pu-mag-img {
           display: block;
           aspect-ratio: 4 / 3;
           overflow: hidden;
+          margin-bottom: 24px;
+          background: var(--color-gray-light);
         }
-        .pu-news-thumb img {
+        .pu-mag-img img {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -117,15 +116,46 @@ export default function NewsList({ items, locale }: { items: NewsItem[]; locale:
           filter: grayscale(1);
           transition: filter var(--dur-mid) ease;
         }
-        .pu-news-row:hover .pu-news-thumb img { filter: grayscale(0); }
-        @media (max-width: 768px) {
-          .pu-news-row {
-            grid-template-columns: 1fr;
-            gap: 14px;
-          }
-          .pu-news-thumb:empty { display: none; }
+        .pu-mag-item:hover .pu-mag-img img { filter: grayscale(0); }
+        .pu-mag-img--contain { background: #fff; }
+        .pu-mag-img--contain img { object-fit: contain; }
+
+        .pu-mag-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px 14px;
+          margin-bottom: 14px;
+          font-family: var(--font-sans);
+          font-size: 12px;
+          line-height: 1.4;
+          font-variant-numeric: tabular-nums;
+        }
+        .pu-mag-date { color: var(--color-fg); font-weight: 600; }
+        .pu-mag-tag  { color: var(--color-muted); }
+
+        .pu-mag-title {
+          font-family: var(--font-sans);
+          font-size: clamp(21px, 1.75vw, 27px);
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          line-height: 1.12;
+          text-wrap: balance;
+          margin-bottom: 14px;
+        }
+        .pu-mag-summary {
+          font-family: var(--font-sans);
+          font-size: 14.5px;
+          line-height: 1.6;
+          color: #555;
+          max-width: 36em;
+        }
+
+        @media (max-width: 860px) {
+          .pu-mag { display: flex; flex-direction: column; }
+          .pu-mag-col { display: contents; }
+          .pu-mag-item { border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important; }
         }
       `}</style>
-    </ol>
+    </div>
   );
 }

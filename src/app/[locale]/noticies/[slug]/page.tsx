@@ -4,11 +4,9 @@ import { notFound } from "next/navigation";
 import { getAllNews, getNewsBySlug } from "@/lib/news";
 import { getProjectBySlug } from "@/lib/projects";
 import type { Project } from "@/lib/types";
-import { CATEGORY_LABELS, NEWS_LABELS, formatNewsDate, newsHref, toLoc } from "@/components/news/NewsList";
+import { NEWS_LABELS, newsDate, newsHref, toLoc } from "@/components/news/NewsList";
 
 export const dynamic = "force-static";
-
-const NETWORK_NAMES = { linkedin: "LinkedIn", instagram: "Instagram" } as const;
 
 export async function generateStaticParams() {
   return getAllNews().flatMap((n) =>
@@ -52,7 +50,7 @@ export default async function NoticiaPage({
     <article className="pu-noticia">
       <header className="pu-noticia-header">
         <p className="pu-noticia-meta">
-          {formatNewsDate(item.date, locale)} · {CATEGORY_LABELS[loc][item.category]}
+          {newsDate(item, locale)} · {t.tag}
         </p>
         <h1>{t.title}</h1>
       </header>
@@ -64,7 +62,7 @@ export default async function NoticiaPage({
             <p key={i} className="pu-noticia-para">{para}</p>
           ))}
 
-          {(t.credits || related.length > 0 || item.source) && (
+          {(t.credits || related.length > 0 || item.sources?.length) && (
             <dl className="pu-noticia-facts">
               {t.credits && (
                 <div>
@@ -84,13 +82,15 @@ export default async function NoticiaPage({
                   </dd>
                 </div>
               )}
-              {item.source && (
+              {item.sources && item.sources.length > 0 && (
                 <div>
-                  <dt>{labels.source}</dt>
+                  <dt>{labels.sources}</dt>
                   <dd>
-                    <a href={item.source.url} target="_blank" rel="noopener noreferrer" className="pu-noticia-link">
-                      {NETWORK_NAMES[item.source.network]} ↗
-                    </a>
+                    {item.sources.map((s) => (
+                      <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="pu-noticia-link">
+                        {s.label} ↗
+                      </a>
+                    ))}
                   </dd>
                 </div>
               )}
