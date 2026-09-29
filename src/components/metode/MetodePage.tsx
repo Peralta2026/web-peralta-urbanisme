@@ -420,11 +420,21 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         /* ── MODES / SERVICES ── */
         .met-modes {
           display: grid;
-          grid-template-columns: 3fr 2fr;
+          grid-template-columns: 1fr 1fr;
           border-top: 1px solid rgba(0,0,0,0.08);
+          align-items: start;
         }
         .met-modes-left { padding-bottom: 80px; }
-        .met-modes-right { display: flex; align-items: flex-start; padding: 48px 32px; border-left: 1px solid rgba(0,0,0,0.08); }
+        .met-modes-right {
+          position: sticky;
+          top: var(--header-height, 64px);
+          height: calc(100vh - var(--header-height, 64px));
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 32px clamp(24px, 3vw, 56px);
+          border-left: 1px solid rgba(0,0,0,0.08);
+        }
         .met-modes-header-block { padding: 72px var(--margin-page) 56px; }
         .met-modes-header-block h2 {
           font-family: var(--font-sans);
@@ -467,7 +477,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         }
 
         /* Diagram in column context */
-        .met-modes-right .md-svg-outer { width: 100%; }
+        .met-modes-right .md-svg-outer { width: 100%; max-width: 620px; }
 
         /* ── TRIANGLE DIAGRAM ── */
         .md-svg-outer { cursor: pointer; outline: none; }
@@ -565,7 +575,15 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           .met-pillar-col.is-open, .met-pillar-cols.is-locked .met-pillar-col { min-height: 320px; }
           .met-pillar-word-v { writing-mode: horizontal-tb; transform: none; font-size: clamp(22px,5vw,34px); justify-content: flex-start; padding: 0 var(--margin-page); }
           .met-modes { grid-template-columns: 1fr; }
-          .met-modes-right { padding: 0 var(--margin-page) 56px; border-left: none; border-top: 1px solid rgba(0,0,0,0.08); }
+          .met-modes-right {
+            position: static;
+            height: auto;
+            padding: 48px var(--margin-page) 64px;
+            border-left: none;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            justify-content: center;
+          }
+          .met-modes-right .md-svg-outer { width: 100%; max-width: 100%; }
         }
         @media (max-width: 768px) {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }

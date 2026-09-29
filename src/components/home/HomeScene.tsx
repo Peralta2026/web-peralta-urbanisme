@@ -471,8 +471,23 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       vY.current = Math.max(0, Math.min(raw, totalRangeRef.current));
     };
 
+    /* ── Mobile touch lock: block scroll-up once hero is done ── */
+    let lastTouchY = 0;
+    const onTouchStart = (e: TouchEvent) => { lastTouchY = e.touches[0].clientY; };
+    const onTouchMove  = (e: TouchEvent) => {
+      if (!heroCompletedRef.current) return;
+      const currentY  = e.touches[0].clientY;
+      const goingUp   = currentY > lastTouchY; // finger moves down → content scrolls up
+      lastTouchY = currentY;
+      if (goingUp && window.scrollY <= heroMinScrollRef.current + 20) {
+        e.preventDefault();
+      }
+    };
+
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll",      onScroll,      { passive: true });
+    window.addEventListener("touchstart",  onTouchStart,  { passive: true });
+    window.addEventListener("touchmove",   onTouchMove,   { passive: false });
     lastTime.current = performance.now();
 
     const tick = () => {
@@ -501,7 +516,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       heroDoneRef.current = heroDone;
       if (heroDone && !heroCompletedRef.current) {
         heroCompletedRef.current = true;
-        heroMinScrollRef.current = SETTLE_END;
+        heroMinScrollRef.current = SETTLE_END + OPEN_RANGE;
       }
 
       /* ── Phase 0: hero crossfade ── */
@@ -562,7 +577,9 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     rafId.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll",     onScroll);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove",  onTouchMove);
       cancelAnimationFrame(rafId.current);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
