@@ -406,6 +406,9 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
           line-height: 1;
           color: #000;
         }
+        @media (max-width: 768px) {
+          .pu-sintetic-navlink, .pu-sintetic-navactive { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
+        }
       `}</style>
     </>
   );

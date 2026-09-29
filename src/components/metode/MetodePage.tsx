@@ -528,7 +528,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         .met-clients-label {
           font-family: var(--font-sans);
           font-size: 13px;
-          font-weight: 400;
+          font-weight: 700;
           color: #888;
           margin: 0 0 clamp(20px,3vh,32px);
           padding: 0 var(--margin-page);

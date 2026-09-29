@@ -119,7 +119,8 @@ export default function Footer({ locale }: { locale: string }) {
         }
         .pu-footer-logo-link {
           display: block;
-          width: clamp(160px, 18vw, 260px);
+          width: clamp(202px, 24vw, 264px);
+          margin-left: clamp(-33px, -3vw, -25px);
         }
         .pu-footer-tagline {
           font-family: var(--font-sans);

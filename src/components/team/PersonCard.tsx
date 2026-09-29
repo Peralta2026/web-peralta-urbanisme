@@ -126,9 +126,41 @@ export default function PersonCard({ member, locale, photoSide }: Props) {
   return (
     <>
       {/* ── Mobile ── */}
-      <div className="flex flex-col gap-5 md:hidden">
-        <div style={{ maxWidth: `${PHOTO_W}px` }}>{photoEl}</div>
-        {textEl}
+      <div className="flex flex-col gap-4 md:hidden">
+        {/* Full photo, natural proportions */}
+        <div style={{ width: "100%", backgroundColor: "#c8c8c8", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/team/${member.photo}`}
+            alt={data.name}
+            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            style={{ width: "100%", height: "auto", display: "block", filter: "grayscale(100%)" }}
+          />
+        </div>
+        {/* Name + role + bio */}
+        <div>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#888", marginBottom: "8px", lineHeight: 1.5 }}>
+            {data.role}
+          </p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "10px" }}>
+            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: "22px", letterSpacing: "-0.02em", lineHeight: 1.05, color: "#000", margin: 0 }}>
+              {data.name}
+            </h2>
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              aria-label={expanded ? "Tancar bio" : "Llegir bio"}
+              style={{ fontFamily: "var(--font-sans)", fontSize: "20px", fontWeight: 300, color: "#000", background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 1, flexShrink: 0, transition: "transform 0.3s ease", transform: expanded ? "rotate(45deg)" : "none" }}
+            >
+              +
+            </button>
+          </div>
+          <div style={{ maxHeight: expanded ? "600px" : "0px", overflow: "hidden", transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1)" }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.7, color: "#333", marginTop: "18px", whiteSpace: "pre-line" }}>
+              {data.bioLong}
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* ── Desktop: photo left ── */}

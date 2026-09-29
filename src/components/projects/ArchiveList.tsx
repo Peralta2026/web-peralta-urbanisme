@@ -400,7 +400,7 @@ export default function ArchiveList({ projects, locale }: Props) {
         flexWrap: "wrap",
       }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(14px,2.2vw,32px)", flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
+          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "clamp(14px,3.5vw,20px)" : "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: isMobile ? "-0.02em" : "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
           <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
           <Link href={`/${locale}/mapa`} className="pu-dirview-link">TERRITORIAL</Link>
           <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
@@ -633,6 +633,9 @@ export default function ArchiveList({ projects, locale }: Props) {
           transition: color 200ms ease;
         }
         .pu-dirview-link:hover { color: #555; }
+        @media (max-width: 768px) {
+          .pu-dirview-link { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
+        }
         .pu-archive-row:not(.pu-archive-row--static):hover { background: #f5f5f3; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Estudi"]:hover              { background: #F9EE76; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Planejament general"]:hover { background: #B4EFC5; }

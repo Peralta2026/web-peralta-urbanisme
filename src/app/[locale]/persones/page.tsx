@@ -104,7 +104,7 @@ export default async function PersonesPage({
         <p style={{
           fontFamily: "var(--font-sans)",
           fontSize:   "13px",
-          fontWeight: 400,
+          fontWeight: 700,
           color:      "#888",
           margin:     "0 0 clamp(14px,2vh,20px)",
         }}>
@@ -257,7 +257,7 @@ export default async function PersonesPage({
         .pu-clients-label {
           font-family: var(--font-sans);
           font-size: 13px;
-          font-weight: 400;
+          font-weight: 700;
           color: #888;
           margin: 0 0 clamp(20px,3vh,32px);
           padding: 0 var(--margin-page);

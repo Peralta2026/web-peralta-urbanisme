@@ -394,11 +394,13 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
   const drawModeRef     = useRef<"draw" | "erase">("draw");
   const strokeSizeRef   = useRef<1 | 2 | 3 | 4>(3);
   const clearFnRef      = useRef<() => void>(() => {});
+  const videoElemRef    = useRef<HTMLVideoElement>(null);
 
   /* Hero-exit lock */
   const heroDoneRef      = useRef(false);  // dynamic: true when hero fully off-screen
   const heroCompletedRef = useRef(false);  // one-time: stays true after first exit
   const heroMinScrollRef = useRef(0);
+  const introOffsetRef   = useRef(0);      // 0 before intro done; SETTLE_END+OPEN_RANGE after
   const isMobileRef      = useRef(false);
 
   /* Dynamic scroll values */
@@ -424,10 +426,10 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     const n = Math.max(1, displayProjects.length);
     nCardsRef.current    = n;
     totalRangeRef.current = SETTLE_END + n * CARDS_PER_STEP;
-    if (scrollSpaceRef.current) {
+    if (scrollSpaceRef.current && !heroCompletedRef.current) {
       scrollSpaceRef.current.style.height = `calc(100vh + ${totalRangeRef.current}px)`;
     }
-    vY.current = Math.max(0, Math.min(vY.current, totalRangeRef.current));
+    vY.current = Math.min(vY.current, totalRangeRef.current);
   }, [displayProjects.length]);
 
   /* ── Mobile detection ── */
@@ -441,6 +443,20 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ── Video freeze: restart before black-bar end frames ── */
+  useEffect(() => {
+    const video = videoElemRef.current;
+    if (!video) return;
+    const onTimeUpdate = () => {
+      if (video.duration && video.currentTime >= video.duration - 2) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }
+    };
+    video.addEventListener("timeupdate", onTimeUpdate);
+    return () => video.removeEventListener("timeupdate", onTimeUpdate);
   }, []);
 
   const handleModeChange = (mode: "draw" | "erase") => {
@@ -460,15 +476,9 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     rightOff.current = loopH.current * 0.4;
 
     const onScroll = () => {
-      const raw = window.scrollY;
-      if (heroCompletedRef.current && raw < heroMinScrollRef.current) {
-        window.scrollTo(0, heroMinScrollRef.current);
-        pageY.current = heroMinScrollRef.current;
-        vY.current    = heroMinScrollRef.current;
-        return;
-      }
+      const raw     = window.scrollY;
       pageY.current = raw;
-      vY.current = Math.max(0, Math.min(raw, totalRangeRef.current));
+      vY.current    = Math.min(raw + introOffsetRef.current, totalRangeRef.current);
     };
 
     /* ── Mobile touch lock: block scroll-up once hero is done ── */
@@ -485,6 +495,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     };
 
     onScroll();
+    sY.current = vY.current; // snap: no lerp flash if page reloads mid-scroll
     window.addEventListener("scroll",      onScroll,      { passive: true });
     window.addEventListener("touchstart",  onTouchStart,  { passive: true });
     window.addEventListener("touchmove",   onTouchMove,   { passive: false });
@@ -516,7 +527,22 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       heroDoneRef.current = heroDone;
       if (heroDone && !heroCompletedRef.current) {
         heroCompletedRef.current = true;
-        heroMinScrollRef.current = SETTLE_END + OPEN_RANGE;
+        introOffsetRef.current   = SETTLE_END + OPEN_RANGE; // 860
+        heroMinScrollRef.current = 0;
+        // Shrink scroll space — remove intro portion so scrollY=0 = hero top
+        const newRange = nCardsRef.current * CARDS_PER_STEP - OPEN_RANGE;
+        if (scrollSpaceRef.current) {
+          scrollSpaceRef.current.style.height = `calc(100vh + ${newRange}px)`;
+        }
+        // Jump scrollY back so the visual position doesn't change
+        const jumpTo = Math.max(0, pageY.current - introOffsetRef.current);
+        window.scrollTo(0, jumpTo);
+        pageY.current = jumpTo;
+        // Remove hero from rendering entirely — can never flash back
+        if (heroRef.current) heroRef.current.style.display = "none";
+        if (mosaicRef.current && !isMobileRef.current) {
+          // mosaic is still needed for desktop; keep it until cards panel covers it
+        }
       }
 
       /* ── Phase 0: hero crossfade ── */
@@ -564,7 +590,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       }
 
       /* Exit: reveal footer */
-      const exitY = Math.max(0, pageY.current - totalRange);
+      const exitY = Math.max(0, pageY.current + introOffsetRef.current - totalRange);
       if (exitY > 0) {
         if (cardsPanelRef.current) cardsPanelRef.current.style.transform = `translateY(-${exitY.toFixed(1)}px)`;
         if (mosaicRef.current)     mosaicRef.current.style.transform     = `translateY(-${exitY.toFixed(1)}px)`;
@@ -877,11 +903,11 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
           ref={videoRef}
           style={isMobile ? {
             position:   "absolute",
-            top:        "7%",
+            top:        "2%",
             left:       0,
             right:      0,
             width:      "100%",
-            height:     "44%",
+            height:     "62%",
             overflow:   "hidden",
             opacity:    0,
             background: "#fff",
@@ -898,9 +924,9 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         >
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
+            ref={videoElemRef}
             autoPlay
             muted
-            loop
             playsInline
             style={{
               width:      "100%",
@@ -933,7 +959,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         {/* SETTLED LAYER — text + links */}
         <div
           ref={settledLayerRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: isMobile ? "58% var(--margin-mobile) 20px" : "20px var(--margin-page)", justifyContent: isMobile ? "flex-start" : "flex-end", overflowY: isMobile ? "auto" : "hidden" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, display: "flex", flexDirection: "column", padding: isMobile ? "66% var(--margin-mobile) 20px" : "20px var(--margin-page)", justifyContent: isMobile ? "flex-start" : "flex-end", overflowY: isMobile ? "auto" : "hidden" }}
         >
           <div style={{ maxWidth: isMobile ? "100%" : "min(900px,90%)", paddingBottom: isMobile ? "0" : "clamp(16px,2.5vh,36px)" }}>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(22px,2.4vw,36px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#000", margin: "0 0 0.1em" }}>

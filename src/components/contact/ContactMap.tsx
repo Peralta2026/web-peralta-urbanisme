@@ -202,17 +202,17 @@ export default function ContactMap() {
           user-select: none;
         }
 
-        /* ── Popup — fixed, en l'espai buit a la dreta ── */
+        /* ── Popup — centered on screen ── */
         .pu-cmap-popup {
           position: fixed;
           top: 50%;
-          right: clamp(24px, 8vw, 120px);
-          transform: translateY(-50%);
+          left: 50%;
+          transform: translate(-50%, -50%);
           z-index: 9000;
-          width: 280px;
+          width: min(320px, calc(100vw - 40px));
           background: #fff;
           border-radius: 14px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+          box-shadow: 0 8px 48px rgba(0,0,0,0.22);
           overflow: hidden;
           pointer-events: all;
         }
@@ -246,13 +246,6 @@ export default function ContactMap() {
           font-size: var(--size-meta);
           color: #aaa;
           margin: 0 0 10px;
-        }
-        @media (max-width: 640px) {
-          .pu-cmap-popup {
-            right: 50%;
-            transform: translate(50%, -50%);
-            width: min(280px, calc(100vw - 40px));
-          }
         }
 
         /* Strip */
