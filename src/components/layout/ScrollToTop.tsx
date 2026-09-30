@@ -6,7 +6,14 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 420);
+    const onScroll = () => {
+      // After the home intro is done the scroll offset shifts; use a lower
+      // threshold so the button still appears when cards are first visible.
+      // Before intro is done the threshold is high enough that the button
+      // never appears while the "Mapa" nav-link is still on screen.
+      const introDone = sessionStorage.getItem("pu-intro-done") === "1";
+      setVisible(window.scrollY > (introDone ? 410 : 900));
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -26,7 +33,7 @@ export default function ScrollToTop() {
       <style>{`
         .pu-scroll-top {
           position: fixed;
-          bottom: 32px;
+          bottom: 14px;
           left: var(--margin-page, 48px);
           z-index: 500;
           width: 22px;
@@ -65,7 +72,7 @@ export default function ScrollToTop() {
         }
         @media (max-width: 768px) {
           .pu-scroll-top {
-            bottom: 20px;
+            bottom: 14px;
             left: var(--margin-mobile, 20px);
           }
         }

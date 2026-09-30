@@ -778,6 +778,17 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         </div>
       </div>
 
+      {/* ── HEADER BAND — thin white strip so logo doesn't float z=50 ───────── */}
+      {introComplete && (
+        <>
+          <div className="pu-hero-band" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "#fff", zIndex: 50, pointerEvents: "none" }} />
+          <style>{`
+            .pu-hero-band { height: 64px; }
+            @media (max-width: 768px) { .pu-hero-band { height: 44px; } }
+          `}</style>
+        </>
+      )}
+
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
       <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
         <button
@@ -823,7 +834,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       >
         {/* ── Header ── */}
         <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(20px, 3vh, 40px)", position: "relative", zIndex: 2000, background: "#fff" }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "24px", marginBottom: "10px" }}>
+          <div style={{ marginBottom: "10px" }}>
             <h2 style={{
               fontFamily: "var(--font-sans)",
               fontSize: "clamp(28px,3.6vw,52px)",
@@ -835,9 +846,6 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             }}>
               {content.destacats}
             </h2>
-            <Link href={`/${locale}/projectes`} style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#999", textDecoration: "none", flexShrink: 0, lineHeight: 1, transition: "color 180ms ease" }}>
-              {locale === "ca" ? "Veure arxiu complet →" : locale === "es" ? "Ver archivo completo →" : "View full archive →"}
-            </Link>
           </div>
           <div style={{ height: "1px", background: "rgba(0,0,0,0.08)" }} />
         </div>
@@ -1050,7 +1058,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         className="pu-draw-tools"
         style={{
           position:      "fixed",
-          bottom:        "36px",
+          bottom:        "14px",
           right:         "var(--margin-page, 48px)",
           zIndex:        9996,
           display:       "none",
