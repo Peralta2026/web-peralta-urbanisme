@@ -482,7 +482,12 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
     const onScroll = () => {
       const raw     = window.scrollY;
       pageY.current = raw;
-      vY.current    = Math.min(raw + introOffsetRef.current, totalRangeRef.current);
+      // Clamp scrollY to 0 to neutralise rubber-band overshooting on Mac/iOS;
+      // after hero is done, also enforce vY >= SETTLE_END so the white-logo layer
+      // can never reappear regardless of bounce or negative scroll values.
+      let v = Math.min(Math.max(0, raw) + introOffsetRef.current, totalRangeRef.current);
+      if (heroCompletedRef.current) v = Math.max(v, SETTLE_END);
+      vY.current = v;
     };
 
     /* ── Mobile touch lock: block scroll-up once hero is done ── */
