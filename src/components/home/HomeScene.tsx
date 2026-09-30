@@ -16,6 +16,7 @@ const FEATURED_SLUGS = [
   "pmu-granollers-110b",
   "can-carreres-st-boi",
   "amb-ppu-hospital-valles",
+  "alta-costura",
 ];
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
