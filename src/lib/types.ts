@@ -52,6 +52,8 @@ export interface Project {
   images: string[];
   /** Paper de cada imatge a la galeria: cover · wide · tall · big · small */
   imageLayout?: Record<string, string>;
+  /** Files de galeria fixades a mà (noms de fitxer per fila); la resta es compon automàticament */
+  galleryRows?: string[][];
   tags: TagSlug[];
   coordinates: { lat: number; lng: number };
   credits?: string;

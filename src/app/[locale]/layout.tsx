@@ -5,6 +5,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import IntroWrapper from "@/components/intro/IntroWrapper";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import ImageProtection from "@/components/layout/ImageProtection";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -54,6 +55,7 @@ export default async function LocaleLayout({
         <Nav locale={locale} />
         <main className="flex-1">{children}</main>
         <Footer locale={locale} />
+        <ImageProtection />
         <ScrollToTop />
       </IntroWrapper>
     </NextIntlClientProvider>

@@ -9,6 +9,8 @@ interface Props {
   slug: string;
   images: ProjectImageData[];
   title: string;
+  /** Files fixades a mà des de la fitxa (galleryRows); la resta es compon sola */
+  manualRows?: string[][];
 }
 
 interface GalleryItem extends ProjectImageData {
@@ -35,8 +37,8 @@ const LARGE = new Set(["cover", "big"]);
  *  - LONG-VER (tall) i 1x1 (small): petites, de tres en tres (quatre si n'hi ha de verticals)
  * L'ordre es respecta sempre, per això les seqüències queden juntes.
  */
-function composeRows(images: ProjectImageData[]): GalleryRow[] {
-  const items: GalleryItem[] = images.map((image, index) => ({ ...image, index, ratio: image.width / image.height }));
+function composeRows(images: ProjectImageData[], startIndex = 0): GalleryRow[] {
+  const items: GalleryItem[] = images.map((image, i) => ({ ...image, index: startIndex + i, ratio: image.width / image.height }));
   const rows: GalleryRow[] = [];
   let current: GalleryItem[] = [];
 
@@ -58,8 +60,9 @@ function composeRows(images: ProjectImageData[]): GalleryRow[] {
     }
 
     const large = isLarge(item);
-    // Una peça gran no comparteix fila amb peces petites anteriors
-    if (large && current.length && !current.some(isLarge)) flush();
+    // Una peça gran no comparteix fila amb peces petites anteriors,
+    // tret que la petita quedés sola i minúscula: llavors fan parella
+    if (large && current.length && !current.some(isLarge) && sumOf(current) >= 1.6) flush();
     if (!large && current.some(isLarge) && current.length >= 2) flush();
 
     const rowLarge = large || current.some(isLarge);
@@ -75,9 +78,25 @@ function composeRows(images: ProjectImageData[]): GalleryRow[] {
   return rows;
 }
 
-export default function ProjectEditorialGallery({ slug, images, title }: Props) {
+export default function ProjectEditorialGallery({ slug, images: sourceImages, title, manualRows }: Props) {
   const [active, setActive] = useState<number | null>(null);
-  const rows = useMemo(() => composeRows(images), [images]);
+
+  // Primer les files fixades a mà, després la resta en l'ordre de la fitxa.
+  // `images` queda en ordre de visualització perquè numeració i visor coincideixin.
+  const { images, rows } = useMemo(() => {
+    const byFile = new Map(sourceImages.map((image) => [image.file, image]));
+    const fixed = (manualRows ?? [])
+      .map((row) => row.map((file) => byFile.get(file)).filter((image): image is ProjectImageData => !!image))
+      .filter((row) => row.length > 0);
+    const used = new Set(fixed.flat().map((image) => image.file));
+    const rest = sourceImages.filter((image) => !used.has(image.file));
+    let index = 0;
+    const fixedRows: GalleryRow[] = fixed.map((row) => {
+      const items = row.map((image) => ({ ...image, index: index++, ratio: image.width / image.height }));
+      return { items, sum: items.reduce((acc, item) => acc + item.ratio, 0), minSum: 0 };
+    });
+    return { images: [...fixed.flat(), ...rest], rows: [...fixedRows, ...composeRows(rest, index)] };
+  }, [sourceImages, manualRows]);
 
   useEffect(() => {
     if (active === null) return;

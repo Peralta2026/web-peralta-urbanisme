@@ -394,6 +394,7 @@ export default async function ProjectPage({
           <ProjectEditorialGallery
             slug={project.slug}
             images={galleryImages}
+            manualRows={project.galleryRows}
             title={data.title}
           />
         </div>
