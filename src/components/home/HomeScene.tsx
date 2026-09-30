@@ -370,6 +370,10 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
   const [isMobile,  setIsMobile]  = useState(false);
   const [drawMode,   setDrawMode]   = useState<"draw" | "erase">("draw");
   const [strokeSize, setStrokeSize] = useState<1 | 2 | 3 | 4>(3);
+  const [introComplete, setIntroComplete] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    try { return sessionStorage.getItem("pu-intro-done") === "1"; } catch { return false; }
+  });
 
   /* ── Refs ── */
   const fixedLogoRef    = useRef<HTMLDivElement>(null);
@@ -397,10 +401,10 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
   const videoElemRef    = useRef<HTMLVideoElement>(null);
 
   /* Hero-exit lock */
-  const heroDoneRef      = useRef(false);  // dynamic: true when hero fully off-screen
-  const heroCompletedRef = useRef(false);  // one-time: stays true after first exit
+  const heroDoneRef      = useRef(false);
+  const heroCompletedRef = useRef(introComplete);  // pre-set if session already saw intro
   const heroMinScrollRef = useRef(0);
-  const introOffsetRef   = useRef(0);      // 0 before intro done; SETTLE_END+OPEN_RANGE after
+  const introOffsetRef   = useRef(introComplete ? (SETTLE_END + OPEN_RANGE) : 0);
   const isMobileRef      = useRef(false);
 
   /* Dynamic scroll values */
@@ -538,11 +542,9 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         const jumpTo = Math.max(0, pageY.current - introOffsetRef.current);
         window.scrollTo(0, jumpTo);
         pageY.current = jumpTo;
-        // Remove hero from rendering entirely — can never flash back
-        if (heroRef.current) heroRef.current.style.display = "none";
-        if (mosaicRef.current && !isMobileRef.current) {
-          // mosaic is still needed for desktop; keep it until cards panel covers it
-        }
+        // Persist intro-done across same-session navigation; remove hero from DOM via React state
+        try { sessionStorage.setItem("pu-intro-done", "1"); } catch { /* ignore */ }
+        setIntroComplete(true);
       }
 
       /* ── Phase 0: hero crossfade ── */
@@ -772,7 +774,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       </div>
 
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
-      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: 0, pointerEvents: "auto" }}>
+      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
         <button
           onClick={() => window.scrollTo({ top: SETTLE_END + OPEN_RANGE + 10, behavior: "smooth" })}
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "block" }}
@@ -809,23 +811,29 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             const targetCard = dx < 0
               ? Math.min(nCards - 1, currentCard + 1)
               : Math.max(0, currentCard - 1);
-            window.scrollTo({ top: SETTLE_END + targetCard * CARDS_PER_STEP, behavior: "smooth" });
+            const targetScrollY = Math.max(0, SETTLE_END + targetCard * CARDS_PER_STEP - introOffsetRef.current);
+            window.scrollTo({ top: targetScrollY, behavior: "instant" });
           }
         }}
       >
         {/* ── Header ── */}
         <div style={{ flexShrink: 0, padding: "112px var(--margin-page) clamp(20px, 3vh, 40px)", position: "relative", zIndex: 2000, background: "#fff" }}>
-          <h2 style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "clamp(28px,3.6vw,52px)",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-            color: "#000",
-            margin: "0 0 10px",
-          }}>
-            {content.destacats}
-          </h2>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "24px", marginBottom: "10px" }}>
+            <h2 style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(28px,3.6vw,52px)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+              color: "#000",
+              margin: 0,
+            }}>
+              {content.destacats}
+            </h2>
+            <Link href={`/${locale}/projectes`} style={{ fontFamily: "var(--font-sans)", fontSize: "13px", color: "#999", textDecoration: "none", flexShrink: 0, lineHeight: 1, transition: "color 180ms ease" }}>
+              {locale === "ca" ? "Veure arxiu complet →" : locale === "es" ? "Ver archivo completo →" : "View full archive →"}
+            </Link>
+          </div>
           <div style={{ height: "1px", background: "rgba(0,0,0,0.08)" }} />
         </div>
 
@@ -893,8 +901,8 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         </div>
       </div>
 
-      {/* ── HERO z=10 ────────────────────────────────────────────────────────── */}
-      <div
+      {/* ── HERO z=10 — solo se renderiza hasta que la intro se completa ── */}
+      {!introComplete && <div
         ref={heroRef}
         style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: isMobile ? "default" : "none", userSelect: "none", touchAction: isMobile ? "auto" : "none" }}
       >
@@ -991,13 +999,16 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             </svg>
           </span>
         </div>
-      </div>
+      </div>}
 
       {/* Real scroll space */}
       <div
         ref={scrollSpaceRef}
         aria-hidden="true"
-        style={{ height: `calc(100vh + ${SETTLE_END + displayProjects.length * CARDS_PER_STEP}px)`, pointerEvents: "none" }}
+        style={{ height: introComplete
+          ? `calc(100vh + ${displayProjects.length * CARDS_PER_STEP - OPEN_RANGE}px)`
+          : `calc(100vh + ${SETTLE_END + displayProjects.length * CARDS_PER_STEP}px)`,
+          pointerEvents: "none" }}
       />
 
       {/* ── Notícies ── */}
