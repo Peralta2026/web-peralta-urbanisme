@@ -404,7 +404,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
   const heroDoneRef      = useRef(false);
   const heroCompletedRef = useRef(introComplete);  // pre-set if session already saw intro
   const heroMinScrollRef = useRef(0);
-  const introOffsetRef   = useRef(introComplete ? (SETTLE_END + OPEN_RANGE) : 0);
+  const introOffsetRef   = useRef(introComplete ? SETTLE_END : 0);
   const isMobileRef      = useRef(false);
 
   /* Dynamic scroll values */
@@ -531,10 +531,10 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       heroDoneRef.current = heroDone;
       if (heroDone && !heroCompletedRef.current) {
         heroCompletedRef.current = true;
-        introOffsetRef.current   = SETTLE_END + OPEN_RANGE; // 860
+        introOffsetRef.current   = SETTLE_END; // 480 — hero (video) still reachable; white logo is not
         heroMinScrollRef.current = 0;
-        // Shrink scroll space — remove intro portion so scrollY=0 = hero top
-        const newRange = nCardsRef.current * CARDS_PER_STEP - OPEN_RANGE;
+        // Shrink scroll space: scrollY=0 now maps to hero-with-video, scrollY=OPEN_RANGE maps to cards
+        const newRange = nCardsRef.current * CARDS_PER_STEP;
         if (scrollSpaceRef.current) {
           scrollSpaceRef.current.style.height = `calc(100vh + ${newRange}px)`;
         }
@@ -542,7 +542,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         const jumpTo = Math.max(0, pageY.current - introOffsetRef.current);
         window.scrollTo(0, jumpTo);
         pageY.current = jumpTo;
-        // Persist intro-done across same-session navigation; remove hero from DOM via React state
+        // Persist intro-done across same-session navigation
         try { sessionStorage.setItem("pu-intro-done", "1"); } catch { /* ignore */ }
         setIntroComplete(true);
       }
@@ -901,8 +901,8 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         </div>
       </div>
 
-      {/* ── HERO z=10 — solo se renderiza hasta que la intro se completa ── */}
-      {!introComplete && <div
+      {/* ── HERO z=10 ── */}
+      <div
         ref={heroRef}
         style={{ position: "fixed", inset: 0, zIndex: 10, background: "#fff", willChange: "transform", cursor: isMobile ? "default" : "none", userSelect: "none", touchAction: isMobile ? "auto" : "none" }}
       >
@@ -999,14 +999,14 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
             </svg>
           </span>
         </div>
-      </div>}
+      </div>
 
       {/* Real scroll space */}
       <div
         ref={scrollSpaceRef}
         aria-hidden="true"
         style={{ height: introComplete
-          ? `calc(100vh + ${displayProjects.length * CARDS_PER_STEP - OPEN_RANGE}px)`
+          ? `calc(100vh + ${displayProjects.length * CARDS_PER_STEP}px)`
           : `calc(100vh + ${SETTLE_END + displayProjects.length * CARDS_PER_STEP}px)`,
           pointerEvents: "none" }}
       />
