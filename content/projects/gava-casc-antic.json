@@ -1,11 +1,17 @@
 {
   "slug": "gava-casc-antic",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra\nSERVEIS TÈCNICS AJUNTAMENT GAVÀ - Lorena Barriga",
-  "coverImage": "1.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "1.jpg",
-    "2.jpg",
-    "3.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -57,5 +63,16 @@
     "descriptionLong": "La Rambla de Gavà és la columna vertebral del casc urbà, una cremallera urbana que connecta l'estació amb la part alta del nucli històric. Però el seu dinamisme i vitalitat no arriben sempre als espais que se situen en segona línia, alguns d'ells inaccessibles des de la mateixa rambla. La MPGM de reordenació de l'entorn dels equipaments del centre de Gavà aborda aquesta realitat amb una estratègia d'acupuntura urbana: intervencions focalitzades en punts estratègics que, com puntades en un teixit tèxtil, reforcen els travessers entre el patró medieval del casc antic a ponent i l'estret teixit d'eixample a llevant de la rambla.\n\nLa proposta s'estructura en tres principis: relligar, amb passatges més permeables, verds i cívics; activar, amb nous accessos i usos que reforcin l'espai públic; i protegir, reconeixent i posant en valor els elements històrics patrimonials. Aquests principis es materialitzen en tres línies d'actuació urbanística.\n\nLa primera línia ajusta i crea nous sistemes públics, consolidant usos d'equipament existents i generant 2.143 m² de noves zones verdes que milloren les condicions d'entorn i accessibilitat. La segona línia reordena sis punts estratègics: cinc unitats de projecte que generen espais d'activitat i servei en planta baixa amb habitatge a les plantes superiors —un total de 8 nous habitatges, 4 per als privats i 4 per a l'Ajuntament—, i una sisena unitat que localitza un edifici d'allotjament dotacional públic amb 10 unitats. La tercera línia desafecta tres grups d'edificació d'habitatges tradicionals anteriors al PGM, dos d'ells catalogats patrimonialment, establint la qualificació de l'entorn i un sostre màxim igual a l'existent, i reubicant els sistemes en àmbits propers amb la mateixa superfície.\n\nL'ordenació detallada s'introdueix amb la qualificació de zona d'ordenació volumètrica específica (clau 18), que permet precisar amb la màxima cura les dimensions, alçades, usos en planta baixa, alineacions obligatòries i regles de veïnatge de cada volum. Es defineixen unitats mínimes de projecte per facilitar l'execució posterior. L'espai públic resultant prioritza la circulació de vianants, ofereix complexitat verda i promou la cohesió social amb una ajustada proporció d'activitat comercial que doti de vigilància informal els nous entorns urbans.",
     "subtitle": "Modificació puntual de Pla General Metropolità reordenació diferents àmbits puntuals"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "big",
+    "pu-03.jpg": "wide",
+    "pu-04.jpg": "wide",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small"
+  }
 }

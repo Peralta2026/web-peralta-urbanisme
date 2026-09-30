@@ -2,8 +2,19 @@
   "slug": "sant-feliu-codines-pla-barris",
   "credits": "PERALTA URBANISME - Mar Castarlenas, Jordi Peralta i Julia Reñones\nSERVEIS TÈCNICS AJUNTAMENT SANT FELIU DE CODINES - Manel Rodríguez",
   "webStatus": "si",
-  "coverImage": "",
-  "images": [],
+  "coverImage": "pu-01.jpg",
+  "images": [
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg"
+  ],
   "tags": [],
   "coordinates": {
     "lat": 41.690687414091165,
@@ -53,5 +64,17 @@
     "habitatges": null,
     "descriptionShort": "",
     "descriptionLong": ""
+  },
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "big",
+    "pu-03.jpg": "wide",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "big",
+    "pu-06.jpg": "wide",
+    "pu-07.jpg": "big",
+    "pu-08.jpg": "wide",
+    "pu-09.jpg": "big",
+    "pu-10.jpg": "wide"
   }
 }

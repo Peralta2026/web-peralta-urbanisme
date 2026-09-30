@@ -1,16 +1,17 @@
 {
   "slug": "palau-solita-espai-public",
   "credits": "PERALTA URBANISME - Marc Vizcarra, Mar Castarlenas i Delfina Capiglioni\nRAONS PÚBLIQUES - Andrés Martínez\nSERVEIS TÈCNICS AJUNTAMENT PALAU SOLITÀ I PLEGAMANS - Mercé Guàrdia\nSERVEIS TÈCNICS DIPUTACIÓ - Marta Viada",
-  "coverImage": "11.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "11.jpg",
-    "IMAGEN TRANSFORMACIÓN PARQUE riera de caldes-Recuperado copia proposta.jpg",
-    "Matriu d'intervenció Component A..jpg",
-    "Matriu d'intervenció Component B..jpg",
-    "Model (memòria).jpg",
-    "Passeig de la carrerada estat actual  copia fase1.jpg",
-    "Proposta d'actuacions específiques.jpg",
-    "Proposta d'intervencions i actuacions (plànol).jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -62,5 +63,16 @@
     "descriptionLong": "El Pla Director de l'Espai Públic de Palau-Solità i Plegamans (PDEP) és un instrument de planificació estratègica encarregat per l'Ajuntament de Palau-Solità i Plegamans al Servei d'Equipaments i Espai Públic de la Diputació de Barcelona, i redactat per Peralta Urbanisme SLP. L'objecte del treball és analitzar i diagnosticar l'estat actual de l'espai públic del municipi per establir-ne una estratègia global i uns criteris d'actuació que orientin i prioritzin les futures intervencions.\n\nEl municipi de Palau-solità i Plegamans compta amb 15.444 habitants (1 de gener de 2024) i una extensió de 14,93 km² al Vallès Occidental. El seu creixement accelerat al llarg de la segona meitat del segle XX ha generat una trama discontínua de barris de baixa densitat, on conviuen nuclis històrics, extensions de tipus ciutat jardí i polígons industrials, amb dèficits importants de continuïtat de l'espai públic, voreres deficients i manca de connexió entre els barris i la riera de Caldes.\n\nEl PDEP s'articula en quatre eixos metodològics: una diagnosi integral a partir d'inventaris, cartografies i treball de camp; una reflexió multiescalar (XL–L–M–S) que va de la dimensió territorial fins a l'escala concreta dels elements urbans; una anticipació a escala micro per avançar criteris de disseny i regulació; i un procés participatiu que ha implicat escoles, joves, gent gran i les àrees tècniques municipals. L'inventari detalla 26 espais públics de referència —parcs i places— analitzats en sis blocs: aspectes generals, seguretat, tipologia d'usuaris, qualitat de la urbanització, vegetació i mobiliari.\n\nLa diagnosi evidencia que el 55% de les zones verdes previstes al planejament vigent resten pendents d'execució, tot i que la superfície executada (762.872 m²) ja supera àmpliament els estàndards normatius. S'identifiquen com a debilitats la segregació entre barris, la manca de voreres en molts carrers —especialment als barris del Castell, els Turons o la Sagrera— i la manca d'equipaments mediambientals.\n\nLa proposta estratègica defineix tres reptes: conformar una xarxa d'espais lliures que combini ús social i valor ambiental; reorganitzar la mobilitat cap a un sistema actiu, accessible i sostenible; i relligar els teixits urbans i rústics en un patró territorial cohesionat. Els eixos vertebradors del model proposat són l'avinguda de Catalunya, la ronda verda de la riera de Caldes, el Camí Reial i la Rambla Mestre Pere Pou. El sector SUD-02 del Pla del Molí s'identifica com a àmbit estratègic de transformació prioritària per a la fase 2 del document.",
     "subtitle": "Pla Director de l'Espai Públic"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "wide",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "wide",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "wide",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small"
+  }
 }

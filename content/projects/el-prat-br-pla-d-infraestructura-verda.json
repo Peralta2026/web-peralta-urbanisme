@@ -1,18 +1,18 @@
 {
   "slug": "el-prat-br-pla-d-infraestructura-verda",
   "credits": "PERALTA URBANISME - Jordi Peralta i Mar Castarlenas\nEMF - Martí Franch i Andrea Díaz\nAMB - Anna Majoral\nBR - Marc Montlleó\nSERVEIS TÈCNICS AJUNTAMENT DEL PRAT DE LLOBREGAT - Maria Pons i Marta Borbonet",
-  "coverImage": "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "IV el prat de llobregat_documentació gràfica signat_p081.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p083.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p086.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p087.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p106.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p111.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p121.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p134.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p146.jpg",
-    "IV el prat de llobregat_documentació gràfica signat_p147.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -64,5 +64,17 @@
     "descriptionLong": "El Prat de Llobregat és l'únic nucli urbà consolidat situat plenament dins el delta del Llobregat, en un territori històricament modelat per l'aigua. El seu nom remet al paisatge originari —el prat com a espai de pastura— i el seu assentament inicial va néixer al voltant d'un punt sobre el camí de València, en una geografia deltaica agrària-ramadera. Al llarg dels segles, el Canal de la Dreta, el ferrocarril, l'aeroport i les infraestructures metropolitanes han anat confinant el nucli entre límits físics molt marcats, configurant una ciutat en forma de pera amb un centre històric descentrat respecte al seu propi creixement.\n\nEl Pla d'Infraestructura Verda parteix d'una constatació: el planejament metropolità i els creixements urbans han aportat al Prat una quantitat notable d'espais lliures, però aquesta acumulació no ha generat una estructura reconeixible. Els espais es disposen de forma fragmentada, sense una relació clara amb els grans espais oberts de referència: el riu Llobregat i el Parc Agrari. El treball no aborda, per tant, una manca quantitativa sinó una qüestió estructural: com poden aquests espais deixar de ser peces aïllades per esdevenir una infraestructura capaç d'organitzar la ciutat.\n\nLa proposta es construeix des de dues aproximacions complementàries —de dalt a baix i de baix a dalt— i identifica tres paisatges clau: el fluvial, l'agrari i l'infraestructural. Cada paisatge genera un sistema territorial: el sistema del riu, que busca recuperar la connexió amb el front fluvial; el sistema de les vies metropolitanes, que transforma les infraestructures perimetrals en connectors més amables; i el sistema de les arrels històriques, que potencia la traça del Canal de la Dreta com a espina vertebral interna. A escala urbana, el model incorpora un nou sistema de travessers cívics: cinc eixos est-oest que travessen el nucli horitzontalment, equilibrant la direccionalitat predominant nord-sud i establint una relació directa i intencionada amb el riu.\n\nEl document orienta les intervencions futures des de tres vies: planejament urbanístic, espai públic i paisatge, i mobilitat. Estableix principis com el bosc urbà, la trama bruna de sòl fèrtil, la trama blava de gestió sostenible de l'aigua i l'índex 3/30/300 de proximitat del verd. L'aposta central és redefinir la relació de la ciutat amb el riu Llobregat, situant els travessers cívics com la clau per desplegar una nova identitat urbana que integri història, infraestructura i paisatge del delta.",
     "subtitle": "Pla d'Infraestructura Verda"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "wide",
+    "pu-03.jpg": "wide",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "wide",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "wide",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "wide",
+    "pu-10.jpg": "small"
+  }
 }

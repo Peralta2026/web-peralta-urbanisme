@@ -11,51 +11,73 @@ interface Props {
   title: string;
 }
 
-interface GallerySection {
-  feature?: ProjectImageData;
-  columns?: [ProjectImageData[], ProjectImageData[]];
+interface GalleryItem extends ProjectImageData {
+  index: number;
+  ratio: number;
 }
 
-function balanceColumns(images: ProjectImageData[]): [ProjectImageData[], ProjectImageData[]] {
-  const columns: [ProjectImageData[], ProjectImageData[]] = [[], []];
-  const heights = [0, 0];
-
-  images.forEach((image) => {
-    const column = heights[0] <= heights[1] ? 0 : 1;
-    columns[column].push(image);
-    heights[column] += image.height / image.width;
-  });
-
-  return columns;
+interface GalleryRow {
+  items: GalleryItem[];
+  /** Suma de proporcions: l'alçada de la fila és amplada / sum */
+  sum: number;
+  /** Proporció mínima perquè la fila no quedi desmesurada (una sola imatge vertical, l'última fila…) */
+  minSum: number;
 }
 
-function composeGallery(images: ProjectImageData[]): GallerySection[] {
-  const sections: GallerySection[] = [];
-  let pending: ProjectImageData[] = [];
+const LARGE = new Set(["cover", "big"]);
 
-  const flushPending = () => {
-    if (!pending.length) return;
-    sections.push({ columns: balanceColumns(pending) });
-    pending = [];
+/**
+ * Compon la galeria en files justificades: cada fila ocupa tota l'amplada i
+ * totes les imatges d'una fila tenen la mateixa alçada, de manera que cap
+ * imatge es retalla ni es deforma. La nomenclatura del servidor decideix la mida:
+ *  - PORTADA (cover) i BIG 4 (big): grans, com a molt de dues en dues
+ *  - LONG-HOR (wide): una fila sencera si és prou apaïsada
+ *  - LONG-VER (tall) i 1x1 (small): petites, de tres en tres (quatre si n'hi ha de verticals)
+ * L'ordre es respecta sempre, per això les seqüències queden juntes.
+ */
+function composeRows(images: ProjectImageData[]): GalleryRow[] {
+  const items: GalleryItem[] = images.map((image, index) => ({ ...image, index, ratio: image.width / image.height }));
+  const rows: GalleryRow[] = [];
+  let current: GalleryItem[] = [];
+
+  const sumOf = (list: GalleryItem[]) => list.reduce((acc, item) => acc + item.ratio, 0);
+  const isLarge = (item: GalleryItem) => LARGE.has(item.intent) || (item.intent === "wide" && item.ratio < 1.6);
+  const flush = (minSum?: number) => {
+    if (!current.length) return;
+    const large = current.some(isLarge);
+    rows.push({ items: current, sum: sumOf(current), minSum: minSum ?? (large ? 1.25 : 2.4) });
+    current = [];
   };
 
-  images.forEach((image) => {
-    const ratio = image.width / image.height;
-    if (ratio >= 1.82) {
-      flushPending();
-      sections.push({ feature: image });
-    } else {
-      pending.push(image);
+  items.forEach((item) => {
+    // Imatges molt apaïsades: sempre soles, a tota l'amplada
+    if (item.ratio >= 2.2 || (item.intent === "wide" && item.ratio >= 1.6)) {
+      flush();
+      rows.push({ items: [item], sum: item.ratio, minSum: 0 });
+      return;
     }
-  });
 
-  flushPending();
-  return sections;
+    const large = isLarge(item);
+    // Una peça gran no comparteix fila amb peces petites anteriors
+    if (large && current.length && !current.some(isLarge)) flush();
+    if (!large && current.some(isLarge) && current.length >= 2) flush();
+
+    const rowLarge = large || current.some(isLarge);
+    const target = rowLarge ? 2.4 : 3.3;
+    const withItem = [...current, item];
+    const maxItems = rowLarge ? 2 : withItem.some((i) => i.ratio < 0.9) ? 4 : 3;
+    if (current.length && (sumOf(withItem) > target * 1.25 || withItem.length > maxItems)) flush();
+
+    current.push(item);
+    if (sumOf(current) >= target) flush();
+  });
+  flush();
+  return rows;
 }
 
 export default function ProjectEditorialGallery({ slug, images, title }: Props) {
   const [active, setActive] = useState<number | null>(null);
-  const sections = useMemo(() => composeGallery(images), [images]);
+  const rows = useMemo(() => composeRows(images), [images]);
 
   useEffect(() => {
     if (active === null) return;
@@ -64,12 +86,8 @@ export default function ProjectEditorialGallery({ slug, images, title }: Props) 
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setActive(null);
-      if (event.key === "ArrowLeft") {
-        setActive((current) => current === null ? null : (current - 1 + images.length) % images.length);
-      }
-      if (event.key === "ArrowRight") {
-        setActive((current) => current === null ? null : (current + 1) % images.length);
-      }
+      if (event.key === "ArrowLeft") setActive((c) => (c === null ? null : (c - 1 + images.length) % images.length));
+      if (event.key === "ArrowRight") setActive((c) => (c === null ? null : (c + 1) % images.length));
     };
 
     document.addEventListener("keydown", onKeyDown);
@@ -79,66 +97,63 @@ export default function ProjectEditorialGallery({ slug, images, title }: Props) 
     };
   }, [active, images.length]);
 
-  const renderImage = (image: ProjectImageData) => {
-    const index = images.findIndex((item) => item.file === image.file);
-    return (
-      <button
-        key={image.file}
-        type="button"
-        className={styles.imageButton}
-        onClick={() => setActive(index)}
-        aria-label={`${title} — ${index + 1}/${images.length}`}
-      >
-        <Image
-          className={styles.image}
-          src={`/projects/${slug}/${image.file}`}
-          alt={`${title} — ${index + 1}`}
-          width={image.width}
-          height={image.height}
-          sizes="(max-width: 720px) 50vw, (max-width: 1100px) 45vw, 30vw"
-          loading={index < 4 ? "eager" : "lazy"}
-        />
-        <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
-      </button>
-    );
-  };
-
   if (!images.length) return null;
 
   return (
     <>
       <div className={styles.gallery}>
-        {sections.map((section, sectionIndex) => {
-          if (section.feature) return renderImage(section.feature);
-          if (!section.columns) return null;
-
+        {rows.map((row, r) => {
+          const width = row.sum < row.minSum ? `${(row.sum / row.minSum) * 100}%` : "100%";
           return (
-            <div className={styles.columns} key={`section-${sectionIndex}`}>
-              {section.columns.map((column, columnIndex) => (
-                <div className={styles.column} key={`column-${columnIndex}`}>
-                  {column.map(renderImage)}
-                </div>
-              ))}
+            <div key={r} className={styles.row} style={{ width }}>
+              {row.items.map((item) => {
+                const share = (item.ratio / row.sum) * (row.sum < row.minSum ? row.sum / row.minSum : 1);
+                return (
+                  <button
+                    key={item.file}
+                    type="button"
+                    className={styles.imageButton}
+                    style={{ flex: `${item.ratio} 1 0`, aspectRatio: String(item.ratio) }}
+                    onClick={() => setActive(item.index)}
+                    aria-label={`${title} — ${item.index + 1}/${images.length}`}
+                  >
+                    <Image
+                      className={styles.image}
+                      src={`/projects/${slug}/${item.file}`}
+                      alt={`${title} — ${item.index + 1}`}
+                      fill
+                      quality={85}
+                      sizes={`(max-width: 1023px) ${Math.ceil(share * 100)}vw, ${Math.ceil(share * 62)}vw`}
+                      loading={item.index < 3 ? "eager" : "lazy"}
+                    />
+                    <span className={styles.number}>{String(item.index + 1).padStart(2, "0")}</span>
+                  </button>
+                );
+              })}
             </div>
           );
         })}
       </div>
 
       {active !== null && (
-        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={title}>
-          <Image
-            className={styles.lightboxImage}
-            src={`/projects/${slug}/${images[active].file}`}
-            alt={`${title} — ${active + 1}`}
-            width={images[active].width}
-            height={images[active].height}
-            sizes="100vw"
-          />
+        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={title} onClick={() => setActive(null)}>
+          <div className={styles.lightboxFrame}>
+            <Image
+              key={images[active].file}
+              className={styles.lightboxImage}
+              src={`/projects/${slug}/${images[active].file}`}
+              alt={`${title} — ${active + 1}`}
+              fill
+              quality={90}
+              sizes="100vw"
+              priority
+            />
+          </div>
           <button className={styles.close} type="button" onClick={() => setActive(null)} aria-label="Close">×</button>
           {images.length > 1 && (
             <>
-              <button className={styles.previous} type="button" onClick={() => setActive((active - 1 + images.length) % images.length)} aria-label="Previous">←</button>
-              <button className={styles.next} type="button" onClick={() => setActive((active + 1) % images.length)} aria-label="Next">→</button>
+              <button className={styles.previous} type="button" onClick={(e) => { e.stopPropagation(); setActive((active - 1 + images.length) % images.length); }} aria-label="Previous">←</button>
+              <button className={styles.next} type="button" onClick={(e) => { e.stopPropagation(); setActive((active + 1) % images.length); }} aria-label="Next">→</button>
             </>
           )}
           <span className={styles.counter}>{active + 1} / {images.length}</span>

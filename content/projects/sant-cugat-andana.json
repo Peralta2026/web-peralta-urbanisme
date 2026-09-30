@@ -1,22 +1,22 @@
 {
   "slug": "sant-cugat-andana",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra\nSERVEIS TÈCNICS AJUNTAMENT SANT CUGAT DEL VALLÈS - Carme Umbría",
-  "coverImage": "1.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "1.jpg",
-    "2.jpg",
-    "3.1.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.jpg",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "Axo proposta 3 amb arbres.jpg",
-    "Axo proposta mpgm.jpg",
-    "MPGM ANDANA - FOTOMONTATGE 2 copia 3.jpg",
-    "MPGM ANDANA - FOTOMONTATGE 2 copia.jpg",
-    "vista conceptual plaça def 2.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg",
+    "pu-11.jpg",
+    "pu-12.jpg",
+    "pu-13.jpg",
+    "pu-14.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -68,5 +68,21 @@
     "descriptionLong": "El carrer Andana se situa a l'oest de l'estació de Sant Cugat Centre dels Ferrocarrils de la Generalitat (FGC), en la frontissa urbana entre el nucli medieval de Sant Cugat i les urbanitzacions de Mira-sol i Valldoreix. El solar municipal del número 1-3, d'una superfície total de 2.374 m²s, estava qualificat de sistema viari (clau 5, 900 m²s) i de sistema de parcs i jardins (clau 6b, 1.474 m²s). La vialitat perimetral que preveia el planejament vigent havia perdut la seva funcionalitat, deixant un solar desocupat en un dels llocs amb millor accessibilitat en transport públic de la ciutat.\n\nEl Pla d'habitatge assequible 2030 de l'empresa municipal Promusa i la Llei 17/2019 de mesures urgents per millorar l'accés a l'habitatge van obrir el marc legal i estratègic per a la creació d'allotjaments dotacionals en sòl municipal. La present MPGM, redactada per Peralta Urbanisme per encàrrec de l'Ajuntament de Sant Cugat del Vallès, canalitza aquesta oportunitat: transforma la totalitat de la clau 5 (900 m²s) en sistema d'equipaments comunitaris d'allotjament dotacional (clau 7ad), i manté íntegrament la superfície de zona verda (1.474 m²s) amb una configuració millorada.\n\nEl nou edifici d'allotjament dotacional s'ubica a la franja nord de la parcel·la, alineat al carrer Andana, amb un sostre màxim de 1.620 m²st (1,80 m²st/m²s) i una densitat màxima de 29 allotjaments. El programa indicatiu preveu 25 allotjaments (des de 40 m² útils de dimensió mínima), distribuïts en planta baixa i tres plantes pis, amb sala comunitària i aparcament de bicicletes integrat. La tipologia es plega en forma de L per abraçar el nou espai públic i donar façana tant al parc com a l'estació, triplicant les cantonades per maximitzar el control social i la percepció de seguretat. Les separacions als lindars veïns s'amplien de 3 a 4 metres per garantir assolellament i privacitat.\n\nLa nova zona verda s'entén conjuntament amb la plaça Lluís Millet i l'accés a l'estació situat a la banda oposada del tren: una futura actuació de soterrament de les vies podrà fusionar ambdues peces en un conjunt urbà de major complexitat. El disseny contempla criteris de perspectiva de gènere, sostenibilitat ambiental (paviments drenants, arbrat autòcton) i foment de la mobilitat activa. La construcció prevista en sistemes prefabricats de fusta reforça el compromís ambiental de la proposta.",
     "subtitle": "Modificació puntual del Pla General Metropolità de l'àmbit carrer Andana"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "small",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "wide",
+    "pu-11.jpg": "small",
+    "pu-12.jpg": "wide",
+    "pu-13.jpg": "wide",
+    "pu-14.jpg": "small"
+  }
 }

@@ -132,7 +132,7 @@ export default async function ProjectPage({
   const nextProject = projectIndex < total - 1 ? allProjects[projectIndex + 1] : null;
 
   const data = project[loc];
-  const galleryImages = await getProjectImages(project.slug, project.images);
+  const galleryImages = await getProjectImages(project.slug, project.images, project.imageLayout);
   const ui = UI[loc];
   const tagLabels = TAG_LABELS[loc];
   const f = ui.facts;

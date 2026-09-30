@@ -1,18 +1,18 @@
 {
   "slug": "rubi-comunicacio-model",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra",
-  "coverImage": "1.0_VISTA GENERAL v2_LOW.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "1.0_VISTA GENERAL v2_LOW.jpg",
-    "1.0_VISTA GENERAL_ VERTICAL.jpg",
-    "1.1.0_VISTA GENERAL_ VERTICAL I HORITZONTAL.jpg",
-    "1.1.1_VISTA GENERAL.jpg",
-    "3_Riera de rubi_Vapor nou_proposta .jpg",
-    "4_Riera de rubi_AJUNTAMENT_proposta.jpg",
-    "5_Riera de rubi_Estació la Llana_proposta_vista peu .jpg",
-    "7_Av. estatut_Bombonera_ vista proposta _ Vista Carrer .jpg",
-    "ESTRUCTURA URBANA RUBI copia 2.jpg",
-    "ESTRUCTURA URBANA RUBI copia.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -64,5 +64,17 @@
     "descriptionLong": "El document \"Riera de Rubí - Avinguda de l'Estatut – Zona de Baixes Emissions\" recull el model urbà de referència per a la transformació dels principals eixos de l'espai públic de Rubí, en format de presentació de 30 diapositives. Estructurat entorn de dues artèries principals, el model proposa 10 intervencions que es presenten individualment i en la seva relació global, a través d'una planta general del municipi i vistes generals i de detall de cadascuna.\n\nA la Riera de Rubí s'identifiquen quatre àmbits d'actuació: el Balcó Riera, en l'entorn de la Deixalleria i les Pistes esportives de Cova Solera; el Vapor Nou; el sector del Nou Ajuntament; i la Nova Estació de la Llana, amb les ordenacions del seu entorn immediat. Les quatre peces s'encadenen al llarg del corredor fluvial.\n\nL'Avinguda de l'Estatut s'aborda en quatre trams consecutius. El Tram 1 inaugura el recorregut; el Tram 2 incorpora peces singulars com la Bombonera i les pistes de Petanca; i els Trams 3 i 4 completen la seqüència.\n\nLes dues artèries s'emmarquen en la definició d'una Zona de Baixes Emissions que actua com a paraigua del model. S'hi afegeix la proposta per a l'Entorn Pacificat i la Plaça Celso Emilio Ferreiro.\n\nEl document, datat el 14 de desembre de 2022 i presentat com a eina de treball en procés, articula la visió global de com les intervencions puntuals s'integren en un model coherent de transformació dels espais públics de Rubí.",
     "subtitle": "Il·lustracions urbanístiques"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "small",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "small"
+  }
 }

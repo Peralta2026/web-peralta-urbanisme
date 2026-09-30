@@ -2,7 +2,7 @@
   "slug": "sant-just-desvern-mpgm-densitat",
   "credits": "PERALTA URBANISME - Mar Castarlenas i Jordi Peralta\nVIA ECONOMIA - Enric González\nPROJECTES URBANS - Georgina Vázquez\nSERVEIS TÈCNICS AJUNTAMENT SANT JUST DESVERN - Belén Delgado, Àngels Ulla, Montse Baulies",
   "coverImage": "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
-  "images": "SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg",
+  "images": ["SANT JUST.  MEMORIA SOCIAL I DE GENERE MPGM HABITATGE_signat_p001.jpg"],
   "tags": [],
   "coordinates": {
     "lat": 41.38269652822659,

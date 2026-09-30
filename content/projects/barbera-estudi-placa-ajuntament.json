@@ -1,20 +1,20 @@
 {
   "slug": "barbera-estudi-placa-ajuntament",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra\nSERVEIS TÈCNICS AJUNTAMENT BARBERÀ DEL VALLÈS - Salvador Girvent",
-  "coverImage": "1 (2).jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "1 (2).jpg",
-    "1.jpg",
-    "2 (2).jpg",
-    "2.jpg",
-    "3 (2).jpg",
-    "3.jpg",
-    "4 (2).jpg",
-    "4.jpg",
-    "5.jpg",
-    "6.jpg",
-    "7.jpg",
-    "vista conceptual plaça st bonaventura.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg",
+    "pu-11.jpg",
+    "pu-12.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -66,5 +66,19 @@
     "descriptionLong": "La plaça de l'Ajuntament de Barberà del Vallès és un dels espais més referencials del municipi, presidida per la Casa Consistorial —edifici singular projectat per l'arquitecte Francesc Terol amb dues torres i porxada que evoca els grans masos catalans del segle XIX. Malgrat la seva centralitat, la plaça acumula disfuncions urbanístiques heretades d'una modificació de planejament de 1990 que el Pla General del 2000 va incorporar parcialment sense establir-ne els paràmetres reguladors. El resultat: un buit normatiu que ha generat un espai fragmentat, amb zona verda segregada per un mur escultòric, mitgeres vistes d'un edifici de sis plantes, i dues parcel·les privades mal emplaçades en el front de la plaça.\n\nEls estudis previs de la MPGO, redactats per Peralta Urbanisme per encàrrec de l'Ajuntament, proposen la reordenació integral de l'àmbit —4.994 m²s delimitats pels carrers Consell de Cent, Avinguda Generalitat i passeig Doctor Moragas— amb tres objectius: resoldre el buit normatiu, permetre l'ampliació de la Casa Consistorial, i configurar una nova plaça més àmplia i funcionalment potent.\n\nLa proposta s'ancora en l'Avinguda Generalitat com a gran eix cívic del municipi. La plaça s'expandeix i es simplifica, incorporant la Casa Consistorial com a element exempt protagonista. Al seu darrera sorgeixen dos nous edificis públics: l'Edifici 2 (652 m²s, 2.758 m²st, PB+4), destinat a l'ampliació administrativa de l'Ajuntament; i l'Edifici 3 (510 m²s, 2.080 m²st), amb qualificació d'equipament flexible (clau c.0) que podrà combinar usos administratius, culturals, socials o assistencials. Una passarel·la a primer o segon pis connectarà funcionalment els dos edificis amb la Casa Consistorial.\n\nLa gestió urbanística preveu l'expropiació d'una parcel·la privada on s'ubiquen una fleca i un habitatge, amb un cost estimat d'entre 445.007 € i 1.191.967 € en funció de si l'activitat hi és activa. La proposta incrementa l'equipament en 487 m²s i la zona verda en 16 m²s, mentre manté intacte el sostre residencial de la parcel·la privada que es conserva (696 m²st, 7 habitatges). El mur escultòric existent, que fragmenta l'espai i bloqueja les visuals, es suprimeix o es traslladada a l'interior del nou equipament.\n\nL'execució es preveu en dues fases de quatre anys: la primera, amb la redacció i l'obra d'ampliació del consistori; la segona, condicionada a l'expropiació del sòl privat i la construcció del segon equipament.",
     "subtitle": "Estudis previs a la redacció de la Modificació puntual del Pla General Metropolità"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "small",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "small",
+    "pu-11.jpg": "small",
+    "pu-12.jpg": "small"
+  }
 }

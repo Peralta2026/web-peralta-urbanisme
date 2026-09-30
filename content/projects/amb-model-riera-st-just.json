@@ -1,20 +1,27 @@
 {
   "slug": "amb-model-riera-st-just",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra\nVIA ECONOMIA - Enric González\nAMB - Rhona Okafor i Jordi Vila\nBR - Marc Montlleó\nSERVEIS TÈCNICS AJUNTAMENT SANT JUST DESVERN - Belén Delgado, Àngels Ulla i Montse Baulies",
-  "coverImage": "0____01_ENCAIX METROPOLITA.JPG",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "0____01_ENCAIX METROPOLITA.JPG",
-    "01_RieraStJust.jpg",
-    "format ok_page-0001.jpg",
-    "format ok_page-0002.jpg",
-    "format ok_page-0003.jpg",
-    "format ok_page-0004.jpg",
-    "format ok_page-0005.jpg",
-    "format ok_page-0006.jpg",
-    "Sant Just riera - 2022 - 01.jpg",
-    "Sant Just riera - 2022 - 03.jpg",
-    "Sant Just riera - 2022 - 04.jpg",
-    "Sant Just riera - 2022 - 05.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg",
+    "pu-11.jpg",
+    "pu-12.jpg",
+    "pu-13.jpg",
+    "pu-14.jpg",
+    "pu-15.jpg",
+    "pu-16.jpg",
+    "pu-17.jpg",
+    "pu-18.jpg",
+    "pu-19.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -66,5 +73,26 @@
     "descriptionLong": "L'Estudi de definició d'un model urbanístic per a l'entorn de la riera de Sant Just Desvern és un treball estratègic encarregat per l'Àrea Metropolitana de Barcelona (AMB) i Barcelona Regional, amb redacció de Jordi Peralta, arquitecte urbanista, en col·laboració amb el Departament de projectes ambientals i energia de Barcelona Regional i coordinació de l'Àrea de Desenvolupament de Polítiques Urbanístiques de l'AMB. El treball va ser seleccionat per a la 12a Biennal Internacional de Paisatge de Barcelona 2023.\n\nLa vall de la Riera de Sant Just s'estén per la falda oriental de la Serra de Collserola i travessa els municipis de Sant Just Desvern, Sant Feliu de Llobregat i Sant Joan Despí. L'estudi identifica tres trams prototípics: el superior, agroforestal i protegit pel Parc Natural de Collserola (PEPNAT); l'intermedi de la Bonaigua, un espai de gran sensibilitat ambiental però desendreçat, amb sectors pendents de desenvolupament i instal·lacions de serveis tècnics de gran impacte visual; i l'inferior, on la riera discorre canalitzada entre polígons industrials i teixits residencials fins a confluir amb el riu Llobregat a través del Parc Agrari. L'àmbit preserva un valor patrimonial notable: masos, camins carreters i bancals de l'antiga estructura agrícola que cal preservar.\n\nEl model proposat, articulat en un triangle conceptual a tres escales, pretén desvetllar un nou parc fluvial territorial de gran potencial social i ambiental. A escala territorial (relació longitudinal), es crea un eix verd que integra la renaturalització del curs d'aigua, un passeig de vianants i un carril bici continus, i una xarxa rodada subordinada. A escala municipal (relació transversal), es reforça la connectivitat entre els dos costats de la riera a través de passos estratègics que reconeixen les traces i elements patrimonials. A escala humana (relació de contacte), es reverteix el paradigma del calaix de sastre per crear vores urbanes de qualitat orientades cap al futur parc.\n\nL'àmbit de la Bonaigua ocupa un rol central i estratègic: la seva posició intermèdia permet relligar els espais fluvials naturals (aigües amunt fins a Can Fatjó, aigües avall fins a Can Gelabert) i constituir-los en un corredor ambiental i parc territorial coherent. La proposta s'alinea amb el PDUM, que identifica la riera com a eix verd metropolità, i amb el PEPNAT, i serveix com a marc de coordinació per als futurs instruments de planejament urbanístic de la vall.",
     "subtitle": "Estudi de definició d'un nou model urbà, i redacció de la MPGM de l'entorn de la Riera"
   },
-  "webStatus": "relevant"
+  "webStatus": "relevant",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "wide",
+    "pu-03.jpg": "wide",
+    "pu-04.jpg": "wide",
+    "pu-05.jpg": "wide",
+    "pu-06.jpg": "wide",
+    "pu-07.jpg": "wide",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "small",
+    "pu-11.jpg": "small",
+    "pu-12.jpg": "wide",
+    "pu-13.jpg": "wide",
+    "pu-14.jpg": "wide",
+    "pu-15.jpg": "wide",
+    "pu-16.jpg": "wide",
+    "pu-17.jpg": "wide",
+    "pu-18.jpg": "wide",
+    "pu-19.jpg": "wide"
+  }
 }

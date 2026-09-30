@@ -5,36 +5,27 @@
   margin-bottom: 72px;
 }
 
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  align-items: start;
-}
-
-.column {
+/* Fila justificada: les imatges comparteixen alçada i omplen l'amplada */
+.row {
   display: flex;
-  min-width: 0;
-  flex-direction: column;
   gap: 10px;
+  max-width: 100%;
 }
 
 .imageButton {
   position: relative;
   display: block;
-  width: 100%;
+  min-width: 0;
   overflow: hidden;
   border: 0;
   border-radius: 16px;
-  background: var(--color-faint);
+  background: var(--color-gray-light);
   padding: 0;
   cursor: zoom-in;
 }
 
 .image {
-  display: block;
-  width: 100%;
-  height: auto;
+  object-fit: cover;
   transition: transform 500ms var(--ease-smooth);
 }
 
@@ -65,19 +56,18 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  display: grid;
-  place-items: center;
   border: 0;
-  background: rgb(255 255 255 / 96%);
-  padding: clamp(24px, 5vw, 72px);
+  background: rgb(255 255 255 / 97%);
+  cursor: zoom-out;
+}
+
+/* L'espai de la imatge ampliada ocupa tota la pantalla menys els controls */
+.lightboxFrame {
+  position: absolute;
+  inset: 64px 80px;
 }
 
 .lightboxImage {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: calc(100vh - 120px);
   object-fit: contain;
 }
 
@@ -114,8 +104,7 @@
 
 @media (max-width: 720px) {
   .gallery,
-  .column,
-  .columns {
+  .row {
     gap: 7px;
   }
 
@@ -123,8 +112,8 @@
     border-radius: 10px;
   }
 
-  .lightbox {
-    padding: 56px 12px;
+  .lightboxFrame {
+    inset: 56px 12px;
   }
 
   .previous { left: 12px; }

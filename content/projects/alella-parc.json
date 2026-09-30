@@ -1,13 +1,15 @@
 {
   "slug": "alella-parc",
   "credits": "PERALTA URBANISME - Jordi Peralta i Marc Vizcarra\nSERVEIS TÈCNICS AJUNTAMENT ALELLA - Eduard Boix",
-  "coverImage": "Diapositiva1.JPG",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "Diapositiva1.JPG",
-    "Diapositiva18.JPG",
-    "Diapositiva33.JPG",
-    "Diapositiva37.JPG",
-    "Diapositiva7.JPG"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -59,5 +61,14 @@
     "descriptionLong": "La Miralda és una finca situada als límits entre el casc urbà d'Alella i la Serralada Litoral, sobre 46.437 m² amb una rica estratigrafia agroforestal. Durant dècades, l'abandonament de l'explotació agrícola ha provocat la regressió de les vinyes i l'avenç de l'arbustiva, diluint una trama que havia configurat durant segles el paisatge d'entrada al municipi.\n\nEl Document de Criteris d'Urbanització i Paisatge proposa la transformació de La Miralda en un nou parc urbà, articulant la recuperació del llegat patrimonial de la finca amb la creació d'espais cívics de nova generació. El projecte parteix d'una lectura profunda del territori: l'estructura de l'aigua (riera d'Alella, torrent de Rials), la topografia en bancals, els murs de pedra i tàpies, els camins rurals i les antigues basses d'irrigació. Sobre aquesta base, la proposta estableix una seqüència de criteris superposats fins a generar el nou model urbà.\n\nL'estructura organitzadora del parc es recolza en la recuperació del \"cardus i decumanus\" —la doble traça agrícola ortogonal que ha estructurat la finca des dels orígens—, potenciant-ne els eixos com a itineraris estructurants. Els camins es materialitzen amb sauló compactat, en coherència amb el caràcter rural de l'indret, mentre que els espais cívics s'urbanitzen amb material ceràmic en continuïtat amb els murs de contenció rehabilitats.\n\nLa proposta identifica cinc espais de referència:\n1. Nou Equipament Municipal de La Miralda, integrat paisatgísticament amb cobertes enjardinades i materials ceràmics\n2. Nou Eix Verd Cívic Alella-Masnou, gran passeig verd que costura el teixit municipal\n3. Nou Espai Mirador, amb arbrat de copa horitzontal (til·lers) per emfatitzar les visuals panoràmiques\n4. Nou Espai Verd Agrari, amb recuperació de vinyes com a element identitari d'Alella\n5. Nova Plaça Urbana de referència, ròtula entre el parc i el teixit residencial\n\nEl nou teixit mixt adjacent (residencial i comercial) s'ordena amb cinc criteris: permeabilitat visual i física cap al parc, volumetria màxima PB+2+àtic, filtres ambientals i jardins comunitaris, respecte del patrimoni preexistent, i vinculació dels equipaments amb l'espai públic. El document minimitza l'impacte viari i maximitza la continuïtat verda entre el parc i els barris existents.\n\nL'actuació preveu la renaturalització de la riera d'Alella i l'aiguabarreig amb el torrent de Rials com a element ecològic central del conjunt, reforçant la connexió del parc amb la Serralada Litoral.",
     "subtitle": "Suport tècnic per a la ordenació de la MPOUM i Document de Criteris d'urbanització i paisatge"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "small",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small"
+  }
 }

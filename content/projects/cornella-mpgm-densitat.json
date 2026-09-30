@@ -1,20 +1,20 @@
 {
   "slug": "cornella-mpgm-densitat",
   "credits": "PERALTA URBANISME - Marc Vizcarra, Mar Castarlenas i Jordi Peralta\nVIA ECONOMIA - Enric González\nPROJECTES URBANS - Georgina Vázquez\nSERVEIS TÈCNICS AJUNTAMENT CORNELLÀ DE LLOBREGAT - Jordi Caparrós, Alberto Esteban i Daniel Broto",
-  "coverImage": "Anàlisi activitat_estat.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "Anàlisi activitat_estat.jpg",
-    "Anàlisi barris.jpg",
-    "Anàlisi densitat_nombre hab.jpg",
-    "Anàlisi densitat_zones.jpg",
-    "Anàlisi mobilitat_transport públic.jpg",
-    "Anàlisi verd_cornellà natura.jpg",
-    "Anàlisi verd_plan.jpg",
-    "esquemes copia.jpg",
-    "establiments protegits.jpg",
-    "estructura comercial sobre natura.jpg",
-    "portada.jpg",
-    "territorial.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg",
+    "pu-11.jpg",
+    "pu-12.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -66,5 +66,19 @@
     "descriptionLong": "La Modificació Puntual del Pla General Metropolità en relació a la regulació de la densitat i dels usos en planta baixa a Cornellà de Llobregat és un instrument de planejament promogut per l'Ajuntament de Cornellà de Llobregat i l'empresa municipal PROCORNELLÀ, redactat per Peralta Urbanisme SLP amb la col·laboració de VIA economia i urbanisme (documentació econòmica) i PROJECTES URBANS (memòria social i de gènere).\n\nL'objecte de la modificació és facilitar la creació d'habitatge de protecció oficial dins del teixit urbà consolidat, sense augmentar l'edificabilitat ni alterar la morfologia dels barris. L'àmbit abasta tres qualificacions residencials: la zona de nucli antic (clau 12, 7,0 ha), la zona de densificació semiintensiva (clau 13b, 66,5 ha) i la zona d'ordenació volumètrica (clau 18, 32,9 ha), amb una superfície total de 106,4 ha.\n\nLa modificació s'articula en tres mesures complementàries. La primera (A) suprimeix el paràmetre de densitat màxima per hectàrea, establert el 1976 per a un model de llar que no s'ajusta a les necessitats actuals. La segona (B) redueix el mòdul de superfície per habitatge de protecció oficial de 100 m² a 70 m², de manera que el sostre edificable existent pot acollir significativament més habitatges protegits. La tercera (C) defineix una estructura comercial de dos sistemes —municipal i local—: als eixos protegits, les plantes baixes hauran de mantenir l'activitat comercial; als carrers fora d'aquests eixos, es permet la conversió de locals buits en habitatge de protecció (mòdul mínim 70 m²).\n\nLa proposta es fonamenta en un model estructural de tres sistemes complementaris: l'estructura de mobilitat (metro, tramvia, Rodalies i autobusos), que dota Cornellà d'una accessibilitat metropolitana privilegiada; l'estratègia de verd \"Cornellà Natura\", amb cinc eixos verds que connecten el Parc Agrari del Baix Llobregat amb Collserola i els parcs metropolitans; i l'estructura comercial, que protegeix eixos com el carrer Joaquim Rubió i Ors, la carretera de Sant Boi–Esplugues i els entorns dels mercats de Sant Ildefons, Marsans i del Centre.\n\nLa modificació és d'aplicació directa i no requereix figures de planejament derivat. Paral·lelament, s'ha iniciat una suspensió d'un any d'atorgament de llicències de canvi d'ús a habitatge residencial per als eixos comercials protegits, fins a l'aprovació definitiva de la modificació.",
     "subtitle": "MPGM / Modificació puntual del Pla General Metropolità"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "big",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "big",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "small",
+    "pu-11.jpg": "small",
+    "pu-12.jpg": "small"
+  }
 }

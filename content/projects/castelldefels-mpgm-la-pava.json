@@ -1,22 +1,24 @@
 {
   "slug": "castelldefels-mpgm-la-pava",
   "credits": "PERALTA URBANISME - Marc Vizcarra, Mar Castarlenas i Jordi Peralta\n(AZ) ESTUDIS I PROJECTES EN MEDI AMBIENT I PAISATGE - Daniel Gómez i Anna Pujol\nSERVEIS TÈCNICS AJUNTAMENT CASTELLDEFELS - Henar Herrera i Cecília Ripoll",
-  "coverImage": "14.jpg",
+  "coverImage": "pu-01.jpg",
   "images": [
-    "14.jpg",
-    "18.jpg",
-    "21 inundabilitat.jpg",
-    "25.jpg",
-    "26.jpg",
-    "27.jpg",
-    "28.jpg",
-    "29.jpg",
-    "30.jpg",
-    "31.jpg",
-    "32.jpg",
-    "5.jpg",
-    "7.jpg",
-    "8.jpg"
+    "pu-01.jpg",
+    "pu-02.jpg",
+    "pu-03.jpg",
+    "pu-04.jpg",
+    "pu-05.jpg",
+    "pu-06.jpg",
+    "pu-07.jpg",
+    "pu-08.jpg",
+    "pu-09.jpg",
+    "pu-10.jpg",
+    "pu-11.jpg",
+    "pu-12.jpg",
+    "pu-13.jpg",
+    "pu-14.jpg",
+    "pu-15.jpg",
+    "pu-16.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -68,5 +70,23 @@
     "descriptionLong": "L'àmbit de la Pava és un sector de sòl urbanitzable no delimitat d'una extensió de 22,6 ha —19,7 ha de sòl urbanitzable i 2,9 ha de sòl no urbanitzable—, emmarcat entre la C-31 al sud, el Canal Olímpic de Rem a l'oest, el Parc Agrari del Llobregat al nord i el límit municipal amb Gavà a l'est. El planejament general vigent, el Pla General Metropolità de 1976, hi reconeix la clau 21 de desenvolupament urbà opcional amb una edificabilitat bruta de 0,25 m²st/m²s, que resulta en un sostre potencial de 15.924 m²st dins del terme de Castelldefels. Malgrat tenir gairebé cinquanta anys d'existència, el sector resta sense desenvolupar.\n\nL'entorn és caracteritzat per grans pinedes de Pinus pinea, l'activitat del Càmping Estrella de Mar, un equipament municipal —el Esplai— en situació d'abandó, i una trama de barris de baixa densitat on la C-31 actua com a barrera física i impedeix la connectivitat entre les dues vores. A aquesta situació s'hi suma el recent impacte d'una plaga de Bursaphelenchus xylophilus que afecta les pinedes i n'amenaça la continuïtat si no s'actua.\n\nL'aprovació inicial del PDUM proposa per a aquest sector la centralitat metropolitana 07 «Castelldefels UPC–Estació», que defineix la transformació de la C-31 en avinguda metropolitana, la integració del Canal Olímpic com a element estructurador de referència i la localització de nous aprofitaments urbanístics mixtos. Davant d'aquest escenari, l'Ajuntament de Castelldefels impulsa la modificació puntual del PGM per donar resposta als canvis d'escala i de model previstos, i per resoldre els conflictes entre la realitat física i el planejament vigent.\n\nEl document d'avanç, redactat per Peralta Urbanisme SLP el març de 2026, planteja quatre alternatives d'ordenació: l'alternativa 0 (manteniment del planejament vigent, descartada per incoherent amb el PDUM); l'alternativa 1, que concentra el sostre al front de la C-31 amb 49.258 m²st; l'alternativa 2, que reubica el sostre vigent (15.924 m²st) generant un nou front al Canal Olímpic amb una llacuna i espai de retenció hídrica; i l'alternativa 3, que articula el sostre entorn d'un claustre arbrat interior. Les tres alternatives actives persegueixen els mateixos objectius: generar espais públics de qualitat, preservar i gestionar les pinedes, consolidar el Canal Olímpic com a pol metropolità, crear habitatge protegit i millorar la mobilitat activa i sostenible a l'àmbit.",
     "subtitle": "Avanç de la Modificació puntual de Pla General Metropolità de l'àmbit de la Pava"
   },
-  "webStatus": "si"
+  "webStatus": "si",
+  "imageLayout": {
+    "pu-01.jpg": "cover",
+    "pu-02.jpg": "small",
+    "pu-03.jpg": "small",
+    "pu-04.jpg": "small",
+    "pu-05.jpg": "small",
+    "pu-06.jpg": "small",
+    "pu-07.jpg": "small",
+    "pu-08.jpg": "small",
+    "pu-09.jpg": "small",
+    "pu-10.jpg": "small",
+    "pu-11.jpg": "small",
+    "pu-12.jpg": "small",
+    "pu-13.jpg": "small",
+    "pu-14.jpg": "small",
+    "pu-15.jpg": "small",
+    "pu-16.jpg": "wide"
+  }
 }
