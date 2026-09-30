@@ -102,6 +102,8 @@ export default function ProjectEditorialGallery({ slug, images: sourceImages, ti
     if (active === null) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // Amaga els controls de la pàgina (p. ex. "tornar a dalt") mentre el visor és obert
+    document.body.classList.add("pu-lightbox-open");
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setActive(null);
@@ -112,6 +114,7 @@ export default function ProjectEditorialGallery({ slug, images: sourceImages, ti
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.classList.remove("pu-lightbox-open");
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [active, images.length]);
