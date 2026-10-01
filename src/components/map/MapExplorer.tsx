@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect } from "react";
 import ArchiveNav from "@/components/projects/ArchiveNav";
 import type { Locale, Project, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
-import MapView from "./MapView";
+import TerritorialMap from "./TerritorialMap";
 
 const SECTION_LABELS: Record<Locale, { tematica: string; tipus: string; escala: string; clear: string }> = {
   ca: { tematica: "Temàtica", tipus: "Tipus", escala: "Escala", clear: "Netejar" },
@@ -198,7 +198,7 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
 
         {/* Mapa */}
         <div className="pu-map-canvas">
-          <MapView projects={visibleProjects} locale={locale} />
+          <TerritorialMap projects={visibleProjects} locale={locale} />
         </div>
       </div>
 

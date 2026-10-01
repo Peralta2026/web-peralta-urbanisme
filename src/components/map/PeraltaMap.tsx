@@ -62,7 +62,9 @@ const LABELS: Record<string, { zoomIn: string; zoomOut: string; gestures: string
   en: { zoomIn: "Zoom in", zoomOut: "Zoom out", gestures: "Use two fingers to move the map" },
 };
 
-export default function PeraltaMap({ locale, showZoom = false, onReady }: { locale: string; showZoom?: boolean; onReady?: (map: MLMap) => void }) {
+type Padding = { top: number; bottom: number; left: number; right: number };
+
+export default function PeraltaMap({ locale, showZoom = false, onReady, padding = FIT_PADDING }: { locale: string; showZoom?: boolean; onReady?: (map: MLMap) => void; padding?: Padding }) {
   const ref = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
   const [zoom, setZoom] = useState<number | null>(null);
@@ -79,7 +81,7 @@ export default function PeraltaMap({ locale, showZoom = false, onReady }: { loca
         container: ref.current,
         style: STYLE,
         bounds: CATALONIA,
-        fitBoundsOptions: { padding: FIT_PADDING },
+        fitBoundsOptions: { padding },
         maxBounds: SPAIN_LIMITS,
         minZoom: 4.2,
         maxZoom: 13,
@@ -109,7 +111,7 @@ export default function PeraltaMap({ locale, showZoom = false, onReady }: { loca
       // L'enquadrament inicial es refà quan el contenidor ja té la mida definitiva
       map.on("load", () => {
         map.resize();
-        map.fitBounds(CATALONIA, { padding: FIT_PADDING, duration: 0 });
+        map.fitBounds(CATALONIA, { padding, duration: 0 });
         addDetail();
         onReady?.(map);
       });
