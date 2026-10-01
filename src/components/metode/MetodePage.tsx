@@ -241,13 +241,7 @@ function ServiceItem({ name, desc, tags }: { name: string; desc: string; tags: r
 
 /* ─── MethodDiagram ─────────────────────────────────────────────────────────── */
 
-const DIAGRAM_HINT: Record<"ca" | "es" | "en", { click: string; tap: string }> = {
-  ca: { click: "Clica el triangle", tap: "Toca el triangle" },
-  es: { click: "Haz clic en el triángulo", tap: "Toca el triángulo" },
-  en: { click: "Click the triangle", tap: "Tap the triangle" },
-};
-
-function MethodDiagram({ d, lang }: { d: typeof T["ca"]["diagram"]; lang: "ca" | "es" | "en" }) {
+function MethodDiagram({ d }: { d: typeof T["ca"]["diagram"] }) {
   const [st, setSt] = useState(0);
   const [hint, setHint] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -401,10 +395,6 @@ function MethodDiagram({ d, lang }: { d: typeof T["ca"]["diagram"]; lang: "ca" |
             <button type="button" className={i === st ? "is-active" : ""} onClick={() => go(i)}>{label}</button>
           </span>
         ))}
-        <span className={`md-steps-hint${touched ? " is-gone" : ""}`}>
-          <span className="md-hint-click">{DIAGRAM_HINT[lang].click}</span>
-          <span className="md-hint-tap">{DIAGRAM_HINT[lang].tap}</span>
-        </span>
       </div>
     </div>
   );
@@ -582,13 +572,6 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         .md-steps button:hover { color: #555; }
         .md-steps button.is-active { color: #000; font-weight: 600; }
         .md-steps i { font-style: normal; color: #ddd; }
-        .md-steps-hint { margin-left: 8px; color: #999; transition: opacity 400ms ease; }
-        .md-steps-hint.is-gone { opacity: 0; }
-        .md-hint-tap { display: none; }
-        @media (hover: none) {
-          .md-hint-click { display: none; }
-          .md-hint-tap { display: inline; }
-        }
         .md-svg-outer:focus-visible { outline: 1px dashed rgba(0,0,0,0.2); outline-offset: 4px; }
         .md-svg { width: 100%; height: auto; overflow: visible; display: block; }
         .md-svg text { font-family: var(--font-sans), sans-serif; }
@@ -784,7 +767,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           </div>
         </div>
         <div className="met-modes-right">
-          <MethodDiagram d={t.diagram as unknown as typeof T["ca"]["diagram"]} lang={lang} />
+          <MethodDiagram d={t.diagram as unknown as typeof T["ca"]["diagram"]} />
         </div>
       </section>
 
