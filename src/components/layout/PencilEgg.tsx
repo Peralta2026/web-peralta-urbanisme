@@ -4,25 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { drawCalli, type Pt } from "@/lib/calligraphy";
+import { PENCIL_CURSOR, SIGN_PATH } from "./PencilGlyph";
 
 /* Easter egg del peu: el web es converteix en paper i es pot dibuixar a sobre.
-   Només a l'ordinador. No es desa res: un recàrrec o canvi de pàgina ho esborra. */
-
-const DESKTOP = "(hover: hover) and (pointer: fine) and (min-width: 901px)";
+   Amb el dit: un dit dibuixa, dos dits desplacen. No es desa res: un
+   recàrrec o canvi de pàgina ho esborra. */
 
 const COPY: Record<string, { motto: string; clear: string; close: string; trigger: string }> = {
   ca: { motto: "Tot projecte comença amb un traç.",     clear: "Esborrar", close: "Sortir", trigger: "Dibuixar sobre el web" },
   es: { motto: "Todo proyecto empieza con un trazo.",   clear: "Borrar",   close: "Salir",  trigger: "Dibujar sobre la web" },
   en: { motto: "Every project begins with a stroke.",   clear: "Clear",    close: "Exit",   trigger: "Draw on the website" },
 };
-
-const PENCIL_CURSOR = `url("data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'>` +
-  `<path d='M3 25 L5 18 L19 4 L24 9 L10 23 Z' fill='white' stroke='black' stroke-width='1.3' stroke-linejoin='round'/>` +
-  `<path d='M5 18 L10 23' stroke='black' stroke-width='1.3'/>` +
-  `<path d='M3 25 L4.2 21 L7 23.8 Z' fill='black'/>` +
-  `</svg>`,
-)}") 3 25, crosshair`;
 
 const STROKE_COLOR = "#fff";
 
@@ -71,11 +63,27 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
 
     const docPt = (e: PointerEvent): Pt => ({ x: e.clientX + window.scrollX, y: e.clientY + window.scrollY });
 
-    const onDown = (e: PointerEvent) => {
-      if (!e.isPrimary || e.button !== 0) return;
-      e.preventDefault();
-      e.stopPropagation();
-      canvas.setPointerCapture(e.pointerId);
+    // Amb el dit: un dit dibuixa, dos dits desplacen la pàgina (amb inèrcia)
+    const touches = new Map<number, { x: number; y: number }>();
+    let panning = false;
+    let panY = 0;
+    let panV = 0;
+    let panT = 0;
+    let inertia = 0;
+    const midY = () => {
+      let sum = 0;
+      touches.forEach((t) => { sum += t.y; });
+      return sum / touches.size;
+    };
+    const stopInertia = () => { cancelAnimationFrame(inertia); inertia = 0; };
+    const glide = () => {
+      panV *= 0.94;
+      if (Math.abs(panV) < 0.3) { inertia = 0; return; }
+      window.scrollBy(0, panV);
+      inertia = requestAnimationFrame(glide);
+    };
+
+    const startStroke = (e: PointerEvent) => {
       current = [docPt(e)];
       strokes.push(current);
       prevMid = null;
@@ -84,8 +92,7 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
         mottoTimer = window.setTimeout(() => setMotto("done"), 2600);
       }
     };
-    const onMove = (e: PointerEvent) => {
-      e.stopPropagation();
+    const extendStroke = (e: PointerEvent) => {
       if (!current) return;
       const p = docPt(e);
       const last = current[current.length - 1];
@@ -97,8 +104,67 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
         prevMid, 1, STROKE_COLOR,
       );
     };
+
+    const onDown = (e: PointerEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.pointerType !== "touch") {
+        if (!e.isPrimary || e.button !== 0) return;
+        canvas.setPointerCapture(e.pointerId);
+        startStroke(e);
+        return;
+      }
+      stopInertia();
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (touches.size === 1 && !panning) {
+        startStroke(e);
+      } else if (touches.size === 2) {
+        // El segon dit converteix el gest en desplaçament: el traç començat no compta
+        if (current) {
+          strokes.pop();
+          current = null;
+          prevMid = null;
+          schedule();
+        }
+        panning = true;
+        panY = midY();
+        panV = 0;
+        panT = performance.now();
+      }
+    };
+    const onMove = (e: PointerEvent) => {
+      e.stopPropagation();
+      if (e.pointerType !== "touch") { extendStroke(e); return; }
+      if (!touches.has(e.pointerId)) return;
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (panning) {
+        if (touches.size < 2) return;
+        const y = midY();
+        const dy = panY - y;
+        const now = performance.now();
+        window.scrollBy(0, dy);
+        const v = Math.max(-60, Math.min(60, (dy / Math.max(16, now - panT)) * 16));
+        panV = panV * 0.6 + v * 0.4;
+        panY = y;
+        panT = now;
+        return;
+      }
+      extendStroke(e);
+    };
     const onUp = (e: PointerEvent) => {
       e.stopPropagation();
+      if (e.pointerType === "touch") {
+        touches.delete(e.pointerId);
+        if (panning) {
+          if (touches.size === 0) {
+            panning = false;
+            if (performance.now() - panT < 80) inertia = requestAnimationFrame(glide);
+          } else {
+            panY = midY();
+          }
+          return;
+        }
+      }
       current = null;
       prevMid = null;
     };
@@ -119,6 +185,7 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
 
     return () => {
       cancelAnimationFrame(raf);
+      stopInertia();
       window.clearTimeout(mottoTimer);
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
@@ -155,7 +222,7 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
           touch-action: none;
         }
         .pu-pencil-motto {
-          position: fixed; left: 50%; bottom: 76px;
+          position: fixed; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom));
           transform: translateX(-50%);
           z-index: 10011;
           margin: 0;
@@ -171,7 +238,7 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
         }
         .pu-pencil-motto.is-shown { opacity: 1; }
         .pu-pencil-ui {
-          position: fixed; left: 50%; bottom: 28px;
+          position: fixed; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom));
           transform: translateX(-50%);
           z-index: 10011;
           display: flex; align-items: center; gap: 22px;
@@ -196,28 +263,13 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
 
 /* ─── Disparador ─────────────────────────────────────────────────────────── */
 
-function subscribeDesktop(cb: () => void) {
-  const mq = window.matchMedia(DESKTOP);
-  mq.addEventListener("change", cb);
-  return () => mq.removeEventListener("change", cb);
-}
-
 export default function PencilEgg({ locale }: { locale: string }) {
-  const [desktop, setDesktop] = useState(false);
   const [active, setActive] = useState(false);
   const pathname = usePathname();
   const close = useRef(() => setActive(false)).current;
 
-  useEffect(() => {
-    const check = () => setDesktop(window.matchMedia(DESKTOP).matches);
-    check();
-    return subscribeDesktop(check);
-  }, []);
-
   useEffect(() => { setActive(false); }, [pathname]);
-  useEffect(() => { if (!desktop) setActive(false); }, [desktop]);
 
-  if (!desktop) return null;
   const t = COPY[locale] ?? COPY.ca;
 
   return (
@@ -230,14 +282,16 @@ export default function PencilEgg({ locale }: { locale: string }) {
         aria-pressed={active}
       >
         <svg width="34" height="14" viewBox="0 0 34 14" fill="none" aria-hidden="true">
-          <path d="M1.5 10.5 C 5 3, 8.5 2.5, 10.5 7 S 15 12.5, 18.5 6 S 24.5 1.5, 26.5 6.5 S 30.5 10, 32.5 4" pathLength={1} />
+          <path d={SIGN_PATH} pathLength={1} />
         </svg>
       </button>
       {active && createPortal(<PencilLayer locale={locale} onClose={close} />, document.body)}
       <style>{`
         .pu-egg {
           display: inline-flex; align-items: center;
-          padding: 6px 4px;
+          padding: 10px 6px;
+          margin: -10px -6px;
+          -webkit-tap-highlight-color: transparent;
           border: 0; background: none; cursor: pointer;
           color: rgba(255,255,255,0.22);
           transition: color 300ms ease;

@@ -9,6 +9,7 @@ import HomeContact from "@/components/home/HomeContact";
 import HomeMobile from "@/components/home/HomeMobile";
 import HomeStrip from "@/components/home/HomeStrip";
 import { drawCalli } from "@/lib/calligraphy";
+import { PENCIL_TIP, PencilGlyph, SIGN_PATH, SIGN_VIEWBOX } from "@/components/layout/PencilGlyph";
 import { CONTENT, FEATURED_SLUGS, FIELD_LABELS, LangSelector, UI_LABELS, isValid } from "@/components/home/homeShared";
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
@@ -36,6 +37,11 @@ const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string; 
 };
 
 const STROKE_MULS  = { 1: 0.3, 2: 0.7, 3: 1.0, 4: 2.4 } as const;
+
+/* Traç que es dibuixa sobre la portada abans que aparegui el llapis */
+const SIGN_W        = 220;
+const SIGN_DELAY_MS = 300;
+const SIGN_DRAW_MS  = 1800;
 const DOT_SIZES_PX = { 1: 4,   2: 6,   3: 9,   4: 13  } as const;
 
 /* ─── Easings ────────────────────────────────────────────────────────────── */
@@ -223,6 +229,11 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
   const strokeSizeRef   = useRef<1 | 2 | 3 | 4>(3);
   const clearFnRef      = useRef<() => void>(() => {});
   const videoElemRef    = useRef<HTMLVideoElement>(null);
+  const signRef         = useRef<HTMLDivElement>(null);
+  const signStartedRef  = useRef(false);
+  const signTimerRef    = useRef(0);
+  const penReadyRef     = useRef(false);
+  const lastMouseRef    = useRef<{ x: number; y: number } | null>(null);
 
   /* Hero-exit lock */
   const heroDoneRef      = useRef(false);
@@ -295,6 +306,38 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
   const handleSizeChange = (size: 1 | 2 | 3 | 4) => {
     strokeSizeRef.current = size;
     setStrokeSize(size);
+  };
+
+  /* ── Traç d'entrada: es dibuixa i s'esvaeix; en acabar apareix el llapis ── */
+  const playSign = () => {
+    const el = signRef.current;
+    const cursorEl = cursorRef.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!el || reduced) { penReadyRef.current = true; return; }
+    const scale = SIGN_W / SIGN_VIEWBOX.w;
+    const end = lastMouseRef.current ?? { x: window.innerWidth * 0.62, y: window.innerHeight * 0.5 };
+    const left = Math.min(Math.max(8, end.x - SIGN_VIEWBOX.endX * scale), window.innerWidth - SIGN_W - 8);
+    const top  = Math.min(Math.max(8, end.y - SIGN_VIEWBOX.endY * scale), window.innerHeight - SIGN_VIEWBOX.h * scale - 8);
+    el.style.left = `${left}px`;
+    el.style.top  = `${top}px`;
+    if (cursorEl && !lastMouseRef.current) {
+      cursorEl.style.left = `${left + SIGN_VIEWBOX.endX * scale}px`;
+      cursorEl.style.top  = `${top + SIGN_VIEWBOX.endY * scale}px`;
+    }
+    const path = el.querySelector("path");
+    if (path) {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = `${len}`;
+      path.animate(
+        [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+        { duration: SIGN_DRAW_MS, delay: SIGN_DELAY_MS, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "both" },
+      );
+    }
+    el.animate(
+      [{ opacity: 1 }, { opacity: 0.95, offset: 0.55 }, { opacity: 0 }],
+      { duration: SIGN_DRAW_MS, delay: SIGN_DELAY_MS, easing: "ease-in", fill: "both" },
+    );
+    signTimerRef.current = window.setTimeout(() => { penReadyRef.current = true; }, SIGN_DELAY_MS + SIGN_DRAW_MS);
   };
 
   /* ── RAF loop ── */
@@ -385,10 +428,14 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
       if (videoRef.current)        videoRef.current.style.opacity        = settleP.toFixed(3);
       if (hintRef.current)         hintRef.current.style.opacity         = Math.max(0, 1 - settleP * 2.5).toFixed(3);
       if (fixedLogoRef.current)    fixedLogoRef.current.style.opacity    = settleP.toFixed(3);
-      if (cursorRef.current)       cursorRef.current.style.opacity       = (heroDone || isMobileRef.current) ? "0" : settleP.toFixed(3);
+      if (!signStartedRef.current && !heroDone && !isMobileRef.current && settleP > 0.97) {
+        signStartedRef.current = true;
+        playSign();
+      }
+      if (cursorRef.current)       cursorRef.current.style.opacity       = (heroDone || isMobileRef.current || !penReadyRef.current) ? "0" : settleP.toFixed(3);
       if (canvasRef.current)       canvasRef.current.style.display       = (heroDone || isMobileRef.current) ? "none" : "block";
       if (toolsRef.current) {
-        const show = !heroDone && !isMobileRef.current && settleP > 0.3;
+        const show = !heroDone && !isMobileRef.current && settleP > 0.3 && penReadyRef.current;
         toolsRef.current.style.display       = (heroDone || isMobileRef.current) ? "none" : "flex";
         toolsRef.current.style.opacity       = show ? Math.min(1, (settleP - 0.3) / 0.5).toFixed(3) : "0";
         toolsRef.current.style.pointerEvents = show ? "auto" : "none";
@@ -438,6 +485,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove",  onTouchMove);
       cancelAnimationFrame(rafId.current);
+      window.clearTimeout(signTimerRef.current);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -467,21 +515,18 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "touch") {
+        lastMouseRef.current = { x: e.clientX, y: e.clientY };
         cursorEl.style.left = `${e.clientX}px`;
         cursorEl.style.top  = `${e.clientY}px`;
         const eraserR = 6 + strokeSizeRef.current * 4;
         if (drawModeRef.current === "erase") {
+          cursorEl.classList.add("is-erase");
           cursorEl.style.width        = `${eraserR * 2}px`;
           cursorEl.style.height       = `${eraserR * 2}px`;
-          cursorEl.style.background   = "transparent";
-          cursorEl.style.border       = "1.5px solid rgba(0,0,0,0.5)";
-          cursorEl.style.mixBlendMode = "normal";
         } else {
-          cursorEl.style.width        = "10px";
-          cursorEl.style.height       = "10px";
-          cursorEl.style.background   = "#fff";
-          cursorEl.style.border       = "none";
-          cursorEl.style.mixBlendMode = "difference";
+          cursorEl.classList.remove("is-erase");
+          cursorEl.style.width        = "28px";
+          cursorEl.style.height       = "28px";
         }
       }
       if (!isDrawingRef.current || !lastPtRef.current) return;
@@ -504,7 +549,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
     };
 
     const onDown = (e: PointerEvent) => {
-      if (heroDoneRef.current) return;
+      if (heroDoneRef.current || !penReadyRef.current) return;
       if (!e.isPrimary) return;
       if ((e.target as HTMLElement).closest("a, button")) return;
       e.preventDefault();
@@ -558,6 +603,15 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
           55%      { transform: translateY(6px); }
         }
         .pu-draw-tools { flex-direction: row; align-items: center; gap: 16px; }
+        .pu-hero-cursor { transform: translate(-${PENCIL_TIP.x}px, -${PENCIL_TIP.y}px); transition: opacity 450ms ease; }
+        .pu-hero-cursor-pencil { display: block; }
+        .pu-hero-cursor.is-erase { transform: translate(-50%, -50%); border: 1.5px solid rgba(0,0,0,0.5); border-radius: 50%; }
+        .pu-hero-cursor.is-erase .pu-hero-cursor-pencil { display: none; }
+        .pu-hero-sign { position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none; opacity: 0; }
+        .pu-hero-sign svg { display: block; overflow: visible; }
+        .pu-hero-sign path {
+          fill: none; stroke: #111; stroke-width: ${(2.4 * SIGN_VIEWBOX.w / SIGN_W).toFixed(3)}; stroke-linecap: round;
+        }
         .pu-draw-tools-dot { cursor: pointer; border-radius: 50%; flex-shrink: 0; transition: background 150ms ease; }
         @media (max-width: 768px) {
           .pu-draw-tools {
@@ -973,24 +1027,30 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
         }}
       />
 
-      {/* ── Custom cursor: black dot that inverts colors via mix-blend-mode ── */}
+      {/* ── Traç d'entrada ── */}
+      <div ref={signRef} className="pu-hero-sign" aria-hidden="true">
+        <svg viewBox={`0 0 ${SIGN_VIEWBOX.w} ${SIGN_VIEWBOX.h}`} width={SIGN_W} height={(SIGN_W * SIGN_VIEWBOX.h) / SIGN_VIEWBOX.w}>
+          <path d={SIGN_PATH} />
+        </svg>
+      </div>
+
+      {/* ── Cursor propi: llapis (o cercle en mode esborrar) ── */}
       <div
         ref={cursorRef}
+        className="pu-hero-cursor"
         style={{
           position:     "fixed",
           top:          0,
           left:         0,
-          width:        "10px",
-          height:       "10px",
-          borderRadius: "50%",
-          background:   "#fff",
-          mixBlendMode: "difference",
+          width:        "28px",
+          height:       "28px",
           pointerEvents:"none",
           zIndex:       9998,
-          transform:    "translate(-50%, -50%)",
           opacity:      0,
         }}
-      />
+      >
+        <PencilGlyph className="pu-hero-cursor-pencil" />
+      </div>
     </>
   );
 }

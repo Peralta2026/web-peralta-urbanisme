@@ -646,18 +646,17 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           width: 100%;
           mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
           -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-          cursor: pointer;
         }
         .met-clients-track {
           display: flex;
           align-items: center;
-          gap: clamp(40px, 5vw, 80px);
+          gap: clamp(48px, 6vw, 96px);
           width: max-content;
-          padding: 8px 0;
-          animation: met-marquee 42s linear infinite;
-          animation-play-state: paused;
+          padding: 12px 0;
+          animation: met-marquee 60s linear infinite;
         }
-        .met-clients-wrap:hover .met-clients-track { animation-play-state: running; }
+        .met-clients-wrap:hover .met-clients-track { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) { .met-clients-track { animation: none; } }
         @keyframes met-marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -667,13 +666,11 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          opacity: 0.5;
-          filter: grayscale(100%);
-          transition: opacity 300ms ease, filter 300ms ease;
+          transition: opacity 300ms ease;
         }
-        .met-clients-wrap:hover .met-client-logo { opacity: 0.7; }
-        .met-client-logo:hover { opacity: 1 !important; filter: grayscale(0%) !important; }
-        .met-client-img { max-height: 36px; max-width: 110px; width: auto; height: auto; object-fit: contain; display: block; }
+        .met-clients-wrap:hover .met-client-logo { opacity: 0.55; }
+        .met-clients-wrap:hover .met-client-logo:hover { opacity: 1; }
+        .met-client-img { max-height: 52px; max-width: 160px; width: auto; height: auto; object-fit: contain; display: block; }
 
         /* ── MOBILE ── */
         @media (max-width: 900px) {
@@ -734,8 +731,8 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         @media (max-width: 768px) {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }
           .met-value:not(:last-child) { border-right: none; border-bottom: 1px solid var(--color-border-soft); padding-bottom: 40px; margin-right: 0; }
-          .met-client-img { max-height: 28px; max-width: 80px; }
-          .met-clients-track { gap: 32px; }
+          .met-client-img { max-height: 40px; max-width: 116px; }
+          .met-clients-track { gap: 40px; }
         }
       `}</style>
 
