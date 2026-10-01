@@ -61,7 +61,7 @@ function MobileCard({ project, locale }: { project: Project; locale: string }) {
  */
 export default function MobileCardDeck({ projects, locale, top }: { projects: Project[]; locale: string; top: string }) {
   return (
-    <div className="pu-deck" style={{ ["--band" as string]: top, ["--n" as string]: Math.min(projects.length, 6) }}>
+    <div className="pu-deck" style={{ ["--deck-top" as string]: top, ["--n" as string]: Math.min(projects.length, 6) }}>
       {projects.map((p, i) => (
         <div key={p.slug} className="pu-hm-slot" style={{ ["--i" as string]: Math.min(i, 5) }}>
           <MobileCard project={p} locale={locale} />
@@ -71,8 +71,8 @@ export default function MobileCardDeck({ projects, locale, top }: { projects: Pr
         .pu-deck { --slot-step: 7px; }
         .pu-hm-slot {
           position: sticky;
-          top: calc(var(--band) + var(--i) * var(--slot-step));
-          height: calc(100svh - var(--band) - var(--n) * var(--slot-step) - 12px);
+          top: calc(var(--deck-top) + var(--i) * var(--slot-step));
+          height: calc(100svh - var(--deck-top) - var(--n) * var(--slot-step) - 12px);
           min-height: 480px;
           padding-bottom: 12px;
           margin-bottom: 0;
@@ -162,7 +162,7 @@ export default function MobileCardDeck({ projects, locale, top }: { projects: Pr
         }
         .pu-mc-link::after { content: ""; display: block; height: 1.5px; margin-top: 3px; background: #000; }
         @media (orientation: landscape) and (max-height: 500px) {
-          .pu-hm-slot { height: calc(100svh - var(--band) - 12px); min-height: 0; }
+          .pu-hm-slot { height: calc(100svh - var(--deck-top) - 12px); min-height: 0; }
           .pu-mc { flex-direction: row; }
           .pu-mc-img { flex-basis: 45%; }
           .pu-mc-body { border-top: 0; border-left: 1px solid rgba(0,0,0,0.08); }
