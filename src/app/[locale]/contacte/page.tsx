@@ -1,4 +1,5 @@
 import BackLink from "@/components/layout/BackLink";
+import ContactPlan from "@/components/contact/ContactPlan";
 
 export const dynamic = "force-static";
 
@@ -27,7 +28,7 @@ export default async function ContactePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
 
   return (
     <>
@@ -107,16 +108,8 @@ export default async function ContactePage({
         </div>
       </div>
 
-      {/* Plànol dibuixat de l'entorn de l'estudi; les ones surten de l'oficina */}
-      <figure className="pu-contact-plan" aria-label="Carrer de l'Argentona, 59 · Mataró">
-        <div className="pu-contact-plan-img">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/contacte/mataro.jpg" alt="Plànol de l'entorn de l'estudi a Mataró: aparcaments, bus, Rodalies R1 i accessos" />
-          <span className="pu-contact-wave" aria-hidden="true" />
-          <span className="pu-contact-wave" aria-hidden="true" />
-          <span className="pu-contact-wave" aria-hidden="true" />
-        </div>
-      </figure>
+      {/* Plànol dibuixat de l'entorn de l'estudi; ones i fotos de l'espai */}
+      <ContactPlan locale={locale} />
       </div>
 
       <style>{`
@@ -125,46 +118,8 @@ export default async function ContactePage({
           grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
           align-items: start;
         }
-        .pu-contact-plan {
-          position: sticky;
-          top: var(--header-height);
-          margin: 0;
-          height: calc(100vh - var(--header-height));
-          height: calc(100svh - var(--header-height));
-          display: flex; align-items: center; justify-content: center;
-          padding: 24px var(--margin-page) 24px 0;
-        }
-        .pu-contact-plan-img {
-          position: relative;
-          width: min(100%, calc((100svh - var(--header-height) - 48px) * 0.783));
-          aspect-ratio: 2005 / 2560;
-        }
-        .pu-contact-plan-img img { display: block; width: 100%; height: 100%; object-fit: contain; }
-        @keyframes pu-contact-wave {
-          0%   { width: 0;   height: 0; opacity: 1; }
-          65%  { opacity: 0.7; }
-          100% { width: 40%; height: 0; padding-bottom: 40%; opacity: 0; }
-        }
-        .pu-contact-wave {
-          position: absolute;
-          left: 57.1%; top: 40.6%;
-          width: 0; height: 0;
-          border: 2.5px solid #7a1010;
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          pointer-events: none;
-          animation: pu-contact-wave 4.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-        }
-        .pu-contact-wave:nth-of-type(2) { animation-delay: 1.5s; }
-        .pu-contact-wave:nth-of-type(3) { animation-delay: 3s; }
-        @media (prefers-reduced-motion: reduce) {
-          .pu-contact-wave { animation: none; width: 18%; padding-bottom: 18%; opacity: 0.6; }
-          .pu-contact-wave:nth-of-type(n+2) { display: none; }
-        }
         @media (max-width: 900px) {
           .pu-contact-page { display: block; }
-          .pu-contact-plan { position: static; height: auto; padding: 0 var(--margin-page) 56px; }
-          .pu-contact-plan-img { width: 100%; }
         }
 
         .pu-contact-intro {
