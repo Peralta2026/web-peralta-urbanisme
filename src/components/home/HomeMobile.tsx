@@ -7,6 +7,7 @@ import NewsList from "@/components/news/NewsList";
 import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
 import HomeStrip from "@/components/home/HomeStrip";
+import HomeManifesto from "@/components/home/HomeManifesto";
 import MobileCardDeck from "@/components/home/MobileCardDeck";
 import { CONTENT, FEATURED_SLUGS, LangSelector, UI_LABELS } from "@/components/home/homeShared";
 
@@ -141,6 +142,8 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
       <HomeStrip locale={locale} />
 
       <HomeContact locale={locale} />
+
+      <HomeManifesto locale={locale} />
 
       <style>{`
         .pu-hm { --band: 64px; background: var(--color-bg); }

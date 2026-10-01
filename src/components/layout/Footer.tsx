@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import PencilEgg from "./PencilEgg";
+import FooterEgg from "./FooterEgg";
 
 function L(locale: string, path: string) {
   return `/${locale}${path}`;
@@ -90,7 +90,7 @@ export default function Footer({ locale }: { locale: string }) {
       <div className="pu-footer-bottom">
         <div className="pu-footer-copy-wrap">
           <span className="pu-footer-copy">© {new Date().getFullYear()} Peralta Urbanisme</span>
-          <PencilEgg locale={locale} />
+          <FooterEgg locale={locale} />
         </div>
         <div className="pu-footer-legal">
           <Link href={L(locale, "/avis-legal")}>Avís legal</Link>

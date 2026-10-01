@@ -1,8 +1,7 @@
 /* El llapis i el traç secret: compartits pel peu (easter egg) i per la portada. */
 
-/** Traç a mà del peu (viewBox 0 0 34 14). Acaba a (32.5, 4). */
+/** Traç a mà del peu (viewBox 0 0 34 14) */
 export const SIGN_PATH = "M1.5 10.5 C 5 3, 8.5 2.5, 10.5 7 S 15 12.5, 18.5 6 S 24.5 1.5, 26.5 6.5 S 30.5 10, 32.5 4";
-export const SIGN_VIEWBOX = { w: 34, h: 14, endX: 32.5, endY: 4 };
 
 /** Punta del llapis dins del glif de 28×28 */
 export const PENCIL_TIP = { x: 3, y: 25 };

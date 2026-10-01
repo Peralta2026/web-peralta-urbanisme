@@ -8,8 +8,9 @@ import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
 import HomeMobile from "@/components/home/HomeMobile";
 import HomeStrip from "@/components/home/HomeStrip";
+import HomeManifesto from "@/components/home/HomeManifesto";
 import { drawCalli } from "@/lib/calligraphy";
-import { PENCIL_TIP, PencilGlyph, SIGN_PATH, SIGN_VIEWBOX } from "@/components/layout/PencilGlyph";
+import { PENCIL_TIP, PencilGlyph } from "@/components/layout/PencilGlyph";
 import { CONTENT, FEATURED_SLUGS, FIELD_LABELS, LangSelector, UI_LABELS, isValid } from "@/components/home/homeShared";
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
@@ -38,8 +39,10 @@ const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string; 
 
 const STROKE_MULS  = { 1: 0.3, 2: 0.7, 3: 1.0, 4: 2.4 } as const;
 
-/* Traç que es dibuixa sobre la portada abans que aparegui el llapis */
-const SIGN_W        = 220;
+/* Traç que subratlla "Un llapis audaç" abans que aparegui el llapis */
+const SIGN_PATH     = "M2 13 C 28 8, 52 17, 82 12 S 136 7, 166 13 C 180 15.5, 191 12, 198 5";
+const SIGN_VB       = { w: 200, h: 22 };
+const SIGN_STROKE   = 2.2;
 const SIGN_DELAY_MS = 300;
 const SIGN_DRAW_MS  = 1800;
 const DOT_SIZES_PX = { 1: 4,   2: 6,   3: 9,   4: 13  } as const;
@@ -94,6 +97,15 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
+
+/* ─── HeroLine3: la segona frase ("Un llapis audaç.") és la que es subratlla ── */
+
+function HeroLine3({ text, targetRef }: { text: string; targetRef: React.RefObject<HTMLSpanElement | null> }) {
+  const cut = text.indexOf(". ");
+  if (cut < 0) return <>{text}</>;
+  const second = text.slice(cut + 2).replace(/\.$/, "");
+  return <>{text.slice(0, cut + 2)}<span ref={targetRef}>{second}</span>.</>;
+}
 
 /* ─── NavLinkHero ────────────────────────────────────────────────────────── */
 
@@ -230,6 +242,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
   const clearFnRef      = useRef<() => void>(() => {});
   const videoElemRef    = useRef<HTMLVideoElement>(null);
   const signRef         = useRef<HTMLDivElement>(null);
+  const signTargetRef   = useRef<HTMLSpanElement>(null);
   const signStartedRef  = useRef(false);
   const signTimerRef    = useRef(0);
   const penReadyRef     = useRef(false);
@@ -314,19 +327,22 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
     const cursorEl = cursorRef.current;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!el || reduced) { penReadyRef.current = true; return; }
-    const scale = SIGN_W / SIGN_VIEWBOX.w;
-    const end = lastMouseRef.current ?? { x: window.innerWidth * 0.62, y: window.innerHeight * 0.5 };
-    const left = Math.min(Math.max(8, end.x - SIGN_VIEWBOX.endX * scale), window.innerWidth - SIGN_W - 8);
-    const top  = Math.min(Math.max(8, end.y - SIGN_VIEWBOX.endY * scale), window.innerHeight - SIGN_VIEWBOX.h * scale - 8);
-    el.style.left = `${left}px`;
-    el.style.top  = `${top}px`;
+    const target = signTargetRef.current?.getBoundingClientRect();
+    if (!target || target.width === 0) { penReadyRef.current = true; return; }
+    const width  = target.width + 10;
+    const height = (width * SIGN_VB.h) / SIGN_VB.w;
+    el.style.left   = `${target.left - 5}px`;
+    el.style.top    = `${target.bottom - height * 0.3}px`;
+    el.style.width  = `${width}px`;
+    el.style.height = `${height}px`;
     if (cursorEl && !lastMouseRef.current) {
-      cursorEl.style.left = `${left + SIGN_VIEWBOX.endX * scale}px`;
-      cursorEl.style.top  = `${top + SIGN_VIEWBOX.endY * scale}px`;
+      cursorEl.style.left = `${target.right + 5}px`;
+      cursorEl.style.top  = `${target.bottom - height * 0.3 + (5 / SIGN_VB.h) * height}px`;
     }
     const path = el.querySelector("path");
     if (path) {
       const len = path.getTotalLength();
+      path.style.strokeWidth = `${(SIGN_STROKE * SIGN_VB.w) / width}`;
       path.style.strokeDasharray = `${len}`;
       path.animate(
         [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
@@ -608,10 +624,8 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
         .pu-hero-cursor.is-erase { transform: translate(-50%, -50%); border: 1.5px solid rgba(0,0,0,0.5); border-radius: 50%; }
         .pu-hero-cursor.is-erase .pu-hero-cursor-pencil { display: none; }
         .pu-hero-sign { position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none; opacity: 0; }
-        .pu-hero-sign svg { display: block; overflow: visible; }
-        .pu-hero-sign path {
-          fill: none; stroke: #111; stroke-width: ${(2.4 * SIGN_VIEWBOX.w / SIGN_W).toFixed(3)}; stroke-linecap: round;
-        }
+        .pu-hero-sign svg { display: block; width: 100%; height: 100%; overflow: visible; }
+        .pu-hero-sign path { fill: none; stroke: #111; stroke-linecap: round; }
         .pu-draw-tools-dot { cursor: pointer; border-radius: 50%; flex-shrink: 0; transition: background 150ms ease; }
         @media (max-width: 768px) {
           .pu-draw-tools {
@@ -668,7 +682,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
       )}
 
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
-      <div ref={fixedLogoRef} style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
+      <div ref={fixedLogoRef} className="pu-home-logo" style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
         <button
           onClick={() => window.scrollTo({ top: SETTLE_END + OPEN_RANGE + 10, behavior: "smooth" })}
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "block" }}
@@ -868,7 +882,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
               {content.line2}
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px,1.6vw,22px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 0.5em" }}>
-              {content.line3}
+              <HeroLine3 text={content.line3} targetRef={signTargetRef} />
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(15px,1.6vw,22px)", fontWeight: 400, lineHeight: 1.35, color: "#111", margin: "0 0 clamp(24px,3.5vh,44px)" }}>
               {content.line4}
@@ -931,6 +945,8 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
       <HomeStrip locale={locale} />
 
       <HomeContact locale={locale} />
+
+      <HomeManifesto locale={locale} />
 
       {/* ── Drawing tools UI ── */}
       <div
@@ -1029,7 +1045,7 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
 
       {/* ── Traç d'entrada ── */}
       <div ref={signRef} className="pu-hero-sign" aria-hidden="true">
-        <svg viewBox={`0 0 ${SIGN_VIEWBOX.w} ${SIGN_VIEWBOX.h}`} width={SIGN_W} height={(SIGN_W * SIGN_VIEWBOX.h) / SIGN_VIEWBOX.w}>
+        <svg viewBox={`0 0 ${SIGN_VB.w} ${SIGN_VB.h}`}>
           <path d={SIGN_PATH} />
         </svg>
       </div>
