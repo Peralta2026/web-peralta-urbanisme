@@ -136,7 +136,7 @@ export function PersonesVerbs({ locale }: { locale: string }) {
           row-gap: clamp(10px, 2.4vh, 28px);
         }
         .pu-pv-verbs li {
-          font-size: clamp(28px, 4vw, 68px);
+          font-size: clamp(24px, 3.2vw, 54px);
           font-weight: 700;
           letter-spacing: -0.045em;
           line-height: 1;
@@ -150,7 +150,7 @@ export function PersonesVerbs({ locale }: { locale: string }) {
         .pu-pv-v4 { grid-column: 2 / -1; }
         .pu-pv-ofici {
           margin: clamp(56px, 9vh, 110px) 0 0;
-          font-size: clamp(20px, 1.9vw, 30px);
+          font-size: clamp(24px, 2.5vw, 40px);
           font-weight: 600;
           letter-spacing: -0.03em;
           line-height: 1.15;
@@ -180,21 +180,21 @@ type Piece = {
 };
 
 const PIECES: Piece[] = [
-  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [5, 9, 27, -2.2],  m: [3, 4, 62, -2] },
-  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [61, 4, 17, 1.6],  m: [56, 15, 40, 2] },
-  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [36, 30, 21, -1],  m: [6, 33, 58, -1.2] },
-  { key: "datum",                                               d: [80, 42, 15, 2.4], m: [62, 46.5, 34, 2.6] },
-  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [7, 60, 31, 1.4],  m: [4, 56, 88, 1.2] },
-  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [62, 56, 13, -2.8], m: [62, 66, 32, -3] },
-  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [40, 63, 17, 0.8], m: [8, 70, 48, 1] },
-  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [83, 72, 11, -1.4], m: [56, 84, 30, -1.6] },
+  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 32, 11, -1.8],  m: [3, 4, 62, -2] },
+  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 31.5, 6.5, 1.6], m: [56, 15, 40, 2] },
+  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 32.5, 12, 1], m: [6, 33, 58, -1.2] },
+  { key: "datum",                                               d: [74.5, 34, 8.5, 2.2], m: [62, 46.5, 34, 2.6] },
+  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 54, 17, 1.2],   m: [4, 56, 88, 1.2] },
+  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 53, 6.5, -2.4], m: [62, 66, 32, -3] },
+  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54.5, 9, -1], m: [8, 70, 48, 1] },
+  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.5, 7, 1.6],  m: [56, 84, 30, -1.6] },
 ];
 
 const WORDS: { key: "dades" | "planol" | "norma" | "carrer"; d: [number, number]; m: [number, number] }[] = [
-  { key: "planol", d: [8, 4],   m: [4, 1] },
-  { key: "norma",  d: [62, 0],  m: [55, 39.6] },
-  { key: "dades",  d: [37, 25.5], m: [6, 30.3] },
-  { key: "carrer", d: [8, 92],  m: [6, 64] },
+  { key: "planol", d: [38, 28.4],   m: [4, 1] },
+  { key: "dades",  d: [51.5, 28.4], m: [6, 30.3] },
+  { key: "norma",  d: [66, 28.4],   m: [55, 39.6] },
+  { key: "carrer", d: [17, 66.5],   m: [6, 64] },
 ];
 
 export function PersonesTable({ locale }: { locale: string }) {
@@ -245,6 +245,8 @@ export function PersonesTable({ locale }: { locale: string }) {
   return (
     <section className="pu-pt">
       <div ref={ref} className="pu-pt-table">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="pu-pt-bg" src="/persones-taula/mesa.png" alt="" aria-hidden="true" draggable={false} />
         {PIECES.map((p) => (
           <div key={p.key} className={`pu-pt-piece pu-pt-piece--${p.key}`} style={vars(p.d, p.m)}>
             {p.img
@@ -266,13 +268,20 @@ export function PersonesTable({ locale }: { locale: string }) {
 
       <style>{`
         .pu-pt { padding: clamp(32px, 5vh, 64px) 0 0; font-family: var(--font-sans); }
+        /* La taula dibuixada fa de fons: a tota l'amplada, molt tènue, inert */
         .pu-pt-table {
           position: relative;
-          width: calc(100% - 2 * var(--margin-page));
-          aspect-ratio: 16 / 10;
+          width: 100%;
+          aspect-ratio: 1672 / 941;
           margin: 0 auto;
-          background: var(--color-gray-light);
           overflow: hidden;
+          user-select: none;
+        }
+        .pu-pt-bg {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          opacity: 0.14;
+          pointer-events: none;
           user-select: none;
         }
         .pu-pt-piece {
@@ -289,8 +298,9 @@ export function PersonesTable({ locale }: { locale: string }) {
           .pu-pt-piece { cursor: grab; }
           .pu-pt-piece.is-held { cursor: grabbing; }
         }
-        .pu-pt-datum { padding: 14% 10% 16%; display: flex; flex-direction: column; gap: 8px; }
-        .pu-pt-datum strong { font-size: clamp(18px, 2vw, 32px); font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: #000; }
+        .pu-pt-datum { padding: 12% 9% 14%; display: flex; flex-direction: column; gap: 6px; }
+        .pu-pt-datum span { font-size: clamp(10px, 0.8vw, 12px) !important; }
+        .pu-pt-datum strong { white-space: nowrap; font-size: clamp(14px, 1.5vw, 24px); font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: #000; }
         .pu-pt-datum span { font-size: var(--size-meta); color: var(--color-muted); line-height: 1.3; }
         .pu-pt-mark { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
         .pu-pt-mark path { fill: none; stroke: #111; stroke-width: 2.2; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: 0.85; }
@@ -299,9 +309,9 @@ export function PersonesTable({ locale }: { locale: string }) {
           left: var(--x); top: var(--y);
           margin: 0;
           z-index: 1;
-          font-size: clamp(18px, 2vw, 32px);
+          font-size: clamp(13px, 1.35vw, 22px);
           font-weight: 700;
-          letter-spacing: -0.035em;
+          letter-spacing: -0.03em;
           line-height: 1;
           color: #000;
           white-space: nowrap;
@@ -319,7 +329,11 @@ export function PersonesTable({ locale }: { locale: string }) {
         }
         @media (max-width: 900px) {
           .pu-pt { padding-top: clamp(48px, 8vh, 96px); }
-          .pu-pt-table { width: 100%; aspect-ratio: 390 / 1180; }
+          .pu-pt-table { width: 100%; aspect-ratio: 390 / 1180; background: var(--color-gray-light); }
+          .pu-pt-bg { display: none; }
+          .pu-pt-datum strong { font-size: clamp(18px, 2vw, 32px); }
+          .pu-pt-datum span { font-size: var(--size-meta) !important; }
+          .pu-pt-datum { padding: 14% 10% 16%; gap: 8px; }
           .pu-pt-piece { left: var(--mx); top: var(--my); width: var(--mw); rotate: var(--mr); padding: 4px; }
           .pu-pt-word { left: var(--mx); top: var(--my); font-size: 22px; z-index: 3; }
           .pu-pt-close { font-size: 28px; padding-top: 56px; }
