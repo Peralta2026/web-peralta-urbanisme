@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllTeamMembers } from "@/lib/team";
 import type { Locale } from "@/lib/types";
 import PersonRow from "@/components/team/PersonRow";
+import { PersonesClosing, PersonesOpening, PersonesTable, PersonesVerbs } from "@/components/team/PersonesStory";
 
 export const dynamic = "force-static";
 
@@ -52,46 +53,36 @@ export default async function PersonesPage({
   return (
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Capçalera ─────────────────────────────────────────────────── */}
-      <header style={{
-        paddingTop:    "clamp(36px,5vh,64px)",
-        paddingBottom: "clamp(24px,3.5vh,44px)",
-        paddingLeft:   "var(--margin-page)",
-        paddingRight:  "var(--margin-page)",
-      }}>
+      {/* ── 01 · Qui som ─────────────────────────────────────────────── */}
+      <header style={{ padding: "clamp(36px,5vh,64px) var(--margin-page) 0" }}>
         <h1 style={{
           fontFamily:    "var(--font-sans)",
           fontWeight:    700,
-          fontSize:      "clamp(32px,4vw,60px)",
-          letterSpacing: "-0.04em",
+          fontSize:      "var(--size-body)",
+          letterSpacing: "-0.01em",
           lineHeight:    1,
           color:         "#000",
-          marginBottom:  "clamp(20px,3vh,36px)",
+          margin:        0,
         }}>
           Equip humà
         </h1>
-        <div style={{ maxWidth: "720px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.65, color: "#000" }}>
-            Peralta Urbanisme és un equip d&apos;arquitectes i urbanistes dedicat al planejament,
-            l&apos;estratègia urbana i la transformació del territori.
-          </p>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", lineHeight: 1.65, color: "#555" }}>
-            La nostra estructura combina un equip estable amb una xarxa de col·laboradors
-            especialitzats. Aquesta manera de treballar ens permet mantenir una mirada propera,
-            rigorosa i transversal sobre encàrrecs de naturalesa i escala diversa.
-          </p>
-        </div>
       </header>
+      <PersonesOpening locale={locale} />
 
-      {/* ── Equip ─────────────────────────────────────────────────────── */}
+      {/* ── 02 · Les persones ─────────────────────────────────────────── */}
       <section style={{
         paddingLeft:   "var(--margin-page)",
         paddingRight:  "var(--margin-page)",
-        paddingTop:    "clamp(24px,3vh,40px)",
-        paddingBottom: "clamp(24px,3vh,40px)",
       }}>
         <PersonRow members={members} locale={locale as Locale} />
       </section>
+      <PersonesVerbs locale={locale} />
+
+      {/* ── 03 · La mateixa taula ─────────────────────────────────────── */}
+      <PersonesTable locale={locale} />
+
+      {/* ── 04 · Què en surt ──────────────────────────────────────────── */}
+      <PersonesClosing locale={locale} />
 
       {/* ── Col·laboradors habituals ──────────────────────────────────── */}
       <section style={{
