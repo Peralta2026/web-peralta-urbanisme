@@ -276,7 +276,7 @@ export default function PersonRow({ members, locale }: Props) {
         }
         .pu-person-foot-name {
           font-family: var(--font-sans);
-          font-size: clamp(10px, 0.85vw, 13px);
+          font-size: clamp(13px, 1.1vw, 17px);
           font-weight: 700;
           letter-spacing: -0.02em;
           line-height: 1.15;

@@ -707,7 +707,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           .met-pillar-e-tagline { margin: 0 0 10px; }
           .met-pillar-e-desc { max-width: none; font-size: 14px; }
           .met-pillar-e-img, .met-pillar-col.is-open .met-pillar-e-img { padding: 20px 0 28px; display: block; }
-          .met-pillar-e-img img, .met-pillar-col.is-open .met-pillar-e-img img { width: 100%; height: auto; max-height: 260px; }
+          .met-pillar-e-img img, .met-pillar-col.is-open .met-pillar-e-img img { width: 100%; height: auto; max-height: 180px; }
 
           /* Diagrama: més gran i més a prop del text */
           .met-modes { grid-template-columns: 1fr; }

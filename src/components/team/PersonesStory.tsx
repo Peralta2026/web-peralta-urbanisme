@@ -19,7 +19,7 @@ const COPY: Record<Loc, {
   ca: {
     opening: { a: "Un equip capaç de passar", b: "del dibuix a la norma,", c: "del territori al detall", d: "i de l’anàlisi", e: "a la proposta." },
     mobileOpening: ["Un equip capaç de passar del dibuix a la norma,", "del territori al detall", "i de l’anàlisi a la proposta."],
-    verbs: ["Analitzar", "Dibuixar", "Calcular", "Negociar", "Imaginar"],
+    verbs: ["Analitzar", "Dibuixar", "Calcular", "Entendre", "Imaginar"],
     ofici: "Tot forma part del mateix ofici.",
     table: { dades: "Mirem les dades.", planol: "Mirem el plànol.", norma: "Mirem la norma.", carrer: "Mirem el carrer.", close: "El projecte comença quan ho posem tot sobre la mateixa taula.", datum: "120.871 m²", datumNote: "àmbit · MPGM Bonaigua, Sant Just Desvern" },
     closing: ["Rigor per entendre.", "Criteri per decidir.", "Capacitat per transformar."],
@@ -27,7 +27,7 @@ const COPY: Record<Loc, {
   es: {
     opening: { a: "Un equipo capaz de pasar", b: "del dibujo a la norma,", c: "del territorio al detalle", d: "y del análisis", e: "a la propuesta." },
     mobileOpening: ["Un equipo capaz de pasar del dibujo a la norma,", "del territorio al detalle", "y del análisis a la propuesta."],
-    verbs: ["Analizar", "Dibujar", "Calcular", "Negociar", "Imaginar"],
+    verbs: ["Analizar", "Dibujar", "Calcular", "Entender", "Imaginar"],
     ofici: "Todo forma parte del mismo oficio.",
     table: { dades: "Miramos los datos.", planol: "Miramos el plano.", norma: "Miramos la norma.", carrer: "Miramos la calle.", close: "El proyecto empieza cuando lo ponemos todo sobre la misma mesa.", datum: "120.871 m²", datumNote: "ámbito · MPGM Bonaigua, Sant Just Desvern" },
     closing: ["Rigor para entender.", "Criterio para decidir.", "Capacidad para transformar."],
@@ -35,7 +35,7 @@ const COPY: Record<Loc, {
   en: {
     opening: { a: "A team able to move", b: "from drawing to regulation,", c: "from territory to detail", d: "and from analysis", e: "to proposal." },
     mobileOpening: ["A team able to move from drawing to regulation,", "from territory to detail", "and from analysis to proposal."],
-    verbs: ["Analyse", "Draw", "Calculate", "Negotiate", "Imagine"],
+    verbs: ["Analyse", "Draw", "Calculate", "Understand", "Imagine"],
     ofici: "It is all part of the same craft.",
     table: { dades: "We look at the data.", planol: "We look at the plan.", norma: "We look at the regulations.", carrer: "We look at the street.", close: "The project begins when we put it all on the same table.", datum: "120,871 m²", datumNote: "scope · MPGM Bonaigua, Sant Just Desvern" },
     closing: ["Rigour to understand.", "Judgement to decide.", "Capacity to transform."],
