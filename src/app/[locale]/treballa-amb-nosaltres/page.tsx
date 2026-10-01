@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
+import BackLink from "@/components/layout/BackLink";
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -73,6 +74,7 @@ export default function TreballaPage() {
         paddingRight:  "var(--margin-page)",
         borderBottom:  "1px solid #1a1a1a",
       }}>
+        <BackLink />
         <h1 style={{
           fontFamily:    "var(--font-sans)",
           fontWeight:    700,

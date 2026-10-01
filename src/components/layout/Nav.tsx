@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { PREV_PATH_KEY } from "./BackLink";
 
 const LOCALES = ["ca", "es", "en"] as const;
 
@@ -81,6 +82,15 @@ export default function Nav({ locale }: { locale: string }) {
   const links = MENU[locale as keyof typeof MENU] ?? MENU.ca;
 
   const [scrolled, setScrolled] = useState(false);
+  const lastPathRef = useRef<string | null>(null);
+
+  // Recorda d'on ve la persona dins del web perquè "Tornar" pugui fer enrere
+  useEffect(() => {
+    if (lastPathRef.current && lastPathRef.current !== pathname) {
+      try { sessionStorage.setItem(PREV_PATH_KEY, lastPathRef.current); } catch { /* ignore */ }
+    }
+    lastPathRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {

@@ -1,4 +1,5 @@
 import ContactMapLoader from "@/components/contact/ContactMapLoader";
+import BackLink from "@/components/layout/BackLink";
 
 export const dynamic = "force-static";
 
@@ -33,6 +34,7 @@ export default async function ContactePage({
     <>
       <div className="pu-contact-root">
 
+        <BackLink />
         <h1 className="pu-contact-heading">Parlem</h1>
 
         <div className="pu-contact-intro">
@@ -155,8 +157,9 @@ export default async function ContactePage({
           letter-spacing: -0.05em;
           line-height: 1;
           color: #000;
-          margin: clamp(40px, 6vh, 72px) 0 clamp(48px, 7vh, 80px);
+          margin: 0 0 clamp(48px, 7vh, 80px);
         }
+        .pu-contact-root > .pu-back { margin-top: clamp(36px, 5vh, 64px); }
 
         .pu-contact-grid {
           display: grid;
