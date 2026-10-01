@@ -177,7 +177,6 @@ export default function HomeStrip({ locale }: { locale: string }) {
           position: relative;
           overflow: hidden;
           height: clamp(132px, 17vh, 196px);
-          border-top: 1px solid var(--color-border);
           background: var(--color-bg);
           cursor: grab;
           touch-action: pan-y;

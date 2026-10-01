@@ -3,6 +3,7 @@ import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 import { type Locale, type TagSlug } from "@/lib/types";
 import Link from "next/link";
 import ProjectEditorialGallery from "@/components/projects/ProjectEditorialGallery";
+import ProjectMobileCover from "@/components/projects/ProjectMobileCover";
 import { getProjectImages } from "@/lib/project-images";
 
 // ─── Etiquetes per idioma ─────────────────────────────────────────────────────
@@ -164,6 +165,13 @@ export default async function ProjectPage({
 
   return (
     <div style={{ background: "#fff", minHeight: "100vh", paddingTop: "88px" }}>
+      {galleryImages.length > 0 && (
+        <ProjectMobileCover
+          slug={project.slug}
+          file={galleryImages.some((img) => img.file === project.coverImage) ? project.coverImage : galleryImages[0].file}
+          title={data.title}
+        />
+      )}
       <div
         className="project-detail-shell"
         style={{

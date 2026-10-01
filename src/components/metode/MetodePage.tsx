@@ -19,9 +19,9 @@ const T = {
       heading: "Els nostres pilars urbanístics",
       sub: "Tres eixos que orienten cada projecte",
       items: [
-        { num: "01", name: "Estratègia", tagline: "Visió territorial i planificació", desc: "Analitzem el context des d'una mirada àmplia: mobilitat, usos, dinàmiques socials i econòmiques. Definim les estratègies que permeten transformar el territori de forma coherent i sostenible.", img: "/metode/sketch-estrategia.png" },
-        { num: "02", name: "Disseny",    tagline: "Proposta i forma urbana",          desc: "Projectem espais públics, teixits urbans i plans amb criteris de qualitat formal i funcional. El disseny és l'eina amb la qual materialitzem les idees i les fem habitables.",                img: "/metode/sketch-disseny.png" },
-        { num: "03", name: "Comunicació", tagline: "Participació i mediació",         desc: "L'urbanisme és un acte col·lectiu. Acompanyem els processos participatius, traduïm la complexitat tècnica en llenguatge comprensible i facilitem el consens entre actors diversos.",        img: "/metode/sketch-comunicacio.png" },
+        { num: "01", name: "Estratègia", tagline: "Visió territorial i planificació", desc: "Analitzem el context des d'una mirada àmplia: mobilitat, usos, dinàmiques socials i econòmiques. Definim les estratègies que permeten transformar el territori de forma coherent i sostenible.", img: "/metode/sketch-estrategia-trim.png" },
+        { num: "02", name: "Disseny",    tagline: "Proposta i forma urbana",          desc: "Projectem espais públics, teixits urbans i plans amb criteris de qualitat formal i funcional. El disseny és l'eina amb la qual materialitzem les idees i les fem habitables.",                img: "/metode/sketch-disseny-trim.png" },
+        { num: "03", name: "Comunicació", tagline: "Participació i mediació",         desc: "L'urbanisme és un acte col·lectiu. Acompanyem els processos participatius, traduïm la complexitat tècnica en llenguatge comprensible i facilitem el consens entre actors diversos.",        img: "/metode/sketch-comunicacio-trim.png" },
       ],
     },
     modes: {
@@ -62,9 +62,9 @@ const T = {
       heading: "Nuestros pilares urbanísticos",
       sub: "Tres ejes que orientan cada proyecto",
       items: [
-        { num: "01", name: "Estrategia",    tagline: "Visión territorial y planificación", desc: "Analizamos el contexto desde una mirada amplia: movilidad, usos, dinámicas sociales y económicas. Definimos las estrategias que permiten transformar el territorio de forma coherente y sostenible.", img: "/metode/sketch-estrategia.png" },
-        { num: "02", name: "Diseño",        tagline: "Propuesta y forma urbana",           desc: "Proyectamos espacios públicos, tejidos urbanos y planes con criterios de calidad formal y funcional. El diseño es la herramienta con la que materializamos las ideas y las hacemos habitables.",      img: "/metode/sketch-disseny.png" },
-        { num: "03", name: "Comunicación",  tagline: "Participación y mediación",          desc: "El urbanismo es un acto colectivo. Acompañamos los procesos participativos, traducimos la complejidad técnica en lenguaje comprensible y facilitamos el consenso entre actores diversos.",         img: "/metode/sketch-comunicacio.png" },
+        { num: "01", name: "Estrategia",    tagline: "Visión territorial y planificación", desc: "Analizamos el contexto desde una mirada amplia: movilidad, usos, dinámicas sociales y económicas. Definimos las estrategias que permiten transformar el territorio de forma coherente y sostenible.", img: "/metode/sketch-estrategia-trim.png" },
+        { num: "02", name: "Diseño",        tagline: "Propuesta y forma urbana",           desc: "Proyectamos espacios públicos, tejidos urbanos y planes con criterios de calidad formal y funcional. El diseño es la herramienta con la que materializamos las ideas y las hacemos habitables.",      img: "/metode/sketch-disseny-trim.png" },
+        { num: "03", name: "Comunicación",  tagline: "Participación y mediación",          desc: "El urbanismo es un acto colectivo. Acompañamos los procesos participativos, traducimos la complejidad técnica en lenguaje comprensible y facilitamos el consenso entre actores diversos.",         img: "/metode/sketch-comunicacio-trim.png" },
       ],
     },
     modes: {
@@ -105,9 +105,9 @@ const T = {
       heading: "Our urban design pillars",
       sub: "Three axes that guide every project",
       items: [
-        { num: "01", name: "Strategy",      tagline: "Territorial vision and planning", desc: "We analyse the context from a broad perspective: mobility, land use, social and economic dynamics. We define strategies that enable coherent and sustainable territorial transformation.", img: "/metode/sketch-estrategia.png" },
-        { num: "02", name: "Design",        tagline: "Proposal and urban form",         desc: "We design public spaces, urban fabrics and plans with criteria of formal and functional quality. Design is the tool through which we materialise ideas and make them liveable.",          img: "/metode/sketch-disseny.png" },
-        { num: "03", name: "Communication", tagline: "Participation and mediation",     desc: "Urbanism is a collective act. We support participatory processes, translate technical complexity into comprehensible language and facilitate consensus among diverse stakeholders.",    img: "/metode/sketch-comunicacio.png" },
+        { num: "01", name: "Strategy",      tagline: "Territorial vision and planning", desc: "We analyse the context from a broad perspective: mobility, land use, social and economic dynamics. We define strategies that enable coherent and sustainable territorial transformation.", img: "/metode/sketch-estrategia-trim.png" },
+        { num: "02", name: "Design",        tagline: "Proposal and urban form",         desc: "We design public spaces, urban fabrics and plans with criteria of formal and functional quality. Design is the tool through which we materialise ideas and make them liveable.",          img: "/metode/sketch-disseny-trim.png" },
+        { num: "03", name: "Communication", tagline: "Participation and mediation",     desc: "Urbanism is a collective act. We support participatory processes, translate technical complexity into comprehensible language and facilitate consensus among diverse stakeholders.",    img: "/metode/sketch-comunicacio-trim.png" },
       ],
     },
     modes: {
@@ -175,9 +175,13 @@ function useReveal() {
 
 /* ─── PillarCols ─────────────────────────────────────────────────────────────── */
 
+const NARROW = "(max-width: 900px)";
+const isNarrow = () => typeof window !== "undefined" && window.matchMedia(NARROW).matches;
+
 function PillarCols({ items }: { items: typeof T["ca"]["pilars"]["items"] }) {
   const [visited, setVisited] = useState<Set<string>>(new Set());
   const [hovered, setHovered] = useState<string | null>(null);
+  const [tapped,  setTapped]  = useState<string | null>(null);
   const locked = visited.size >= 3;
 
   return (
@@ -189,19 +193,31 @@ function PillarCols({ items }: { items: typeof T["ca"]["pilars"]["items"] }) {
         return (
           <div
             key={key}
-            className={`met-pillar-col${isOpen ? " is-open" : ""}`}
-            onMouseEnter={() => { if (!locked) { setHovered(key); setVisited((prev) => new Set([...prev, key])); } }}
-            onMouseLeave={() => { if (!locked) setHovered(null); }}
+            className={`met-pillar-col${isOpen ? " is-open" : ""}${tapped === key ? " is-tapped" : ""}`}
+            onMouseEnter={() => { if (!locked && !isNarrow()) { setHovered(key); setVisited((prev) => new Set([...prev, key])); } }}
+            onMouseLeave={() => { if (!locked && !isNarrow()) setHovered(null); }}
           >
-            <div className="met-pillar-word-v" aria-hidden={contentVisible}>{p.name}</div>
+            <button
+              type="button"
+              className="met-pillar-word-v"
+              aria-expanded={tapped === key}
+              onClick={() => { if (isNarrow()) setTapped((t) => (t === key ? null : key)); }}
+            >
+              <span>{p.name}</span>
+              <span className="met-pillar-plus" aria-hidden="true">+</span>
+            </button>
             <div className="met-pillar-expand" aria-hidden={!contentVisible}>
-              <p className="met-pillar-e-num">{p.num}</p>
-              <h3 className="met-pillar-e-title">{p.name}</h3>
-              <p className="met-pillar-e-tagline">{p.tagline}</p>
-              <p className="met-pillar-e-desc">{p.desc}</p>
-              <div className="met-pillar-e-img">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.img} alt={p.name} loading="lazy" />
+              <div className="met-pillar-e-inner">
+                <div className="met-pillar-e-text">
+                  <p className="met-pillar-e-num">{p.num}</p>
+                  <h3 className="met-pillar-e-title">{p.name}</h3>
+                  <p className="met-pillar-e-tagline">{p.tagline}</p>
+                  <p className="met-pillar-e-desc">{p.desc}</p>
+                </div>
+                <div className="met-pillar-e-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.img} alt={p.name} loading="lazy" />
+                </div>
               </div>
             </div>
           </div>
@@ -225,8 +241,50 @@ function ServiceItem({ name, desc, tags }: { name: string; desc: string; tags: r
 
 /* ─── MethodDiagram ─────────────────────────────────────────────────────────── */
 
-function MethodDiagram({ d }: { d: typeof T["ca"]["diagram"] }) {
+const DIAGRAM_HINT: Record<"ca" | "es" | "en", { click: string; tap: string }> = {
+  ca: { click: "Clica el triangle", tap: "Toca el triangle" },
+  es: { click: "Haz clic en el triángulo", tap: "Toca el triángulo" },
+  en: { click: "Click the triangle", tap: "Tap the triangle" },
+};
+
+function MethodDiagram({ d, lang }: { d: typeof T["ca"]["diagram"]; lang: "ca" | "es" | "en" }) {
   const [st, setSt] = useState(0);
+  const [hint, setHint] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const outerRef = useRef<HTMLDivElement>(null);
+
+  // Mentre ningú l'ha tocat, el diagrama insinua el pas següent quan és a la vista
+  useEffect(() => {
+    const el = outerRef.current;
+    if (!el || touched) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let timers: number[] = [];
+    let interval = 0;
+    const pulse = () => {
+      setHint(true);
+      timers.push(window.setTimeout(() => setHint(false), 1300));
+    };
+    const io = new IntersectionObserver(([entry]) => {
+      window.clearInterval(interval);
+      timers.forEach(window.clearTimeout);
+      timers = [];
+      if (!entry.isIntersecting) { setHint(false); return; }
+      timers.push(window.setTimeout(pulse, 600));
+      interval = window.setInterval(pulse, 6000);
+    }, { threshold: 0.45 });
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearInterval(interval);
+      timers.forEach(window.clearTimeout);
+    };
+  }, [touched]);
+
+  const go = (next: number) => {
+    setTouched(true);
+    setHint(false);
+    setSt(next);
+  };
   const [col, setCol] = useState({
     z0: "#F9EE76", z1: "#B4EFC5", z2: "#A8DEF5",
     wf0: "rgba(180,239,197,.11)", wf1: "rgba(168,222,245,.11)", wf2: "rgba(249,238,118,.11)",
@@ -251,15 +309,16 @@ function MethodDiagram({ d }: { d: typeof T["ca"]["diagram"] }) {
 
   return (
     <div
-      className={`md-svg-outer ${sc}`}
-      onClick={() => setSt((st + 1) % 3)}
+      ref={outerRef}
+      className={`md-svg-outer ${sc}${hint ? " md-hint" : ""}`}
+      onClick={() => go((st + 1) % 3)}
       title={d.states[(st + 1) % 3]}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => e.key === "Enter" && setSt((st + 1) % 3)}
-      aria-label={`${d.states[st]} — clic per a ${d.states[(st+1)%3]}`}
+      onKeyDown={(e) => e.key === "Enter" && go((st + 1) % 3)}
+      aria-label={`${d.states[st]} — ${d.states[(st+1)%3]}`}
     >
-      <svg className="md-svg" viewBox="0 0 1100 870" xmlns="http://www.w3.org/2000/svg">
+      <svg className="md-svg" viewBox="104 0 892 812" xmlns="http://www.w3.org/2000/svg">
         {/* Wing fills */}
         <polygon className="md-ext-fill" style={{fill:col.wf0}} points="550,65 338,432 126,65"/>
         <polygon className="md-ext-fill" style={{fill:col.wf1}} points="550,65 762,432 974,65"/>
@@ -335,6 +394,18 @@ function MethodDiagram({ d }: { d: typeof T["ca"]["diagram"] }) {
           <line className="md-wsep" x1="432" y1="634" x2="668" y2="634"/>
         </g>
       </svg>
+      <div className="md-steps" onClick={(e) => e.stopPropagation()}>
+        {d.states.map((label, i) => (
+          <span key={label} style={{ display: "contents" }}>
+            {i > 0 && <i>/</i>}
+            <button type="button" className={i === st ? "is-active" : ""} onClick={() => go(i)}>{label}</button>
+          </span>
+        ))}
+        <span className={`md-steps-hint${touched ? " is-gone" : ""}`}>
+          <span className="md-hint-click">{DIAGRAM_HINT[lang].click}</span>
+          <span className="md-hint-tap">{DIAGRAM_HINT[lang].tap}</span>
+        </span>
+      </div>
     </div>
   );
 }
@@ -391,6 +462,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         /* Vertical word */
         .met-pillar-word-v {
           position: absolute; inset: 0;
+          width: 100%; border: 0; background: none; cursor: inherit;
           display: flex; align-items: center; justify-content: center;
           writing-mode: horizontal-tb; transform: none;
           font-family: var(--font-sans); font-size: clamp(16px,1.6vw,24px); font-weight: 700; letter-spacing: -0.03em;
@@ -398,6 +470,8 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           opacity: 1; transition: opacity 0.22s ease; pointer-events: none;
           text-align: center;
         }
+        .met-pillar-plus { display: none; }
+        .met-pillar-e-inner { display: contents; }
         .met-pillar-col.is-open .met-pillar-word-v,
         .met-pillar-cols.is-locked .met-pillar-word-v { opacity: 0; }
 
@@ -406,6 +480,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           position: absolute; inset: 0;
           padding: 40px clamp(24px,3vw,48px) 32px;
           display: flex; flex-direction: column; gap: 0;
+          min-width: 0;
           opacity: 0; transition: opacity 0.28s ease 0.22s; pointer-events: none; overflow: hidden;
         }
         .met-pillar-col.is-open .met-pillar-expand,
@@ -414,13 +489,18 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         .met-pillar-e-title { font-family: var(--font-sans); font-size: clamp(22px,2.2vw,34px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 14px; }
         .met-pillar-e-tagline { font-family: var(--font-sans); font-size: var(--size-meta); color: var(--color-muted); margin: 0 0 16px; }
         .met-pillar-e-desc { font-family: var(--font-sans); font-size: 14px; line-height: 1.65; color: var(--color-muted); max-width: 340px; margin: 0; }
-        .met-pillar-e-img { margin-top: auto; padding-top: 24px; }
-        .met-pillar-e-img img { width: 100%; max-height: 160px; object-fit: contain; display: block; }
+        .met-pillar-e-img { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 24px; }
+        .met-pillar-e-img img { width: 100%; height: 100%; max-height: 300px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+        /* Columna oberta: text a l'esquerra, dibuix gran a la dreta */
+        .met-pillar-col.is-open .met-pillar-expand { flex-direction: row; align-items: stretch; gap: clamp(32px, 4vw, 72px); }
+        .met-pillar-col.is-open .met-pillar-e-text { flex: 0 0 auto; width: min(360px, 40%); }
+        .met-pillar-col.is-open .met-pillar-e-img { padding-top: 0; }
+        .met-pillar-col.is-open .met-pillar-e-img img { max-height: min(46vh, 440px); }
 
         /* ── MODES / SERVICES ── */
         .met-modes {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
           border-top: 1px solid rgba(0,0,0,0.08);
           align-items: start;
         }
@@ -432,8 +512,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 32px clamp(24px, 3vw, 56px);
-          border-left: 1px solid rgba(0,0,0,0.08);
+          padding: 24px clamp(16px, 2vw, 40px);
         }
         .met-modes-header-block { padding: 72px var(--margin-page) 56px; }
         .met-modes-header-block h2 {
@@ -477,10 +556,39 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         }
 
         /* Diagram in column context */
-        .met-modes-right .md-svg-outer { width: 100%; max-width: 620px; }
+        .met-modes-right .md-svg-outer { width: 100%; max-width: 900px; }
 
         /* ── TRIANGLE DIAGRAM ── */
-        .md-svg-outer { cursor: pointer; outline: none; }
+        .md-svg-outer { cursor: pointer; outline: none; display: flex; flex-direction: column; align-items: center; }
+        .md-svg-outer .md-svg { transition: transform 600ms var(--ease-smooth); }
+        @media (hover: hover) {
+          .md-svg-outer:hover .md-svg { transform: scale(1.015); }
+          /* En passar per sobre s'insinua el següent estat */
+          .md-svg-outer.md-s0:hover .md-z { opacity: .3; }
+          .md-svg-outer.md-s0:hover .md-pn { opacity: .3; }
+          .md-svg-outer.md-s1:hover .md-ext-edges,
+          .md-svg-outer.md-s1:hover .md-ext-fill { opacity: .35; }
+        }
+        /* Gest d'invitació quan el diagrama entra a la pantalla */
+        .md-svg-outer.md-hint.md-s0 .md-z { opacity: .55; transition-duration: 900ms; }
+        .md-svg-outer.md-hint.md-s0 .md-pn { opacity: .5; transition-duration: 900ms; }
+        .md-svg-outer.md-hint .md-svg { transform: scale(1.02); }
+        .md-steps {
+          display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 10px;
+          margin-top: 18px;
+          font-family: var(--font-sans); font-size: var(--size-meta); color: #bbb;
+        }
+        .md-steps button { padding: 6px 0; border: 0; background: none; cursor: pointer; font: inherit; color: inherit; transition: color var(--dur-fast) ease; }
+        .md-steps button:hover { color: #555; }
+        .md-steps button.is-active { color: #000; font-weight: 600; }
+        .md-steps i { font-style: normal; color: #ddd; }
+        .md-steps-hint { margin-left: 8px; color: #999; transition: opacity 400ms ease; }
+        .md-steps-hint.is-gone { opacity: 0; }
+        .md-hint-tap { display: none; }
+        @media (hover: none) {
+          .md-hint-click { display: none; }
+          .md-hint-tap { display: inline; }
+        }
         .md-svg-outer:focus-visible { outline: 1px dashed rgba(0,0,0,0.2); outline-offset: 4px; }
         .md-svg { width: 100%; height: auto; overflow: visible; display: block; }
         .md-svg text { font-family: var(--font-sans), sans-serif; }
@@ -569,21 +677,59 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
 
         /* ── MOBILE ── */
         @media (max-width: 900px) {
+          /* Pilars: acordió que s'obre en tocar */
           .met-pillar-cols { flex-direction: column; min-height: auto; }
-          .met-pillar-col { flex: none !important; min-height: 64px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+          .met-pillar-col { flex: none !important; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); overflow: visible; }
           .met-pillar-col:last-child { border-bottom: none; }
-          .met-pillar-col.is-open, .met-pillar-cols.is-locked .met-pillar-col { min-height: 320px; }
-          .met-pillar-word-v { writing-mode: horizontal-tb; transform: none; font-size: clamp(22px,5vw,34px); justify-content: flex-start; padding: 0 var(--margin-page); }
+          .met-pillar-word-v {
+            position: static; opacity: 1 !important; pointer-events: auto;
+            justify-content: space-between; text-align: left;
+            padding: 18px var(--margin-page);
+            font-size: clamp(20px, 5.4vw, 26px);
+            cursor: pointer;
+          }
+          .met-pillar-plus {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 22px; font-weight: 300; line-height: 1;
+            transition: transform 350ms var(--ease-smooth);
+          }
+          .met-pillar-col.is-tapped .met-pillar-plus { transform: rotate(45deg); }
+          .met-pillar-expand,
+          .met-pillar-col.is-open .met-pillar-expand,
+          .met-pillar-cols.is-locked .met-pillar-expand {
+            position: static;
+            display: grid; grid-template-rows: 0fr;
+            opacity: 0; pointer-events: none;
+            padding: 0 var(--margin-page);
+            transition: grid-template-rows 450ms var(--ease-smooth), opacity 300ms ease;
+          }
+          .met-pillar-e-inner { display: block; min-height: 0; overflow: hidden; }
+          .met-pillar-col.is-tapped .met-pillar-expand { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
+          .met-pillar-col .met-pillar-e-text { width: auto !important; }
+          .met-pillar-e-num, .met-pillar-e-title { display: none; }
+          .met-pillar-e-tagline { margin: 0 0 10px; }
+          .met-pillar-e-desc { max-width: none; font-size: 14px; }
+          .met-pillar-e-img, .met-pillar-col.is-open .met-pillar-e-img { padding: 20px 0 28px; display: block; }
+          .met-pillar-e-img img, .met-pillar-col.is-open .met-pillar-e-img img { width: 100%; height: auto; max-height: 260px; }
+
+          /* Diagrama: més gran i més a prop del text */
           .met-modes { grid-template-columns: 1fr; }
+          .met-modes-left { padding-bottom: 8px; }
           .met-modes-right {
             position: static;
             height: auto;
-            padding: 48px var(--margin-page) 64px;
-            border-left: none;
-            border-top: 1px solid rgba(0,0,0,0.08);
+            padding: 0 4px 48px;
+            border: none;
             justify-content: center;
           }
           .met-modes-right .md-svg-outer { width: 100%; max-width: 100%; }
+          .md-vl { font-size: 24px; }
+          .md-vs { font-size: 17px; fill: #aaa; }
+          .md-cl { font-size: 32px; }
+          .md-cl-sub { font-size: 16px; fill: #aaa; }
+          .md-pn { font-size: 21px; }
+          .md-wlabel { font-size: 15px; }
+          .md-wdom { font-size: 19px; }
         }
         @media (max-width: 768px) {
           .met-values-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -641,7 +787,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           </div>
         </div>
         <div className="met-modes-right">
-          <MethodDiagram d={t.diagram as unknown as typeof T["ca"]["diagram"]} />
+          <MethodDiagram d={t.diagram as unknown as typeof T["ca"]["diagram"]} lang={lang} />
         </div>
       </section>
 

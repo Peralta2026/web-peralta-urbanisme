@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import ArchiveNav from "./ArchiveNav";
 import type { Project, Locale, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 
@@ -399,27 +400,13 @@ export default function ArchiveList({ projects, locale }: Props) {
         gap: "24px",
         flexWrap: "wrap",
       }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "clamp(14px,2.2vw,32px)", flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "clamp(14px,3.5vw,20px)" : "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: isMobile ? "-0.02em" : "-0.04em", lineHeight: 1, color: "#000" }}>ARXIU</span>
-          <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
-          <Link href={`/${locale}/mapa`} className="pu-dirview-link">TERRITORIAL</Link>
-          <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
-          <button
-            onClick={() => setPanelOpen(f => !f)}
-            title={panelOpen ? ui.close : ui.filters}
-            style={{
-              fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1,
-              color: panelOpen ? "#999" : "#ccc",
-              background: "none", border: "none", cursor: "pointer",
-              padding: "0 0 4px",
-              transition: "color 200ms ease",
-              letterSpacing: "-0.02em",
-              marginLeft: "4px",
-            }}
-          >
-            {panelOpen ? "‹‹" : "»»"}
-          </button>
-        </div>
+        <ArchiveNav
+          locale={locale}
+          active="arxiu"
+          filtersOpen={panelOpen}
+          onToggleFilters={() => setPanelOpen(f => !f)}
+          activeCount={activeTema.size + activeTipus.size + activeEscala.size}
+        />
       </div>
 
       {/* ── Active filter chips ── */}
@@ -622,20 +609,6 @@ export default function ArchiveList({ projects, locale }: Props) {
       </div>
 
       <style>{`
-        .pu-dirview-link {
-          font-family: var(--font-sans);
-          font-size: clamp(32px, 4vw, 60px);
-          font-weight: 700;
-          letter-spacing: -0.04em;
-          line-height: 1;
-          color: #bbb;
-          text-decoration: none;
-          transition: color 200ms ease;
-        }
-        .pu-dirview-link:hover { color: #555; }
-        @media (max-width: 768px) {
-          .pu-dirview-link { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
-        }
         .pu-archive-row:not(.pu-archive-row--static):hover { background: #f5f5f3; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Estudi"]:hover              { background: #F9EE76; }
         .pu-archive-row:not(.pu-archive-row--static)[data-tipus="Planejament general"]:hover { background: #B4EFC5; }

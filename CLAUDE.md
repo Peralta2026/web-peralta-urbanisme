@@ -66,4 +66,6 @@ La home usa un **sistema de scroll virtual** (body.overflow hidden, events wheel
 
 **Mòbil i tauleta vertical** (`MOBILE_QUERY` a HomeScene.tsx) → `HomeMobile`: scroll natiu, hero a pantalla completa, targetes destacades enganxoses (sticky) a alçada de pantalla, notícies, franja `HomeStrip`, contacte. La franja (també a desktop) llegeix `content/strip.json`; regenerar-la amb `node scripts/build-strip.mjs` quan s'afegeixin projectes.
 
+**Vista Visual** (/directori) fa servir miniatures 3:4 retallades a `public/visual/<slug>.jpg`; regenerar-les amb `node scripts/build-visual.mjs` en afegir o canviar portades (si falta la miniatura, cau a la portada original). Les quatre vistes de l'arxiu comparteixen la navegació `ArchiveNav`.
+
 El Nav del layout retorna `null` a la home — `HomeScene` gestiona la seva pròpia nav interna.

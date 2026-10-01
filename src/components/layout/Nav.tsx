@@ -80,7 +80,15 @@ export default function Nav({ locale }: { locale: string }) {
   const isHome = cleanPath === "/";
   const links = MENU[locale as keyof typeof MENU] ?? MENU.ca;
 
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
@@ -103,7 +111,7 @@ export default function Nav({ locale }: { locale: string }) {
   return (
     <>
       {!isHome && (
-        <header className="pu-site-header">
+        <header className={`pu-site-header${scrolled ? " is-scrolled" : ""}`}>
           <Link href={localizeHref("/", locale)} className="pu-header-logo" aria-label="Peralta Urbanisme — Home">
             <Image src="/logo-nuevo.png" alt="Peralta Urbanisme" width={500} height={300} priority />
           </Link>
@@ -199,7 +207,8 @@ export default function Nav({ locale }: { locale: string }) {
           .pu-menu-panel { width: 50vw; min-width: 280px; }
         }
         @media (max-width: 768px) {
-          .pu-site-header { padding: 0 var(--margin-mobile); }
+          .pu-site-header { padding: 0 var(--margin-mobile); transition: border-color 500ms ease; }
+          .pu-site-header.is-scrolled { border-bottom-color: transparent; }
           .pu-site-header > .pu-language-selector { display: none; }
           .pu-profile-trigger { right: var(--margin-mobile); }
           .pu-menu-panel { width: 88vw; min-width: 0; padding: 24px var(--margin-mobile) 28px; }

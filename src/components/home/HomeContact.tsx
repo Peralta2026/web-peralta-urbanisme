@@ -85,7 +85,6 @@ export default function HomeContact({ locale }: { locale: string }) {
         .pu-hc {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          border-top: 1px solid var(--color-border);
           background: var(--color-bg);
         }
         .pu-hc-col {

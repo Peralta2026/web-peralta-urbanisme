@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import type { ProjectImageData } from "@/lib/project-images";
 import styles from "./ProjectGallery.module.css";
+import { GALLERY_OPEN_EVENT } from "./ProjectMobileCover";
 
 interface Props {
   slug: string;
@@ -97,6 +98,16 @@ export default function ProjectEditorialGallery({ slug, images: sourceImages, ti
     });
     return { images: [...fixed.flat(), ...rest], rows: [...fixedRows, ...composeRows(rest, index)] };
   }, [sourceImages, manualRows]);
+
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const file = (e as CustomEvent<{ file: string }>).detail?.file;
+      const index = images.findIndex((image) => image.file === file);
+      setActive(index >= 0 ? index : 0);
+    };
+    window.addEventListener(GALLERY_OPEN_EVENT, onOpen);
+    return () => window.removeEventListener(GALLERY_OPEN_EVENT, onOpen);
+  }, [images]);
 
   useEffect(() => {
     if (active === null) return;

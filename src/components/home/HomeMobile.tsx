@@ -7,57 +7,11 @@ import NewsList from "@/components/news/NewsList";
 import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
 import HomeStrip from "@/components/home/HomeStrip";
-import { CONTENT, FEATURED_SLUGS, FIELD_LABELS, LangSelector, UI_LABELS, isValid } from "@/components/home/homeShared";
+import MobileCardDeck from "@/components/home/MobileCardDeck";
+import { CONTENT, FEATURED_SLUGS, LangSelector, UI_LABELS } from "@/components/home/homeShared";
 
 const SETTLE_DELAY_FIRST = 2100;
 const SETTLE_DELAY       = 700;
-
-/* ─── Card ───────────────────────────────────────────────────────────────── */
-
-function MobileCard({ project, locale }: { project: Project; locale: string }) {
-  const d  = project[locale as "ca" | "es" | "en"];
-  const fl = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
-  const [open, setOpen] = useState(false);
-  const image = project.images[0] ?? project.coverImage;
-
-  const dataRows = [
-    { label: fl.municipi,   value: d.municipality },
-    { label: fl.any,        value: d.year },
-    { label: fl.ambit,      value: isValid(d.ambitM2)     ? `${d.ambitM2!.toLocaleString("ca-ES")} m²`    : null },
-    { label: fl.sostre,     value: isValid(d.sostreM2)    ? `${d.sostreM2!.toLocaleString("ca-ES")} m²st` : null },
-    { label: fl.habitatges, value: isValid(d.habitatges)  ? String(d.habitatges)                           : null },
-  ].filter(r => isValid(r.value));
-
-  return (
-    <article className={`pu-mc${open ? " is-open" : ""}`}>
-      <Link href={`/${locale}/projectes/${project.slug}`} className="pu-mc-img" tabIndex={-1}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/projects/${project.slug}/${image}`} alt={d.title} loading="lazy" />
-      </Link>
-      <div className="pu-mc-body">
-        <h3 className="pu-mc-title">{d.title}</h3>
-        {d.subtitle && <p className="pu-mc-sub">{d.subtitle}</p>}
-        {dataRows.length > 0 && (
-          <dl className="pu-mc-data">
-            {dataRows.map(r => (
-              <div key={r.label}>
-                <dt>{r.label}</dt>
-                <dd>{r.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-        {d.descriptionShort && (open
-          ? <p className="pu-mc-desc">{d.descriptionShort}</p>
-          : <button type="button" className="pu-mc-more" onClick={() => setOpen(true)}>+ {fl.readMore}</button>
-        )}
-        <Link href={`/${locale}/projectes/${project.slug}`} className="pu-mc-link">
-          {fl.view} →
-        </Link>
-      </div>
-    </article>
-  );
-}
 
 // Els darrers fotogrames del vídeo són negres: es reinicia abans
 function restartBeforeEnd(e: React.SyntheticEvent<HTMLVideoElement>) {
@@ -169,13 +123,7 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
       <section className="pu-hm-featured">
         <h2 className="pu-hm-h2">{content.destacats}</h2>
         {featured.length === 0 && <p className="pu-hm-empty">{ui.noResults}</p>}
-        <div className="pu-hm-deck" style={{ ["--n" as string]: featured.length }}>
-          {featured.map((p, i) => (
-            <div key={p.slug} className="pu-hm-slot" style={{ ["--i" as string]: i }}>
-              <MobileCard project={p} locale={locale} />
-            </div>
-          ))}
-        </div>
+        <MobileCardDeck projects={featured} locale={locale} top="var(--band)" />
         <div className="pu-hm-explore">
           <Link href={`/${locale}/projectes`}>{ui.explore}</Link>
         </div>
@@ -187,7 +135,7 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
           <h2 className="pu-hm-h2">{NEWS_LABELS[toLoc(locale)].title}</h2>
           <Link href={newsHref(locale)} className="pu-hm-news-all">{NEWS_LABELS[toLoc(locale)].all}</Link>
         </header>
-        <NewsList items={news.slice(0, 6)} locale={locale} expandable />
+        <NewsList items={news.slice(0, 4)} locale={locale} expandable />
       </section>
 
       <HomeStrip locale={locale} />
@@ -195,7 +143,7 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
       <HomeContact locale={locale} />
 
       <style>{`
-        .pu-hm { --band: 64px; --slot-step: 7px; background: var(--color-bg); }
+        .pu-hm { --band: 64px; background: var(--color-bg); }
 
         /* La creu del menú s'alinea amb el logo de la franja */
         .pu-profile-trigger.is-home { top: 21px; }
@@ -322,98 +270,6 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
           margin-bottom: 16px;
         }
         .pu-hm-empty { font-family: var(--font-sans); font-size: var(--size-meta); color: #bbb; }
-        .pu-hm-slot {
-          position: sticky;
-          top: calc(var(--band) + var(--i) * var(--slot-step));
-          height: calc(100svh - var(--band) - var(--n) * var(--slot-step) - 12px);
-          min-height: 480px;
-          padding-bottom: 12px;
-          margin-bottom: 0;
-        }
-        .pu-hm-slot + .pu-hm-slot { margin-top: 18vh; }
-
-        .pu-mc {
-          height: 100%;
-          display: flex; flex-direction: column;
-          background: var(--color-bg);
-          border: 1px solid rgba(0,0,0,0.12);
-          border-radius: 8px;
-          overflow: hidden;
-        }
-        .pu-mc-img {
-          display: block;
-          flex: 0 0 52%;
-          overflow: hidden;
-          background: var(--color-gray-light);
-          transition: flex-basis 500ms var(--ease-smooth);
-        }
-        .pu-mc.is-open .pu-mc-img { flex-basis: 26%; }
-        .pu-mc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .pu-mc-body {
-          flex: 1; min-height: 0;
-          display: flex; flex-direction: column;
-          padding: 20px 20px 18px;
-          border-top: 1px solid rgba(0,0,0,0.08);
-          overflow: hidden;
-        }
-        .pu-mc.is-open .pu-mc-body { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
-        .pu-mc-title {
-          font-family: var(--font-sans);
-          font-size: 23px;
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          line-height: 1.05;
-          color: #000;
-          margin: 0 0 6px;
-          text-wrap: balance;
-        }
-        .pu-mc-sub {
-          font-family: var(--font-sans);
-          font-size: 13px;
-          font-style: italic;
-          line-height: 1.3;
-          color: #777;
-          margin: 0;
-        }
-        .pu-mc-data { margin: 16px 0 0; display: flex; flex-direction: column; gap: 3px; }
-        .pu-mc-data > div { display: flex; gap: 14px; align-items: baseline; }
-        .pu-mc-data dt {
-          min-width: 86px; flex-shrink: 0;
-          font-family: var(--font-sans); font-size: var(--size-meta); color: #aaa;
-        }
-        .pu-mc-data dd {
-          margin: 0;
-          font-family: var(--font-sans); font-size: var(--size-meta); color: #111;
-          font-variant-numeric: tabular-nums;
-        }
-        .pu-mc-more {
-          align-self: flex-start;
-          margin-top: 14px;
-          padding: 4px 0 2px;
-          border: 0; border-bottom: 1px solid #ccc;
-          background: none; cursor: pointer;
-          font-family: var(--font-sans); font-size: 12px; color: #888;
-        }
-        .pu-mc-desc {
-          font-family: var(--font-sans);
-          font-size: 14px;
-          line-height: 1.6;
-          color: #444;
-          margin: 16px 0 0;
-          animation: pu-mc-in 400ms ease;
-        }
-        @keyframes pu-mc-in { from { opacity: 0; } to { opacity: 1; } }
-        .pu-mc-link {
-          align-self: flex-start;
-          margin-top: auto;
-          padding-top: 16px;
-          font-family: var(--font-sans);
-          font-size: var(--size-meta);
-          font-weight: 700;
-          color: #000;
-          text-decoration: none;
-        }
-        .pu-mc-link::after { content: ""; display: block; height: 1.5px; margin-top: 3px; background: #000; }
 
         .pu-hm-explore {
           display: flex; justify-content: center;
@@ -448,10 +304,6 @@ export default function HomeMobile({ locale, projects, news }: { locale: string;
           .pu-hm-text { padding-bottom: 20px; width: 55%; }
           .pu-hm-video { align-self: stretch; margin: 0 var(--margin-page) 16px 0; }
           .pu-hm-hint { display: none; }
-          .pu-hm-slot { height: calc(100svh - var(--band) - 12px); min-height: 0; }
-          .pu-mc { flex-direction: row; }
-          .pu-mc-img { flex-basis: 45%; }
-          .pu-mc-body { border-top: 0; border-left: 1px solid rgba(0,0,0,0.08); }
         }
         @media (prefers-reduced-motion: reduce) {
           .pu-hm * { transition-duration: 0ms !important; animation: none !important; }

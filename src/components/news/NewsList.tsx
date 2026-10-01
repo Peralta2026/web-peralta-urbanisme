@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import type { NewsItem } from "@/lib/types";
 import { NEWS_LABELS, newsDate, newsHref, toLoc } from "./newsUtils";
@@ -12,7 +12,7 @@ export { NEWS_LABELS, newsDate, newsHref, toLoc };
 function NewsCard({ item, index, locale }: { item: NewsItem; index: number; locale: string }) {
   const t = item[toLoc(locale)];
   return (
-    <Link href={newsHref(locale, item.slug)} className="pu-mag-item" style={{ order: index }}>
+    <Link href={newsHref(locale, item.slug)} className="pu-mag-item" style={{ order: index * 2 }}>
       {item.coverImage && (
         <span className={`pu-mag-img${item.coverFit === "contain" ? " pu-mag-img--contain" : ""}`}>
           <img src={item.coverImage} alt="" loading="lazy" />
@@ -37,7 +37,8 @@ function ExpandableCard({
       role="button"
       tabIndex={0}
       className={`pu-mag-item${open ? " pu-mag-item--open" : ""}`}
-      style={{ order: index, cursor: "pointer", userSelect: "none" }}
+      data-news-slug={item.slug}
+      style={{ order: index * 2, cursor: "pointer", userSelect: "none" }}
       onClick={onToggle}
       onKeyDown={(e) => e.key === "Enter" && onToggle()}
     >
@@ -58,7 +59,7 @@ function ExpandableCard({
 
 /* ── Expanded inline panel ────────────────────────────────────────────────── */
 
-function ExpandedPanel({ item, locale, onClose }: { item: NewsItem; locale: string; onClose: () => void }) {
+function ExpandedPanel({ item, locale, onClose, inline, order }: { item: NewsItem; locale: string; onClose: () => void; inline?: boolean; order?: number }) {
   const loc    = toLoc(locale);
   const t      = item[loc];
   const labels = NEWS_LABELS[loc];
@@ -66,7 +67,7 @@ function ExpandedPanel({ item, locale, onClose }: { item: NewsItem; locale: stri
   const hasFacts = !!(t.credits || (item.sources && item.sources.length > 0));
 
   return (
-    <div className="pu-mag-panel">
+    <div className={`pu-mag-panel${inline ? " pu-mag-panel--inline" : " pu-mag-panel--below"}`} style={inline ? { order } : undefined}>
       {/* header row: meta + close */}
       <div className="pu-mag-panel-topbar">
         <span className="pu-mag-panel-meta">{newsDate(item, locale)} · {t.tag}</span>
@@ -139,6 +140,15 @@ export default function NewsList({
   const toggle = (slug: string) => setOpenSlug(p => p === slug ? null : slug);
   const openItem = expandable && openSlug ? (items.find(i => i.slug === openSlug) ?? null) : null;
 
+  // En una sola columna la notícia s'obre al seu lloc: es porta a dalt de la pantalla
+  useEffect(() => {
+    if (!openSlug || !window.matchMedia("(max-width: 860px)").matches) return;
+    const el = document.querySelector<HTMLElement>(`[data-news-slug="${openSlug}"]`);
+    if (!el) return;
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 64;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - Math.min(header, 72) - 8, behavior: "smooth" });
+  }, [openSlug]);
+
   const columns: { item: NewsItem; index: number }[][] = [[], [], []];
   items.forEach((item, index) => columns[index % 3].push({ item, index }));
 
@@ -148,7 +158,14 @@ export default function NewsList({
         {columns.map((col, c) => (
           <div key={c} className="pu-mag-col">
             {col.map(({ item, index }) => expandable
-              ? <ExpandableCard key={item.slug} item={item} index={index} locale={locale} open={openSlug === item.slug} onToggle={() => toggle(item.slug)} />
+              ? (
+                <Fragment key={item.slug}>
+                  <ExpandableCard item={item} index={index} locale={locale} open={openSlug === item.slug} onToggle={() => toggle(item.slug)} />
+                  {openItem?.slug === item.slug && (
+                    <ExpandedPanel item={item} locale={locale} onClose={() => setOpenSlug(null)} inline order={index * 2 + 1} />
+                  )}
+                </Fragment>
+              )
               : <NewsCard key={item.slug} item={item} index={index} locale={locale} />
             )}
           </div>
@@ -232,7 +249,16 @@ export default function NewsList({
             max-width: 36em;
           }
 
+          .pu-mag-panel--inline { display: none; }
           @media (max-width: 860px) {
+            .pu-mag-panel.pu-mag-panel--inline { display: block; border-top: 0; padding-bottom: 8px; }
+            .pu-mag-panel--inline .pu-mag-panel-meta,
+            .pu-mag-panel--inline .pu-mag-panel-title,
+            .pu-mag-panel--inline .pu-mag-panel-lead { display: none; }
+            .pu-mag-panel--inline .pu-mag-panel-topbar { padding-top: 0; margin: 0 0 12px; justify-content: flex-end; }
+            .pu-mag-panel--inline .pu-mag-panel-grid { border-bottom: 1px solid rgba(0,0,0,0.12); margin-bottom: 0; }
+            .pu-mag-panel--below { display: none; }
+            .pu-mag .pu-mag-item--open { border-bottom: 0 !important; padding-bottom: 16px; }
             .pu-mag { display: flex; flex-direction: column; }
             .pu-mag-col { display: contents; }
             .pu-mag-item { border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important; }

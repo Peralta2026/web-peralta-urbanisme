@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Locale, Project } from "@/lib/types";
-import { FILTER_UI, FilterPanelToggle, LeftFilterPanel, useProjectFilters } from "./ProjectFilterPanel";
+import { FILTER_UI, LeftFilterPanel, useProjectFilters } from "./ProjectFilterPanel";
+import ArchiveNav from "./ArchiveNav";
+import MobileCardDeck from "@/components/home/MobileCardDeck";
 
 /* ─── Constants (same as HomeScene) ───────────────────────────────────────── */
 
@@ -73,9 +75,9 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
-/* ─── FeaturedCard (identical to HomeScene desktop/mobile layouts + subtitle) ── */
+/* ─── FeaturedCard (desktop, idèntica a HomeScene; en mòbil MobileCardDeck) ── */
 
-function FeaturedCard({ project, locale, mobile }: { project: Project; locale: string; mobile?: boolean }) {
+function FeaturedCard({ project, locale }: { project: Project; locale: string }) {
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   const fl     = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
@@ -88,51 +90,6 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
     { label: fl.sostre,     value: isValid(d.sostreM2)   ? `${d.sostreM2!.toLocaleString("ca-ES")} m²st` : null },
     { label: fl.habitatges, value: isValid(d.habitatges) ? String(d.habitatges)                           : null },
   ].filter(r => isValid(r.value));
-
-  /* ── Mobile layout ── */
-  if (mobile) {
-    return (
-      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "8px" }}>
-        <div style={{ flex: "0 0 48%", width: "100%", overflow: "hidden" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
-        </div>
-        <div style={{ flex: "0 0 52%", overflow: "auto", padding: "16px 20px", display: "flex", flexDirection: "column", gap: "3px", borderTop: "1px solid rgba(0,0,0,0.07)" }}>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "18px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 4px" }}>
-            {d.title}
-          </h3>
-          {d.subtitle && (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontStyle: "italic", color: "#666", margin: "0 0 8px", lineHeight: 1.3 }}>
-              {d.subtitle}
-            </p>
-          )}
-          {dataRows.map(r => (
-            <div key={r.label} style={{ display: "flex", gap: "10px" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "78px", flexShrink: 0, lineHeight: 1.5 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.5, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
-            </div>
-          ))}
-          {descOpen ? (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1.55, color: "#444", margin: "8px 0 0" }}>
-              {d.descriptionShort}
-            </p>
-          ) : (
-            <button
-              onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "8px" }}
-            >
-              + {fl.readMore}
-            </button>
-          )}
-          <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "12px" }}>
-            {fl.view}
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   /* ── Desktop layout ── */
   return (
@@ -258,6 +215,61 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
     };
   }, [shown]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (isMobile) {
+    return (
+      <div className="pu-sint-m">
+        <div className="pu-sint-m-head">
+          <ArchiveNav
+            locale={locale}
+            active="sintetic"
+            filtersOpen={panelOpen}
+            onToggleFilters={() => setPanelOpen(o => !o)}
+            activeCount={filters.activeTema.size + filters.activeTipus.size + filters.activeEscala.size}
+          />
+        </div>
+        {panelOpen && (
+          <div onClick={() => setPanelOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 249, background: "rgba(0,0,0,0.18)" }} />
+        )}
+        <LeftFilterPanel
+          open={panelOpen}
+          mobile
+          locale={locale}
+          activeTema={filters.activeTema}
+          activeTipus={filters.activeTipus}
+          activeEscala={filters.activeEscala}
+          onToggleTema={filters.toggleTema}
+          onToggleTipus={filters.toggleTipus}
+          onToggleEscala={filters.toggleEscala}
+          onClear={filters.clearAll}
+        />
+        <div className="pu-sint-m-deck">
+          {shown.length === 0 && <p className="pu-sint-m-empty">{FILTER_UI[loc].empty}</p>}
+          <MobileCardDeck projects={shown} locale={locale} top="var(--header-height)" />
+        </div>
+        <div className="pu-sint-m-explore">
+          <Link href={`/${locale}/projectes`}>{fl.explore}</Link>
+        </div>
+        <style>{`
+          .pu-sint-m-head {
+            padding: 36px var(--margin-page) 18px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin: 0 var(--margin-page);
+            padding-left: 0; padding-right: 0;
+          }
+          .pu-sint-m-deck { padding: 16px var(--margin-page) 0; }
+          .pu-sint-m-empty { font-family: var(--font-sans); font-size: var(--size-body); color: #888; padding: 40px 0; }
+          .pu-sint-m-explore { display: flex; justify-content: center; padding: 28px 0 56px; }
+          .pu-sint-m-explore a {
+            display: inline-block; background: #000; color: #fff;
+            font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+            letter-spacing: 0.01em; padding: 12px 26px; border-radius: 100px;
+            text-decoration: none;
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   const totalScrollHeight = shown.length * CARDS_PER_STEP + 300;
   const cardWidth = "min(calc(100% - 40px), 1040px)";
 
@@ -306,11 +318,13 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
           background: "#fff",
           zIndex:     2,
         }}>
-          <Link href={`/${locale}/projectes`} className="pu-sintetic-navlink">ARXIU</Link>
-          <Link href={`/${locale}/directori`} className="pu-sintetic-navlink">VISUAL</Link>
-          <Link href={`/${locale}/mapa`} className="pu-sintetic-navlink">TERRITORIAL</Link>
-          <span className="pu-sintetic-navactive">SINTÈTIC</span>
-          <FilterPanelToggle open={panelOpen} locale={locale} onToggle={() => setPanelOpen(o => !o)} />
+<ArchiveNav
+            locale={locale}
+            active="sintetic"
+            filtersOpen={panelOpen}
+            onToggleFilters={() => setPanelOpen(o => !o)}
+            activeCount={filters.activeTema.size + filters.activeTipus.size + filters.activeEscala.size}
+          />
         </div>
         <div style={{ flexShrink: 0, height: "1px", margin: "0 var(--margin-page)", background: "rgba(0,0,0,0.08)" }} />
 
@@ -361,7 +375,7 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
                 pointerEvents:   i === 0 ? "auto" : "none",
               }}
             >
-              <FeaturedCard project={proj} locale={locale} mobile={isMobile} />
+              <FeaturedCard project={proj} locale={locale} />
             </div>
           ))}
         </div>
@@ -387,28 +401,6 @@ export default function SinteticCardViewer({ projects, locale }: { projects: Pro
       <div style={{ height: `${totalScrollHeight}px` }} />
 
       <style>{`
-        .pu-sintetic-navlink {
-          font-family: var(--font-sans);
-          font-size: clamp(32px, 4vw, 60px);
-          font-weight: 700;
-          letter-spacing: -0.04em;
-          line-height: 1;
-          color: #bbb;
-          text-decoration: none;
-          transition: color 200ms ease;
-        }
-        .pu-sintetic-navlink:hover { color: #555; }
-        .pu-sintetic-navactive {
-          font-family: var(--font-sans);
-          font-size: clamp(32px, 4vw, 60px);
-          font-weight: 700;
-          letter-spacing: -0.04em;
-          line-height: 1;
-          color: #000;
-        }
-        @media (max-width: 768px) {
-          .pu-sintetic-navlink, .pu-sintetic-navactive { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
-        }
       `}</style>
     </>
   );

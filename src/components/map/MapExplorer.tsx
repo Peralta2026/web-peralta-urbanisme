@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import Link from "next/link";
+import ArchiveNav from "@/components/projects/ArchiveNav";
 import type { Locale, Project, TagSlug } from "@/lib/types";
 import { ALL_TAGS } from "@/lib/types";
 import MapView from "./MapView";
@@ -128,24 +128,13 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
         gap:        isMobile ? "clamp(8px,2vw,14px)" : "clamp(14px,2.2vw,32px)",
         flexWrap:   "wrap",
       }}>
-        <Link href={`/${locale}/projectes`} className="pu-dirview-link">ARXIU</Link>
-        <Link href={`/${locale}/directori`} className="pu-dirview-link">VISUAL</Link>
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: isMobile ? "clamp(14px,3.5vw,20px)" : "clamp(32px,4vw,60px)", fontWeight: 700, letterSpacing: isMobile ? "-0.02em" : "-0.04em", lineHeight: 1, color: "#000" }}>TERRITORIAL</span>
-        <Link href={`/${locale}/sintetic`} className="pu-dirview-link">SINTÈTIC</Link>
-        <button
-          onClick={() => setPanelOpen(f => !f)}
-          style={{
-            fontFamily: "var(--font-sans)", fontSize: "12px", lineHeight: 1,
-            color: panelOpen ? "#999" : "#ccc",
-            background: "none", border: "none", cursor: "pointer",
-            padding: "0 0 4px",
-            transition: "color 200ms ease",
-            letterSpacing: "-0.02em",
-            marginLeft: "4px",
-          }}
-        >
-          {panelOpen ? "‹‹" : "»»"}
-        </button>
+        <ArchiveNav
+          locale={locale}
+          active="territorial"
+          filtersOpen={panelOpen}
+          onToggleFilters={() => setPanelOpen(f => !f)}
+          activeCount={[theme, type, scale].filter(Boolean).length}
+        />
       </div>
 
       {/* ── Línia separadora ── */}
@@ -229,20 +218,8 @@ export default function MapExplorer({ projects, locale }: { projects: Project[];
           overflow: hidden;
           isolation: isolate;
         }
-        .pu-dirview-link {
-          font-family: var(--font-sans);
-          font-size: clamp(32px, 4vw, 60px);
-          font-weight: 700;
-          letter-spacing: -0.04em;
-          line-height: 1;
-          color: #bbb;
-          text-decoration: none;
-          transition: color 200ms ease;
-        }
-        .pu-dirview-link:hover { color: #555; }
         @media (max-width: 768px) {
           .pu-map-explorer { height: 100dvh; }
-          .pu-dirview-link { font-size: clamp(14px, 3.5vw, 20px) !important; letter-spacing: -0.02em !important; }
         }
       `}</style>
     </div>
