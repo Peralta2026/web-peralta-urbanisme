@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import PencilEgg from "./PencilEgg";
 
 function L(locale: string, path: string) {
   return `/${locale}${path}`;
@@ -87,7 +88,10 @@ export default function Footer({ locale }: { locale: string }) {
 
       {/* ── Peu ── */}
       <div className="pu-footer-bottom">
-        <span className="pu-footer-copy">© {new Date().getFullYear()} Peralta Urbanisme</span>
+        <div className="pu-footer-copy-wrap">
+          <span className="pu-footer-copy">© {new Date().getFullYear()} Peralta Urbanisme</span>
+          <PencilEgg locale={locale} />
+        </div>
         <div className="pu-footer-legal">
           <Link href={L(locale, "/avis-legal")}>Avís legal</Link>
           <Link href={L(locale, "/privacitat")}>Política de privacitat</Link>
@@ -209,6 +213,7 @@ export default function Footer({ locale }: { locale: string }) {
           font-size: var(--size-meta);
           color: rgba(255,255,255,0.18);
         }
+        .pu-footer-copy-wrap { display: flex; align-items: center; gap: 14px; }
         .pu-footer-legal { display: flex; gap: 24px; }
         .pu-footer-legal a {
           font-family: var(--font-sans);

@@ -8,6 +8,7 @@ import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
 import HomeMobile from "@/components/home/HomeMobile";
 import HomeStrip from "@/components/home/HomeStrip";
+import { drawCalli } from "@/lib/calligraphy";
 import { CONTENT, FEATURED_SLUGS, FIELD_LABELS, LangSelector, UI_LABELS, isValid } from "@/components/home/homeShared";
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
@@ -87,43 +88,6 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
-
-/* ─── Calligraphic drawing ───────────────────────────────────────────────── */
-
-function drawCalli(
-  ctx: CanvasRenderingContext2D,
-  from: { x: number; y: number },
-  to:   { x: number; y: number },
-  prevMid: { x: number; y: number } | null,
-  sizeMul = 1,
-): { x: number; y: number } {
-  const dx   = to.x - from.x;
-  const dy   = to.y - from.y;
-  if (Math.hypot(dx, dy) < 0.5) return prevMid ?? from;
-
-  const angle    = Math.atan2(dy, dx);
-  const speed    = Math.hypot(dx, dy);
-  const pressure = Math.max(0, 1 - speed / 28);
-  // Nib at 45° — thick when horizontal, thin when vertical
-  const w   = (1.2 + pressure * 1.8 + 4.8 * Math.abs(Math.cos(angle - Math.PI / 4))) * sizeMul;
-  const mid = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
-
-  ctx.beginPath();
-  ctx.lineWidth   = w;
-  ctx.lineCap     = "round";
-  ctx.lineJoin    = "round";
-  ctx.strokeStyle = "#111";
-  ctx.globalAlpha = 0.88;
-  if (prevMid) {
-    ctx.moveTo(prevMid.x, prevMid.y);
-    ctx.quadraticCurveTo(from.x, from.y, mid.x, mid.y);
-  } else {
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(mid.x, mid.y);
-  }
-  ctx.stroke();
-  return mid;
-}
 
 /* ─── NavLinkHero ────────────────────────────────────────────────────────── */
 
