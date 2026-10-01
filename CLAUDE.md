@@ -64,4 +64,6 @@ La home usa un **sistema de scroll virtual** (body.overflow hidden, events wheel
 - **Phase 2** (vY 900→1600): panell de projectes (barriga blanca) puja des de baix
 - **Phase 3** (pendent): explorador de projectes amb navegació scroll entre ells
 
+**Mòbil i tauleta vertical** (`MOBILE_QUERY` a HomeScene.tsx) → `HomeMobile`: scroll natiu, hero a pantalla completa, targetes destacades enganxoses (sticky) a alçada de pantalla, notícies, franja `HomeStrip`, contacte. La franja (també a desktop) llegeix `content/strip.json`; regenerar-la amb `node scripts/build-strip.mjs` quan s'afegeixin projectes.
+
 El Nav del layout retorna `null` a la home — `HomeScene` gestiona la seva pròpia nav interna.

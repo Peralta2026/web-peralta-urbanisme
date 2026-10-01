@@ -1,23 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import type { NewsItem, Project } from "@/lib/types";
 import NewsList from "@/components/news/NewsList";
 import { NEWS_LABELS, newsHref, toLoc } from "@/components/news/newsUtils";
 import HomeContact from "@/components/home/HomeContact";
-
-/* ─── Featured slugs ─────────────────────────────────────────────────────── */
-
-const FEATURED_SLUGS = [
-  "la-miralda-pendent",
-  "mpgm-bonaigua",
-  "pmu-granollers-110b",
-  "can-carreres-st-boi",
-  "amb-ppu-hospital-valles",
-  "alta-costura",
-];
+import HomeMobile from "@/components/home/HomeMobile";
+import HomeStrip from "@/components/home/HomeStrip";
+import { CONTENT, FEATURED_SLUGS, FIELD_LABELS, LangSelector, UI_LABELS, isValid } from "@/components/home/homeShared";
 
 /* ─── Mosaic ─────────────────────────────────────────────────────────────── */
 
@@ -37,23 +28,6 @@ const OPEN_RANGE     = 380;
 const CARDS_PER_STEP = 440;
 const LERP_K         = 0.08;
 
-const LOCALES = ["ca", "es", "en"] as const;
-
-/* ─── Labels ─────────────────────────────────────────────────────────────── */
-
-
-const FIELD_LABELS: Record<string, { municipi: string; any: string; ambit: string; sostre: string; habitatges: string; readMore: string }> = {
-  ca: { municipi: "Municipi", any: "Any", ambit: "Àmbit", sostre: "Sostre", habitatges: "Habitatges", readMore: "Llegir més" },
-  es: { municipi: "Municipio", any: "Año", ambit: "Ámbito", sostre: "Techo", habitatges: "Viviendas", readMore: "Leer más" },
-  en: { municipi: "Municipality", any: "Year", ambit: "Scope", sostre: "Floor area", habitatges: "Dwellings", readMore: "Read more" },
-};
-
-const UI_LABELS: Record<string, { noResults: string; explore: string }> = {
-  ca: { noResults: "Cap projecte trobat", explore: "Explorar l'arxiu de projectes" },
-  es: { noResults: "Sin proyectos", explore: "Explorar el archivo de proyectos" },
-  en: { noResults: "No projects found", explore: "Explore the project archive" },
-};
-
 const TOOL_LABELS: Record<string, { draw: string; erase: string; clear: string; thin: string; normal: string; thick: string }> = {
   ca: { draw: "Dibuixar", erase: "Esborrar", clear: "Netejar",     thin: "Fi",   normal: "Normal", thick: "Gruixut" },
   es: { draw: "Dibujar",  erase: "Borrar",   clear: "Borrar todo", thin: "Fino", normal: "Normal", thick: "Grueso"  },
@@ -66,47 +40,6 @@ const DOT_SIZES_PX = { 1: 4,   2: 6,   3: 9,   4: 13  } as const;
 /* ─── Easings ────────────────────────────────────────────────────────────── */
 
 function easeInOutSine(t: number) { return -(Math.cos(Math.PI * Math.min(t, 1)) - 1) / 2; }
-
-/* ─── i18n ───────────────────────────────────────────────────────────────── */
-
-const CONTENT = {
-  ca: {
-    line1: "El potencial d'un lloc no sempre és evident.",
-    line2: "Saber veure'l és el principi del projecte.",
-    line3: "Una mirada sensible. Un llapis audaç.",
-    line4: "Urbanisme estratègic per transformar la complexitat en oportunitats de ciutat.",
-    links: [
-      { label: "Mapa ↗",      href: "/mapa",      sub: "On treballem" },
-      { label: "Persones ↗",  href: "/equip",     sub: "Qui mira"     },
-      { label: "Principis ↗", href: "/principis", sub: "Com pensem"   },
-    ],
-    destacats: "Projectes destacats",
-  },
-  es: {
-    line1: "El potencial de un lugar no siempre es evidente.",
-    line2: "Saberlo ver es el principio del proyecto.",
-    line3: "Una mirada sensible. Un lápiz audaz.",
-    line4: "Urbanismo estratégico para transformar la complejidad en oportunidades de ciudad.",
-    links: [
-      { label: "Mapa ↗",       href: "/mapa",      sub: "Dónde trabajamos" },
-      { label: "Personas ↗",   href: "/equip",     sub: "Quién mira"       },
-      { label: "Principios ↗", href: "/principis", sub: "Cómo pensamos"    },
-    ],
-    destacats: "Proyectos destacados",
-  },
-  en: {
-    line1: "The potential of a place is not always evident.",
-    line2: "Knowing how to see it is the beginning of the project.",
-    line3: "A sensitive gaze. A bold pencil.",
-    line4: "Strategic urbanism to transform complexity into city opportunities.",
-    links: [
-      { label: "Map ↗",        href: "/mapa",      sub: "Where we work" },
-      { label: "People ↗",     href: "/equip",     sub: "Who looks"     },
-      { label: "Principles ↗", href: "/principis", sub: "How we think"  },
-    ],
-    destacats: "Featured projects",
-  },
-} as const;
 
 /* ─── Card rolodex transform ─────────────────────────────────────────────── */
 
@@ -154,15 +87,6 @@ function applyCardTransforms(refs: (HTMLDivElement | null)[], dp: number) {
   });
 }
 
-/* ─── Data validity helper ───────────────────────────────────────────────── */
-
-function isValid(val: string | number | null | undefined): val is string | number {
-  if (val === null || val === undefined) return false;
-  if (val === "-" || val === "No aplica" || val === "") return false;
-  if (typeof val === "number" && val <= 0) return false;
-  return true;
-}
-
 
 /* ─── Calligraphic drawing ───────────────────────────────────────────────── */
 
@@ -201,25 +125,6 @@ function drawCalli(
   return mid;
 }
 
-/* ─── LangSelector ───────────────────────────────────────────────────────── */
-
-function LangSelector({ locale }: { locale: string }) {
-  const router = useRouter();
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)" }}>
-      {LOCALES.map((loc, i) => (
-        <span key={loc} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <button onClick={() => router.push(`/${loc}/`)}
-            style={{ fontSize: "var(--size-meta)", letterSpacing: "0.04em", fontWeight: locale === loc ? 700 : 400, color: locale === loc ? "#000" : "#bbb", background: "none", border: "none", cursor: "pointer", padding: 0, textTransform: "uppercase" }}>
-            {loc}
-          </button>
-          {i < LOCALES.length - 1 && <span style={{ color: "#ddd" }}>/</span>}
-        </span>
-      ))}
-    </div>
-  );
-}
-
 /* ─── NavLinkHero ────────────────────────────────────────────────────────── */
 
 function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string; href: string; locale: string }) {
@@ -242,7 +147,7 @@ function NavLinkHero({ label, sub, href, locale }: { label: string; sub: string;
 
 /* ─── FeaturedCard ───────────────────────────────────────────────────────── */
 
-function FeaturedCard({ project, locale, mobile }: { project: Project; locale: string; mobile?: boolean }) {
+function FeaturedCard({ project, locale }: { project: Project; locale: string }) {
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   const fl     = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
@@ -255,51 +160,6 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
     { label: fl.sostre,      value: isValid(d.sostreM2)   ? `${d.sostreM2!.toLocaleString("ca-ES")} m²st` : null },
     { label: fl.habitatges,  value: isValid(d.habitatges) ? String(d.habitatges)                          : null },
   ].filter(r => isValid(r.value));
-
-  /* ── Mobile layout: image top, content bottom ── */
-  if (mobile) {
-    return (
-      <div style={{ width: "100%", height: "100%", background: "#fff", border: "1px solid rgba(0,0,0,0.10)", overflow: "hidden", display: "flex", flexDirection: "column", borderRadius: "8px" }}>
-        <div style={{ flexShrink: 0, width: "100%", aspectRatio: "1 / 1", overflow: "hidden" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/projects/${project.slug}/${images[0]}`} alt={d.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", userSelect: "none" }} />
-        </div>
-        <div style={{ flex: 1, overflow: "auto", padding: "18px 22px", display: "flex", flexDirection: "column", gap: "3px" }}>
-          <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "19px", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#000", margin: "0 0 4px" }}>
-            {d.title}
-          </h3>
-          {d.subtitle && (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "12px", fontStyle: "italic", color: "#666", margin: "0 0 10px", lineHeight: 1.3 }}>
-              {d.subtitle}
-            </p>
-          )}
-          {dataRows.map(r => (
-            <div key={r.label} style={{ display: "flex", gap: "10px" }}>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#aaa", minWidth: "80px", flexShrink: 0, lineHeight: 1.6 }}>{r.label}</span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", color: "#111", lineHeight: 1.6, fontVariantNumeric: "tabular-nums" }}>{r.value}</span>
-            </div>
-          ))}
-          {descOpen ? (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "13px", lineHeight: 1.6, color: "#444", margin: "10px 0 0" }}>
-              {d.descriptionShort}
-            </p>
-          ) : (
-            <button
-              onClick={() => setDescOpen(true)}
-              style={{ alignSelf: "flex-start", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "10px" }}
-            >
-              + {fl.readMore}
-            </button>
-          )}
-          <Link href={`/${locale}/projectes/${project.slug}`}
-            style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "2px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "16px" }}>
-            Veure →
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   /* ── Desktop layout: image left, content right ── */
   return (
@@ -346,16 +206,16 @@ function FeaturedCard({ project, locale, mobile }: { project: Project; locale: s
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
           style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>
-          Veure projecte →
+          {fl.view} →
         </Link>
       </div>
     </div>
   );
 }
 
-/* ─── HomeScene ──────────────────────────────────────────────────────────── */
+/* ─── DesktopHome ────────────────────────────────────────────────────────── */
 
-export default function HomeScene({ locale, projects, news }: { locale: string; projects: Project[]; news: NewsItem[] }) {
+function DesktopHome({ locale, projects, news }: HomeProps) {
   const content  = CONTENT[locale as keyof typeof CONTENT] ?? CONTENT.ca;
   const ui       = UI_LABELS[locale] ?? UI_LABELS.ca;
 
@@ -884,7 +744,7 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
                 pointerEvents: i === 0 ? "auto" : "none",
               }}
             >
-              <FeaturedCard project={proj} locale={locale} mobile={isMobile} />
+              <FeaturedCard project={proj} locale={locale} />
             </div>
           ))}
         </div>
@@ -1050,6 +910,8 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
         `}</style>
       </section>
 
+      <HomeStrip locale={locale} />
+
       <HomeContact locale={locale} />
 
       {/* ── Drawing tools UI ── */}
@@ -1167,4 +1029,27 @@ export default function HomeScene({ locale, projects, news }: { locale: string; 
       />
     </>
   );
+}
+
+/* ─── HomeScene ──────────────────────────────────────────────────────────── */
+
+type HomeProps = { locale: string; projects: Project[]; news: NewsItem[] };
+
+// Telèfons (i tauletes en vertical) fan servir una home de scroll natiu: el
+// scroll virtual del desktop no s'entén bé amb el dit.
+const MOBILE_QUERY = "(max-width: 768px), (max-width: 1100px) and (orientation: portrait), (max-height: 500px)";
+
+function subscribeMobile(cb: () => void) {
+  const mq = window.matchMedia(MOBILE_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+
+export default function HomeScene(props: HomeProps) {
+  const mobile = useSyncExternalStore(
+    subscribeMobile,
+    () => window.matchMedia(MOBILE_QUERY).matches,
+    () => false,
+  );
+  return mobile ? <HomeMobile {...props} /> : <DesktopHome {...props} />;
 }
