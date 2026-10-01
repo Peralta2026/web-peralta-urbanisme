@@ -11,6 +11,12 @@
   --color-muted:       #777777;
   --color-faint:       #cccccc;
 
+  /* Paleta d'accent de l'estudi (tipus de pla a l'Arxiu, diagrama de Mètode) */
+  --accent-yellow: #F9EE76;
+  --accent-green:  #B4EFC5;
+  --accent-blue:   #A8DEF5;
+  --accent-pink:   #F5C0DA;
+
   /* ── Typography ─────────────────────────────────────────────────── */
   --font-sans:  "Instrument Sans", sans-serif;
 
