@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MetodeDarkSection from "./MetodeDarkSection";
 
 /* ─── Translations ──────────────────────────────────────────────────────────── */
 
@@ -785,6 +786,9 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           </div>
         </div>
       </section>
+
+      {/* ── Manera de treballar ── */}
+      <MetodeDarkSection locale={lang} />
     </>
   );
 }

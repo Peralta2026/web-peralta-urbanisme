@@ -7,8 +7,6 @@ import { PersonesClosing, PersonesOpening, PersonesTable, PersonesVerbs } from "
 
 export const dynamic = "force-static";
 
-const PILLARS = ["Encàrrec", "Subjecte", "Sentit", "Resultat"];
-
 const COLLABORATORS = [
   { name: "AFAC · Amador Ferrer / Víctor Ferrer", file: "afac.jpg" },
   { name: "Cobrusi Arquitectes", file: "cobrusi.png" },
@@ -136,29 +134,6 @@ export default async function PersonesPage({
         </div>
       </section>
 
-      {/* ── Manera de treballar ───────────────────────────────────────── */}
-      <section className="pu-dark-section">
-        <blockquote className="pu-dark-quote">
-          &ldquo;L&apos;estratègia no és res més que traçar el camí a través de quatre paraules:
-          encàrrec, subjecte, sentit i resultat. Una metodologia honesta i responsable amb el territori.&rdquo;
-        </blockquote>
-
-        {/* 4 pillars */}
-        <div className="pu-pillars-grid">
-          {PILLARS.map((word, i) => (
-            <div key={word} className={`pu-pillar-cell${i < 3 ? " pu-pillar-cell--border" : ""}`}>
-              <h3 className="pu-pillar-word">{word}</h3>
-            </div>
-          ))}
-        </div>
-
-        <p className="pu-dark-body">
-          Treballem arreu del territori català amb ajuntaments i agents públics i privats.
-          Cada encàrrec és una oportunitat de descobrir un nou municipi i deixar-hi un relat
-          holístic i potent per crear noves oportunitats.
-        </p>
-      </section>
-
       {/* ── Clients — fons blanc, carrusel quiet fins hover ──────────── */}
       <section className="pu-clients-section">
         <p className="pu-clients-label">Han confiat en nosaltres</p>
@@ -191,57 +166,6 @@ export default async function PersonesPage({
       <style>{`
         .pu-persones-head { padding: clamp(24px, 3.5vh, 40px) var(--margin-page) 0; }
         @media (max-width: 900px) { .pu-persones-head { padding-top: clamp(36px, 5vh, 64px); } }
-
-        /* ── Secció fosca ── */
-        .pu-dark-section {
-          border-top: 1px solid #1a1a1a;
-          background: var(--color-fg);
-          color: var(--color-bg);
-          padding: clamp(64px,9vh,112px) var(--margin-page);
-          -webkit-font-smoothing: antialiased;
-        }
-        .pu-dark-quote {
-          font-family: var(--font-sans);
-          font-size: clamp(20px,2.6vw,38px);
-          font-weight: 700;
-          letter-spacing: -0.035em;
-          line-height: 1.1;
-          color: #fff;
-          max-width: 820px;
-          margin: 0 0 clamp(48px,7vh,80px);
-        }
-        .pu-pillars-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          border-top: 1px solid rgba(255,255,255,0.15);
-          margin-bottom: clamp(40px,6vh,72px);
-        }
-        .pu-pillar-cell {
-          padding: clamp(20px,3vh,32px) clamp(16px,2vw,32px) clamp(20px,3vh,32px) 0;
-        }
-        .pu-pillar-cell--border {
-          border-right: 1px solid rgba(255,255,255,0.15);
-          margin-right: 0;
-        }
-        .pu-pillar-cell:not(:first-child) {
-          padding-left: clamp(16px,2vw,32px);
-        }
-        .pu-pillar-word {
-          font-family: var(--font-sans);
-          font-size: clamp(18px,2vw,28px);
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          color: #fff;
-          margin: 0;
-        }
-        .pu-dark-body {
-          font-family: var(--font-sans);
-          font-size: 14px;
-          line-height: 1.7;
-          color: rgba(255,255,255,0.55);
-          margin: 0;
-          max-width: 480px;
-        }
 
         /* ── Clients marquee — blanc, quiet fins hover ── */
         .pu-clients-section {
@@ -362,19 +286,6 @@ export default async function PersonesPage({
 
         /* ── Mòbil ── */
         @media (max-width: 768px) {
-          .pu-pillars-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .pu-pillar-cell:nth-child(2) {
-            border-right: none !important;
-          }
-          .pu-pillar-cell:nth-child(3) {
-            border-top: 1px solid rgba(255,255,255,0.15);
-            border-right: 1px solid rgba(255,255,255,0.15);
-          }
-          .pu-pillar-cell:nth-child(4) {
-            border-top: 1px solid rgba(255,255,255,0.15);
-          }
           .pu-collab-strip { gap: 24px; }
           .pu-cta-section { flex-direction: column; align-items: flex-start; }
           .pu-client-img { max-height: 28px; max-width: 80px; }

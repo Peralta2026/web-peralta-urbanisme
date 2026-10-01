@@ -127,7 +127,7 @@ export function PersonesVerbs({ locale }: { locale: string }) {
       </ul>
       <p className="pu-pv-ofici">{t.ofici}</p>
       <style>{INK_CSS + `
-        .pu-pv { padding: clamp(72px, 12vh, 140px) var(--margin-page) clamp(88px, 14vh, 160px); font-family: var(--font-sans); }
+        .pu-pv { padding: clamp(72px, 12vh, 140px) var(--margin-page) clamp(32px, 5vh, 64px); font-family: var(--font-sans); }
         .pu-pv-verbs {
           list-style: none; margin: 0; padding: 0;
           display: grid;
@@ -180,21 +180,21 @@ type Piece = {
 };
 
 const PIECES: Piece[] = [
-  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 32, 11, -1.8],  m: [8, 18.5, 40, -1.6] },
-  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 31.5, 6.5, 1.6], m: [10, 35.5, 26, 1.8] },
-  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 32.5, 12, 1], m: [42, 39.5, 48, -1] },
-  { key: "datum",                                               d: [74.5, 34, 8.5, 2.2], m: [60, 50.5, 32, 2.2] },
-  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 54, 17, 1.2],   m: [8, 58.5, 84, 1] },
-  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 53, 6.5, -2.4], m: [48, 69, 22, -2.4] },
-  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54.5, 9, -1], m: [8, 70.5, 36, 1] },
-  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.5, 7, 1.6],  m: [74, 71, 18, -1.6] },
+  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 28.2, 11, -1.8],  m: [8, 18.5, 40, -1.6] },
+  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 27.6, 6.5, 1.6], m: [10, 35.5, 26, 1.8] },
+  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 28.8, 12, 1], m: [42, 39.5, 48, -1] },
+  { key: "datum",                                               d: [74.5, 30.5, 8.5, 2.2], m: [60, 50.5, 32, 2.2] },
+  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 53.4, 17, 1.2],   m: [8, 58.5, 84, 1] },
+  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 52.3, 6.5, -2.4], m: [48, 69, 22, -2.4] },
+  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54, 9, -1], m: [8, 70.5, 36, 1] },
+  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.3, 7, 1.6],  m: [74, 71, 18, -1.6] },
 ];
 
 const WORDS: { key: "dades" | "planol" | "norma" | "carrer"; d: [number, number]; m: [number, number] }[] = [
-  { key: "planol", d: [38, 28.4],   m: [8, 16] },
-  { key: "dades",  d: [51.5, 28.4], m: [42, 37] },
-  { key: "norma",  d: [66, 28.4],   m: [8, 33] },
-  { key: "carrer", d: [17, 66.5],   m: [8, 66.6] },
+  { key: "planol", d: [38, 24.1],   m: [8, 16] },
+  { key: "dades",  d: [51.5, 24.1], m: [42, 37] },
+  { key: "norma",  d: [66, 24.1],   m: [8, 33] },
+  { key: "carrer", d: [17, 67.8],   m: [8, 66.6] },
 ];
 
 export function PersonesTable({ locale }: { locale: string }) {
@@ -269,12 +269,12 @@ export function PersonesTable({ locale }: { locale: string }) {
       <p className="pu-pt-close">{t.close}</p>
 
       <style>{`
-        .pu-pt { padding: clamp(32px, 5vh, 64px) 0 0; font-family: var(--font-sans); }
+        .pu-pt { padding: 0; font-family: var(--font-sans); }
         /* La taula dibuixada fa de fons: a tota l'amplada, molt tènue, inert */
         .pu-pt-table {
           position: relative;
           width: 100%;
-          aspect-ratio: 1672 / 941;
+          aspect-ratio: 1672 / 820;
           margin: 0 auto;
           overflow: hidden;
           user-select: none;
@@ -322,7 +322,7 @@ export function PersonesTable({ locale }: { locale: string }) {
         }
         .pu-pt-close {
           margin: 0;
-          padding: clamp(48px, 8vh, 96px) var(--margin-page) 0;
+          padding: clamp(12px, 2vh, 28px) var(--margin-page) 0;
           max-width: 18em;
           font-size: clamp(24px, 2.6vw, 42px);
           font-weight: 700;
@@ -362,7 +362,7 @@ export function PersonesClosing({ locale }: { locale: string }) {
           grid-template-columns: repeat(12, minmax(0, 1fr));
           column-gap: clamp(16px, 2vw, 32px);
           row-gap: clamp(28px, 6vh, 72px);
-          padding: clamp(120px, 20vh, 240px) var(--margin-page) clamp(120px, 20vh, 240px);
+          padding: clamp(72px, 12vh, 140px) var(--margin-page) clamp(120px, 20vh, 240px);
           font-family: var(--font-sans);
         }
         .pu-pc p {
