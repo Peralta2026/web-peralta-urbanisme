@@ -93,10 +93,10 @@ export default async function PersonesPage({
       }}>
         <p style={{
           fontFamily: "var(--font-sans)",
-          fontSize:   "17px",
+          fontSize:   "20px",
           fontWeight: 700,
-          letterSpacing: "-0.01em",
-          color:      "#111",
+          letterSpacing: "-0.015em",
+          color:      "#000",
           margin:     "0 0 clamp(14px,2vh,20px)",
         }}>
           Col·laboradors habituals
@@ -176,9 +176,10 @@ export default async function PersonesPage({
         }
         .pu-clients-label {
           font-family: var(--font-sans);
-          font-size: 13px;
+          font-size: 20px;
           font-weight: 700;
-          color: #888;
+          letter-spacing: -0.015em;
+          color: #000;
           margin: 0 0 clamp(20px,3vh,32px);
           padding: 0 var(--margin-page);
         }
@@ -187,20 +188,19 @@ export default async function PersonesPage({
           width: 100%;
           mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
           -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-          cursor: pointer;
         }
         .pu-clients-track {
           display: flex;
           align-items: center;
-          gap: clamp(40px, 5vw, 80px);
+          gap: clamp(48px, 6vw, 96px);
           width: max-content;
-          padding: 8px 0;
-          animation: pu-marquee 42s linear infinite;
-          animation-play-state: paused;
+          padding: 12px 0;
+          animation: pu-marquee 60s linear infinite;
         }
         .pu-clients-track-wrap:hover .pu-clients-track {
-          animation-play-state: running;
+          animation-play-state: paused;
         }
+        @media (prefers-reduced-motion: reduce) { .pu-clients-track { animation: none; } }
         @keyframes pu-marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -210,20 +210,13 @@ export default async function PersonesPage({
           display: flex;
           align-items: center;
           justify-content: center;
-          opacity: 0.5;
-          filter: grayscale(100%);
-          transition: opacity 300ms ease, filter 300ms ease;
+          transition: opacity 300ms ease;
         }
-        .pu-clients-track-wrap:hover .pu-client-logo {
-          opacity: 0.7;
-        }
-        .pu-client-logo:hover {
-          opacity: 1 !important;
-          filter: grayscale(0%) !important;
-        }
+        .pu-clients-track-wrap:hover .pu-client-logo { opacity: 0.55; }
+        .pu-clients-track-wrap:hover .pu-client-logo:hover { opacity: 1; }
         .pu-client-img {
-          max-height: 36px;
-          max-width: 110px;
+          max-height: 52px;
+          max-width: 160px;
           width: auto;
           height: auto;
           object-fit: contain;
@@ -238,15 +231,8 @@ export default async function PersonesPage({
           flex-wrap: wrap;
         }
         .pu-collab-logo {
-          opacity: 0.45;
-          filter: grayscale(100%);
-          transition: opacity 280ms ease, filter 280ms ease;
           display: flex;
           align-items: center;
-        }
-        .pu-collab-logo:hover {
-          opacity: 0.85;
-          filter: grayscale(0%);
         }
 
         /* ── CTA ── */
@@ -288,7 +274,7 @@ export default async function PersonesPage({
         @media (max-width: 768px) {
           .pu-collab-strip { gap: 24px; }
           .pu-cta-section { flex-direction: column; align-items: flex-start; }
-          .pu-client-img { max-height: 28px; max-width: 80px; }
+          .pu-client-img { max-height: 40px; max-width: 116px; }
         }
         @media (max-width: 480px) {
           .pu-clients-track { gap: 32px; }

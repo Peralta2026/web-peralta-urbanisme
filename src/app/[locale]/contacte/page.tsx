@@ -1,4 +1,3 @@
-import ContactMapLoader from "@/components/contact/ContactMapLoader";
 import BackLink from "@/components/layout/BackLink";
 
 export const dynamic = "force-static";
@@ -32,6 +31,7 @@ export default async function ContactePage({
 
   return (
     <>
+      <div className="pu-contact-page">
       <div className="pu-contact-root">
 
         <BackLink />
@@ -72,16 +72,10 @@ export default async function ContactePage({
 
           {/* Adreça + mini-mapa */}
           <div className="pu-contact-block pu-contact-block--addr">
-            <div className="pu-contact-addr-row">
-              <address className="pu-contact-address">
-                Carrer de l&apos;Argentona, 59<br />
-                Pis 3-3 · 08302 Mataró
-              </address>
-              {/* Mini mapa — overflow visible so popup can escape */}
-              <div className="pu-contact-minimap">
-                <ContactMapLoader />
-              </div>
-            </div>
+            <address className="pu-contact-address">
+              Carrer de l&apos;Argentona, 59<br />
+              Pis 3-3 · 08302 Mataró
+            </address>
           </div>
 
           {/* Xarxes */}
@@ -113,7 +107,66 @@ export default async function ContactePage({
         </div>
       </div>
 
+      {/* Plànol dibuixat de l'entorn de l'estudi; les ones surten de l'oficina */}
+      <figure className="pu-contact-plan" aria-label="Carrer de l'Argentona, 59 · Mataró">
+        <div className="pu-contact-plan-img">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/contacte/mataro.jpg" alt="Plànol de l'entorn de l'estudi a Mataró: aparcaments, bus, Rodalies R1 i accessos" />
+          <span className="pu-contact-wave" aria-hidden="true" />
+          <span className="pu-contact-wave" aria-hidden="true" />
+          <span className="pu-contact-wave" aria-hidden="true" />
+        </div>
+      </figure>
+      </div>
+
       <style>{`
+        .pu-contact-page {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          align-items: start;
+        }
+        .pu-contact-plan {
+          position: sticky;
+          top: var(--header-height);
+          margin: 0;
+          height: calc(100vh - var(--header-height));
+          height: calc(100svh - var(--header-height));
+          display: flex; align-items: center; justify-content: center;
+          padding: 24px var(--margin-page) 24px 0;
+        }
+        .pu-contact-plan-img {
+          position: relative;
+          width: min(100%, calc((100svh - var(--header-height) - 48px) * 0.783));
+          aspect-ratio: 2005 / 2560;
+        }
+        .pu-contact-plan-img img { display: block; width: 100%; height: 100%; object-fit: contain; }
+        @keyframes pu-contact-wave {
+          0%   { width: 0;   height: 0; opacity: 1; }
+          65%  { opacity: 0.7; }
+          100% { width: 40%; height: 0; padding-bottom: 40%; opacity: 0; }
+        }
+        .pu-contact-wave {
+          position: absolute;
+          left: 57.1%; top: 40.6%;
+          width: 0; height: 0;
+          border: 2.5px solid #7a1010;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          animation: pu-contact-wave 4.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
+        .pu-contact-wave:nth-of-type(2) { animation-delay: 1.5s; }
+        .pu-contact-wave:nth-of-type(3) { animation-delay: 3s; }
+        @media (prefers-reduced-motion: reduce) {
+          .pu-contact-wave { animation: none; width: 18%; padding-bottom: 18%; opacity: 0.6; }
+          .pu-contact-wave:nth-of-type(n+2) { display: none; }
+        }
+        @media (max-width: 900px) {
+          .pu-contact-page { display: block; }
+          .pu-contact-plan { position: static; height: auto; padding: 0 var(--margin-page) 56px; }
+          .pu-contact-plan-img { width: 100%; }
+        }
+
         .pu-contact-intro {
           max-width: 560px;
           margin-bottom: clamp(40px, 6vh, 72px);
@@ -198,12 +251,6 @@ export default async function ContactePage({
         }
         .pu-contact-phone:hover { opacity: 0.35; }
 
-        .pu-contact-addr-row {
-          display: flex;
-          align-items: flex-start;
-          gap: clamp(28px, 3vw, 52px);
-        }
-
         .pu-contact-address {
           font-family: var(--font-sans);
           font-size: clamp(13px, 1.1vw, 15px);
@@ -211,19 +258,6 @@ export default async function ContactePage({
           line-height: 1.75;
           color: #555;
           font-style: normal;
-        }
-
-        /* Mini mapa: overflow visible so the popup can appear above it */
-        .pu-contact-minimap {
-          width: clamp(160px, 18vw, 220px);
-          height: clamp(160px, 18vw, 220px);
-          flex-shrink: 0;
-          position: relative;
-          border: 1px solid rgba(0,0,0,0.09);
-        }
-        .pu-contact-minimap > div {
-          width: 100%;
-          height: 100%;
         }
 
         /* Social icons — bigger, clearer */
@@ -258,13 +292,6 @@ export default async function ContactePage({
           }
           .pu-contact-block--addr {
             grid-column: 1;
-          }
-          .pu-contact-addr-row {
-            flex-direction: column;
-          }
-          .pu-contact-minimap {
-            width: 100%;
-            height: 52vw;
           }
         }
       `}</style>
