@@ -180,21 +180,21 @@ type Piece = {
 };
 
 const PIECES: Piece[] = [
-  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 32, 11, -1.8],  m: [3, 4, 62, -2] },
-  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 31.5, 6.5, 1.6], m: [56, 15, 40, 2] },
-  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 32.5, 12, 1], m: [6, 33, 58, -1.2] },
-  { key: "datum",                                               d: [74.5, 34, 8.5, 2.2], m: [62, 46.5, 34, 2.6] },
-  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 54, 17, 1.2],   m: [4, 56, 88, 1.2] },
-  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 53, 6.5, -2.4], m: [62, 66, 32, -3] },
-  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54.5, 9, -1], m: [8, 70, 48, 1] },
-  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.5, 7, 1.6],  m: [56, 84, 30, -1.6] },
+  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 32, 11, -1.8],  m: [8, 18.5, 40, -1.6] },
+  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 31.5, 6.5, 1.6], m: [10, 35.5, 26, 1.8] },
+  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 32.5, 12, 1], m: [42, 39.5, 48, -1] },
+  { key: "datum",                                               d: [74.5, 34, 8.5, 2.2], m: [60, 50.5, 32, 2.2] },
+  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 54, 17, 1.2],   m: [8, 58.5, 84, 1] },
+  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 53, 6.5, -2.4], m: [48, 69, 22, -2.4] },
+  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54.5, 9, -1], m: [8, 70.5, 36, 1] },
+  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.5, 7, 1.6],  m: [74, 71, 18, -1.6] },
 ];
 
 const WORDS: { key: "dades" | "planol" | "norma" | "carrer"; d: [number, number]; m: [number, number] }[] = [
-  { key: "planol", d: [38, 28.4],   m: [4, 1] },
-  { key: "dades",  d: [51.5, 28.4], m: [6, 30.3] },
-  { key: "norma",  d: [66, 28.4],   m: [55, 39.6] },
-  { key: "carrer", d: [17, 66.5],   m: [6, 64] },
+  { key: "planol", d: [38, 28.4],   m: [8, 16] },
+  { key: "dades",  d: [51.5, 28.4], m: [42, 37] },
+  { key: "norma",  d: [66, 28.4],   m: [8, 33] },
+  { key: "carrer", d: [17, 66.5],   m: [8, 66.6] },
 ];
 
 export function PersonesTable({ locale }: { locale: string }) {
@@ -247,6 +247,8 @@ export function PersonesTable({ locale }: { locale: string }) {
       <div ref={ref} className="pu-pt-table">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="pu-pt-bg" src="/persones-taula/mesa.png" alt="" aria-hidden="true" draggable={false} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="pu-pt-bg pu-pt-bg--v" src="/persones-taula/mesa-v.png" alt="" aria-hidden="true" draggable={false} loading="lazy" />
         {PIECES.map((p) => (
           <div key={p.key} className={`pu-pt-piece pu-pt-piece--${p.key}`} style={vars(p.d, p.m)}>
             {p.img
@@ -284,6 +286,7 @@ export function PersonesTable({ locale }: { locale: string }) {
           pointer-events: none;
           user-select: none;
         }
+        .pu-pt-bg--v { display: none; }
         .pu-pt-piece {
           position: absolute;
           left: var(--x); top: var(--y); width: var(--w);
@@ -329,8 +332,10 @@ export function PersonesTable({ locale }: { locale: string }) {
         }
         @media (max-width: 900px) {
           .pu-pt { padding-top: clamp(48px, 8vh, 96px); }
-          .pu-pt-table { width: 100%; aspect-ratio: 390 / 1180; background: var(--color-gray-light); }
+          /* Mòbil: la mateixa taula girada en vertical; el tauler omple l'amplada */
+          .pu-pt-table { width: 100%; aspect-ratio: 1 / 3.252; }
           .pu-pt-bg { display: none; }
+          .pu-pt-bg--v { display: block; left: -41.5%; width: 183%; max-width: none; height: 100%; }
           .pu-pt-datum strong { font-size: clamp(18px, 2vw, 32px); }
           .pu-pt-datum span { font-size: var(--size-meta) !important; }
           .pu-pt-datum { padding: 14% 10% 16%; gap: 8px; }
