@@ -22,12 +22,51 @@ const z = (...stops: number[]): ExpressionSpecification =>
 const STYLE: StyleSpecification = {
   version: 8,
   sources: {
+    // Mapa base vectorial de l'ICGC (esquema OpenMapTiles): només se'n dibuixen
+    // vies, ferrocarril i edificis, amb el mateix traç negre; sense noms
+    city: { type: "vector", tiles: ["https://geoserveis.icgc.cat/servei/catalunya/mapa-base2/vt/{z}/{x}/{y}.pbf"], minzoom: 8, maxzoom: 15 },
     spain: { type: "geojson", data: "/territorial/spain.json" },
     cat:   { type: "geojson", data: "/territorial/cat.json" },
     muni:  { type: "geojson", data: "/territorial/muni-lines.json" },
   },
   layers: [
     { id: "background", type: "background", paint: { "background-color": "#fff" } },
+
+    /* ── Ciutat (ICGC): el zoom revela vies → carrers → illes → edificis ── */
+    // Edificis: contorn fi, sense color
+    { id: "city-building", type: "fill", source: "city", "source-layer": "building", minzoom: 13.6,
+      paint: { "fill-color": "#fff", "fill-outline-color": INK, "fill-opacity": z(13.6, 0, 14.4, 1) } },
+    { id: "city-building-line", type: "line", source: "city", "source-layer": "building", minzoom: 13.6,
+      paint: { "line-color": INK, "line-width": z(14, 0.25, 16, 0.45), "line-opacity": z(13.6, 0, 14.4, 1) } },
+    // Ferrocarril
+    { id: "city-rail", type: "line", source: "city", "source-layer": "transportation", minzoom: 10.5,
+      filter: ["all", ["==", ["get", "class"], "rail"], ["!=", ["get", "brunnel"], "tunnel"]],
+      paint: { "line-color": INK, "line-width": z(10.5, 0.4, 14, 0.8, 16, 1.2), "line-dasharray": [6, 3], "line-opacity": z(10.5, 0, 11.5, 1) } },
+    // Carrers: a prop es dibuixen amb dues línies (vora negra, interior blanc) i les illes apareixen
+    { id: "city-street-casing", type: "line", source: "city", "source-layer": "transportation", minzoom: 11.8,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["minor", "service", "pedestrian"]]], ["!=", ["get", "brunnel"], "tunnel"], ["==", ["geometry-type"], "LineString"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": INK, "line-width": z(11.8, 0.2, 13.5, 0.4, 14.6, 0.5, 15.2, 4, 17, 13), "line-opacity": z(11.8, 0, 12.8, 1) } },
+    { id: "city-street-fill", type: "line", source: "city", "source-layer": "transportation", minzoom: 14.6,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["minor", "service", "pedestrian"]]], ["!=", ["get", "brunnel"], "tunnel"], ["==", ["geometry-type"], "LineString"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": "#fff", "line-width": z(14.6, 0, 15.2, 3, 17, 11.8) } },
+    { id: "city-road-casing", type: "line", source: "city", "source-layer": "transportation", minzoom: 10.2,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["secondary", "tertiary", "secondary_link", "tertiary_link"]]], ["!=", ["get", "brunnel"], "tunnel"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": INK, "line-width": z(10.2, 0.25, 12, 0.5, 14.4, 0.8, 15.2, 6, 17, 18), "line-opacity": z(10.2, 0, 11, 1) } },
+    { id: "city-road-fill", type: "line", source: "city", "source-layer": "transportation", minzoom: 14.4,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["secondary", "tertiary", "secondary_link", "tertiary_link"]]], ["!=", ["get", "brunnel"], "tunnel"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": "#fff", "line-width": z(14.4, 0, 15.2, 4.6, 17, 16.4) } },
+    { id: "city-main-casing", type: "line", source: "city", "source-layer": "transportation", minzoom: 8.4,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "motorway_link", "trunk_link", "primary_link"]]], ["!=", ["get", "brunnel"], "tunnel"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": INK, "line-width": z(8.4, 0.3, 10, 0.6, 12, 0.9, 14, 1.2, 15.2, 8, 17, 24), "line-opacity": z(8.4, 0, 9.4, 1) } },
+    { id: "city-main-fill", type: "line", source: "city", "source-layer": "transportation", minzoom: 14,
+      filter: ["all", ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "motorway_link", "trunk_link", "primary_link"]]], ["!=", ["get", "brunnel"], "tunnel"]],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: { "line-color": "#fff", "line-width": z(14, 0, 15.2, 6.4, 17, 22) } },
 
     // Espanya (IGN). Els trams catalans només fins que entra el dibuix de l'ICGC
     { id: "es-prov", type: "line", source: "spain", filter: ["all", ["==", ["get", "k"], "prov"], ["==", ["get", "cat"], 0]],
@@ -84,7 +123,7 @@ export default function PeraltaMap({ locale, showZoom = false, onReady, padding 
         fitBoundsOptions: { padding },
         maxBounds: SPAIN_LIMITS,
         minZoom: 4.2,
-        maxZoom: 13,
+        maxZoom: 17,
         pitch: 0,
         bearing: 0,
         maxPitch: 0,
