@@ -263,7 +263,11 @@ function PencilLayer({ locale, onClose }: { locale: string; onClose: () => void 
 
 /* ─── Disparador ─────────────────────────────────────────────────────────── */
 
-export default function PencilEgg({ locale }: { locale: string }) {
+/**
+ * `inline`: dins del peu o del manifest (ordinador).
+ * `floating`: botó flotant a baix a la dreta, a totes les pàgines (mòbil i tauleta).
+ */
+export default function PencilEgg({ locale, variant = "inline" }: { locale: string; variant?: "inline" | "floating" }) {
   const [active, setActive] = useState(false);
   const pathname = usePathname();
   const close = useRef(() => setActive(false)).current;
@@ -276,7 +280,7 @@ export default function PencilEgg({ locale }: { locale: string }) {
     <>
       <button
         type="button"
-        className={`pu-egg${active ? " is-active" : ""}`}
+        className={`pu-egg pu-egg--${variant}${active ? " is-active" : ""}`}
         onClick={() => setActive(a => !a)}
         aria-label={t.trigger}
         aria-pressed={active}
@@ -303,6 +307,22 @@ export default function PencilEgg({ locale }: { locale: string }) {
         .pu-egg:hover, .pu-egg.is-active { color: rgba(255,255,255,0.9); }
         .pu-egg:hover path { animation: pu-egg-draw 900ms cubic-bezier(0.65, 0, 0.35, 1); }
         @keyframes pu-egg-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+        .pu-egg--floating { display: none; }
+        @media (max-width: 900px), (hover: none) {
+          .pu-egg--inline { display: none; }
+          .pu-egg--floating {
+            display: inline-flex;
+            position: fixed;
+            right: calc(var(--margin-page) - 6px);
+            bottom: calc(10px + env(safe-area-inset-bottom));
+            margin: 0;
+            z-index: 450;
+            color: rgba(255,255,255,0.42);
+            mix-blend-mode: difference;
+          }
+          .pu-egg--floating:hover, .pu-egg--floating.is-active { color: rgba(255,255,255,0.42); }
+          body.pu-pencil-on .pu-egg--floating, body.pu-lightbox-open .pu-egg--floating { display: none; }
+        }
       `}</style>
     </>
   );

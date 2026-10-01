@@ -5,6 +5,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import IntroWrapper from "@/components/intro/IntroWrapper";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import PencilEgg from "@/components/layout/PencilEgg";
 import ImageProtection from "@/components/layout/ImageProtection";
 import type { Metadata } from "next";
 
@@ -57,6 +58,7 @@ export default async function LocaleLayout({
         <Footer locale={locale} />
         <ImageProtection />
         <ScrollToTop />
+        <PencilEgg locale={locale} variant="floating" />
       </IntroWrapper>
     </NextIntlClientProvider>
   );
