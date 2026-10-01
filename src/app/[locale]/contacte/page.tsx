@@ -36,7 +36,8 @@ export default async function ContactePage({
       <div className="pu-contact-root">
 
         <BackLink />
-        <h1 className="pu-contact-heading">Parlem</h1>
+        <h1 className="pu-contact-title">CONTACTE</h1>
+        <p className="pu-contact-heading">Què teniu<br />entre mans?</p>
 
         <div className="pu-contact-intro">
           <p>
@@ -158,14 +159,23 @@ export default async function ContactePage({
           max-width: 900px;
         }
 
+        .pu-contact-title {
+          font-family: var(--font-sans);
+          font-size: clamp(32px, 4vw, 60px);
+          font-weight: 700;
+          letter-spacing: -0.04em;
+          line-height: 1;
+          color: #000;
+          margin: 0 0 clamp(36px, 6vh, 72px);
+        }
         .pu-contact-heading {
           font-family: var(--font-sans);
           font-size: clamp(48px, 6vw, 88px);
           font-weight: 700;
           letter-spacing: -0.05em;
-          line-height: 1;
+          line-height: 0.98;
           color: #000;
-          margin: 0 0 clamp(48px, 7vh, 80px);
+          margin: 0 0 clamp(40px, 6vh, 72px);
         }
         .pu-contact-root > .pu-back { margin-top: clamp(36px, 5vh, 64px); }
 
