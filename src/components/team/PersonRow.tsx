@@ -38,7 +38,10 @@ function MobilePeople({ members, locale, active, onToggle }: {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`/team/${m.photo}`} alt="" />
             </span>
-            <span className="pu-pm-thumb-name">{m[locale].name.split(" ")[0]}</span>
+            <span className="pu-pm-thumb-name">
+              <span>{m[locale].name.split(" ")[0]}</span>
+              <span>{m[locale].name.split(" ").slice(1).join(" ")}</span>
+            </span>
           </button>
         ))}
       </div>
@@ -323,12 +326,17 @@ export default function PersonRow({ members, locale }: Props) {
             font-size: 11px;
             font-weight: 600;
             letter-spacing: -0.01em;
+            line-height: 1.25;
             color: #000;
+          }
+          .pu-pm-thumb-name > span {
+            display: block;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
-          .pu-pm-thumb.is-active .pu-pm-thumb-name { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+          .pu-pm-thumb-name > span + span { font-weight: 400; color: #555; }
+          .pu-pm-thumb.is-active .pu-pm-thumb-name > span:first-child { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
           @keyframes pu-pm-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
           .pu-pm-detail {
