@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllTeamMembers } from "@/lib/team";
 import type { Locale } from "@/lib/types";
 import PersonRow from "@/components/team/PersonRow";
+import AccentSection from "@/components/ui/AccentSection";
 import { PersonesClosing, PersonesOpening, PersonesTable, PersonesVerbs } from "@/components/team/PersonesStory";
 
 export const dynamic = "force-static";
@@ -54,7 +55,7 @@ export default async function PersonesPage({
     <div style={{ paddingTop: "88px", fontFamily: "var(--font-sans)" }}>
 
       {/* ── 01 · Qui som ─────────────────────────────────────────────── */}
-      <header style={{ padding: "clamp(36px,5vh,64px) var(--margin-page) 0" }}>
+      <header className="pu-persones-head">
         <h1 style={{
           fontFamily:    "var(--font-sans)",
           fontWeight:    700,
@@ -94,9 +95,10 @@ export default async function PersonesPage({
       }}>
         <p style={{
           fontFamily: "var(--font-sans)",
-          fontSize:   "13px",
+          fontSize:   "17px",
           fontWeight: 700,
-          color:      "#888",
+          letterSpacing: "-0.01em",
+          color:      "#111",
           margin:     "0 0 clamp(14px,2vh,20px)",
         }}>
           Col·laboradors habituals
@@ -177,16 +179,19 @@ export default async function PersonesPage({
       </section>
 
       {/* ── CTA: Vols treballar amb nosaltres? ────────────────────────── */}
-      <section className="pu-cta-section">
+      <AccentSection className="pu-cta-section">
         <h2 className="pu-cta-heading">
           Vols treballar<br />amb nosaltres?
         </h2>
         <Link href={`/${locale}/treballa-amb-nosaltres`} className="pu-cta-btn">
           Comencem <span style={{ fontSize: "14px" }}>→</span>
         </Link>
-      </section>
+      </AccentSection>
 
       <style>{`
+        .pu-persones-head { padding: clamp(24px, 3.5vh, 40px) var(--margin-page) 0; }
+        @media (max-width: 900px) { .pu-persones-head { padding-top: clamp(36px, 5vh, 64px); } }
+
         /* ── Secció fosca ── */
         .pu-dark-section {
           border-top: 1px solid #1a1a1a;
@@ -322,7 +327,8 @@ export default async function PersonesPage({
 
         /* ── CTA ── */
         .pu-cta-section {
-          border-top: 1px solid #e8e8e4;
+          background: var(--accent);
+          transition: background var(--dur-slow) ease;
           padding: clamp(48px,7vh,88px) var(--margin-page);
           display: flex;
           align-items: center;

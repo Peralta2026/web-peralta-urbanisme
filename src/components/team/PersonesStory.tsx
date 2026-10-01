@@ -81,21 +81,22 @@ export function PersonesOpening({ locale }: { locale: string }) {
         {t.mobileOpening.map((l, i) => <span key={i}>{l}</span>)}
       </p>
       <style>{`
-        .pu-po { padding: clamp(40px, 7vh, 88px) var(--margin-page) clamp(120px, 20vh, 220px); }
+        /* Obertura + les cinc fotos senceres han de cabre en una pantalla */
+        .pu-po { padding: clamp(16px, 2.6vh, 32px) var(--margin-page) clamp(28px, 4.5vh, 52px); }
         .pu-po p { margin: 0; font-family: var(--font-sans); font-weight: 700; color: #000; }
         .pu-po-desk {
           display: grid;
           grid-template-columns: repeat(12, minmax(0, 1fr));
           column-gap: clamp(16px, 2vw, 32px);
-          font-size: clamp(34px, 4.4vw, 74px);
-          letter-spacing: -0.045em;
+          font-size: min(2.8vw, 4vh);
+          letter-spacing: -0.04em;
           line-height: 1.02;
         }
         .pu-po-desk span { display: block; white-space: nowrap; }
         .pu-po-a { grid-column: 1 / -1; }
         .pu-po-b { grid-column: 1 / -1; }
-        .pu-po-c { grid-column: 6 / -1; margin-top: 0.62em; }
-        .pu-po-d { grid-column: 2 / -1; margin-top: 0.62em; }
+        .pu-po-c { grid-column: 6 / -1; margin-top: 0.5em; }
+        .pu-po-d { grid-column: 2 / -1; margin-top: 0.5em; }
         .pu-po-e { grid-column: 2 / -1; }
         .pu-po-mob { display: none; }
         @media (max-width: 900px) {
@@ -126,16 +127,16 @@ export function PersonesVerbs({ locale }: { locale: string }) {
       </ul>
       <p className="pu-pv-ofici">{t.ofici}</p>
       <style>{INK_CSS + `
-        .pu-pv { padding: clamp(96px, 16vh, 180px) var(--margin-page) clamp(120px, 20vh, 220px); font-family: var(--font-sans); }
+        .pu-pv { padding: clamp(72px, 12vh, 140px) var(--margin-page) clamp(88px, 14vh, 160px); font-family: var(--font-sans); }
         .pu-pv-verbs {
           list-style: none; margin: 0; padding: 0;
           display: grid;
           grid-template-columns: repeat(12, minmax(0, 1fr));
           column-gap: clamp(16px, 2vw, 32px);
-          row-gap: clamp(18px, 4vh, 44px);
+          row-gap: clamp(10px, 2.4vh, 28px);
         }
         .pu-pv-verbs li {
-          font-size: clamp(36px, 5.6vw, 96px);
+          font-size: clamp(28px, 4vw, 68px);
           font-weight: 700;
           letter-spacing: -0.045em;
           line-height: 1;
@@ -148,8 +149,8 @@ export function PersonesVerbs({ locale }: { locale: string }) {
         .pu-pv-v3 { grid-column: 8 / -1; }
         .pu-pv-v4 { grid-column: 2 / -1; }
         .pu-pv-ofici {
-          margin: clamp(88px, 14vh, 160px) 0 0;
-          font-size: clamp(22px, 2.3vw, 36px);
+          margin: clamp(56px, 9vh, 110px) 0 0;
+          font-size: clamp(20px, 1.9vw, 30px);
           font-weight: 600;
           letter-spacing: -0.03em;
           line-height: 1.15;
@@ -264,11 +265,11 @@ export function PersonesTable({ locale }: { locale: string }) {
       <p className="pu-pt-close">{t.close}</p>
 
       <style>{`
-        .pu-pt { padding: clamp(48px, 8vh, 96px) 0 0; font-family: var(--font-sans); }
+        .pu-pt { padding: clamp(32px, 5vh, 64px) 0 0; font-family: var(--font-sans); }
         .pu-pt-table {
           position: relative;
-          aspect-ratio: 16 / 11;
-          max-height: 140vh;
+          width: calc(100% - 2 * var(--margin-page));
+          aspect-ratio: 16 / 10;
           margin: 0 auto;
           background: var(--color-gray-light);
           overflow: hidden;
@@ -298,7 +299,7 @@ export function PersonesTable({ locale }: { locale: string }) {
           left: var(--x); top: var(--y);
           margin: 0;
           z-index: 1;
-          font-size: clamp(22px, 2.6vw, 44px);
+          font-size: clamp(18px, 2vw, 32px);
           font-weight: 700;
           letter-spacing: -0.035em;
           line-height: 1;
@@ -308,16 +309,17 @@ export function PersonesTable({ locale }: { locale: string }) {
         }
         .pu-pt-close {
           margin: 0;
-          padding: clamp(64px, 11vh, 128px) var(--margin-page) 0;
+          padding: clamp(48px, 8vh, 96px) var(--margin-page) 0;
           max-width: 18em;
-          font-size: clamp(28px, 3.4vw, 56px);
+          font-size: clamp(24px, 2.6vw, 42px);
           font-weight: 700;
           letter-spacing: -0.04em;
           line-height: 1.04;
           color: #000;
         }
         @media (max-width: 900px) {
-          .pu-pt-table { aspect-ratio: 390 / 1180; max-height: none; }
+          .pu-pt { padding-top: clamp(48px, 8vh, 96px); }
+          .pu-pt-table { width: 100%; aspect-ratio: 390 / 1180; }
           .pu-pt-piece { left: var(--mx); top: var(--my); width: var(--mw); rotate: var(--mr); padding: 4px; }
           .pu-pt-word { left: var(--mx); top: var(--my); font-size: 22px; z-index: 3; }
           .pu-pt-close { font-size: 28px; padding-top: 56px; }
@@ -341,12 +343,12 @@ export function PersonesClosing({ locale }: { locale: string }) {
           grid-template-columns: repeat(12, minmax(0, 1fr));
           column-gap: clamp(16px, 2vw, 32px);
           row-gap: clamp(28px, 6vh, 72px);
-          padding: clamp(180px, 30vh, 340px) var(--margin-page) clamp(180px, 30vh, 340px);
+          padding: clamp(120px, 20vh, 240px) var(--margin-page) clamp(120px, 20vh, 240px);
           font-family: var(--font-sans);
         }
         .pu-pc p {
           margin: 0;
-          font-size: clamp(40px, 6.4vw, 110px);
+          font-size: clamp(34px, 4.8vw, 84px);
           font-weight: 700;
           letter-spacing: -0.05em;
           line-height: 0.98;
