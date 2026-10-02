@@ -150,7 +150,7 @@ export function PersonesVerbs({ locale }: { locale: string }) {
           color: #000;
         }
         @media (max-width: 900px) {
-          .pu-pv { padding: 96px var(--margin-page) 112px; }
+          .pu-pv { padding: 96px var(--margin-page) 40px; }
           .pu-pv-verbs { row-gap: 14px; }
           .pu-pv-verbs li { font-size: clamp(34px, 10.4vw, 52px); }
           .pu-pv-v0, .pu-pv-v2, .pu-pv-v4 { grid-column: 1 / -1; }
@@ -173,21 +173,21 @@ type Piece = {
 };
 
 const PIECES: Piece[] = [
-  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 28.2, 11, -1.8],  m: [8, 18.5, 40, -1.6] },
-  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 27.6, 6.5, 1.6], m: [10, 35.5, 26, 1.8] },
-  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 28.8, 12, 1], m: [42, 39.5, 48, -1] },
-  { key: "datum",                                               d: [74.5, 30.5, 8.5, 2.2], m: [60, 50.5, 32, 2.2] },
-  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 53.4, 17, 1.2],   m: [8, 58.5, 84, 1] },
-  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 52.3, 6.5, -2.4], m: [48, 69, 22, -2.4] },
-  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54, 9, -1], m: [8, 70.5, 36, 1] },
-  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.3, 7, 1.6],  m: [74, 71, 18, -1.6] },
+  { key: "planol",      img: "/persones-taula/planol.jpg",      d: [38, 28.2, 11, -1.8],  m: [8, 6.6, 40, -1.6] },
+  { key: "norma",       img: "/persones-taula/norma.jpg",       d: [66, 27.6, 6.5, 1.6], m: [10, 30.1, 26, 1.8] },
+  { key: "dades",       img: "/persones-taula/dades.jpg",       d: [51.5, 28.8, 12, 1], m: [42, 35.7, 48, -1] },
+  { key: "datum",                                               d: [74.5, 30.5, 8.5, 2.2], m: [60, 50.9, 32, 2.2] },
+  { key: "carrer",      img: "/persones-taula/carrer.jpg",      d: [17, 53.4, 17, 1.2],   m: [8, 62, 84, 1] },
+  { key: "croquis",     img: "/persones-taula/croquis.jpg",     d: [49.5, 52.3, 6.5, -2.4], m: [48, 76.6, 22, -2.4] },
+  { key: "cartografia", img: "/persones-taula/cartografia.jpg", d: [37.5, 54, 9, -1], m: [8, 78.7, 36, 1] },
+  { key: "maqueta",     img: "/persones-taula/maqueta.jpg",     d: [59, 56.3, 7, 1.6],  m: [74, 79.4, 18, -1.6] },
 ];
 
 const WORDS: { key: "dades" | "planol" | "norma" | "carrer"; d: [number, number]; m: [number, number] }[] = [
-  { key: "planol", d: [38, 24.1],   m: [8, 16] },
-  { key: "dades",  d: [51.5, 24.1], m: [42, 37] },
-  { key: "norma",  d: [66, 24.1],   m: [8, 33] },
-  { key: "carrer", d: [17, 67.8],   m: [8, 66.6] },
+  { key: "planol", d: [38, 24.1],   m: [8, 3.1] },
+  { key: "dades",  d: [51.5, 24.1], m: [42, 32.2] },
+  { key: "norma",  d: [66, 24.1],   m: [8, 26.7] },
+  { key: "carrer", d: [17, 67.8],   m: [8, 73.3] },
 ];
 
 export function PersonesTable({ locale }: { locale: string }) {
@@ -324,9 +324,9 @@ export function PersonesTable({ locale }: { locale: string }) {
           color: #000;
         }
         @media (max-width: 900px) {
-          .pu-pt { padding-top: clamp(48px, 8vh, 96px); }
+          .pu-pt { padding-top: 0; }
           /* Mòbil: la mateixa taula girada en vertical; el tauler omple l'amplada */
-          .pu-pt-table { width: 100%; aspect-ratio: 1 / 3.252; }
+          .pu-pt-table { width: 100%; aspect-ratio: 1 / 2.3453; }
           .pu-pt-bg { display: none; }
           .pu-pt-bg--v { display: block; left: -41.5%; width: 183%; max-width: none; height: 100%; }
           .pu-pt-datum strong { font-size: clamp(18px, 2vw, 32px); }
@@ -334,7 +334,7 @@ export function PersonesTable({ locale }: { locale: string }) {
           .pu-pt-datum { padding: 14% 10% 16%; gap: 8px; }
           .pu-pt-piece { left: var(--mx); top: var(--my); width: var(--mw); rotate: var(--mr); padding: 4px; }
           .pu-pt-word { left: var(--mx); top: var(--my); font-size: 22px; z-index: 3; }
-          .pu-pt-close { font-size: 28px; padding-top: 56px; }
+          .pu-pt-close { font-size: 28px; padding-top: 16px; }
         }
       `}</style>
     </section>
