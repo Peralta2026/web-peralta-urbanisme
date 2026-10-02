@@ -4,24 +4,21 @@
   "coverImage": "pu-01.jpg",
   "images": [
     "pu-01.jpg",
-    "pu-02.jpg",
-    "pu-03.jpg",
-    "pu-04.jpg",
     "pu-05.jpg",
+    "pu-02.jpg",
+    "pu-19.jpg",
+    "pu-03.jpg",
     "pu-06.jpg",
     "pu-07.jpg",
     "pu-08.jpg",
     "pu-09.jpg",
     "pu-10.jpg",
     "pu-11.jpg",
+    "pu-04.jpg",
     "pu-12.jpg",
     "pu-13.jpg",
-    "pu-14.jpg",
-    "pu-15.jpg",
-    "pu-16.jpg",
     "pu-17.jpg",
-    "pu-18.jpg",
-    "pu-19.jpg"
+    "pu-18.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -79,7 +76,7 @@
     "pu-02.jpg": "wide",
     "pu-03.jpg": "small",
     "pu-04.jpg": "big",
-    "pu-05.jpg": "tall",
+    "pu-05.jpg": "wide",
     "pu-06.jpg": "small",
     "pu-07.jpg": "small",
     "pu-08.jpg": "small",
@@ -88,11 +85,42 @@
     "pu-11.jpg": "small",
     "pu-12.jpg": "small",
     "pu-13.jpg": "small",
-    "pu-14.jpg": "small",
-    "pu-15.jpg": "small",
-    "pu-16.jpg": "small",
     "pu-17.jpg": "small",
     "pu-18.jpg": "small",
     "pu-19.jpg": "wide"
-  }
+  },
+  "galleryRows": [
+    [
+      "pu-01.jpg"
+    ],
+    [
+      "pu-05.jpg"
+    ],
+    [
+      "pu-02.jpg",
+      "pu-19.jpg"
+    ],
+    [
+      "pu-03.jpg",
+      "pu-06.jpg",
+      "pu-07.jpg",
+      "pu-08.jpg"
+    ],
+    [
+      "pu-09.jpg",
+      "pu-10.jpg",
+      "pu-11.jpg"
+    ],
+    [
+      "pu-04.jpg",
+      "pu-12.jpg",
+      "pu-13.jpg"
+    ],
+    [
+      "pu-17.jpg"
+    ],
+    [
+      "pu-18.jpg"
+    ]
+  ]
 }
