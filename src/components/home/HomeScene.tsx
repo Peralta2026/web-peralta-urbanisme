@@ -133,7 +133,6 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
   const d      = project[locale as "ca" | "es" | "en"];
   const images = project.images.length > 0 ? project.images : [project.coverImage];
   const fl     = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
-  const [descOpen, setDescOpen] = useState(false);
 
   const dataRows = [
     { label: fl.municipi,    value: d.municipality },
@@ -173,18 +172,6 @@ function FeaturedCard({ project, locale }: { project: Project; locale: string })
               </div>
             ))}
           </div>
-        )}
-        {descOpen ? (
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(13px,1.1vw,15px)", lineHeight: 1.65, color: "#444", margin: "clamp(28px,4.5vh,52px) 0 0", overflow: "auto" }}>
-            {d.descriptionShort}
-          </p>
-        ) : (
-          <button
-            onClick={() => setDescOpen(true)}
-            style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: "11px", color: "#888", padding: 0, borderBottom: "1px solid #ccc", paddingBottom: "2px", marginTop: "clamp(20px,3vh,40px)" }}
-          >
-            + {fl.readMore}
-          </button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`}
           style={{ fontFamily: "var(--font-sans)", fontSize: "var(--size-meta)", fontWeight: 700, color: "#000", textDecoration: "none", borderBottom: "1.5px solid #000", paddingBottom: "3px", alignSelf: "flex-start", marginTop: "auto", paddingTop: "24px", flexShrink: 0 }}>

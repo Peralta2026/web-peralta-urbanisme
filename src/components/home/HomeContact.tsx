@@ -119,12 +119,11 @@ export default function HomeContact({ locale }: { locale: string }) {
           <a href="tel:+34935389893">+34 935 389 893</a>
         </p>
       </ContactColumn>
-      <ContactColumn col={copy.talent} locale={locale} />
 
       <style>{`
         .pu-hc {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           background: var(--color-bg);
         }
         .pu-hc-col {

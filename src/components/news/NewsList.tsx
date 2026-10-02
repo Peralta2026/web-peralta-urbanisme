@@ -150,7 +150,9 @@ export default function NewsList({
   }, [openSlug]);
 
   const columns: { item: NewsItem; index: number }[][] = [[], [], []];
-  items.forEach((item, index) => columns[index % 3].push({ item, index }));
+  // Cada columna rep notícies consecutives: llegint columna a columna, l'ordre és cronològic
+  const perCol = Math.ceil(items.length / 3);
+  items.forEach((item, index) => columns[Math.floor(index / perCol)].push({ item, index }));
 
   return (
     <div>

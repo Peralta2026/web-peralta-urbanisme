@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import type { Project } from "@/lib/types";
 import { FIELD_LABELS, isValid } from "@/components/home/homeShared";
@@ -10,7 +9,6 @@ import { FIELD_LABELS, isValid } from "@/components/home/homeShared";
 function MobileCard({ project, locale }: { project: Project; locale: string }) {
   const d  = project[locale as "ca" | "es" | "en"];
   const fl = FIELD_LABELS[locale] ?? FIELD_LABELS.ca;
-  const [open, setOpen] = useState(false);
   const image = project.images[0] ?? project.coverImage;
 
   const dataRows = [
@@ -22,7 +20,7 @@ function MobileCard({ project, locale }: { project: Project; locale: string }) {
   ].filter(r => isValid(r.value));
 
   return (
-    <article className={`pu-mc${open ? " is-open" : ""}`}>
+    <article className="pu-mc">
       <Link href={`/${locale}/projectes/${project.slug}`} className="pu-mc-img" tabIndex={-1}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/projects/${project.slug}/${image}`} alt={d.title} loading="lazy" />
@@ -39,10 +37,6 @@ function MobileCard({ project, locale }: { project: Project; locale: string }) {
               </div>
             ))}
           </dl>
-        )}
-        {d.descriptionShort && (open
-          ? <p className="pu-mc-desc">{d.descriptionShort}</p>
-          : <button type="button" className="pu-mc-more" onClick={() => setOpen(true)}>+ {fl.readMore}</button>
         )}
         <Link href={`/${locale}/projectes/${project.slug}`} className="pu-mc-link">
           {fl.view} →
@@ -94,7 +88,6 @@ export default function MobileCardDeck({ projects, locale, top }: { projects: Pr
           background: var(--color-gray-light);
           transition: flex-basis 500ms var(--ease-smooth);
         }
-        .pu-mc.is-open .pu-mc-img { flex-basis: 26%; }
         .pu-mc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .pu-mc-body {
           flex: 1; min-height: 0;
@@ -103,7 +96,6 @@ export default function MobileCardDeck({ projects, locale, top }: { projects: Pr
           border-top: 1px solid rgba(0,0,0,0.08);
           overflow: hidden;
         }
-        .pu-mc.is-open .pu-mc-body { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
         .pu-mc-title {
           font-family: var(--font-sans);
           font-size: 23px;
@@ -133,23 +125,6 @@ export default function MobileCardDeck({ projects, locale, top }: { projects: Pr
           font-family: var(--font-sans); font-size: var(--size-meta); color: #111;
           font-variant-numeric: tabular-nums;
         }
-        .pu-mc-more {
-          align-self: flex-start;
-          margin-top: 14px;
-          padding: 4px 0 2px;
-          border: 0; border-bottom: 1px solid #ccc;
-          background: none; cursor: pointer;
-          font-family: var(--font-sans); font-size: 12px; color: #888;
-        }
-        .pu-mc-desc {
-          font-family: var(--font-sans);
-          font-size: 14px;
-          line-height: 1.6;
-          color: #444;
-          margin: 16px 0 0;
-          animation: pu-mc-in 400ms ease;
-        }
-        @keyframes pu-mc-in { from { opacity: 0; } to { opacity: 1; } }
         .pu-mc-link {
           align-self: flex-start;
           margin-top: auto;
