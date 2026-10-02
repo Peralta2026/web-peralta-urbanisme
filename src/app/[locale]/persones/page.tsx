@@ -7,12 +7,25 @@ import { PersonesClosing, PersonesOpening, PersonesTable, PersonesVerbs } from "
 
 export const dynamic = "force-static";
 
-const COLLABORATORS = [
-  { name: "AFAC · Amador Ferrer / Víctor Ferrer", file: "afac.jpg" },
-  { name: "Cobrusi Arquitectes", file: "cobrusi.png" },
-  { name: "EMF", file: "emf.jpg" },
-  { name: "OUA", file: "oua.png" },
-  { name: "VAIC Mobility", file: "vaic.png" },
+/* Font: crèdits de la BASE DE DADES PROJECTES (sense serveis tècnics).
+   Llistat i logos originals: servidor > _Material Extra Web > COL·LABORADORS */
+const COLLABORATORS: { name: string; url: string; file?: string }[] = [
+  { name: "AFAC, Arquitectura i Ciutat",            url: "http://www.amadorferrer.com/",     file: "c-afac.png" },
+  { name: "(az) MAP, Medi Ambient i Paisatge",      url: "https://az-map.com/",              file: "c-az.png" },
+  { name: "Carles Enrich Studio",                   url: "https://www.carlesenrich.com/",    file: "c-carles-enrich.png" },
+  { name: "Cobrusi Arquitectes",                    url: "https://cobrusi.com/",             file: "c-cobrusi.png" },
+  { name: "EMF",                                    url: "https://www.emf.cat/",             file: "c-emf.png" },
+  { name: "Estel",                                  url: "https://plaestel.org/",            file: "c-estel.png" },
+  { name: "HARQUITECTES",                           url: "https://www.harquitectes.com/",    file: "c-harquitectes.png" },
+  { name: "IGREMAP",                                url: "http://igremap.com/",              file: "c-igremap.png" },
+  { name: "Nartex Barcelona",                       url: "https://www.nartexbarcelona.com/", file: "c-nartex.png" },
+  { name: "OUA Group",                              url: "https://www.ouagroup.com/",        file: "c-oua.png" },
+  { name: "Projectes Urbans",                       url: "https://projectesurbans.com/" },
+  { name: "Raons Públiques",                        url: "https://raons.coop/",              file: "c-raons.png" },
+  { name: "TallerAT",                               url: "http://www.tallerat.com/",         file: "c-taller-at.png" },
+  { name: "Traça",                                  url: "https://www.traca.cat/" },
+  { name: "VAIC Mobility",                          url: "https://vaicmobility.com/",        file: "c-vaic.png" },
+  { name: "VIA, Economia i Urbanisme",              url: "https://www.via-urbanisme.com/",   file: "c-via.png" },
 ];
 
 export default async function PersonesPage({
@@ -89,21 +102,12 @@ export default async function PersonesPage({
 
         <div className="pu-collab-strip">
           {COLLABORATORS.map(c => (
-            <div key={c.file} className="pu-collab-logo" title={c.name}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`/collaborators/${c.file}`}
-                alt={c.name}
-                style={{
-                  maxHeight: "36px",
-                  maxWidth:  "120px",
-                  width:     "auto",
-                  height:    "auto",
-                  objectFit: "contain",
-                  display:   "block",
-                }}
-              />
-            </div>
+            <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="pu-collab-logo" title={c.name}>
+              {c.file
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={`/collaborators/${c.file}`} alt={c.name} />
+                : <span className="pu-collab-name">{c.name}</span>}
+            </a>
           ))}
         </div>
       </section>
@@ -126,13 +130,20 @@ export default async function PersonesPage({
         .pu-collab-strip {
           display: flex;
           align-items: center;
-          gap: clamp(32px, 5vw, 72px);
+          gap: clamp(28px, 3.6vw, 56px) clamp(36px, 4.4vw, 72px);
           flex-wrap: wrap;
         }
         .pu-collab-logo {
           display: flex;
           align-items: center;
+          height: 44px;
+          color: #000;
+          text-decoration: none;
+          transition: opacity var(--dur-fast) ease;
         }
+        .pu-collab-logo:hover { opacity: 0.55; }
+        .pu-collab-logo img { display: block; height: auto; max-height: 40px; max-width: 160px; width: auto; object-fit: contain; }
+        .pu-collab-name { font-family: var(--font-sans); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
 
         /* ── CTA ── */
         .pu-cta-section {
