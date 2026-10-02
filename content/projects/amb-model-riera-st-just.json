@@ -7,21 +7,18 @@
     "pu-02.jpg",
     "pu-03.jpg",
     "pu-04.jpg",
+    "pu-13.jpg",
+    "pu-18.jpg",
+    "pu-19.jpg",
     "pu-05.jpg",
     "pu-06.jpg",
-    "pu-07.jpg",
     "pu-08.jpg",
     "pu-09.jpg",
     "pu-10.jpg",
     "pu-11.jpg",
     "pu-12.jpg",
-    "pu-13.jpg",
     "pu-14.jpg",
-    "pu-15.jpg",
-    "pu-16.jpg",
-    "pu-17.jpg",
-    "pu-18.jpg",
-    "pu-19.jpg"
+    "pu-15.jpg"
   ],
   "tags": [],
   "coordinates": {
@@ -81,7 +78,6 @@
     "pu-04.jpg": "wide",
     "pu-05.jpg": "wide",
     "pu-06.jpg": "wide",
-    "pu-07.jpg": "wide",
     "pu-08.jpg": "small",
     "pu-09.jpg": "small",
     "pu-10.jpg": "small",
@@ -90,8 +86,6 @@
     "pu-13.jpg": "wide",
     "pu-14.jpg": "wide",
     "pu-15.jpg": "wide",
-    "pu-16.jpg": "wide",
-    "pu-17.jpg": "wide",
     "pu-18.jpg": "wide",
     "pu-19.jpg": "wide"
   }
