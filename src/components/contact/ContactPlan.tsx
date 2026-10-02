@@ -81,7 +81,7 @@ export default function ContactPlan({ locale }: { locale: string }) {
     <figure className="pu-contact-plan">
       <div className="pu-contact-plan-img">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/contacte/mataro.jpg" alt={t.alt} />
+        <img src="/contacte/mataro-eixos.jpg" alt={t.alt} />
         <span className="pu-contact-wave" aria-hidden="true" />
         <span className="pu-contact-wave" aria-hidden="true" />
         <span className="pu-contact-wave" aria-hidden="true" />
@@ -96,19 +96,15 @@ export default function ContactPlan({ locale }: { locale: string }) {
       {open && createPortal(<EspaiViewer t={t} onClose={() => setOpen(false)} />, document.body)}
 
       <style>{`
+        /* El plànol comença a l'alçada de "Què teniu entre mans?" i ocupa la columna fins al marge */
         .pu-contact-plan {
-          position: sticky;
-          top: var(--header-height);
           margin: 0;
-          height: calc(100vh - var(--header-height));
-          height: calc(100svh - var(--header-height));
-          display: flex; align-items: center; justify-content: center;
-          padding: 32px var(--margin-page) 32px 0;
+          padding: calc(var(--header-height) + clamp(36px, 5vh, 64px) + clamp(32px, 4vw, 60px) + clamp(36px, 6vh, 64px)) var(--margin-page) 0 0;
         }
         .pu-contact-plan-img {
           position: relative;
-          width: min(68%, calc((100svh - var(--header-height) - 64px) * 0.783 * 0.72));
-          aspect-ratio: 2005 / 2560;
+          width: 100%;
+          aspect-ratio: 1600 / 946;
         }
         /* En blanc i negre fins que s'hi passa el cursor */
         .pu-contact-plan-img { --wave: #000; }
@@ -119,11 +115,11 @@ export default function ContactPlan({ locale }: { locale: string }) {
         @keyframes pu-contact-wave {
           0%   { width: 0;   height: 0; opacity: 1; }
           65%  { opacity: 0.7; }
-          100% { width: 40%; height: 0; padding-bottom: 40%; opacity: 0; }
+          100% { width: 22%; height: 0; padding-bottom: 22%; opacity: 0; }
         }
         .pu-contact-wave {
           position: absolute;
-          left: 57.1%; top: 40.6%;
+          left: 48.6%; top: 56.8%;
           width: 0; height: 0;
           border: 2.5px solid var(--wave);
           transition: border-color 600ms ease;
@@ -138,7 +134,7 @@ export default function ContactPlan({ locale }: { locale: string }) {
         /* El "+" de l'oficina: obre les fotos de l'espai */
         .pu-contact-pin {
           position: absolute;
-          left: 57.1%; top: 40.6%;
+          left: 48.6%; top: 56.8%;
           transform: translate(-50%, -50%);
           width: 46px; height: 46px;
           display: flex; align-items: center; justify-content: center;
@@ -189,12 +185,12 @@ export default function ContactPlan({ locale }: { locale: string }) {
         .pu-espai-nav--next { right: clamp(4px, 2vw, 32px); }
 
         @media (prefers-reduced-motion: reduce) {
-          .pu-contact-wave { animation: none; width: 18%; padding-bottom: 18%; opacity: 0.6; }
+          .pu-contact-wave { animation: none; width: 10%; padding-bottom: 10%; opacity: 0.6; }
           .pu-contact-wave:nth-of-type(n+2) { display: none; }
         }
         @media (max-width: 900px) {
-          .pu-contact-plan { position: static; height: auto; padding: 0 var(--margin-page) 56px; }
-          .pu-contact-plan-img { width: 78%; }
+          .pu-contact-plan { padding: 0 var(--margin-page) 56px; }
+          .pu-contact-plan-img { width: 100%; }
           .pu-espai { padding: 64px var(--margin-mobile) 24px; }
           .pu-espai-nav { display: none; }
           .pu-espai-close { top: 12px; right: 8px; }
