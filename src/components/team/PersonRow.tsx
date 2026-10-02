@@ -167,8 +167,9 @@ export default function PersonRow({ members, locale }: Props) {
           cursor: pointer;
           flex-shrink: 0;
         }
+        /* La foto oberta, una mica més gran que la resta (cada una ocupa 1/4 de l'element actiu) */
         .pu-person-item--active .pu-person-photo-wrap {
-          width: clamp(140px, 14vw, 190px);
+          width: 30%;
         }
         .pu-person-photo {
           position: absolute;
