@@ -35,8 +35,8 @@ export default async function ContactePage({
       <div className="pu-contact-page">
       <div className="pu-contact-root">
 
-        <BackLink />
         <h1 className="pu-contact-title">CONTACTE</h1>
+        <BackLink />
         <p className="pu-contact-heading">Què teniu<br />entre mans?</p>
 
         <div className="pu-contact-intro">
@@ -116,7 +116,7 @@ export default async function ContactePage({
       <style>{`
         .pu-contact-page {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
           align-items: start;
         }
         @media (max-width: 900px) {
@@ -166,18 +166,18 @@ export default async function ContactePage({
           letter-spacing: -0.04em;
           line-height: 1;
           color: #000;
-          margin: 0 0 clamp(36px, 6vh, 72px);
+          margin: clamp(36px, 5vh, 64px) 0 0;
         }
         .pu-contact-heading {
           font-family: var(--font-sans);
-          font-size: clamp(48px, 6vw, 88px);
+          font-size: clamp(22px, 2.2vw, 32px);
           font-weight: 700;
-          letter-spacing: -0.05em;
-          line-height: 0.98;
+          letter-spacing: -0.03em;
+          line-height: 1.1;
           color: #000;
           margin: 0 0 clamp(40px, 6vh, 72px);
         }
-        .pu-contact-root > .pu-back { margin-top: clamp(36px, 5vh, 64px); }
+        .pu-contact-root > .pu-back { margin: clamp(16px, 2.5vh, 28px) 0 clamp(28px, 4vh, 48px); }
 
         .pu-contact-grid {
           display: grid;

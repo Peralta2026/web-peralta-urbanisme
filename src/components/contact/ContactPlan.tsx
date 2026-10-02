@@ -86,7 +86,10 @@ export default function ContactPlan({ locale }: { locale: string }) {
         <span className="pu-contact-wave" aria-hidden="true" />
         <span className="pu-contact-wave" aria-hidden="true" />
         <button type="button" className="pu-contact-pin" onClick={() => setOpen(true)} aria-label={t.open}>
-          <span aria-hidden="true">+</span>
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <line x1="20" y1="3" x2="20" y2="37" />
+            <line x1="3" y1="20" x2="37" y2="20" />
+          </svg>
         </button>
       </div>
       {/* Fora del contenidor fix perquè quedi per sobre de la capçalera */}
@@ -100,14 +103,18 @@ export default function ContactPlan({ locale }: { locale: string }) {
           height: calc(100vh - var(--header-height));
           height: calc(100svh - var(--header-height));
           display: flex; align-items: center; justify-content: center;
-          padding: 32px var(--margin-page);
+          padding: 32px var(--margin-page) 32px 0;
         }
         .pu-contact-plan-img {
           position: relative;
-          width: min(78%, calc((100svh - var(--header-height) - 64px) * 0.783 * 0.84));
+          width: min(68%, calc((100svh - var(--header-height) - 64px) * 0.783 * 0.72));
           aspect-ratio: 2005 / 2560;
         }
-        .pu-contact-plan-img > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+        /* En blanc i negre fins que s'hi passa el cursor */
+        .pu-contact-plan-img { --wave: #000; }
+        .pu-contact-plan-img > img { display: block; width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) contrast(1.05); transition: filter 600ms ease; }
+        .pu-contact-plan-img:hover > img, .pu-contact-plan-img:active > img { filter: none; }
+        .pu-contact-plan-img:hover, .pu-contact-plan-img:active { --wave: #7a1010; }
 
         @keyframes pu-contact-wave {
           0%   { width: 0;   height: 0; opacity: 1; }
@@ -118,7 +125,8 @@ export default function ContactPlan({ locale }: { locale: string }) {
           position: absolute;
           left: 57.1%; top: 40.6%;
           width: 0; height: 0;
-          border: 2.5px solid #7a1010;
+          border: 2.5px solid var(--wave);
+          transition: border-color 600ms ease;
           border-radius: 50%;
           transform: translate(-50%, -50%);
           pointer-events: none;
@@ -132,14 +140,13 @@ export default function ContactPlan({ locale }: { locale: string }) {
           position: absolute;
           left: 57.1%; top: 40.6%;
           transform: translate(-50%, -50%);
-          width: 30px; height: 30px;
+          width: 46px; height: 46px;
           display: flex; align-items: center; justify-content: center;
-          padding: 0; border: 0; border-radius: 50%;
-          background: #000; color: #fff; cursor: pointer;
-          font-family: var(--font-sans); font-size: 20px; font-weight: 300; line-height: 1;
+          padding: 0; border: 0; background: none; cursor: pointer;
           transition: transform var(--dur-mid) var(--ease-smooth);
         }
-        .pu-contact-pin span { margin-top: -2px; }
+        .pu-contact-pin svg { width: 100%; height: 100%; overflow: visible; }
+        .pu-contact-pin line { stroke: #000; stroke-width: 3.2; stroke-linecap: square; }
         .pu-contact-pin:hover { transform: translate(-50%, -50%) scale(1.15); }
         .pu-contact-pin:focus-visible { outline: 1px solid #000; outline-offset: 3px; }
 
@@ -187,7 +194,7 @@ export default function ContactPlan({ locale }: { locale: string }) {
         }
         @media (max-width: 900px) {
           .pu-contact-plan { position: static; height: auto; padding: 0 var(--margin-page) 56px; }
-          .pu-contact-plan-img { width: 84%; }
+          .pu-contact-plan-img { width: 78%; }
           .pu-espai { padding: 64px var(--margin-mobile) 24px; }
           .pu-espai-nav { display: none; }
           .pu-espai-close { top: 12px; right: 8px; }
