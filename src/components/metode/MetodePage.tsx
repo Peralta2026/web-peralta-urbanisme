@@ -389,14 +389,6 @@ function MethodDiagram({ d }: { d: typeof T["ca"]["diagram"] }) {
           <line className="md-wsep" x1="432" y1="634" x2="668" y2="634"/>
         </g>
       </svg>
-      <div className="md-steps" onClick={(e) => e.stopPropagation()}>
-        {d.states.map((label, i) => (
-          <span key={label} style={{ display: "contents" }}>
-            {i > 0 && <i>/</i>}
-            <button type="button" className={i === st ? "is-active" : ""} onClick={() => go(i)}>{label}</button>
-          </span>
-        ))}
-      </div>
     </div>
   );
 }
@@ -491,7 +483,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         /* ── MODES / SERVICES ── */
         .met-modes {
           display: grid;
-          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr);
           border-top: 1px solid rgba(0,0,0,0.08);
           align-items: start;
         }
@@ -503,7 +495,7 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 24px clamp(16px, 2vw, 40px);
+          padding: 8px clamp(8px, 1vw, 16px) 8px 0;
         }
         .met-modes-header-block { padding: 72px var(--margin-page) 56px; }
         .met-modes-header-block h2 {
@@ -547,7 +539,8 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         }
 
         /* Diagram in column context */
-        .met-modes-right .md-svg-outer { width: 100%; max-width: 900px; }
+        /* El dibuix és el control: tan gran com permeten la columna i l'alçada de pantalla */
+        .met-modes-right .md-svg-outer { width: min(100%, calc((100vh - var(--header-height, 64px) - 16px) * 892 / 812)); max-width: none; }
 
         /* ── TRIANGLE DIAGRAM ── */
         .md-svg-outer { cursor: pointer; outline: none; display: flex; flex-direction: column; align-items: center; }
@@ -564,15 +557,6 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
         .md-svg-outer.md-hint.md-s0 .md-z { opacity: .55; transition-duration: 900ms; }
         .md-svg-outer.md-hint.md-s0 .md-pn { opacity: .5; transition-duration: 900ms; }
         .md-svg-outer.md-hint .md-svg { transform: scale(1.02); }
-        .md-steps {
-          display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 10px;
-          margin-top: 18px;
-          font-family: var(--font-sans); font-size: var(--size-meta); color: #bbb;
-        }
-        .md-steps button { padding: 6px 0; border: 0; background: none; cursor: pointer; font: inherit; color: inherit; transition: color var(--dur-fast) ease; }
-        .md-steps button:hover { color: #555; }
-        .md-steps button.is-active { color: #000; font-weight: 600; }
-        .md-steps i { font-style: normal; color: #ddd; }
         .md-svg-outer:focus-visible { outline: 1px dashed rgba(0,0,0,0.2); outline-offset: 4px; }
         .md-svg { width: 100%; height: auto; overflow: visible; display: block; }
         .md-svg text { font-family: var(--font-sans), sans-serif; }
@@ -704,6 +688,11 @@ export default function MetodePage({ locale = "ca" }: { locale?: string }) {
             justify-content: center;
           }
           .met-modes-right .md-svg-outer { width: 100%; max-width: 100%; }
+          /* En mòbil el triangle omple l'amplada; es redueix quan s'obren els àmbits */
+          .met-modes-right { overflow: hidden; }
+          .md-svg-outer.md-s0 .md-svg, .md-svg-outer.md-s1 .md-svg { transform: translateY(14%) scale(1.45); transform-origin: 50% 32%; }
+          .md-svg-outer.md-hint.md-s0 .md-svg { transform: translateY(14%) scale(1.49); }
+          .md-svg-outer.md-s2 .md-svg { transform: none; transform-origin: 50% 32%; }
           .md-vl { font-size: 24px; }
           .md-vs { font-size: 17px; fill: #aaa; }
           .md-cl { font-size: 32px; }

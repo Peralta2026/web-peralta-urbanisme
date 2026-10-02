@@ -15,32 +15,6 @@ const COLLABORATORS = [
   { name: "VAIC Mobility", file: "vaic.png" },
 ];
 
-const CLIENTS = [
-  { name: "AMB", file: "amb.jpg" },
-  { name: "Diputació de Barcelona", file: "diputacio-bcn.png" },
-  { name: "Barcelona Regional", file: "barcelona-regional.png" },
-  { name: "Incasol", file: "incasol.jpg" },
-  { name: "Federació Catalana de Municipis", file: "federacio-municipis.jpg" },
-  { name: "Terrassa", file: "terrassa.png" },
-  { name: "Granollers", file: "granollers.jpg" },
-  { name: "Sant Cugat", file: "sant-cugat.jpg" },
-  { name: "Rubí", file: "rubi.png" },
-  { name: "Cornellà", file: "cornella.png" },
-  { name: "Castelldefels", file: "castelldefels.png" },
-  { name: "Gavà", file: "gava.png" },
-  { name: "El Prat de Llobregat", file: "el-prat.png" },
-  { name: "Premià de Mar", file: "premia-de-mar.jpg" },
-  { name: "La Llagosta", file: "la-llagosta.png" },
-  { name: "Calaf", file: "calaf.jpg" },
-  { name: "Molins de Rei", file: "molins-de-rei.png" },
-  { name: "Sant Just Desvern", file: "sant-just.jpg" },
-  { name: "Pineda de Mar", file: "pineda-de-mar.png" },
-  { name: "Bigues", file: "bigues.png" },
-  { name: "Montcada i Reixac", file: "montcada.png" },
-  { name: "L'Hospitalet", file: "hospitalet.jpg" },
-  { name: "Barberà del Vallès", file: "barbera.jpg" },
-];
-
 export default async function PersonesPage({
   params,
 }: {
@@ -134,25 +108,6 @@ export default async function PersonesPage({
         </div>
       </section>
 
-      {/* ── Clients — fons blanc, carrusel quiet fins hover ──────────── */}
-      <section className="pu-clients-section">
-        <p className="pu-clients-label">Han confiat en nosaltres</p>
-        <div className="pu-clients-track-wrap">
-          <div className="pu-clients-track">
-            {[...CLIENTS, ...CLIENTS].map((c, i) => (
-              <div key={i} className="pu-client-logo" title={c.name}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/clients/${c.file}`}
-                  alt={c.name}
-                  className="pu-client-img"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA: Vols treballar amb nosaltres? ────────────────────────── */}
       <AccentSection className="pu-cta-section">
         <h2 className="pu-cta-heading">
@@ -166,62 +121,6 @@ export default async function PersonesPage({
       <style>{`
         .pu-persones-head { padding: clamp(24px, 3.5vh, 40px) var(--margin-page) 0; }
         @media (max-width: 900px) { .pu-persones-head { padding-top: clamp(36px, 5vh, 64px); } }
-
-        /* ── Clients marquee — blanc, quiet fins hover ── */
-        .pu-clients-section {
-          border-top: 1px solid rgba(0,0,0,0.07);
-          padding: clamp(36px,5vh,64px) 0;
-          background: #fff;
-          overflow: hidden;
-        }
-        .pu-clients-label {
-          font-family: var(--font-sans);
-          font-size: 20px;
-          font-weight: 700;
-          letter-spacing: -0.015em;
-          color: #000;
-          margin: 0 0 clamp(20px,3vh,32px);
-          padding: 0 var(--margin-page);
-        }
-        .pu-clients-track-wrap {
-          overflow: hidden;
-          width: 100%;
-          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-        }
-        .pu-clients-track {
-          display: flex;
-          align-items: center;
-          gap: clamp(48px, 6vw, 96px);
-          width: max-content;
-          padding: 12px 0;
-          animation: pu-marquee 60s linear infinite;
-        }
-        .pu-clients-track-wrap:hover .pu-clients-track {
-          animation-play-state: paused;
-        }
-        @media (prefers-reduced-motion: reduce) { .pu-clients-track { animation: none; } }
-        @keyframes pu-marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .pu-client-logo {
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: opacity 300ms ease;
-        }
-        .pu-clients-track-wrap:hover .pu-client-logo { opacity: 0.55; }
-        .pu-clients-track-wrap:hover .pu-client-logo:hover { opacity: 1; }
-        .pu-client-img {
-          max-height: 52px;
-          max-width: 160px;
-          width: auto;
-          height: auto;
-          object-fit: contain;
-          display: block;
-        }
 
         /* ── Col·laboradors habituals ── */
         .pu-collab-strip {
@@ -274,10 +173,6 @@ export default async function PersonesPage({
         @media (max-width: 768px) {
           .pu-collab-strip { gap: 24px; }
           .pu-cta-section { flex-direction: column; align-items: flex-start; }
-          .pu-client-img { max-height: 40px; max-width: 116px; }
-        }
-        @media (max-width: 480px) {
-          .pu-clients-track { gap: 32px; }
         }
       `}</style>
     </div>
