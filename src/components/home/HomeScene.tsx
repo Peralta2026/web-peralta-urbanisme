@@ -662,14 +662,13 @@ function DesktopHome({ locale, projects, news }: HomeProps) {
         <>
           <div className="pu-hero-band" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "#fff", zIndex: 50, pointerEvents: "none" }} />
           <style>{`
-            .pu-hero-band { height: 64px; }
-            @media (max-width: 768px) { .pu-hero-band { height: 44px; } }
+            .pu-hero-band { height: var(--header-height, 88px); }
           `}</style>
         </>
       )}
 
       {/* ── FIXED LOGO z=100 ─────────────────────────────────────────────────── */}
-      <div ref={fixedLogoRef} className="pu-home-logo" style={{ position: "fixed", top: "20px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
+      <div ref={fixedLogoRef} className="pu-home-logo" style={{ position: "fixed", top: "12px", left: "var(--margin-page)", zIndex: 100, opacity: introComplete ? 1 : 0, pointerEvents: "auto" }}>
         <button
           onClick={() => window.scrollTo({ top: SETTLE_END + OPEN_RANGE + 10, behavior: "smooth" })}
           style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "block" }}
